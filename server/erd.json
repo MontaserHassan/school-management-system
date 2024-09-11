@@ -1,0 +1,163 @@
+{
+    "userModel": {
+        "name": "user",
+        "attributes": {
+            "userName": {
+                "attribute": "name"
+            },
+            "email": {
+                "attribute": "name"
+            },
+            "password": {
+                "attribute": "name"
+            },
+            "role": {
+                "attribute": "name",
+                "enum": ["parent", "teacher", "director", "admin", "superAdmin"]
+            },
+            "code": {
+                "attribute": "name"
+            },
+            "updatedPassword": {
+                "attribute": "name"
+            },
+            "logged": {
+                "attribute": "name"
+            },
+            "lastSeen": {
+                "attribute": "name"
+            }
+        }
+    },
+    
+    "subjectModel":{
+        "name": "subject",
+        "attributes": {
+            "subjectName": {
+                "attribute": "name"
+            },
+            "teachersId": [
+                {
+                    "type": "ObjectId"
+                },
+                {
+                    "type": "ObjectId"
+                }
+            ],
+            "studentId": [
+                {
+                    "type": "ObjectId"
+                },
+                {
+                    "type": "ObjectId"
+                }
+            ]
+        }
+    },
+
+    "studentModel": {
+        "name": "student",
+        "attributes": {
+            "studentName": {
+                "attribute": "name"
+            },
+            "studentCode": {
+                "attribute": "name"
+            },
+            "classNumber": {
+                "attribute": "name"
+            },
+            "subjects": [
+                {
+                    "id": "ObjectId",
+                    "teacherId": "ObjectId",
+                    "courseTime": "courseTime",
+                    "degree?": "optional"
+                },
+                {
+                    "id": "ObjectId",
+                    "courseTime": "courseTime",
+                    "teacherId": "ObjectId",
+                    "degree?": "optional"
+                }
+            ],
+            "attendance": [
+                {
+                    "date": "date",
+                    "subject": "ObjectId",
+                    "teacher": "ObjectId",
+                    "status": ["present", "absent", "late", "excused"],
+                    "comment?": "comment"
+                },
+                {
+                    "date": "date",
+                    "subject": "ObjectId",
+                    "teacher": "ObjectId",
+                    "status": ["present", "absent", "late", "excused"],
+                    "comment?": "comment"
+                }
+            ]
+        }
+    },
+
+    "userTokenModel": {
+        "name": "userToken",
+        "attributes": {
+            "secretKey": {
+                "attribute": "name"
+            },
+            "token": {
+                "attribute": "name"
+            },
+            "userId": {
+                "attribute": "name"
+            },
+            "expiryTime": {
+                "attribute": "name"
+            },
+            "endTime": {
+                "attribute": "name"
+            },
+            "active": {
+                "attribute": "name"
+            }
+        }
+    },
+
+    "studentDegreeSchema": {
+        "name": "studentDegreeSchema",
+        "attributes": {
+            "studentCode": {
+                "type": "String"
+            },
+            "subjects": [
+                {
+                    "subjectId": {
+                        "type": "mongoose.Schema.Types.ObjectId"
+                    },
+                    "teacherId": {
+                        "type": "mongoose.Schema.Types.ObjectId"
+                    },
+                    "classNumber": {
+                        "type": "String"
+                    },
+                    "degree": {
+                        "type": "string",
+                        "enum" :["blue", "yellow", "green"]
+                    },
+                    "progressHistory": [
+                        {
+                            "percentage": {
+                                "type": "String"
+                            },
+                            "dateOfRating": {
+                                "type": "Date"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+
+}

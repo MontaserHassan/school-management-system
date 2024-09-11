@@ -1,0 +1,75 @@
+[{
+  "_id": "SchoolSystem-1-1",
+  "masterCode": "1",
+  "masterName": "role",
+  "lookupCode": "1",
+  "lookupName": "superAdmin",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-09T20:00:23.477Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T20:00:23.477Z"
+  }
+},
+{
+  "_id": "SchoolSystem-1-2",
+  "masterCode": "1",
+  "masterName": "role",
+  "lookupCode": "2",
+  "lookupName": "admin",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-09T20:00:23.477Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T20:00:23.477Z"
+  }
+},
+{
+  "_id": "SchoolSystem-1-3",
+  "masterCode": "1",
+  "masterName": "role",
+  "lookupCode": "3",
+  "lookupName": "director",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-09T20:00:23.478Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T20:00:23.478Z"
+  }
+},
+{
+  "_id": "SchoolSystem-1-4",
+  "masterCode": "1",
+  "masterName": "role",
+  "lookupCode": "4",
+  "lookupName": "teacher",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-09T20:00:23.478Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T20:00:23.478Z"
+  }
+},
+{
+  "_id": "SchoolSystem-1-5",
+  "masterCode": "1",
+  "masterName": "role",
+  "lookupCode": "5",
+  "lookupName": "parent",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-09T20:00:23.478Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T20:00:23.478Z"
+  }
+}]

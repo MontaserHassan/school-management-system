@@ -1,0 +1,35 @@
+[{
+  "_id": "eRtxL3QXBzdaDlxHlhdNPfGj",
+  "studentName": "meral mahmoud",
+  "studentCode": "M8075686",
+  "classRoom": "201",
+  "group": "3-6",
+  "subjects": [
+    {
+      "subjectId": "j0xvshvJO0S4b8vMxiK50rJT",
+      "subjectName": "biology"
+    },
+    {
+      "subjectId": "ulpMOFtV_STeLof7hvqkFb2C",
+      "subjectName": "music"
+    }
+  ],
+  "mainTopics": [
+    {
+      "topicId": "6RzzeTB1nSkinzrByIefi3s2",
+      "topicName": "arithmetic operations"
+    }
+  ],
+  "studentCost": "1000",
+  "currencyOfCost": "usd",
+  "attendance": [],
+  "comments": [],
+  "progressHistory": [],
+  "createdAt": {
+    "$date": "2024-09-11T18:17:49.740Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-11T18:17:49.740Z"
+  },
+  "__v": 0
+}]

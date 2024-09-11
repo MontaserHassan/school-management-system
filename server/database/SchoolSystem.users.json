@@ -1,0 +1,184 @@
+[{
+  "_id": "ooLjZefsdOSG5mMWdw5ys",
+  "userName": "director",
+  "email": "director@gmail.com",
+  "role": "director",
+  "code": "Y32771",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$wyRU5nVEM2AmXfl9bK5R5g$8IbFxdXK7WdNgMQO1oilDJNfaaI8Omhn0oLhVEX9rTs",
+  "createdAt": {
+    "$date": "2024-09-06T21:52:46.362Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-11T18:15:27.276Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-11T18:15:27.276Z"
+  },
+  "logged": true
+},
+{
+  "_id": "HRHcsvSdVEAXhMLgr86RD",
+  "userName": "admin admin",
+  "email": "admin@gmail.com",
+  "role": "admin",
+  "code": "E497",
+  "updatePassword": false,
+  "password": "$2b$10$aY7BZoeSRztslbpV4vUiaeS66PSfYmLGHF0qCD3CQ1L0Geo20VPJ2",
+  "createdAt": {
+    "$date": "2024-09-06T22:42:52.819Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-06T22:42:52.819Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "5CyZbAO0ksY9KdOwlboDH",
+  "userName": "super admin",
+  "email": "superadmin@gmail.com",
+  "role": "superAdmin",
+  "code": "P607",
+  "updatePassword": false,
+  "password": "$2b$10$KzkTB4ZRnC2pagB2K1VgJ.lM26P4ou6n5gyKT2Fo4sYM4XEIEKhYC",
+  "createdAt": {
+    "$date": "2024-09-06T22:43:10.482Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-06T22:43:10.482Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "ABjdBV4ATgHecitxS0wrd",
+  "userName": "teacher 1",
+  "email": "teacher1@gmail.com",
+  "role": "teacher",
+  "code": "B8508021",
+  "updatePassword": true,
+  "password": "$2b$10$VH8s.067YhH8.wY11Tssuujeo6YVpwVxuRM5n2U0ZeTjdyQdEudSO",
+  "createdAt": {
+    "$date": "2024-09-06T22:52:38.635Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-07T00:47:56.462Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-07T00:47:56.462Z"
+  },
+  "logged": true
+},
+{
+  "_id": "wpr7VC3R2Qh1uZ-bWDa2G",
+  "userName": "teacher 2",
+  "email": "teacher2@gmail.com",
+  "role": "teacher",
+  "code": "R787",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$WjJkwew7vQXRhxw5ZBO47Q$qEaEE6QAfic9e+cBewCfwzjQSRdkUUik8p7abFJSzkk",
+  "createdAt": {
+    "$date": "2024-09-06T22:52:49.680Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T16:57:58.187Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-10T16:57:58.187Z"
+  },
+  "logged": true
+},
+{
+  "_id": "nbPmYJaTQsSxVG-XKP7uN",
+  "userName": "teacher 3",
+  "email": "teacher3@gmail.com",
+  "role": "teacher",
+  "code": "U9370057",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$3CDzQvz26GsB2Ds1G11nRg$5G4FGyfmSxzaq5TnrLMzjCyyk73R9DBZPGacy6HeT0A",
+  "createdAt": {
+    "$date": "2024-09-06T22:53:06.304Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T22:32:24.714Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-10T22:32:24.714Z"
+  },
+  "logged": true
+},
+{
+  "_id": "TmTckRthrIBFpC9nnasCv",
+  "userName": "teacher 4",
+  "email": "teacher4@gmail.com",
+  "role": "teacher",
+  "code": "M147519",
+  "updatePassword": false,
+  "password": "$2b$10$kNX66oXkTVKaavIw4RKkruRI2YDLcEvX7BVEm/kJtP7kr9DKvG4T.",
+  "createdAt": {
+    "$date": "2024-09-06T22:53:19.025Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-06T22:53:19.025Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "BYuIkX4_zo3eJif1zSMge",
+  "userName": "teacher 5",
+  "email": "teacher5@gmail.com",
+  "role": "teacher",
+  "code": "C522",
+  "updatePassword": false,
+  "password": "$2b$10$Ai6Mlk/j6GI8f4U8F.2nReo6X9TMPettp4p8rlG3GLXvWn1dV.naq",
+  "createdAt": {
+    "$date": "2024-09-06T22:53:41.894Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-06T22:53:41.894Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "dUjircLQ3vI2rpwCakeK5",
+  "userName": "teacher 6",
+  "email": "teacher6@gmail.com",
+  "role": "teacher",
+  "code": "U2292",
+  "updatePassword": true,
+  "password": "$2b$10$booBMWVG8FVH1idMOIDY2ehW1mw7FIjotjqwhY0sZJm8vtMv9QSMu",
+  "createdAt": {
+    "$date": "2024-09-06T22:53:45.551Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-06T22:55:39.014Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-06T22:55:39.014Z"
+  },
+  "logged": true
+},
+{
+  "_id": "RHi1r9wGRZhqUq6f2Zb_1",
+  "userName": "montaser",
+  "email": "montaser@gmail.com",
+  "role": "director",
+  "code": "K628",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$N+b8PudPVS1aXWR9qJSunw$M5qMlB1PhM0yMy4lbg6bZG2KroU3+HfoNVUdQcCrypg",
+  "createdAt": {
+    "$date": "2024-09-09T20:12:01.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T20:48:37.496Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-09T20:48:37.496Z"
+  },
+  "logged": true
+}]

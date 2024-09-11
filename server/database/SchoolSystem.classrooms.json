@@ -1,0 +1,136 @@
+[{
+  "_id": "em3_QQGkVWyq6jL49SS6YMji",
+  "room": "101",
+  "group": "6-9",
+  "teachers": [
+    {
+      "teacherId": "wpr7VC3R2Qh1uZ-bWDa2G",
+      "teacherName": "teacher 2"
+    }
+  ],
+  "mainTopics": [
+    {
+      "topicId": "6RzzeTB1nSkinzrByIefi3s2"
+    }
+  ],
+  "schedule": [
+    {
+      "day": "Sunday",
+      "subjects": [
+        {
+          "subjectId": "FMlb3cHQ2vnDZ3AgzNXiuZnT",
+          "subjectName": "art",
+          "startTime": "08:30",
+          "endTime": "10:00"
+        },
+        {
+          "subjectId": "LxKe0r5z-P5KHDlDVSqP73BH",
+          "subjectName": "social studies",
+          "startTime": "12:00",
+          "endTime": "15:20"
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "subjects": [
+        {
+          "subjectId": "cwI0gP0pJ2VQ_F3xFn4gm2mB",
+          "subjectName": "computer",
+          "startTime": "09:45",
+          "endTime": "11:45"
+        },
+        {
+          "subjectId": "C33G4_wxZGi1BaQOQalTgNo4",
+          "subjectName": "history",
+          "startTime": "13:35",
+          "endTime": "14:25"
+        },
+        {
+          "subjectId": "_KqIWq85MTrjE7zflVevATr-",
+          "subjectName": "deutsch",
+          "startTime": "15:00",
+          "endTime": "18:00"
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "subjects": [
+        {
+          "subjectId": "j0xvshvJO0S4b8vMxiK50rJT",
+          "subjectName": "biology",
+          "startTime": "09:00",
+          "endTime": "10:20"
+        },
+        {
+          "subjectId": "SH2rn6nez5d8RvkgmFIE0uuT",
+          "subjectName": "sports",
+          "startTime": "11:00",
+          "endTime": "15:00"
+        }
+      ]
+    }
+  ],
+  "studentCost": "1500",
+  "currencyOfCost": "usd",
+  "students": [],
+  "createdAt": {
+    "$date": "2024-09-10T17:01:04.391Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T17:01:18.364Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "mwAupClmTkV4kczU9RisY7yn",
+  "room": "201",
+  "group": "3-6",
+  "teachers": [
+    {
+      "teacherId": "nbPmYJaTQsSxVG-XKP7uN",
+      "teacherName": "teacher 3"
+    }
+  ],
+  "mainTopics": [
+    {
+      "topicId": "6RzzeTB1nSkinzrByIefi3s2",
+      "topicName": "arithmetic operations"
+    }
+  ],
+  "schedule": [
+    {
+      "day": "Monday",
+      "subjects": [
+        {
+          "subjectId": "j0xvshvJO0S4b8vMxiK50rJT",
+          "subjectName": "biology",
+          "startTime": "09:30",
+          "endTime": "10:50"
+        },
+        {
+          "subjectId": "ulpMOFtV_STeLof7hvqkFb2C",
+          "subjectName": "music",
+          "startTime": "13:00",
+          "endTime": "15:30"
+        }
+      ]
+    }
+  ],
+  "studentCost": "1000",
+  "currencyOfCost": "usd",
+  "students": [
+    {
+      "studentId": "eRtxL3QXBzdaDlxHlhdNPfGj",
+      "studentName": "Meral Mahmoud"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-09-10T17:15:41.284Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-11T18:17:49.742Z"
+  },
+  "__v": 0
+}]

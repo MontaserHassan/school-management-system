@@ -1,0 +1,1090 @@
+{
+	"info": {
+		"_postman_id": "be26bf09-09de-448a-a6d7-b5850a99b6c7",
+		"name": "school management system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28090962",
+		"_collection_link": "https://montaser99.postman.co/workspace/Team-Workspace~faacda42-8504-486e-872b-5f649314f2c6/collection/28090962-be26bf09-09de-448a-a6d7-b5850a99b6c7?action=share&source=collection_link&creator=28090962"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "logout user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzkzMzhmMjliYTI0ZDc2YzliNDU5OSIsImVtYWlsIjoibW9udGFzZXJAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiODdhZTEyOWYwZGI0MTA5ZTU2NjFhM2JhIiwicm9sZSI6InN0dWRlbnQiLCJzdHVkZW50Q29kZSI6WyJNMTIzIl0sImlhdCI6MTcyNDUwMDI3NywiZXhwIjoxNzI0NTE0Njc3fQ.45rvqPLro20lDRVGxOTX7ijxkTVMdR_emYD6BRNEmjI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDNkZWE5M2MwYzMyYzlhOGVmOGVhNCIsInNlY3JldEtleSI6IjNlYzUzYjM0ZWM4YTBmNTFlZGU2ZDIyMiIsImlhdCI6MTcxMTUyOTY0MSwiZXhwIjoxNzExNjE2MDQxfQ.8ggU1K3dGrXSuF35Ug8QJhRW369-3sNHkrP63JuJ0qs",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/logout",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"director@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"login"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "get profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{SchoolManagement}}/user/profile",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"profile"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMDQzOThjNTRhOTFkZjZmNTg1OGU2MGRlIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTY2MjUyNiwiZXhwIjoxNzI1Njc2OTI2fQ.Ps0vfEng1RYrONjYeVG6X6uLcPX3BgI_OuEmsdDAbZs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"montaser\",\n    \"email\": \"montaser@gmail.com\",\n    \"role\": \"director\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/auth/register",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"auth",
+								"register"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "add password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"teacher3@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/auth/add-password",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"auth",
+								"add-password"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "director",
+			"item": [
+				{
+					"name": "student",
+					"item": [
+						{
+							"name": "add student",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiZWZmMzJmNDNhN2QyYzdmNDZjYjM2N2E3Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNjA3ODUyNywiZXhwIjoxNzI2MDkyOTI3fQ.jjA4XyTQjVS3kVMmPZZOaK9UZvisu2u3gIaTAHA7B2k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentName\": \"Meral Mahmoud\",\n    \"classRoom\": \"201\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/director/student/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"student",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get student by code",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDVlYTk0NDRkNDU1OGNkNDFjYWE0ZCIsImVtYWlsIjoibW9udGFzZXJAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNmQ2N2JkMTdlNGMyOWViNTBmNDY3YjRjIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlUzNTI2NiIsImlhdCI6MTcyNTU1NTA0MSwiZXhwIjoxNzI1NTY5NDQxfQ.VNe-UIbp0mpp5kIs41nPZQI8J3g_UwyB9vh5gbBj-Eg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentName\": \"Maged Baraka\",\n    \"classRoom\": \"200\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/director/student/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"student",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "subject",
+					"item": [
+						{
+							"name": "add subject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiOGY0ZDE0OWZjNmNjMjU1MDgyMGI5OWQ4Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTk4NjM1MywiZXhwIjoxNzI2MDAwNzUzfQ.Ij9yhIabgeykiJKtSpiZq51yab-xutVArufMErG2bD4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"subjectName\": \"literature\",\n  \"courseTime\": \"100\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/director/subject/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"subject",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all subject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMDQzOThjNTRhOTFkZjZmNTg1OGU2MGRlIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTY2MjUyNiwiZXhwIjoxNzI1Njc2OTI2fQ.Ps0vfEng1RYrONjYeVG6X6uLcPX3BgI_OuEmsdDAbZs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/director/subject?page=1",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"subject"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject by subjectId",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMDQzOThjNTRhOTFkZjZmNTg1OGU2MGRlIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTY2MjUyNiwiZXhwIjoxNzI1Njc2OTI2fQ.Ps0vfEng1RYrONjYeVG6X6uLcPX3BgI_OuEmsdDAbZs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/director/subject/YvjWKYpwdNFO0luN6q_10FpM",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"subject",
+										"YvjWKYpwdNFO0luN6q_10FpM"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "class room",
+					"item": [
+						{
+							"name": "add class room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiOGY0ZDE0OWZjNmNjMjU1MDgyMGI5OWQ4Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTk4NjM1MywiZXhwIjoxNzI2MDAwNzUzfQ.Ij9yhIabgeykiJKtSpiZq51yab-xutVArufMErG2bD4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"room\": \"201\",\n  \"teachersId\": [\n    \"nbPmYJaTQsSxVG-XKP7uN\"\n  ],\n  \"schedule\": [\n    {\n      \"day\": \"Monday\",\n      \"subjects\": [\n        {\n          \"subjectId\": \"j0xvshvJO0S4b8vMxiK50rJT\",\n          \"startTime\": \"09:30\"\n        },\n        {\n          \"subjectId\": \"ulpMOFtV_STeLof7hvqkFb2C\",\n          \"startTime\": \"13:00\"\n        }\n      ]\n    }\n  ],\n  \"mainTopics\":[\n    \n  ],\n  \"studentCost\": \"1000\",\n  \"group\": \"3-6\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/director/class-room/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"class-room",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all rooms",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDVlYTk0NDRkNDU1OGNkNDFjYWE0ZCIsImVtYWlsIjoibW9udGFzZXJAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNmQ2N2JkMTdlNGMyOWViNTBmNDY3YjRjIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlUzNTI2NiIsImlhdCI6MTcyNTU1NTA0MSwiZXhwIjoxNzI1NTY5NDQxfQ.VNe-UIbp0mpp5kIs41nPZQI8J3g_UwyB9vh5gbBj-Eg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/director/class-room?page=1",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"class-room"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get room by roomId",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDVlYTk0NDRkNDU1OGNkNDFjYWE0ZCIsImVtYWlsIjoibW9udGFzZXJAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMzU4MzQ1OGVjNWVkZWI1YjU3YWExNDY0Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlUzNTI2NiIsImlhdCI6MTcyNTQwNTc1OSwiZXhwIjoxNzI1NDIwMTU5fQ.xlJQm0HgMTVb5hO-58QNFTjQOFgsdFkfJvCCToshdWU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/director/subject-room/105",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"subject-room",
+										"105"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "logout admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFiNzE3MTNmODI1YWM5NzM0YTJkZCIsImVtYWlsIjoibW9udGFzZXI5QGdtYWlsLmNvbSIsInNlY3JldEtleSI6IjQ3NjZiMmRiZDIxM2NmYjQyYjY1NGIwOSIsInJvbGUiOiJzdXBlckFkbWluIiwiYWRtaW5Db2RlIjoiSjcwNzkiLCJpYXQiOjE3MjUwMjA5NjUsImV4cCI6MTcyNTAzNTM2NX0.NFp_QK2Wj34ItHGeguDewcppVMR6JrATAYBjiDtiRRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDNkZWE5M2MwYzMyYzlhOGVmOGVhNCIsInNlY3JldEtleSI6IjNlYzUzYjM0ZWM4YTBmNTFlZGU2ZDIyMiIsImlhdCI6MTcxMTUyOTY0MSwiZXhwIjoxNzExNjE2MDQxfQ.8ggU1K3dGrXSuF35Ug8QJhRW369-3sNHkrP63JuJ0qs",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{SchoolManagement}}/admin/logout",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"admin",
+								"logout"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "login admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"montaser9@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/admin/auth/login",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"admin",
+								"auth",
+								"login"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "add admin password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"montaser9@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/admin/auth/add-password",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"admin",
+								"auth",
+								"add-password"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "get admin profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFiNzE3MTNmODI1YWM5NzM0YTJkZCIsImVtYWlsIjoibW9udGFzZXI5QGdtYWlsLmNvbSIsInNlY3JldEtleSI6IjQ3NjZiMmRiZDIxM2NmYjQyYjY1NGIwOSIsInJvbGUiOiJzdXBlckFkbWluIiwiYWRtaW5Db2RlIjoiSjcwNzkiLCJpYXQiOjE3MjUwMjA5NjUsImV4cCI6MTcyNTAzNTM2NX0.NFp_QK2Wj34ItHGeguDewcppVMR6JrATAYBjiDtiRRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{SchoolManagement}}/admin/profile",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"admin",
+								"profile"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "create admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFiNzE3MTNmODI1YWM5NzM0YTJkZCIsImVtYWlsIjoibW9udGFzZXI5QGdtYWlsLmNvbSIsInNlY3JldEtleSI6IjQ3NjZiMmRiZDIxM2NmYjQyYjY1NGIwOSIsInJvbGUiOiJzdXBlckFkbWluIiwiYWRtaW5Db2RlIjoiSjcwNzkiLCJpYXQiOjE3MjUwMjA5NjUsImV4cCI6MTcyNTAzNTM2NX0.NFp_QK2Wj34ItHGeguDewcppVMR6JrATAYBjiDtiRRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"montaser@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/admin/create-admin",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"admin",
+								"create-admin"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "create employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullName\": \"Montaser Hassan\",\n\t\"email\": \"montaser9@gmail.com\",\n    \"role\": \"teacher\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/admin/auth/create-employee",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"admin",
+								"auth",
+								"create-employee"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher",
+			"item": [
+				{
+					"name": "topic",
+					"item": [
+						{
+							"name": "add topic",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzM2ZGZkNTA5ZDk3ZTkzYTFiNWQzMTMzIiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiVTkzNzAwNTciLCJpYXQiOjE3MjU5ODgxNjcsImV4cCI6MTcyNjAwMjU2N30.dnwaH36fCyIt7i8zZrcmXWy8bNOzxyZScewDoOk8WJ8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"room\": \"201\",\n    \"topicName\": \"Arithmetic operations\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/teacher/topic/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"teacher",
+										"topic",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all topics",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/teacher/topic/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"teacher",
+										"topic",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get topic by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/teacher/topic/hOiwDEyO3PokX4G84PkuRE1s",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"teacher",
+										"topic",
+										"hOiwDEyO3PokX4G84PkuRE1s"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "lookups",
+			"item": [
+				{
+					"name": "get roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/subjects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get teachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create lookups",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"masterCode\": \"1\",\n    \"lookups\": [\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"superAdmin\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"admin\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"director\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"4\",\n            \"lookupName\": \"teacher\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"5\",\n            \"lookupName\": \"parent\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4040/lookups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4040",
+							"path": [
+								"lookups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
