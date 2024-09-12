@@ -1,0 +1,67 @@
+<div class="state-container">
+  <ng-container [ngSwitch]="state">
+    <ng-container *ngSwitchCase="SectionStateStatus.Disconnected">
+      <div class="state-section background problematic fade-in">
+        <div class="handle-icon">
+          <img [src]="emptyStateImagePath || 'assets/img/network-server-disconnect.svg'" />
+        </div>
+        <div class="error-message">
+          <span>Connection was broken while loading</span>
+        </div>
+        <div class="try-again cursor-pointer" (click)="onReload()">Try Again</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="SectionStateStatus.Error">
+      <div class="state-section background problematic fade-in">
+        <div class="handle-icon handle-error-icon">
+          <img [src]="emptyStateImagePath || 'assets/img/error.png'" />
+        </div>
+        <div *ngIf="errorStateLabel" class="error-message">
+          <span>{{ errorStateLabel }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="SectionStateStatus.Empty">
+      <div class="state-section background empty fade-in">
+        <div class="handle-icon">
+          <img [src]="emptyStateImagePath || 'assets/img/empty-state.png'" />
+        </div>
+        <div class="empty-message">
+          <h3 class="main-text">{{ emptyStateMainLabel }}</h3>
+          <p class="sub-text">{{ emptyStateSubLabel }}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <div class="fade-in state-section">
+
+        <ng-container *ngIf="state === SectionStateStatus.Loading || state === SectionStateStatus.LoadingTransparent">
+          <div class="state-section__loading" [ngClass]="{
+            'state-section__loading-hide-content': state === SectionStateStatus.Loading ,
+          }">
+            <app-loader></app-loader>
+            <div *ngIf="loadingLabel" class="mt-4">
+              <div class="ellipsis d-flex align-items-end">
+                <span>{{ loadingLabel }}</span>
+                <div class="dots"></div>
+              </div>
+            </div>
+          </div>
+
+          <div [ngClass]="{
+            'state-section__loading-transparent': state === SectionStateStatus.LoadingTransparent
+          }"></div>
+        </ng-container>
+
+        <div class="state-section__content" [ngClass]="{
+          'state-section__loading-transparent-content': state === SectionStateStatus.LoadingTransparent
+        }">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

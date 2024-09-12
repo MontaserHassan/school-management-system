@@ -1,0 +1,10 @@
+<div class="nav">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <img (click)="goToHome()" src="assets/img/nav-logo.png" alt="logo" style="width: 120px;" class="mx-3">
+    </ng-template>
+    <ng-template pTemplate="end">
+      <app-change-language-button></app-change-language-button>
+    </ng-template>
+  </p-menubar>
+</div>

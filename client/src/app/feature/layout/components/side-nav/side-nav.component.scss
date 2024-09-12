@@ -1,0 +1,12 @@
+.nav-list{
+  ::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content{
+    background-color: transparent;
+    border: none;
+  }
+  ::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content:hover{
+    background-color: red;
+  }
+  ::ng-deep  .p-highlight{
+    background-color: blue;
+  }
+}

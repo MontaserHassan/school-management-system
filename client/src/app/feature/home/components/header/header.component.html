@@ -1,0 +1,36 @@
+<div class="header">
+  <div class="layer">
+    <h1 class="text-capitalize text-center">{{'HeaderText' | translate}}</h1>
+    <p class="text-center">{{'HeaderText2' | translate}}</p>
+    <div>
+      <button pButton label="{{'LearnMore' | translate}}" class="p-button-primary"></button>
+      <button pButton label="{{'ContactUs' | translate}}" class="p-button-warning"></button>
+    </div>
+  </div>
+</div>
+
+<div id="about" class="container" data-aos="flip-up">
+  <div class="ourTeam row align-items-center">
+    <div class="d-flex flex-column  col-12 col-md-6">
+      <h2>"{{ 'WelcomeToSORIconnect' | translate}}"</h2>
+      <p innerHTML="{{ 'OurTeam' | translate}}"></p>
+      <button pButton label="{{ 'MakeAnAppointment' | translate}}" class="p-button-primary p-button-rounded"></button>
+    </div>
+
+    <div class="sori-image-container col-12 col-md-6">
+      <img src="assets/img/magicpattern-blob.png" alt="Your SVG" class="w-100" />
+    </div>
+  </div>
+</div>
+
+<div class="our-mission container" data-aos="flip-down">
+  <div class="d-flex flex-column align-items-center g-2">
+    <h2 class="mb-5">{{'OurMission' | translate}}</h2>
+    <img src="/assets/img/mission.png" alt="" class=w-100>
+    <div class="d-flex justify-content-between w-100 our-mission-padding">
+      <h4>{{'Educators' | translate}}</h4>
+      <h4>{{'Parents' | translate}}</h4>
+      <h4>{{'Schools' | translate}}</h4>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.home-page {
+  background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 0% 0% / 72px 72px, radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 36px 36px / 72px 72px, linear-gradient(rgba(168, 168, 168, 0.24) 1px, transparent 1px) 0px -0.5px / 36px 36px, linear-gradient(90deg, rgba(168, 168, 168, 0.24) 1px, #ffffff 1px) -0.5px 0px / 36px 36px #ffffff;
+  background-size: 72px 72px, 72px 72px, 36px 36px, 36px 36px;
+  background-color: #ffffff;
+
+  app-nav-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 4px 2px -2px gray;
+  }
+}
+
+

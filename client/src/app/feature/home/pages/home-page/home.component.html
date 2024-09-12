@@ -1,0 +1,13 @@
+<div class="home-page">
+  <app-nav-bar></app-nav-bar>
+
+  <app-header></app-header>
+
+  <div *ngFor="let introductionSection of introductionSections">
+    <app-introduction-section [data]="introductionSection"></app-introduction-section>
+  </div>
+
+  <app-services-section id="services"></app-services-section>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,60 @@
+<app-state-section [state]="sectionState">
+  <div class="wrapper" [ngClass]="{'animate-signIn': signUp , 'animate-signUp':!signUp}">
+    <div class="form-wrapper sign-up">
+      <form [formGroup]="signUpForm">
+        <h2>{{'SignUp' | translate}}</h2>
+        <div class="input-group">
+          <input type="text" formControlName="username">
+          <label for="">{{'Username' | translate}}</label>
+          <p-message *ngIf="isFieldInvalid(signUpForm, 'username')" severity="error"
+            text="{{'UsernameRequired' | translate}}"></p-message>
+
+        </div>
+        <div class="input-group">
+          <input type="email" formControlName="email">
+          <label for="">{{'Email' | translate}}</label>
+          <p-message *ngIf="isFieldInvalid(signUpForm, 'email')" severity="error"
+            text="{{'EmailRequired' | translate}}"></p-message>
+
+        </div>
+        <div class="input-group">
+          <input type="password" formControlName="password">
+          <label autocomplete="true" for="">{{'Password' | translate}}</label>
+          <p-message *ngIf="isFieldInvalid(signUpForm, 'password')" severity="error"
+            text="{{'PasswordRequired' | translate}}"></p-message>
+        </div>
+        <button type="submit" class="btn" (click)="onSignUp()">{{'SignUp' | translate}}</button>
+        <div class="sign-link">
+          <p>{{'AlreadyHaveAnAccount' | translate}} <a (click)="signUp = !signUp" class="signIn-link">{{'SignIn' |
+              translate}}</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-wrapper sign-in">
+      <form [formGroup]="loginForm">
+        <h2>{{'Login' | translate}}</h2>
+        <div class="input-group">
+          <input type="text" id="email" formControlName="email">
+          <label for="email">{{'Email' | translate}}</label>
+          <p-message *ngIf="isFieldInvalid(loginForm, 'email')" severity="error"
+            text="{{'EmailRequired' | translate}}"></p-message>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" formControlName="password">
+          <label autocomplete="true" for="password">{{'Password' | translate}}</label>
+          <p-message *ngIf="isFieldInvalid(loginForm, 'password')" severity="error"
+            text="{{'PasswordRequired' | translate}}"></p-message>
+        </div>
+        <div class="forgot-pass">
+          <a>{{'ForgotPassword' | translate}}</a>
+        </div>
+        <button type="submit" class="btn" (click)="onLogin()">{{'Login' | translate}}</button>
+        <div class="sign-link">
+          <p>{{'DontHaveAnAccount' | translate}} <a (click)="signUp = !signUp" class="signUp-link">{{'SignUp' |
+              translate}}</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-state-section>

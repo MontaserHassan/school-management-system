@@ -1,0 +1,24 @@
+<div class="nav-list">
+  <p-panelMenu [model]="items">
+    <ng-template pTemplate="item" let-item>
+      <ng-container *ngIf="item.route; else noLink">
+        <a [routerLink]="item.route" class="d-flex align-items-center justify-content-between cursor-pointer p-2 w-100">
+          <div class="d-flex align-items-center gap-2">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label }}</span>
+          </div>
+        </a>
+      </ng-container>
+
+      <ng-template #noLink>
+        <div class="d-flex align-items-center justify-content-between cursor-pointer p-2 w-100">
+          <div class="d-flex align-items-center gap-2">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label }}</span>
+          </div>
+          <i *ngIf="item.items" class="pi pi-angle-down text-primary ml-auto"></i>
+        </div>
+      </ng-template>
+    </ng-template>
+  </p-panelMenu>
+</div>
