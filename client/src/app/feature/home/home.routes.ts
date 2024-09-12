@@ -9,13 +9,13 @@ const routes: Routes = [
   {
     path: RoutesUtil.AuthLogin.path,
     component: AuthComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: '',
     component: HomeComponent,
   },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

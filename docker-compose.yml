@@ -44,7 +44,7 @@ services:
   #     context: ./client
   #     dockerfile: Dockerfile
   #   ports:
-  #     - "4200:4200"
+  #     - "4500:4500"
   #   networks:
   #     - my-network
 
