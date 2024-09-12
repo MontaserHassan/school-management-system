@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="info">
+    <mat-icon class="icon">{{data?.icon}}</mat-icon>
+    <div class="d-flex column justify-flex-start align-items-start">
+      <span>{{ data?.message }}</span>
+      <a target="_blank" *ngIf="data?.url" [href]="data?.url">{{ data?.urlText ? data?.urlText : data?.url }}</a>
+    </div>
+  </div>
+  <div class="close-button">
+    <mat-icon class="icon" (click)="snackBarRef.dismiss()">close</mat-icon>
+  </div>
+</div>

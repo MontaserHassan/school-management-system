@@ -1,0 +1,21 @@
+<div>
+  <p-button label="{{ 'ChangeLanguage' | translate }}" [text]="true" severity="secondary"
+    (onClick)="menu.toggle($event)">
+    <ng-template pTemplate="content">
+      <div class="d-flex justify-content-between align-items-center gap-2">
+        <i *ngIf="size > ScreenSizes.md" class="pi pi-globe"></i>
+        <span *ngIf="size > ScreenSizes.md">{{ 'ChangeLanguage' | translate }}</span>
+        <img src="{{'/assets/icons/'+ savedLang + '.png'}}" class="custom-menu-icon" />
+      </div>
+    </ng-template>
+  </p-button>
+
+  <p-tieredMenu #menu [model]="items" [popup]="true">
+    <ng-template pTemplate="item" let-item>
+      <div class="custom-menu" (click)="item.command()">
+        <img *ngIf="item.icon" [src]="item.icon" class="custom-menu-icon" />
+        <span>{{item.label}}</span>
+      </div>
+    </ng-template>
+  </p-tieredMenu>
+</div>

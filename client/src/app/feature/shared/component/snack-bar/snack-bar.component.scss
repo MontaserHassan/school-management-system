@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .info {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    span {
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: underline;
+      color: rgb(94, 94, 204);
+    }
+
+    .icon {
+      margin-inline-end: 15px;
+    }
+  }
+  .close-button {
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-inline-start: 15px;
+    cursor: pointer;
+  }
+
+  &.rtl {
+    direction: rtl;
+
+    .icon {
+      margin: 0;
+      margin-inline-start: 15px;
+    }
+
+  }
+}
