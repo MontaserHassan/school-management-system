@@ -10,7 +10,7 @@ export class UserRoleService {
   constructor(private authService: AuthService) {}
 
   isUserHasRoles(roles: UserRole[]): boolean {
-    const userRoles = this.authService.currentUser$?.value?.role ?? [];
+    const userRoles = this.authService.currentUser$?.value?.user?.role ?? [];
 
     for (const role of roles) {
       const userRole = userRoles === role;

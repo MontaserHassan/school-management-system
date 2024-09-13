@@ -37,7 +37,7 @@ export class JwtDecoderService {
   isTokenExpired(authToken: string) {
     return authToken == null || this.jwtHelperService.isTokenExpired(authToken);
   }
-  
+
   getDecodedToken() {
     const user = localStorage.getItem(StorageConstant.AUTH_USER);
 
@@ -58,7 +58,7 @@ export class JwtDecoderService {
   getCurrentUserFromJWTToken() {
     const payloadMap = this.getDecodedToken();
     if (payloadMap != null) {
-      const modifiedPayload = Object.assign(payloadMap,);
+      const modifiedPayload = Object.assign(payloadMap)
       return this.mapper.fromJson(AuthResponse, modifiedPayload);
     }
     return null;

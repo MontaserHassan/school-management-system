@@ -1,0 +1,11 @@
+<div class="header px-2">
+  <img src="assets/img/nav-logo.png" alt="logo" style="width: 120px;" class="mx-3">
+
+  <div class="d-flex align-items-center gap-1">
+
+    <p-splitButton *ngIf="currentUser" [label]="currentUser.userName" (onClick)="goToUserProfile()" [model]="items"
+      icon="pi pi-user" text severity="secondary" />
+
+    <app-change-language-button></app-change-language-button>
+  </div>
+</div>

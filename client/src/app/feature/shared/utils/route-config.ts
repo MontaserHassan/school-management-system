@@ -18,8 +18,10 @@ export class RouteConfig<p= void, q= void> {
 
   url(data:{params?: any, queryParams?: any ,fragment?:any}={}): string {
     let pathFromRoot = this.pathFromRoot;
+      console.log(data.params);
 
     if (data.params) {
+
       Object.keys(data.params).forEach((param) => {
         if (pathFromRoot.includes(`:${param}`)) {
           pathFromRoot = pathFromRoot.replace(`:${param}`, data.params[param]);

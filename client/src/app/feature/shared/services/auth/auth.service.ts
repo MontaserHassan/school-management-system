@@ -13,7 +13,7 @@ import { Mapper } from '../../mapper/base-mapper.mapper';
   providedIn: 'root',
 })
 export class AuthService {
-  public currentUser$: BehaviorSubject<User> = new BehaviorSubject(new User());
+  public currentUser$: BehaviorSubject<AuthResponse> = new BehaviorSubject(new AuthResponse());
   public redirectionURL = '';
 
   constructor(
@@ -35,9 +35,14 @@ export class AuthService {
     return this.baseAPI.post(ApiConstant.LOGIN, filterNullEntity(body)).pipe(
       map((res) => this.mapper.fromJson(AuthResponse, res.data)),
       tap((user) => {
-        console.log(user);
         return this.saveTokenAndUpdateUser(user)
       })
+    );
+  }
+
+  addUser(body: User): Observable<any> {
+    return this.baseAPI.post(ApiConstant.ADD_USER, filterNullEntity(body)).pipe(
+      map((res) => res)
     );
   }
 

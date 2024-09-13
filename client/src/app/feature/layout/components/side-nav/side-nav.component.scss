@@ -2,11 +2,16 @@
   ::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content{
     background-color: transparent;
     border: none;
+    color: wheat;
+    padding: 5px;
+
   }
   ::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content:hover{
-    background-color: red;
+    background-color: #D91B7D;
   }
   ::ng-deep  .p-highlight{
-    background-color: blue;
+    background-color: #D91B7D;
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
   }
 }

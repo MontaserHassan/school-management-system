@@ -45,7 +45,7 @@ $maquette-sori-theme: mat.define-theme((
 @import "aos/dist/aos.css";
 
 * { box-sizing: border-box; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .custom-menu{
   padding: 8px;

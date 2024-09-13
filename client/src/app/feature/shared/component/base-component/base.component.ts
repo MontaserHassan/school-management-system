@@ -150,10 +150,10 @@ export class BaseComponent<Filters = any> implements OnDestroy {
         if (err && err) {
           this.showErrorMessage(
             { errors: err.errors },
-            extra?.errorMessagePath || 'ErrorMessages.ErrorHappened',
+            extra?.errorMessagePath,
           );
         } else {
-          this.showErrorMessage(err, extra?.errorMessagePath || 'ErrorMessages.ErrorHappened');
+          this.showErrorMessage(err, extra?.errorMessagePath);
         }
         this.sectionState = SectionStateStatus.Ready;
         changeDetector?.markForCheck();

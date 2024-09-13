@@ -1,0 +1,34 @@
+<app-state-section [state]="sectionState">
+  <p-card header="Add New User">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid ">
+        <div class="my-4">
+          <label for="userName">Username</label>
+          <input id="userName" type="text" pInputText formControlName="userName" />
+          <small *ngIf="userForm.controls['userName'].invalid && userForm.controls['userName'].touched"
+            class="p-error">Username is required</small>
+        </div>
+
+        <div class="my-4">
+          <label for="email">Email</label>
+          <input id="email" type="email" pInputText formControlName="email" />
+          <small *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched" class="p-error">Enter
+            a
+            valid email</small>
+        </div>
+
+        <div class="my-4">
+          <label for="role">Role</label>
+          <p-dropdown [options]="roles" formControlName="role" placeholder="Select a Role"></p-dropdown>
+          <small *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" class="p-error">Role is
+            required</small>
+        </div>
+
+        <div class="my-4">
+          <button pButton type="submit" label="Add User" class="p-button-success"
+            [disabled]="userForm.invalid"></button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</app-state-section>

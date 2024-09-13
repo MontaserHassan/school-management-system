@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -10,42 +12,30 @@ export class SideNavComponent {
 
   items!: MenuItem[];
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     this.items = [
       {
-        label: 'Router',
-        icon: 'pi pi-palette',
+        label: 'Users',
+        icon: 'pi pi-user',
         items: [
           {
-            label: 'Installation',
-            icon: 'pi pi-eraser',
+            label: 'Users List',
+            icon: 'pi pi-list',
+            command: () => {
+              this.router.navigate([RoutesUtil.UserList.url()]);
+            }
           },
           {
-            label: 'Configuration',
-            icon: 'pi pi-heart',
+            label: 'Add User',
+            icon: 'pi pi-user-edit',
+            command: () => {
+              this.router.navigate([RoutesUtil.AddUser.url()]);
+            }
           }
         ]
       },
-      {
-        label: 'Programmatic',
-        icon: 'pi pi-link',
-      },
-      {
-        label: 'External',
-        icon: 'pi pi-home',
-        items: [
-          {
-            label: 'Angular',
-            icon: 'pi pi-star',
-          },
-          {
-            label: 'Vite.js',
-            icon: 'pi pi-bookmark',
-          }
-        ]
-      }
     ];
   }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,10 +32,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BadgeModule } from 'primeng/badge';
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
+import { TableModule } from 'primeng/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { StateSectionComponent } from './component/state-section/state-section.component';
 import { LoaderComponent } from './component/loader/loader.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -77,7 +80,12 @@ const PRIME_NG_MODULES = [
   PasswordModule,
   ProgressSpinnerModule,
   PanelMenuModule,
-  BadgeModule, RippleModule, AvatarModule
+  BadgeModule,
+  RippleModule,
+  AvatarModule,
+  TableModule,
+  DropdownModule,
+  InputTextModule
 ]
 
 @NgModule({

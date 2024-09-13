@@ -59,8 +59,6 @@ export class ApiBaseService {
       options.headers = this.getHeaders();
     }
 
-    console.log(this.encodeURL(this.switchUrlBase(url)), body, options);
-
     return this.http
       .post(this.encodeURL(this.switchUrlBase(url)), body, options)
       .pipe(catchError(this.handleError));
@@ -136,23 +134,27 @@ export class ApiBaseService {
   }
 
   handleError(response: any) {
-    if (response.status === 400) {
-      return throwError(new BadInputError(response.error.errors, response.status));
-    } else if (response.status === 404) {
-      return throwError(new NotFoundError(response.error.errors, response.status));
-    } else if (response.status === 403) {
-      return throwError(new IneligibleError(response.error.errors, response.status));
-    } else if (response.status === 409) {
-      return throwError(new ConflictError(response.error.errors));
-    } else if (response.status === 204) {
-      return throwError(new NoDataError(response.error.errors, response.status));
-    } else if (response.status === 412) {
-      return throwError(new PreconditionError(response.error.errors, response.status));
-    } else if (response.status === 0 || response.status === -1) {
+    const error = [response.error.responseMessage + " " + response.error.path]
+
+    const statusCode = response.status
+
+    if (statusCode === 400) {
+      return throwError(new BadInputError(error, statusCode));
+    } else if (statusCode === 404) {
+      return throwError(new NotFoundError(error, statusCode));
+    } else if (statusCode === 403) {
+      return throwError(new IneligibleError(error, statusCode));
+    } else if (statusCode === 409) {
+      return throwError(new ConflictError(error));
+    } else if (statusCode === 204) {
+      return throwError(new NoDataError(error, statusCode));
+    } else if (statusCode === 412) {
+      return throwError(new PreconditionError(error, statusCode));
+    } else if (statusCode === 0 || statusCode === -1) {
       return throwError(new AppError(['Disconnected, Please check network and try again']));
     }
     return throwError(
-      new AppError(response.error ? response.error.errors : response.errors, response.status)
+      new AppError(response.error ? error : response.responseMessage + response.path , statusCode)
     );
   }
 

@@ -21,7 +21,6 @@ const routes: Routes = [
       ),
   },
   {
-
     path: "",
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always',
@@ -32,6 +31,13 @@ const routes: Routes = [
         loadChildren: () =>
           import(/* webpackChunkName: "Auth" */ './feature/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: RoutesUtil.User.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/user/user.module').then(
+            (m) => m.UserModule
           ),
       },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
