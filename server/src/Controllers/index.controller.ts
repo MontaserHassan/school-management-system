@@ -5,6 +5,8 @@ import subjectController from './subject.controller';
 import classRoomController from './class-room.controller';
 import topicController from "./topic.controller";
 import lookupController from "./lookup.controller";
+import schoolController from "./school.controller";
+
 
 
 export {
@@ -15,4 +17,5 @@ export {
     topicController,
     classRoomController,
     lookupController,
+    schoolController,
 };

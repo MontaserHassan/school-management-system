@@ -6,6 +6,7 @@ import studentService from './student.service';
 import classRoomService from './class-room.service';
 import topicService from "./topic.service";
 import lookupService from "./lookup.service";
+import schoolService from "./school.service";
 
 
 
@@ -17,5 +18,6 @@ export {
     topicService,
     studentService,
     classRoomService,
-    lookupService
+    lookupService,
+    schoolService,
 };

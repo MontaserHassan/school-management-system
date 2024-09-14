@@ -5,8 +5,9 @@ import authRouter from './auth.routes';
 import authUserRouter from './authUser.routes';
 import authTeacherRouter from './authTeacher.routes';
 import authDirectorRouter from './authDirector.routes';
-import authAdminRouter from './authAdmin.routes';
 import authParentRouter from './authParent.routes';
+import authAdminRouter from './authAdmin.routes';
+import authSuperAdminRouter from './authSuperAdmin.routes';
 
 
 
@@ -19,6 +20,7 @@ user.use('/teacher', authTeacherRouter);
 user.use('/director', authDirectorRouter);
 user.use('/parent', authParentRouter);
 user.use('/admin', authAdminRouter);
+user.use('/superAdmin', authSuperAdminRouter);
 
 
 

@@ -9,9 +9,11 @@ import degreeRouter from './Teacher/degree.routes';
 
 const authTeacherRouter = express.Router();
 
+
 authTeacherRouter.use(checkRole(['teacher']));
 authTeacherRouter.use('/topic', topicRouter);
 authTeacherRouter.use('/degree', degreeRouter);
+
 
 
 export default authTeacherRouter;

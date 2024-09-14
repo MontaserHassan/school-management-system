@@ -3,8 +3,25 @@ import { nanoid } from "nanoid";
 
 
 
-interface InvoiceModel extends mongoose.Document {
+interface InvoiceInterface {
+    invoiceId: string;
+    amount: string;
+    dateOfCreation: Date;
+    paid: boolean;
+    // reminder: string;
+    media: string;
+};
 
+
+interface InvoiceModel extends mongoose.Document {
+    _id: string;
+    parentId: string;
+    studentCode: string[];
+    schoolId: string;
+    totalCost: string;
+    paidCost: string;
+    remainingCost: string;
+    invoices: InvoiceInterface[];
 };
 
 
@@ -25,6 +42,11 @@ const invoiceSchema = new mongoose.Schema(
                 required: true,
             },
         ],
+        schoolId: {
+            type: String,
+            ref: 'School',
+            required: false,
+        },
         totalCost: {
             type: String,
             required: true,
@@ -47,7 +69,7 @@ const invoiceSchema = new mongoose.Schema(
                     type: String,
                     required: true,
                 },
-                dateCreation: {
+                dateOfCreation: {
                     type: Date,
                     required: true,
                 },

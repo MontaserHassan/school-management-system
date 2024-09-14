@@ -10,6 +10,7 @@ interface UserModel extends mongoose.Document {
     email: string;
     role: string;
     code: string;
+    schoolId: string;
     updatePassword: boolean;
     password: string;
     lastSeen: Date;
@@ -37,6 +38,11 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ['parent', 'admin', 'superAdmin', 'teacher', 'director',],
             required: true,
+        },
+        schoolId: {
+            type: String,
+            ref: 'School',
+            required: false,
         },
         code: {
             type: String,

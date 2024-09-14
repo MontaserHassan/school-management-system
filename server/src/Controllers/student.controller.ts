@@ -23,13 +23,13 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
         const currencyOfCost = isClassRoomExisting.currencyOfCost;
         const group = isClassRoomExisting.group;
         const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
-        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, classRoom, subjects, mainTopics, studentCost, currencyOfCost);
+        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, classRoom, subjects, mainTopics, studentCost, currencyOfCost, req.user.schoolId);
         if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         // const isStudentAlreadyInClass = isClassRoomExisting.students.some(student => student.studentId === newStudent._id);
         // if (isStudentAlreadyInClass) {
         //     await studentService.deleteStudent(newStudent._id);
         //     throw new CustomError(errorStudentMessage.EXISTING_STUDENT, 400, "student");
-        // }
+        // };
         const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (newStudent._id).toString(), studentName }]);
         if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
         const response: IResponse = {
@@ -185,7 +185,6 @@ const updateStudentData = async (req: Request, res: Response, next: NextFunction
 const deleteStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentCode, } = req.params;
-        // check he is on any class room or not
         const IsStudentExisting = await studentService.getStudentByStudentCode(studentCode);
         if (!IsStudentExisting) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const deletedStudent = await studentService.deleteStudent(IsStudentExisting._id);

@@ -34,6 +34,11 @@ const classRoomSchema = new mongoose.Schema(
             type: String,
             default: () => nanoid(24),
         },
+        schoolId: {
+            type: String,
+            ref: 'School',
+            required: false,
+        },
         room: {
             type: String,
             required: true,

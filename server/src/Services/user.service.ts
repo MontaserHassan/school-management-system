@@ -8,15 +8,16 @@ import generatePassword from "../Utils/generate-password.util";
 // ----------------------------- create user -----------------------------
 
 
-const createUser = async (userName: string, email: string, role: string) => {
+const createUser = async (userName: string, email: string, role: string, schoolId: string) => {
     const newCode = generateCode();
     const password = generatePassword(10);
-    const newUser = new User({
+    const newUser: UserModel = new User({
         userName: userName,
         email: email,
         role: role,
         code: newCode,
-        password: password
+        password: password,
+        schoolId: schoolId
     });
     await newUser.save();
     return newUser;
@@ -102,6 +103,14 @@ const getTeachers = async () => {
 };
 
 
+// ----------------------------- delete Users -----------------------------
+
+
+const deleteUsers = async (employees: string[]) => {
+    const deleteEmployees = await User.deleteMany({ _id: { $in: employees } });
+    return deleteEmployees;
+};
+
 
 
 export default {
@@ -114,4 +123,5 @@ export default {
     updateUserPassword,
     verifyPassword,
     updateLogged,
+    deleteUsers,
 };

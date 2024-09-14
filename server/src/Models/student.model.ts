@@ -33,6 +33,7 @@ interface progressHistory {
 
 interface StudentModel extends mongoose.Document {
     _id: string;
+    schoolId?: string;
     studentName: string;
     studentCode: string;
     group: string;
@@ -51,6 +52,11 @@ const studentSchema = new mongoose.Schema(
         _id: {
             type: String,
             default: () => nanoid(24),
+        },
+        schoolId: {
+            type: String,
+            ref: 'School',
+            required: false,
         },
         studentName: {
             type: String,

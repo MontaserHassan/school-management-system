@@ -15,7 +15,7 @@ authUserRouter.get('/profile', userController.getProfile);
 authUserRouter.get('/student-data/:studentCode', studentController.getStudent);
 authUserRouter.post('/logout', userController.logoutUser);
 
-// authUserRouter.post('/register', checkRole(['director', 'admin', 'superAdmin']), validation(userValidator.registerUser), userController.registerUser);
+authUserRouter.post('/register', checkRole(['director', 'admin', 'superAdmin']), validation(userValidator.registerUser), userController.registerUser);
 
 
 

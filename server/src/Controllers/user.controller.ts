@@ -14,12 +14,12 @@ import RoleHierarchy from "../Interfaces/user-hierarchy.interface";
 
 const registerUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userName, email, role } = req.body;
-        // const currentUserRole = req?.user?.role;
-        // if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy[role]) throw new CustomError(`You do not have permission to create a user with this role: ${role}.`, 403, "role");
+        const { userName, email, role, schoolId } = req.body;
+        const currentUserRole = req?.user?.role;
+        if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy[role]) throw new CustomError(`You do not have permission to create a user with this role: ${role}.`, 403, "role");
         const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
         if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
-        const newUser = await userService.createUser(userName, (email).toLowerCase(), role);
+        const newUser = await userService.createUser(userName, (email).toLowerCase(), role, schoolId);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -104,7 +104,7 @@ const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
         const { userId } = req.user;
         const { secretKey } = req.token;
         const stoppedToken = await userTokenService.stopToken(secretKey);
-        if (!stoppedToken) throw new CustomError(ErrorTokenMessage.tokenInvalid, 404, "token");
+        if (!stoppedToken) throw new CustomError(ErrorTokenMessage.TOKEN_INVALID, 404, "token");
         await userService.updateLogged(userId, false)
         const response: IResponse = {
             type: "info",

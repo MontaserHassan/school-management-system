@@ -7,7 +7,7 @@ import { SubjectModel } from "Models/subject.model";
 // ----------------------------- create subject -----------------------------
 
 
-const createStudent = async (studentName: string, group: string, classRoom: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string) => {
+const createStudent = async (studentName: string, group: string, classRoom: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string, schoolId: string) => {
     const studentCode = generateCode();
     const newStudent: StudentModel = new Student({
         studentName: studentName,
@@ -17,7 +17,8 @@ const createStudent = async (studentName: string, group: string, classRoom: stri
         subjects: subjects,
         mainTopics: mainTopics,
         studentCost: studentCost,
-        currencyOfCost: currencyOfCost
+        currencyOfCost: currencyOfCost,
+        schoolId: schoolId,
     });
     await newStudent.save();
     return newStudent;

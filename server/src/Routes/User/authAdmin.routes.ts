@@ -9,8 +9,8 @@ const authAdminRouter = express.Router();
 
 
 // super Admin
-authAdminRouter.use(checkRole(['superAdmin']));
-authAdminRouter.post('/create-admin',);
+authAdminRouter.use(checkRole(['admin']));
+authAdminRouter.post('',);
 
 
 

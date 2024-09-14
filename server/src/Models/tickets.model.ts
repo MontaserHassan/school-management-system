@@ -7,6 +7,7 @@ interface TicketModel extends mongoose.Document {
     _id: string;
     employeeId: string;
     parentId: string;
+    schoolId: string;
     messages: {
         messageId: string;
         content: string;
@@ -31,6 +32,11 @@ const ticketsSchema = new mongoose.Schema(
             type: String,
             ref: 'User',
             required: true,
+        },
+        schoolId: {
+            type: String,
+            ref: 'School',
+            required: false,
         },
         messages: [
             {

@@ -17,6 +17,9 @@ import errorClassRoomMessage from './class-room/error.message'
 import successClassRoomMessage from './class-room/success.message';
 import errorLookupMessage from './lookup/error.message';
 import successLookupMessage from './lookup/success.message';
+import errorSchoolMessage from './school/error.message';
+import successSchoolMessage from './school/success.message';
+
 
 
 export {
@@ -39,4 +42,6 @@ export {
     successClassRoomMessage,
     errorLookupMessage,
     successLookupMessage,
+    errorSchoolMessage,
+    successSchoolMessage,
 };

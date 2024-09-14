@@ -8,6 +8,10 @@ const userValidator = {
             userName: Joi.string().required().trim().min(8).max(30),
             email: Joi.string().required().trim().email().message('Please enter a valid email.'),
             role: Joi.string().required().trim().valid('superAdmin', 'admin', 'director', 'teacher', 'parent').messages({ 'any.only': 'Please enter a valid role.' }),
+            schoolId: Joi.string().optional().trim().max(24).when('role', {
+                is: Joi.string().valid('admin', 'director', 'teacher', 'parent'),
+                then: Joi.string().invalid('superAdmin').messages({ 'any.invalid': 'SchoolId cannot be "superAdmin" for non-superAdmin roles.' })
+            })
         }),
     },
     loginUser: {

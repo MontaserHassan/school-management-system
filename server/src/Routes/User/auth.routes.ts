@@ -13,7 +13,7 @@ const authRouter = express.Router();
 authRouter.post('/login', validation(userValidator.loginUser), userController.loginUser);
 authRouter.post('/add-password', validation(userValidator.addPassword), userController.addPassword);
 
-authRouter.post('/register', validation(userValidator.registerUser), userController.registerUser);
+// authRouter.post('/register', validation(userValidator.registerUser), userController.registerUser);
 
 
 export default authRouter;
