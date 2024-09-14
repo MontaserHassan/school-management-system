@@ -12,7 +12,7 @@ import classRoomRouter from './Director/class-room.routes';
 const authDirectorRouter = express.Router();
 
 
-authDirectorRouter.use(checkRole(['director']));
+authDirectorRouter.use(checkRole(['director', 'admin', 'superAdmin']),);
 authDirectorRouter.use('/subject', subjectRouter);
 authDirectorRouter.use('/class-room', classRoomRouter);
 authDirectorRouter.use('/student', studentRouter);

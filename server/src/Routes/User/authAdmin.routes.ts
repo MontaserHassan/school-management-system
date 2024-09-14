@@ -9,7 +9,7 @@ const authAdminRouter = express.Router();
 
 
 // super Admin
-authAdminRouter.use(checkRole(['admin']));
+authAdminRouter.use(checkRole(['director', 'admin', 'superAdmin']),);
 authAdminRouter.post('',);
 
 

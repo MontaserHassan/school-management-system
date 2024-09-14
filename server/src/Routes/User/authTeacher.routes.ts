@@ -10,7 +10,7 @@ import degreeRouter from './Teacher/degree.routes';
 const authTeacherRouter = express.Router();
 
 
-authTeacherRouter.use(checkRole(['teacher']));
+authTeacherRouter.use(checkRole(['director', 'admin', 'superAdmin']),);
 authTeacherRouter.use('/topic', topicRouter);
 authTeacherRouter.use('/degree', degreeRouter);
 
