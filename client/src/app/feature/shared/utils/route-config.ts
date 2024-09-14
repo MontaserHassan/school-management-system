@@ -18,7 +18,6 @@ export class RouteConfig<p= void, q= void> {
 
   url(data:{params?: any, queryParams?: any ,fragment?:any}={}): string {
     let pathFromRoot = this.pathFromRoot;
-      console.log(data.params);
 
     if (data.params) {
 

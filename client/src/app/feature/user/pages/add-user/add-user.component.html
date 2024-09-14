@@ -1,5 +1,5 @@
-<app-state-section [state]="sectionState">
-  <p-card header="Add New User">
+<p-card header="Add New User">
+  <app-state-section [state]="sectionState">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="p-fluid ">
         <div class="my-4">
@@ -25,10 +25,10 @@
         </div>
 
         <div class="my-4">
-          <button pButton type="submit" label="Add User" class="p-button-success"
+          <button pButton type="submit" label="Add User" class="p-button-primary"
             [disabled]="userForm.invalid"></button>
         </div>
       </div>
     </form>
-  </p-card>
-</app-state-section>
+  </app-state-section>
+</p-card>

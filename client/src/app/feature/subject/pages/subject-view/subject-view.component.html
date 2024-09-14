@@ -1,0 +1,37 @@
+<p-card>
+  <app-state-section [state]="sectionState">
+    <p-panel header="Subject Information" class="subject-panel">
+      <div class="subject-details">
+        <div class="subject-detail-row">
+          <label>Subject Name:</label>
+          <p>{{ subject.subjectName || 'N/A' }}</p>
+        </div>
+
+        <div class="subject-detail-row">
+          <label>Course Time:</label>
+          <p>{{ subject.courseTime || 'N/A' }} Hours</p>
+        </div>
+
+        <div class="subject-detail-row">
+          <label>Type of Time:</label>
+          <p-tag *ngIf="subject.typeOfTime" value="{{ subject.typeOfTime }}" severity="info"></p-tag>
+        </div>
+
+        <div class="subject-detail-row">
+          <label>ID:</label>
+          <p>{{ subject._id || 'N/A' }}</p>
+        </div>
+
+        <div class="subject-detail-row">
+          <label>Created At:</label>
+          <p>{{ subject.createdAt | date:'longDate' || 'N/A' }}</p>
+        </div>
+
+        <div class="subject-detail-row">
+          <label>Updated At:</label>
+          <p>{{ subject.updatedAt | date:'longDate' || 'N/A' }}</p>
+        </div>
+      </div>
+    </p-panel>
+  </app-state-section>
+</p-card>

@@ -33,6 +33,7 @@ import { BadgeModule } from 'primeng/badge';
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { StateSectionComponent } from './component/state-section/state-section.component';
@@ -85,7 +86,8 @@ const PRIME_NG_MODULES = [
   AvatarModule,
   TableModule,
   DropdownModule,
-  InputTextModule
+  InputTextModule,
+  TagModule
 ]
 
 @NgModule({

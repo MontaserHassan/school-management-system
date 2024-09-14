@@ -12,5 +12,7 @@ export class SnackBarComponent {
   constructor(
     public layoutService: LayoutService,
     public snackBarRef: MatSnackBarRef<SnackBarComponent>,
-    @Inject(MAT_SNACK_BAR_DATA) public data: any) { }
+    @Inject(MAT_SNACK_BAR_DATA) public data: any,
+  ) {
+  }
 }

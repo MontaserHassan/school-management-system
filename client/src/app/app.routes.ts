@@ -40,6 +40,13 @@ const routes: Routes = [
             (m) => m.UserModule
           ),
       },
+      {
+        path: RoutesUtil.Subject.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/subject/subject.module').then(
+            (m) => m.SubjectModule
+          ),
+      },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
     ]
   },

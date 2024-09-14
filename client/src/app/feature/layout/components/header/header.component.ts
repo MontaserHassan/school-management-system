@@ -21,8 +21,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.authService.currentUser$.value.user;
 
-    console.log(this.currentUser);
-
     this.items = [
       {
         label: 'logout',
