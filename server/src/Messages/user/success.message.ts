@@ -6,6 +6,7 @@ enum SuccessUserMessage {
     LOGOUT = "User logout successfully",
     UPDATED_PASSWORD = 'User updated password successfully',
     GET_PROFILE = 'User get profile successfully',
+    GET_USERS = 'Users fetched successfully',
     TOKEN = 'This token from last session',
     ADD_PASSWORD = 'Your password updated successfully, please login again.',
 };

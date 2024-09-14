@@ -12,6 +12,7 @@ const authUserRouter = express.Router();
 
 
 authUserRouter.get('/profile', userController.getProfile);
+authUserRouter.get('/', userController.getAllUsers);
 authUserRouter.get('/student-data/:studentCode', studentController.getStudent);
 authUserRouter.post('/logout', userController.logoutUser);
 

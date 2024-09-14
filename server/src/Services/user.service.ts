@@ -24,6 +24,32 @@ const createUser = async (userName: string, email: string, role: string, schoolI
 };
 
 
+// ----------------------------- get total documents -----------------------------
+
+
+const totalDocument = async () => {
+    const user = await User.countDocuments();
+    return user;
+};
+
+
+// ----------------------------- find all with pagination -----------------------------
+
+
+const findWithPagination = async (limit: number, skip: number, schoolId: string) => {
+    const users: UserModel[] = await User.find({ schoolId }).limit(limit).skip(skip).select('-__v');
+    return users;
+};
+
+
+// ----------------------------- get all users -----------------------------
+
+
+const getAllUsers = async () => {
+    const users: UserModel[] = await User.find({}).select('-__v');
+};
+
+
 // ----------------------------- get user by email -----------------------------
 
 
@@ -115,6 +141,9 @@ const deleteUsers = async (employees: string[]) => {
 
 export default {
     createUser,
+    totalDocument,
+    findWithPagination,
+    getAllUsers,
     getById,
     getUserByIdAsTeacher,
     getUserByEmail,

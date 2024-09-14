@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { userTokenService, userService } from "../Services/index.service";
 import { ErrorUserMessage, SuccessUserMessage, ErrorTokenMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
-import { createToken } from "../Utils/index.util";
+import { createToken, pagination } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import RoleHierarchy from "../Interfaces/user-hierarchy.interface";
 
@@ -197,6 +197,33 @@ const getProfile = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 
+// ----------------------------- get all users -----------------------------
+
+
+const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId } = req.user;
+        const { page } = req.query;
+        const totalSchools = await userService.totalDocument();
+        const paginateData = pagination(totalSchools, Number(page));
+        if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
+        const users = await userService.findWithPagination(paginateData.limit, paginateData.skip, schoolId);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: SuccessUserMessage.GET_USERS,
+            data: {
+                users: users
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
 
 export default {
     registerUser,
@@ -206,4 +233,5 @@ export default {
     updateUser,
     updateUserPassword,
     getProfile,
+    getAllUsers,
 };
