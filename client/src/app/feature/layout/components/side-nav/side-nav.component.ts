@@ -29,9 +29,29 @@ export class SideNavComponent {
           },
           {
             label: 'Add User',
-            icon: 'pi pi-user-edit',
+            icon: 'pi pi-user-plus',
             command: () => {
               this.router.navigate([RoutesUtil.AddUser.url()]);
+            }
+          }
+        ]
+      },
+      {
+        label: 'Subjects',
+        icon: 'pi pi-book',
+        items: [
+          {
+            label: 'Subjects List',
+            icon: 'pi pi-list',
+            command: () => {
+              this.router.navigate([RoutesUtil.SubjectList.url()]);
+            }
+          },
+          {
+            label: 'Add Subject',
+            icon: 'pi pi-file-plus',
+            command: () => {
+              this.router.navigate([RoutesUtil.AddSubject.url()]);
             }
           }
         ]

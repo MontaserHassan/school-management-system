@@ -1,4 +1,6 @@
 export enum URLSegment {
   Auth = 'auth/',
-  User = 'user/'
+  User = 'user/',
+  Director = 'director/',
+  Subject = 'subject/',
 }

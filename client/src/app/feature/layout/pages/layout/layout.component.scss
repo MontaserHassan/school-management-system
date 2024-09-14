@@ -30,4 +30,8 @@
   background-size: 72px 72px, 72px 72px, 36px 36px, 36px 36px;
   background-color: #ffffff;
   overflow-y: auto;
+
+  ::ng-deep .p-card {
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1) !important;
+  }
 }

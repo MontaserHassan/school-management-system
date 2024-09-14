@@ -117,6 +117,7 @@ export class ApiBaseService {
 
     return new HttpHeaders({
       'Accept-Language': acceptLanguage,
+
     });
   }
 
@@ -134,7 +135,7 @@ export class ApiBaseService {
   }
 
   handleError(response: any) {
-    const error = [response.error.responseMessage + " " + response.error.path]
+    const error = [response?.error?.responseMessage + " " + response?.error?.path]
 
     const statusCode = response.status
 

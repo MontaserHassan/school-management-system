@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component/app.component';
 import { AppRoutingModule } from './app.routes';
 import { SharedModule } from './feature/shared/shared.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './feature/layout/pages/layout/layout.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { layoutModule } from './feature/layout/layout.module';
+import { AuthInterceptor } from './feature/shared/interceptors/token.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,6 +39,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
    providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+      {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     JwtHelperService
   ],
   bootstrap: [AppComponent]

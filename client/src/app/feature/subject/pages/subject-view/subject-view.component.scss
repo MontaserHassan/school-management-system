@@ -1,0 +1,34 @@
+.subject-panel {
+  max-width: 700px;
+  margin: auto;
+}
+
+.subject-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.subject-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f4f6f8;
+  border-radius: 4px;
+}
+
+.subject-detail-row label {
+  font-weight: bold;
+  color: #333;
+}
+
+.subject-detail-row p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.subject-detail-row p-tag {
+  margin: 0;
+}
