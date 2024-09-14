@@ -18,7 +18,7 @@ function getUser() {
             if (!decoded) throw new CustomError(ErrorTokenMessage.SIGNATURE_INVALID, 401, "token");
             const currentTime = Math.floor(Date.now() / 1000);
             if (decoded.exp && decoded.exp < currentTime) throw new CustomError(ErrorTokenMessage.TOKEN_EXPIRED, 401, "token");
-            if (!decoded.schoolId) throw new CustomError(ErrorTokenMessage.SCHOOLID_INVALID, 401, "token");
+            // if (!decoded.schoolId) throw new CustomError(ErrorTokenMessage.SCHOOLID_INVALID, 401, "token");
             req.user = { userId: decoded.id, schoolId: decoded.schoolId, role: decoded.role, };
             req.token = { secretKey: decoded.secretKey };
             next();
