@@ -6,6 +6,7 @@ export class RolesConstants {
     UserRole.Admin,
     UserRole.SuperAdmin,
 
+
   ];
 
 }

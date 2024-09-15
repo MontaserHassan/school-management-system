@@ -1,0 +1,72 @@
+<p-card header="Classroom Details" class="classroom-details-card">
+  <div class="details-container">
+    <div class="details-header">
+      <h2>Classroom {{ classroom.room }}</h2>
+      <p>Group: {{ classroom.group }}</p>
+    </div>
+
+    <div class="details-content">
+      <div class="details-section">
+        <h3>Basic Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Student Cost:</strong> {{ classroom.studentCost }} {{ classroom.currencyOfCost | uppercase }}
+          </div>
+          <div class="info-item">
+            <strong>Created At:</strong> {{ classroom.createdAt | date: 'medium' }}
+          </div>
+          <div class="info-item">
+            <strong>Updated At:</strong> {{ classroom.updatedAt | date: 'medium' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h3>Teachers</h3>
+        <p-table [value]="classroom.teachers">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Teacher Name</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-teacher>
+            <tr>
+              <td>{{ teacher.teacherName }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div class="details-section">
+        <h3>Main Topics</h3>
+        <div class="chips-container">
+          <p-chip *ngFor="let topic of mainTopics" [label]="topic"></p-chip>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h3>Schedule</h3>
+        <p-accordion>
+          <p-accordionTab *ngFor="let day of classroom.schedule" [header]="day.day">
+            <p-table [value]="day.subjects">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Subject Name</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-subject>
+                <tr>
+                  <td>{{ subject.subjectName }}</td>
+                  <td>{{ subject.startTime }}</td>
+                  <td>{{ subject.endTime }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+  </div>
+</p-card>

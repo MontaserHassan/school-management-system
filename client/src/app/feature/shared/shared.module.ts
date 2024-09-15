@@ -40,6 +40,14 @@ import { StateSectionComponent } from './component/state-section/state-section.c
 import { LoaderComponent } from './component/loader/loader.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DividerModule } from 'primeng/divider';
+import { ChipsModule } from 'primeng/chips';
+import { SidebarModule } from 'primeng/sidebar';
+import { AccordionModule } from 'primeng/accordion';
+import { ChipModule } from 'primeng/chip';
+import { LazyDropdownComponent } from './component/lazy-dropdown/lazy-dropdown.component';
+import { CalendarModule } from 'primeng/calendar';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -49,7 +57,8 @@ const COMPONENT =[
   ChangeLanguageButtonComponent,
   SnackBarComponent,
   StateSectionComponent,
-  LoaderComponent
+  LoaderComponent,
+  LazyDropdownComponent
 ]
 
 const MATERIAL_MODULES = [
@@ -65,7 +74,6 @@ const MATERIAL_MODULES = [
   MatRippleModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
-
 ]
 
 const PRIME_NG_MODULES = [
@@ -87,7 +95,14 @@ const PRIME_NG_MODULES = [
   TableModule,
   DropdownModule,
   InputTextModule,
-  TagModule
+  TagModule,
+  MultiSelectModule,
+  DividerModule,
+  CalendarModule,
+  ChipsModule,
+  SidebarModule,
+  AccordionModule,
+  ChipModule
 ]
 
 @NgModule({

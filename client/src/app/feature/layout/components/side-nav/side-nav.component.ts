@@ -56,6 +56,26 @@ export class SideNavComponent {
           }
         ]
       },
+      {
+        label: 'Class Rooms',
+        icon: 'pi pi-users',
+        items: [
+          {
+            label: 'Class Rooms List',
+            icon: 'pi pi-list',
+            command: () => {
+              this.router.navigate([RoutesUtil.ClassRoomList.url()]);
+            }
+          },
+          {
+            label: 'Add Class Rooms',
+            icon: 'pi pi-thumbtack',
+            command: () => {
+              this.router.navigate([RoutesUtil.AddClassRoom.url()]);
+            }
+          }
+        ]
+      },
     ];
   }
 }

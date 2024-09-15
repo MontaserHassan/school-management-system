@@ -40,6 +40,17 @@ export class AuthService {
     );
   }
 
+  getUserProfile(id: string): Observable<User> {
+    return this.baseAPI.get(ApiConstant.GET_USER_PROFILE.replace('{id}', id)).pipe(
+      map((res) => this.mapper.fromJson(User, res.data.user))
+    );
+  }
+
+  getUsersList(): Observable<User[]> {
+    return this.baseAPI.get(ApiConstant.GET_USERS_LIST).pipe(
+      map((res) => this.mapper.fromJson(User, res.data.users
+  }
+
   addUser(body: User): Observable<any> {
     return this.baseAPI.post(ApiConstant.ADD_USER, filterNullEntity(body)).pipe(
       map((res) => res)

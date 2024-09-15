@@ -1,6 +1,16 @@
-.header{
+.header {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.side-nav {
+  ::ng-deep .ng-trigger {
+    background: black;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 10px 10px 9px -7px rgba(0, 0, 0, 0.75);
+    color: wheat
+  }
+} 

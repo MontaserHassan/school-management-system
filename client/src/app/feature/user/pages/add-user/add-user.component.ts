@@ -4,6 +4,7 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Lookup } from '../../../shared/enums/lookup.enum';
 
 @Component({
   selector: 'app-add-user',
@@ -12,11 +13,7 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 })
 export class AddUserComponent extends BaseComponent implements OnInit {
   userForm!: FormGroup;
-  roles: any[] = [
-    { label: 'Super Admin', value: 'superAdmin' },
-    { label: 'Admin', value: 'admin' },
-    { label: 'User', value: 'user' }
-  ];
+  protected Lookup = Lookup;
 
   constructor(private fb: FormBuilder,private authService:AuthService,private router:Router) {
     super()
@@ -32,9 +29,16 @@ export class AddUserComponent extends BaseComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.valid) {
-      const newUser = this.userForm.value;
-      this.load(this.authService.addUser(newUser), {isLoadingTransparent: true}).subscribe(res => {
+      const {userName, email, role} = this.userForm.value;
+      const payload = {
+        userName,
+        email,
+        role : role.label
+      }
+      this.load(this.authService.addUser(payload), {isLoadingTransparent: true}).subscribe(res => {
         this.showSuccessMessage(res.responseMessage);
+        console.log(res);
+
         this.router.navigate([RoutesUtil.UserProfile.url({params: {id: res?.user?.code}})]);
       })
     }

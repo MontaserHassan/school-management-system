@@ -15,11 +15,11 @@ import { StorageConstant } from '../../config/storage.constant';
 export class ChangeLanguageButtonComponent implements OnInit {
   items!: MenuItem[];
   savedLang = localStorage.getItem(StorageConstant.LANGUAGE) || ConfigConstant.DEFAULT_LANGUAGE;
-  size!:number
+  size!: number
 
   protected ScreenSizes = ScreenSizes
 
-  constructor(private translate: TranslateService,private LayoutService:LayoutService) {
+  constructor(private translate: TranslateService, private LayoutService: LayoutService) {
     this.translate.setDefaultLang(this.savedLang);
     this.translate.use(this.savedLang);
   }
@@ -32,7 +32,7 @@ export class ChangeLanguageButtonComponent implements OnInit {
     this.setupItems();
   }
 
-  setupItems(){
+  setupItems() {
     this.items = [
       {
         label: this.translate.instant('English'),

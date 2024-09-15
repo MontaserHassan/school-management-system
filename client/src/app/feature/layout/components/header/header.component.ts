@@ -5,6 +5,8 @@ import { MenuItem } from 'primeng/api';
 import { JwtDecoderService } from '../../../shared/services/auth/jwt-decoder.service';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { LayoutService } from '../../../shared/services/general/layout.service';
+import { ScreenSizes } from '../../../shared/enums/screen-sizes.enum';
 
 @Component({
   selector: 'app-header',
@@ -14,16 +16,30 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 export class HeaderComponent implements OnInit {
   currentUser!: any;
   items!: MenuItem[];
+  size!: number;
+  sidebarVisible: boolean = false;
+
+
+  protected ScreenSizes = ScreenSizes
   constructor(
-    private authService: AuthService, private jwtDecoderService: JwtDecoderService, private router: Router
+    private authService: AuthService, private jwtDecoderService: JwtDecoderService, private router: Router, private LayoutService:LayoutService
   ) { }
 
   ngOnInit() {
+      this.size = this.LayoutService.currentScreenWidth
+    this.LayoutService.currentScreenWidth$.subscribe((size) => {
+      this.size = size
+    });
+
     this.currentUser = this.authService.currentUser$.value.user;
 
+    this.generateMenuItems()
+  }
+
+  generateMenuItems() {
     this.items = [
       {
-        label: 'logout',
+        label: 'logout' ,
         icon: 'pi pi-sign-out',
         command: () => {
           this.logout();
@@ -38,7 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToUserProfile() {
-    this.router.navigate([RoutesUtil.UserProfile.url({params: {id: this.currentUser.code}})]);
+    this.router.navigate([RoutesUtil.UserProfile.url({params: {id: this.currentUser._id}})]);
   }
 
 }

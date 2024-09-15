@@ -52,7 +52,7 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             if (req.user.role === 'superAdmin') {
                 lookupsData = lookups.filter(item => item.lookupName === 'admin').map(item => ({ id: item._id, value: item.lookupName }));
             } else if (req.user.role === 'admin' || req.user.role === 'director') {
-                lookupsData = lookups.filter(item => item.lookupName !== 'superAdmin' && item.lookupName !== 'admin').map(item => ({ id: item._id, value: item.lookupName }));
+                lookupsData = lookups.filter(item => item.lookupName !== 'superAdmin' && item.lookupName !== 'admin').map(item => ({ _id: item._id, value: item.lookupName }));
             } else {
                 throw new CustomError(errorLookupMessage.UNAUTHORIZED_ACCESS_LOOKUPS, 403, 'lookup');
             };

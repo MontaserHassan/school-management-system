@@ -1,0 +1,56 @@
+<p-card header="Classroom List" class="classroom-list-card">
+  <app-state-section [state]="sectionState">
+
+    <p-table [value]="classrooms" dataKey="_id" responsiveLayout="scroll" class="p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Room</th>
+          <th>Group</th>
+          <th>Teachers</th>
+          <th>Main Topics</th>
+          <th>Student Cost</th>
+          <th>Schedule</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-classroom>
+        <tr>
+          <td>{{ classroom.room }}</td>
+          <td>{{ classroom.group }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let teacher of classroom.teachers">{{ teacher.teacherName }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let topic of classroom.mainTopics">{{ topic.topicName }}</li>
+            </ul>
+          </td>
+          <td>{{ classroom.studentCost }} {{ classroom.currencyOfCost | uppercase }}</td>
+          <td>
+            <p-accordion>
+              <p-accordionTab header="View Schedule">
+                <ul>
+                  <li *ngFor="let day of classroom.schedule">
+                    <strong>{{ day.day }}</strong>
+                    <ul>
+                      <li *ngFor="let subject of day.subjects">
+                        {{ subject.subjectName }} ({{ subject.startTime }} - {{ subject.endTime }})
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </p-accordionTab>
+            </p-accordion>
+          </td>
+          <td>
+            <button pButton type="button" icon="pi pi-eye" label="View Details" class="p-button-outlined"
+              (click)="viewDetails(classroom._id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </app-state-section>
+</p-card>

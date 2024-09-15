@@ -19,4 +19,10 @@ export class RoutesUtil {
   static SubjectView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.Subject);
   static SubjectList = new RouteConfig('list', RoutesUtil.Subject);
   static AddSubject = new RouteConfig('add', RoutesUtil.Subject);
+
+  //class room
+  static ClassRoom = new RouteConfig('class-room');
+  static ClassRoomView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.ClassRoom);
+  static ClassRoomList = new RouteConfig('list', RoutesUtil.ClassRoom);
+  static AddClassRoom = new RouteConfig('add', RoutesUtil.ClassRoom);
 }

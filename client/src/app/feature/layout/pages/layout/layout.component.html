@@ -3,7 +3,7 @@
     <app-header></app-header>
   </div>
   <div class='h-100 d-flex'>
-    <div class="side-nav">
+    <div class="side-nav" *ngIf="size > ScreenSizes.md">
       <app-side-nav></app-side-nav>
     </div>
     <div class="content">

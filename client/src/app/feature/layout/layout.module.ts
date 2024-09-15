@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [
     SideNavComponent,
     LayoutComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule, SharedModule,

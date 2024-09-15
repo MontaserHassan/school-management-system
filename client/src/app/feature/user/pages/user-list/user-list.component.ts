@@ -1,46 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { User } from '../../../shared/models/user.model';
+import { BaseComponent } from '../../../shared/component/base-component/base.component';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
-  users = [
-    {
-      _id: '1',
-      userName: 'superAdmin',
-      email: 'superadmin@gmail.com',
-      role: 'superAdmin',
-      lastSeen: '2024-09-13T20:05:23.975Z',
-      code: 'O9635'
-    },
-    {
-      _id: '2',
-      userName: 'user1',
-      email: 'user1@gmail.com',
-      role: 'admin',
-      lastSeen: '2024-09-13T19:00:23.975Z',
-      code: 'O9636'
-    },
-    {
-      _id: '3',
-      userName: 'user2',
-      email: 'user2@gmail.com',
-      role: 'user',
-      lastSeen: '2024-09-13T18:30:23.975Z',
-      code: 'O9637'
-    }
-  ];
+export class UserListComponent extends BaseComponent implements OnInit {
+  users!:User[]
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private authService:AuthService) {
+    super()
+  }
 
   ngOnInit() {
   }
 
+  getUsersList() {
+    this.load(this.authService.getUsersList()).subscribe(res => {
 
-   viewProfile(user: any) {
-    this.router.navigate(['/user-profile', user._id]); // Redirect to the profile page
+    })
+  }
+
+  viewProfile(user: any) {
+    this.router.navigate([RoutesUtil.UserProfile.url({params:{id:user._id}})]); // Redirect to the profile page
   }
 }

@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <p-dropdown *ngIf="!multiply" [options]="dropdownOptions" [lazy]="true" (onShow)="onDropdownOpen()" [filter]="true"
+    [placeholder]="placeholder" optionLabel="label" [(ngModel)]="selectedOption" (onChange)="onOptionSelect($event)">
+  </p-dropdown>
+
+  <p-multiSelect *ngIf="multiply" [options]="dropdownOptions" [lazy]="true" (onPanelShow)="onDropdownOpen()"
+    [filter]="true" [placeholder]="placeholder" optionLabel="label" [(ngModel)]="selectedOption"
+    (onChange)="onOptionSelect($event)">
+  </p-multiSelect>
+</div>
