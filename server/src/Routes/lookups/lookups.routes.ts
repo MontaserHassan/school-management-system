@@ -10,7 +10,9 @@ const lookups = express.Router();
 
 
 lookups.post('/', validation(lookupValidator.createLookup), lookupController.createLookupsDetails);
-lookups.get('/:lookups(*)', lookupController.getLookups);
+lookups.get('/:lookups', lookupController.getLookups);
+lookups.get('/user/data', lookupController.getUsersBySpecificData);
+
 
 
 export default lookups;

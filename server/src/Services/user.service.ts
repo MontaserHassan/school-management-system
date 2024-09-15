@@ -27,8 +27,8 @@ const createUser = async (userName: string, email: string, role: string, schoolI
 // ----------------------------- get total documents -----------------------------
 
 
-const totalDocument = async () => {
-    const user = await User.countDocuments();
+const totalDocument = async (condition?: string, value?: string) => {
+    const user = await User.countDocuments({ [condition]: value });
     return user;
 };
 
@@ -36,17 +36,35 @@ const totalDocument = async () => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findWithPagination = async (limit: number, skip: number, schoolId: string) => {
+const findAllUserOfSchool = async (limit: number, skip: number, schoolId: string) => {
     const users: UserModel[] = await User.find({ schoolId }).limit(limit).skip(skip).select('-__v');
     return users;
 };
 
+
+// ----------------------------- find all with pagination -----------------------------
+
+
+const findSpecificUserOfSchool = async (limit: number, skip: number, role: string, schoolId: string) => {
+    const users: UserModel[] = await User.find({ role, schoolId }).limit(limit).skip(skip).select('-__v');
+    return users;
+};
+
+
+// ----------------------------- find all with pagination -----------------------------
+
+
+const findUserByRole = async (limit: number, skip: number, role: string) => {
+    const users: UserModel[] = await User.find({ role: role }).limit(limit).skip(skip).select('-__v');
+    return users;
+};
 
 // ----------------------------- get all users -----------------------------
 
 
 const getAllUsers = async () => {
     const users: UserModel[] = await User.find({}).select('-__v');
+    return users;
 };
 
 
@@ -91,7 +109,6 @@ const verifyPassword = async (id: string, password: string) => {
 };
 
 
-
 // ----------------------------- update logged -----------------------------
 
 
@@ -120,15 +137,6 @@ const getUserByIdAsTeacher = async (id: string[]) => {
 
 
 
-// ----------------------------- get user by ids and role -----------------------------
-
-
-const getTeachers = async () => {
-    const teachers: UserModel[] = await User.find({ role: 'teacher' }).select('_id userName');
-    return teachers;
-};
-
-
 // ----------------------------- delete Users -----------------------------
 
 
@@ -142,12 +150,13 @@ const deleteUsers = async (employees: string[]) => {
 export default {
     createUser,
     totalDocument,
-    findWithPagination,
+    findAllUserOfSchool,
+    findUserByRole,
+    findSpecificUserOfSchool,
     getAllUsers,
     getById,
-    getUserByIdAsTeacher,
     getUserByEmail,
-    getTeachers,
+    getUserByIdAsTeacher,
     updateUser,
     updateUserPassword,
     verifyPassword,

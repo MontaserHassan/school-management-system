@@ -252,34 +252,6 @@
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
 					"response": []
-				},
-				{
-					"name": "get all users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjMzg4MTIxZmRlODIwZmNkMWExM2NhMDIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzMzY3NDgsImV4cCI6MTcyNjM1MTE0OH0.L_jHTi33ZYZcWeFkp9ctPds40UBhAPfWZNqIJ9MdNp4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{SchoolManagement}}/user/",
-							"host": [
-								"{{SchoolManagement}}"
-							],
-							"path": [
-								"user",
-								""
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -920,6 +892,48 @@
 					"response": []
 				},
 				{
+					"name": "get schools",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/schools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"schools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get topics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/topics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"topics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get subjects",
 					"request": {
 						"method": "GET",
@@ -941,21 +955,39 @@
 					"response": []
 				},
 				{
-					"name": "get teachers",
+					"name": "get users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjMzg4MTIxZmRlODIwZmNkMWExM2NhMDIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzMzY3NDgsImV4cCI6MTcyNjM1MTE0OH0.L_jHTi33ZYZcWeFkp9ctPds40UBhAPfWZNqIJ9MdNp4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/lookups/teachers",
-							"protocol": "http",
+							"raw": "{{SchoolManagement}}/lookups/user/data?role=admin&schoolId=HQiPO_ovyNWpxm8lSHZPxUU8",
 							"host": [
-								"localhost"
+								"{{SchoolManagement}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
 								"lookups",
-								"teachers"
+								"user",
+								"data"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "admin"
+								},
+								{
+									"key": "schoolId",
+									"value": "HQiPO_ovyNWpxm8lSHZPxUU8"
+								}
 							]
 						}
 					},

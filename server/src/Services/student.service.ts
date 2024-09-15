@@ -88,6 +88,24 @@ const getStudentsById = async (studentCode: string[]) => {
 };
 
 
+// ----------------------------- get total documents -----------------------------
+
+
+const totalDocument = async () => {
+    const students = await Student.countDocuments();
+    return students;
+};
+
+
+// ----------------------------- find all with pagination -----------------------------
+
+
+const findAllStudentsOfSchool = async (limit: number, skip: number) => {
+    const students: StudentModel[] = await Student.find().limit(limit).skip(skip).select('-__v');
+    return students;
+};
+
+
 // ----------------------------- get students code -----------------------------
 
 
@@ -131,6 +149,8 @@ export default {
     addComment,
     addTopic,
     addProgressHistory,
+    totalDocument,
+    findAllStudentsOfSchool,
     getStudentById,
     getStudentsById,
     getStudentByStudentCode,

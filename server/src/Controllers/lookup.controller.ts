@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
-import { lookupService, studentService, subjectService, userService } from "../Services/index.service";
+import { lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
+import pagination from "../Utils/pagination.util";
 
 
 
@@ -43,19 +44,78 @@ const createLookupsDetails = async (req: Request, res: Response, next: NextFunct
 const getLookups = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { lookups } = req.params;
-        const lookupInfo = lookups.split('/')
-        const targetData = lookupInfo[0];
+        const { page } = req.query;
+        const targetData = lookups;
         let lookupsData;
         if (targetData === 'roles') {
-            lookupsData = await lookupService.getByMasterCodeAndParent('1');
-        } else if (targetData === 'teachers') {
-            lookupsData = await userService.getTeachers();
+            const lookups = await lookupService.getByMasterCodeAndParent('1');
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.lookupName } });
         } else if (targetData === 'students') {
-            lookupsData = await studentService.getAllStudents();
+            // const totalStudents = await studentService.totalDocument();
+            // const paginateData = pagination(totalStudents, Number(page));
+            // const lookups = await studentService.findAllStudentsOfSchool(paginateData.limit, paginateData.skip);
+            const lookups = await studentService.getAllStudents();
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.studentName } });
         } else if (targetData === 'subjects') {
-            lookupsData = await subjectService.getAllSubjects();
+            // const totalSubjects = await subjectService.totalDocument();
+            // const paginateData = pagination(totalSubjects, Number(page));
+            // const lookups = await subjectService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await subjectService.getAllSubjects();
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.subjectName } });
+        } else if (targetData === 'topics') {
+            // const totalTopics = await topicService.totalDocument();
+            // const paginateData = pagination(totalTopics, Number(page));
+            // const lookups = await topicService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await topicService.find();
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.topicName } });
+        } else if (targetData === 'schools') {
+            // const totalSchools = await schoolService.totalDocument();
+            // const paginateData = pagination(totalSchools, Number(page));
+            // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await schoolService.getAllSchools();
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.schoolName } });
         } else {
             throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
+        };
+        if (!lookupsData) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successLookupMessage.GET_LOOKUPS,
+            data: {
+                lookups: lookupsData,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
+// ----------------------------- get users lookups -----------------------------
+
+
+const getUsersBySpecificData = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { role, schoolId, page } = req.query;
+        let lookupsData;
+        if (!schoolId && role) {
+            const totalUsers = await userService.totalDocument("role", String(role));
+            const paginateData = pagination(totalUsers, Number(page));
+            const lookups = await userService.findUserByRole(paginateData.limit, paginateData.skip, String(role));
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.userName } });
+        } else if (schoolId && !role) {
+            const totalUsers = await userService.totalDocument("schoolId", String(schoolId));
+            const paginateData = pagination(totalUsers, Number(page));
+            const lookups = await userService.findAllUserOfSchool(paginateData.limit, paginateData.skip, String(schoolId));
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.userName } });
+        } else if (role && schoolId) {
+            const totalUsers = await userService.totalDocument();
+            const paginateData = pagination(totalUsers, Number(page));
+            const lookups = await userService.findSpecificUserOfSchool(paginateData.limit, paginateData.skip, String(role), String(schoolId));
+            lookupsData = lookups.map(item => { return { id: item._id, name: item.userName } });
         };
         if (!lookupsData) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         const response: IResponse = {
@@ -123,6 +183,7 @@ const deleteLookup = async (req: Request, res: Response, next: NextFunction) => 
 export default {
     createLookupsDetails,
     getLookups,
+    getUsersBySpecificData,
     updateLookup,
     deleteLookup,
 };
