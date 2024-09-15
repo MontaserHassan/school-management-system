@@ -32,4 +32,41 @@
     "$date": "2024-09-11T18:17:49.740Z"
   },
   "__v": 0
+},
+{
+  "_id": "sgEJHAA5wNIraDWCpgMoM0FR",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "studentName": "maged baraka",
+  "studentCode": "D98776",
+  "classRoom": "102",
+  "parentId": "L1631350",
+  "group": "9-12",
+  "subjects": [
+    {
+      "subjectId": "LxKe0r5z-P5KHDlDVSqP73BH",
+      "subjectName": "social studies"
+    },
+    {
+      "subjectId": "cwI0gP0pJ2VQ_F3xFn4gm2mB",
+      "subjectName": "computer"
+    }
+  ],
+  "mainTopics": [
+    {
+      "topicId": "6RqzkeGIYboxmvmEmTxr3KVY",
+      "topicName": "english letter"
+    }
+  ],
+  "studentCost": "2000",
+  "currencyOfCost": "usd",
+  "attendance": [],
+  "comments": [],
+  "progressHistory": [],
+  "createdAt": {
+    "$date": "2024-09-15T23:11:55.369Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T23:11:55.369Z"
+  },
+  "__v": 0
 }]

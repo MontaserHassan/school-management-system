@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"Admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -185,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlNGYzNTAxNmM0MmE0ZmIyMjY1MzQ5ZTEiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0Mzc1ODUsImV4cCI6MTcyNjUyMzk4NX0.bmsnBGfH3igEgLXEozNjbC7iu1WsfDUMwg3_tgLq5Vw",
 									"type": "string"
 								}
 							]
@@ -194,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"director\",\n    \"email\": \"director2@gmail.com\",\n    \"role\": \"director\"\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+							"raw": "{\n    \"userName\": \"parent parent\",\n    \"email\": \"parent@gmail.com\",\n    \"role\": \"parent\"\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -275,7 +275,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiZWZmMzJmNDNhN2QyYzdmNDZjYjM2N2E3Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNjA3ODUyNywiZXhwIjoxNzI2MDkyOTI3fQ.jjA4XyTQjVS3kVMmPZZOaK9UZvisu2u3gIaTAHA7B2k",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlNGYzNTAxNmM0MmE0ZmIyMjY1MzQ5ZTEiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0Mzc1ODUsImV4cCI6MTcyNjUyMzk4NX0.bmsnBGfH3igEgLXEozNjbC7iu1WsfDUMwg3_tgLq5Vw",
 											"type": "string"
 										}
 									]
@@ -284,7 +284,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"studentName\": \"Meral Mahmoud\",\n    \"classRoom\": \"201\"\n}",
+									"raw": "{\n    \"studentName\": \"Maged Baraka\",\n    \"classRoom\": \"102\"\n    //\"parentId\": \"L1631350\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -307,7 +307,7 @@
 							"response": []
 						},
 						{
-							"name": "get student by code",
+							"name": "get student by id",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -317,7 +317,49 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDVlYTk0NDRkNDU1OGNkNDFjYWE0ZCIsImVtYWlsIjoibW9udGFzZXJAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNmQ2N2JkMTdlNGMyOWViNTBmNDY3YjRjIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlUzNTI2NiIsImlhdCI6MTcyNTU1NTA0MSwiZXhwIjoxNzI1NTY5NDQxfQ.VNe-UIbp0mpp5kIs41nPZQI8J3g_UwyB9vh5gbBj-Eg",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlNGYzNTAxNmM0MmE0ZmIyMjY1MzQ5ZTEiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0Mzc1ODUsImV4cCI6MTcyNjUyMzk4NX0.bmsnBGfH3igEgLXEozNjbC7iu1WsfDUMwg3_tgLq5Vw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/director/student/eRtxL3QXBzdaDlxHlhdNPfGj",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"director",
+										"student",
+										"eRtxL3QXBzdaDlxHlhdNPfGj"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all students",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlNGYzNTAxNmM0MmE0ZmIyMjY1MzQ5ZTEiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0Mzc1ODUsImV4cCI6MTcyNjUyMzk4NX0.bmsnBGfH3igEgLXEozNjbC7iu1WsfDUMwg3_tgLq5Vw",
 											"type": "string"
 										}
 									]
@@ -581,7 +623,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJjMGI2ZDUwZjdlYjljMGQ2ZGU2ODk4MjMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2MzMyMzkzLCJleHAiOjE3MjYzNDY3OTN9.8PtP9dJJzre4ucD6LbICE_X2T4j4tzAWqBoiKKTwmvI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3OWMxYzlhY2UxMGEwNDhkN2RhMDQwMjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDM3NjE0LCJleHAiOjE3MjY1MjQwMTR9.rN4EGTgAxd9_vmcoa-JvM-FF3490ZyKGuOvmnG_w-s4",
 									"type": "string"
 								}
 							]
@@ -590,7 +632,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"schoolName\": \"Happy Home\",\n    \"subscriptionFees\": \"100\"\n}",
+							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"Fatima Language\",\n    \"subscriptionFees\": \"200\",\n    \"admin\": {\n        \"userName\": \"admin fatima\",\n        \"email\": \"admin.fatima@example.com\"\n    },\n    \"employees\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,7 +704,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJjMGI2ZDUwZjdlYjljMGQ2ZGU2ODk4MjMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2MzMyMzkzLCJleHAiOjE3MjYzNDY3OTN9.8PtP9dJJzre4ucD6LbICE_X2T4j4tzAWqBoiKKTwmvI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3OWMxYzlhY2UxMGEwNDhkN2RhMDQwMjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDM3NjE0LCJleHAiOjE3MjY1MjQwMTR9.rN4EGTgAxd9_vmcoa-JvM-FF3490ZyKGuOvmnG_w-s4",
 									"type": "string"
 								}
 							]
@@ -704,7 +746,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJjMGI2ZDUwZjdlYjljMGQ2ZGU2ODk4MjMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2MzMyMzkzLCJleHAiOjE3MjYzNDY3OTN9.8PtP9dJJzre4ucD6LbICE_X2T4j4tzAWqBoiKKTwmvI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3OWMxYzlhY2UxMGEwNDhkN2RhMDQwMjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDM3NjE0LCJleHAiOjE3MjY1MjQwMTR9.rN4EGTgAxd9_vmcoa-JvM-FF3490ZyKGuOvmnG_w-s4",
 									"type": "string"
 								}
 							]
@@ -713,7 +755,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"schoolName\": \"Happy Home\",\n    \"subscriptionFees\": \"100\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"

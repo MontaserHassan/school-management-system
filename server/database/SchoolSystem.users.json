@@ -30,11 +30,11 @@
     "$date": "2024-09-06T22:43:10.482Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T14:36:33.805Z"
+    "$date": "2024-09-15T22:30:06.125Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-15T14:36:33.805Z"
+    "$date": "2024-09-15T22:30:06.124Z"
   },
   "logged": true,
   "schoolId": "superAdmin"
@@ -46,16 +46,16 @@
   "role": "teacher",
   "code": "B8508021",
   "updatePassword": true,
-  "password": "$2b$10$VH8s.067YhH8.wY11Tssuujeo6YVpwVxuRM5n2U0ZeTjdyQdEudSO",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$DO04p7RzNAySw5Fgp/j63w$Vpd+RDv3WuJyb3bswH65FcdgQ+EKgFrenIsY+8P+Uy8",
   "createdAt": {
     "$date": "2024-09-06T22:52:38.635Z"
   },
   "updatedAt": {
-    "$date": "2024-09-07T00:47:56.462Z"
+    "$date": "2024-09-15T16:05:46.911Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-07T00:47:56.462Z"
+    "$date": "2024-09-15T16:05:46.910Z"
   },
   "logged": true
 },
@@ -186,11 +186,11 @@
     "$date": "2024-09-14T17:58:16.912Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T15:12:18.611Z"
+    "$date": "2024-09-15T23:04:03.704Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-15T15:12:18.604Z"
+    "$date": "2024-09-15T23:04:03.703Z"
   },
   "logged": true
 },
@@ -234,4 +234,38 @@
     "$date": "2024-09-15T15:17:04.643Z"
   },
   "logged": true
+},
+{
+  "_id": "Zo_rI8uNy2Eq_i85W7a3k",
+  "userName": "admin fatima",
+  "email": "admin.fatima@example.com",
+  "role": "admin",
+  "schoolId": "zCDhk2_pIgbyqIrSLvzoWjM0",
+  "code": "I257",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$4YL8Ce/RHG2KFcSUFaCG/w$mGbHluBT8FFrPwjgnso1eQMn6QHfl1TXmekK+cpeSrw",
+  "createdAt": {
+    "$date": "2024-09-15T22:30:24.575Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T22:44:48.573Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "By45635z0rSYY_1Jnwjjd",
+  "userName": "parent parent",
+  "email": "parent@gmail.com",
+  "role": "parent",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "code": "L1631350",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$mOl+XzPKtLMCLMXl5azfxg$VqfqCy/EqBt9cFUsKREsAiOI6BygRknPJKR+rnHS8SI",
+  "createdAt": {
+    "$date": "2024-09-15T23:08:19.067Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T23:08:19.067Z"
+  },
+  "__v": 0
 }]

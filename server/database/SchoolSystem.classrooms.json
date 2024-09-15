@@ -6,11 +6,19 @@
     {
       "teacherId": "wpr7VC3R2Qh1uZ-bWDa2G",
       "teacherName": "teacher 2"
+    },
+    {
+      "teacherId": "ABjdBV4ATgHecitxS0wrd",
+      "teacherName": "teacher1"
     }
   ],
   "mainTopics": [
     {
       "topicId": "6RzzeTB1nSkinzrByIefi3s2"
+    },
+    {
+      "topicId": "6RqzkeGIYboxmvmEmTxr3KVY",
+      "topicName": "english letter"
     }
   ],
   "schedule": [
@@ -79,7 +87,7 @@
     "$date": "2024-09-10T17:01:04.391Z"
   },
   "updatedAt": {
-    "$date": "2024-09-10T17:01:18.364Z"
+    "$date": "2024-09-15T16:09:21.980Z"
   },
   "__v": 0
 },
@@ -131,6 +139,58 @@
   },
   "updatedAt": {
     "$date": "2024-09-11T18:17:49.742Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "GWt5QUWMgkUTokrwLm8IzEBN",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "room": "102",
+  "group": "9-12",
+  "teachers": [
+    {
+      "teacherId": "BYuIkX4_zo3eJif1zSMge",
+      "teacherName": "teacher 5"
+    }
+  ],
+  "mainTopics": [
+    {
+      "topicId": "6RqzkeGIYboxmvmEmTxr3KVY",
+      "topicName": "english letter"
+    }
+  ],
+  "schedule": [
+    {
+      "day": "Tuesday",
+      "subjects": [
+        {
+          "subjectId": "LxKe0r5z-P5KHDlDVSqP73BH",
+          "subjectName": "social studies",
+          "startTime": "09:30",
+          "endTime": "12:50"
+        },
+        {
+          "subjectId": "cwI0gP0pJ2VQ_F3xFn4gm2mB",
+          "subjectName": "computer",
+          "startTime": "14:00",
+          "endTime": "16:00"
+        }
+      ]
+    }
+  ],
+  "studentCost": "2000",
+  "currencyOfCost": "usd",
+  "students": [
+    {
+      "studentId": "sgEJHAA5wNIraDWCpgMoM0FR",
+      "studentName": "Maged Baraka"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T17:54:56.017Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T23:11:55.377Z"
   },
   "__v": 0
 }]
