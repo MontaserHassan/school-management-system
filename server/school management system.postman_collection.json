@@ -871,6 +871,34 @@
 					"response": []
 				},
 				{
+					"name": "get groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlZWU2ZGI0MDk0N2JiNTJjNzAxMDRiYzYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzNjIyMTUsImV4cCI6MTcyNjM3NjYxNX0.Xzij3qCSK_M2hCUlRu8XsVahlQglZ6BWSuJdj_mRufQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/lookups/groups",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"lookups",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get students",
 					"request": {
 						"method": "GET",
@@ -996,11 +1024,21 @@
 				{
 					"name": "create lookups",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlZWU2ZGI0MDk0N2JiNTJjNzAxMDRiYzYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzNjIyMTUsImV4cCI6MTcyNjM3NjYxNX0.Xzij3qCSK_M2hCUlRu8XsVahlQglZ6BWSuJdj_mRufQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"masterCode\": \"1\",\n    \"lookups\": [\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"superAdmin\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"admin\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"director\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"4\",\n            \"lookupName\": \"teacher\"\n        },\n        {\n            \"masterName\": \"role\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"5\",\n            \"lookupName\": \"parent\"\n        }\n    ]\n}",
+							"raw": "{\n    \"masterCode\": \"2\",\n    \"lookups\": [\n        {\n            \"masterName\": \"group\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"3-6\"\n        },\n        {\n            \"masterName\": \"group\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"6-9\"\n        },\n        {\n            \"masterName\": \"group\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"9-12\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1008,12 +1046,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4040/lookups",
-							"protocol": "http",
+							"raw": "{{SchoolManagementSystem}}/lookups",
 							"host": [
-								"localhost"
+								"{{SchoolManagementSystem}}"
 							],
-							"port": "4040",
 							"path": [
 								"lookups"
 							]

@@ -28,7 +28,8 @@ const createUser = async (userName: string, email: string, role: string, schoolI
 
 
 const totalDocument = async (condition?: string, value?: string) => {
-    const user = await User.countDocuments({ [condition]: value });
+    const query = { [condition]: value };
+    const user = await User.countDocuments(query);
     return user;
 };
 

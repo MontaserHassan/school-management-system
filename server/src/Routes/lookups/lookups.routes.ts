@@ -3,15 +3,18 @@ import express from 'express';
 import validation from '../../Validations/validationHandler.validation';
 import { lookupValidator } from '../../Validations/lookup.validation';
 import lookupController from '../../Controllers/lookup.controller';
+import getUser from '../../Middlewares/auth.middleware';
+import checkRole from '../../Middlewares/check-role.middleware';
 
 
 
 const lookups = express.Router();
 
 
-lookups.post('/', validation(lookupValidator.createLookup), lookupController.createLookupsDetails);
-lookups.get('/:lookups', lookupController.getLookups);
-lookups.get('/user/data', lookupController.getUsersBySpecificData);
+lookups.use(getUser());
+lookups.post('/', checkRole(['superAdmin']), validation(lookupValidator.createLookup), lookupController.createLookupsDetails);
+lookups.get('/:lookups', checkRole(['admin', 'director', 'teacher']), lookupController.getLookups);
+lookups.get('/user/data', checkRole(['superAdmin', 'admin']), lookupController.getUsersBySpecificData);
 
 
 
