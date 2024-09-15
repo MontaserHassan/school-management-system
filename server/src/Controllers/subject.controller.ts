@@ -14,9 +14,10 @@ import pagination from '../Utils/pagination.util';
 const createSubject = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { subjectName, courseTime } = req.body;
-        const isSubjectExisting = await subjectService.getByName((subjectName).toLowerCase());
+        const { schoolId } = req.user;
+        const isSubjectExisting = await subjectService.getByName((subjectName).toLowerCase(), schoolId);
         if (isSubjectExisting) throw new CustomError(errorSubjectMessage.EXISTING_SUBJECT, 400, "subject");
-        const newSubject = await subjectService.createSubject((subjectName).toLowerCase(), courseTime);
+        const newSubject = await subjectService.createSubject((subjectName).toLowerCase(), courseTime, schoolId);
         if (!newSubject) throw new CustomError(errorSubjectMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",
@@ -64,7 +65,8 @@ const getSubjectData = async (req: Request, res: Response, next: NextFunction) =
 const getAllSubject = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { page } = req.query;
-        const totalSubjects = await subjectService.totalDocument();
+        const { schoolId } = req.user;
+        const totalSubjects = await subjectService.totalDocument(schoolId);
         const paginateData = pagination(totalSubjects, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         const subjects = await subjectService.findWithPagination(paginateData.limit, paginateData.skip);

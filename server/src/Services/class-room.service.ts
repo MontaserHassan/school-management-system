@@ -5,7 +5,7 @@ import { ClassRoom, ClassRoomModel } from "../Models/class-room.model";
 // ----------------------------- create subject room -----------------------------
 
 
-const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, mainTopics: { topicId: string, topicName: string }[]) => {
+const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, mainTopics: { topicId: string, topicName: string }[], schoolId: string) => {
 
     const newClassRoom: ClassRoomModel = new ClassRoom({
         room: room,
@@ -14,6 +14,7 @@ const createClassRoom = async (room: string, group: string, teachers: { teacherI
         schedule: schedule,
         mainTopics: mainTopics,
         studentCost: studentCost,
+        schoolId: schoolId,
     });
     await newClassRoom.save();
     return newClassRoom;

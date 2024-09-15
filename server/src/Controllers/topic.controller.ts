@@ -14,6 +14,7 @@ import pagination from '../Utils/pagination.util';
 const createTopic = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { topicName, room } = req.body;
+        const { schoolId } = req.user;
         const isRoomExisting = await classRoomService.getByRoom(room);
         if (!isRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 404, "room");
         const isOperationTrue = isRoomExisting.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId);
@@ -23,7 +24,7 @@ const createTopic = async (req: Request, res: Response, next: NextFunction) => {
             const isTopicExistingInRoom = isRoomExisting.mainTopics.some(topic => topic.topicName === topicName);
             if (isTopicExistingInRoom) throw new CustomError(errorClassRoomMessage.TOPIC_EXISTING_IN_ROOM, 400, "topic");
         } else {
-            newTopic = await topicService.createTopic(topicName.toLowerCase());
+            newTopic = await topicService.createTopic(topicName.toLowerCase(), schoolId);
             if (!newTopic) throw new CustomError(errorTopicMessage.DOES_NOT_CREATED, 400, "none");
         };
         const addTopicToRoom = await classRoomService.addTopic(room, { topicId: newTopic._id, topicName: newTopic.topicName });

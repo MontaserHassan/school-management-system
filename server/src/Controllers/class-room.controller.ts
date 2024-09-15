@@ -15,6 +15,7 @@ import { addTime } from "../helpers/calculate-endTime.helper";
 const createClassRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { room, group, teachersId, schedule, studentCost, mainTopics } = req.body;
+        const { schoolId } = req.user;
         const isRoomExisting = await classRoomService.getByRoom(room);
         if (isRoomExisting) throw new CustomError(errorClassRoomMessage.ROOM_ALREADY_TOKED, 400, "room");
         const teachers = await userService.getUserByIdAsTeacher(teachersId);
@@ -53,7 +54,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
                 timeRanges.push({ startTime: subjectStartTime, endTime: subjectEndTime });
             };
         };
-        const newClassRoom = await classRoomService.createClassRoom(room, group, teachersData, schedule, studentCost, mainTopicsData);
+        const newClassRoom = await classRoomService.createClassRoom(room, group, teachersData, schedule, studentCost, mainTopicsData, schoolId);
         if (!newClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",

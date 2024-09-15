@@ -5,9 +5,10 @@ import { MainTopic, MainTopicModel } from '../Models/main-topics.model';
 // ----------------------------- create topic -----------------------------
 
 
-const createTopic = async (topicName: string) => {
+const createTopic = async (topicName: string, schoolId: string) => {
     const newTopic: MainTopicModel = new MainTopic({
         topicName: (topicName).toLowerCase(),
+        schoolId: schoolId
     });
     await newTopic.save();
     return newTopic;

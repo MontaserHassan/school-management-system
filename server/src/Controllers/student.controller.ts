@@ -13,6 +13,7 @@ import IResponse from '../Interfaces/response.interface';
 const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentName, classRoom } = req.body;
+        const { schoolId } = req.user;
         const isClassRoomExisting = await classRoomService.getByRoom(classRoom);
         if (!isClassRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 400, "classRoom");
         const subjectsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
@@ -23,7 +24,7 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
         const currencyOfCost = isClassRoomExisting.currencyOfCost;
         const group = isClassRoomExisting.group;
         const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
-        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, classRoom, subjects, mainTopics, studentCost, currencyOfCost, req.user.schoolId);
+        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId);
         if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         // const isStudentAlreadyInClass = isClassRoomExisting.students.some(student => student.studentId === newStudent._id);
         // if (isStudentAlreadyInClass) {

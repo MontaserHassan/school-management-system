@@ -8,10 +8,11 @@ import generateSchedule from "../Utils/generate-schedule.util";
 // ----------------------------- create subject -----------------------------
 
 
-const createSubject = async (subjectName: string, courseTime: string) => {
+const createSubject = async (subjectName: string, courseTime: string, schoolId: string) => {
     const newSubject: SubjectModel = new Subject({
         subjectName: (subjectName).toLowerCase(),
         courseTime: courseTime,
+        schoolId: schoolId,
     });
     await newSubject.save();
     return newSubject;
@@ -21,8 +22,8 @@ const createSubject = async (subjectName: string, courseTime: string) => {
 // ----------------------------- get by id -----------------------------
 
 
-const getByName = async (subjectName: string) => {
-    const subject: SubjectModel = await Subject.findOne({ subjectName }).select('-__v');
+const getByName = async (subjectName: string, schoolId: string) => {
+    const subject: SubjectModel = await Subject.findOne({ subjectName, schoolId: schoolId }).select('-__v');
     return subject;
 };
 
@@ -39,8 +40,8 @@ const getById = async (subjectId: string) => {
 // ----------------------------- total document -----------------------------
 
 
-const totalDocument = async () => {
-    const subjectRooms = await Subject.countDocuments();
+const totalDocument = async (schoolId: string) => {
+    const subjectRooms = await Subject.countDocuments({ schoolId: schoolId });
     return subjectRooms;
 };
 
