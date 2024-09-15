@@ -22,11 +22,11 @@ constructor(
     )
   }
 
-  // getSubjectById(id:string):Observable<Subject> {
-  //   return this.baseAPI.get(ApiConstant.GET_SUBJECT_BY_ID.replace('{id}',id)).pipe(
-  //     map((res) => this.mapper.fromJson(Subject, res.data.subject))
-  //   )
-  // }
+  getClassRoomById(id:string):Observable<ClassRoom> {
+    return this.baseAPI.get(ApiConstant.GET_CLASS_ROOM_BY_ID.replace('{id}',id)).pipe(
+      map((res) => this.mapper.fromJson(ClassRoom, res.data.classRoom))
+    )
+  }
 
   getClassRoomList():Observable<ClassRoomResponse> {
     return this.baseAPI.get(ApiConstant.GET_CLASS_ROOMS).pipe(

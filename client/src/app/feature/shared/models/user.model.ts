@@ -1,6 +1,7 @@
 import { Expose, Transform } from "class-transformer";
 import { Model } from "./model";
 import { UserRole } from "../enums/user-role.enum";
+import { list } from "./list";
 
 export class User {
   @Expose() _id?: string;
@@ -24,4 +25,8 @@ export class User {
 export class AuthResponse extends Model {
   @Expose() user?: User;
   @Expose() token?: string;
+}
+
+export class UsersList extends list {
+  @Expose() users?: User[];
 }

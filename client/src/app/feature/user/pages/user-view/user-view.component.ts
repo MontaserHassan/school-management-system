@@ -19,14 +19,14 @@ export class UserViewComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {
       const id = params?.['id']
-
-      this.getUserProfile()
+      this.getUserProfile(id)
     })
 
   }
 
-  getUserProfile() {
-    // this.load(this.authService.getUserProfile(this.currentUser?._id))
+  getUserProfile(id: string) {
+    this.load(this.authService.getUserProfile(id),{isLoadingTransparent: true}).subscribe((res) => {
+      this.currentUser = res
+    })
   }
-
 }

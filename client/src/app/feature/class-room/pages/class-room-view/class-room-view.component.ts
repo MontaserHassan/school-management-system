@@ -1,50 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { ClassRoomService } from '../../services/class-room.service';
+import { BaseComponent } from '../../../shared/component/base-component/base.component';
+import { ActivatedRoute } from '@angular/router';
+import { ClassRoom } from '../../models/class-room.model';
 
 @Component({
   selector: 'app-class-room-view',
   templateUrl: './class-room-view.component.html',
   styleUrls: ['./class-room-view.component.scss']
 })
-export class ClassRoomViewComponent implements OnInit {
-  mainTopics: string[] = []; // Array to hold topic names as strings
-
-  constructor() { }
+export class ClassRoomViewComponent extends BaseComponent implements OnInit {
+  mainTopics: string[] = [];
+  classroom!: ClassRoom
+  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute) {
+    super()
+  }
 
   ngOnInit() {
-
-    this.mainTopics = this.classroom.mainTopics.map(topic => topic.topicName);
+    this.activeRoute.params.subscribe(params => {
+      const id = params?.['id']
+      this.getClassRoomDetails(id)
+    })
 
   }
 
-   classroom = {
-      _id: "UHg_FnlIxLVuxqqB3tsQkmKm",
-      schoolId: "HQiPO_ovyNWpxm8lSHZPxUU8",
-      room: "105",
-      group: "6-9",
-      teachers: [
-        { teacherId: "wpr7VC3R2Qh1uZ-bWDa2G", teacherName: "teacher 2" }
-      ],
-      mainTopics: [
-        { topicId: "6RzzeTB1nSkinzrByIefi3s2", topicName: "arithmetic operations" }
-      ],
-      schedule: [
-        {
-          day: "Sunday",
-          subjects: [
-            {
-              subjectId: "pMnMfmiD_3V25Jsum9pZ91nS",
-              subjectName: "literature",
-              startTime: "21:31",
-              endTime: "23:11"
-            }
-          ]
-        }
-      ],
-      studentCost: "405",
-      currencyOfCost: "usd",
-      students: [],
-      createdAt: "2024-09-15T18:31:51.010Z",
-      updatedAt: "2024-09-15T18:31:51.010Z"
-    };
+  getClassRoomDetails(id: string): void {
+    this.load(this.classRoomService.getClassRoomById(id), { isLoadingTransparent: true }).subscribe((response) => {
+      this.classroom = response || {}
+      this.mainTopics = this.classroom.mainTopics?.map(topic => topic?.topicName).filter((name): name is string => !!name) || [];
+    })
   }
+
+}
 

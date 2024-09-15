@@ -36,10 +36,8 @@ export class AddUserComponent extends BaseComponent implements OnInit {
         role : role.label
       }
       this.load(this.authService.addUser(payload), {isLoadingTransparent: true}).subscribe(res => {
-        this.showSuccessMessage(res.responseMessage);
-        console.log(res);
-
-        this.router.navigate([RoutesUtil.UserProfile.url({params: {id: res?.user?.code}})]);
+        this.showSuccessMessage('User added successfully');
+        this.router.navigate([RoutesUtil.UserProfile.url({params: {id: res?._id}})]);
       })
     }
   }

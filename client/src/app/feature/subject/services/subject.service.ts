@@ -5,7 +5,7 @@ import { ApiConstant } from '../../shared/config/api.constant';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
 import { map, Observable } from 'rxjs';
 import { ISubjectPayload } from '../models/sybject-payload';
-import { Subject } from '../models/subject.model';
+import { Subject, SubjectsList } from '../models/subject.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +29,9 @@ export class SubjectService {
     )
   }
 
-  getSubjects():Observable<Subject[]> {
+  getSubjects():Observable<SubjectsList> {
     return this.baseAPI.get(ApiConstant.GET_SUBJECT_LIST).pipe(
-      map((res) => this.mapper.fromJson(Subject, res.data.subject))
+      map((res) => this.mapper.fromJson(SubjectsList, res.data))
     )
   }
 }

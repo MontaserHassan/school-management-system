@@ -22,9 +22,7 @@ export class SubjectListComponent extends BaseComponent implements OnInit {
 
   getSubjects() {
     this.load(this.subjectService.getSubjects(), { isLoadingTransparent: true }).subscribe(subjects => {
-      console.log(subjects);
-
-      this.subjects = subjects;
+      this.subjects = subjects.subject || [];
     })
   }
 
