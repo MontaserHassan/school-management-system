@@ -9,10 +9,10 @@ const schoolValidator = {
             subscriptionFees: Joi.string().required().trim().messages({ 'string.empty': 'Subscription fees are required.', }),
             subscriptionWay: Joi.string().optional().trim().valid('monthly', 'yearly').messages({ 'any.only': 'Subscription way must be either "monthly" or "yearly".', }),
             subscriptionStatus: Joi.string().optional().trim().valid('pending', 'paid', 'expired').messages({ 'any.only': 'Subscription status must be "pending", "paid", or "expired".', }),
-            admins: Joi.alternatives().conditional(Joi.array().min(1), {
-                then: Joi.array().items(Joi.string().required()).min(1).messages({ 'array.min': 'Admins must contain at least one admin.', 'array.base': 'Admins must be an array of strings.', }),
-                otherwise: Joi.optional(),
-            }),
+            admin: Joi.object().keys({
+                userName: Joi.string().required().trim().messages({ 'string.empty': 'User name is required.', }),
+                email: Joi.string().required().trim().messages({ 'string.empty': 'Email is required.', }),
+            }).required().messages({ 'object.base': 'Admin is required.', }),
             employees: Joi.alternatives().conditional(Joi.array().min(1), {
                 then: Joi.array().items(Joi.string().required()).min(1).messages({ 'array.min': 'Employees must contain at least one employee.', 'array.base': 'Employees must be an array of strings.', }),
                 otherwise: Joi.optional(),

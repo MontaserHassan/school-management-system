@@ -113,6 +113,11 @@ const getUsersBySpecificData = async (req: Request, res: Response, next: NextFun
             const paginateData = pagination(totalUsers, Number(page));
             const lookups = await userService.findUserByRole(paginateData.limit, paginateData.skip, String("admin"));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
+        } else if (schoolId !== "superAdmin" && req.user.role === 'admin' && !role) {
+            const totalUsers = await userService.totalDocument("role", String(role));
+            const paginateData = pagination(totalUsers, Number(page));
+            const lookups = await userService.findAllUserOfSchool(paginateData.limit, paginateData.skip, String(schoolId));
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (role && schoolId !== "superAdmin") {
             const totalUsers = await userService.totalDocument("role", String(role));
             const paginateData = pagination(totalUsers, Number(page));

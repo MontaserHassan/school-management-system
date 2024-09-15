@@ -24,9 +24,10 @@ const subscriptionSchoolSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        admins: {
-            type: [String],
-            default: [],
+        admin: {
+            type: String,
+            ref: 'User',
+            required: true,
         },
         employees: {
             type: [String],

@@ -72,4 +72,49 @@
   "updatedAt": {
     "$date": "2024-09-09T20:00:23.478Z"
   }
+},
+{
+  "_id": "SchoolSystem-2-1",
+  "masterCode": "2",
+  "masterName": "group",
+  "lookupCode": "1",
+  "lookupName": "3-6",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-15T01:03:51.653Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T01:03:51.653Z"
+  }
+},
+{
+  "_id": "SchoolSystem-2-2",
+  "masterCode": "2",
+  "masterName": "group",
+  "lookupCode": "2",
+  "lookupName": "6-9",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-15T01:03:51.653Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T01:03:51.653Z"
+  }
+},
+{
+  "_id": "SchoolSystem-2-3",
+  "masterCode": "2",
+  "masterName": "group",
+  "lookupCode": "3",
+  "lookupName": "9-12",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-15T01:03:51.653Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T01:03:51.653Z"
+  }
 }]

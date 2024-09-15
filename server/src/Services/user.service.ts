@@ -43,11 +43,11 @@ const findAllUserOfSchool = async (limit: number, skip: number, schoolId: string
 };
 
 
-// ----------------------------- find all with pagination -----------------------------
+// ----------------------------- find specific user at school -----------------------------
 
 
 const findSpecificUserOfSchool = async (limit: number, skip: number, role: string, schoolId: string) => {
-    const users: UserModel[] = await User.find({ role, schoolId }).limit(limit).skip(skip).select('-__v');
+    const users: UserModel[] = await User.find({ role: role, schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
     return users;
 };
 

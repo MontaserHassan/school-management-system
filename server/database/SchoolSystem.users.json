@@ -10,29 +10,13 @@
     "$date": "2024-09-06T21:52:46.362Z"
   },
   "updatedAt": {
-    "$date": "2024-09-11T18:15:27.276Z"
+    "$date": "2024-09-12T00:06:03.835Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-11T18:15:27.276Z"
+    "$date": "2024-09-12T00:06:03.834Z"
   },
   "logged": true
-},
-{
-  "_id": "HRHcsvSdVEAXhMLgr86RD",
-  "userName": "admin admin",
-  "email": "admin@gmail.com",
-  "role": "admin",
-  "code": "E497",
-  "updatePassword": false,
-  "password": "$2b$10$aY7BZoeSRztslbpV4vUiaeS66PSfYmLGHF0qCD3CQ1L0Geo20VPJ2",
-  "createdAt": {
-    "$date": "2024-09-06T22:42:52.819Z"
-  },
-  "updatedAt": {
-    "$date": "2024-09-06T22:42:52.819Z"
-  },
-  "__v": 0
 },
 {
   "_id": "5CyZbAO0ksY9KdOwlboDH",
@@ -40,15 +24,20 @@
   "email": "superadmin@gmail.com",
   "role": "superAdmin",
   "code": "P607",
-  "updatePassword": false,
-  "password": "$2b$10$KzkTB4ZRnC2pagB2K1VgJ.lM26P4ou6n5gyKT2Fo4sYM4XEIEKhYC",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$FSMJ618AbO5bJwmevn65Ew$IXfh852ZM05+0Hod7EWGmlr95d8oIGm4a/Fv2ngheUM",
   "createdAt": {
     "$date": "2024-09-06T22:43:10.482Z"
   },
   "updatedAt": {
-    "$date": "2024-09-06T22:43:10.482Z"
+    "$date": "2024-09-15T14:36:33.805Z"
   },
-  "__v": 0
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-15T14:36:33.805Z"
+  },
+  "logged": true,
+  "schoolId": "superAdmin"
 },
 {
   "_id": "ABjdBV4ATgHecitxS0wrd",
@@ -88,7 +77,8 @@
   "lastSeen": {
     "$date": "2024-09-10T16:57:58.187Z"
   },
-  "logged": true
+  "logged": true,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "nbPmYJaTQsSxVG-XKP7uN",
@@ -160,7 +150,8 @@
   "lastSeen": {
     "$date": "2024-09-06T22:55:39.014Z"
   },
-  "logged": true
+  "logged": true,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "RHi1r9wGRZhqUq6f2Zb_1",
@@ -179,6 +170,68 @@
   "__v": 0,
   "lastSeen": {
     "$date": "2024-09-09T20:48:37.496Z"
+  },
+  "logged": true
+},
+{
+  "_id": "kttyDR1Gz3AHotyA8tvtm",
+  "userName": "admin admin",
+  "email": "admin@gmail.com",
+  "role": "admin",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "code": "H2706759",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$HyBoGqVpKpnm1Ct46w8cUQ$FBotOeEFVQIKNz8++VJlIugM1LPOjAl9+YrdKIQLgu4",
+  "createdAt": {
+    "$date": "2024-09-14T17:58:16.912Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T15:12:18.611Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-15T15:12:18.604Z"
+  },
+  "logged": true
+},
+{
+  "_id": "BD08waoblonnkIFqlT2Wp",
+  "userName": "admin 2 admin",
+  "email": "admin2@gmail.com",
+  "role": "admin",
+  "code": "Z8979",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$v69ShKkjJtHTrQX3BpfalQ$tQztobBogtNPi9DVxQ9u1JSGyqMNqd4Ox0+eyKsGAJo",
+  "createdAt": {
+    "$date": "2024-09-15T14:30:12.195Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T14:32:48.248Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-15T14:32:48.247Z"
+  },
+  "logged": true
+},
+{
+  "_id": "RmlwlU1BEJDTdtIr2C3QN",
+  "userName": "director",
+  "email": "director2@gmail.com",
+  "role": "director",
+  "code": "P101331",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$71msao1ZtCsPl/191k+dAw$dbi//r5Ly6QFqUbtYC8+Cm2Ajko4xCG7QFXh537mKaI",
+  "createdAt": {
+    "$date": "2024-09-15T15:16:21.875Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T15:17:04.644Z"
+  },
+  "__v": 0,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "lastSeen": {
+    "$date": "2024-09-15T15:17:04.643Z"
   },
   "logged": true
 }]

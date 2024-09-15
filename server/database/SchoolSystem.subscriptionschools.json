@@ -1,0 +1,21 @@
+[{
+  "_id": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "schoolName": "Happy Home",
+  "admins": [
+    "LR-8K8f6e7Ydu9cNbnK38"
+  ],
+  "employees": [],
+  "subscriptionFees": "100",
+  "subscriptionDate": {
+    "$date": "2024-09-14T16:59:12.888Z"
+  },
+  "subscriptionWay": "monthly",
+  "subscriptionStatus": "pending",
+  "createdAt": {
+    "$date": "2024-09-14T16:59:15.364Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-14T17:38:04.735Z"
+  },
+  "__v": 0
+}]
