@@ -17,12 +17,13 @@ const studentValidator = {
                 'number.min': 'Class room must be at least 100.',
                 'number.max': 'Class room must not exceed 999.',
             }),
+            // parentId: Joi.string().trim().required().min(1).messages({ 'string.empty': 'Parent is required.', }),
         }),
     },
 
     getStudent: {
         params: Joi.object().keys({
-            studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
         }),
     },
 

@@ -5,13 +5,13 @@ import { SubscriptionSchool, SubscriptionSchoolModel } from "../Models/school.mo
 // ----------------------------- create school -----------------------------
 
 
-const createSchool = async (schoolName: string, subscriptionFees: string, subscriptionWay: string = 'monthly', subscriptionStatus: string = 'pending', admins: string[] = [], employees: string[] = []) => {
+const createSchool = async (schoolName: string, subscriptionFees: string, subscriptionWay: string = 'monthly', subscriptionStatus: string = 'pending', admin: string, employees: string[] = []) => {
     const newSchool: SubscriptionSchoolModel = new SubscriptionSchool({
         schoolName: schoolName,
         subscriptionFees: subscriptionFees,
         subscriptionWay: subscriptionWay,
         subscriptionStatus: subscriptionStatus,
-        admins: admins,
+        admin: admin,
         employees: employees,
     });
     await newSchool.save();

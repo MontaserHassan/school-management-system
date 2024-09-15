@@ -7,11 +7,12 @@ import { SubjectModel } from "Models/subject.model";
 // ----------------------------- create subject -----------------------------
 
 
-const createStudent = async (studentName: string, group: string, classRoom: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string, schoolId: string) => {
+const createStudent = async (studentName: string, group: string, parentId: string, classRoom: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string, schoolId: string) => {
     const studentCode = generateCode();
     const newStudent: StudentModel = new Student({
         studentName: studentName,
         group: group,
+        parentId: parentId,
         studentCode: studentCode,
         classRoom: classRoom,
         subjects: subjects,
@@ -118,6 +119,15 @@ const getStudentsByStudentsCode = async (studentCode: string[]) => {
 // ----------------------------- get all students -----------------------------
 
 
+const getStudents = async () => {
+    const students: StudentModel[] = await Student.find();
+    return students;
+};
+
+
+// ----------------------------- get all students -----------------------------
+
+
 const getAllStudents = async () => {
     const students: StudentModel[] = await Student.find().select('_id studentName studentCode');
     return students;
@@ -156,6 +166,7 @@ export default {
     getStudentByStudentCode,
     getStudentsByStudentsCode,
     getAllStudents,
+    getStudents,
     updateStudentData,
     deleteStudent,
 };

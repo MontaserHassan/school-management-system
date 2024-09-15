@@ -24,7 +24,7 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
         const currencyOfCost = isClassRoomExisting.currencyOfCost;
         const group = isClassRoomExisting.group;
         const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
-        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId);
+        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, "L1631350", classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId);
         if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         // const isStudentAlreadyInClass = isClassRoomExisting.students.some(student => student.studentId === newStudent._id);
         // if (isStudentAlreadyInClass) {
@@ -131,19 +131,38 @@ const addProgressHistory = async (req: Request, res: Response, next: NextFunctio
 
 const getStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentCode } = req.params;
-        const student = await studentService.getStudentByStudentCode(studentCode);
+        const { studentId } = req.params;
+        const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
-        const subjects = student.subjects.map(subject => ({
-            subjectName: subject.subjectId["subjectName"],
-        }));
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successStudentMessage.GET_PROFILE,
             data: {
                 student: student,
-                subjects: subjects
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
+// ----------------------------- get all student -----------------------------
+
+
+const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const students = await studentService.getStudents();
+        if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successStudentMessage.GET_PROFILE,
+            data: {
+                students: students,
             },
         };
         res.data = response;
@@ -212,6 +231,7 @@ export default {
     addComment,
     addProgressHistory,
     getStudent,
+    getAllStudents,
     updateStudentData,
     deleteStudent,
 };

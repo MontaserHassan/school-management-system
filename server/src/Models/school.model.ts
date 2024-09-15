@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 interface SubscriptionSchoolModel extends mongoose.Document {
     _id: string;
     schoolName: string;
-    admins: string[];
+    admin: string;
     employees: string[];
     subscriptionFees: string;
     subscriptionDate: Date;
@@ -31,6 +31,7 @@ const subscriptionSchoolSchema = new mongoose.Schema(
         },
         employees: {
             type: [String],
+            ref: 'User',
             default: [],
         },
         subscriptionFees: {

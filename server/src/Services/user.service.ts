@@ -81,8 +81,8 @@ const getUserByEmail = async (email: string) => {
 // ----------------------------- update user -----------------------------
 
 
-const updateUser = async (id: string, userName: string, email: string) => {
-    const updatedUser = await User.findByIdAndUpdate({ id }, { userName: userName, email: email, }, { new: true }).select('-__v');
+const updateUser = async (id: string, updatedData: any) => {
+    const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true }).select('-__v');
     return updatedUser;
 };
 

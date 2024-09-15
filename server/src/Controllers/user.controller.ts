@@ -15,12 +15,12 @@ import { UserModel } from "Models/user.model";
 
 const registerUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userName, email, role, schoolId } = req.body;
+        const { userName, email, role } = req.body;
         const currentUserRole = req?.user?.role;
         if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy[role]) throw new CustomError(`You do not have permission to create a user with this role: ${role}.`, 403, "role");
         const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
         if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
-        const newUser = await userService.createUser(userName, (email).toLowerCase(), role, schoolId);
+        const newUser = await userService.createUser(userName, (email).toLowerCase(), role, req.user.schoolId);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -128,7 +128,7 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { userId } = req.user;
         const { userName, email } = req.body;
-        const user = await userService.updateUser(userId, userName, email);
+        const user = await userService.updateUser(userId, { userName, email });
         if (!user) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
             type: "info",

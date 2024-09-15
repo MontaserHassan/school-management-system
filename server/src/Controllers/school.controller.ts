@@ -13,11 +13,14 @@ import pagination from "../Utils/pagination.util";
 
 const createSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admins, employees } = req.body;
+        const { schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admin, employees } = req.body;
         const IsSchoolExisting = await schoolService.getSchoolByName(schoolName.toLowerCase());
         if (IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_ALREADY_EXISTS, 404, "school");
-        const newSchool = await schoolService.createSchool(schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admins, employees,);
+        let adminUser = await userService.getUserByEmail(admin.email);
+        if (!adminUser) adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null);
+        const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
+        await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -68,12 +71,21 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
         const { schoolId } = req.params;
         const school = await schoolService.getSchoolById(schoolId);
         if (!school) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const admin = await userService.getById(school.admin);
+        const transformedSchool = {
+            ...school.toObject(),
+            admin: {
+                userName: admin.userName,
+                email: admin.email,
+                _id: admin._id
+            },
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successSchoolMessage.GET_SCHOOL_DATA,
             data: {
-                school: school,
+                school: transformedSchool,
             },
         };
         res.data = response;
@@ -93,8 +105,19 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
         const totalSchools = await schoolService.totalDocument();
         const paginateData = pagination(totalSchools, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const schools = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
+        let schools = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
         if (!schools) throw new CustomError(errorSchoolMessage.NOT_FOUND_SCHOOL, 404, "school");
+        const schoolsData = await Promise.all(schools.map(async (school) => {
+            const admin = await userService.getById(school.admin);
+            return {
+                ...school.toObject(),
+                admin: {
+                    userName: admin.userName,
+                    email: admin.email,
+                    _id: admin._id
+                },
+            };
+        }));
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -104,7 +127,7 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
                 currentPage: paginateData.currentPage,
                 limit: paginateData.limit,
                 skip: paginateData.skip,
-                schools: schools,
+                schools: schoolsData,
             },
         };
         res.data = response;
@@ -148,7 +171,7 @@ const deleteSchool = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const { schoolId, } = req.params;
         const deletedSchool = await schoolService.deleteSchool(schoolId);
-        const arrayOfUser = [...deletedSchool.employees, ...deletedSchool.admins]
+        const arrayOfUser = [...deletedSchool.employees, deletedSchool.admin]
         if (!deletedSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_DELETED, 409, "student");
         await userService.deleteUsers(arrayOfUser);
         const response: IResponse = {
