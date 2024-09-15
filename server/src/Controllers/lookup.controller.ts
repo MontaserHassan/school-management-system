@@ -61,31 +61,31 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             // const paginateData = pagination(totalStudents, Number(page));
             // const lookups = await studentService.findAllStudentsOfSchool(paginateData.limit, paginateData.skip);
             const lookups = await studentService.getAllStudents();
-            lookupsData = lookups.map(item => { return { id: item._id, value: item.studentName } });
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.studentName } });
         } else if (targetData === 'subjects') {
             // const totalSubjects = await subjectService.totalDocument();
             // const paginateData = pagination(totalSubjects, Number(page));
             // const lookups = await subjectService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await subjectService.getAllSubjects();
-            lookupsData = lookups.map(item => { return { id: item._id, value: item.subjectName } });
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.subjectName } });
         } else if (targetData === 'topics') {
             // const totalTopics = await topicService.totalDocument();
             // const paginateData = pagination(totalTopics, Number(page));
             // const lookups = await topicService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await topicService.find();
-            lookupsData = lookups.map(item => { return { id: item._id, value: item.topicName } });
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.topicName } });
         } else if (targetData === 'schools') {
             // const totalSchools = await schoolService.totalDocument();
             // const paginateData = pagination(totalSchools, Number(page));
             // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await schoolService.getAllSchools();
-            lookupsData = lookups.map(item => { return { id: item._id, value: item.schoolName } });
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.schoolName } });
         } else if (targetData === 'groups') {
             // const totalSchools = await schoolService.totalDocument();
             // const paginateData = pagination(totalSchools, Number(page));
             // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await lookupService.getByMasterCodeAndParent('2');
-            lookupsData = lookups.map(item => { return { id: item._id, value: item.lookupName } });
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
         } else {
             throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         };
