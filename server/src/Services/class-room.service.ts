@@ -46,6 +46,15 @@ const addTopic = async (room: string, newTopic: { topicId: string, topicName: st
     return newClassRoomData;
 };
 
+
+// ----------------------------- get by id -----------------------------
+
+
+const getById = async (id: string) => {
+    const classRoom: ClassRoomModel = await ClassRoom.findById(id).select('-__v');
+    return classRoom;
+};
+
 // ----------------------------- get by room -----------------------------
 
 
@@ -118,6 +127,7 @@ const deleteRoom = async (room: string) => {
 export default {
     createClassRoom,
     getByRoom,
+    getById,
     getTeachers,
     getByTeacherId,
     addStudent,

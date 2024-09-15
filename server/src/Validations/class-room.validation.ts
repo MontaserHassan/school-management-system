@@ -15,9 +15,7 @@ const classRoomValidator = {
                     startTime: Joi.string().required().messages({ 'string.empty': 'Start time is required.', }),
                 }))
             })),
-            mainTopics: Joi.array().items(Joi.object().keys({
-                topicId: Joi.string().required().messages({ 'string.empty': 'Topic Id is required', }),
-            })),
+            mainTopics: Joi.array().unique().items(Joi.string().required()).required().messages({ 'array.empty': 'Main topics is required.', 'array.unique': 'Main topics must be unique.', }),
             studentCost: Joi.number().required().min(1).messages({ 'string.empty': 'Student cost is required.', 'string.pattern.base': 'Student cost must be a number.', }),
         }),
     },

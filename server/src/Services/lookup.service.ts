@@ -22,6 +22,15 @@ const isLookupCodeExisting = async (lookupCode: string) => {
 };
 
 
+// ----------------------------- get by id -----------------------------
+
+
+const getById = async (id: string) => {
+    const lookup: LookupModel = await Lookup.findById(id).select('-__v');
+    return lookup;
+};
+
+
 // ----------------------------- get by master code -----------------------------
 
 
@@ -72,6 +81,7 @@ export default {
     createLookupDetails,
     isLookupCodeExisting,
     getByMasterCode,
+    getById,
     getByMasterCodeAndParent,
     getByLookupCode,
     updateLookupCode,

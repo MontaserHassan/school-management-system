@@ -2,7 +2,7 @@ enum errorClassRoomMessage {
     DOES_NOT_CREATED = "Class Room doesn't created",
     DOES_NOT_UPDATED = "Class Room doesn't updated",
     DOES_NOT_DELETED = "Class Room doesn't deleted",
-    NOT_FOUND_SUBJECT = 'This Class room does not exist',
+    NOT_FOUND_CLASS = 'This Class room does not exist',
     NOT_UPDATED = 'Class room data does not update',
     ROOM_ALREADY_TOKED = 'This room has already been taken',
     DUPLICATE_ROOM_VALUE = "Duplicate Room IDs found",

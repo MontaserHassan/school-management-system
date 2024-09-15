@@ -33,6 +33,15 @@ const getById = async (topicId: string) => {
 };
 
 
+// ----------------------------- get topics by topic id -----------------------------
+
+
+const getTopicsById = async (id: string[]) => {
+    const user = await MainTopic.find({ _id: { $in: id } }).select('-__v');
+    return user;
+};
+
+
 // ----------------------------- total document -----------------------------
 
 
@@ -83,6 +92,7 @@ export default {
     createTopic,
     getById,
     getByName,
+    getTopicsById,
     totalDocument,
     find,
     findWithPagination,
