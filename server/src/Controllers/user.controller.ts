@@ -6,6 +6,7 @@ import CustomError from "../Utils/customError.util";
 import { createToken, pagination } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import RoleHierarchy from "../Interfaces/user-hierarchy.interface";
+import { UserModel } from "Models/user.model";
 
 
 
@@ -179,14 +180,20 @@ const updateUserPassword = async (req: Request, res: Response, next: NextFunctio
 const getProfile = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { userId } = req.user;
-        const user = await userService.updateLogged(userId, true);
+        const { id } = req.query;
+        let user: UserModel;
+        if (id) {
+            user = await userService.getById(String(id));
+        } else {
+            user = await userService.updateLogged(userId, true);
+        };
         if (!user) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: SuccessUserMessage.GET_PROFILE,
             data: {
-                user: user
+                user: user,
             },
         };
         res.data = response;

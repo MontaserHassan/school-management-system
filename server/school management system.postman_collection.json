@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -128,7 +128,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjMzg4MTIxZmRlODIwZmNkMWExM2NhMDIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzMzY3NDgsImV4cCI6MTcyNjM1MTE0OH0.L_jHTi33ZYZcWeFkp9ctPds40UBhAPfWZNqIJ9MdNp4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
 									"type": "string"
 								}
 							]
@@ -143,13 +143,19 @@
 							}
 						],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/profile",
+							"raw": "{{SchoolManagementSystem}}/user/profile?id=kttyDR1Gz3AHotyA8tvtm",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"profile"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "kttyDR1Gz3AHotyA8tvtm"
+								}
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -179,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJjMGI2ZDUwZjdlYjljMGQ2ZGU2ODk4MjMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2MzMyMzkzLCJleHAiOjE3MjYzNDY3OTN9.8PtP9dJJzre4ucD6LbICE_X2T4j4tzAWqBoiKKTwmvI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
 									"type": "string"
 								}
 							]
@@ -188,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"admin admin\",\n    \"email\": \"admin@gmail.com\",\n    \"role\": \"admin\",\n    \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+							"raw": "{\n    \"userName\": \"director\",\n    \"email\": \"director2@gmail.com\",\n    \"role\": \"director\"\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -231,7 +237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"director2@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -852,17 +858,24 @@
 				{
 					"name": "get roles",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/lookups/roles",
-							"protocol": "http",
+							"raw": "{{SchoolManagementSystem}}/lookups/roles",
 							"host": [
-								"localhost"
+								"{{SchoolManagementSystem}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
 								"lookups",
 								"roles"
 							]
@@ -878,7 +891,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlZWU2ZGI0MDk0N2JiNTJjNzAxMDRiYzYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzNjIyMTUsImV4cCI6MTcyNjM3NjYxNX0.Xzij3qCSK_M2hCUlRu8XsVahlQglZ6BWSuJdj_mRufQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIwMWRjOGRlYjE1MjAyYWM5OTY1YmIxMjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0MDMwOTUsImV4cCI6MTcyNjQxNzQ5NX0.Q9xX36UYdRI7OxNXuvMthSiZMdqxn9L859nl3NUT1e0",
 									"type": "string"
 								}
 							]
@@ -990,7 +1003,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjMzg4MTIxZmRlODIwZmNkMWExM2NhMDIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzMzY3NDgsImV4cCI6MTcyNjM1MTE0OH0.L_jHTi33ZYZcWeFkp9ctPds40UBhAPfWZNqIJ9MdNp4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIwMWRjOGRlYjE1MjAyYWM5OTY1YmIxMjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0MDMwOTUsImV4cCI6MTcyNjQxNzQ5NX0.Q9xX36UYdRI7OxNXuvMthSiZMdqxn9L859nl3NUT1e0",
 									"type": "string"
 								}
 							]
@@ -998,7 +1011,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/lookups/user/data?role=admin&schoolId=HQiPO_ovyNWpxm8lSHZPxUU8",
+							"raw": "{{SchoolManagement}}/lookups/user/data",
 							"host": [
 								"{{SchoolManagement}}"
 							],
@@ -1006,16 +1019,6 @@
 								"lookups",
 								"user",
 								"data"
-							],
-							"query": [
-								{
-									"key": "role",
-									"value": "admin"
-								},
-								{
-									"key": "schoolId",
-									"value": "HQiPO_ovyNWpxm8lSHZPxUU8"
-								}
 							]
 						}
 					},

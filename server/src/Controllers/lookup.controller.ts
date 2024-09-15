@@ -44,12 +44,18 @@ const createLookupsDetails = async (req: Request, res: Response, next: NextFunct
 const getLookups = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { lookups } = req.params;
-        const { page } = req.query;
+        // const { page } = req.query;
         const targetData = lookups;
         let lookupsData;
         if (targetData === 'roles') {
             const lookups = await lookupService.getByMasterCodeAndParent('1');
-            lookupsData = lookups.map(item => { return { id: item._id, value: item.lookupName } });
+            if (req.user.role === 'superAdmin') {
+                lookupsData = lookups.filter(item => item.lookupName === 'admin').map(item => ({ id: item._id, value: item.lookupName }));
+            } else if (req.user.role === 'admin' || req.user.role === 'director') {
+                lookupsData = lookups.filter(item => item.lookupName !== 'superAdmin' && item.lookupName !== 'admin').map(item => ({ id: item._id, value: item.lookupName }));
+            } else {
+                throw new CustomError(errorLookupMessage.UNAUTHORIZED_ACCESS_LOOKUPS, 403, 'lookup');
+            };
         } else if (targetData === 'students') {
             // const totalStudents = await studentService.totalDocument();
             // const paginateData = pagination(totalStudents, Number(page));

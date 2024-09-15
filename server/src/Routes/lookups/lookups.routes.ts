@@ -13,7 +13,7 @@ const lookups = express.Router();
 
 lookups.use(getUser());
 lookups.post('/', checkRole(['superAdmin']), validation(lookupValidator.createLookup), lookupController.createLookupsDetails);
-lookups.get('/:lookups', checkRole(['admin', 'director', 'teacher']), lookupController.getLookups);
+lookups.get('/:lookups', checkRole(['superAdmin', 'admin', 'director', 'teacher']), lookupController.getLookups);
 lookups.get('/user/data', checkRole(['superAdmin', 'admin']), lookupController.getUsersBySpecificData);
 
 
