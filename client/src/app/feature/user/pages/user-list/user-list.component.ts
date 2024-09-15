@@ -18,11 +18,12 @@ export class UserListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUsersList()
   }
 
   getUsersList() {
     this.load(this.authService.getUsersList()).subscribe(res => {
-
+      this.users = res.users || []
     })
   }
 

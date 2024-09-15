@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { ApiBaseService } from '../general/api-base.service';
 import { ApiConstant } from '../../config/api.constant';
 import { filterNullEntity } from '../../utils/filter-null-entity.util';
-import { AuthResponse, User } from '../../models/user.model';
+import { AuthResponse, User, UsersList } from '../../models/user.model';
 import { JWTTokenValidation } from '../../enums/JWT-token-validation.enum';
 import { Mapper } from '../../mapper/base-mapper.mapper';
 
@@ -41,19 +41,19 @@ export class AuthService {
   }
 
   getUserProfile(id: string): Observable<User> {
-    return this.baseAPI.get(ApiConstant.GET_USER_PROFILE.replace('{id}', id)).pipe(
+    return this.baseAPI.get(ApiConstant.GET_USER_PROFILE, {params:{id}}).pipe(
       map((res) => this.mapper.fromJson(User, res.data.user))
     );
   }
 
-  getUsersList(): Observable<User[]> {
+  getUsersList(): Observable<UsersList> {
     return this.baseAPI.get(ApiConstant.GET_USERS_LIST).pipe(
-      map((res) => this.mapper.fromJson(User, res.data.users
+      map((res) => this.mapper.fromJson(UsersList, res.data)));
   }
 
-  addUser(body: User): Observable<any> {
+  addUser(body: User): Observable<User> {
     return this.baseAPI.post(ApiConstant.ADD_USER, filterNullEntity(body)).pipe(
-      map((res) => res)
+      map((res) => this.mapper.fromJson(User, res.data.user))
     );
   }
 

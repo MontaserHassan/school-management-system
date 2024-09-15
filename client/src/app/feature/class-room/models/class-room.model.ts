@@ -31,7 +31,21 @@ class Teacher {
   teacherName?: string;
 }
 
+class MainTopic {
+  @Expose()
+  topicId?: string;
+
+  @Expose()
+  topicName?: string;
+}
+
 export class ClassRoom {
+  @Expose()
+  _id?: string;
+
+  @Expose()
+  schoolId?: string;
+
   @Expose()
   room?: string;
 
@@ -42,7 +56,7 @@ export class ClassRoom {
   teachers?: Teacher[];
 
   @Expose()
-  mainTopics?: string[];
+  mainTopics?: MainTopic[];
 
   @Expose()
   schedule?: Schedule[];
@@ -54,9 +68,6 @@ export class ClassRoom {
   currencyOfCost?: string;
 
   @Expose()
-  _id?: string;
-
-  @Expose()
   students?: any[];
 
   @Expose()
@@ -64,11 +75,7 @@ export class ClassRoom {
 
   @Expose()
   updatedAt?: Date;
-
-  @Expose()
-  __v?: number;
 }
-
 
 export class ClassRoomResponse extends list{
   @Expose()

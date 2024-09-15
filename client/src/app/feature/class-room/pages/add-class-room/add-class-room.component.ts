@@ -4,6 +4,8 @@ import { Lookup } from '../../../shared/enums/lookup.enum';
 import { UserRole } from '../../../shared/enums/user-role.enum';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { ClassRoomService } from '../../services/class-room.service';
+import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-class-room',
@@ -25,7 +27,7 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
     { label: 'Saturday', value: 'Saturday' },
   ];
 
-  constructor(private fb: FormBuilder, private classRoomService:ClassRoomService) {
+  constructor(private fb: FormBuilder, private classRoomService:ClassRoomService, private router: Router) {
     super();
   }
 
@@ -117,8 +119,7 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
       const classroomData = this.mapClassroomData(this.classroomForm.value);
       this.load(this.classRoomService.addClassRoom(classroomData), {isLoadingTransparent: true}).subscribe((res) => {
         this.showSuccessMessage('Class Room Added Successfully');
-        console.log(res);
-
+        this.router.navigate([RoutesUtil.ClassRoomView.url({ params: { id: res._id } })]);
       })
     }
   }
