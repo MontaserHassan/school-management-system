@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiBaseService } from '../../shared/services/general/api-base.service';
 import { Mapper } from '../../shared/mapper/base-mapper.mapper';
 import { ISubjectPayload } from '../../subject/models/sybject-payload';
-import { Student } from '../models/student.model';
+import { Student, StudentList } from '../models/student.model';
 import { map, Observable } from 'rxjs';
 import { ApiConstant } from '../../shared/config/api.constant';
 import { IStudentPayload } from '../models/student-payload.model';
@@ -23,15 +23,15 @@ export class StudentService {
     )
   }
 
-  // getSubjectById(id: string): Observable<Subject> {
-  //   return this.baseAPI.get(ApiConstant.GET_SUBJECT_BY_ID.replace('{id}', id)).pipe(
-  //     map((res) => this.mapper.fromJson(Subject, res.data.subject))
-  //   )
-  // }
+  getStudentById(id: string): Observable<Student> {
+    return this.baseAPI.get(ApiConstant.GET_STUDENTS_BY_ID.replace('{id}', id)).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.student))
+    )
+  }
 
-  // getSubjects(): Observable<SubjectsList> {
-  //   return this.baseAPI.get(ApiConstant.GET_SUBJECT_LIST).pipe(
-  //     map((res) => this.mapper.fromJson(SubjectsList, res.data))
-  //   )
-  // }
+  getStudents(): Observable<StudentList> {
+    return this.baseAPI.get(ApiConstant.GET_STUDENTS).pipe(
+      map((res) => this.mapper.fromJson(StudentList, res.data))
+    )
+  }
 }

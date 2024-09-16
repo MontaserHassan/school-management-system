@@ -16,7 +16,7 @@
         <td>{{ student.classRoom }}</td>
         <td>{{ student.group }}</td>
         <td>
-          <p-button icon="pi pi-eye" label="View Details"></p-button>
+          <p-button icon="pi pi-eye" label="View Details" (onClick)="gotoStudentDetails(student._id)"></p-button>
         </td>
       </tr>
     </ng-template>
