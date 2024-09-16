@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
+import { classRoomService, lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -86,6 +86,12 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await lookupService.getByMasterCodeAndParent('2');
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'classRooms') {
+            // const totalSchools = await schoolService.totalDocument();
+            // const paginateData = pagination(totalSchools, Number(page));
+            // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await classRoomService.find();
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.room } });
         } else {
             throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         };

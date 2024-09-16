@@ -8,4 +8,5 @@ export enum Lookup {
   Schools = 'schools',
   Topics = 'topics',
   Groups = 'groups',
+  ClassRooms = 'classRooms',
 }

@@ -1,0 +1,52 @@
+<div class="mt-4">
+  <p-card>
+    <div class="card-header">
+      <h3>{{ studentProfile.studentName }}'s Profile</h3>
+      <div class="d-flex justify-content-between">
+        <span>Code: {{ studentProfile.studentCode }}</span>
+        <span>Classroom: {{ studentProfile.classRoom }}</span>
+        <span>Group: {{ studentProfile.group }}</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p-tabView>
+        <p-tabPanel header="Subjects">
+          <p-table [value]="studentProfile.subjects">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Subject Name</th>
+                <th>Subject ID</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-subject>
+              <tr>
+                <td>{{ subject.subjectName }}</td>
+                <td>{{ subject.subjectId }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-tabPanel>
+
+        <p-tabPanel header="Main Topics">
+          <p-chips [(ngModel)]="mainTopics"></p-chips>
+        </p-tabPanel>
+
+        <p-tabPanel header="Attendance">
+          <p-timeline [value]="studentProfile.attendance"></p-timeline>
+        </p-tabPanel>
+
+        <p-tabPanel header="Comments">
+          <div *ngFor="let comment of studentProfile.comments" class="card mb-3">
+            <div class="card-body">{{ comment }}</div>
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="Progress History">
+          <div *ngFor="let progress of studentProfile.progressHistory" class="card mb-3">
+            <div class="card-body">{{ progress }}</div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </p-card>
+</div>

@@ -76,6 +76,26 @@ export class SideNavComponent {
           }
         ]
       },
+      {
+        label: 'Students',
+        icon: 'pi pi-graduation-cap',
+        items: [
+          {
+            label: 'Students List',
+            icon: 'pi pi-list',
+            command: () => {
+              this.router.navigate([RoutesUtil.StudentList.url()]);
+            }
+          },
+          {
+            label: 'Add Students',
+            icon: 'pi pi-plus',
+            command: () => {
+              this.router.navigate([RoutesUtil.AddStudent.url()]);
+            }
+          }
+        ]
+      },
     ];
   }
 }

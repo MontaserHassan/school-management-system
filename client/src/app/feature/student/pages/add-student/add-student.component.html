@@ -1,0 +1,35 @@
+<p-card header="Add New Student" class="add-student-card">
+  <app-state-section [state]="sectionState">
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      <!-- Student Name -->
+      <div class="form-group">
+        <label for="studentName">Student Name</label>
+        <input id="studentName" pInputText formControlName="studentName" placeholder="Enter Student Name" />
+        <div *ngIf="studentForm.controls['studentName'].invalid && studentForm.controls['studentName'].touched"
+          class="error mt-1">
+          Student Name is required
+        </div>
+      </div>
+
+      <!-- Classroom -->
+      <div class="form-group">
+        <label for="classRoom">Classroom</label>
+        <app-lazy-dropdown id="classRoom" [lookup]="lookup.ClassRooms" formControlName="classRoom"
+          placeholder="Enter Classroom"></app-lazy-dropdown>
+        <div *ngIf="studentForm.controls['classRoom'].invalid && studentForm.controls['classRoom'].touched"
+          class="error mt-1">
+          Classroom is required
+        </div>
+      </div>
+
+      <!-- Parent ID (Optional) -->
+      <div class="form-group">
+        <label for="parentId">Parent ID (Optional)</label>
+        <input id="parentId" pInputText formControlName="parentId" placeholder="Enter Parent ID (Optional)" />
+      </div>
+
+      <!-- Submit Button -->
+      <button pButton type="submit" class="w-100" label="Add Student" [disabled]="studentForm.invalid"></button>
+    </form>
+  </app-state-section>
+</p-card>

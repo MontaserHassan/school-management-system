@@ -15,9 +15,11 @@ export class ApiConstant {
 
   static GET_LOOKUP = ApiConstant.URL_BASE +  URLSegment.Lookups + '{type}';
 
-
   static GET_CLASS_ROOMS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Director  + 'class-room';
   static ADD_CLASS_ROOM = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Director  + 'class-room';
   static GET_CLASS_ROOM_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Director+ 'class-room/' + '{id}';
 
+  static GET_STUDENTS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Director  + 'student';
+  static ADD_STUDENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Director  + 'student';
+  static GET_STUDENTS_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Director+ 'student/' + '{id}';
 }

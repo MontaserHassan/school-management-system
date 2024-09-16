@@ -1,0 +1,24 @@
+<p-card header="Students List" class="students-list-card">
+  <p-table [value]="students" [paginator]="true" [rows]="10" [sortField]="'studentName'" [sortOrder]="1">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
+        <th pSortableColumn="studentCode">Student Code <p-sortIcon field="studentCode"></p-sortIcon></th>
+        <th pSortableColumn="classRoom">Classroom <p-sortIcon field="classRoom"></p-sortIcon></th>
+        <th pSortableColumn="group">Group <p-sortIcon field="group"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+      <tr>
+        <td>{{ student.studentName }}</td>
+        <td>{{ student.studentCode }}</td>
+        <td>{{ student.classRoom }}</td>
+        <td>{{ student.group }}</td>
+        <td>
+          <p-button icon="pi pi-eye" label="View Details"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

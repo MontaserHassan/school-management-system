@@ -1,0 +1,99 @@
+.student-profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  .profile-card {
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+
+    .profile-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      .profile-header-content {
+        display: flex;
+        align-items: center;
+
+        .profile-image {
+          width: 100px;
+          height: 100px;
+          margin-right: 2rem;
+        }
+
+        .profile-details {
+          h2 {
+            font-size: 1.8rem;
+            margin: 0;
+          }
+
+          p {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+          }
+
+          .student-code {
+            color: #007ad9;
+          }
+        }
+      }
+    }
+
+    .profile-section {
+      margin-bottom: 2rem;
+
+      h3 {
+        font-size: 1.4rem;
+        color: #007ad9;
+        margin-bottom: 1rem;
+      }
+
+      .chips-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        .subject-chip, .topic-chip {
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .attendance-list, .comments-list, .progress-list {
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        background-color: #f4f4f4;
+        margin-bottom: 0.5rem;
+        padding: 0.8rem;
+        border-radius: 5px;
+      }
+    }
+
+    .cost-section {
+      h3 {
+        font-size: 1.4rem;
+        color: #007ad9;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 0;
+      }
+    }
+
+    .profile-footer {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      margin-top: 2rem;
+    }
+  }
+}

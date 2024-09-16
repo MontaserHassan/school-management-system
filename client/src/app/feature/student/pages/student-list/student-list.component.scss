@@ -1,0 +1,24 @@
+.students-list-card {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.students-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.p-button-info {
+  background-color: #007ad9; // PrimeNG blue
+  border-color: #007ad9;
+}
+
+.p-button-info:hover {
+  background-color: #0056a0;
+  border-color: #0056a0;
+}
+
+.text-center {
+  text-align: center;
+}

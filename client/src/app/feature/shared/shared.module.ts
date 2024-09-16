@@ -46,6 +46,8 @@ import { ChipsModule } from 'primeng/chips';
 import { SidebarModule } from 'primeng/sidebar';
 import { AccordionModule } from 'primeng/accordion';
 import { ChipModule } from 'primeng/chip';
+import { TabViewModule } from 'primeng/tabview';
+import { TimelineModule } from 'primeng/timeline';
 import { LazyDropdownComponent } from './component/lazy-dropdown/lazy-dropdown.component';
 import { CalendarModule } from 'primeng/calendar';
 
@@ -102,7 +104,9 @@ const PRIME_NG_MODULES = [
   ChipsModule,
   SidebarModule,
   AccordionModule,
-  ChipModule
+  ChipModule,
+  TabViewModule,
+  TimelineModule
 ]
 
 @NgModule({
