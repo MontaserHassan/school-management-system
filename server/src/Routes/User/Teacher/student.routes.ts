@@ -12,11 +12,12 @@ const studentRouter = express.Router();
 
 
 studentRouter.get('/', studentController.getAllStudents);
+studentRouter.get('/class-room', studentController.getStudentsOfClassRoom);
 studentRouter.get('/:studentId', studentController.getStudent);
 studentRouter.patch('/progress-history', validation(studentValidator.addProgressHistory), studentController.addProgressHistory);
 studentRouter.patch('/attendance', validation(studentValidator.addAttendance), studentController.addAttendance);
 studentRouter.patch('/comment', mediaMediaHandler, validation(studentValidator.addComment), studentController.addComment);
-// studentRouter.patch('/degree',  validation(studentValidator.addDegree),studentController.addDegreeOfSubject);
+studentRouter.patch('/degree', validation(studentValidator.addDegree), studentController.addDegreeOfSubject);
 
 
 

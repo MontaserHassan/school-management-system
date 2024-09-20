@@ -15,12 +15,12 @@ import { UserModel } from "Models/user.model";
 
 const registerUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userName, email, role } = req.body;
+        const { userName, email, role, media } = req.body;
         const currentUserRole = req?.user?.role;
         if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy[role]) throw new CustomError(`You do not have permission to create a user with this role: ${role}.`, 403, "role");
         const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
         if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
-        const newUser = await userService.createUser(userName, (email).toLowerCase(), role, req.user.schoolId);
+        const newUser = await userService.createUser(userName, (email).toLowerCase(), role, req.user.schoolId, media);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -127,15 +127,15 @@ const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { userId } = req.user;
-        const { userName, email } = req.body;
-        const user = await userService.updateUser(userId, { userName, email });
+        const { userName, media } = req.body;
+        const user = await userService.updateUser(userId, { userName, media });
         if (!user) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: SuccessUserMessage.UPDATED,
             data: {
-                user: user
+                user: user,
             },
         };
         res.data = response;
@@ -163,7 +163,7 @@ const updateUserPassword = async (req: Request, res: Response, next: NextFunctio
             responseCode: 200,
             responseMessage: SuccessUserMessage.UPDATED_PASSWORD,
             data: {
-                user: updatedUser
+                user: updatedUser,
             },
         };
         res.data = response;

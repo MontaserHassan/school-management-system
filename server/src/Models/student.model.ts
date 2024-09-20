@@ -13,7 +13,8 @@ interface Comment {
 interface subjects {
     subjectId: String;
     subjectName: string;
-    degree?: number;
+    progressStatus?: string;
+    degree?: String;
 };
 
 interface attendance {
@@ -23,14 +24,6 @@ interface attendance {
     status: string;
     comment?: string;
 };
-
-
-interface progressHistory {
-    subjectId: String;
-    status: string;
-    completed: boolean;
-};
-
 
 interface StudentModel extends mongoose.Document {
     _id: string;
@@ -43,10 +36,11 @@ interface StudentModel extends mongoose.Document {
     subjects?: subjects[];
     attendance?: attendance[];
     comments?: Comment[];
-    progressHistory?: progressHistory[];
     studentCost?: string;
     currencyOfCost?: string;
+    media: string;
 };
+
 
 const studentSchema = new mongoose.Schema(
     {
@@ -98,7 +92,13 @@ const studentSchema = new mongoose.Schema(
                 degree: {
                     type: String,
                     enum: ['blue', 'yellow', 'green',],
+                    default: "",
                     required: false,
+                },
+                progressStatus: {
+                    type: String,
+                    enum: ['In Progress', 'Almost Done', 'Completed'],
+                    default: "In Progress",
                 },
             },
         ],
@@ -162,25 +162,6 @@ const studentSchema = new mongoose.Schema(
                 },
             },
         ],
-        progressHistory: [
-            {
-                _id: false,
-                subjectId: {
-                    type: String,
-                    ref: 'Subject',
-                    required: true,
-                },
-                subjectName: {
-                    type: String,
-                    required: true,
-                },
-                status: {
-                    type: String,
-                    enum: ['In Progress', 'Almost Done', 'Completed'],
-                    required: true,
-                },
-            },
-        ],
         studentCost: {
             type: String,
             required: true,
@@ -188,6 +169,10 @@ const studentSchema = new mongoose.Schema(
         currencyOfCost: {
             type: String,
             required: true,
+        },
+        media: {
+            type: String,
+            required: false,
         },
     },
     {

@@ -13,7 +13,7 @@ import { StudentModel } from "../Models/student.model";
 
 const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentName, classRoom, parentCode } = req.body;
+        const { studentName, classRoom, parentCode, media } = req.body;
         const { schoolId } = req.user;
         const isClassRoomExisting = await classRoomService.getByRoom(classRoom);
         if (!isClassRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 400, "classRoom");
@@ -27,7 +27,7 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
         const currencyOfCost = isClassRoomExisting.currencyOfCost;
         const group = isClassRoomExisting.group;
         const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
-        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, parentCode, classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId);
+        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, parentCode, classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId, media);
         if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (newStudent._id).toString(), studentName }]);
         if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
@@ -93,7 +93,6 @@ const addAttendance = async (req: Request, res: Response, next: NextFunction) =>
 const addComment = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentId, comment, media } = req.body;
-        (req as any).media;
         const teacherId = req.user.userId;
         const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
@@ -127,17 +126,10 @@ const addProgressHistory = async (req: Request, res: Response, next: NextFunctio
         if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 400, "student");
         const subjectExists = student.subjects?.some((subject: any) => subject.subjectId === subjectId);
         if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
-        const subject = await subjectService.getById(subjectId);
-        const existingProgress = student?.progressHistory?.find((record: any) => record.subjectId === subjectId);
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
-        let updatedStudent: StudentModel;
         const progressHistoryStatus = await lookupService.getById(status);
-        if (existingProgress) {
-            updatedStudent = await studentService.updateProgressBySubjectId(studentId, subjectId, progressHistoryStatus.lookupName);
-        } else {
-            updatedStudent = await studentService.addProgressHistory(studentId, subjectId, subject.subjectName, progressHistoryStatus.lookupName);
-        };
+        const updatedStudent = await studentService.addProgressHistory(studentId, subjectId, progressHistoryStatus.lookupName);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -157,8 +149,32 @@ const addProgressHistory = async (req: Request, res: Response, next: NextFunctio
 // ----------------------------- add degree for subject -----------------------------
 
 
-const addDegreeOfSubject = async () => {
-
+const addDegreeOfSubject = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { studentId, subjectId, degree } = req.body;
+        const teacherId = req.user.userId;
+        const degreeName = await lookupService.getById(degree);
+        if (!degreeName) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
+        const student = await studentService.getStudentById(studentId);
+        if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
+        const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
+        if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
+        const subjectExists = student.subjects?.some((subject: any) => subject.subjectId === subjectId);
+        if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
+        const updatedStudent = await studentService.addDegree(studentId, subjectId, degreeName.lookupName);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 201,
+            responseMessage: successStudentMessage.ADD_DEGREE,
+            data: {
+                student: updatedStudent,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
 };
 
 
@@ -187,7 +203,7 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 
-// ----------------------------- get all student -----------------------------
+// ----------------------------- get all students -----------------------------
 
 
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
@@ -201,6 +217,30 @@ const getAllStudents = async (req: Request, res: Response, next: NextFunction) =
             responseMessage: successStudentMessage.GET_PROFILE,
             data: {
                 students: students,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
+// ----------------------------- get all students of class room-----------------------------
+
+
+const getStudentsOfClassRoom = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { userId } = req.user;
+        const students = await classRoomService.getStudentsByTeacherId(userId);
+        if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successStudentMessage.GET_PROFILE,
+            data: {
+                students: students.students,
             },
         };
         res.data = response;
@@ -263,13 +303,16 @@ const deleteStudent = async (req: Request, res: Response, next: NextFunction) =>
 };
 
 
+
 export default {
     createStudent,
     addAttendance,
     addComment,
     addProgressHistory,
+    addDegreeOfSubject,
     getStudent,
     getAllStudents,
     updateStudentData,
     deleteStudent,
+    getStudentsOfClassRoom,
 };

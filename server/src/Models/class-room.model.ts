@@ -70,7 +70,7 @@ const classRoomSchema = new mongoose.Schema(
                 _id: false,
                 studentId: {
                     type: String,
-                    ref: 'Subject',
+                    ref: 'Student',
                     required: true,
                 },
                 studentName: {

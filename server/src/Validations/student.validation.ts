@@ -3,7 +3,6 @@ import Joi from 'joi';
 
 
 const studentValidator = {
-    // validation createStudent
     createStudent: {
         body: Joi.object().keys({
             studentName: Joi.string().required().trim().min(3).max(100).messages({
@@ -18,6 +17,7 @@ const studentValidator = {
                 'number.max': 'Class room must not exceed 999.',
             }),
             parentCode: Joi.string().trim().required().messages({ 'string.empty': 'Parent code is required.', }),
+            media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media is required.', }),
         }),
     },
 
@@ -27,7 +27,6 @@ const studentValidator = {
         }),
     },
 
-    // validation attendance
     addAttendance: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
@@ -36,7 +35,6 @@ const studentValidator = {
         }),
     },
 
-    // validation comment
     addComment: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
@@ -45,7 +43,6 @@ const studentValidator = {
         }),
     },
 
-    // validation progressHistory
     addProgressHistory: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
@@ -54,7 +51,6 @@ const studentValidator = {
         }),
     },
 
-    // validation degree
     addDegree: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
@@ -63,7 +59,6 @@ const studentValidator = {
         }),
     },
 
-    // validation updateStudentData
     updateStudentData: {
         body: Joi.object().keys({
             studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),

@@ -87,6 +87,23 @@ const getByTeacherId = async (teacherId: string) => {
 };
 
 
+// ----------------------------- get students class by teacher -----------------------------
+
+
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Find a class room by the given teacherId
+ * @param teacherId The teacher's id
+ * @returns true if the class room exists, false otherwise
+ */
+/******  2691de82-f7b3-4fad-acd7-0a81927f0036  *******/
+const getStudentsByTeacherId = async (teacherId: string) => {
+    const classRoom: ClassRoomModel = await ClassRoom.findOne({ "teachers.teacherId": teacherId }).select('-__v');
+    return classRoom;
+};
+
+
+
 // ----------------------------- total document -----------------------------
 
 
@@ -130,6 +147,7 @@ export default {
     getById,
     getTeachers,
     getByTeacherId,
+    getStudentsByTeacherId,
     addStudent,
     addTeacher,
     addTopic,

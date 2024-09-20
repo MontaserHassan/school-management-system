@@ -17,7 +17,7 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
         const IsSchoolExisting = await schoolService.getSchoolByName(schoolName.toLowerCase());
         if (IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_ALREADY_EXISTS, 404, "school");
         let adminUser = await userService.getUserByEmail(admin.email);
-        if (!adminUser) adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null);
+        if (!adminUser) adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null, '');
         const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });

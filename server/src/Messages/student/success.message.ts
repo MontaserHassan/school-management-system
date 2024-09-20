@@ -6,6 +6,7 @@ enum successStudentMessage {
     ADD_COMMENT = "Comment added successfully",
     ADD_PROGRESS = "Progress added successfully",
     ADD_ATTENDANCE = "Attendance added successfully",
+    ADD_DEGREE = "Degree added successfully",
 };
 
 
