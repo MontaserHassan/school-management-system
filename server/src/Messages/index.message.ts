@@ -19,6 +19,7 @@ import errorLookupMessage from './lookup/error.message';
 import successLookupMessage from './lookup/success.message';
 import errorSchoolMessage from './school/error.message';
 import successSchoolMessage from './school/success.message';
+import ErrorMediaMessage from './media/error.message';
 
 
 
@@ -44,4 +45,5 @@ export {
     successLookupMessage,
     errorSchoolMessage,
     successSchoolMessage,
+    ErrorMediaMessage,
 };

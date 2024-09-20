@@ -1,6 +1,7 @@
 import generateCode from "../Utils/generateCode.util";
 import { Student, StudentModel } from "../Models/student.model";
 import { SubjectModel } from "Models/subject.model";
+import classRoomService from "./class-room.service";
 
 
 
@@ -35,12 +36,31 @@ const addAttendance = async (studentId: string, teacherId: string, status: strin
 };
 
 
+// ----------------------------- update attendance -----------------------------
+
+
+const updateAttendanceByDate = async (studentId: string, date: Date, status: string, comment: string) => {
+    const updatedStudent = await Student.findOneAndUpdate({ _id: studentId, 'attendance.date': date, }, { $set: { 'attendance.$.status': status, 'attendance.$.comment': comment, }, }, { new: true });
+    return updatedStudent;
+};
+
+
 // ----------------------------- add new comment -----------------------------
 
 
 const addComment = async (studentId: string, teacherId: string, comment: string, media: string,) => {
     const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { comments: { teacherId: teacherId, comment: comment, media: media } } }, { new: true });
     return student;
+};
+
+
+// ----------------------------- is teacher in class with student -----------------------------
+
+
+const isTeacherInClassroom = async (room: string, teacher: string) => {
+    const classroom = await classRoomService.getByRoom(room);
+    if (!classroom) return false;
+    return classroom.teachers.some((tech: { teacherId: string; teacherName: string }) => tech.teacherId === teacher);
 };
 
 
@@ -56,9 +76,18 @@ const addTopic = async (studentId: string, topicId: string,) => {
 // ----------------------------- add new progress history -----------------------------
 
 
-const addProgressHistory = async (studentId: string, subject: SubjectModel, completed: boolean) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { progressHistory: { subjectId: subject._id, completed: completed } } }, { new: true });
+const addProgressHistory = async (studentId: string, subjectId: string, subjectName: string, status: string) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { progressHistory: { subjectId: subjectId, subjectName: subjectName, status: status } } }, { new: true });
     return student;
+};
+
+
+// ----------------------------- update progress history -----------------------------
+
+
+const updateProgressBySubjectId = async (studentId: string, subjectId: string, status: string) => {
+    const updatedStudent = await Student.findOneAndUpdate({ _id: studentId, "progressHistory.subjectId": subjectId }, { $set: { "progressHistory.$.status": status, } }, { new: true });
+    return updatedStudent;
 };
 
 
@@ -119,8 +148,8 @@ const getStudentsByStudentsCode = async (studentCode: string[]) => {
 // ----------------------------- get all students -----------------------------
 
 
-const getStudents = async () => {
-    const students: StudentModel[] = await Student.find();
+const getStudents = async (schoolId: string) => {
+    const students: StudentModel[] = await Student.find({ schoolId });
     return students;
 };
 
@@ -155,10 +184,13 @@ const deleteStudent = async (studentId: string) => {
 
 export default {
     createStudent,
-    addAttendance,
-    addComment,
     addTopic,
+    addAttendance,
+    updateAttendanceByDate,
+    addComment,
+    isTeacherInClassroom,
     addProgressHistory,
+    updateProgressBySubjectId,
     totalDocument,
     findAllStudentsOfSchool,
     getStudentById,

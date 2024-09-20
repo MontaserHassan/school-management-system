@@ -27,6 +27,7 @@ interface attendance {
 
 interface progressHistory {
     subjectId: String;
+    status: string;
     completed: boolean;
 };
 
@@ -126,22 +127,11 @@ const studentSchema = new mongoose.Schema(
                 date: {
                     type: Date,
                     required: false,
-                    default: new Date(),
-                },
-                // subjectId: {
-                //     type: String,
-                //     ref: 'Subject',
-                //     required: false,
-                // },
-                // topicId: {
-                //     type: String,
-                //     ref: 'MainTopic',
-                //     required: false,
-                // },
-                teacherId: {
-                    type: String,
-                    ref: 'User',
-                    required: true,
+                    default: () => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return today;
+                    },
                 },
                 status: {
                     type: String,
@@ -157,11 +147,6 @@ const studentSchema = new mongoose.Schema(
         comments: [
             {
                 _id: false,
-                teacherId: {
-                    type: String,
-                    ref: 'User',
-                    required: true,
-                },
                 comment: {
                     type: String,
                     required: true,
@@ -185,8 +170,13 @@ const studentSchema = new mongoose.Schema(
                     ref: 'Subject',
                     required: true,
                 },
-                completed: {
-                    type: Boolean,
+                subjectName: {
+                    type: String,
+                    required: true,
+                },
+                status: {
+                    type: String,
+                    enum: ['In Progress', 'Almost Done', 'Completed'],
                     required: true,
                 },
             },
