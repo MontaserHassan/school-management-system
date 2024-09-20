@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, studentService, subjectService } from "../Services/index.service";
+import { classRoomService, lookupService, studentService, subjectService, userService } from "../Services/index.service";
 import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, successStudentMessage, successSubjectMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
+import { StudentModel } from "../Models/student.model";
 
 
 
@@ -12,10 +13,12 @@ import IResponse from '../Interfaces/response.interface';
 
 const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentName, classRoom } = req.body;
+        const { studentName, classRoom, parentCode } = req.body;
         const { schoolId } = req.user;
         const isClassRoomExisting = await classRoomService.getByRoom(classRoom);
         if (!isClassRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 400, "classRoom");
+        const isParentExisting = await userService.getByCode(parentCode);
+        if (!isParentExisting) throw new CustomError(errorStudentMessage.PARENT_NOT_EXIST, 404, "parentCode");
         const subjectsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
             return schedule.subjects.map(subject => ({ subjectId: subject.subjectId, subjectName: subject.subjectName }));
         }) : [];
@@ -24,13 +27,8 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
         const currencyOfCost = isClassRoomExisting.currencyOfCost;
         const group = isClassRoomExisting.group;
         const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
-        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, "L1631350", classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId);
+        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, parentCode, classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId);
         if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
-        // const isStudentAlreadyInClass = isClassRoomExisting.students.some(student => student.studentId === newStudent._id);
-        // if (isStudentAlreadyInClass) {
-        //     await studentService.deleteStudent(newStudent._id);
-        //     throw new CustomError(errorStudentMessage.EXISTING_STUDENT, 400, "student");
-        // };
         const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (newStudent._id).toString(), studentName }]);
         if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
         const response: IResponse = {
@@ -54,16 +52,29 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
 
 const addAttendance = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentCode, teacherId, status, comment } = req.body;
-        const student = await studentService.getStudentByStudentCode(studentCode);
-        if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
-        // const subject = await subjectService.getById(subjectId);
-        // if (!subject) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 400, "subject");
-        const updatedStudent = await studentService.addAttendance(studentCode._id, teacherId, status, comment);
+        const { studentId, status, comment } = req.body;
+        const teacherId = req.user.userId;
+        const student = await studentService.getStudentById(studentId);
+        if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const attendanceRecord = student?.attendance?.find((record: any) => {
+            const recordDate = new Date(record.date);
+            recordDate.setHours(0, 0, 0, 0);
+            return recordDate.getTime() === today.getTime();
+        });
+        let updatedStudent: StudentModel;
+        const attendanceStatus = await lookupService.getById(status);
+        if (!attendanceStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
+        if (attendanceRecord) {
+            updatedStudent = await studentService.updateAttendanceByDate(student._id, today, attendanceStatus.lookupName, comment);
+        } else {
+            updatedStudent = await studentService.addAttendance(student._id, teacherId, attendanceStatus.lookupName, comment);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 201,
-            responseMessage: successSubjectMessage.CREATED,
+            responseMessage: successStudentMessage.ADD_ATTENDANCE,
             data: {
                 student: updatedStudent,
             },
@@ -81,14 +92,19 @@ const addAttendance = async (req: Request, res: Response, next: NextFunction) =>
 
 const addComment = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentCode, teacherId, comment, media } = req.body;
-        const student = await studentService.getStudentByStudentCode(studentCode);
+        const { studentId, comment, media } = req.body;
+        (req as any).media;
+        const teacherId = req.user.userId;
+        const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
-        const updatedStudent = await studentService.addComment(studentCode._id, teacherId, comment, media);
+        const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
+        if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
+        const updatedStudent = await studentService.addComment(student._id, teacherId, comment, media);
+        if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const response: IResponse = {
             type: "info",
             responseCode: 201,
-            responseMessage: successSubjectMessage.CREATED,
+            responseMessage: successStudentMessage.ADD_COMMENT,
             data: {
                 student: updatedStudent,
             },
@@ -106,14 +122,26 @@ const addComment = async (req: Request, res: Response, next: NextFunction) => {
 
 const addProgressHistory = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentCode, subjectId, completed } = req.body;
-        const student = await studentService.getStudentByStudentCode(studentCode);
-        if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
-        const updatedStudent = await studentService.addProgressHistory(studentCode._id, subjectId, completed);
+        const { studentId, subjectId, status } = req.body;
+        const student = await studentService.getStudentById(studentId);
+        if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 400, "student");
+        const subjectExists = student.subjects?.some((subject: any) => subject.subjectId === subjectId);
+        if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
+        const subject = await subjectService.getById(subjectId);
+        const existingProgress = student?.progressHistory?.find((record: any) => record.subjectId === subjectId);
+        const progressStatus = await lookupService.getById(status);
+        if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
+        let updatedStudent: StudentModel;
+        const progressHistoryStatus = await lookupService.getById(status);
+        if (existingProgress) {
+            updatedStudent = await studentService.updateProgressBySubjectId(studentId, subjectId, progressHistoryStatus.lookupName);
+        } else {
+            updatedStudent = await studentService.addProgressHistory(studentId, subjectId, subject.subjectName, progressHistoryStatus.lookupName);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 201,
-            responseMessage: successSubjectMessage.CREATED,
+            responseMessage: successStudentMessage.ADD_PROGRESS,
             data: {
                 student: updatedStudent,
             },
@@ -126,14 +154,23 @@ const addProgressHistory = async (req: Request, res: Response, next: NextFunctio
 };
 
 
+// ----------------------------- add degree for subject -----------------------------
+
+
+const addDegreeOfSubject = async () => {
+
+};
+
+
 // ----------------------------- get student data -----------------------------
 
 
 const getStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentId } = req.params;
+        const { schoolId } = req.user;
         const student = await studentService.getStudentById(studentId);
-        if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
+        if (!student || student.schoolId !== schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -155,7 +192,8 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const students = await studentService.getStudents();
+        const { schoolId } = req.user;
+        const students = await studentService.getStudents(schoolId);
         if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const response: IResponse = {
             type: "info",

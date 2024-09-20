@@ -284,7 +284,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"studentName\": \"Maged Baraka\",\n    \"classRoom\": \"102\"\n    //\"parentId\": \"L1631350\"\n}",
+									"raw": "{\n    \"studentName\": \"Maged Baraka\",\n    \"classRoom\": \"102\"\n    //\"parentCode\": \"L1631350\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -891,6 +891,128 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "student",
+					"item": [
+						{
+							"name": "add attendance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhMTk2ZDQ3NDI4OGRhOTM4ZTI0ZjJmNDciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY2MTIyNDUsImV4cCI6MTcyNjY5ODY0NX0.3aPFYW78sdcyLlGGZ7llubchznbZIczeHliiSAcIx88",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": \"eRtxL3QXBzdaDlxHlhdNPfGj\",\n    \"status\": \"SchoolSystem-5-1\",\n    \"comment\": \"comment comment\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/teacher/student/attendance",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"teacher",
+										"student",
+										"attendance"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhMTk2ZDQ3NDI4OGRhOTM4ZTI0ZjJmNDciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY2MTIyNDUsImV4cCI6MTcyNjY5ODY0NX0.3aPFYW78sdcyLlGGZ7llubchznbZIczeHliiSAcIx88",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/teacher/student/comment",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"teacher",
+										"student",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add progress history",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhMTk2ZDQ3NDI4OGRhOTM4ZTI0ZjJmNDciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY2MTIyNDUsImV4cCI6MTcyNjY5ODY0NX0.3aPFYW78sdcyLlGGZ7llubchznbZIczeHliiSAcIx88",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": \"eRtxL3QXBzdaDlxHlhdNPfGj\",\n    \"subjectId\": \"ulpMOFtV_STeLof7hvqkFb2C\",\n    \"status\": \"SchoolSystem-3-3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/teacher/student/progress-history",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"teacher",
+										"student",
+										"progress-history"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -920,6 +1042,34 @@
 							"path": [
 								"lookups",
 								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/lookups/classRoom",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"lookups",
+								"classRoom"
 							]
 						}
 					},
@@ -1027,6 +1177,99 @@
 					"response": []
 				},
 				{
+					"name": "get progress",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhMTk2ZDQ3NDI4OGRhOTM4ZTI0ZjJmNDciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY2MTIyNDUsImV4cCI6MTcyNjY5ODY0NX0.3aPFYW78sdcyLlGGZ7llubchznbZIczeHliiSAcIx88",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/progress",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"progress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get degree",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhMTk2ZDQ3NDI4OGRhOTM4ZTI0ZjJmNDciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY2MTIyNDUsImV4cCI6MTcyNjY5ODY0NX0.3aPFYW78sdcyLlGGZ7llubchznbZIczeHliiSAcIx88",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/degree",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"degree"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get attendance status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhMTk2ZDQ3NDI4OGRhOTM4ZTI0ZjJmNDciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY2MTIyNDUsImV4cCI6MTcyNjY5ODY0NX0.3aPFYW78sdcyLlGGZ7llubchznbZIczeHliiSAcIx88",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/lookups/attendanceStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lookups",
+								"attendanceStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get subjects",
 					"request": {
 						"auth": {
@@ -1094,7 +1337,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlZWU2ZGI0MDk0N2JiNTJjNzAxMDRiYzYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjYzNjIyMTUsImV4cCI6MTcyNjM3NjYxNX0.Xzij3qCSK_M2hCUlRu8XsVahlQglZ6BWSuJdj_mRufQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI4ZWU2ZWM2N2MyYmFkYmJlOGYxNmExZmQiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NjExNDE3LCJleHAiOjE3MjY2OTc4MTd9.cJvcfiECtsFC7bg96s5SkQ1HJMSNh6i3V1HPTApd3Q8",
 									"type": "string"
 								}
 							]
@@ -1103,7 +1346,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"masterCode\": \"2\",\n    \"lookups\": [\n        {\n            \"masterName\": \"group\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"3-6\"\n        },\n        {\n            \"masterName\": \"group\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"6-9\"\n        },\n        {\n            \"masterName\": \"group\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"9-12\"\n        }\n    ]\n}",
+							"raw": "{\n    \"masterCode\": \"5\",\n    \"lookups\": [\n        {\n            \"masterName\": \"attendanceStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"present\"\n        },\n        {\n            \"masterName\": \"attendanceStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"absent\"\n        },\n        {\n            \"masterName\": \"attendanceStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"late\"\n        },\n        {\n            \"masterName\": \"attendanceStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"4\",\n            \"lookupName\": \"excused\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"

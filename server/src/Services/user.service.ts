@@ -128,6 +128,15 @@ const getById = async (id: string) => {
 };
 
 
+// ----------------------------- get by code -----------------------------
+
+
+const getByCode = async (code: string) => {
+    const user = await User.findOne({ code }).select('-__v');
+    return user;
+};
+
+
 // ----------------------------- get user by ids and role -----------------------------
 
 
@@ -156,6 +165,7 @@ export default {
     findSpecificUserOfSchool,
     getAllUsers,
     getById,
+    getByCode,
     getUserByEmail,
     getUserByIdAsTeacher,
     updateUser,

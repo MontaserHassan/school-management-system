@@ -44,7 +44,6 @@ const createLookupsDetails = async (req: Request, res: Response, next: NextFunct
 const getLookups = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { lookups } = req.params;
-        // const { page } = req.query;
         const targetData = lookups;
         let lookupsData;
         if (targetData === 'roles') {
@@ -92,6 +91,24 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await classRoomService.find();
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.room } });
+        } else if (targetData === 'progress') {
+            // const totalSchools = await schoolService.totalDocument();
+            // const paginateData = pagination(totalSchools, Number(page));
+            // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await lookupService.getByMasterCodeAndParent('3');
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'degree') {
+            // const totalSchools = await schoolService.totalDocument();
+            // const paginateData = pagination(totalSchools, Number(page));
+            // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await lookupService.getByMasterCodeAndParent('4');
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'attendanceStatus') {
+            // const totalSchools = await schoolService.totalDocument();
+            // const paginateData = pagination(totalSchools, Number(page));
+            // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
+            const lookups = await lookupService.getByMasterCodeAndParent('5');
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
         } else {
             throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         };

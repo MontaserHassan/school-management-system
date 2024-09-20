@@ -17,7 +17,7 @@ const studentValidator = {
                 'number.min': 'Class room must be at least 100.',
                 'number.max': 'Class room must not exceed 999.',
             }),
-            // parentId: Joi.string().trim().required().min(1).messages({ 'string.empty': 'Parent is required.', }),
+            parentCode: Joi.string().trim().required().messages({ 'string.empty': 'Parent code is required.', }),
         }),
     },
 
@@ -27,41 +27,39 @@ const studentValidator = {
         }),
     },
 
-    addSubject: {
-        body: Joi.object().keys({
-            studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
-            subjectId: Joi.string().required().trim().messages({ 'string.empty': 'Subject is required.', }),
-            teacherId: Joi.string().required().trim().messages({ 'string.empty': 'Teacher is required.', }),
-        }),
-    },
-
     // validation attendance
     addAttendance: {
         body: Joi.object().keys({
-            studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
-            // subjectId: Joi.string().required().trim().messages({ 'string.empty': 'Subject is required.', }),
-            teacherId: Joi.string().required().trim().messages({ 'string.empty': 'Teacher is required.', }),
-            status: Joi.string().required().trim().valid('present', 'absent', 'late', 'excused').messages({ 'string.empty': 'Status is required.', 'any.only': 'Status must be present or absent or late or excused.', }),
-            comment: Joi.string().optional().trim().messages({ 'string.empty': 'Comment is required.', }),
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
+            status: Joi.string().required().trim().messages({ 'string.empty': 'Status is required.', }),
+            comment: Joi.string().optional().min(10).max(255).trim().messages({ 'string.empty': 'Comment is required.', }),
         }),
     },
 
     // validation comment
     addComment: {
         body: Joi.object().keys({
-            studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
-            teacherId: Joi.string().required().trim().messages({ 'string.empty': 'Teacher is required.', }),
-            comment: Joi.string().required().trim().messages({ 'string.empty': 'Comment is required.', }),
-            media: Joi.string().required().messages({ 'string.empty': 'Media is required.', }),
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
+            comment: Joi.string().required().min(10).max(255).trim().messages({ 'string.empty': 'Comment is required.', }),
+            media: Joi.string().optional().messages({ 'string.empty': 'Media is required.', }),
         }),
     },
 
     // validation progressHistory
     addProgressHistory: {
         body: Joi.object().keys({
-            studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
-            subjectId: Joi.string().required().trim().messages({ 'string.empty': 'Subject is required.', }),
-            completed: Joi.boolean().required().messages({ 'string.empty': 'Completed is required.', }),
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
+            subjectId: Joi.string().required().trim().messages({ 'string.empty': 'Subject Id is required.', }),
+            status: Joi.string().required().messages({ 'string.empty': 'status is required.', }),
+        }),
+    },
+
+    // validation degree
+    addDegree: {
+        body: Joi.object().keys({
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
+            subjectId: Joi.string().required().trim().messages({ 'string.empty': 'Subject Id is required.', }),
+            degree: Joi.string().required().messages({ 'string.empty': 'Degree is required.', }),
         }),
     },
 
