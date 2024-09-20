@@ -10,11 +10,11 @@
     "$date": "2024-09-06T21:52:46.362Z"
   },
   "updatedAt": {
-    "$date": "2024-09-12T00:06:03.835Z"
+    "$date": "2024-09-20T22:51:25.019Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-12T00:06:03.834Z"
+    "$date": "2024-09-20T22:51:25.019Z"
   },
   "logged": true
 },
@@ -30,11 +30,11 @@
     "$date": "2024-09-06T22:43:10.482Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T22:30:06.125Z"
+    "$date": "2024-09-17T22:16:57.776Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-15T22:30:06.124Z"
+    "$date": "2024-09-17T22:16:57.775Z"
   },
   "logged": true,
   "schoolId": "superAdmin"
@@ -51,11 +51,11 @@
     "$date": "2024-09-06T22:52:38.635Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T16:05:46.911Z"
+    "$date": "2024-09-18T18:24:12.115Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-15T16:05:46.910Z"
+    "$date": "2024-09-18T18:24:12.114Z"
   },
   "logged": true
 },
@@ -92,11 +92,11 @@
     "$date": "2024-09-06T22:53:06.304Z"
   },
   "updatedAt": {
-    "$date": "2024-09-10T22:32:24.714Z"
+    "$date": "2024-09-20T13:54:48.293Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-10T22:32:24.714Z"
+    "$date": "2024-09-20T13:54:48.293Z"
   },
   "logged": true
 },
@@ -186,11 +186,11 @@
     "$date": "2024-09-14T17:58:16.912Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T23:04:03.704Z"
+    "$date": "2024-09-17T22:30:45.134Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-15T23:04:03.703Z"
+    "$date": "2024-09-17T22:30:45.134Z"
   },
   "logged": true
 },
@@ -266,6 +266,22 @@
   },
   "updatedAt": {
     "$date": "2024-09-15T23:08:19.067Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "p1-NvWKJi5u_pTwfelPg1",
+  "userName": "parent parent",
+  "email": "parent2@gmail.com",
+  "role": "parent",
+  "code": "X848831",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$zbIVfhA+oGyLWM8B++lAjA$loeqN2ThSyYXS1pjdhlsUVDwTvIyNvuCIhTrehs5udA",
+  "createdAt": {
+    "$date": "2024-09-20T22:51:37.812Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-20T22:51:37.812Z"
   },
   "__v": 0
 }]
