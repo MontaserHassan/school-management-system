@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
-import { SectionStateStatus } from '../../../shared/enums/section-state-status.enum';
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import { passwordMatchValidator } from '../../../shared/utils/custome-validator.util';
 
 @Component({
   selector: 'app-login-form',
@@ -12,16 +12,19 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent extends BaseComponent implements OnInit {
+  pageTwo = false;
   signUp = false;
+  loginFirstTime = false;
 
   loginForm!: FormGroup;
   signUpForm!: FormGroup;
+  addPasswordForm!: FormGroup;
 
   protected RoutesUtil = RoutesUtil
   constructor(
     private builder: FormBuilder,
     private router: Router,
-    private authService:AuthService
+    private authService: AuthService
   ) {
     super()
   }
@@ -41,6 +44,11 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
       password: ['', Validators.required],
       email: ['', Validators.required]
     })
+
+    this.addPasswordForm = this.builder.group({
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    }, { validators: passwordMatchValidator() })
   }
 
   isFieldInvalid(form: FormGroup, field: string): boolean | undefined {
@@ -49,17 +57,42 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
 
   onLogin() {
     this.loginForm.markAllAsTouched()
-    this.load(this.authService.login(this.loginForm.value),{
+    this.load(this.authService.login(this.loginForm.value), {
       isLoadingTransparent: true,
-    }).subscribe(res=>{
+    }).subscribe(res => {
       this.router.navigate([this.RoutesUtil.Dashboard.path])
+    }, err => {
+      if (err.errors[0] === "You need to update your password password") {
+        this.loginFirstTime = true
+        this.pageTwo = true
+      }
     })
+  }
 
+  setPassword() {
+    const email = this.loginForm.get('email')?.value
+    const password = this.addPasswordForm.get('password')?.value
+    const body = {
+      email,
+      password,
+    }
+
+    this.load(this.authService.updatePassword(body), {
+      isLoadingTransparent: true,
+    }).subscribe(res => {
+      this.signUp = false
+      this.pageTwo = false
+    })
   }
 
   onSignUp() {
     this.signUpForm.markAllAsTouched()
     this.signUp = false
+    this.pageTwo = false
+  }
+
+  switchPage() {
+    this.pageTwo = !this.pageTwo
   }
 }
 

@@ -46,5 +46,11 @@
   "PasswordRequired":"Password is required",
   "ForgotPassword":"Forgot Password?",
   "DontHaveAnAccount":"Don't have an account?",
-  "AlreadyHaveAnAccount":"Already have an account?"
+  "AlreadyHaveAnAccount":"Already have an account?",
+  "ConfirmPassword":"Confirm Password",
+  "ConfirmPasswordRequired":"Confirm Password is required",
+  "PasswordNotMatch":"Password does not match",
+  "PasswordDosntMatch":"Password does not match",
+  "Confirm":"Confirm",
+  "SetYourPassword":"Set Your Password"
 }

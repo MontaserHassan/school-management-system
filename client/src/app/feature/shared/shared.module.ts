@@ -50,6 +50,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { TimelineModule } from 'primeng/timeline';
 import { LazyDropdownComponent } from './component/lazy-dropdown/lazy-dropdown.component';
 import { CalendarModule } from 'primeng/calendar';
+import { PaginatorModule } from 'primeng/paginator';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -106,7 +107,8 @@ const PRIME_NG_MODULES = [
   AccordionModule,
   ChipModule,
   TabViewModule,
-  TimelineModule
+  TimelineModule,
+  PaginatorModule
 ]
 
 @NgModule({

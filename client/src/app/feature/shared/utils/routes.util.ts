@@ -31,4 +31,10 @@ export class RoutesUtil {
   static StudentView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.Student);
   static StudentList = new RouteConfig('list', RoutesUtil.Student);
   static AddStudent = new RouteConfig('add', RoutesUtil.Student);
+
+  //school
+  static School = new RouteConfig('school');
+  static SchoolView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.School);
+  static SchoolList = new RouteConfig('list', RoutesUtil.School);
+  static AddSchool = new RouteConfig('add', RoutesUtil.School);
 }
