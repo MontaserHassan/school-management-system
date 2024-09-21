@@ -127,6 +127,7 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
                 currentPage: paginateData.currentPage,
                 limit: paginateData.limit,
                 skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 schools: schoolsData,
             },
         };

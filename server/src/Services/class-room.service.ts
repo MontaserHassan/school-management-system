@@ -100,8 +100,8 @@ const getStudentsByTeacherId = async (teacherId: string) => {
 // ----------------------------- total document -----------------------------
 
 
-const totalDocument = async () => {
-    const numberOfClassRoom = await ClassRoom.countDocuments();
+const totalDocument = async (schoolId: string) => {
+    const numberOfClassRoom = await ClassRoom.countDocuments({ schoolId: schoolId });
     return numberOfClassRoom;
 };
 
@@ -109,8 +109,8 @@ const totalDocument = async () => {
 // ----------------------------- get all with pagination -----------------------------
 
 
-const findWithPagination = async (limit: number, skip: number) => {
-    const classRooms: ClassRoomModel[] = await ClassRoom.find().limit(limit).skip(skip).select('-__v');
+const findWithPagination = async (schoolId: string, limit: number, skip: number) => {
+    const classRooms: ClassRoomModel[] = await ClassRoom.find({ schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
     return classRooms;
 };
 

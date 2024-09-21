@@ -76,10 +76,11 @@ const getTopicData = async (req: Request, res: Response, next: NextFunction) => 
 const getAllTopics = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { page } = req.query;
+        const { schoolId } = req.user;
         const totalTopics = await topicService.totalDocument();
         const paginateData = pagination(totalTopics, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const topics = await topicService.findWithPagination(paginateData.limit, paginateData.skip);
+        const topics = await topicService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
         if (!topics) throw new CustomError(errorTopicMessage.NOT_FOUND_TOPIC, 404, "topic");
         const response: IResponse = {
             type: "info",
@@ -90,6 +91,7 @@ const getAllTopics = async (req: Request, res: Response, next: NextFunction) => 
                 currentPage: paginateData.currentPage,
                 limit: paginateData.limit,
                 skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 topics: topics,
             },
         };

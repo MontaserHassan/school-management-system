@@ -49,8 +49,8 @@ const totalDocument = async (schoolId: string) => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findWithPagination = async (limit: number, skip: number) => {
-    const subjects: SubjectModel[] = await Subject.find().limit(limit).skip(skip).select('-__v');
+const findWithPagination = async (schoolId: string, limit: number, skip: number) => {
+    const subjects: SubjectModel[] = await Subject.find({ schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
     return subjects;
 };
 

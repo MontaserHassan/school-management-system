@@ -30,11 +30,11 @@
     "$date": "2024-09-06T22:43:10.482Z"
   },
   "updatedAt": {
-    "$date": "2024-09-17T22:16:57.776Z"
+    "$date": "2024-09-21T12:21:34.119Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-17T22:16:57.775Z"
+    "$date": "2024-09-21T12:21:34.119Z"
   },
   "logged": true,
   "schoolId": "superAdmin"
@@ -186,11 +186,11 @@
     "$date": "2024-09-14T17:58:16.912Z"
   },
   "updatedAt": {
-    "$date": "2024-09-17T22:30:45.134Z"
+    "$date": "2024-09-21T12:42:47.809Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-17T22:30:45.134Z"
+    "$date": "2024-09-21T12:42:47.808Z"
   },
   "logged": true
 },
@@ -282,6 +282,24 @@
   },
   "updatedAt": {
     "$date": "2024-09-20T22:51:37.812Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "xsgg-SemXh4Wy91Gkn8Vv",
+  "userName": "admin Ali Ebn Aby Taleb",
+  "email": "admin.AliEbnAbyTaleb@example.com",
+  "role": "admin",
+  "schoolId": "Ne6Eb3ZX87svHszYWGYvMdfB",
+  "media": "",
+  "code": "M454",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$xJ0hFuXDe+c+gg4azORTag$rDJ+U+SmGT0XVLZ7WVeFIHPuv5Q9uxwaSKP929EsLko",
+  "createdAt": {
+    "$date": "2024-09-21T12:26:00.441Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T12:26:00.506Z"
   },
   "__v": 0
 }]

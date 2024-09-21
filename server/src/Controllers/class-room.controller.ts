@@ -31,12 +31,10 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
             teacherId: teacher._id.toString(),
             teacherName: teacher.userName,
         }));
-        console.log('mainTopicsInfo: ', mainTopicsInfo);
         const mainTopicsData = mainTopicsInfo.map(mainTopic => ({
             topicId: mainTopic._id,
             topicName: mainTopic.topicName,
         }));
-        console.log('mainTopicsData: ', mainTopicsData);
         for (const entry of schedule) {
             const timeRanges = [];
             for (const subject of entry.subjects) {
@@ -82,10 +80,11 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
 const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { page } = req.query;
-        const totalSubjectRooms = await classRoomService.totalDocument();
+        const { schoolId } = req.user;
+        const totalSubjectRooms = await classRoomService.totalDocument(schoolId);
         const paginateData = pagination(totalSubjectRooms, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const subjectRooms = await classRoomService.findWithPagination(paginateData.limit, paginateData.skip);
+        const subjectRooms = await classRoomService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
         if (!subjectRooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
         const response: IResponse = {
             type: "info",
@@ -96,6 +95,7 @@ const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
                 currentPage: paginateData.currentPage,
                 limit: paginateData.limit,
                 skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 subjectRooms: subjectRooms,
             },
         };
@@ -137,9 +137,7 @@ const getClassByRoom = async (req: Request, res: Response, next: NextFunction) =
 const getClassById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { classRoom } = req.params;
-        console.log('classRoom: ', classRoom);
         const classRoomData = await classRoomService.getById(classRoom);
-        console.log('classRoomData: ', classRoomData);
         if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         const response: IResponse = {
             type: "info",

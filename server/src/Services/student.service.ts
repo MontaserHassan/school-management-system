@@ -122,8 +122,8 @@ const getStudentsById = async (studentCode: string[]) => {
 // ----------------------------- get total documents -----------------------------
 
 
-const totalDocument = async () => {
-    const students = await Student.countDocuments();
+const totalDocument = async (schoolId: string) => {
+    const students = await Student.countDocuments({ schoolId: schoolId });
     return students;
 };
 
@@ -131,8 +131,8 @@ const totalDocument = async () => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findAllStudentsOfSchool = async (limit: number, skip: number) => {
-    const students: StudentModel[] = await Student.find().limit(limit).skip(skip).select('-__v');
+const findAllStudentsOfSchool = async (schoolId: string, limit: number, skip: number) => {
+    const students: StudentModel[] = await Student.find({ schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
     return students;
 };
 

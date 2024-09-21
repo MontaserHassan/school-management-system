@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"teacher3@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,6 +163,114 @@
 					"response": []
 				},
 				{
+					"name": "get profile for user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/profile?id=kttyDR1Gz3AHotyA8tvtm",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"profile"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "kttyDR1Gz3AHotyA8tvtm"
+								}
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlMjNlNzBmY2M0ZWJiZjAxOTcyODUxYTYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY5MjEzNDYsImV4cCI6MTcyNzAwNzc0Nn0.eoKQAMAO8tn9JpABrKm8tFilAkdCq_4N-N1_W3MezoY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/user-list",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"user-list"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
 					"name": "register user",
 					"event": [
 						{
@@ -185,7 +293,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlNGYzNTAxNmM0MmE0ZmIyMjY1MzQ5ZTEiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0Mzc1ODUsImV4cCI6MTcyNjUyMzk4NX0.bmsnBGfH3igEgLXEozNjbC7iu1WsfDUMwg3_tgLq5Vw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNGVmN2YyNDMxM2MwNWUwMTBmMDkzMTc4Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNjg0MDQ1NywiZXhwIjoxNzI2OTI2ODU3fQ.ArJR2ZSNl5hY3tmDi71YzDPaJjpbpczIHx1hU8TohXE",
 									"type": "string"
 								}
 							]
@@ -194,7 +302,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"parent parent\",\n    \"email\": \"parent@gmail.com\",\n    \"role\": \"parent\"\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+							"raw": "{\n    \"userName\": \"parent parent\",\n    \"email\": \"parent2@gmail.com\",\n    \"role\": \"parent\"\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -350,31 +458,19 @@
 						},
 						{
 							"name": "get all students",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlNGYzNTAxNmM0MmE0ZmIyMjY1MzQ5ZTEiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0Mzc1ODUsImV4cCI6MTcyNjUyMzk4NX0.bmsnBGfH3igEgLXEozNjbC7iu1WsfDUMwg3_tgLq5Vw",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlMjNlNzBmY2M0ZWJiZjAxOTcyODUxYTYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY5MjEzNDYsImV4cCI6MTcyNzAwNzc0Nn0.eoKQAMAO8tn9JpABrKm8tFilAkdCq_4N-N1_W3MezoY",
 											"type": "string"
 										}
 									]
 								},
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"studentName\": \"Maged Baraka\",\n    \"classRoom\": \"200\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{SchoolManagementSystem}}/user/director/student/",
 									"host": [
@@ -403,7 +499,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiOGY0ZDE0OWZjNmNjMjU1MDgyMGI5OWQ4Iiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTk4NjM1MywiZXhwIjoxNzI2MDAwNzUzfQ.Ij9yhIabgeykiJKtSpiZq51yab-xutVArufMErG2bD4",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlMjNlNzBmY2M0ZWJiZjAxOTcyODUxYTYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY5MjEzNDYsImV4cCI6MTcyNzAwNzc0Nn0.eoKQAMAO8tn9JpABrKm8tFilAkdCq_4N-N1_W3MezoY",
 											"type": "string"
 										}
 									]
@@ -412,7 +508,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"subjectName\": \"literature\",\n  \"courseTime\": \"100\"\n}\n",
+									"raw": "{\n  \"subjectName\": \"chemistry\",\n  \"courseTime\": \"200\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -442,7 +538,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMDQzOThjNTRhOTFkZjZmNTg1OGU2MGRlIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlkzMjc3MSIsImlhdCI6MTcyNTY2MjUyNiwiZXhwIjoxNzI1Njc2OTI2fQ.Ps0vfEng1RYrONjYeVG6X6uLcPX3BgI_OuEmsdDAbZs",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlMjNlNzBmY2M0ZWJiZjAxOTcyODUxYTYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY5MjEzNDYsImV4cCI6MTcyNzAwNzc0Nn0.eoKQAMAO8tn9JpABrKm8tFilAkdCq_4N-N1_W3MezoY",
 											"type": "string"
 										}
 									]
@@ -551,7 +647,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI0M2RmZjQ3Njk0ZDkzZDM4NzU5MDJiZjAiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0MjE4MTQsImV4cCI6MTcyNjQzNjIxNH0.MZmlmUDDHtEi2hf9Sm2juF-BvAX-Bdr1qhzCJ4GGoq4",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlMjNlNzBmY2M0ZWJiZjAxOTcyODUxYTYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY5MjEzNDYsImV4cCI6MTcyNzAwNzc0Nn0.eoKQAMAO8tn9JpABrKm8tFilAkdCq_4N-N1_W3MezoY",
 											"type": "string"
 										}
 									]
@@ -623,7 +719,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3OWMxYzlhY2UxMGEwNDhkN2RhMDQwMjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDM3NjE0LCJleHAiOjE3MjY1MjQwMTR9.rN4EGTgAxd9_vmcoa-JvM-FF3490ZyKGuOvmnG_w-s4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3NmZjZjU3MWU4ZTIxNzlkYjA1ZTQ3ZDEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2OTIxMjk0LCJleHAiOjE3MjcwMDc2OTR9.ONUUe2OybFcd3Ms7OvLHkxbWsPjN8J8OX8zK8Dfqklw",
 									"type": "string"
 								}
 							]
@@ -632,7 +728,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"Fatima Language\",\n    \"subscriptionFees\": \"200\",\n    \"admin\": {\n        \"userName\": \"admin fatima\",\n        \"email\": \"admin.fatima@example.com\"\n    },\n    \"employees\": []\n}",
+							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"Ali Ebn Aby Taleb\",\n    \"subscriptionFees\": \"50\",\n    \"admin\": {\n        \"userName\": \"admin Ali Ebn Aby Taleb\",\n        \"email\": \"admin.AliEbnAbyTaleb@example.com\"\n    },\n    \"employees\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -746,7 +842,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3OWMxYzlhY2UxMGEwNDhkN2RhMDQwMjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDM3NjE0LCJleHAiOjE3MjY1MjQwMTR9.rN4EGTgAxd9_vmcoa-JvM-FF3490ZyKGuOvmnG_w-s4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3NmZjZjU3MWU4ZTIxNzlkYjA1ZTQ3ZDEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2OTIxMjk0LCJleHAiOjE3MjcwMDc2OTR9.ONUUe2OybFcd3Ms7OvLHkxbWsPjN8J8OX8zK8Dfqklw",
 									"type": "string"
 								}
 							]

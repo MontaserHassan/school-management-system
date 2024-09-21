@@ -211,7 +211,7 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId } = req.user;
         const { page } = req.query;
-        const totalSchools = await userService.totalDocument();
+        const totalSchools = await userService.totalDocument("schoolId", schoolId);
         const paginateData = pagination(totalSchools, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         const users = await userService.findAllUserOfSchool(paginateData.limit, paginateData.skip, schoolId);
@@ -220,6 +220,11 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
             responseCode: 200,
             responseMessage: SuccessUserMessage.GET_USERS,
             data: {
+                totalPages: paginateData.totalPages,
+                currentPage: paginateData.currentPage,
+                limit: paginateData.limit,
+                skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 users: users
             },
         };

@@ -35,4 +35,23 @@
     "$date": "2024-09-15T22:44:48.569Z"
   },
   "__v": 0
+},
+{
+  "_id": "Ne6Eb3ZX87svHszYWGYvMdfB",
+  "schoolName": "ali ebn aby taleb",
+  "admin": "xsgg-SemXh4Wy91Gkn8Vv",
+  "employees": [],
+  "subscriptionFees": "50",
+  "subscriptionDate": {
+    "$date": "2024-09-21T12:19:28.987Z"
+  },
+  "subscriptionWay": "monthly",
+  "subscriptionStatus": "pending",
+  "createdAt": {
+    "$date": "2024-09-21T12:26:00.497Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T12:26:00.497Z"
+  },
+  "__v": 0
 }]

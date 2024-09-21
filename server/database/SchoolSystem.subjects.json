@@ -179,4 +179,18 @@
     "$date": "2024-09-10T16:44:37.401Z"
   },
   "__v": 0
+},
+{
+  "_id": "dRixjtVJ2NMMMeFbb5RmjJfo",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "subjectName": "chemistry",
+  "courseTime": "200",
+  "typeOfTime": "min",
+  "createdAt": {
+    "$date": "2024-09-21T12:45:48.057Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T12:45:48.057Z"
+  },
+  "__v": 0
 }]

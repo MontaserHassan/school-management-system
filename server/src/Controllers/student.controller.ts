@@ -5,6 +5,7 @@ import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, succes
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import { StudentModel } from "../Models/student.model";
+import pagination from "../Utils/pagination.util";
 
 
 
@@ -208,14 +209,23 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { page } = req.query;
         const { schoolId } = req.user;
-        const students = await studentService.getStudents(schoolId);
+        const totalStudents = await studentService.totalDocument(schoolId);
+        const paginateData = pagination(totalStudents, Number(page));
+        if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
+        const students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip);
         if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successStudentMessage.GET_PROFILE,
             data: {
+                totalPages: paginateData.totalPages,
+                currentPage: paginateData.currentPage,
+                limit: paginateData.limit,
+                skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 students: students,
             },
         };

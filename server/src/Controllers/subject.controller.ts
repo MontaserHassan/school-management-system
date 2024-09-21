@@ -69,7 +69,7 @@ const getAllSubject = async (req: Request, res: Response, next: NextFunction) =>
         const totalSubjects = await subjectService.totalDocument(schoolId);
         const paginateData = pagination(totalSubjects, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const subjects = await subjectService.findWithPagination(paginateData.limit, paginateData.skip);
+        const subjects = await subjectService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
         if (!subjects) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 404, "subject");
         const response: IResponse = {
             type: "info",
@@ -80,6 +80,7 @@ const getAllSubject = async (req: Request, res: Response, next: NextFunction) =>
                 currentPage: paginateData.currentPage,
                 limit: paginateData.limit,
                 skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 subject: subjects,
             },
         };
