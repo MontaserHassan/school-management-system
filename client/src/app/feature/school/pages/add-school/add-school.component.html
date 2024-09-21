@@ -1,0 +1,66 @@
+<p-card header="Create School" class="classroom-card">
+  <app-state-section [state]="sectionState">
+    <form [formGroup]="schoolForm" (ngSubmit)="onSubmit()">
+      <p-divider align="left">
+        <h3 class="p-text-center p-mt-5 p-mb-3">School Details</h3>
+      </p-divider>
+      <div class="row g-2 px-4">
+        <!-- School Name -->
+        <div class="p-field col-12 col-md-6">
+          <label for="schoolName" class="d-block mb-2">School Name</label>
+          <input id="schoolName" pInputText formControlName="schoolName" class="d-block p-inputtext-lg w-100"
+            placeholder="Enter school name" />
+          <small *ngIf="schoolForm.get('schoolName')?.invalid && schoolForm.get('schoolName')?.touched" class="p-error">
+            School name is required
+          </small>
+        </div>
+
+        <!-- Subscription Fees -->
+        <div class="p-field col-12 col-md-6">
+          <label for="subscriptionFees" class="d-block mb-2">Subscription Fees</label>
+          <input id="subscriptionFees" pInputText formControlName="subscriptionFees"
+            class="d-block p-inputtext-lg w-100" placeholder="Enter subscription fees" />
+          <small *ngIf="schoolForm.get('subscriptionFees')?.invalid && schoolForm.get('subscriptionFees')?.touched"
+            class="p-error">
+            Subscription fees are required
+          </small>
+        </div>
+      </div>
+
+      <!-- Admin Section -->
+      <p-divider align="left">
+        <h3 class="p-text-center p-mt-5 p-mb-3">Admin Details</h3>
+      </p-divider>
+
+
+      <div class="row g-2 px-4">
+        <!-- Admin Username -->
+        <div class="p-field col-12 col-md-6">
+          <label for="adminUserName" class="d-block mb-2">Admin Username</label>
+          <input id="adminUserName" pInputText formControlName="adminUserName" class="d-block p-inputtext-lg w-100"
+            placeholder="Enter admin username" />
+          <small *ngIf="schoolForm.get('adminUserName')?.invalid && schoolForm.get('adminUserName')?.touched"
+            class="p-error">
+            Admin username is required
+          </small>
+        </div>
+
+        <!-- Admin Email -->
+        <div class="p-field col-12 col-md-6">
+          <label for="adminEmail" class="d-block mb-2">Admin Email</label>
+          <input id="adminEmail" pInputText formControlName="adminEmail" class="d-block p-inputtext-lg w-100"
+            placeholder="Enter admin email" />
+          <small *ngIf="schoolForm.get('adminEmail')?.invalid && schoolForm.get('adminEmail')?.touched" class="p-error">
+            Admin email is required and must be valid
+          </small>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="p-text-center mt-3">
+        <button pButton type="submit" label="Create School" class="p-button-lg w-100"
+          [disabled]="schoolForm?.invalid"></button>
+      </div>
+    </form>
+  </app-state-section>
+</p-card>

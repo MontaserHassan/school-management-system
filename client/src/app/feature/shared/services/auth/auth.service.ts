@@ -8,11 +8,12 @@ import { filterNullEntity } from '../../utils/filter-null-entity.util';
 import { AuthResponse, User, UsersList } from '../../models/user.model';
 import { JWTTokenValidation } from '../../enums/JWT-token-validation.enum';
 import { Mapper } from '../../mapper/base-mapper.mapper';
+import { BaseComponent } from '../../component/base-component/base.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService extends BaseComponent {
   public currentUser$: BehaviorSubject<AuthResponse> = new BehaviorSubject(new AuthResponse());
   public redirectionURL = '';
 
@@ -21,6 +22,7 @@ export class AuthService {
     private mapper: Mapper,
     private jwtDecoderService: JwtDecoderService,
   ) {
+    super();
     if (this.jwtDecoderService.isThereValidToken() === JWTTokenValidation.Valid) {
       this.currentUser$.next(this.jwtDecoderService.getCurrentUserFromJWTToken());
     }
@@ -37,6 +39,13 @@ export class AuthService {
       tap((user) => {
         return this.saveTokenAndUpdateUser(user)
       })
+    );
+  }
+
+  updatePassword(body: {email: string, password: string}): Observable<User> {
+    return this.baseAPI.post(ApiConstant.UPDATE_PASSWORD, filterNullEntity(body)).pipe(
+      tap((res) => this.showSuccessMessage(res.responseMessage)),
+      map((res) => this.mapper.fromJson(User, res.data.user))
     );
   }
 

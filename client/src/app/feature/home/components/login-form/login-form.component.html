@@ -1,34 +1,66 @@
 <app-state-section [state]="sectionState">
-  <div class="wrapper" [ngClass]="{'animate-signIn': signUp , 'animate-signUp':!signUp}">
+  <div class="wrapper" [ngClass]="{'animate-signIn': pageTwo , 'animate-signUp':!pageTwo}">
     <div class="form-wrapper sign-up">
-      <form [formGroup]="signUpForm">
-        <h2>{{'SignUp' | translate}}</h2>
-        <div class="input-group">
-          <input type="text" formControlName="username">
-          <label for="">{{'Username' | translate}}</label>
-          <p-message *ngIf="isFieldInvalid(signUpForm, 'username')" severity="error"
-            text="{{'UsernameRequired' | translate}}"></p-message>
+      <div *ngIf="signUp">
+        <form [formGroup]="signUpForm">
+          <h2>{{'SignUp' | translate}}</h2>
+          <div class="input-group">
+            <input type="text" formControlName="username">
+            <label for="">{{'Username' | translate}}</label>
+            <p-message *ngIf="isFieldInvalid(signUpForm, 'username')" severity="error"
+              text="{{'UsernameRequired' | translate}}"></p-message>
 
-        </div>
-        <div class="input-group">
-          <input type="email" formControlName="email">
-          <label for="">{{'Email' | translate}}</label>
-          <p-message *ngIf="isFieldInvalid(signUpForm, 'email')" severity="error"
-            text="{{'EmailRequired' | translate}}"></p-message>
+          </div>
+          <div class="input-group">
+            <input type="email" formControlName="email">
+            <label for="">{{'Email' | translate}}</label>
+            <p-message *ngIf="isFieldInvalid(signUpForm, 'email')" severity="error"
+              text="{{'EmailRequired' | translate}}"></p-message>
 
-        </div>
-        <div class="input-group">
-          <input type="password" formControlName="password">
-          <label autocomplete="true" for="">{{'Password' | translate}}</label>
-          <p-message *ngIf="isFieldInvalid(signUpForm, 'password')" severity="error"
-            text="{{'PasswordRequired' | translate}}"></p-message>
-        </div>
-        <button type="submit" class="btn" (click)="onSignUp()">{{'SignUp' | translate}}</button>
-        <div class="sign-link">
-          <p>{{'AlreadyHaveAnAccount' | translate}} <a (click)="signUp = !signUp" class="signIn-link">{{'SignIn' |
-              translate}}</a></p>
-        </div>
-      </form>
+          </div>
+          <div class="input-group">
+            <input type="password" formControlName="password">
+            <label autocomplete="true" for="">{{'Password' | translate}}</label>
+            <p-message *ngIf="isFieldInvalid(signUpForm, 'password')" severity="error"
+              text="{{'PasswordRequired' | translate}}"></p-message>
+          </div>
+          <button type="submit" class="btn" (click)="onSignUp()">{{'SignUp' | translate}}</button>
+          <div class="sign-link">
+            <p>{{'AlreadyHaveAnAccount' | translate}} <a (click)="switchPage()" class="signIn-link">{{'SignIn' |
+                translate}}</a></p>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="loginFirstTime">
+        <form [formGroup]="addPasswordForm">
+          <h2>{{'SetYourPassword' | translate}}</h2>
+
+          <div class="input-group">
+            <input type="password" formControlName="password">
+            <label autocomplete="true" for="">{{'Password' | translate}}</label>
+            <p-message *ngIf="addPasswordForm.get('password')?.invalid && addPasswordForm.get('password')?.touched"
+              severity="error" text="{{'PasswordRequired' | translate}}"></p-message>
+          </div>
+
+          <div class="input-group">
+            <input type="password" formControlName="confirmPassword">
+            <label autocomplete="true" for="">{{'ConfirmPassword' | translate}}</label>
+            <p-message
+              *ngIf="addPasswordForm.invalid && addPasswordForm.get('confirmPassword')?.touched && !addPasswordForm.errors?.['passwordsMismatch']"
+              severity="error" text="{{'ConfirmPasswordRequired' | translate}}"></p-message>
+            <p-message
+              *ngIf="addPasswordForm.errors?.['passwordsMismatch'] && addPasswordForm.get('confirmPassword')?.touched"
+              severity="error" text="{{'PasswordDosntMatch' | translate}}"></p-message>
+          </div>
+
+          <button type="submit" class="btn" (click)="setPassword()">{{'Confirm' | translate}}</button>
+          <div class="sign-link">
+            <p>{{'AlreadyHaveAnAccount' | translate}} <a (click)="switchPage()" class="signIn-link">{{'SignIn' |
+                translate}}</a></p>
+          </div>
+        </form>
+      </div>
     </div>
 
     <div class="form-wrapper sign-in">
@@ -51,7 +83,7 @@
         </div>
         <button type="submit" class="btn" (click)="onLogin()">{{'Login' | translate}}</button>
         <div class="sign-link">
-          <p>{{'DontHaveAnAccount' | translate}} <a (click)="signUp = !signUp" class="signUp-link">{{'SignUp' |
+          <p>{{'DontHaveAnAccount' | translate}} <a (click)="switchPage()" class="signUp-link">{{'SignUp' |
               translate}}</a></p>
         </div>
       </form>

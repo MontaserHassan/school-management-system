@@ -1,0 +1,45 @@
+<div class="school-list-wrapper">
+  <div *ngFor="let school of schools" class="school-card" (click)="navigateToSchoolDetails(school._id || '')">
+    <div class="card-header">
+      <h2>{{ school.schoolName }}</h2>
+      <span class="status-tag" [ngClass]="{
+        'status-active': school.subscriptionStatus === 'active',
+        'status-pending': school.subscriptionStatus === 'pending',
+        'status-inactive': school.subscriptionStatus === 'inactive'
+      }">{{ school.subscriptionStatus }}</span>
+    </div>
+    <div class="card-content">
+      <div class="school-info">
+        <div class="info-item">
+          <i class="pi pi-user"></i>
+          <strong>Admin:</strong> {{ school.admin?.userName }}
+        </div>
+        <div class="info-item">
+          <i class="pi pi-envelope"></i>
+          <strong>Email:</strong> {{ school.admin?.email }}
+        </div>
+        <div class="info-item">
+          <i class="pi pi-calendar"></i>
+          <strong>Subscription Fees:</strong> {{ school.subscriptionFees }} USD
+        </div>
+        <div class="info-item">
+          <i class="pi pi-clock"></i>
+          <strong>Subscription Way:</strong> {{ school.subscriptionWay }}
+        </div>
+        <div class="info-item">
+          <i class="pi pi-calendar-plus"></i>
+          <strong>Subscription Date:</strong> {{ school.subscriptionDate | date: 'short' }}
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <small><strong>Created At:</strong> {{ school.createdAt | date: 'short' }}</small>
+      <small><strong>Last Updated:</strong> {{ school.updatedAt | date: 'short' }}</small>
+    </div>
+  </div>
+
+  <!-- Paginator -->
+  <p-paginator [rows]="pageSize" [totalRecords]="totalRowsCount" (onPageChange)="paginate($event)"
+    [rowsPerPageOptions]="rowsPerPageOptions">
+  </p-paginator>
+</div>

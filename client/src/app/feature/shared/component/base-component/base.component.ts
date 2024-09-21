@@ -45,6 +45,7 @@ export class BaseComponent<Filters = any> implements OnDestroy {
   public offset: number = ConfigConstant.INIT_PAGE_OFFSET;
   public searchTerm: string = '';
   public totalRowsCount = 0;
+  public rowsPerPageOptions = ConfigConstant.ROWS_PER_PAGE_OPTIONS;
 
   public filters: FiltersBase<Filters, any>;
 

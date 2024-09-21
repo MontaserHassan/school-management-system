@@ -68,7 +68,7 @@ export class SideNavComponent {
             }
           },
           {
-            label: 'Add Class Rooms',
+            label: 'Add Class Room',
             icon: 'pi pi-thumbtack',
             command: () => {
               this.router.navigate([RoutesUtil.AddClassRoom.url()]);
@@ -88,10 +88,30 @@ export class SideNavComponent {
             }
           },
           {
-            label: 'Add Students',
+            label: 'Add Student',
             icon: 'pi pi-plus',
             command: () => {
               this.router.navigate([RoutesUtil.AddStudent.url()]);
+            }
+          }
+        ]
+      },
+      {
+        label: 'Schools',
+        icon: 'pi pi-building-columns',
+        items: [
+          {
+            label: 'Schools List',
+            icon: 'pi pi-list',
+            command: () => {
+              this.router.navigate([RoutesUtil.SchoolList.url()]);
+            }
+          },
+          {
+            label: 'Add School',
+            icon: 'pi pi-plus',
+            command: () => {
+              this.router.navigate([RoutesUtil.AddSchool.url()]);
             }
           }
         ]

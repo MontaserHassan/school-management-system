@@ -61,6 +61,13 @@ const routes: Routes = [
             (m) => m.StudentModule
           ),
       },
+      {
+        path: RoutesUtil.School.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/school/school.module').then(
+            (m) => m.SchoolModule
+          ),
+      },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
     ]
   },
