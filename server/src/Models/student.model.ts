@@ -56,7 +56,6 @@ const studentSchema = new mongoose.Schema(
         studentName: {
             type: String,
             required: true,
-            unique: true,
         },
         studentCode: {
             type: String,
@@ -65,7 +64,7 @@ const studentSchema = new mongoose.Schema(
         },
         classRoom: {
             type: String,
-            required: true,
+            required: false,
         },
         parentId: {
             type: String,
@@ -74,7 +73,7 @@ const studentSchema = new mongoose.Schema(
         },
         group: {
             type: String,
-            required: true,
+            required: false,
             enum: ['3-6', '6-9', '9-12']
         },
         subjects: [
@@ -164,11 +163,11 @@ const studentSchema = new mongoose.Schema(
         ],
         studentCost: {
             type: String,
-            required: true,
+            required: false,
         },
         currencyOfCost: {
             type: String,
-            required: true,
+            required: false,
         },
         media: {
             type: String,

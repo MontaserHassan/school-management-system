@@ -10,11 +10,11 @@
     "$date": "2024-09-06T21:52:46.362Z"
   },
   "updatedAt": {
-    "$date": "2024-09-20T22:51:25.019Z"
+    "$date": "2024-09-21T23:03:03.504Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-20T22:51:25.019Z"
+    "$date": "2024-09-21T23:03:03.504Z"
   },
   "logged": true
 },
@@ -186,11 +186,11 @@
     "$date": "2024-09-14T17:58:16.912Z"
   },
   "updatedAt": {
-    "$date": "2024-09-21T12:42:47.809Z"
+    "$date": "2024-09-21T14:35:42.631Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-21T12:42:47.808Z"
+    "$date": "2024-09-21T14:35:42.631Z"
   },
   "logged": true
 },
@@ -226,12 +226,12 @@
     "$date": "2024-09-15T15:16:21.875Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T15:17:04.644Z"
+    "$date": "2024-09-21T23:03:53.658Z"
   },
   "__v": 0,
   "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
   "lastSeen": {
-    "$date": "2024-09-15T15:17:04.643Z"
+    "$date": "2024-09-21T23:03:53.658Z"
   },
   "logged": true
 },
@@ -300,6 +300,40 @@
   },
   "updatedAt": {
     "$date": "2024-09-21T12:26:00.506Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "nvyHMsTeoBkcuj1-7sJhp",
+  "userName": "parent 3 parent",
+  "email": "parent3@gmail.com",
+  "role": "parent",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "code": "O3985608",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$VeUzCCM8JR2al0sCGBwDMg$o+eRSV4eYtMe6XskJawAzEuJ8+lCYEdqpzC0HVVjZ8U",
+  "createdAt": {
+    "$date": "2024-09-21T14:36:53.842Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T14:36:53.842Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "Z1UXxz7oWYvBpy2e7pqPQ",
+  "userName": "parent 4 parent",
+  "email": "parent4@gmail.com",
+  "role": "parent",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "code": "D7051788",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$4nImQ3n+a3XBwrhcodEF8w$RNzRBcsYKp9CoLcrdRBq2KHTEj6PHgq2MvkMT3Vs8vY",
+  "createdAt": {
+    "$date": "2024-09-21T23:14:32.278Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T23:14:32.278Z"
   },
   "__v": 0
 }]

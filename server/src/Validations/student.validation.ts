@@ -5,19 +5,29 @@ import Joi from 'joi';
 const studentValidator = {
     createStudent: {
         body: Joi.object().keys({
-            studentName: Joi.string().required().trim().min(3).max(100).messages({
-                'string.empty': 'Student name is required.',
-                'string.min': 'Student name must be at least 3 characters long.',
-                'string.max': 'Student name must not exceed 100 characters.',
+            students: Joi.array().items(
+                Joi.object({
+                    studentName: Joi.string().required().trim().min(3).max(100).messages({
+                        'string.empty': 'Student name is required.',
+                        'string.min': 'Student name must be at least 3 characters long.',
+                        'string.max': 'Student name must not exceed 100 characters.',
+                    }),
+                    parentId: Joi.string().trim().required().messages({ 'string.empty': 'Parent code is required.', }),
+                    media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media cannot be an empty string.', }),
+                })
+            ).min(1).required().messages({
+                'array.min': 'At least one student must be provided.',
+                'array.base': 'Students must be an array of objects.',
             }),
-            classRoom: Joi.number().required().min(100).max(999).messages({
-                'string.empty': 'Class room is required.',
-                'string.pattern.base': 'Class room must be a number.',
-                'number.min': 'Class room must be at least 100.',
-                'number.max': 'Class room must not exceed 999.',
-            }),
-            parentCode: Joi.string().trim().required().messages({ 'string.empty': 'Parent code is required.', }),
-            media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media is required.', }),
+        }),
+    },
+
+    addMoreDataToStudent: {
+        body: Joi.object().keys({
+            classRoom: Joi.string().required().trim().messages({ 'string.empty': 'Class room is required.', }),
+            students: Joi.array().items(
+                Joi.object({ studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }), })
+            ).min(1).required().messages({ 'array.min': 'At least one student must be provided.', 'array.base': 'Students must be an array of objects.', })
         }),
     },
 

@@ -14,30 +14,70 @@ import pagination from "../Utils/pagination.util";
 
 const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentName, classRoom, parentCode, media } = req.body;
+        const { students } = req.body;
         const { schoolId } = req.user;
-        const isClassRoomExisting = await classRoomService.getByRoom(classRoom);
-        if (!isClassRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 400, "classRoom");
-        const isParentExisting = await userService.getByCode(parentCode);
-        if (!isParentExisting) throw new CustomError(errorStudentMessage.PARENT_NOT_EXIST, 404, "parentCode");
-        const subjectsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
-            return schedule.subjects.map(subject => ({ subjectId: subject.subjectId, subjectName: subject.subjectName }));
-        }) : [];
-        const mainTopics = isClassRoomExisting.mainTopics ? isClassRoomExisting.mainTopics.map(topic => { return { topicId: topic.topicId, topicName: topic.topicName } }) : [];
-        const studentCost = isClassRoomExisting.studentCost;
-        const currencyOfCost = isClassRoomExisting.currencyOfCost;
-        const group = isClassRoomExisting.group;
-        const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
-        const newStudent = await studentService.createStudent(studentName.toLowerCase(), group, parentCode, classRoom, subjects, mainTopics, studentCost, currencyOfCost, schoolId, media);
-        if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
-        const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (newStudent._id).toString(), studentName }]);
-        if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
+        const newStudents = await Promise.all(students.map(async (student: any) => {
+            const { studentName, parentId, media } = student;
+            const newStudent = await studentService.createStudent(
+                studentName.toLowerCase(),
+                parentId,
+                schoolId,
+                media
+            );
+            if (!newStudent) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
+            return newStudent;
+        }));
         const response: IResponse = {
             type: "info",
             responseCode: 201,
             responseMessage: successSubjectMessage.CREATED,
             data: {
-                student: newStudent,
+                students: newStudents,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
+    };
+};
+
+
+// ----------------------------- add student to class -----------------------------
+
+
+const addStudentToClass = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { students, classRoom } = req.body;
+        const { schoolId } = req.user;
+        const isClassRoomExisting = await classRoomService.getByRoom(classRoom);
+        if (!isClassRoomExisting || isClassRoomExisting.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 400, "classRoom");
+        const newStudents = await Promise.all(students.map(async (student: any) => {
+            const { studentId } = student;
+            const isStudentExisting = await studentService.getStudentById(studentId);
+            if (!isStudentExisting || isStudentExisting.schoolId !== schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 400, "student");
+
+            const subjectsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
+                return schedule.subjects.map(subject => ({ subjectId: subject.subjectId, subjectName: subject.subjectName }));
+            }) : [];
+
+            const mainTopicsData = isClassRoomExisting.mainTopics ? isClassRoomExisting.mainTopics.map(topic => {
+                return { topicId: topic.topicId, topicName: topic.topicName };
+            }) : [];
+
+            const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
+            const mainTopics = Array.from(new Map(mainTopicsData.map(topic => [topic.topicId.toString(), topic])).values());
+            await studentService.addMoreDataToStudent(studentId, classRoom, isClassRoomExisting.group, subjects, mainTopics, isClassRoomExisting.studentCost, isClassRoomExisting.currencyOfCost);
+            const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (studentId).toString(), studentName: isStudentExisting.studentName }]);
+            if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
+            return updatedClassroom;
+        }));
+        const response: IResponse = {
+            type: "info",
+            responseCode: 201,
+            responseMessage: successSubjectMessage.CREATED,
+            data: {
+                students: newStudents,
             },
         };
         res.data = response;
@@ -316,6 +356,7 @@ const deleteStudent = async (req: Request, res: Response, next: NextFunction) =>
 
 export default {
     createStudent,
+    addStudentToClass,
     addAttendance,
     addComment,
     addProgressHistory,

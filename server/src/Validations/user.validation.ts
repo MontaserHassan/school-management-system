@@ -16,6 +16,24 @@ const userValidator = {
         }),
     },
 
+    addParent: {
+        body: Joi.object().keys({
+            userName: Joi.string().required().empty('').trim().min(8).max(30),
+            email: Joi.string().required().empty('').trim().email().message('Please enter a valid email.'),
+            media: Joi.string().optional().empty('').messages({ 'string.empty': 'media cannot be an empty string', }),
+            students: Joi.array().required().items(
+                Joi.object({
+                    studentName: Joi.string().required().trim().min(3).max(100).messages({
+                        'string.empty': 'Student name is required.',
+                        'string.min': 'Student name must be at least 3 characters long.',
+                        'string.max': 'Student name must not exceed 100 characters.',
+                    }),
+                    media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media is required.', }),
+                }),
+            ).min(1).messages({ 'array.min': 'At least one student must be provided.', 'array.empty': 'At least one student must be provided.', }),
+        }),
+    },
+
     loginUser: {
         body: Joi.object().keys({
             email: Joi.string().required().email().message('Please enter a valid email.').trim(),

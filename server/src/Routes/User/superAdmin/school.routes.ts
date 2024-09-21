@@ -11,7 +11,6 @@ const schoolRouter = express.Router();
 
 
 schoolRouter.post('/', validation(schoolValidator.createSchool), schoolController.createSchool);
-schoolRouter.post('/add-admin', validation(schoolValidator.addEmployee), schoolController.addEmployee);
 schoolRouter.get('/:schoolId', validation(schoolValidator.getSchool), schoolController.getSchoolData);
 schoolRouter.get('/', schoolController.getAllSchools);
 schoolRouter.patch('/', validation(schoolValidator.updateSchool), schoolController.updateSchool);

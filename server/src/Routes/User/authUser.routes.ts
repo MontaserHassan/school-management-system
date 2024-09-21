@@ -18,7 +18,8 @@ authUserRouter.post('/logout', userController.logoutUser);
 authUserRouter.patch('/', validation(userValidator.updateUser), userController.updateUser);
 authUserRouter.patch('/update-password', validation(userValidator.updatePassword), userController.updateUserPassword);
 
-authUserRouter.post('/register', checkRole(['director', 'admin', 'superAdmin']), validation(userValidator.registerUser), userController.registerUser);
+authUserRouter.post('/add-parent', checkRole(['director']), validation(userValidator.addParent), userController.addParent);
+authUserRouter.post('/register', checkRole(['director', 'admin']), validation(userValidator.registerUser), userController.registerUser);
 
 
 

@@ -37,32 +37,6 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 
-// ----------------------------- add employee -----------------------------
-
-
-const addEmployee = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const { schoolId, adminId } = req.body;
-        const school = await schoolService.getSchoolById(schoolId);
-        if (!school) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
-        const addedEmployee = await schoolService.addAdmin(schoolId, adminId);
-        if (!addedEmployee) throw new CustomError(errorSchoolMessage.DOES_NOT_ADDED, 409, "school");
-        const response: IResponse = {
-            type: "info",
-            responseCode: 201,
-            responseMessage: successSchoolMessage.ADDED_SUCCESS,
-            data: {
-                school: addedEmployee,
-            },
-        };
-        res.data = response;
-        return res.status(response.responseCode).send(response);
-    } catch (err) {
-        next(err)
-    };
-};
-
-
 // ----------------------------- get school data -----------------------------
 
 
@@ -194,7 +168,6 @@ const deleteSchool = async (req: Request, res: Response, next: NextFunction) => 
 
 export default {
     createSchool,
-    addEmployee,
     getSchoolData,
     getAllSchools,
     updateSchool,

@@ -1,7 +1,7 @@
 enum ErrorUserMessage {
     SERVER = 'Internal Server Error',
     INVALID_DATA = 'The data is wrong or invalid',
-    doesNotCreated = "User doesn't created",
+    DOES_NOT_CREATED = "User doesn't created",
     doesNotUpdated = "User doesn't updated",
     doesNotDeleted = "User doesn't deleted",
     EMAIL_EXISTS = 'This is Email already exists',

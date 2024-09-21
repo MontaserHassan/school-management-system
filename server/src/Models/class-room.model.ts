@@ -19,6 +19,7 @@ interface ClassRoomModel extends mongoose.Document {
     _id: string;
     room: string;
     group: string;
+    schoolId: string;
     teachers: { teacherId: string, teacherName: string }[],
     students?: { studentId: string, studentName: string }[],
     mainTopics?: { topicId: string, topicName: string }[]

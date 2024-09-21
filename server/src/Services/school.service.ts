@@ -19,15 +19,6 @@ const createSchool = async (schoolName: string, subscriptionFees: string, subscr
 };
 
 
-// ----------------------------- add new admin -----------------------------
-
-
-const addAdmin = async (schoolId: string, adminId: string,) => {
-    const school: SubscriptionSchoolModel = await SubscriptionSchool.findByIdAndUpdate(schoolId, { $addToSet: { admins: adminId } }, { new: true });
-    return school;
-};
-
-
 // ----------------------------- add new employee -----------------------------
 
 
@@ -104,7 +95,6 @@ const deleteSchool = async (schoolId: string) => {
 
 export default {
     createSchool,
-    addAdmin,
     addEmployee,
     getSchoolById,
     getSchoolByName,

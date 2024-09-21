@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { userTokenService, userService } from "../Services/index.service";
+import { userTokenService, userService, schoolService, studentService } from "../Services/index.service";
 import { ErrorUserMessage, SuccessUserMessage, ErrorTokenMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import { createToken, pagination } from "../Utils/index.util";
@@ -17,16 +17,58 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const { userName, email, role, media } = req.body;
         const currentUserRole = req?.user?.role;
+        if (role === 'parent') throw new CustomError(`You are not allowed to create a user with the role: ${role} from here`, 403, "role");
         if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy[role]) throw new CustomError(`You do not have permission to create a user with this role: ${role}.`, 403, "role");
         const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
         if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
         const newUser = await userService.createUser(userName, (email).toLowerCase(), role, req.user.schoolId, media);
+        if (!newUser) throw new CustomError(ErrorUserMessage.DOES_NOT_CREATED, 406, "user");
+        if (!['superAdmin', 'admin', 'parent'].includes(role)) await schoolService.addEmployee(req.user.schoolId, String(newUser._id));
         const response: IResponse = {
             type: "info",
             responseCode: 201,
             responseMessage: SuccessUserMessage.CREATED,
             data: {
                 user: newUser,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
+    };
+};
+
+
+// ----------------------------- add parent -----------------------------
+
+
+const addParent = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { userName, email, media, students } = req.body;
+        const currentUserRole = req?.user?.role;
+        if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy["parent"]) throw new CustomError(`You do not have permission to create a user with this role: parent.`, 403, "role");
+        const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
+        if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
+        const newUser = await userService.createUser(userName, (email).toLowerCase(), "parent", req.user.schoolId, media);
+        if (!newUser) throw new CustomError(ErrorUserMessage.DOES_NOT_CREATED, 406, "user");
+        const addStudents = await Promise.all(
+            students.map(async (student: any) => {
+                return await studentService.createStudent(
+                    student.studentName,
+                    String(newUser._id),
+                    req.user.schoolId,
+                    student.media,
+                );
+            }),
+        );
+        const response: IResponse = {
+            type: "info",
+            responseCode: 201,
+            responseMessage: SuccessUserMessage.CREATED,
+            data: {
+                user: newUser,
+                students: addStudents,
             },
         };
         res.data = response;
@@ -239,6 +281,7 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 
 export default {
     registerUser,
+    addParent,
     loginUser,
     addPassword,
     logoutUser,

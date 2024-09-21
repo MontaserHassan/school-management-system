@@ -25,7 +25,7 @@ const createClassRoom = async (room: string, group: string, teachers: { teacherI
 
 
 const addStudent = async (room: string, students: { studentId: string, studentName: string }[]) => {
-    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { students: students, }, });
+    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { students: students, }, }, { new: true });
     return newClassRoomData;
 };
 

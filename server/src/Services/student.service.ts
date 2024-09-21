@@ -8,23 +8,32 @@ import classRoomService from "./class-room.service";
 // ----------------------------- create subject -----------------------------
 
 
-const createStudent = async (studentName: string, group: string, parentId: string, classRoom: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string, schoolId: string, media: string,) => {
+const createStudent = async (studentName: string, parentId: string, schoolId: string, media: string,) => {
     const studentCode = generateCode();
     const newStudent: StudentModel = new Student({
         studentName: studentName,
-        group: group,
         parentId: parentId,
         studentCode: studentCode,
-        classRoom: classRoom,
-        subjects: subjects,
-        mainTopics: mainTopics,
-        studentCost: studentCost,
-        currencyOfCost: currencyOfCost,
+        // group: group,
+        // classRoom: classRoom,
+        // subjects: subjects,
+        // mainTopics: mainTopics,
+        // studentCost: studentCost,
+        // currencyOfCost: currencyOfCost,
         schoolId: schoolId,
         media: media,
     });
     await newStudent.save();
     return newStudent;
+};
+
+
+// ----------------------------- add more data to student -----------------------------
+
+
+const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string,) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, subjects: subjects, mainTopics: mainTopics, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
+    return student;
 };
 
 
@@ -185,6 +194,7 @@ const deleteStudent = async (studentId: string) => {
 
 export default {
     createStudent,
+    addMoreDataToStudent,
     addTopic,
     addAttendance,
     updateAttendanceByDate,
