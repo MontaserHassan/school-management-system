@@ -6,7 +6,7 @@ import classRoomService from './class-room.service';
 import topicService from "./topic.service";
 import lookupService from "./lookup.service";
 import schoolService from "./school.service";
-
+import progressHistoryService from "./progress-history.service";
 
 
 export {
@@ -18,4 +18,5 @@ export {
     classRoomService,
     lookupService,
     schoolService,
+    progressHistoryService,
 };

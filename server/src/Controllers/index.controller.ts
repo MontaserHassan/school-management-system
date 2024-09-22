@@ -5,7 +5,7 @@ import classRoomController from './class-room.controller';
 import topicController from "./topic.controller";
 import lookupController from "./lookup.controller";
 import schoolController from "./school.controller";
-
+import progressHistoryController from "./progress-history.controller";
 
 
 export {
@@ -16,4 +16,5 @@ export {
     classRoomController,
     lookupController,
     schoolController,
+    progressHistoryController,
 };

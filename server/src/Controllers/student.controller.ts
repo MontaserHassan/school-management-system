@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, studentService, subjectService, userService } from "../Services/index.service";
-import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, successStudentMessage, successSubjectMessage } from "../Messages/index.message";
+import { classRoomService, lookupService, progressHistoryService, studentService, subjectService, userService } from "../Services/index.service";
+import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, errorTopicMessage, successStudentMessage, successSubjectMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import { StudentModel } from "../Models/student.model";
@@ -165,12 +165,14 @@ const addProgressHistory = async (req: Request, res: Response, next: NextFunctio
         const { studentId, subjectId, status } = req.body;
         const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 400, "student");
-        const subjectExists = student.subjects?.some((subject: any) => subject.subjectId === subjectId);
+        const subjectExists = student.subjects?.find((subject: any) => subject.subjectId === subjectId);
         if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
         const progressHistoryStatus = await lookupService.getById(status);
         const updatedStudent = await studentService.addProgressHistory(studentId, subjectId, progressHistoryStatus.lookupName);
+        if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
+        if (progressHistoryStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, subjectId, subjectExists.subjectName, status, true)
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -187,12 +189,12 @@ const addProgressHistory = async (req: Request, res: Response, next: NextFunctio
 };
 
 
-// ----------------------------- add degree for subject -----------------------------
+// ----------------------------- add degree for topic -----------------------------
 
 
-const addDegreeOfSubject = async (req: Request, res: Response, next: NextFunction) => {
+const addDegreeOfTopic = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentId, subjectId, degree } = req.body;
+        const { studentId, topicId, degree } = req.body;
         const teacherId = req.user.userId;
         const degreeName = await lookupService.getById(degree);
         if (!degreeName) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
@@ -200,9 +202,9 @@ const addDegreeOfSubject = async (req: Request, res: Response, next: NextFunctio
         if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
         if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
-        const subjectExists = student.subjects?.some((subject: any) => subject.subjectId === subjectId);
-        if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
-        const updatedStudent = await studentService.addDegree(studentId, subjectId, degreeName.lookupName);
+        const topicExists = student.mainTopics?.some((topic: any) => topic.topicId === topicId);
+        if (!topicExists) throw new CustomError(errorTopicMessage.TOPIC_NOT_FOUND, 400, "subject");
+        const updatedStudent = await studentService.addDegree(studentId, topicId, degreeName.lookupName);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -360,7 +362,7 @@ export default {
     addAttendance,
     addComment,
     addProgressHistory,
-    addDegreeOfSubject,
+    addDegreeOfTopic,
     getStudent,
     getAllStudents,
     updateStudentData,

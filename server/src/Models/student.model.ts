@@ -14,6 +14,11 @@ interface subjects {
     subjectId: String;
     subjectName: string;
     progressStatus?: string;
+};
+
+interface mainTopics {
+    topicId: String;
+    topicName: string;
     degree?: String;
 };
 
@@ -34,6 +39,7 @@ interface StudentModel extends mongoose.Document {
     classRoom: string;
     parentId: string;
     subjects?: subjects[];
+    mainTopics?: mainTopics[];
     attendance?: attendance[];
     comments?: Comment[];
     studentCost?: string;
@@ -87,12 +93,6 @@ const studentSchema = new mongoose.Schema(
                 subjectName: {
                     type: String,
                     required: true,
-                },
-                degree: {
-                    type: String,
-                    enum: ['blue', 'yellow', 'green',],
-                    default: "",
-                    required: false,
                 },
                 progressStatus: {
                     type: String,

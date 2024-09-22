@@ -95,8 +95,8 @@ const addProgressHistory = async (studentId: string, subjectId: string, status: 
 // ----------------------------- add new degree -----------------------------
 
 
-const addDegree = async (studentId: string, subjectId: string, degree: string) => {
-    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "subjects.subjectId": subjectId }, { $set: { "subjects.$.degree": degree } }, { new: true });
+const addDegree = async (studentId: string, topicId: string, degree: string) => {
+    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "mainTopics.topicId": topicId }, { $set: { "subjects.$.degree": degree } }, { new: true });
     return student;
 };
 

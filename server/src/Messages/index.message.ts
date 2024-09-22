@@ -20,6 +20,8 @@ import successLookupMessage from './lookup/success.message';
 import errorSchoolMessage from './school/error.message';
 import successSchoolMessage from './school/success.message';
 import ErrorMediaMessage from './media/error.message';
+import errorProgressHistoryMessage from './progress-history/error.message';
+import successProgressHistoryMessage from './progress-history/success.message';
 
 
 
@@ -46,4 +48,6 @@ export {
     errorSchoolMessage,
     successSchoolMessage,
     ErrorMediaMessage,
+    errorProgressHistoryMessage,
+    successProgressHistoryMessage,
 };
