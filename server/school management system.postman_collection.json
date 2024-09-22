@@ -33,7 +33,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzkzMzhmMjliYTI0ZDc2YzliNDU5OSIsImVtYWlsIjoibW9udGFzZXJAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiODdhZTEyOWYwZGI0MTA5ZTU2NjFhM2JhIiwicm9sZSI6InN0dWRlbnQiLCJzdHVkZW50Q29kZSI6WyJNMTIzIl0sImlhdCI6MTcyNDUwMDI3NywiZXhwIjoxNzI0NTE0Njc3fQ.45rvqPLro20lDRVGxOTX7ijxkTVMdR_emYD6BRNEmjI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMGYxMzRiNTEwNDUzZmQ0ZGE4MzFmYTYwIiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiVTkzNzAwNTciLCJpYXQiOjE3MjcwMjAxNjIsImV4cCI6MTcyNzEwNjU2Mn0.15vWzmp9ym-9rjpPhdsDzD_0V1pUQfFyKPz5L-IXKqM",
 									"type": "string"
 								}
 							]
@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"director2@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"teacher3@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -987,7 +987,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiYTdjNDU3NDgzNjIwNzZjZDJhNDdiM2RlIiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjY0MTYzNDYsImV4cCI6MTcyNjQzMDc0Nn0.ns3M0n2Z0T4rDBUUPwBeHUmiK-YqOX1yu-JoiAbPwpQ",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
 											"type": "string"
 										}
 									]
@@ -996,7 +996,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"room\": \"101\",\n    \"topicName\": \"English letter\"\n}",
+									"raw": "{\n    \"room\": \"201\",\n    \"topicName\": \"Football\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1026,7 +1026,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
 											"type": "string"
 										}
 									]

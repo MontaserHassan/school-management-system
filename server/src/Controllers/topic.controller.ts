@@ -21,7 +21,7 @@ const createTopic = async (req: Request, res: Response, next: NextFunction) => {
         if (!isOperationTrue) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 400, "teacher");
         let newTopic = await topicService.getByName(topicName.toLowerCase());
         if (newTopic) {
-            const isTopicExistingInRoom = isRoomExisting.mainTopics.some(topic => topic.topicName === topicName);
+            const isTopicExistingInRoom = isRoomExisting.mainTopics.some(topic => topic.topicName === topicName.toLowerCase());
             if (isTopicExistingInRoom) throw new CustomError(errorClassRoomMessage.TOPIC_EXISTING_IN_ROOM, 400, "topic");
         } else {
             newTopic = await topicService.createTopic(topicName.toLowerCase(), schoolId);
@@ -77,7 +77,7 @@ const getAllTopics = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const { page } = req.query;
         const { schoolId } = req.user;
-        const totalTopics = await topicService.totalDocument();
+        const totalTopics = await topicService.totalDocument(schoolId);
         const paginateData = pagination(totalTopics, Number(page));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         const topics = await topicService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);

@@ -92,13 +92,14 @@
     "$date": "2024-09-06T22:53:06.304Z"
   },
   "updatedAt": {
-    "$date": "2024-09-20T13:54:48.293Z"
+    "$date": "2024-09-22T16:04:45.646Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-20T13:54:48.293Z"
+    "$date": "2024-09-22T16:04:45.646Z"
   },
-  "logged": true
+  "logged": true,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "TmTckRthrIBFpC9nnasCv",

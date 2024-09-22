@@ -8,7 +8,7 @@ import { MainTopic, MainTopicModel } from '../Models/main-topics.model';
 const createTopic = async (topicName: string, schoolId: string) => {
     const newTopic: MainTopicModel = new MainTopic({
         topicName: (topicName).toLowerCase(),
-        schoolId: schoolId
+        schoolId: schoolId,
     });
     await newTopic.save();
     return newTopic;
@@ -45,8 +45,8 @@ const getTopicsById = async (id: string[]) => {
 // ----------------------------- total document -----------------------------
 
 
-const totalDocument = async () => {
-    const mainTopics = await MainTopic.countDocuments();
+const totalDocument = async (schoolId: string) => {
+    const mainTopics = await MainTopic.countDocuments({ schoolId });
     return mainTopics;
 };
 

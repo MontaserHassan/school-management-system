@@ -23,8 +23,8 @@ const mainTopicSchema = new mongoose.Schema(
         },
         schoolId: {
             type: String,
-            ref: 'School',
-            required: false,
+            ref: 'subscriptionSchool',
+            required: true,
         },
     },
     {
