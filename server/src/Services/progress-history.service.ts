@@ -1,4 +1,4 @@
-import { ProgressHistory, ProgressHistoryModel } from 'Models/progress-history.model';
+import { ProgressHistory, ProgressHistoryModel } from '../Models/progress-history.model';
 
 
 
