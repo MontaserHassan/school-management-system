@@ -117,4 +117,154 @@
   "updatedAt": {
     "$date": "2024-09-15T01:03:51.653Z"
   }
+},
+{
+  "_id": "SchoolSystem-3-1",
+  "masterCode": "3",
+  "masterName": "progress",
+  "lookupCode": "1",
+  "lookupName": "In Progress",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:18:05.294Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:18:05.294Z"
+  }
+},
+{
+  "_id": "SchoolSystem-3-2",
+  "masterCode": "3",
+  "masterName": "progress",
+  "lookupCode": "2",
+  "lookupName": "Almost Done",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:18:05.294Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:18:05.294Z"
+  }
+},
+{
+  "_id": "SchoolSystem-3-3",
+  "masterCode": "3",
+  "masterName": "progress",
+  "lookupCode": "3",
+  "lookupName": "Completed",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:18:05.294Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:18:05.294Z"
+  }
+},
+{
+  "_id": "SchoolSystem-4-1",
+  "masterCode": "4",
+  "masterName": "degree",
+  "lookupCode": "1",
+  "lookupName": "blue",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:26:09.492Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:26:09.492Z"
+  }
+},
+{
+  "_id": "SchoolSystem-4-2",
+  "masterCode": "4",
+  "masterName": "degree",
+  "lookupCode": "2",
+  "lookupName": "yellow",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:26:09.492Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:26:09.492Z"
+  }
+},
+{
+  "_id": "SchoolSystem-4-3",
+  "masterCode": "4",
+  "masterName": "degree",
+  "lookupCode": "3",
+  "lookupName": "green",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:26:09.492Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:26:09.492Z"
+  }
+},
+{
+  "_id": "SchoolSystem-5-1",
+  "masterCode": "5",
+  "masterName": "attendanceStatus",
+  "lookupCode": "1",
+  "lookupName": "present",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  }
+},
+{
+  "_id": "SchoolSystem-5-2",
+  "masterCode": "5",
+  "masterName": "attendanceStatus",
+  "lookupCode": "2",
+  "lookupName": "absent",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  }
+},
+{
+  "_id": "SchoolSystem-5-3",
+  "masterCode": "5",
+  "masterName": "attendanceStatus",
+  "lookupCode": "3",
+  "lookupName": "late",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  }
+},
+{
+  "_id": "SchoolSystem-5-4",
+  "masterCode": "5",
+  "masterName": "attendanceStatus",
+  "lookupCode": "4",
+  "lookupName": "excused",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-17T22:32:40.265Z"
+  }
 }]
