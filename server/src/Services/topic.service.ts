@@ -5,24 +5,35 @@ import { MainTopic, MainTopicModel } from '../Models/main-topics.model';
 // ----------------------------- create topic -----------------------------
 
 
-const createTopic = async (topicName: string, subject: { subjectId: string, subjectName: string }, schoolId: string) => {
+const createTopic = async (topicName: string, room: string, subject: { subjectId: string, subjectName: string }, schoolId: string) => {
     const newTopic: MainTopicModel = new MainTopic({
         topicName: (topicName).toLowerCase(),
         subject: subject,
         schoolId: schoolId,
+        classRoom: room,
     });
     await newTopic.save();
     return newTopic;
 };
 
 
-// ----------------------------- get by id -----------------------------
+// ----------------------------- get by name -----------------------------
 
 
 const getByName = async (topicName: string) => {
     const subject: MainTopicModel = await MainTopic.findOne({ topicName }).select('-__v');
     return subject;
 };
+
+
+// ----------------------------- get by name and class room -----------------------------
+
+
+const getByNameAndClassRoom = async (topicName: string, classRoom: string) => {
+    const subject: MainTopicModel = await MainTopic.findOne({ topicName, classRoom }).select('-__v');
+    return subject;
+};
+
 
 
 // ----------------------------- get by id -----------------------------
@@ -93,6 +104,7 @@ export default {
     createTopic,
     getById,
     getByName,
+    getByNameAndClassRoom,
     getTopicsById,
     totalDocument,
     find,

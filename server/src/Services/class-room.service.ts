@@ -33,7 +33,7 @@ const addStudent = async (room: string, students: { studentId: string, studentNa
 // ----------------------------- add teacher -----------------------------
 
 
-const addTeacher = async (room: string, teacher: { teacherId: string, teacherName: string }[]) => {
+const addTeacher = async (room: string, teacher: { teacherId: string, teacherName: string }) => {
     const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { teachers: teacher, }, });
     return newClassRoomData;
 };

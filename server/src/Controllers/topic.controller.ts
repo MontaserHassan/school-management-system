@@ -21,17 +21,13 @@ const createTopic = async (req: Request, res: Response, next: NextFunction) => {
         if (!isRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 404, "room");
         const isOperationTrue = isRoomExisting.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId);
         if (!isOperationTrue) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 400, "teacher");
-        let newTopic = await topicService.getByName(topicName.toLowerCase());
-        if (newTopic) {
-            const isTopicExistingInRoom = isRoomExisting.mainTopics.some(topic => topic.topicName === topicName.toLowerCase());
-            if (isTopicExistingInRoom) throw new CustomError(errorClassRoomMessage.TOPIC_EXISTING_IN_ROOM, 400, "topic");
-        } else {
-            newTopic = await topicService.createTopic(topicName.toLowerCase(), { subjectId: isSubjectExisting._id, subjectName: isSubjectExisting.subjectName }, schoolId);
-            if (!newTopic) throw new CustomError(errorTopicMessage.DOES_NOT_CREATED, 400, "none");
-        };
+        const isTopicExisting = await topicService.getByNameAndClassRoom(topicName.toLowerCase(), room);
+        if (isTopicExisting) throw new CustomError(errorClassRoomMessage.TOPIC_EXISTING_IN_ROOM, 400, "topic");
+        const newTopic = await topicService.createTopic(topicName.toLowerCase(), room, { subjectId: isSubjectExisting._id, subjectName: isSubjectExisting.subjectName }, schoolId);
+        if (!newTopic) throw new CustomError(errorTopicMessage.DOES_NOT_CREATED, 400, "none");
         const addTopicToRoom = await classRoomService.addTopic(room, { topicId: newTopic._id, topicName: newTopic.topicName });
         if (!addTopicToRoom) throw new CustomError(errorClassRoomMessage.TOPIC_NOT_ADDED, 400, "none");
-        addTopicToRoom.students.map(async (student) => await studentService.addTopic(student.studentId, newTopic._id));
+        await Promise.all(addTopicToRoom.students.map(async (student) => { return await studentService.addTopic(student.studentId, newTopic._id, newTopic.topicName); }));
         const response: IResponse = {
             type: "info",
             responseCode: 201,

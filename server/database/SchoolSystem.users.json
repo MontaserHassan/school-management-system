@@ -10,11 +10,11 @@
     "$date": "2024-09-06T21:52:46.362Z"
   },
   "updatedAt": {
-    "$date": "2024-09-21T23:03:03.504Z"
+    "$date": "2024-09-23T22:35:13.514Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-21T23:03:03.504Z"
+    "$date": "2024-09-23T22:35:13.513Z"
   },
   "logged": true
 },
@@ -51,13 +51,14 @@
     "$date": "2024-09-06T22:52:38.635Z"
   },
   "updatedAt": {
-    "$date": "2024-09-18T18:24:12.115Z"
+    "$date": "2024-09-23T23:00:19.654Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-18T18:24:12.114Z"
+    "$date": "2024-09-23T23:00:19.654Z"
   },
-  "logged": true
+  "logged": true,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "wpr7VC3R2Qh1uZ-bWDa2G",
@@ -92,11 +93,11 @@
     "$date": "2024-09-06T22:53:06.304Z"
   },
   "updatedAt": {
-    "$date": "2024-09-22T16:04:45.646Z"
+    "$date": "2024-09-23T22:47:41.889Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-22T16:04:45.646Z"
+    "$date": "2024-09-23T22:47:41.889Z"
   },
   "logged": true,
   "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
@@ -115,7 +116,8 @@
   "updatedAt": {
     "$date": "2024-09-06T22:53:19.025Z"
   },
-  "__v": 0
+  "__v": 0,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "BYuIkX4_zo3eJif1zSMge",
@@ -123,15 +125,20 @@
   "email": "teacher5@gmail.com",
   "role": "teacher",
   "code": "C522",
-  "updatePassword": false,
-  "password": "$2b$10$Ai6Mlk/j6GI8f4U8F.2nReo6X9TMPettp4p8rlG3GLXvWn1dV.naq",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$2tTtPKiiDVyYVhSZdFVJ8w$oMqsq7ZtqXNJedvgHweHcAC5I2TBzbLhokuR9oQ1csQ",
   "createdAt": {
     "$date": "2024-09-06T22:53:41.894Z"
   },
   "updatedAt": {
-    "$date": "2024-09-06T22:53:41.894Z"
+    "$date": "2024-09-23T23:12:57.458Z"
   },
-  "__v": 0
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-09-23T23:12:57.457Z"
+  },
+  "logged": true,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "dUjircLQ3vI2rpwCakeK5",
@@ -227,12 +234,12 @@
     "$date": "2024-09-15T15:16:21.875Z"
   },
   "updatedAt": {
-    "$date": "2024-09-21T23:03:53.658Z"
+    "$date": "2024-09-23T22:35:33.958Z"
   },
   "__v": 0,
   "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
   "lastSeen": {
-    "$date": "2024-09-21T23:03:53.658Z"
+    "$date": "2024-09-23T22:35:33.958Z"
   },
   "logged": true
 },

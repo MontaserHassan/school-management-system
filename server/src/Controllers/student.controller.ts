@@ -203,7 +203,7 @@ const addDegreeOfTopic = async (req: Request, res: Response, next: NextFunction)
         const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
         if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
         const topicExists = student.mainTopics?.some((topic: any) => topic.topicId === topicId);
-        if (!topicExists) throw new CustomError(errorTopicMessage.TOPIC_NOT_FOUND, 400, "subject");
+        if (!topicExists) throw new CustomError(errorTopicMessage.TOPIC_NOT_FOUND, 400, "topic");
         const updatedStudent = await studentService.addDegree(studentId, topicId, degreeName.lookupName);
         const response: IResponse = {
             type: "info",

@@ -12,6 +12,8 @@ enum errorClassRoomMessage {
     TEACHER_ALREADY_ASSIGNED = "This teacher has already been assigned on other class",
     NOT_TEACHER_AT_CLASS = "This teacher has not been assigned on any class",
     TOPIC_EXISTING_IN_ROOM = "This topic has already been added in this room",
+    TEACHER_NOT_FOUND = "Teacher not found. Please check the teacher ID and try again.",
+    TEACHER_NOT_ADDED = "Teacher doesn't added.",
 };
 
 

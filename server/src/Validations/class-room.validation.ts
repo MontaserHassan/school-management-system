@@ -35,7 +35,7 @@ const classRoomValidator = {
 
     addTeacher: {
         body: Joi.object().keys({
-            teachersId: Joi.array().items(Joi.string().required()).required().messages({ 'array.empty': 'Students is required.', }),
+            teacherId: Joi.array().items(Joi.string().required()).required().messages({ 'array.empty': 'Teacher is required.', }),
         }),
     },
 

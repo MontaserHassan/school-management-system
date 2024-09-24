@@ -181,6 +181,35 @@ const addStudent = async (req: Request, res: Response, next: NextFunction) => {
     };
 };
 
+
+// ----------------------------- add teacher -----------------------------
+
+
+const addTeacher = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { classRoom, teacherId } = req.body;
+        const classRoomData = await classRoomService.getByRoom(classRoom);
+        if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
+        const teacher = await userService.getById(teacherId);
+        if (!teacher) throw new CustomError(errorClassRoomMessage.TEACHER_NOT_FOUND, 404, "teacher");
+        const newTeacher = { teacherId: String(teacher._id), teacherName: teacher.userName, };
+        const updateClassRoom = await classRoomService.addTeacher(classRoom, newTeacher);
+        if (!updateClassRoom) throw new CustomError(errorClassRoomMessage.TEACHER_NOT_ADDED, 400, "teacher");
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successClassRoomMessage.GET_CLASS_ROOM_DATA,
+            data: {
+                classRoom: updateClassRoom,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
 // ----------------------------- delete subject room -----------------------------
 
 
@@ -206,6 +235,7 @@ const deleteClassRoom = async (req: Request, res: Response, next: NextFunction) 
 export default {
     createClassRoom,
     addStudent,
+    addTeacher,
     getAllRoom,
     getClassByRoom,
     getClassById,

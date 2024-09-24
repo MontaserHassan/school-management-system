@@ -77,8 +77,8 @@ const isTeacherInClassroom = async (room: string, teacher: string) => {
 // ----------------------------- add new topic -----------------------------
 
 
-const addTopic = async (studentId: string, topicId: string,) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { topics: { topicId: topicId } } }, { new: true });
+const addTopic = async (studentId: string, topicId: string, topicName: string) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { mainTopics: { topicId: topicId, topicName: topicName } } }, { new: true });
     return student;
 };
 
@@ -96,7 +96,7 @@ const addProgressHistory = async (studentId: string, subjectId: string, status: 
 
 
 const addDegree = async (studentId: string, topicId: string, degree: string) => {
-    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "mainTopics.topicId": topicId }, { $set: { "subjects.$.degree": degree } }, { new: true });
+    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.degree": degree } }, { new: true });
     return student;
 };
 

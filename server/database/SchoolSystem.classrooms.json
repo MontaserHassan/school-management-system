@@ -19,6 +19,10 @@
     {
       "topicId": "6RqzkeGIYboxmvmEmTxr3KVY",
       "topicName": "english letter"
+    },
+    {
+      "topicId": "6QGpN_xVemOOftmoOCTNM4CM",
+      "topicName": "colors"
     }
   ],
   "schedule": [
@@ -82,14 +86,24 @@
   ],
   "studentCost": "1500",
   "currencyOfCost": "usd",
-  "students": [],
+  "students": [
+    {
+      "studentId": "H1GTlCYJo-Fr2T0grRGjOfPn",
+      "studentName": "mostafa baraka"
+    },
+    {
+      "studentId": "WtmLVbD-ndYlShkk7XgvUD58",
+      "studentName": "ali saad"
+    }
+  ],
   "createdAt": {
     "$date": "2024-09-10T17:01:04.391Z"
   },
   "updatedAt": {
-    "$date": "2024-09-15T16:09:21.980Z"
+    "$date": "2024-09-23T23:00:37.563Z"
   },
-  "__v": 0
+  "__v": 0,
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8"
 },
 {
   "_id": "mwAupClmTkV4kczU9RisY7yn",

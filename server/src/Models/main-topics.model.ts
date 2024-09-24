@@ -39,6 +39,11 @@ const mainTopicSchema = new mongoose.Schema(
             ref: 'subscriptionSchool',
             required: true,
         },
+        classRoom: {
+            type: String,
+            ref: 'classRoom',
+            required: true,
+        },
     },
     {
         timestamps: true,
