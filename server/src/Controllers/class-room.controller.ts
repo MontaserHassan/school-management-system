@@ -6,6 +6,7 @@ import CustomError from "../Utils/customError.util";
 import pagination from "../Utils/pagination.util";
 import IResponse from '../Interfaces/response.interface';
 import { addTime } from "../helpers/calculate-endTime.helper";
+import { ClassRoomModel } from "Models/class-room.model";
 
 
 
@@ -80,23 +81,32 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
 const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { page } = req.query;
-        const { schoolId } = req.user;
-        const totalSubjectRooms = await classRoomService.totalDocument(schoolId);
-        const paginateData = pagination(totalSubjectRooms, Number(page));
-        if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const subjectRooms = await classRoomService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
-        if (!subjectRooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
+        const { schoolId, role, userId } = req.user;
+        const rooms: ClassRoomModel[] = [];
+        let paginateData;
+        if (role === "teacher") {
+            const teacherClassRoom = await classRoomService.getClassRoomByTeacherId(userId);
+            if (!teacherClassRoom) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
+            rooms.push(teacherClassRoom);
+        } else {
+            const totalRooms = await classRoomService.totalDocument(schoolId);
+            paginateData = pagination(totalRooms, Number(page));
+            if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
+            const getRooms = await classRoomService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
+            if (!rooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
+            rooms.push(...getRooms);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successClassRoomMessage.GET_ALL,
             data: {
-                totalPages: paginateData.totalPages,
-                currentPage: paginateData.currentPage,
-                limit: paginateData.limit,
-                skip: paginateData.skip,
-                totalDocuments: paginateData.totalDocuments,
-                subjectRooms: subjectRooms,
+                totalPages: paginateData.totalPages || 1,
+                currentPage: paginateData.currentPage || 1,
+                limit: paginateData.limit || 1,
+                skip: paginateData.skip || 1,
+                totalDocuments: paginateData.totalDocuments || 1,
+                rooms: rooms,
             },
         };
         res.data = response;
@@ -237,7 +247,7 @@ export default {
     addStudent,
     addTeacher,
     getAllRoom,
-    getClassByRoom,
     getClassById,
+    getClassByRoom,
     deleteClassRoom,
 };

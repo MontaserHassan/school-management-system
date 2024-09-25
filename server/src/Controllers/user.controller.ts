@@ -278,6 +278,29 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 
+// ----------------------------- get all parents -----------------------------
+
+
+const getAllParents = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId } = req.user;
+        const parents = await userService.findUserById('parent', schoolId);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: SuccessUserMessage.GET_USERS,
+            data: {
+                parents: parents
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
 
 export default {
     registerUser,
@@ -289,4 +312,5 @@ export default {
     updateUserPassword,
     getProfile,
     getAllUsers,
+    getAllParents,
 };

@@ -25,6 +25,15 @@ const createUser = async (userName: string, email: string, role: string, schoolI
 };
 
 
+// ----------------------------- find users by role -----------------------------
+
+
+const findUserById = async (role: string, schoolId) => {
+    const users: UserModel[] = await User.find({ schoolId, role }).select('-__v');
+    return users;
+};
+
+
 // ----------------------------- get total documents -----------------------------
 
 
@@ -164,6 +173,7 @@ export default {
     findAllUserOfSchool,
     findUserByRole,
     findSpecificUserOfSchool,
+    findUserById,
     getAllUsers,
     getById,
     getByCode,

@@ -40,8 +40,8 @@ const addMoreDataToStudent = async (studentId: string, classRoom: string, group:
 // ----------------------------- add new attendance -----------------------------
 
 
-const addAttendance = async (studentId: string, teacherId: string, status: string, comment: string) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { attendance: { teacherId: teacherId, status: status, comment: comment } } }, { new: true });
+const addAttendance = async (studentId: string, status: string, comment: string) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { attendance: { status: status, comment: comment } } }, { new: true });
     return student;
 };
 

@@ -41,14 +41,14 @@ const studentValidator = {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
             status: Joi.string().required().trim().messages({ 'string.empty': 'Status is required.', }),
-            comment: Joi.string().optional().min(10).max(255).trim().messages({ 'string.empty': 'Comment is required.', }),
+            comment: Joi.string().optional().max(255).trim().messages({ 'string.empty': 'Comment is required.', }),
         }),
     },
 
     addComment: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
-            comment: Joi.string().required().min(10).max(255).trim().messages({ 'string.empty': 'Comment is required.', }),
+            comment: Joi.string().required().max(255).trim().messages({ 'string.empty': 'Comment is required.', }),
             media: Joi.string().optional().messages({ 'string.empty': 'Media is required.', }),
         }),
     },

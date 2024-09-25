@@ -6,8 +6,9 @@ import authUserRouter from './authUser.routes';
 import authTeacherRouter from './authTeacher.routes';
 import authDirectorRouter from './authDirector.routes';
 import authParentRouter from './authParent.routes';
-import authAdminRouter from './authAdmin.routes';
 import authSuperAdminRouter from './authSuperAdmin.routes';
+import authStudentRouter from './authStudent.routes';
+import authClassRoomRouter from './authClassRoom.routes';
 
 
 
@@ -18,8 +19,9 @@ user.use(getUser());
 user.use('/', authUserRouter);
 user.use('/teacher', authTeacherRouter);
 user.use('/director', authDirectorRouter);
+user.use('/class-room', authClassRoomRouter);
+user.use('/student', authStudentRouter);
 user.use('/parent', authParentRouter);
-user.use('/admin', authAdminRouter);
 user.use('/superAdmin', authSuperAdminRouter);
 
 

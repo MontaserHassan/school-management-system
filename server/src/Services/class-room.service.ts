@@ -87,6 +87,15 @@ const getByTeacherId = async (teacherId: string) => {
 };
 
 
+// ----------------------------- check teacher exists with class -----------------------------
+
+
+const getClassRoomByTeacherId = async (teacherId: string) => {
+    const classRoom: ClassRoomModel = await ClassRoom.findOne({ "teachers.teacherId": teacherId }).select('-__v');
+    return classRoom;
+};
+
+
 // ----------------------------- get students class by teacher -----------------------------
 
 
@@ -140,6 +149,7 @@ export default {
     getById,
     getTeachers,
     getByTeacherId,
+    getClassRoomByTeacherId,
     getStudentsByTeacherId,
     addStudent,
     addTeacher,

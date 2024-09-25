@@ -133,8 +133,6 @@ const classRoomSchema = new mongoose.Schema(
         currencyOfCost: {
             type: String,
             required: true,
-            default: 'usd',
-            enum: ['usd', 'eur', 'ps',],
         },
     },
     {

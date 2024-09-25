@@ -4,7 +4,7 @@ import express from 'express';
 import checkRole from '../../Middlewares/check-role.middleware';
 import subjectRouter from './Director/subject.routes';
 import studentRouter from './Director/student.routes';
-import invoiceRouter from './Director/invoice.routes';
+// import invoiceRouter from './Director/invoice.routes';
 import classRoomRouter from './Director/class-room.routes';
 
 
@@ -16,7 +16,7 @@ authDirectorRouter.use(checkRole(['director', 'admin', 'superAdmin']),);
 authDirectorRouter.use('/subject', subjectRouter);
 authDirectorRouter.use('/class-room', classRoomRouter);
 authDirectorRouter.use('/student', studentRouter);
-authDirectorRouter.use('/invoice', invoiceRouter);
+// authDirectorRouter.use('/invoice', invoiceRouter);
 
 
 

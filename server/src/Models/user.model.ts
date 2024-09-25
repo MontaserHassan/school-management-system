@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema(
         },
         schoolId: {
             type: String,
-            ref: 'School',
+            ref: 'subscriptionSchool',
             required: false,
         },
         media: {
