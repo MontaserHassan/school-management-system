@@ -1,76 +1,95 @@
 import { Expose, Type } from 'class-transformer';
 import { list } from '../../shared/models/list';
+import { Topic } from '../../class-room/models/topic.model';
+import { Degree } from '../enums/degree.enum';
 
-class Subject {
-  @Expose()
-  subjectId?: string;
+export class Subject {
+    @Expose()
+    subjectId!: string;
 
-  @Expose()
-  subjectName?: string;
+    @Expose()
+    subjectName!: string;
+
+    @Expose()
+    progressStatus!: string;
+
+    @Expose()
+    degree!: Degree;
 }
 
-class MainTopic {
-  @Expose()
-  topicId?: string;
 
-  @Expose()
-  topicName?: string;
+export class Attendance {
+    @Expose()
+    status!: string;
+
+    @Expose()
+    comment!: string;
+
+    @Expose()
+    date!: string;
+}
+
+export class Comment {
+    @Expose()
+    comment!: string;
+
+    @Expose()
+    media!: string; // Base64 string
+
+    @Expose()
+    dateOfComment!: string;
 }
 
 export class Student {
-  @Expose()
-  _id?: string;
+    @Expose()
+    _id!: string;
 
-  @Expose()
-  schoolId?: string;
+    @Expose()
+    studentName!: string;
 
-  @Expose()
-  studentName?: string;
+    @Expose()
+    studentCode!: string;
 
-  @Expose()
-  studentCode?: string;
+    @Expose()
+    classRoom!: string;
 
-  @Expose()
-  classRoom?: string;
+    @Expose()
+    group!: string;
 
-  @Expose()
-  parentId?: string;
+    @Expose()
+    subjects!: Subject[];
 
-  @Expose()
-  group?: string;
+    @Expose()
+    mainTopics!: Topic[];
 
-  @Expose()
-  subjects?: Subject[];
+    @Expose()
+    studentCost!: string;
 
-  @Expose()
-  mainTopics?: MainTopic[];
+    @Expose()
+    currencyOfCost!: string;
 
-  @Expose()
-  studentCost?: string;
+    @Expose()
+    attendance!: Attendance[];
 
-  @Expose()
-  currencyOfCost?: string;
+    @Expose()
+    comments!: Comment[];
 
-  @Expose()
-  attendance?: any[];
+    @Expose()
+    createdAt!: string;
 
-  @Expose()
-  comments?: any[];
+    @Expose()
+    updatedAt!: string;
 
-  @Expose()
-  progressHistory?: any[];
+    @Expose()
+    schoolId!: string;
 
-  @Expose()
-  createdAt?: Date;
-
-  @Expose()
-  updatedAt?: Date;
-
-  @Expose()
-  __v?: number;
+    @Expose()
+    progressHistory!: any[];
 }
+
 
 export class StudentList extends list {
   @Expose()
   students?: Student[];
 }
+

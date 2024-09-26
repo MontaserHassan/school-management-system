@@ -27,6 +27,10 @@
           [styleClass]="getStatusColor(school.subscriptionStatus || '')">
         </p-chip>
       </div>
+
+      <div class="mt-2">
+        <small><strong>Created At:</strong> {{ school.createdAt | date: 'short' }}</small>
+      </div>
     </div>
 
     <!-- Tabs for Details -->
@@ -35,10 +39,13 @@
         <p-tabPanel header="Admin Details">
           <div class="row">
             <div class="col-6">
-              <p class="d-flex gap-2 align-items-center">
+              <p class="d-flex gap-2 m-0 align-items-center">
                 <i class="pi pi-user"></i>
-                <strong>Admin Name:</strong>
-                <span>{{ school.admin?.userName }}</span>
+                <span class="d-flex align-items-center">
+                  <strong>Admin Name:</strong>
+                  <p-button (onClick)="goToUserProfile(school.admin?._id || '')" label='{{ school.admin?.userName }}'
+                    [text]="true" severity="secondary" />
+                </span>
               </p>
             </div>
             <div class="col-6">

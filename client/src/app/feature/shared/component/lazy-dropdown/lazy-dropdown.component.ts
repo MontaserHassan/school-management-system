@@ -15,7 +15,8 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class LazyDropdownComponent {
+
+export class LazyDropdownComponent implements OnInit {
   @Input() lookup!: any;
   @Input() lookUpExtraParams!: any;
   @Input() placeholder: string = "Select an option";
@@ -26,10 +27,19 @@ export class LazyDropdownComponent {
 
   private lookupCache: { [key: string]: any[] } = {};
 
-  constructor(private lazyDropdownService: LazyDropdownService) { }
+  constructor(private lazyDropdownService: LazyDropdownService) {}
+
+  ngOnInit(): void {
+    this.loadOptions();
+  }
 
   writeValue(value: any): void {
-    this.selectedOption = value;
+    if (value && value.status) {
+      this.selectedOption = value.status[0];
+    } else {
+      this.selectedOption = value;
+    }
+    this.updateDropdownSelection();
   }
 
   registerOnChange(fn: any): void {
@@ -40,8 +50,8 @@ export class LazyDropdownComponent {
     this.onTouched = fn;
   }
 
-  private onChange: any = () => { };
-  private onTouched: any = () => { };
+  private onChange: any = () => {};
+  private onTouched: any = () => {};
 
   onDropdownOpen() {
     if (!this.isDataLoaded) {
@@ -49,16 +59,14 @@ export class LazyDropdownComponent {
     }
   }
 
-
   onOptionSelect(event: any): void {
     this.selectedOption = event.value;
+    
     this.onChange(this.selectedOption);
     this.onTouched();
   }
 
-
   loadOptions(event: any = { first: 0, rows: 10 }) {
-
     if (typeof this.lookup === "string") {
       if (this.lookupCache[this.lookup]) {
         this.dropdownOptions = this.lookupCache[this.lookup];
@@ -71,14 +79,26 @@ export class LazyDropdownComponent {
             value: item._id,
           }));
 
-          this.lookupCache[this.lookup] = this.dropdownOptions; 
+          console.log(this.dropdownOptions);
+
+          this.lookupCache[this.lookup] = this.dropdownOptions;
           this.isDataLoaded = true;
-        })
+          this.updateDropdownSelection();
+        });
       }
-    }
-    else{
-      this.dropdownOptions = this.lookup
+    } else {
+      this.dropdownOptions = this.lookup;
       this.isDataLoaded = true;
+      this.updateDropdownSelection();
+    }
+  }
+
+  private updateDropdownSelection() {
+    if (this.selectedOption) {
+      const selected = this.dropdownOptions.find(option => option.value === this.selectedOption);
+      if (selected) {
+        this.selectedOption = selected.value;
+      }
     }
   }
 }

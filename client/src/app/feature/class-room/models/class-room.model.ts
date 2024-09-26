@@ -1,5 +1,7 @@
 import { Expose, Type } from 'class-transformer';
 import { list } from '../../shared/models/list';
+import { Topic } from './topic.model';
+import { Student } from '../../student/models/student.model';
 
 class Subject {
   @Expose()
@@ -31,14 +33,6 @@ class Teacher {
   teacherName?: string;
 }
 
-class MainTopic {
-  @Expose()
-  topicId?: string;
-
-  @Expose()
-  topicName?: string;
-}
-
 export class ClassRoom {
   @Expose()
   _id?: string;
@@ -56,7 +50,7 @@ export class ClassRoom {
   teachers?: Teacher[];
 
   @Expose()
-  mainTopics?: MainTopic[];
+  mainTopics?: Topic[];
 
   @Expose()
   schedule?: Schedule[];
@@ -68,7 +62,7 @@ export class ClassRoom {
   currencyOfCost?: string;
 
   @Expose()
-  students?: any[];
+  students?: Student[];
 
   @Expose()
   createdAt?: Date;
@@ -79,5 +73,5 @@ export class ClassRoom {
 
 export class ClassRoomResponse extends list{
   @Expose()
-  subjectRooms?: ClassRoom[];
+  rooms?: ClassRoom[];
 }

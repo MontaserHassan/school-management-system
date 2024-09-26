@@ -87,7 +87,7 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
 
   onSignUp() {
     this.signUpForm.markAllAsTouched()
-    this.signUp = false
+    this.signUp = true
     this.pageTwo = false
   }
 

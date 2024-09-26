@@ -1,44 +1,85 @@
-<div class="mt-4">
-  <p-card>
+<div class="student-profile-container">
+  <p-card [header]="studentProfile.studentName + 's Profile'">
     <div class="card-header">
-      <h3>{{ studentProfile.studentName }}'s Profile</h3>
       <div class="d-flex justify-content-between">
         <span>Code: {{ studentProfile.studentCode }}</span>
         <span>Classroom: {{ studentProfile.classRoom }}</span>
         <span>Group: {{ studentProfile.group }}</span>
+        <span>Cost: {{ studentProfile.studentCost }} {{ studentProfile.currencyOfCost }}</span>
       </div>
     </div>
+
     <div class="card-body">
-      <p-tabView>
+      <p-tabView (onChange)="onTabChange($event)">
         <p-tabPanel header="Subjects">
           <p-table [value]="studentProfile.subjects">
             <ng-template pTemplate="header">
               <tr>
                 <th>Subject Name</th>
                 <th>Subject ID</th>
+                <th>Progress Status</th>
+                <th>Degree</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-subject>
               <tr>
                 <td>{{ subject.subjectName }}</td>
                 <td>{{ subject.subjectId }}</td>
+                <td>{{ subject.progressStatus }}</td>
+                <td>
+                  <p-tag [severity]="setDegreeColor(subject?.degree)">{{ subject.degree }}</p-tag>
+                </td>
               </tr>
             </ng-template>
           </p-table>
         </p-tabPanel>
 
         <p-tabPanel header="Main Topics">
-          <p-chips [(ngModel)]="mainTopics"></p-chips>
+          <p-chip *ngFor="let topic of studentProfile.mainTopics" class="mx-1" [label]="topic.topicName"></p-chip>
         </p-tabPanel>
 
         <p-tabPanel header="Attendance">
-          <p-timeline [value]="studentProfile.attendance"></p-timeline>
+          <app-attendance-calender #attendanceCalendar *ngIf="studentProfile?.attendance"
+            [data]="studentProfile"></app-attendance-calender>
         </p-tabPanel>
 
         <p-tabPanel header="Comments">
-          <div *ngFor="let comment of studentProfile.comments" class="card mb-3">
-            <div class="card-body">{{ comment }}</div>
+          <div class="d-flex justify-content-end mb-3">
+            <button pButton type="button" label="Add Comment" (click)="openAddCommentDialog()" class="mt-2"></button>
           </div>
+          <p-timeline [value]="studentProfile.comments" align="left" layout="vertical">
+            <ng-template let-comment pTemplate="content">
+              <div class="timeline-item-content" (click)="openCommentDialog(comment)">
+                <div class="timeline-icon">
+                  <i class="pi pi-comments"></i>
+                </div>
+
+                <div class="card card-timeline">
+                  <div class="card-body">
+                    <p>{{ comment.comment }}</p>
+
+                    <p class="timeline-date">
+                      <i class="pi pi-calendar" style="margin-right: 5px;"></i>
+                      {{ comment.dateOfComment | date: 'medium' }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-timeline>
+
+          <p-dialog header="Comment Details" [(visible)]="displayDialog" [modal]="true" [style]="{width: '450px'}"
+            (onHide)="onDialogHide()">
+            <div *ngIf="selectedComment">
+              <div>
+                <p><strong>Comment:</strong> {{ selectedComment.comment }}</p>
+                <p *ngIf="selectedComment.media"><strong>Media:</strong></p>
+                <img *ngIf="selectedComment.media" [src]="selectedComment.media" alt="Comment Media"
+                  class="img-fluid mb-2" width="100%" height="400px" />
+                <p><strong>Date:</strong> {{ selectedComment.dateOfComment | date: 'medium' }}</p>
+              </div>
+            </div>
+          </p-dialog>
         </p-tabPanel>
 
         <p-tabPanel header="Progress History">

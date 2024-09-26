@@ -1,0 +1,32 @@
+<!-- topics-list.component.html -->
+<div class="topics-list-container">
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between px-3 pt-3">
+        <h2 class="header">Topics List</h2>
+
+        <button pButton icon="pi pi-plus" label="Add Topic" class="m-0 mx-2" [outlined]="true" severity="secondary"
+          (click)="openAddTopicDialog()" type="button"></button>
+      </div>
+    </ng-template>
+
+    <div class="topics-grid row g-4">
+      <div *ngFor="let topic of topics" class="topic-card col-12 col-md-3">
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="topic-header">
+              <h3>{{ topic.topicName }}</h3>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="content">
+            <div class="d-flex flex-column">
+              <small><strong>Created At:</strong> {{ topic.createdAt | date: 'medium' }}</small>
+              <small><strong>Last Updated:</strong> {{ topic.updatedAt | date: 'medium' }}</small>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </p-card>
+</div>

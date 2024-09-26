@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Add Comment</h2>
+<mat-dialog-content>
+  <form [formGroup]="commentForm" class="d-flex flex-column gap-3">
+    <div class="field d-flex flex-column gap-2">
+      <label for="comment" class="form-label">Comment</label>
+      <textarea class="p-2" id="comment" rows="5" cols="30" pInputTextarea formControlName="comment"></textarea>
+      <small *ngIf="commentForm.get('comment')?.hasError('required') && commentForm.get('comment')?.touched"
+        class="p-error">
+        Comment is required
+      </small>
+    </div>
+
+    <div class="field d-flex flex-column gap-2">
+      <label for="media" class="form-label">Attach Media</label>
+      <p-fileUpload [showUploadButton]="false" name="demo[]" (onSelect)="onUpload($event)" (onRemove)="clear($event)"
+        accept="image/jpg, image/jpeg, image/png" maxFileSize="400000">
+      </p-fileUpload>
+    </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="addComment()" [disabled]="commentForm.invalid">Add Comment</button>
+</mat-dialog-actions>

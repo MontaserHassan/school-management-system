@@ -34,4 +34,24 @@ export class StudentService {
       map((res) => this.mapper.fromJson(StudentList, res.data))
     )
   }
+
+  addAttendance(body:{
+    studentId: string,
+    status: string,
+    comment: string,
+  }): Observable<Student> {
+    return this.baseAPI.patch(ApiConstant.ADD_ATTENDANCE, filterNullEntity(body)).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.student))
+    )
+  }
+
+  addComment(body: {
+    studentId: string,
+    comment: string,
+    media: string,
+  }): Observable<Student> {
+    return this.baseAPI.patch(ApiConstant.ADD_COMMENT, filterNullEntity(body)).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.student))
+    )
+  }
 }

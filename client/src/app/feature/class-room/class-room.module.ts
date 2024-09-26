@@ -5,13 +5,17 @@ import { SharedModule } from '../shared/shared.module';
 import { ClassRoomViewComponent } from './pages/class-room-view/class-room-view.component';
 import { AddClassRoomComponent } from './pages/add-class-room/add-class-room.component';
 import { ClassRoomListComponent } from './pages/class-room-list/class-room-list.component';
+import { AddTopicDialogComponent } from './component/add-topic-dialog/add-topic-dialog.component';
+import { TopicListComponent } from './pages/topic-list/topic-list.component';
 
 
 @NgModule({
   declarations: [
     ClassRoomViewComponent,
     AddClassRoomComponent,
-    ClassRoomListComponent
+    ClassRoomListComponent,
+    AddTopicDialogComponent,
+    TopicListComponent
   ],
   imports: [
     CommonModule, SharedModule, CLassRoomRoutingModule,

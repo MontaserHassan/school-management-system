@@ -152,7 +152,7 @@ const getClassById = async (req: Request, res: Response, next: NextFunction) => 
         const classRoomData = await classRoomService.getById(classRoom);
         if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         if (classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.ROOM_NOT_SCHOOL, 404, "school");
-        if (classRoomData.teachers.some(teacher => teacher.teacherId.toString() !== userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
+        // if (classRoomData.teachers.some(teacher => teacher.teacherId.toString() !== userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
         const response: IResponse = {
             type: "info",
             responseCode: 200,

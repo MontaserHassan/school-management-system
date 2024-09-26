@@ -9,4 +9,7 @@ export enum Lookup {
   Topics = 'topics',
   Groups = 'groups',
   ClassRooms = 'classRooms',
+  Progress = "progress",
+  Degree ="degree",
+  AttendanceStatus = "attendanceStatus"
 }

@@ -41,7 +41,9 @@
         <div class="details-section">
           <h3>Main Topics</h3>
           <div class="chips-container">
-            <p-chip *ngFor="let topic of mainTopics" [label]="topic"></p-chip>
+            <p-chip *ngFor="let topic of mainTopics" class="mx-1" [label]="topic"></p-chip>
+            <button pButton icon="pi pi-plus" class="m-0 mx-2" [rounded]="true" [outlined]="true" severity="secondary"
+              (click)="openAddTopicDialog()" type="button"></button>
           </div>
         </div>
 
@@ -67,6 +69,22 @@
               </p-table>
             </p-accordionTab>
           </p-accordion>
+        </div>
+
+        <div class="details-section">
+          <h3>Students</h3>
+          <p-table [value]="classroom.students || []">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Student Name</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-student>
+              <tr>
+                <td>{{ student.studentName }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>

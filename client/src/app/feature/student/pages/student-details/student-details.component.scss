@@ -1,7 +1,5 @@
 .student-profile-container {
-  max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
 
   .profile-card {
     border: 1px solid #e0e0e0;
@@ -56,14 +54,17 @@
         display: flex;
         flex-wrap: wrap;
 
-        .subject-chip, .topic-chip {
+        .subject-chip,
+        .topic-chip {
           margin-right: 0.5rem;
           margin-bottom: 0.5rem;
         }
       }
     }
 
-    .attendance-list, .comments-list, .progress-list {
+    .attendance-list,
+    .comments-list,
+    .progress-list {
       list-style-type: none;
       padding-left: 0;
 
@@ -96,4 +97,57 @@
       margin-top: 2rem;
     }
   }
+
+
+
+  .degree-blue {
+    background-color: lightblue;
+    color: darkblue;
+  }
+
+  .degree-green {
+    background-color: lightgreen;
+    color: darkgreen;
+  }
+
+  .timeline-date {
+    font-weight: bold;
+    color: #6c757d;
+    margin-bottom: 10px;
+  }
+
+  .timeline-item-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .timeline-icon {
+    background-color: #007bff;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .card-timeline {
+    flex-grow: 1;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .comment-media {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  ::ng-deep .p-timeline-event-opposite{
+    display: none;
+  }
+
 }

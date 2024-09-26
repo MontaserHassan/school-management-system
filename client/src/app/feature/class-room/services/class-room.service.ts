@@ -6,6 +6,7 @@ import { ApiConstant } from '../../shared/config/api.constant';
 import { map, Observable } from 'rxjs';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
 import { ClassRoom, ClassRoomResponse } from '../models/class-room.model';
+import { Topic, TopicList } from '../models/topic.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,18 @@ constructor(
   getClassRoomList():Observable<ClassRoomResponse> {
     return this.baseAPI.get(ApiConstant.GET_CLASS_ROOMS).pipe(
       map((res) => this.mapper.fromJson(ClassRoomResponse, res.data))
+    )
+  }
+
+  addTopic(body: {classRoomId:string,topicName:string}):Observable<Topic> {
+    return this.baseAPI.post(ApiConstant.ADD_TOPIC, body).pipe(
+      map((res) => this.mapper.fromJson(Topic, res.data.topic))
+    )
+  }
+
+  getTopics():Observable<TopicList> {
+    return this.baseAPI.get(ApiConstant.GET_TOPICS).pipe(
+      map((res) => this.mapper.fromJson(TopicList, res.data))
     )
   }
 }

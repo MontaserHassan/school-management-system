@@ -3,6 +3,8 @@ import { ClassRoomService } from '../../services/class-room.service';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { ActivatedRoute } from '@angular/router';
 import { ClassRoom } from '../../models/class-room.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
 
 @Component({
   selector: 'app-class-room-view',
@@ -11,15 +13,17 @@ import { ClassRoom } from '../../models/class-room.model';
 })
 export class ClassRoomViewComponent extends BaseComponent implements OnInit {
   mainTopics: string[] = [];
-  classroom!: ClassRoom
-  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute) {
+  classroom: ClassRoom = new ClassRoom();
+  id!: string
+
+  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute, private dialog: MatDialog) {
     super()
   }
 
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {
-      const id = params?.['id']
-      this.getClassRoomDetails(id)
+      this.id = params?.['id']
+      this.getClassRoomDetails(this.id)
     })
 
   }
@@ -31,5 +35,17 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
     })
   }
 
+  openAddTopicDialog(): void {
+    const dialogRef = this.dialog.open(AddTopicDialogComponent, {
+      width: '400px',
+      data: { classRoomId: this.classroom.room }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getClassRoomDetails(this.id)
+      }
+    });
+  }
 }
 

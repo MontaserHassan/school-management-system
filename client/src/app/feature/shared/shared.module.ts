@@ -51,7 +51,10 @@ import { TimelineModule } from 'primeng/timeline';
 import { LazyDropdownComponent } from './component/lazy-dropdown/lazy-dropdown.component';
 import { CalendarModule } from 'primeng/calendar';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogModule } from 'primeng/dialog';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { FileUploadModule } from 'primeng/fileupload';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -62,6 +65,10 @@ const COMPONENT =[
   StateSectionComponent,
   LoaderComponent,
   LazyDropdownComponent
+]
+
+const OTHER_MODULES = [
+  FullCalendarModule
 ]
 
 const MATERIAL_MODULES = [
@@ -77,6 +84,7 @@ const MATERIAL_MODULES = [
   MatRippleModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
+  MatDialogModule,
 ]
 
 const PRIME_NG_MODULES = [
@@ -108,7 +116,9 @@ const PRIME_NG_MODULES = [
   ChipModule,
   TabViewModule,
   TimelineModule,
-  PaginatorModule
+  PaginatorModule,
+  DialogModule,
+  FileUploadModule
 ]
 
 @NgModule({
@@ -128,7 +138,8 @@ const PRIME_NG_MODULES = [
       }
     }),
     ...MATERIAL_MODULES,
-    ...PRIME_NG_MODULES
+    ...PRIME_NG_MODULES,
+    ...OTHER_MODULES
   ],
   exports:[
     FormsModule,
@@ -137,6 +148,7 @@ const PRIME_NG_MODULES = [
     ...COMPONENT,
     ...MATERIAL_MODULES,
     ...PRIME_NG_MODULES,
+    ...OTHER_MODULES
   ]
 })
 export class SharedModule { }

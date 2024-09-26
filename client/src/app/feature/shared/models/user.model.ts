@@ -7,7 +7,7 @@ export class User {
   @Expose() _id?: string;
   @Expose() userName?: string;
   @Expose() email?: string;
-  @Expose() role?: string;
+  @Expose() role?: UserRole;
   @Expose() code?: string;
   @Expose() updatePassword?: boolean;
   @Expose()

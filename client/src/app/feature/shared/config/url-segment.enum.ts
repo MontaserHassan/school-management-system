@@ -5,4 +5,8 @@ export enum URLSegment {
   Subject = 'subject/',
   Lookups = 'lookups/',
   SuperAdmin = 'superAdmin/',
+  Teacher = 'teacher/',
+  Student = 'student/',
+  classRoom = 'class-room/',
+  parent = 'parent/',
 }

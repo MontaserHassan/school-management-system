@@ -14,6 +14,24 @@ export class RoutesUtil {
   static UserList = new RouteConfig('list', RoutesUtil.User);
   static AddUser = new RouteConfig('add', RoutesUtil.User);
 
+  //director
+  static Director = new RouteConfig('director');
+  static DirectorProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.Director);
+  static DirectorList = new RouteConfig('list', RoutesUtil.Director);
+  static AddDirector = new RouteConfig('add', RoutesUtil.Director);
+
+  //teacher
+  static Teacher = new RouteConfig('teacher');
+  static TeacherProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.Teacher);
+  static TeacherList = new RouteConfig('list', RoutesUtil.Teacher);
+  static AddTeacher = new RouteConfig('add', RoutesUtil.Teacher);
+
+  //parent
+  static Parent = new RouteConfig('parent');
+  static ParentProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.Parent);
+  static ParentList = new RouteConfig('list', RoutesUtil.Parent);
+  static AddParent = new RouteConfig('add', RoutesUtil.Parent);
+
   //subject
   static Subject = new RouteConfig('subject');
   static SubjectView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.Subject);
@@ -25,6 +43,7 @@ export class RoutesUtil {
   static ClassRoomView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.ClassRoom);
   static ClassRoomList = new RouteConfig('list', RoutesUtil.ClassRoom);
   static AddClassRoom = new RouteConfig('add', RoutesUtil.ClassRoom);
+  static TopicsList = new RouteConfig('topic', RoutesUtil.ClassRoom);
 
   //class Student
   static Student = new RouteConfig('student');

@@ -1,0 +1,35 @@
+<app-state-section [state]="sectionState">
+  <h1 mat-dialog-title>Add New Topic</h1>
+
+  <div mat-dialog-content>
+    <form [formGroup]="addTopicForm" class="d-flex flex-column gap-3">
+
+      <input type="hidden" formControlName="room" *ngIf="!data.addRoom" />
+
+      <div class="field d-flex flex-column gap-2" *ngIf="data.addRoom">
+        <label for="room" class="form-label">Room</label>
+        <input id="room" type="text" pInputText placeholder="Enter Room name" formControlName="room"
+          class="p-inputtext-sm" />
+        <small *ngIf="addTopicForm.get('room')?.hasError('required') && addTopicForm.get('room')?.touched"
+          class="p-error">
+          Room Name is required
+        </small>
+      </div>
+
+      <div class="field d-flex flex-column gap-2">
+        <label for="topic" class="form-label">Topic Name</label>
+        <input id="topic" type="text" pInputText placeholder="Enter topic name" formControlName="topicName"
+          class="p-inputtext-sm" />
+        <small *ngIf="addTopicForm.get('topicName')?.hasError('required') && addTopicForm.get('topicName')?.touched"
+          class="p-error">
+          Topic Name is required
+        </small>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [disabled]="addTopicForm.invalid" (click)="onSave()">Save</button>
+  </div>
+</app-state-section>

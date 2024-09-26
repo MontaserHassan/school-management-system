@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { Router } from '@angular/router';
+import { UserRoleService } from '../../../shared/services/auth/user-role.service';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { User } from '../../../shared/models/user.model';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,16 +13,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent {
-
   items!: MenuItem[];
+  user!: User
 
-  constructor(private router:Router) { }
+  constructor(private router: Router, private userRoleService: UserRoleService) { }
 
   ngOnInit() {
     this.items = [
       {
         label: 'Users',
         icon: 'pi pi-user',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_USER),
         items: [
           {
             label: 'Users List',
@@ -39,6 +44,7 @@ export class SideNavComponent {
       {
         label: 'Subjects',
         icon: 'pi pi-book',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_SUBJECT),
         items: [
           {
             label: 'Subjects List',
@@ -59,6 +65,7 @@ export class SideNavComponent {
       {
         label: 'Class Rooms',
         icon: 'pi pi-users',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_CLASS_ROOM),
         items: [
           {
             label: 'Class Rooms List',
@@ -77,8 +84,17 @@ export class SideNavComponent {
         ]
       },
       {
+        label: 'topics',
+        icon: 'pi pi-clipboard',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_CLASS_ROOM),
+        command: () => {
+          this.router.navigate([RoutesUtil.TopicsList.url()]);
+        }
+      },
+      {
         label: 'Students',
         icon: 'pi pi-graduation-cap',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_STUDENT),
         items: [
           {
             label: 'Students List',
@@ -99,6 +115,7 @@ export class SideNavComponent {
       {
         label: 'Schools',
         icon: 'pi pi-building-columns',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_SCHOOL),
         items: [
           {
             label: 'Schools List',

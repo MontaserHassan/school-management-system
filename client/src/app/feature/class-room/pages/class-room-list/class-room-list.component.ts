@@ -22,7 +22,7 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
 
   getClassRoomList(): void {
     this.load(this.classRoomService.getClassRoomList(),{isLoadingTransparent: true}).subscribe((response) => {
-      this.classrooms = response?.subjectRooms || []
+      this.classrooms = response?.rooms || []
     })
   }
 
