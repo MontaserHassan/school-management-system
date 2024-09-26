@@ -1,34 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Topic } from '../../models/topic.model';
+import { BaseComponent } from '../../../shared/component/base-component/base.component';
+import { ClassRoomService } from '../../services/class-room.service';
 
 @Component({
   selector: 'app-topic-list',
   templateUrl: './topic-list.component.html',
   styleUrls: ['./topic-list.component.scss']
 })
-export class TopicListComponent implements OnInit {
- topics = [
-    {
-      "_id": "hu3ZlD6_LJ8Wd1-YLrbZleJw",
-      "topicName": "fr letter",
-      "createdAt": "2024-09-22T13:52:23.075Z",
-      "updatedAt": "2024-09-22T13:52:23.075Z"
-    },
-    {
-      "_id": "asdL3lD6_LJ8Wd1-YLrbZleJK",
-      "topicName": "math operations",
-      "createdAt": "2024-09-20T10:22:43.075Z",
-      "updatedAt": "2024-09-20T10:22:43.075Z"
-    }
-  ];
+export class TopicListComponent extends BaseComponent implements OnInit {
+  topics!: Topic[]
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private classRoomService: ClassRoomService) {
+    super();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTopics()
+  }
 
-  addTopic(): void {
-    console.log('Add New Topic');
+  getTopics(): void {
+    this.load(this.classRoomService.getTopics(), { isLoadingTransparent: true }).subscribe((response) => {
+      this.topics = response.topics || [];
+    })
   }
 
   openAddTopicDialog(): void {
@@ -39,6 +35,7 @@ export class TopicListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.getTopics()
       }
     });
   }

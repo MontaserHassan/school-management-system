@@ -7,6 +7,7 @@ import { AddClassRoomComponent } from './pages/add-class-room/add-class-room.com
 import { ClassRoomListComponent } from './pages/class-room-list/class-room-list.component';
 import { AddTopicDialogComponent } from './component/add-topic-dialog/add-topic-dialog.component';
 import { TopicListComponent } from './pages/topic-list/topic-list.component';
+import { AddStudentToClassRoomDialogComponent } from './component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TopicListComponent } from './pages/topic-list/topic-list.component';
     AddClassRoomComponent,
     ClassRoomListComponent,
     AddTopicDialogComponent,
-    TopicListComponent
+    TopicListComponent,
+    AddStudentToClassRoomDialogComponent
   ],
   imports: [
     CommonModule, SharedModule, CLassRoomRoutingModule,

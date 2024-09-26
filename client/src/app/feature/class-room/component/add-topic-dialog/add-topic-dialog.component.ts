@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { ClassRoomService } from '../../services/class-room.service';
+import { Lookup } from '../../../shared/enums/lookup.enum';
 
 @Component({
   selector: 'app-add-topic-dialog',
@@ -11,10 +12,12 @@ import { ClassRoomService } from '../../services/class-room.service';
 })
 export class AddTopicDialogComponent  extends BaseComponent implements OnInit {
   addTopicForm!: FormGroup;
+  protected Lookup = Lookup;
 
   ngOnInit(): void {
     this.addTopicForm = this.fb.group({
-      room: [this.data?.classRoomId || '', Validators.required],
+      room: [this.data?.classRoomId ?  {label: this.data?.classRoomId } : '', Validators.required],
+      subjectId: ["", Validators.required],
       topicName: ['', Validators.required]
     });
   }
@@ -30,7 +33,14 @@ export class AddTopicDialogComponent  extends BaseComponent implements OnInit {
 
   onSave(): void {
     if (this.addTopicForm.valid) {
-      this.load(this.classRoomService.addTopic(this.addTopicForm.value), {isLoadingTransparent: true}).subscribe(res => {
+      const subjectId = this.addTopicForm.get('subjectId')?.value.value;
+      const room = this.addTopicForm.get('room')?.value.label;
+      const payload ={
+        ...this.addTopicForm.value,
+        room,
+        subjectId: subjectId,
+      }
+      this.load(this.classRoomService.addTopic(payload), {isLoadingTransparent: true}).subscribe(res => {
         this.dialogRef.close(res);
       })
     }

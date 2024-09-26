@@ -7,6 +7,7 @@ import { map, Observable } from 'rxjs';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
 import { ClassRoom, ClassRoomResponse } from '../models/class-room.model';
 import { Topic, TopicList } from '../models/topic.model';
+import { Student } from '../../student/models/student.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ constructor(
     )
   }
 
-  addTopic(body: {classRoomId:string,topicName:string}):Observable<Topic> {
+  addTopic(body: {classRoomId:string,topicName:string , subjectId:string}):Observable<Topic> {
     return this.baseAPI.post(ApiConstant.ADD_TOPIC, body).pipe(
       map((res) => this.mapper.fromJson(Topic, res.data.topic))
     )
@@ -44,6 +45,12 @@ constructor(
   getTopics():Observable<TopicList> {
     return this.baseAPI.get(ApiConstant.GET_TOPICS).pipe(
       map((res) => this.mapper.fromJson(TopicList, res.data))
+    )
+  }
+
+  addStudentToClassRoom(body: {students:string[],classRoom:string}):Observable<Student> {
+    return this.baseAPI.post(ApiConstant.ADD_STUDENT_TO_CLASS, body).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.students))
     )
   }
 }

@@ -11,7 +11,7 @@
     </ng-template>
 
     <div class="topics-grid row g-4">
-      <div *ngFor="let topic of topics" class="topic-card col-12 col-md-3">
+      <div *ngFor="let topic of topics" class="topic-card col-12 col-md-4">
         <p-card>
           <ng-template pTemplate="header">
             <div class="topic-header">
@@ -21,6 +21,8 @@
 
           <ng-template pTemplate="content">
             <div class="d-flex flex-column">
+              <small><strong>Subject:</strong> {{ topic.subject?.subjectName }}</small>
+              <small><strong>Class Room:</strong> {{ topic.classRoom }}</small>
               <small><strong>Created At:</strong> {{ topic.createdAt | date: 'medium' }}</small>
               <small><strong>Last Updated:</strong> {{ topic.updatedAt | date: 'medium' }}</small>
             </div>

@@ -8,11 +8,21 @@
 
       <div class="field d-flex flex-column gap-2" *ngIf="data.addRoom">
         <label for="room" class="form-label">Room</label>
-        <input id="room" type="text" pInputText placeholder="Enter Room name" formControlName="room"
-          class="p-inputtext-sm" />
+        <app-lazy-dropdown [lookup]="Lookup.ClassRooms" formControlName="room"
+          placeholder="Enter Room name"></app-lazy-dropdown>
         <small *ngIf="addTopicForm.get('room')?.hasError('required') && addTopicForm.get('room')?.touched"
           class="p-error">
           Room Name is required
+        </small>
+      </div>
+
+      <div class="field d-flex flex-column gap-2">
+        <label for="room" class="form-label">Subject</label>
+        <app-lazy-dropdown [lookup]="Lookup.Subjects" formControlName="subjectId"
+          placeholder="Enter Subject name"></app-lazy-dropdown>
+        <small *ngIf="addTopicForm.get('subjectId')?.hasError('required') && addTopicForm.get('subjectId')?.touched"
+          class="p-error">
+          subject is required
         </small>
       </div>
 

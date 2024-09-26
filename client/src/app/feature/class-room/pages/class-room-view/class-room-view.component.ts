@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClassRoom } from '../../models/class-room.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
+import { AddStudentToClassRoomDialogComponent } from '../../component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 
 @Component({
   selector: 'app-class-room-view',
@@ -46,6 +47,20 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
         this.getClassRoomDetails(this.id)
       }
     });
+  }
+
+
+  openAddStudentDialog(): void {
+    const dialogRef = this.dialog.open(AddStudentToClassRoomDialogComponent, {
+      width: '400px',
+      data: { classRoomId: this.classroom.room }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getClassRoomDetails(this.id)
+      }
+    })
   }
 }
 

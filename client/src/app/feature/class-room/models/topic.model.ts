@@ -2,6 +2,7 @@ import { Expose } from "class-transformer";
 import exp from "constants";
 import e from "express";
 import { list } from "../../shared/models/list";
+import { Subject } from "../../student/models/student.model";
 
 export class Topic{
   @Expose()
@@ -18,6 +19,12 @@ export class Topic{
 
   @Expose()
   updatedAt?: Date;
+
+  @Expose()
+  classRoom?: string;
+
+  @Expose()
+  subject?: Subject
 }
 
 

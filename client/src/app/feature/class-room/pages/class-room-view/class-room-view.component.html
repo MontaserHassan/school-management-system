@@ -76,7 +76,13 @@
           <p-table [value]="classroom.students || []">
             <ng-template pTemplate="header">
               <tr>
-                <th>Student Name</th>
+                <th>
+                  <div class="d-flex align-items-center">
+                    <span class="m-0">Student Name</span>
+                    <button pButton icon="pi pi-plus" class="m-0 mx-2" [rounded]="true" [outlined]="true"
+                      severity="secondary" (click)="openAddStudentDialog()" type="button"></button>
+                  </div>
+                </th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-student>
