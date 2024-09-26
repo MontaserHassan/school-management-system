@@ -5,7 +5,7 @@ import { ClassRoom, ClassRoomModel } from "../Models/class-room.model";
 // ----------------------------- create subject room -----------------------------
 
 
-const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, mainTopics: { topicId: string, topicName: string }[], schoolId: string) => {
+const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, currencyOfCost: string, mainTopics: { topicId: string, topicName: string }[], schoolId: string) => {
 
     const newClassRoom: ClassRoomModel = new ClassRoom({
         room: room,
@@ -14,6 +14,7 @@ const createClassRoom = async (room: string, group: string, teachers: { teacherI
         schedule: schedule,
         mainTopics: mainTopics,
         studentCost: studentCost,
+        currencyOfCost: currencyOfCost,
         schoolId: schoolId,
     });
     await newClassRoom.save();
@@ -34,9 +35,10 @@ const addStudent = async (room: string, students: { studentId: string, studentNa
 
 
 const addTeacher = async (room: string, teacher: { teacherId: string, teacherName: string }) => {
-    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { teachers: teacher, }, });
+    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { teachers: teacher, }, }, { new: true });
     return newClassRoomData;
 };
+
 
 // ----------------------------- add topic -----------------------------
 
@@ -105,7 +107,6 @@ const getStudentsByTeacherId = async (teacherId: string) => {
 };
 
 
-
 // ----------------------------- total document -----------------------------
 
 
@@ -133,11 +134,29 @@ const find = async () => {
 };
 
 
+// ----------------------------- update room -----------------------------
+
+
+const updateRoom = async (room: string, updatedData: any) => {
+    const updatedRoom: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { updatedData }, { new: true }).select('-__v');
+    return updatedRoom;
+};
+
+
+// ----------------------------- update schedule -----------------------------
+
+
+const updateScheduleDay = async (room: string, schedule: any) => {
+    const updatedRoom: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room, 'schedule.day': schedule.day }, { $set: { 'schedule.$': schedule } }, { new: true, upsert: true }).select('-__v');
+    return updatedRoom;
+};
+
+
 // ----------------------------- delete room -----------------------------
 
 
-const deleteRoom = async (room: string) => {
-    const deletedRoom: ClassRoomModel = await ClassRoom.findOneAndDelete({ room }).select('-__v');
+const deleteRoom = async (roomId: string) => {
+    const deletedRoom: ClassRoomModel = await ClassRoom.findByIdAndDelete(roomId).select('-__v');
     return deletedRoom;
 };
 
@@ -157,5 +176,7 @@ export default {
     totalDocument,
     find,
     findWithPagination,
+    updateRoom,
+    updateScheduleDay,
     deleteRoom,
 };

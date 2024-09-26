@@ -94,6 +94,9 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
         } else if (targetData === 'attendanceStatus') {
             const lookups = await lookupService.getByMasterCodeAndParent('5');
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'currency') {
+            const lookups = await lookupService.getByMasterCodeAndParent('6');
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
         } else {
             throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         };

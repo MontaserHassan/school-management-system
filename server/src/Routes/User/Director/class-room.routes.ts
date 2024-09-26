@@ -10,13 +10,9 @@ import { classRoomValidator } from '../../../Validations/class-room.validation';
 const classRoomRouter = express.Router();
 
 
-// classRoomRouter.post('/', validation(classRoomValidator.createClassRoom), classRoomController.createClassRoom);
-classRoomRouter.post('/addStudent', validation(classRoomValidator.addStudents), classRoomController.addStudent);
-classRoomRouter.post('/addTeacher', validation(classRoomValidator.addTeacher), classRoomController.addTeacher);
-// classRoomRouter.get('/', classRoomController.getAllRoom);
-// classRoomRouter.get('/:classRoom', validation(classRoomValidator.getRoom), classRoomController.getClassById);
-// classRoomRouter.get('/className/:classRoom', validation(classRoomValidator.getRoom), classRoomController.getClassByRoom);
-classRoomRouter.delete('/:classRoom', validation(classRoomValidator.deleteRoom), classRoomController.deleteClassRoom);
+// classRoomRouter.post('/addStudent', validation(classRoomValidator.addStudents), classRoomController.addStudent);
+// classRoomRouter.patch('/update-class', validation(classRoomValidator.addTeacher), classRoomController.updateClassRoom);
+// classRoomRouter.delete('/:classRoom', validation(classRoomValidator.deleteRoom), classRoomController.deleteClassRoom);
 
 
 

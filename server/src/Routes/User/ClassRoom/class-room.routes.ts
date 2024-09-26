@@ -10,9 +10,14 @@ import checkRole from '../../../Middlewares/check-role.middleware';
 const classRoomRouter = express.Router();
 
 
-classRoomRouter.post('/', checkRole(['director', 'admin']), validation(classRoomValidator.createClassRoom), classRoomController.createClassRoom);
 classRoomRouter.get('/', classRoomController.getAllRoom);
-classRoomRouter.get('/:classRoom', checkRole(['director', 'admin', 'teacher']), validation(classRoomValidator.getRoom), classRoomController.getClassById);
+classRoomRouter.get('/:classRoom', validation(classRoomValidator.getRoom), classRoomController.getClassById);
+
+classRoomRouter.post('/', checkRole(['director', 'admin']), validation(classRoomValidator.createClassRoom), classRoomController.createClassRoom);
+
+classRoomRouter.patch('/', checkRole(['director', 'admin']), validation(classRoomValidator.updateClassRoom), classRoomController.updateClassRoom);
+
+classRoomRouter.delete('/:room', checkRole(['admin']), validation(classRoomValidator.deleteRoom), classRoomController.deleteClassRoom);
 
 
 

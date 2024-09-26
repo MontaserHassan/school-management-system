@@ -14,12 +14,6 @@ const createStudent = async (studentName: string, parentId: string, schoolId: st
         studentName: studentName,
         parentId: parentId,
         studentCode: studentCode,
-        // group: group,
-        // classRoom: classRoom,
-        // subjects: subjects,
-        // mainTopics: mainTopics,
-        // studentCost: studentCost,
-        // currencyOfCost: currencyOfCost,
         schoolId: schoolId,
         media: media,
     });
@@ -98,6 +92,22 @@ const addProgressHistory = async (studentId: string, subjectId: string, status: 
 const addDegree = async (studentId: string, topicId: string, degree: string) => {
     const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.degree": degree } }, { new: true });
     return student;
+};
+
+
+// ----------------------------- get students by class room -----------------------------
+
+
+const getStudentsByClassRoom = async (room: string) => {
+    const students: StudentModel[] = await Student.find({ classRoom: room }).select('-__v');
+    return students;
+};
+
+
+
+const updateStudentByClassRoomData = async (studentId: string) => {
+    const students = await Student.findByIdAndUpdate(studentId, { $unset: { classRoom: "", subjects: [], mainTopics: [], attendance: [], studentCost: '', currencyOfCost: '', group: '' }, }, { new: true });
+    return students;
 };
 
 
@@ -182,6 +192,15 @@ const updateStudentData = async (studentId: string, updatedData: any) => {
 };
 
 
+// ----------------------------- delete students data related class -----------------------------
+
+
+const deleteStudentDataToClass = async (studentId: string) => {
+    const student: StudentModel = await Student.findByIdAndDelete(studentId);
+    return student;
+};
+
+
 // ----------------------------- delete student -----------------------------
 
 
@@ -204,6 +223,7 @@ export default {
     addDegree,
     totalDocument,
     findAllStudentsOfSchool,
+    getStudentsByClassRoom,
     getStudentById,
     getStudentsById,
     getStudentByStudentCode,
@@ -211,5 +231,7 @@ export default {
     getAllStudents,
     getStudents,
     updateStudentData,
+    updateStudentByClassRoomData,
     deleteStudent,
+    deleteStudentDataToClass,
 };
