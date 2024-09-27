@@ -7,6 +7,7 @@ interface MainTopicModel extends mongoose.Document {
     topicName: string;
     subject: { subjectId: string, subjectName: string }
     schoolId: string;
+    classRoom: string;
 };
 
 

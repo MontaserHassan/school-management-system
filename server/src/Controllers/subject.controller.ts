@@ -98,9 +98,9 @@ const updateSubjectData = async (req: Request, res: Response, next: NextFunction
     try {
         const { subjectId, subjectName, courseTime } = req.body;
         const isSubjectExisting = await subjectService.getById(subjectId);
+        if (!isSubjectExisting) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 404, "subject");
         const newSubjectName = !subjectName ? isSubjectExisting.subjectName : (subjectName).toLowerCase();
         const newCourseTime = !courseTime ? isSubjectExisting.courseTime : courseTime
-        if (!isSubjectExisting) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 404, "subject");
         const subject = await subjectService.updateById(subjectId, { subjectName: newSubjectName, courseTime: newCourseTime });
         if (!subject) throw new CustomError(errorSubjectMessage.NOT_UPDATED, 404, "subject");
         const response: IResponse = {

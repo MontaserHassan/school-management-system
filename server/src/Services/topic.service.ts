@@ -75,8 +75,8 @@ const findWithPagination = async (schoolId: string, limit: number, skip: number)
 // ----------------------------- find all  -----------------------------
 
 
-const find = async () => {
-    const mainTopic: MainTopicModel[] = await MainTopic.find().select('-__v');
+const getAllTopicsLookups = async (schoolId: string) => {
+    const mainTopic: MainTopicModel[] = await MainTopic.find({ schoolId }).select('-__v');
     return mainTopic;
 };
 
@@ -107,7 +107,7 @@ export default {
     getByNameAndClassRoom,
     getTopicsById,
     totalDocument,
-    find,
+    getAllTopicsLookups,
     findWithPagination,
     updateById,
     deleteTopic,

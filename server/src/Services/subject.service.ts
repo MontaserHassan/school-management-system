@@ -58,8 +58,8 @@ const findWithPagination = async (schoolId: string, limit: number, skip: number)
 // ----------------------------- get all subject -----------------------------
 
 
-const getAllSubjects = async () => {
-    const subjects: SubjectModel[] = await Subject.find().select('_id subjectName');
+const getAllSubjectsLookups = async (schoolId: string) => {
+    const subjects: SubjectModel[] = await Subject.find({ schoolId }).select('_id subjectName');
     return subjects;
 };
 
@@ -88,7 +88,7 @@ export default {
     getById,
     getByName,
     totalDocument,
-    getAllSubjects,
+    getAllSubjectsLookups,
     findWithPagination,
     updateById,
     deleteSubject,

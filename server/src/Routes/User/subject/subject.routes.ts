@@ -13,7 +13,7 @@ const subjectRouter = express.Router();
 subjectRouter.post('/', validation(subjectValidator.createSubject), subjectController.createSubject);
 subjectRouter.get('/', subjectController.getAllSubject);
 subjectRouter.get('/:subjectId', validation(subjectValidator.getSubject), subjectController.getSubjectData);
-subjectRouter.delete('/:subjectId', validation(subjectValidator.deleteSubject), subjectController.deleteSubject)
+subjectRouter.patch('/', validation(subjectValidator.updateSubject), subjectController.updateSubjectData);
 
 
 

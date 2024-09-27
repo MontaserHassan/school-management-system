@@ -44,6 +44,8 @@ const createLookupsDetails = async (req: Request, res: Response, next: NextFunct
 const getLookups = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { lookups } = req.params;
+        const { existClassRoom } = req.query;
+        const { schoolId } = req.user;
         const targetData = lookups;
         let lookupsData;
         if (targetData === 'roles') {
@@ -56,31 +58,24 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
                 throw new CustomError(errorLookupMessage.UNAUTHORIZED_ACCESS_LOOKUPS, 403, 'lookup');
             };
         } else if (targetData === 'students') {
-            // const totalStudents = await studentService.totalDocument();
-            // const paginateData = pagination(totalStudents, Number(page));
-            // const lookups = await studentService.findAllStudentsOfSchool(paginateData.limit, paginateData.skip);
-            const lookups = await studentService.getAllStudents();
+            let lookups;
+            if (existClassRoom && existClassRoom === 'true') {
+                lookups = await studentService.getAllStudentsLookups(schoolId, true);
+            } else {
+                lookups = await studentService.getAllStudentsLookups(schoolId, false);
+            };
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.studentName } });
         } else if (targetData === 'subjects') {
-            // const totalSubjects = await subjectService.totalDocument();
-            // const paginateData = pagination(totalSubjects, Number(page));
-            // const lookups = await subjectService.findWithPagination(paginateData.limit, paginateData.skip);
-            const lookups = await subjectService.getAllSubjects();
+            const lookups = await subjectService.getAllSubjectsLookups(schoolId);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.subjectName } });
         } else if (targetData === 'topics') {
-            // const totalTopics = await topicService.totalDocument();
-            // const paginateData = pagination(totalTopics, Number(page));
-            // const lookups = await topicService.findWithPagination(paginateData.limit, paginateData.skip);
-            const lookups = await topicService.find();
+            const lookups = await topicService.getAllTopicsLookups(schoolId);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.topicName } });
         } else if (targetData === 'schools') {
-            // const totalSchools = await schoolService.totalDocument();
-            // const paginateData = pagination(totalSchools, Number(page));
-            // const lookups = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
             const lookups = await schoolService.getAllSchools();
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.schoolName } });
         } else if (targetData === 'classRooms') {
-            const lookups = await classRoomService.find();
+            const lookups = await classRoomService.getAllClassRoomLookups(schoolId);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.room } });
         } else if (targetData === 'groups') {
             const lookups = await lookupService.getByMasterCodeAndParent('2');

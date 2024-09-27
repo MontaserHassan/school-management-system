@@ -177,8 +177,10 @@ const getStudents = async (schoolId: string) => {
 // ----------------------------- get all students -----------------------------
 
 
-const getAllStudents = async () => {
-    const students: StudentModel[] = await Student.find().select('_id studentName studentCode');
+const getAllStudentsLookups = async (schoolId: string, existClassRoom?: boolean) => {
+    let query: any = { schoolId };
+    if (existClassRoom) query.classRoom = { $in: [null, ''] };
+    const students: StudentModel[] = await Student.find(query).select('_id studentName studentCode');
     return students;
 };
 
@@ -228,7 +230,7 @@ export default {
     getStudentsById,
     getStudentByStudentCode,
     getStudentsByStudentsCode,
-    getAllStudents,
+    getAllStudentsLookups,
     getStudents,
     updateStudentData,
     updateStudentByClassRoomData,

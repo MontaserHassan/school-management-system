@@ -128,8 +128,8 @@ const findWithPagination = async (schoolId: string, limit: number, skip: number)
 // ----------------------------- get all -----------------------------
 
 
-const find = async () => {
-    const classRooms: ClassRoomModel[] = await ClassRoom.find().select('-__v');
+const getAllClassRoomLookups = async (schoolId: string) => {
+    const classRooms: ClassRoomModel[] = await ClassRoom.find({ schoolId }).select('-__v');
     return classRooms;
 };
 
@@ -174,7 +174,7 @@ export default {
     addTeacher,
     addTopic,
     totalDocument,
-    find,
+    getAllClassRoomLookups,
     findWithPagination,
     updateRoom,
     updateScheduleDay,
