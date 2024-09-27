@@ -148,10 +148,13 @@ const getClassByRoom = async (req: Request, res: Response, next: NextFunction) =
 const getClassById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { classRoom } = req.params;
-        const { schoolId, userId } = req.user;
+        const { schoolId, role } = req.user;
         const classRoomData = await classRoomService.getById(classRoom);
         if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         if (classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.ROOM_NOT_SCHOOL, 404, "school");
+        if (role === "teacher") {
+            if (!classRoomData.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
+        };
         // if (classRoomData.teachers.some(teacher => teacher.teacherId.toString() !== userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
         const response: IResponse = {
             type: "info",
