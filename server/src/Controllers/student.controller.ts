@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, progressHistoryService, studentService, subjectService, userService } from "../Services/index.service";
+import { classRoomService, lookupService, progressHistoryService, studentService, topicService } from "../Services/index.service";
 import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, errorTopicMessage, successStudentMessage, successSubjectMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -164,10 +164,19 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
         if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
-        const progressHistoryStatus = await lookupService.getById(status);
-        const updatedStudent = await studentService.addProgressHistory(studentId, subjectId, progressHistoryStatus.lookupName);
+        const updatedStudent = await studentService.addProgressStatus(studentId, subjectId, progressStatus.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
-        if (progressHistoryStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, subjectId, subjectExists.subjectName, status, true)
+        const topics = await Promise.all(student.mainTopics.map(async (topic) => {
+            const topicsForSubject = await topicService.getBySubjectId(subjectId);
+            const filteredTopics = topicsForSubject.filter((t) => t._id === topic.topicId);
+            return filteredTopics.map((filteredTopic) => ({
+                topicId: filteredTopic._id,
+                topicName: filteredTopic.topicName,
+                degree: String(topic.degree) || 'blue',
+            }));
+        }));
+        const flattedTopics = topics.flat();
+        if (progressStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, subjectId, subjectExists.subjectName, flattedTopics, 'Completed', true)
         const response: IResponse = {
             type: "info",
             responseCode: 201,

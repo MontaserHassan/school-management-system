@@ -7,6 +7,7 @@ interface ProgressHistoryModel extends mongoose.Document {
     _id: string;
     studentId: string;
     subjectId: string;
+    topics: { topicId: string, topicName: string, degree: string }[];
     subjectName: string;
     status: string;
     completed: boolean;
@@ -33,13 +34,31 @@ const progressHistorySchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        topics: [
+            {
+                _id: false,
+                topicId: {
+                    type: String,
+                    ref: 'MainTopic',
+                    required: true,
+                },
+                topicName: {
+                    type: String,
+                    required: true,
+                },
+                degree: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
         completed: {
             type: Boolean,
             default: false,
         },
         status: {
             type: String,
-            enum: ['In Progress', 'Almost Done', 'Completed'],
+            required: true,
         },
     },
     {

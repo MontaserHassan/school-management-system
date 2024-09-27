@@ -80,7 +80,7 @@ const addTopic = async (studentId: string, topicId: string, topicName: string) =
 // ----------------------------- add new progress status -----------------------------
 
 
-const addProgressHistory = async (studentId: string, subjectId: string, status: string) => {
+const addProgressStatus = async (studentId: string, subjectId: string, status: string) => {
     const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "subjects.subjectId": subjectId }, { $set: { "subjects.$.progressStatus": status } }, { new: true });
     return student;
 };
@@ -221,7 +221,7 @@ export default {
     updateAttendanceByDate,
     addComment,
     isTeacherInClassroom,
-    addProgressHistory,
+    addProgressStatus,
     addDegree,
     totalDocument,
     findAllStudentsOfSchool,

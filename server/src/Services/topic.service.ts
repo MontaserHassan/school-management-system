@@ -35,6 +35,14 @@ const getByNameAndClassRoom = async (topicName: string, classRoom: string) => {
 };
 
 
+// ----------------------------- get by subject id -----------------------------
+
+
+const getBySubjectId = async (subjectId: string) => {
+    const topics: MainTopicModel[] = await MainTopic.find({ 'subject.subjectId': subjectId }).select('-__v');
+    return topics;
+};
+
 
 // ----------------------------- get by id -----------------------------
 
@@ -103,6 +111,7 @@ const deleteTopic = async (topicId: string) => {
 export default {
     createTopic,
     getById,
+    getBySubjectId,
     getByName,
     getByNameAndClassRoom,
     getTopicsById,

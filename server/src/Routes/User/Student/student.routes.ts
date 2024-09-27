@@ -1,7 +1,7 @@
 
 import express from 'express';
 
-import { studentController } from '../../../Controllers/index.controller';
+import { progressHistoryController, studentController } from '../../../Controllers/index.controller';
 import checkRole from '../../../Middlewares/check-role.middleware';
 import { mediaMediaHandler } from '../../../Middlewares/media.middleware';
 import { studentValidator } from '../../../Validations/student.validation';
@@ -17,7 +17,7 @@ authStudentRouter.post('/add-data', checkRole(['director', 'admin']), validation
 
 authStudentRouter.get('/', checkRole(['director', 'admin']), studentController.getAllStudents);
 authStudentRouter.get('/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), studentController.getStudent);
-authStudentRouter.get('/progress-history/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), validation(studentValidator.addProgressHistory), studentController.getProgressHistory);
+authStudentRouter.get('/progress-history/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), progressHistoryController.getStudentProgressHistory);
 
 authStudentRouter.patch('/attendance', checkRole(['teacher', 'director', 'admin']), validation(studentValidator.addAttendance), studentController.addAttendance);
 authStudentRouter.patch('/comment', checkRole(['teacher', 'director', 'admin']), mediaMediaHandler, validation(studentValidator.addComment), studentController.addComment);
