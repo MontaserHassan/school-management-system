@@ -10,12 +10,8 @@ import { studentValidator } from '../../Validations/student.validation';
 const authParentRouter = express.Router();
 
 
-// parent
 authParentRouter.use(checkRole(['parent']));
-authParentRouter.get('/', studentController.getStudent);
-authParentRouter.get('/:studentId', validation(studentValidator.getStudent), studentController.getStudent);
-authParentRouter.get('/progress-history/:studentId', validation(studentValidator.getStudent), progressHistoryController.getStudentProgressHistory);
-
+authParentRouter.get('/', studentController.getStudentsByParent);
 
 
 

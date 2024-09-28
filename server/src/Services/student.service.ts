@@ -174,6 +174,15 @@ const getStudents = async (schoolId: string) => {
 };
 
 
+// ----------------------------- get all students by parent id -----------------------------
+
+
+const getStudentsByParentId = async (parentId: string, schoolId: string) => {
+    const students: StudentModel[] = await Student.find({ schoolId, parentId });
+    return students;
+};
+
+
 // ----------------------------- get all students -----------------------------
 
 
@@ -228,6 +237,7 @@ export default {
     getStudentsByClassRoom,
     getStudentById,
     getStudentsById,
+    getStudentsByParentId,
     getStudentByStudentCode,
     getStudentsByStudentsCode,
     getAllStudentsLookups,

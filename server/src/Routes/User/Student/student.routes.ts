@@ -16,6 +16,7 @@ authStudentRouter.post('/', checkRole(['director', 'admin']), validation(student
 authStudentRouter.post('/add-data', checkRole(['director', 'admin']), validation(studentValidator.addMoreDataToStudent), studentController.addStudentToClass);
 
 authStudentRouter.get('/', checkRole(['director', 'admin']), studentController.getAllStudents);
+authStudentRouter.get('/parent', checkRole(['parent',]), studentController.getStudentsByParent);
 authStudentRouter.get('/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), studentController.getStudent);
 authStudentRouter.get('/progress-history/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), progressHistoryController.getStudentProgressHistory);
 

@@ -243,7 +243,10 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
         const student = await studentService.getStudentById(studentId);
         if (!student || student.schoolId !== schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const getClassRoom = await classRoomService.getByRoom(student.classRoom);
-        if (role === "teacher" && getClassRoom?.teachers.some(teacher => teacher.teacherId.toString() !== userId)) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
+        if (role === "teacher") {
+            const isTeacherInClass = getClassRoom.teachers.some(teacher => teacher.teacherId.toString() === userId);
+            if (!isTeacherInClass) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -341,6 +344,30 @@ const getStudentsByClassRoom = async (req: Request, res: Response, next: NextFun
 };
 
 
+// ----------------------------- get all students of class room -----------------------------
+
+
+const getStudentsByParent = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { userId, schoolId } = req.user;
+        const students = await studentService.getStudentsByParentId(userId, schoolId);
+        if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successStudentMessage.GET_PROFILE,
+            data: {
+                students: students,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
 // ----------------------------- update student -----------------------------
 
 
@@ -405,6 +432,7 @@ export default {
     getStudent,
     getAllStudents,
     updateStudentData,
+    getStudentsByParent,
     deleteStudent,
     getStudentsOfTeacher,
     getStudentsByClassRoom,
