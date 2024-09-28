@@ -349,8 +349,9 @@ const getStudentsByClassRoom = async (req: Request, res: Response, next: NextFun
 
 const getStudentsByParent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId, schoolId } = req.user;
-        const students = await studentService.getStudentsByParentId(userId, schoolId);
+        const { schoolId } = req.user;
+        const { parentId } = req.params;
+        const students = await studentService.getStudentsByParentId(parentId, schoolId);
         if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const response: IResponse = {
             type: "info",
