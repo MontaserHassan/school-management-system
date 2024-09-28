@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"superAdmin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"parent4@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1064,7 +1064,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"students\": [\n        {\n            \"studentName\": \"Sophia Hassan\",\n            \"parentId\": \"nvyHMsTeoBkcuj1-7sJhp\",\n            \"media\": \"\"\n        }\n    ]\n    //\"parentCode\": \"L1631350\"\n}",
+							"raw": "{\n    \"students\": [\n        {\n            \"studentName\": \"Sophia Hassan\",\n            \"parentId\": \"nvyHMsTeoBkcuj1-7sJhp\",\n            \"media\": \"\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1134,7 +1134,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIwMjIyMmEzNWRmZDI2NTBmNzBkNjgwNGIiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzIxNzY5MSwiZXhwIjoxNzI3MzA0MDkxfQ.FzyiIqO_43zuJfqDo5C14NVtpbpth5ZCmO0hoI5Gwp8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlYzk3MGQzOTBjODk5MmU1ZmNmNTk0N2QiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc1NDI1ODQsImV4cCI6MTcyNzYyODk4NH0.WbI5IQ7ipdp2gM5Cvu3KCwHRFjp4jNeKDAZ4F_3swkk",
 									"type": "string"
 								}
 							]
@@ -1151,14 +1151,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/student/eRtxL3QXBzdaDlxHlhdNPfGj",
+							"raw": "{{SchoolManagementSystem}}/user/student/b8kTHrSvh_x-e0CLQZTM3NtO",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"student",
-								"eRtxL3QXBzdaDlxHlhdNPfGj"
+								"b8kTHrSvh_x-e0CLQZTM3NtO"
 							]
 						}
 					},
@@ -1215,7 +1215,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzOTNlZjE0ZjRmZDcyMTdmOWUxOGE1OWYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjcyODg5MzEsImV4cCI6MTcyNzM3NTMzMX0.jmrErA5ZAjo7dW1Dtvuo65ThdRjZUBdfHrLpngziYgM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IndwcjdWQzNSMlFoMXVaLWJXRGEyRyIsImVtYWlsIjoidGVhY2hlcjJAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI2NjEwZjNmMjY5M2U4Mzg5NzBkYmVjNWQiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJSNzg3IiwiaWF0IjoxNzI3NTQxOTE2LCJleHAiOjE3Mjc2MjgzMTZ9.MNBIjuGJrpMJUnqUuDbG7t6eQ--_kOi4JHByc_Q-fk8",
 									"type": "string"
 								}
 							]
@@ -1231,6 +1231,92 @@
 								"user",
 								"student",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get students by parent id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IloxVVh4ejdvV1l2QnB5MmU3cHFQUSIsImVtYWlsIjoicGFyZW50NEBnbWFpbC5jb20iLCJzY2hvb2xJZCI6IkhRaVBPX292eU5XcHhtOGxTSFpQeFVVOCIsInNlY3JldEtleSI6ImMzM2E5MTg0NDQ1Y2Q5NzFlYzdmM2ZmZiIsInJvbGUiOiJwYXJlbnQiLCJjb2RlIjoiRDcwNTE3ODgiLCJpYXQiOjE3Mjc1NDM0NzMsImV4cCI6MTcyNzYyOTg3M30.dYarLTfqJ7moNHc6xs6pedTqPRLc6GaSBWPxLLDNlnQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/parent",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"parent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "parent",
+			"item": [
+				{
+					"name": "get students by parent id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlYzk3MGQzOTBjODk5MmU1ZmNmNTk0N2QiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc1NDI1ODQsImV4cCI6MTcyNzYyODk4NH0.WbI5IQ7ipdp2gM5Cvu3KCwHRFjp4jNeKDAZ4F_3swkk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/parent/Z1UXxz7oWYvBpy2e7pqPQ",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"parent",
+								"Z1UXxz7oWYvBpy2e7pqPQ"
 							]
 						}
 					},
