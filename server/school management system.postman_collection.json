@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"parent4@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -287,7 +287,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlMjNlNzBmY2M0ZWJiZjAxOTcyODUxYTYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY5MjEzNDYsImV4cCI6MTcyNzAwNzc0Nn0.eoKQAMAO8tn9JpABrKm8tFilAkdCq_4N-N1_W3MezoY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlYzk3MGQzOTBjODk5MmU1ZmNmNTk0N2QiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc1NDI1ODQsImV4cCI6MTcyNzYyODk4NH0.WbI5IQ7ipdp2gM5Cvu3KCwHRFjp4jNeKDAZ4F_3swkk",
 									"type": "string"
 								}
 							]
@@ -302,13 +302,23 @@
 							}
 						],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/user-list",
+							"raw": "{{SchoolManagementSystem}}/user/user-list?page=1&limit=4",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"user-list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								}
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -1151,14 +1161,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/student/b8kTHrSvh_x-e0CLQZTM3NtO",
+							"raw": "{{SchoolManagementSystem}}/user/student/eRtxL3QXBzdaDlxHlhdNPfGj",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"student",
-								"b8kTHrSvh_x-e0CLQZTM3NtO"
+								"eRtxL3QXBzdaDlxHlhdNPfGj"
 							]
 						}
 					},
@@ -1660,7 +1670,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIwMWRjOGRlYjE1MjAyYWM5OTY1YmIxMjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0MDMwOTUsImV4cCI6MTcyNjQxNzQ5NX0.Q9xX36UYdRI7OxNXuvMthSiZMdqxn9L859nl3NUT1e0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlYzk3MGQzOTBjODk5MmU1ZmNmNTk0N2QiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc1NDI1ODQsImV4cCI6MTcyNzYyODk4NH0.WbI5IQ7ipdp2gM5Cvu3KCwHRFjp4jNeKDAZ4F_3swkk",
 									"type": "string"
 								}
 							]
@@ -1768,7 +1778,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzOTNlZjE0ZjRmZDcyMTdmOWUxOGE1OWYiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjcyODg5MzEsImV4cCI6MTcyNzM3NTMzMX0.jmrErA5ZAjo7dW1Dtvuo65ThdRjZUBdfHrLpngziYgM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlYzk3MGQzOTBjODk5MmU1ZmNmNTk0N2QiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc1NDI1ODQsImV4cCI6MTcyNzYyODk4NH0.WbI5IQ7ipdp2gM5Cvu3KCwHRFjp4jNeKDAZ4F_3swkk",
 									"type": "string"
 								}
 							]
@@ -1776,7 +1786,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/class-room?page=1",
+							"raw": "{{SchoolManagement}}/user/class-room?page=1&limit=1",
 							"host": [
 								"{{SchoolManagement}}"
 							],
@@ -1787,6 +1797,10 @@
 							"query": [
 								{
 									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
 									"value": "1"
 								}
 							]

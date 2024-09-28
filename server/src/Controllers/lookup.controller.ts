@@ -124,7 +124,7 @@ const getUsersBySpecificData = async (req: Request, res: Response, next: NextFun
             const lookups = await userService.findUserByRole(String("admin"));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (schoolId !== "superAdmin" && req.user.role === 'admin' && !role) {
-            const lookups = await userService.findAllUserOfSchool(String(schoolId));
+            const lookups = await userService.findAllUserOfSchoolLookup(String(schoolId));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (role && schoolId !== "superAdmin") {
             const lookups = await userService.findSpecificUserOfSchool(String(role), String(schoolId));

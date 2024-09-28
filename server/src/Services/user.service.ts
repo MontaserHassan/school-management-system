@@ -47,8 +47,14 @@ const totalDocument = async (condition?: string, value?: string) => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findAllUserOfSchool = async (schoolId: string) => {
+const findAllUserOfSchoolLookup = async (schoolId: string) => {
     const users: UserModel[] = await User.find({ schoolId }).select('-__v');
+    return users;
+};
+
+
+const findAllUserOfSchool = async (schoolId: string, limit: number, skip: number) => {
+    const users: UserModel[] = await User.find({ schoolId }).limit(limit).skip(skip).select('-__v');
     return users;
 };
 
@@ -171,6 +177,7 @@ export default {
     createUser,
     totalDocument,
     findAllUserOfSchool,
+    findAllUserOfSchoolLookup,
     findUserByRole,
     findSpecificUserOfSchool,
     findUserById,

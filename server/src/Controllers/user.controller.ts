@@ -256,7 +256,7 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
         const totalSchools = await userService.totalDocument("schoolId", schoolId);
         const paginateData = pagination(totalSchools, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const users = await userService.findAllUserOfSchool(schoolId);
+        const users = await userService.findAllUserOfSchool(schoolId, paginateData.limit, paginateData.skip);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
