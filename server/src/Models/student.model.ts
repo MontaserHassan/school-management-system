@@ -45,6 +45,7 @@ interface StudentModel extends mongoose.Document {
     studentCost?: string;
     currencyOfCost?: string;
     media: string;
+    progressHistory?: any
 };
 
 
