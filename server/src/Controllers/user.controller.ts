@@ -193,12 +193,12 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const updateUserPassword = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId } = req.user;
-        const { oldPassword, newPassword } = req.body;
-        if (oldPassword === newPassword) throw new CustomError(ErrorUserMessage.SAME_PASSWORD, 406, "password");
-        const isVerifyPassword = await userService.verifyPassword(userId, oldPassword);
-        if (!isVerifyPassword) throw new CustomError(ErrorUserMessage.WRONG_CREDENTIALS, 401, "email or password");
-        const updatedUser = await userService.updateUserPassword(userId, newPassword);
+        const { schoolId } = req.user;
+        const { userId } = req.body;
+        const checkUser = await userService.getById(userId);
+        if (!checkUser) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
+        if (checkUser.schoolId !== schoolId) throw new CustomError(ErrorUserMessage.NOT_SAME_SCHOOL, 406, "user");
+        const updatedUser = await userService.updateUser(userId, { updatePassword: true });
         if (!updatedUser) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
             type: "info",

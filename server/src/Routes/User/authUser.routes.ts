@@ -21,7 +21,7 @@ authUserRouter.post('/add-parent', checkRole(['director', 'admin']), validation(
 authUserRouter.post('/logout', userController.logoutUser);
 
 authUserRouter.patch('/', validation(userValidator.updateUser), userController.updateUser);
-authUserRouter.patch('/update-password', validation(userValidator.updatePassword), userController.updateUserPassword);
+authUserRouter.patch('/update-password', checkRole(['superAdmin', 'admin']), validation(userValidator.updatePassword), userController.updateUserPassword);
 
 
 

@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"parent4@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"superAdmin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -506,7 +506,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"oldPassword\": \"M0nT@ser\",\n    \"newPassword\": \"M0nT*A*ser\"\n}",
+							"raw": "{\n    \"userId\": \"11111111\",\n}",
 							"options": {
 								"raw": {
 									"language": "json"
