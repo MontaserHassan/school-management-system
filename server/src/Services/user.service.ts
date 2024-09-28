@@ -47,8 +47,8 @@ const totalDocument = async (condition?: string, value?: string) => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findAllUserOfSchool = async (limit: number, skip: number, schoolId: string) => {
-    const users: UserModel[] = await User.find({ schoolId }).limit(limit).skip(skip).select('-__v');
+const findAllUserOfSchool = async (schoolId: string) => {
+    const users: UserModel[] = await User.find({ schoolId }).select('-__v');
     return users;
 };
 
@@ -56,8 +56,8 @@ const findAllUserOfSchool = async (limit: number, skip: number, schoolId: string
 // ----------------------------- find specific user at school -----------------------------
 
 
-const findSpecificUserOfSchool = async (limit: number, skip: number, role: string, schoolId: string) => {
-    const users: UserModel[] = await User.find({ role: role, schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
+const findSpecificUserOfSchool = async (role: string, schoolId: string) => {
+    const users: UserModel[] = await User.find({ role: role, schoolId: schoolId }).select('-__v');
     return users;
 };
 
@@ -65,8 +65,8 @@ const findSpecificUserOfSchool = async (limit: number, skip: number, role: strin
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findUserByRole = async (limit: number, skip: number, role: string) => {
-    const users: UserModel[] = await User.find({ role: role }).limit(limit).skip(skip).select('-__v');
+const findUserByRole = async (role: string) => {
+    const users: UserModel[] = await User.find({ role: role }).select('-__v');
     return users;
 };
 

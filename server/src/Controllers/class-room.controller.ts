@@ -81,7 +81,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
 
 const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page } = req.query;
+        const { page, limit } = req.query;
         const { schoolId, role, userId } = req.user;
         const rooms: ClassRoomModel[] = [];
         let paginateData;
@@ -91,7 +91,7 @@ const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
             rooms.push(teacherClassRoom);
         } else {
             const totalRooms = await classRoomService.totalDocument(schoolId);
-            paginateData = pagination(totalRooms, Number(page));
+            paginateData = pagination(totalRooms, Number(page), Number(limit));
             if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
             const getRooms = await classRoomService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
             if (!rooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");

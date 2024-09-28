@@ -268,10 +268,10 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page } = req.query;
+        const { page, limit } = req.query;
         const { schoolId } = req.user;
         const totalStudents = await studentService.totalDocument(schoolId);
-        const paginateData = pagination(totalStudents, Number(page));
+        const paginateData = pagination(totalStudents, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         const students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip);
         if (!students) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");

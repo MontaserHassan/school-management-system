@@ -251,12 +251,12 @@ const getProfile = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { page, limit } = req.query;
         const { schoolId } = req.user;
-        const { page } = req.query;
         const totalSchools = await userService.totalDocument("schoolId", schoolId);
-        const paginateData = pagination(totalSchools, Number(page));
+        const paginateData = pagination(totalSchools, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-        const users = await userService.findAllUserOfSchool(paginateData.limit, paginateData.skip, schoolId);
+        const users = await userService.findAllUserOfSchool(schoolId);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

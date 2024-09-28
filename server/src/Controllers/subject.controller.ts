@@ -64,10 +64,10 @@ const getSubjectData = async (req: Request, res: Response, next: NextFunction) =
 
 const getAllSubject = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page } = req.query;
+        const { page, limit } = req.query;
         const { schoolId } = req.user;
         const totalSubjects = await subjectService.totalDocument(schoolId);
-        const paginateData = pagination(totalSubjects, Number(page));
+        const paginateData = pagination(totalSubjects, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         const subjects = await subjectService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
         if (!subjects) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 404, "subject");

@@ -1,6 +1,6 @@
-const pagination = (totalDocuments: number, page: number) => {
-    const pageSize = 10;
-    const currentPage = page || 1;
+const pagination = (totalDocuments: number, page: number, limit: number) => {
+    const pageSize = Number(limit) || 10;
+    const currentPage = Number(page) || 1;
     const skip = (currentPage - 1) * pageSize;
     const totalPages = Math.ceil(totalDocuments / pageSize);
     if (currentPage > totalPages) {

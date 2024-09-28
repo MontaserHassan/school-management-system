@@ -75,9 +75,9 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
 
 const getAllSchools = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page } = req.query;
+        const { page, limit } = req.query;
         const totalSchools = await schoolService.totalDocument();
-        const paginateData = pagination(totalSchools, Number(page));
+        const paginateData = pagination(totalSchools, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         let schools = await schoolService.findWithPagination(paginateData.limit, paginateData.skip);
         if (!schools) throw new CustomError(errorSchoolMessage.NOT_FOUND_SCHOOL, 404, "school");

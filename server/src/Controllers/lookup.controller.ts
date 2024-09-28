@@ -121,19 +121,13 @@ const getUsersBySpecificData = async (req: Request, res: Response, next: NextFun
         const { schoolId } = req.user;
         let lookupsData;
         if (schoolId === "superAdmin") {
-            const totalUsers = await userService.totalDocument("role", String("admin"));
-            const paginateData = pagination(totalUsers, Number(page));
-            const lookups = await userService.findUserByRole(paginateData.limit, paginateData.skip, String("admin"));
+            const lookups = await userService.findUserByRole(String("admin"));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (schoolId !== "superAdmin" && req.user.role === 'admin' && !role) {
-            const totalUsers = await userService.totalDocument("role", String(role));
-            const paginateData = pagination(totalUsers, Number(page));
-            const lookups = await userService.findAllUserOfSchool(paginateData.limit, paginateData.skip, String(schoolId));
+            const lookups = await userService.findAllUserOfSchool(String(schoolId));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (role && schoolId !== "superAdmin") {
-            const totalUsers = await userService.totalDocument("role", String(role));
-            const paginateData = pagination(totalUsers, Number(page));
-            const lookups = await userService.findSpecificUserOfSchool(paginateData.limit, paginateData.skip, String(role), String(schoolId));
+            const lookups = await userService.findSpecificUserOfSchool(String(role), String(schoolId));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         };
         if (!lookupsData) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
