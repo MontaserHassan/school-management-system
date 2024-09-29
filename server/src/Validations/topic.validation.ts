@@ -21,6 +21,17 @@ const topicValidator = {
         }),
     },
 
+    updateTopic: {
+        body: Joi.object().keys({
+            topicId: Joi.string().required().trim().messages({ 'string.empty': 'Topic Id is required.', }),
+            topicName: Joi.string().optional().trim().min(3).max(30).messages({
+                'string.empty': 'Topic name is required.',
+                'string.min': 'Topic name must be at least 3 characters long.',
+                'string.max': 'Topic name must not exceed 30 characters.',
+            }),
+        }),
+    },
+
     deleteTopic: {
         params: Joi.object().keys({
             topicId: Joi.string().required().trim().messages({ 'string.empty': 'Topic Id is required.', }),

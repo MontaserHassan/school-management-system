@@ -3,7 +3,7 @@ import express from 'express';
 import getUser from '../../Middlewares/auth.middleware';
 import authRouter from './auth.routes';
 import authUserRouter from './authUser.routes';
-import authTeacherRouter from './authTeacher.routes';
+import authTeacherRouter from './authTopic.routes';
 import authDirectorRouter from './authDirector.routes';
 import authParentRouter from './authParent.routes';
 import authSuperAdminRouter from './authSuperAdmin.routes';
