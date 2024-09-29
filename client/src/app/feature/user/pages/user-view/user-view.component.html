@@ -36,6 +36,26 @@
           <p><strong>Updated At:</strong> {{ currentUser?.updatedAt | date: 'short' }}</p>
         </div>
       </div>
+
+      <div *ngIf="students">
+        <h3>Students</h3>
+        <p-table [value]="students">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Student Name</th>
+              <th>Group</th>
+              <th>Classroom</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-student>
+            <tr>
+              <td>{{ student.studentName }}</td>
+              <td>{{ student.group }}</td>
+              <td>{{ student.classRoom }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
     </div>
   </app-state-section>
 </p-card>

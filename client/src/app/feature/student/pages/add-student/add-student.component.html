@@ -11,21 +11,15 @@
         </div>
       </div>
 
-      <!-- Classroom -->
+      <!-- Parent ID -->
       <div class="form-group">
-        <label for="classRoom">Classroom</label>
-        <app-lazy-dropdown id="classRoom" [lookup]="lookup.ClassRooms" formControlName="classRoom"
-          placeholder="Enter Classroom"></app-lazy-dropdown>
-        <div *ngIf="studentForm.controls['classRoom'].invalid && studentForm.controls['classRoom'].touched"
+        <label for="parentId">Parent ID</label>
+        <app-lazy-dropdown id="parentId" [lookup]="lookup.Users" [lookUpExtraParams]="{ role:'parent'}"
+          formControlName="parentId" placeholder="Enter Parent ID"></app-lazy-dropdown>
+        <div *ngIf="studentForm.controls['parentId'].invalid && studentForm.controls['parentId'].touched"
           class="error mt-1">
-          Classroom is required
+          Parent is Required
         </div>
-      </div>
-
-      <!-- Parent ID (Optional) -->
-      <div class="form-group">
-        <label for="parentId">Parent ID (Optional)</label>
-        <input id="parentId" pInputText formControlName="parentId" placeholder="Enter Parent ID (Optional)" />
       </div>
 
       <!-- Submit Button -->

@@ -8,6 +8,7 @@ import { StudentListComponent } from './pages/student-list/student-list.componen
 import { AttendanceCalenderComponent } from './component/attendance-calender/attendance-calender.component';
 import { AddAttendanceComponent } from './component/add-attendance/add-attendance.component';
 import { AddCommentDialogComponent } from './component/add-comment-dialog/add-comment-dialog.component';
+import { SubjectActionComponent } from './component/subject-action/subject-action.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddCommentDialogComponent } from './component/add-comment-dialog/add-co
     StudentListComponent,
     AttendanceCalenderComponent,
     AddAttendanceComponent,
-    AddCommentDialogComponent
+    AddCommentDialogComponent,
+    SubjectActionComponent
   ],
   imports: [
     CommonModule, SharedModule, StudentRoutingModule,

@@ -9,6 +9,9 @@ export class Topic{
   _id?: string;
 
   @Expose()
+  topicId?: string;
+
+  @Expose()
   topicName?: string;
 
   @Expose()

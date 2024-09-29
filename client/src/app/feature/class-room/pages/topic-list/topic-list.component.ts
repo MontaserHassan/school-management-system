@@ -18,12 +18,16 @@ export class TopicListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTopics()
+    this.getTopics();
   }
 
   getTopics(): void {
-    this.load(this.classRoomService.getTopics(), { isLoadingTransparent: true }).subscribe((response) => {
+    const params = { page: this.offset.toString(), limit: this.pageSize.toString() };
+
+    this.load(this.classRoomService.getTopics(params), { isLoadingTransparent: true }).subscribe((response) => {
       this.topics = response.topics || [];
+      this.totalRowsCount = response.totalDocuments || 1;
+      this.pageSize = response?.limit || 0
     })
   }
 
@@ -38,5 +42,11 @@ export class TopicListComponent extends BaseComponent implements OnInit {
         this.getTopics()
       }
     });
+  }
+
+  paginate(event: any): void {
+    this.offset = event.page + 1;
+    this.pageSize = event.rows;
+    this.getTopics();
   }
 }

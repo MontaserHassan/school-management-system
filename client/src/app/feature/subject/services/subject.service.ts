@@ -29,8 +29,8 @@ export class SubjectService {
     )
   }
 
-  getSubjects():Observable<SubjectsList> {
-    return this.baseAPI.get(ApiConstant.GET_SUBJECT_LIST).pipe(
+  getSubjects(params:{}):Observable<SubjectsList> {
+    return this.baseAPI.get(ApiConstant.GET_SUBJECT_LIST,{params}).pipe(
       map((res) => this.mapper.fromJson(SubjectsList, res.data))
     )
   }

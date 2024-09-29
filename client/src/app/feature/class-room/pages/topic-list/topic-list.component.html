@@ -5,7 +5,7 @@
       <div class="d-flex justify-content-between px-3 pt-3">
         <h2 class="header">Topics List</h2>
 
-        <button pButton icon="pi pi-plus" label="Add Topic" class="m-0 mx-2" [outlined]="true" severity="secondary"
+        <button pButton icon="pi pi-plus" label="Add Topic" [outlined]="true" severity="secondary"
           (click)="openAddTopicDialog()" type="button"></button>
       </div>
     </ng-template>
@@ -29,6 +29,13 @@
           </ng-template>
         </p-card>
       </div>
+    </div>
+
+    <div class="mt-3">
+      <!-- Paginator -->
+      <p-paginator [rows]="pageSize" [totalRecords]="totalRowsCount" (onPageChange)="paginate($event)"
+        [rowsPerPageOptions]="rowsPerPageOptions">
+      </p-paginator>
     </div>
   </p-card>
 </div>

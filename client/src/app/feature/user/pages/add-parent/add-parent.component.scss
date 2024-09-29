@@ -1,0 +1,25 @@
+.add-parent-card {
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    margin-bottom: 1rem;
+  }
+
+  .student-row {
+    padding: 10px 0;
+
+    .p-inputtext {
+      width: 100%;
+    }
+  }
+
+  .actions {
+    button {
+      min-width: 150px;
+    }
+  }
+}

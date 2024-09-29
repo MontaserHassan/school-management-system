@@ -1,6 +1,8 @@
 <p-card header="Classroom List" class="classroom-list-card">
   <app-state-section [state]="sectionState">
-    <p-table [value]="classrooms" dataKey="_id" responsiveLayout="scroll" class="p-datatable-striped">
+    <p-table [value]="classrooms" dataKey="_id" [lazy]="true" [paginator]="true" [rows]="pageSize"
+      [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+      responsiveLayout="scroll" class="p-datatable-striped">
       <ng-template pTemplate="header">
         <tr>
           <th>Room</th>

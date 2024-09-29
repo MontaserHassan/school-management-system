@@ -22,22 +22,20 @@ export class AddStudentComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.studentForm = this.fb.group({
       studentName: ['', Validators.required],
-      classRoom: ['', Validators.required],
-      parentId: ['']
+      parentId: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.studentForm.valid) {
-      const { studentName, classRoom, parentId } = this.studentForm.value;
+      const { studentName, parentId } = this.studentForm.value;
       const payload = {
-        studentName ,
-        classRoom: classRoom.label,
-        parentId
+        studentName,
+        parentId: parentId.value
       }
 
-      this.load(this.studentService.addStudent(payload),{isLoadingTransparent:true}).subscribe(res=>{
-        this.router.navigate([RoutesUtil.StudentView.url({params:{id:res._id}})]);
+      this.load(this.studentService.addStudent({students:[payload]}),{isLoadingTransparent:true}).subscribe(res=>{
+        this.router.navigate([RoutesUtil.StudentView.url({params:{id:res[0]._id}})]);
       })
     }
   }

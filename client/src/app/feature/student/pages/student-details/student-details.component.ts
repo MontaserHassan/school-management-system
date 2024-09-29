@@ -3,17 +3,21 @@ import { StudentService } from '../../services/student.service';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { Degree } from '../../enums/degree.enum';
-import { Student } from '../../models/student.model';
+import { Student, Subject } from '../../models/student.model';
 import { Topic } from '../../../class-room/models/topic.model';
 import { AttendanceCalenderComponent } from '../../component/attendance-calender/attendance-calender.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCommentDialogComponent } from '../../component/add-comment-dialog/add-comment-dialog.component';
+import { MenuItem, MessageService } from 'primeng/api';
+import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.scss']
 })
 export class StudentDetailsComponent extends BaseComponent implements OnInit {
+    @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
+
   studentProfile: Student = new Student();
   mainTopics: Topic[] = [];
   displayDialog: boolean = false;
@@ -21,15 +25,33 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
   protected degree = Degree
 
 
+
+  degreeStatus = [
+    {
+      "_id": "SchoolSystem-4-1",
+      "value": "blue"
+    },
+    {
+      "_id": "SchoolSystem-4-2",
+      "value": "yellow"
+    },
+    {
+      "_id": "SchoolSystem-4-3",
+      "value": "green"
+    }
+  ]
+
+  degreeOption: MenuItem[] = this.degreeStatus.map((status) => ({ icon: "pi pi-star-fill", label: status._id}));
+  id!: string;
+
   constructor(
     private studentService: StudentService,
     private activeRoute: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     super()
   }
 
-  @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
 
   onTabChange(event: any) {
     if (event.index === 2) {
@@ -41,9 +63,9 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
-      const id = params?.['id']
-      if (id) {
-        this.getStudentDetails(id);
+      this.id = params?.['id']
+      if (this.id) {
+        this.getStudentDetails(this.id);
       }
     })
   }
@@ -55,14 +77,22 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     })
   }
 
-  setDegreeColor(degree: string): "success" | undefined {
+  updateDegree(id: string, topic:Topic) {
+    const topicId = topic.topicId || '';
+    const studentId = this.studentProfile._id;
+    const payload = {
+      studentId,
+      topicId,
+      degree: id
+    }
+    this.load(this.studentService.updateStudentDegree(payload), { isLoadingTransparent: true }).subscribe(res => {
+      this.studentProfile = res;
+    })
+  }
+
+  setDegreeColor(degree: string): "success" | "secondary" | "warning" | undefined {
     return Degree[degree as keyof typeof Degree] || undefined;
   }
-
-  handleEventClick(info: any): void {
-    alert('Status: ' + info.event.title + '\nComment: ' + info.event.extendedProps.description);
-  }
-
 
   openCommentDialog(comment: any) {
     this.selectedComment = comment;
@@ -73,7 +103,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     this.selectedComment = null;
   }
 
-  openAddCommentDialog(){
+  openAddCommentDialog() {
     const dialog = this.dialog.open(AddCommentDialogComponent, {
       width: '500px',
       data: {
@@ -82,8 +112,27 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     })
 
     dialog.afterClosed().subscribe((res) => {
-      if(res){
+      if (res) {
         this.studentProfile.comments = res.comments;
+      }
+    })
+  }
+
+  updateStudentProfile(event: Student) {
+    this.studentProfile = event;
+  }
+
+  handleAddStudentToClassRoom(){
+    const dialog = this.dialog.open(AddStudentToClassRoomDialogComponent,{
+      width: '500px',
+      data: {
+        studentId: this.studentProfile._id
+      }
+    })
+
+    dialog.afterClosed().subscribe((res) => {
+      if (res) {
+        this.getStudentDetails(this.id);
       }
     })
   }

@@ -55,8 +55,8 @@ export class AuthService extends BaseComponent {
     );
   }
 
-  getUsersList(): Observable<UsersList> {
-    return this.baseAPI.get(ApiConstant.GET_USERS_LIST).pipe(
+  getUsersList(params:{}): Observable<UsersList> {
+    return this.baseAPI.get(ApiConstant.GET_USERS_LIST,{params}).pipe(
       map((res) => this.mapper.fromJson(UsersList, res.data)));
   }
 

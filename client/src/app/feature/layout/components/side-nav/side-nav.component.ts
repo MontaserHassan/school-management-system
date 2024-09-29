@@ -38,6 +38,13 @@ export class SideNavComponent {
             command: () => {
               this.router.navigate([RoutesUtil.AddUser.url()]);
             }
+          },
+          {
+            label: 'Add Parent',
+            icon: 'pi pi-user-plus',
+            command: () => {
+              this.router.navigate([RoutesUtil.AddParent.url()]);
+            }
           }
         ]
       },

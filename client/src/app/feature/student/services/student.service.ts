@@ -17,9 +17,9 @@ export class StudentService {
     private mapper: Mapper
   ) { }
 
-  addStudent(body: IStudentPayload): Observable<Student> {
+  addStudent(body:{students:IStudentPayload[]}): Observable<Student[]> {
     return this.baseAPI.post(ApiConstant.ADD_STUDENT, filterNullEntity(body)).pipe(
-      map((res) => this.mapper.fromJson(Student, res.data.student))
+      map((res) => this.mapper.fromJson(Student, res.data.students))
     )
   }
 
@@ -29,8 +29,8 @@ export class StudentService {
     )
   }
 
-  getStudents(): Observable<StudentList> {
-    return this.baseAPI.get(ApiConstant.GET_STUDENTS).pipe(
+  getStudents(params:{}): Observable<StudentList> {
+    return this.baseAPI.get(ApiConstant.GET_STUDENTS,{params}).pipe(
       map((res) => this.mapper.fromJson(StudentList, res.data))
     )
   }
@@ -51,6 +51,30 @@ export class StudentService {
     media: string,
   }): Observable<Student> {
     return this.baseAPI.patch(ApiConstant.ADD_COMMENT, filterNullEntity(body)).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.student))
+    )
+  }
+
+  updateStudentProgressStatus(
+    body: {
+      studentId: string,
+      subjectId: string,
+      status: string
+    }
+  ): Observable<Student> {
+    return this.baseAPI.patch(ApiConstant.UPDATE_STUDENT_PROGRESS_STATUS, filterNullEntity(body)).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.student))
+    )
+  }
+
+  updateStudentDegree(
+    body: {
+      studentId: string,
+      topicId: string,
+      degree: string
+    }
+  ): Observable<Student> {
+    return this.baseAPI.patch(ApiConstant.UPDATE_STUDENT_DEGREE, filterNullEntity(body)).pipe(
       map((res) => this.mapper.fromJson(Student, res.data.student))
     )
   }

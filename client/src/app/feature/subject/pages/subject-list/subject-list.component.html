@@ -1,6 +1,7 @@
 <p-card header="Subjects List" class="subjects-card">
   <app-state-section [state]="sectionState">
-    <p-table [value]="subjects" [paginator]="true" [rows]="10" [sortMode]="'single'" [dataKey]="'_id'">
+    <p-table [value]="subjects" [lazy]="true" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
+      (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortMode]="'single'" [dataKey]="'_id'">
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="subjectName">Subject Name <p-sortIcon field="subjectName"></p-sortIcon></th>
@@ -15,7 +16,7 @@
       <ng-template pTemplate="body" let-subject>
         <tr>
           <td>{{ subject.subjectName }}</td>
-          <td>{{ subject.courseTime }} Hours</td>
+          <td>{{ subject.courseTime }}</td>
           <td>{{ subject.typeOfTime || 'N/A' }}</td>
           <td>{{ subject.createdAt | date:'shortDate' }}</td>
           <td>{{ subject.updatedAt | date:'shortDate' }}</td>

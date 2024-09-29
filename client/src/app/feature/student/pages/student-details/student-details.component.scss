@@ -146,8 +146,58 @@
     border-radius: 4px;
   }
 
-  ::ng-deep .p-timeline-event-opposite{
+  ::ng-deep .p-timeline-event-opposite {
     display: none;
   }
 
+  ::ng-deep .p-speeddial {
+    position: relative;
+
+    ::ng-deep .p-speeddial-button.p-button.p-button-icon-only,
+    ::ng-deep .p-speeddial-action {
+      height: 1.5rem;
+      width: 1.5rem;
+
+      .p-button-icon,
+      .pi {
+        font-size: 12px;
+      }
+    }
+
+    ::ng-deep .p-speeddial-item {
+      .p-element {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: .8;
+      }
+
+      .p-element:hover {
+        opacity: 1;
+      }
+    }
+
+    ::ng-deep .p-speeddial-item:nth-child(1) {
+      .p-element {
+        background: var(--primary-100);
+        color: var(--primary-700);
+      }
+    }
+
+    ::ng-deep .p-speeddial-item:nth-child(2) {
+       .p-element {
+        background: var(--orange-100);
+        color: var(--orange-700);
+      }
+    }
+
+    ::ng-deep .p-speeddial-item:nth-child(3) {
+      .p-element {
+        background: var(--green-100);
+        color: var(--green-700);
+      }
+    }
+  }
 }

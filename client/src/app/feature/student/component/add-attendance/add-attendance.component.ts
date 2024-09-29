@@ -31,7 +31,7 @@ export class AddAttendanceComponent extends BaseComponent implements OnInit {
         "label": "excused",
         "value": "SchoolSystem-5-4"
     }
-]
+  ]
 
   constructor(
     public dialogRef: MatDialogRef<AddAttendanceComponent>,

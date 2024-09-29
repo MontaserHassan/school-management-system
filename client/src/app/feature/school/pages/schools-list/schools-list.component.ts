@@ -29,7 +29,7 @@ export class SchoolsListComponent extends BaseComponent implements OnInit {
       isLoadingTransparent: true,
     }).subscribe((res) => {
       this.schools = res.schools || [];
-      this.totalRowsCount = res.totalDocuments || res.schools?.length || 1;
+      this.totalRowsCount = res.totalDocuments|| 1;
       this.pageSize = res?.limit || 0
 
     })

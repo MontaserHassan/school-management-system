@@ -1,6 +1,7 @@
 <p-card header="User List">
   <app-state-section [state]="sectionState">
-    <p-table [value]="users" [paginator]="true" [rows]="5" [sortField]="'userName'" [sortOrder]="1"
+    <p-table [value]="users" [lazy]="true" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
+      (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortField]="'userName'" [sortOrder]="1"
       responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>

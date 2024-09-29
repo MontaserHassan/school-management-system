@@ -4,6 +4,7 @@ import { UserViewComponent } from './pages/user-view/user-view.component';
 import { RoutesUtil } from '../shared/utils/routes.util';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
+import { AddParentComponent } from './pages/add-parent/add-parent.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: RoutesUtil.AddUser.path,
     component: AddUserComponent,
+  },
+  {
+    path: RoutesUtil.AddParent.path,
+    component: AddParentComponent,
   },
 ];
 

@@ -9,7 +9,7 @@
 
         <div class="subject-detail-row">
           <label>Course Time:</label>
-          <p>{{ subject.courseTime || 'N/A' }} Hours</p>
+          <p>{{ subject.courseTime || 'N/A' }}</p>
         </div>
 
         <div class="subject-detail-row">
@@ -17,10 +17,6 @@
           <p-tag *ngIf="subject.typeOfTime" value="{{ subject.typeOfTime }}" severity="info"></p-tag>
         </div>
 
-        <div class="subject-detail-row">
-          <label>ID:</label>
-          <p>{{ subject._id || 'N/A' }}</p>
-        </div>
 
         <div class="subject-detail-row">
           <label>Created At:</label>

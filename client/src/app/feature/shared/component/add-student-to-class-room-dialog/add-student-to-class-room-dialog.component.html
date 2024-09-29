@@ -1,5 +1,5 @@
 <app-state-section [state]="sectionState">
-  <h1 mat-dialog-title>Add New Topic</h1>
+  <h1 mat-dialog-title>Add Students</h1>
 
   <div mat-dialog-content>
     <form [formGroup]="addStudentForm" class="d-flex flex-column gap-3">
@@ -16,7 +16,9 @@
         </small>
       </div>
 
-      <div class="field d-flex flex-column gap-2">
+      <input type="hidden" formControlName="classRoom" *ngIf="data.studentId" />
+
+      <div class="field d-flex flex-column gap-2" *ngIf="!data.studentId">
         <label for="student" class="form-label">Student</label>
         <app-lazy-dropdown id="student" [multiply]="!data.studentId ? true : false" [lookup]="Lookup.Students"
           formControlName="student" placeholder="Enter Student name"></app-lazy-dropdown>

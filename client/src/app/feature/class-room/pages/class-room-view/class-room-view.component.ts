@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassRoomService } from '../../services/class-room.service';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClassRoom } from '../../models/class-room.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
-import { AddStudentToClassRoomDialogComponent } from '../../component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
+import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
+import { RoutesUtil } from '../../../shared/utils/routes.util';
 
 @Component({
   selector: 'app-class-room-view',
@@ -17,7 +18,7 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
   classroom: ClassRoom = new ClassRoom();
   id!: string
 
-  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute, private dialog: MatDialog, private router: Router) {
     super()
   }
 
@@ -49,6 +50,9 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
     });
   }
 
+  viewDetails(studentId: string): void {
+    this.router.navigate([RoutesUtil.StudentView.url({ params: { id: studentId } })]);
+  }
 
   openAddStudentDialog(): void {
     const dialogRef = this.dialog.open(AddStudentToClassRoomDialogComponent, {

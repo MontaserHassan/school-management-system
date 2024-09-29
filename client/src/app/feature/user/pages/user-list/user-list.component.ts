@@ -17,17 +17,25 @@ export class UserListComponent extends BaseComponent implements OnInit {
     super()
   }
 
-  ngOnInit() {
-    this.getUsersList()
-  }
+  ngOnInit() {  }
 
   getUsersList() {
-    this.load(this.authService.getUsersList()).subscribe(res => {
+    const params = { page: this.offset, limit: this.pageSize};
+    this.load(this.authService.getUsersList(params)).subscribe(res => {
       this.users = res.users || []
+      this.totalRowsCount = res.totalDocuments || 1;
+      this.pageSize = res?.limit || 0
     })
   }
 
   viewProfile(user: any) {
-    this.router.navigate([RoutesUtil.UserProfile.url({params:{id:user._id}})]); // Redirect to the profile page
+    this.router.navigate([RoutesUtil.UserProfile.url({params:{id:user._id}})]);
+  }
+
+
+  paginate(event: any): void {
+    this.offset =  event.first / event.rows + 1;
+    this.pageSize = event.rows;
+    this.getUsersList();
   }
 }

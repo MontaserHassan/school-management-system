@@ -54,7 +54,11 @@ import { PaginatorModule } from 'primeng/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogModule } from 'primeng/dialog';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { FloatLabelModule } from 'primeng/floatlabel';
+
 import { FileUploadModule } from 'primeng/fileupload';
+import { AddStudentToClassRoomDialogComponent } from './component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -64,7 +68,9 @@ const COMPONENT =[
   SnackBarComponent,
   StateSectionComponent,
   LoaderComponent,
-  LazyDropdownComponent
+  LazyDropdownComponent,
+  AddStudentToClassRoomDialogComponent
+
 ]
 
 const OTHER_MODULES = [
@@ -118,7 +124,9 @@ const PRIME_NG_MODULES = [
   TimelineModule,
   PaginatorModule,
   DialogModule,
-  FileUploadModule
+  FileUploadModule,
+  SpeedDialModule,
+  FloatLabelModule,
 ]
 
 @NgModule({

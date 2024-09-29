@@ -17,17 +17,25 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getClassRoomList()
   }
 
   getClassRoomList(): void {
-    this.load(this.classRoomService.getClassRoomList(),{isLoadingTransparent: true}).subscribe((response) => {
+    const params = { page: this.offset, limit: this.pageSize};
+
+    this.load(this.classRoomService.getClassRoomList(params),{isLoadingTransparent: true}).subscribe((response) => {
       this.classrooms = response?.rooms || []
+      this.totalRowsCount = response.totalDocuments || 1;
+      this.pageSize = response?.limit || 0
     })
   }
 
-
   viewDetails(classroomId: string): void {
     this.router.navigate([RoutesUtil.ClassRoomView.url({ params: { id: classroomId } })]);
+  }
+
+  paginate(event: any): void {
+    this.offset =  event.first / event.rows + 1;
+    this.pageSize = event.rows;
+    this.getClassRoomList();
   }
 }

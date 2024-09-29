@@ -10,7 +10,7 @@
         </div>
 
         <div class="my-3">
-          <label for="courseTime">Course Time (in hours)</label>
+          <label for="courseTime">Course Time (in Minutes)</label>
           <input id="courseTime" type="number" pInputText formControlName="courseTime" />
           <small *ngIf="subjectForm.controls['courseTime'].invalid && subjectForm.controls['courseTime'].touched"
             class="p-error">Course time is required and should be a valid number</small>

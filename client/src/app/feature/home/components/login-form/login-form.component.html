@@ -36,16 +36,34 @@
         <form [formGroup]="addPasswordForm">
           <h2>{{'SetYourPassword' | translate}}</h2>
 
-          <div class="input-group">
-            <input type="password" formControlName="password">
-            <label autocomplete="true" for="">{{'Password' | translate}}</label>
+          <div>
+            <p-floatLabel>
+              <p-password id="pwd2" formControlName="password" [toggleMask]="true">
+                <ng-template pTemplate="header">
+                  <h6>Pick a password</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                  <p-divider />
+                  <p class="mt-2">Suggestions</p>
+                  <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>At least one lowercase</li>
+                    <li>At least one uppercase</li>
+                    <li>At least one numeric</li>
+                    <li>Minimum 8 characters</li>
+                  </ul>
+                </ng-template>
+              </p-password>
+              <label for="pwd2">{{'Password' | translate}}</label>
+            </p-floatLabel>
             <p-message *ngIf="addPasswordForm.get('password')?.invalid && addPasswordForm.get('password')?.touched"
               severity="error" text="{{'PasswordRequired' | translate}}"></p-message>
           </div>
 
-          <div class="input-group">
-            <input type="password" formControlName="confirmPassword">
-            <label autocomplete="true" for="">{{'ConfirmPassword' | translate}}</label>
+          <div class="mt-4">
+            <p-floatLabel>
+              <p-password id="pwd3" formControlName="confirmPassword" [feedback]="false" [toggleMask]="true" />
+              <label for="pwd3">{{'ConfirmPassword' | translate}}</label>
+            </p-floatLabel>
             <p-message
               *ngIf="addPasswordForm.invalid && addPasswordForm.get('confirmPassword')?.touched && !addPasswordForm.errors?.['passwordsMismatch']"
               severity="error" text="{{'ConfirmPasswordRequired' | translate}}"></p-message>
@@ -54,7 +72,7 @@
               severity="error" text="{{'PasswordDosntMatch' | translate}}"></p-message>
           </div>
 
-          <button type="submit" class="btn" (click)="setPassword()">{{'Confirm' | translate}}</button>
+          <button type="submit" class="btn mt-2" (click)="setPassword()">{{'Confirm' | translate}}</button>
           <div class="sign-link">
             <p>{{'AlreadyHaveAnAccount' | translate}} <a (click)="switchPage()" class="signIn-link">{{'SignIn' |
                 translate}}</a></p>
@@ -66,20 +84,25 @@
     <div class="form-wrapper sign-in">
       <form [formGroup]="loginForm">
         <h2>{{'Login' | translate}}</h2>
-        <div class="input-group">
-          <input type="text" id="email" formControlName="email">
-          <label for="email">{{'Email' | translate}}</label>
+        <div>
+          <p-floatLabel>
+            <input pInputText type="text" id="email" formControlName="email">
+            <label for="email">{{'Email' | translate}}</label>
+          </p-floatLabel>
           <p-message *ngIf="isFieldInvalid(loginForm, 'email')" severity="error"
             text="{{'EmailRequired' | translate}}"></p-message>
         </div>
-        <div class="input-group">
-          <input type="password" id="password" formControlName="password">
-          <label autocomplete="true" for="password">{{'Password' | translate}}</label>
+        <div class="mt-4">
+          <p-floatLabel>
+            <p-password id="pwd1" formControlName="password" [feedback]="false" [toggleMask]="true" />
+            <label for="pwd1">Password</label>
+          </p-floatLabel>
           <p-message *ngIf="isFieldInvalid(loginForm, 'password')" severity="error"
             text="{{'PasswordRequired' | translate}}"></p-message>
         </div>
-        <div class="forgot-pass">
-          <a>{{'ForgotPassword' | translate}}</a>
+
+        <div class="mt-2 mb-1">
+          <small><a>{{'ForgotPassword' | translate}}</a></small>
         </div>
         <button type="submit" class="btn" (click)="onLogin()">{{'Login' | translate}}</button>
         <div class="sign-link">

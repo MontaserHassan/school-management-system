@@ -11,23 +11,32 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
   styleUrls: ['./subject-list.component.scss']
 })
 export class SubjectListComponent extends BaseComponent implements OnInit {
-  subjects!:Subject[]
-  constructor(private subjectService:SubjectService , private router:Router) {
+  subjects!: Subject[]
+  constructor(private subjectService: SubjectService, private router: Router) {
     super()
   }
 
   ngOnInit() {
-    this.getSubjects()
   }
 
   getSubjects() {
-    this.load(this.subjectService.getSubjects(), { isLoadingTransparent: true }).subscribe(subjects => {
+    const params = { page: this.offset, limit: this.pageSize};
+
+    this.load(this.subjectService.getSubjects(params), { isLoadingTransparent: true }).subscribe(subjects => {
       this.subjects = subjects.subject || [];
+      this.totalRowsCount = subjects.totalDocuments || 1;
+      this.pageSize = subjects?.limit || 0
+
     })
   }
 
-    viewSubject(id: string): void {
+  viewSubject(id: string): void {
     this.router.navigate([RoutesUtil.SubjectView.url({ params: { id } })]);
   }
 
+  paginate(event: any): void {
+    this.offset = event.first / event.rows + 1;
+    this.pageSize = event.rows;
+    this.getSubjects()
+  }
 }

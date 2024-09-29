@@ -1,5 +1,7 @@
 <p-card header="Students List" class="students-list-card">
-  <p-table [value]="students" [paginator]="true" [rows]="10" [sortField]="'studentName'" [sortOrder]="1">
+  <p-table [value]="students" [paginator]="true" [rows]="10" [lazy]="true" [paginator]="true" [rows]="pageSize"
+    [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+    [sortField]="'studentName'" [sortOrder]="1">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>

@@ -30,8 +30,8 @@ constructor(
     )
   }
 
-  getClassRoomList():Observable<ClassRoomResponse> {
-    return this.baseAPI.get(ApiConstant.GET_CLASS_ROOMS).pipe(
+  getClassRoomList(params:{}):Observable<ClassRoomResponse> {
+    return this.baseAPI.get(ApiConstant.GET_CLASS_ROOMS,{params}).pipe(
       map((res) => this.mapper.fromJson(ClassRoomResponse, res.data))
     )
   }
@@ -42,13 +42,13 @@ constructor(
     )
   }
 
-  getTopics():Observable<TopicList> {
-    return this.baseAPI.get(ApiConstant.GET_TOPICS).pipe(
+  getTopics(params:{}):Observable<TopicList> {
+    return this.baseAPI.get(ApiConstant.GET_TOPICS,{params}).pipe(
       map((res) => this.mapper.fromJson(TopicList, res.data))
     )
   }
 
-  addStudentToClassRoom(body: {students:string[],classRoom:string}):Observable<Student> {
+  addStudentToClassRoom(body: {students:string[],classRoom:string}):Observable<Student[]> {
     return this.baseAPI.post(ApiConstant.ADD_STUDENT_TO_CLASS, body).pipe(
       map((res) => this.mapper.fromJson(Student, res.data.students))
     )

@@ -13,6 +13,7 @@ export class RoutesUtil {
   static UserProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.User);
   static UserList = new RouteConfig('list', RoutesUtil.User);
   static AddUser = new RouteConfig('add', RoutesUtil.User);
+  static AddParent = new RouteConfig('add-Parent', RoutesUtil.User);
 
   //director
   static Director = new RouteConfig('director');
@@ -27,10 +28,9 @@ export class RoutesUtil {
   static AddTeacher = new RouteConfig('add', RoutesUtil.Teacher);
 
   //parent
-  static Parent = new RouteConfig('parent');
-  static ParentProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.Parent);
-  static ParentList = new RouteConfig('list', RoutesUtil.Parent);
-  static AddParent = new RouteConfig('add', RoutesUtil.Parent);
+  // static Parent = new RouteConfig('parent');
+  // static ParentProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.Parent);
+  // static ParentList = new RouteConfig('list', RoutesUtil.Parent);
 
   //subject
   static Subject = new RouteConfig('subject');

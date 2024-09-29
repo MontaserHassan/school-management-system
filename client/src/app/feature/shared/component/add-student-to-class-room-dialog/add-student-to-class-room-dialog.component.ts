@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Lookup } from '../../../shared/enums/lookup.enum';
+import { Lookup } from '../../enums/lookup.enum';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ClassRoomService } from '../../services/class-room.service';
-import { BaseComponent } from '../../../shared/component/base-component/base.component';
+import { ClassRoomService } from '../../../class-room/services/class-room.service';
+import { BaseComponent } from '../base-component/base.component';
 
 @Component({
   selector: 'app-add-student-to-class-room-dialog',
@@ -17,7 +17,7 @@ export class AddStudentToClassRoomDialogComponent extends BaseComponent implemen
   ngOnInit(): void {
     this.addStudentForm = this.fb.group({
       classRoom: [this.data?.classRoomId ? { label: this.data?.classRoomId } : '', Validators.required],
-      student: [this.data.studentId ? [{ value: this.data.studentId }] : '', Validators.required],
+      student: [this.data?.studentId ? [{ value: this.data.studentId }] : '', Validators.required],
     });
   }
 
@@ -39,7 +39,7 @@ export class AddStudentToClassRoomDialogComponent extends BaseComponent implemen
         classRoom,
       }
       this.load(this.classRoomService.addStudentToClassRoom(payload), { isLoadingTransparent: true }).subscribe(res => {
-        this.dialogRef.close(res);
+        this.dialogRef.close(res[0]);
       })
     }
   }

@@ -28,15 +28,16 @@ export class ApiConstant {
   static ADD_TOPIC = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Teacher + 'topic';
   static GET_TOPICS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Teacher + 'topic';
 
-  static ADD_PARENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Auth + 'add-parent';
-  static GET_PARENTS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Auth + 'parents';
-  static GET_STUDENTS_BY_PARENTS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.parent + 'get'
-  static ADD_STUDENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student ;
+  static ADD_PARENT = ApiConstant.URL_BASE + URLSegment.User + 'add-parent';
+  static GET_PARENTS = ApiConstant.URL_BASE + URLSegment.User + 'parents';
+  static GET_STUDENT_BY_PARENT_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.parent  + '{id}'
+  static ADD_STUDENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student;
 
-  static GET_STUDENTS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student ;
+  static GET_STUDENTS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student;
   static GET_STUDENTS_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + '{id}';
 
+  static UPDATE_STUDENT_PROGRESS_STATUS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'progress-status';
   static ADD_ATTENDANCE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'attendance';
   static ADD_COMMENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'comment';
-  static ADD_DEGREE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'degree';
+  static UPDATE_STUDENT_DEGREE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'degree';
 }
