@@ -2,14 +2,14 @@
 import express from 'express';
 
 import checkRole from '../../Middlewares/check-role.middleware';
-import topicRouter from './Teacher/topic.routes';
+import topicRouter from './Topic/topic.routes';
 
 
 
 const authTeacherRouter = express.Router();
 
 
-authTeacherRouter.use(checkRole(['director', 'admin', 'superAdmin', 'teacher']),);
+authTeacherRouter.use(checkRole(['director', 'admin', 'teacher']),);
 authTeacherRouter.use('/topic', topicRouter);
 
 

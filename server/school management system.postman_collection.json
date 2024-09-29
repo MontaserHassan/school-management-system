@@ -757,150 +757,6 @@
 			]
 		},
 		{
-			"name": "teacher",
-			"item": [
-				{
-					"name": "topic",
-					"item": [
-						{
-							"name": "add topic",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIxMjgyMDljMjc4MTQ5ZTdiOTcyYmNiYjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzQ0NDcxOCwiZXhwIjoxNzI3NTMxMTE4fQ.a2xAzILrmrJNUdZoMbWKB_QXPsxQDiBOlebgS79qf2Q",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"room\": \"201\",\n    \"topicName\": \"physics\",\n    \"subjectId\": \"j0xvshvJO0S4b8vMxiK50rJT\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{SchoolManagement}}/user/teacher/topic/",
-									"host": [
-										"{{SchoolManagement}}"
-									],
-									"path": [
-										"user",
-										"teacher",
-										"topic",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all topics",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{SchoolManagement}}/user/teacher/topic/",
-									"host": [
-										"{{SchoolManagement}}"
-									],
-									"path": [
-										"user",
-										"teacher",
-										"topic",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get topic by id",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{SchoolManagement}}/user/teacher/topic/hOiwDEyO3PokX4G84PkuRE1s",
-									"host": [
-										"{{SchoolManagement}}"
-									],
-									"path": [
-										"user",
-										"teacher",
-										"topic",
-										"hOiwDEyO3PokX4G84PkuRE1s"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "student",
-					"item": [
-						{
-							"name": "get students by class-room",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMWI5ODZkMDI3MmVmNmI3ZDNiMTAwODY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiVTkzNzAwNTciLCJpYXQiOjE3MjY4NDA0ODgsImV4cCI6MTcyNjkyNjg4OH0.vfpx7_q_4zLxpQuHb0vfyI6KEHO2Bp_iRbPyvCCNtuw",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{SchoolManagement}}/user/teacher/student/class-room",
-									"host": [
-										"{{SchoolManagement}}"
-									],
-									"path": [
-										"user",
-										"teacher",
-										"student",
-										"class-room"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
 			"name": "student",
 			"item": [
 				{
@@ -1225,7 +1081,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IndwcjdWQzNSMlFoMXVaLWJXRGEyRyIsImVtYWlsIjoidGVhY2hlcjJAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI2NjEwZjNmMjY5M2U4Mzg5NzBkYmVjNWQiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJSNzg3IiwiaWF0IjoxNzI3NTQxOTE2LCJleHAiOjE3Mjc2MjgzMTZ9.MNBIjuGJrpMJUnqUuDbG7t6eQ--_kOi4JHByc_Q-fk8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjZTAyZjZkNzI5NDFhZGUzNGFlMzg5M2MiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NDAzNzksImV4cCI6MTcyNzcyNjc3OX0.9QjOXbySzGQWAzR4nfo-qPiUW8GXcHJt1VO072zBNsU",
 									"type": "string"
 								}
 							]
@@ -1233,14 +1089,23 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/student/",
+							"raw": "{{SchoolManagementSystem}}/user/student?limit=4&page=2",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"student",
-								""
+								"student"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -2043,6 +1908,149 @@
 								"user",
 								"subject",
 								"dRixjtVJ2NMMMeFbb5RmjJfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "topic",
+			"item": [
+				{
+					"name": "add topic",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIxMjgyMDljMjc4MTQ5ZTdiOTcyYmNiYjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzQ0NDcxOCwiZXhwIjoxNzI3NTMxMTE4fQ.a2xAzILrmrJNUdZoMbWKB_QXPsxQDiBOlebgS79qf2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"room\": \"201\",\n    \"topicName\": \"physics\",\n    \"subjectId\": \"j0xvshvJO0S4b8vMxiK50rJT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"teacher",
+								"topic",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit topic",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkhZRTdhWHpBTFJ5aldnVzVTUjdqayIsImVtYWlsIjoidGVhY2hlcjEwQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiMWY1NjM1YThhYmY3Yjk4ZDdjMzk2OTNlIiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiVDAwMTMiLCJpYXQiOjE3Mjc2NTEwMjMsImV4cCI6MTcyNzczNzQyM30.q3nPXEiMJK9bvuYTS_WLsIjGjzdtqqFyPtUI1BCq-Sg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"topicName\": \"physics\",\n    \"topicId\": \"6RzzeTB1nSkinzrByIefi3s2\"\n}\n// arithmetic operations",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"teacher",
+								"topic",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all topics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"teacher",
+								"topic",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get topic by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagement}}/user/teacher/topic/hOiwDEyO3PokX4G84PkuRE1s",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"teacher",
+								"topic",
+								"hOiwDEyO3PokX4G84PkuRE1s"
 							]
 						}
 					},

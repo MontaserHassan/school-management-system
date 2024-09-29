@@ -141,8 +141,13 @@ const getStudentsById = async (studentCode: string[]) => {
 // ----------------------------- get total documents -----------------------------
 
 
-const totalDocument = async (schoolId: string) => {
-    const students = await Student.countDocuments({ schoolId: schoolId });
+const totalDocument = async (schoolId: string, parentId?: string) => {
+    let students: any;
+    if (parentId) {
+        students = await Student.countDocuments({ schoolId: schoolId, parentId: parentId });
+    } else {
+        students = await Student.countDocuments({ schoolId: schoolId });
+    };
     return students;
 };
 
@@ -150,8 +155,13 @@ const totalDocument = async (schoolId: string) => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findAllStudentsOfSchool = async (schoolId: string, limit: number, skip: number) => {
-    const students: StudentModel[] = await Student.find({ schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
+const findAllStudentsOfSchool = async (schoolId: string, limit: number, skip: number, parentId?: string) => {
+    let students: StudentModel[];
+    if (parentId) {
+        students = await Student.find({ schoolId: schoolId, parentId: parentId }).limit(limit).skip(skip).select('-__v');
+    } else {
+        students = await Student.find({ schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
+    };
     return students;
 };
 

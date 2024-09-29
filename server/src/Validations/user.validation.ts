@@ -48,13 +48,6 @@ const userValidator = {
         }),
     },
 
-    updatePassword: {
-        body: Joi.object().keys({
-            oldPassword: Joi.string().required(),
-            newPassword: Joi.string().required().min(8).max(20).regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!?@#$%&*_.])[A-Za-z\d!?@#$%&*_.]{8,20}$/).message('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character (!?@#$%&*_.).'),
-        }),
-    },
-
     updateUser: {
         body: Joi.object().keys({
             userName: Joi.string().optional().trim().min(8).max(30).empty('').messages({ 'string.empty': 'userName cannot be an empty string', 'string.min': 'userName must be at least 8 characters long', 'string.max': 'userName cannot be longer than 30 characters', }),

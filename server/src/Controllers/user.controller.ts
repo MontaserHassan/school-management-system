@@ -168,8 +168,7 @@ const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId } = req.user;
-        const { userName, media } = req.body;
+        const { userId, userName, media } = req.body;
         const user = await userService.updateUser(userId, { userName, media });
         if (!user) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
