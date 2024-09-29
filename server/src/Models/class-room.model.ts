@@ -43,7 +43,6 @@ const classRoomSchema = new mongoose.Schema(
         room: {
             type: String,
             required: true,
-            unique: true,
             minlength: 3,
             maxlength: 3,
         },
@@ -140,6 +139,7 @@ const classRoomSchema = new mongoose.Schema(
     },
 );
 
+classRoomSchema.index({ schoolId: 1, room: 1 }, { unique: true });
 
 
 const ClassRoom = mongoose.model<ClassRoomModel>('classRoom', classRoomSchema);

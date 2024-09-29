@@ -17,7 +17,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
     try {
         const { room, group, teachersId, schedule, studentCost, currencyOfCost, mainTopics } = req.body;
         const { schoolId } = req.user;
-        const isRoomExisting = await classRoomService.getByRoom(room);
+        const isRoomExisting = await classRoomService.getByRoomAndSchoolId(room, schoolId);
         if (isRoomExisting) throw new CustomError(errorClassRoomMessage.ROOM_ALREADY_TOKED, 400, "room");
         const teachers = await userService.getUserByIdAsTeacher(teachersId);
         const mainTopicsInfo = await topicService.getTopicsById(mainTopics);
@@ -155,7 +155,6 @@ const getClassById = async (req: Request, res: Response, next: NextFunction) => 
         if (role === "teacher") {
             if (!classRoomData.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
         };
-        // if (classRoomData.teachers.some(teacher => teacher.teacherId.toString() !== userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -199,35 +198,41 @@ const addStudent = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 
-// ----------------------------- add teacher -----------------------------
+// ----------------------------- update class room -----------------------------
 
 
 const updateClassRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId } = req.user;
-        const { room, teacherId, studentCost, currencyOfCost, schedule, group } = req.body;
+        const { room, teachersId, studentCost, currencyOfCost, schedule, group, students } = req.body;
         const classRoomData = await classRoomService.getById(room);
         if (!classRoomData || classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         let updateClassRoom: ClassRoomModel;
-        if (teacherId) {
-            const teacher = await userService.getById(teacherId);
-            if (!teacher) throw new CustomError(errorClassRoomMessage.TEACHER_NOT_FOUND, 404, "teacher");
-            const teacherExists = await classRoomService.getByTeacherId(teacherId);
-            if (classRoomData.teachers.some(teacher => teacher.teacherId.toString() === teacherId)) throw new CustomError(errorClassRoomMessage.TEACHER_ALREADY_AT_CLASS, 400, "teacher");
-            if (teacherExists) throw new CustomError(errorClassRoomMessage.TEACHER_ALREADY_ASSIGNED, 400, "teacher");
-            const newTeacher = { teacherId: String(teacher._id), teacherName: teacher.userName, };
-            updateClassRoom = await classRoomService.addTeacher(classRoomData.room, newTeacher);
+        if (teachersId) {
+            const newTeachers = [];
+            for (const teacherId of teachersId) {
+                const teacher = await userService.getById(teacherId);
+                if (!teacher) throw new CustomError(errorClassRoomMessage.TEACHER_NOT_FOUND, 404, "teacher");
+                const teacherExists = await classRoomService.getByTeacherId(teacherId);
+                const teacherInClass = classRoomData.teachers.some(teacher => teacher.teacherId.toString() === teacherId);
+                if (teacherExists && !teacherInClass) throw new CustomError(errorClassRoomMessage.TEACHER_ALREADY_ASSIGNED, 400, "teacher");
+                newTeachers.push({ teacherId: teacher._id, teacherName: teacher.userName, });
+            };
+            if (newTeachers.length > 0) updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { teachers: newTeachers });
         };
         if (studentCost) {
-            updateClassRoom = await classRoomService.updateRoom(classRoomData.room, { studentCost });
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { studentCost });
         };
         if (currencyOfCost) {
-            updateClassRoom = await classRoomService.updateRoom(classRoomData.room, { currencyOfCost });
+            const currency = await lookupService.getById(currencyOfCost);
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { currencyOfCost: currency.lookupName });
         };
         if (group) {
-            updateClassRoom = await classRoomService.updateRoom(classRoomData.room, { group });
+            const getGroupName = await lookupService.getById(group);
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { group: getGroupName.lookupName });
         };
         if (schedule) {
+            const newSchedule = [];
             for (const entry of schedule) {
                 const timeRanges = [];
                 for (const subject of entry.subjects) {
@@ -245,8 +250,18 @@ const updateClassRoom = async (req: Request, res: Response, next: NextFunction) 
                     };
                     timeRanges.push({ startTime: subjectStartTime, endTime: subjectEndTime });
                 };
+                newSchedule.push(entry);
             };
-            updateClassRoom = await classRoomService.updateScheduleDay(classRoomData.room, schedule);
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { schedule: newSchedule });
+        };
+        if (students) {
+            const newStudents = [];
+            for (const student of students) {
+                const studentExists = await studentService.getStudentById(student);
+                if (!studentExists) throw new CustomError(`Student ${student} does not exist.`, 400, 'student');
+                newStudents.push({ studentId: studentExists._id, studentName: studentExists.studentName, });
+            };
+            updateClassRoom = await classRoomService.updateRoom(classRoomData.room, { students: newStudents });
         };
         if (!updateClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "class");
         const response: IResponse = {
@@ -274,11 +289,8 @@ const deleteClassRoom = async (req: Request, res: Response, next: NextFunction) 
         const classRoom = await classRoomService.getById(room);
         if (!classRoom) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "class room");
         const students = await studentService.getStudentsByClassRoom(classRoom.room);
-        console.log('students: ', students);
         const updateStudent = students.map(student => { return studentService.updateStudentData(student._id, { classRoom: "", studentCost: '', currencyOfCost: '', group: '', subjects: [], mainTopics: [], attendance: [] }); });
-        console.log('updateStudent: ', updateStudent);
-        const xxx = await Promise.all(updateStudent);
-        console.log('xxx: ', xxx);
+        await Promise.all(updateStudent);
         await classRoomService.deleteRoom(classRoom._id);
         const response: IResponse = {
             type: "info",

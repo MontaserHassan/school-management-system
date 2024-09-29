@@ -1740,7 +1740,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlJtbHdsVTFCRUpEVGR0SXIyQzNRTiIsImVtYWlsIjoiZGlyZWN0b3IyQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiZGFhNmJiZmI3ZTUyYTFlOGI5OWIyZjcwIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlAxMDEzMzEiLCJpYXQiOjE3MjcyOTM3NzIsImV4cCI6MTcyNzM4MDE3Mn0.CSe-bUkqf76nZz5Kc6hIqkC_1Ibr3XN4dCj7i3MiGLw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjZTAyZjZkNzI5NDFhZGUzNGFlMzg5M2MiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NDAzNzksImV4cCI6MTcyNzcyNjc3OX0.9QjOXbySzGQWAzR4nfo-qPiUW8GXcHJt1VO072zBNsU",
 									"type": "string"
 								}
 							]
@@ -1845,7 +1845,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlJtbHdsVTFCRUpEVGR0SXIyQzNRTiIsImVtYWlsIjoiZGlyZWN0b3IyQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiZGFhNmJiZmI3ZTUyYTFlOGI5OWIyZjcwIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlAxMDEzMzEiLCJpYXQiOjE3MjcyOTM3NzIsImV4cCI6MTcyNzM4MDE3Mn0.CSe-bUkqf76nZz5Kc6hIqkC_1Ibr3XN4dCj7i3MiGLw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjZTAyZjZkNzI5NDFhZGUzNGFlMzg5M2MiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NDAzNzksImV4cCI6MTcyNzcyNjc3OX0.9QjOXbySzGQWAzR4nfo-qPiUW8GXcHJt1VO072zBNsU",
 									"type": "string"
 								}
 							]
@@ -1854,7 +1854,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"MB4Kez6lbcPynSJgruCCiUIn\",\n    \"teacherId\": \"dUjircLQ3vI2rpwCakeK5\"\n}",
+							"raw": "{\n    \"room\": \"MB4Kez6lbcPynSJgruCCiUIn\",\n    \"teachersId\": [\n        \"HYE7aXzALRyjWgW5SR7jk\"\n    ],\n    // \"studentCost\": \"700\",\n     \"currencyOfCost\": \"SchoolSystem-6-2\"\n    // \"group\": \"SchoolSystem-2-2\"\n    // \"schedule\": [\n    //     {\n    //         \"day\": \"Tuesday\",\n    //         \"subjects\": [\n    //             {\n    //                 \"subjectId\": \"_o43UJtXL-TJuFkFlOAp36k5\",\n    //                 \"startTime\": \"09:30\"\n    //             },\n    //             {\n    //                 \"subjectId\": \"ulpMOFtV_STeLof7hvqkFb2C\",\n    //                 \"startTime\": \"14:00\"\n    //             }\n    //         ]\n    //     },\n    //     {\n    //         \"day\": \"Monday\",\n    //         \"subjects\": [\n    //             {\n    //                 \"subjectId\": \"xhyZXBRpcOujbNI9i0KUcTy1\",\n    //                 \"startTime\": \"09:30\"\n    //             },\n    //             {\n    //                 \"subjectId\": \"SsgA95yAkK4-cy_SP6dGMARN\",\n    //                 \"startTime\": \"12:00\"\n    //             }\n    //         ]\n    //     }\n    // ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
