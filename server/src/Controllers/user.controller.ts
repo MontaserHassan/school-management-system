@@ -201,7 +201,7 @@ const updateUserPassword = async (req: Request, res: Response, next: NextFunctio
         const checkUser = await userService.getById(userId);
         if (!checkUser) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
         if (checkUser.schoolId !== schoolId) throw new CustomError(ErrorUserMessage.NOT_SAME_SCHOOL, 406, "user");
-        const updatedUser = await userService.updateUser(userId, { updatePassword: true });
+        const updatedUser = await userService.updateUser(userId, { updatePassword: false });
         if (!updatedUser) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
             type: "info",
