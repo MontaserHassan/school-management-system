@@ -1948,6 +1948,44 @@
 					"response": []
 				},
 				{
+					"name": "edit subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjZTAyZjZkNzI5NDFhZGUzNGFlMzg5M2MiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NDAzNzksImV4cCI6MTcyNzcyNjc3OX0.9QjOXbySzGQWAzR4nfo-qPiUW8GXcHJt1VO072zBNsU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subjectId\": \"LxKe0r5z-P5KHDlDVSqP73BH\",\n    \"subjectName\": \"social studies\"\n    //\"courseTime\": \"20\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/subject/",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"subject",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get all subject",
 					"request": {
 						"auth": {
