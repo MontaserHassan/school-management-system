@@ -5,7 +5,7 @@ import Joi from 'joi';
 const userValidator = {
     registerUser: {
         body: Joi.object().keys({
-            userName: Joi.string().required().empty('').trim().min(8).max(30),
+            userName: Joi.string().required().empty('').trim().max(30),
             email: Joi.string().required().empty('').trim().email().message('Please enter a valid email.'),
             role: Joi.string().required().empty('').trim().valid('superAdmin', 'admin', 'director', 'teacher', 'parent').messages({ 'any.only': 'Please enter a valid role.' }),
             media: Joi.string().optional().empty('').messages({ 'string.empty': 'media cannot be an empty string', }),
@@ -52,7 +52,7 @@ const userValidator = {
         body: Joi.object().keys({
             userId: Joi.string().required().trim().messages({ 'string.empty': 'User Id is required.', 'string.max': 'User Id cannot be longer than 24 characters', }),
             email: Joi.string().optional().trim().email().messages({ 'string.empty': 'Email cannot be an empty string', 'string.email': 'Please enter a valid email', }),
-            userName: Joi.string().optional().trim().min(8).max(30).empty('').messages({ 'string.empty': 'userName cannot be an empty string', 'string.min': 'userName must be at least 8 characters long', 'string.max': 'userName cannot be longer than 30 characters', }),
+            userName: Joi.string().optional().trim().max(30).empty('').messages({ 'string.empty': 'userName cannot be an empty string', 'string.min': 'userName must be at least 8 characters long', 'string.max': 'userName cannot be longer than 30 characters', }),
             media: Joi.string().optional().empty('').messages({ 'string.empty': 'media cannot be an empty string', }),
         }),
     },
