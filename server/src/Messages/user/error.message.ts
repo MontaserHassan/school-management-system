@@ -11,7 +11,8 @@ enum ErrorUserMessage {
     SAME_PASSWORD = "Old password and new password are same",
     UPDATE_PASSWORD = 'You need to update your password',
     PASSWORD_ALREADY_UPDATED = 'You have already updated your password.',
-    NOT_SAME_SCHOOL = "You are not in the same school. Please contact your school administrator.",
+    NOT_SAME_SCHOOL = "You are not in the same school.",
+    DUPLICATE_EMAIL = "This email is already in use. Please use another email.",
 };
 
 

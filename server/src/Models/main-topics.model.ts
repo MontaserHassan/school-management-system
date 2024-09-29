@@ -51,6 +51,7 @@ const mainTopicSchema = new mongoose.Schema(
     },
 );
 
+mainTopicSchema.index({ topicName: 1, schoolId: 1, classRoom: 1, }, { unique: true });
 
 
 const MainTopic = mongoose.model<MainTopicModel>('mainTopic', mainTopicSchema);

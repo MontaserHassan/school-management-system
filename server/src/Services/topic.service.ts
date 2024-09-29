@@ -29,8 +29,8 @@ const getByName = async (topicName: string) => {
 // ----------------------------- get by name and class room -----------------------------
 
 
-const getByNameAndClassRoom = async (topicName: string, classRoom: string) => {
-    const subject: MainTopicModel = await MainTopic.findOne({ topicName, classRoom }).select('-__v');
+const getByNameAndClassRoom = async (topicName: string, classRoom: string, schoolId) => {
+    const subject: MainTopicModel = await MainTopic.findOne({ topicName, classRoom, schoolId }).select('-__v');
     return subject;
 };
 

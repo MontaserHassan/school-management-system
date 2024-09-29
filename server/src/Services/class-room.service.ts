@@ -152,14 +152,12 @@ const updateRoom = async (roomId: string, updatedData: any) => {
 };
 
 
-// ----------------------------- update schedule -----------------------------
+// ----------------------------- update topic inside room -----------------------------
 
-
-// const updateScheduleDay = async (room: string, schedule: any) => {
-//     const updatedRoom: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room, 'schedule.day': schedule.day }, { $set: { 'schedule.$': schedule } }, { new: true, upsert: true }).select('-__v');
-//     return updatedRoom;
-// };
-
+const updateTopicDataInClassrooms = async (topicId: string, updatedTopicName: string) => {
+    const updatedClassrooms = await ClassRoom.updateMany({ "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.topicName": updatedTopicName } }, { multi: true });
+    return updatedClassrooms;
+};
 
 // ----------------------------- delete room -----------------------------
 
@@ -187,6 +185,6 @@ export default {
     getAllClassRoomLookups,
     findWithPagination,
     updateRoom,
-    // updateScheduleDay,
+    updateTopicDataInClassrooms,
     deleteRoom,
 };

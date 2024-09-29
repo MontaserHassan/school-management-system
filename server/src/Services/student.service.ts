@@ -77,6 +77,15 @@ const addTopic = async (studentId: string, topicId: string, topicName: string) =
 };
 
 
+// ----------------------------- update topic -----------------------------
+
+
+const updateTopicDataInStudents = async (topicId: string, newTopicName: string) => {
+    const updatedStudents = await Student.updateMany({ "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.topicName": newTopicName } }, { multi: true });
+    return updatedStudents;
+};
+
+
 // ----------------------------- add new progress status -----------------------------
 
 
@@ -236,6 +245,7 @@ export default {
     createStudent,
     addMoreDataToStudent,
     addTopic,
+    updateTopicDataInStudents,
     addAttendance,
     updateAttendanceByDate,
     addComment,
