@@ -168,8 +168,12 @@ const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId, userName, media } = req.body;
-        const user = await userService.updateUser(userId, { userName, media });
+        const { userId, userName, media, email } = req.body;
+        if (email) {
+            const user = await userService.getUserByEmail(email);
+            if (user && user.id !== userId) throw new CustomError(ErrorUserMessage.DUPLICATE_EMAIL, 406, "user");
+        };
+        const user = await userService.updateUser(userId, { userName, media, email });
         if (!user) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
             type: "info",

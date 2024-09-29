@@ -17,11 +17,11 @@ const createTopic = async (req: Request, res: Response, next: NextFunction) => {
         const { schoolId } = req.user;
         const isSubjectExisting = await subjectService.getById(subjectId);
         if (!isSubjectExisting) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 404, "subject");
-        const isRoomExisting = await classRoomService.getByRoom(room);
+        const isRoomExisting = await classRoomService.getByRoomAndSchoolId(room, schoolId);
         if (!isRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 404, "room");
         const isOperationTrue = isRoomExisting.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId);
         if (!isOperationTrue) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 400, "teacher");
-        const isTopicExisting = await topicService.getByNameAndClassRoom(topicName.toLowerCase(), room);
+        const isTopicExisting = await topicService.getByNameAndClassRoom(topicName.toLowerCase(), room, schoolId);
         if (isTopicExisting) throw new CustomError(errorClassRoomMessage.TOPIC_EXISTING_IN_ROOM, 400, "topic");
         const newTopic = await topicService.createTopic(topicName.toLowerCase(), room, { subjectId: isSubjectExisting._id, subjectName: isSubjectExisting.subjectName }, schoolId);
         if (!newTopic) throw new CustomError(errorTopicMessage.DOES_NOT_CREATED, 400, "none");
@@ -111,6 +111,8 @@ const updateTopicData = async (req: Request, res: Response, next: NextFunction) 
         if (!isTopicExisting) throw new CustomError(errorTopicMessage.NOT_FOUND_TOPIC, 404, "topic");
         const topic = await topicService.updateById(topicId, { topicName: newTopicName });
         if (!topic) throw new CustomError(errorTopicMessage.NOT_UPDATED, 404, "topic");
+        await studentService.updateTopicDataInStudents(isTopicExisting._id, topicName);
+        await classRoomService.updateTopicDataInClassrooms(isTopicExisting._id, newTopicName);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
