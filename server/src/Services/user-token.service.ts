@@ -1,4 +1,4 @@
-import { UserToken, UserTokenModel } from "../Models/user-token.mode";
+import { UserToken, UserTokenModel } from "../Models/user-token.model";
 
 
 

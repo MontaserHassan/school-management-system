@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import { ErrorTokenMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
+import { userTokenService } from "../Services/index.service";
 
 
 
@@ -21,6 +22,8 @@ function getUser() {
             if (!decoded.schoolId) throw new CustomError(ErrorTokenMessage.SCHOOLID_INVALID, 401, "token");
             req.user = { userId: decoded.id, schoolId: decoded.schoolId, role: decoded.role, };
             req.token = { secretKey: decoded.secretKey };
+            const isTokenInvalid = await userTokenService.getToken(decoded.id);
+            if (!isTokenInvalid) throw new CustomError(ErrorTokenMessage.TOKEN_INVALID, 401, "token");
             next();
         } catch (error) {
             next(error);

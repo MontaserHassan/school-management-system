@@ -203,6 +203,8 @@ const updateUserPassword = async (req: Request, res: Response, next: NextFunctio
         if (checkUser.schoolId !== schoolId) throw new CustomError(ErrorUserMessage.NOT_SAME_SCHOOL, 406, "user");
         const updatedUser = await userService.updateUser(userId, { updatePassword: false });
         if (!updatedUser) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
+        const getTokenByUserId = await userTokenService.getToken(userId);
+        if (getTokenByUserId) await userTokenService.stopToken(getTokenByUserId.secretKey);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
