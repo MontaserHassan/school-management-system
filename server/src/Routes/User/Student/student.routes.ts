@@ -15,7 +15,7 @@ const authStudentRouter = express.Router();
 authStudentRouter.post('/', checkRole(['director', 'admin']), validation(studentValidator.createStudent), studentController.createStudent);
 authStudentRouter.post('/add-data', checkRole(['director', 'admin']), validation(studentValidator.addMoreDataToStudent), studentController.addStudentToClass);
 
-authStudentRouter.get('/', checkRole(['director', 'admin', 'parent']), studentController.getAllStudents);
+authStudentRouter.get('/', checkRole(['director', 'admin', 'teacher', 'parent']), studentController.getAllStudents);
 authStudentRouter.get('/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), studentController.getStudent);
 authStudentRouter.get('/progress-history/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), progressHistoryController.getStudentProgressHistory);
 
