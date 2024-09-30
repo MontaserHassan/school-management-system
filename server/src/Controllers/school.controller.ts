@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 
-import { schoolService, userService } from "../Services/index.service";
+import { lookupService, schoolService, userService } from "../Services/index.service";
 import { errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import pagination from "../Utils/pagination.util";
+import { SubscriptionSchoolModel } from "../Models/school.model";
+import calculateSubscriptionDate from "../Utils/calculate-subscription-date.util";
 
 
 
@@ -43,8 +45,10 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
 const getSchoolData = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId } = req.params;
+        const { userId, role } = req.user;
         const school = await schoolService.getSchoolById(schoolId);
         if (!school) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        if (role === 'admin' && String(school.admin) !== userId) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const admin = await userService.getById(school.admin);
         const transformedSchool = {
             ...school.toObject(),
@@ -118,10 +122,25 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
 
 const updateSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolId, schoolName, subscriptionStatus, subscriptionWay, subscriptionFees, admins, employees } = req.body;
+        const { schoolId, schoolName, subscriptionStatus, subscriptionWay, subscriptionFees } = req.body;
         const IsSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
-        const updatedSchool = await schoolService.updateSchoolData(schoolId, { schoolName, subscriptionStatus, subscriptionWay, subscriptionFees, });
+        let updatedSchool: SubscriptionSchoolModel;
+        let updatedData: {};
+        let newSubscriptionStatus: string;
+        if (subscriptionStatus) {
+            const subscriptionStatusName = await lookupService.getById(subscriptionStatus)
+            newSubscriptionStatus = subscriptionStatus ? subscriptionStatusName.lookupName : IsSchoolExisting.subscriptionStatus;
+        };
+        const newSchoolName = schoolName ? schoolName : IsSchoolExisting.schoolName;
+        const newSubscriptionWay = subscriptionWay ? subscriptionWay : IsSchoolExisting.subscriptionWay;
+        const newSubscriptionFees = subscriptionFees ? subscriptionFees : IsSchoolExisting.subscriptionFees;
+        if (subscriptionWay || subscriptionStatus) {
+            const subscriptionDate = new Date();
+            const endOfSubscription = calculateSubscriptionDate(newSubscriptionWay, subscriptionDate);
+            updatedData = { subscriptionDate: subscriptionDate, subscriptionWay: newSubscriptionWay, endOfSubscription: endOfSubscription, subscriptionStatus: newSubscriptionStatus };
+        };
+        updatedSchool = await schoolService.updateSchoolData(schoolId, { schoolName: newSchoolName, subscriptionFees: newSubscriptionFees, ...updatedData });
         if (!updatedSchool) throw new CustomError(errorSchoolMessage.NOT_UPDATED, 404, "school");
         const response: IResponse = {
             type: "info",

@@ -7,6 +7,8 @@ enum errorSchoolMessage {
     SCHOOL_ALREADY_EXISTS = 'This School already exists',
     SCHOOL_NOT_FOUND = "School not found. Please check the School ID and try again.",
     DOES_NOT_ADDED = `Employee or admin doesn't added.`,
+    SCHOOLID_INVALID = "Please check the School ID and try again.",
+    FEES_NOT_PAID = "This School subscription is not paid. Please contact with admin.",
 };
 
 

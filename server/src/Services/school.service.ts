@@ -1,4 +1,5 @@
 import { SubscriptionSchool, SubscriptionSchoolModel } from "../Models/school.model";
+import calculateSubscriptionDate from "../Utils/calculate-subscription-date.util";
 
 
 
@@ -6,11 +7,15 @@ import { SubscriptionSchool, SubscriptionSchoolModel } from "../Models/school.mo
 
 
 const createSchool = async (schoolName: string, subscriptionFees: string, subscriptionWay: string = 'monthly', subscriptionStatus: string = 'pending', admin: string, employees: string[] = []) => {
+    const subscriptionDate = new Date();
+    const endOfSubscription = calculateSubscriptionDate(subscriptionWay, subscriptionDate);
     const newSchool: SubscriptionSchoolModel = new SubscriptionSchool({
         schoolName: schoolName,
         subscriptionFees: subscriptionFees,
         subscriptionWay: subscriptionWay,
         subscriptionStatus: subscriptionStatus,
+        subscriptionDate: subscriptionDate,
+        endOfSubscription: endOfSubscription,
         admin: admin,
         employees: employees,
     });

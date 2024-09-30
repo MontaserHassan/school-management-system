@@ -45,6 +45,13 @@ const classRoomValidator = {
         }),
     },
 
+    deleteStudentFromClassRoom: {
+        body: Joi.object().keys({
+            roomId: Joi.string().required().trim().messages({ 'string.empty': 'Room Id is required.', }),
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
+        }),
+    },
+
     deleteRoom: {
         params: Joi.object().keys({
             room: Joi.string().required().trim().messages({ 'string.empty': 'Class Room is required.', }),

@@ -39,7 +39,7 @@ const schoolValidator = {
             schoolName: Joi.string().optional().trim().messages({ 'string.empty': 'School name is required.', }),
             subscriptionFees: Joi.string().optional().trim().messages({ 'string.empty': 'Subscription fees are required.', }),
             subscriptionWay: Joi.string().optional().trim().valid('monthly', 'yearly').messages({ 'any.only': 'Subscription way must be either "monthly" or "yearly".', }),
-            subscriptionStatus: Joi.string().optional().trim().valid('pending', 'paid', 'expired').messages({ 'any.only': 'Subscription status must be "pending", "paid", or "expired".', }),
+            subscriptionStatus: Joi.string().optional().trim().messages({ 'string.empty': 'Subscription status is required.', }),
         }),
     },
 
