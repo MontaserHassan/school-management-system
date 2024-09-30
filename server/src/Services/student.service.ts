@@ -173,10 +173,12 @@ const totalDocument = async (schoolId: string, parentId?: string) => {
 // ----------------------------- find all with pagination -----------------------------
 
 
-const findAllStudentsOfSchool = async (schoolId: string, limit: number, skip: number, parentId?: string) => {
+const findAllStudentsOfSchool = async (schoolId: string, limit: number, skip: number, data?: { key: string, value: string }) => {
     let students: StudentModel[];
-    if (parentId) {
-        students = await Student.find({ schoolId: schoolId, parentId: parentId }).limit(limit).skip(skip).select('-__v');
+    if (data && data.key === 'parentId') {
+        students = await Student.find({ schoolId: schoolId, parentId: data.value }).limit(limit).skip(skip).select('-__v');
+    } else if (data && data.key === 'classRoom') {
+        students = await Student.find({ schoolId: schoolId, classRoom: data.value }).limit(limit).skip(skip).select('-__v');
     } else {
         students = await Student.find({ schoolId: schoolId }).limit(limit).skip(skip).select('-__v');
     };
