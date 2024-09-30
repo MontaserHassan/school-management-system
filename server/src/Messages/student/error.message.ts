@@ -11,6 +11,7 @@ enum errorStudentMessage {
     PARENT_NOT_EXIST = "Parent does not exist",
     SUBJECT_NOT_EXISTING = "This Subject does not exist for this student",
     STUDENT_AND_TEACHER = "This Teacher Is NOT assigned to this student, you can't add a comment for this student",
+    TOPIC_WITHOUT_DEGREE = "Cannot complete subject because some topics have no degree."
 };
 
 

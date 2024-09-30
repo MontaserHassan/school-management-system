@@ -161,6 +161,8 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
         if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
+        const topicsWithoutDegree = student.mainTopics?.filter(topic => !topic.degree);
+        if (progressStatus.lookupName === "Completed" && topicsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.TOPIC_WITHOUT_DEGREE, 400, "subject");
         const updatedStudent = await studentService.addProgressStatus(studentId, subjectId, progressStatus.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const topics = await Promise.all(student.mainTopics.map(async (topic) => {
@@ -169,7 +171,7 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
             return filteredTopics.map((filteredTopic) => ({
                 topicId: filteredTopic._id,
                 topicName: filteredTopic.topicName,
-                degree: String(topic.degree) || 'blue',
+                degree: String(topic.degree),
             }));
         }));
         const flattedTopics = topics.flat();
