@@ -19,6 +19,7 @@ authStudentRouter.get('/', checkRole(['director', 'admin', 'teacher', 'parent'])
 authStudentRouter.get('/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), studentController.getStudent);
 authStudentRouter.get('/progress-history/:studentId', checkRole(['director', 'teacher', 'admin', 'parent']), progressHistoryController.getStudentProgressHistory);
 
+authStudentRouter.patch('/', checkRole(['director', 'admin']), validation(studentValidator.updateStudentData), studentController.updateStudentData);
 authStudentRouter.patch('/attendance', checkRole(['teacher', 'director', 'admin']), validation(studentValidator.addAttendance), studentController.addAttendance);
 authStudentRouter.patch('/comment', checkRole(['teacher', 'director', 'admin']), mediaMediaHandler, validation(studentValidator.addComment), studentController.addComment);
 authStudentRouter.patch('/progress-status', checkRole(['teacher']), validation(studentValidator.addProgressHistory), studentController.addProgressStatus);

@@ -161,8 +161,15 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
         if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
-        const topicsWithoutDegree = student.mainTopics?.filter(topic => !topic.degree);
-        if (progressStatus.lookupName === "Completed" && topicsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.TOPIC_WITHOUT_DEGREE, 400, "subject");
+        const topicsWithoutDegree = await Promise.all(
+            student.mainTopics?.map(async (topic) => {
+                const topicExists = await topicService.getById(String(topic.topicId));
+                if (topicExists.subject.subjectId === subjectId && !topic.degree) return topicExists;
+                return null;
+            }) || [],
+        );
+        const filteredTopicsWithoutDegree = topicsWithoutDegree.filter(topic => topic !== null);
+        if (progressStatus.lookupName === "Completed" && filteredTopicsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.TOPIC_WITHOUT_DEGREE, 400, "subject");
         const updatedStudent = await studentService.addProgressStatus(studentId, subjectId, progressStatus.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const topics = await Promise.all(student.mainTopics.map(async (topic) => {
@@ -389,10 +396,10 @@ const getStudentsByParent = async (req: Request, res: Response, next: NextFuncti
 
 const updateStudentData = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentCode, studentName, classNumber, studentCost, currencyOfCost } = req.body;
-        const IsStudentExisting = await studentService.getStudentByStudentCode(studentCode);
+        const { studentId, studentName } = req.body;
+        const IsStudentExisting = await studentService.getStudentById(studentId);
         if (!IsStudentExisting) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
-        const updatedStudent = await studentService.updateStudentData(IsStudentExisting._id, { studentName, classNumber, studentCost, currencyOfCost });
+        const updatedStudent = await studentService.updateStudentData(IsStudentExisting._id, { studentName, });
         if (!updatedStudent) throw new CustomError(errorSubjectMessage.NOT_UPDATED, 404, "student");
         const response: IResponse = {
             type: "info",
