@@ -277,15 +277,13 @@ const getAllStudents = async (req: Request, res: Response, next: NextFunction) =
             const totalStudents = await studentService.totalDocument(schoolId, userId);
             paginateData = pagination(totalStudents, Number(page), Number(limit));
             if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-            students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip, userId);
+            students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip, { key: 'parentId', value: userId });
         } else if (role === 'teacher') {
             const getClassRoomByTeacherId = await classRoomService.getClassRoomByTeacherId(userId);
-            console.log('getClassRoomByTeacherId: ', getClassRoomByTeacherId);
             const totalStudents = await studentService.totalDocumentByClassRoom(schoolId, getClassRoomByTeacherId.room);
-            console.log('totalStudents: ', totalStudents);
             paginateData = pagination(totalStudents, Number(page), Number(limit));
             if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
-            students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip);
+            students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip, { key: 'classRoom', value: getClassRoomByTeacherId.room });
         } else {
             const totalStudents = await studentService.totalDocument(schoolId);
             paginateData = pagination(totalStudents, Number(page), Number(limit));
