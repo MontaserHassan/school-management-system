@@ -1,8 +1,8 @@
 enum ErrorUserMessage {
-    TOKEN_EXPIRED = "Your token is expired, please login again",
-    TOKEN_INVALID = "Your token is invalid, please don't use this token again",
-    HEADER_INVALID = "In-valid Header Token",
-    SIGNATURE_INVALID = "In-valid Token Signature",
+    TOKEN_EXPIRED = "Your session is expired, please login again",
+    TOKEN_INVALID = "Your session is invalid, please don't use this session again",
+    HEADER_INVALID = "In-valid Header session",
+    SIGNATURE_INVALID = "In-valid session Signature",
     SCHOOLID_INVALID = 'In-valid SchoolId',
 };
 
