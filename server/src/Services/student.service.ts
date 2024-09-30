@@ -150,6 +150,15 @@ const getStudentsById = async (studentCode: string[]) => {
 // ----------------------------- get total documents -----------------------------
 
 
+const totalDocumentByClassRoom = async (schoolId: string, classRoom: string) => {
+    const students = await Student.countDocuments({ schoolId: schoolId, classRoom: classRoom });
+    return students;
+};
+
+
+// ----------------------------- get total documents -----------------------------
+
+
 const totalDocument = async (schoolId: string, parentId?: string) => {
     let students: any;
     if (parentId) {
@@ -253,6 +262,7 @@ export default {
     addProgressStatus,
     addDegree,
     totalDocument,
+    totalDocumentByClassRoom,
     findAllStudentsOfSchool,
     getStudentsByClassRoom,
     getStudentById,
