@@ -1,15 +1,15 @@
-import AppDataSource from '../Config/orm.config';
-import { Notification, NotificationModel } from 'Models/notification.model';
+import { Notification, NotificationModel } from '../Models/notification.model';
 
 
 
 // ----------------------------- create notification -----------------------------
 
 
-const createNotification = async (userId: string, schoolId: string, message: string) => {
+const createNotification = async (userId: string, schoolId: string, header: string, message: string) => {
     const notification: NotificationModel = new Notification({
         userId,
         schoolId,
+        header,
         message,
     });
     await notification.save();
@@ -20,9 +20,18 @@ const createNotification = async (userId: string, schoolId: string, message: str
 // ----------------------------- find notifications by user id -----------------------------
 
 
-const findNotificationsById = async (userId: string, schoolId) => {
-    const users: NotificationModel[] = await Notification.find({ schoolId, userId }).select('-__v');
-    return users;
+const findNotificationById = async (notificationId: string) => {
+    const notification: NotificationModel = await Notification.findById(notificationId).select('-__v');
+    return notification;
+};
+
+
+// ----------------------------- find notifications by user id -----------------------------
+
+
+const findNotificationsByUserId = async (userId: string, schoolId: string) => {
+    const notifications: NotificationModel[] = await Notification.find({ schoolId, userId }).select('-__v');
+    return notifications;
 };
 
 
@@ -38,6 +47,7 @@ const updateUser = async (userId: string, updatedData: any) => {
 
 export default {
     createNotification,
-    findNotificationsById,
+    findNotificationById,
+    findNotificationsByUserId,
     updateUser,
 };

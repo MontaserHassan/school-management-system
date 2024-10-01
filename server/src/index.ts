@@ -9,6 +9,7 @@ dotenv.config();
 import { DBConnection } from './Connections/index.connection';
 import router from './Routes/index.routes';
 import { logger } from './Config/index.config';
+import { initializeCronJobs } from './Scripts/check-subscription-expiration';
 
 
 
@@ -35,5 +36,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
+// initializeCronJobs();
 DBConnection(server);
 app.use('/api', router);

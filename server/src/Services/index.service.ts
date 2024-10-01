@@ -7,6 +7,8 @@ import topicService from "./topic.service";
 import lookupService from "./lookup.service";
 import schoolService from "./school.service";
 import progressHistoryService from "./progress-history.service";
+import notificationService from "./notification.service";
+
 
 
 export {
@@ -19,4 +21,5 @@ export {
     lookupService,
     schoolService,
     progressHistoryService,
+    notificationService,
 };

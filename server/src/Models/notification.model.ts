@@ -26,6 +26,10 @@ const notificationSchema = new mongoose.Schema(
             ref: 'subscriptionSchool',
             required: false,
         },
+        header: {
+            type: String,
+            required: true,
+        },
         message: {
             type: String,
             required: true,

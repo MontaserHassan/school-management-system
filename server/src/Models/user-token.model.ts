@@ -50,14 +50,7 @@ const userTokenSchema = new mongoose.Schema(
 userTokenSchema.index({ endTime: 1 }, { expireAfterSeconds: 3600 });
 
 userTokenSchema.post('findOneAndDelete', async function (doc) {
-    if (doc) {
-        try {
-            await User.findByIdAndUpdate(doc.userId, { logged: false });
-            console.log(`User with ID ${doc.userId} has been logged out.`);
-        } catch (error) {
-            console.error('Error updating user logged status:', error);
-        };
-    }
+    if (doc) await User.findByIdAndUpdate(doc.userId, { logged: false });
 });
 
 
