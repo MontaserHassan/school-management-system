@@ -152,13 +152,16 @@ const updateRoom = async (roomId: string, updatedData: any) => {
 };
 
 
+// ----------------------------- delete student from class -----------------------------
+
+
 const deleteStudentFromClassRoom = async (roomId: string, studentId: string) => {
-    const classRoom = await ClassRoom.findByIdAndUpdate(roomId, { $pull: { students: { studentId } } }, { new: true }).select('-__v');
+    const classRoom = await ClassRoom.findByIdAndUpdate(roomId, { $pull: { students: { studentId: studentId } } }, { new: true }).select('-__v');
     return classRoom;
 };
 
 
-// ----------------------------- update topic inside room -----------------------------
+// ----------------------------- update topic inside room ---------------               --------------
 
 const updateTopicDataInClassrooms = async (topicId: string, updatedTopicName: string) => {
     const updatedClassrooms = await ClassRoom.updateMany({ "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.topicName": updatedTopicName } }, { multi: true });
