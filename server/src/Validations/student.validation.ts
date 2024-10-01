@@ -71,18 +71,12 @@ const studentValidator = {
 
     updateStudentData: {
         body: Joi.object().keys({
-            studentCode: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
+            studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student is required.', }),
             studentName: Joi.string().required().trim().min(3).max(100).messages({
                 'string.empty': 'Student name is required.',
                 'string.min': 'Student name must be at least 3 characters long.',
                 'string.max': 'Student name must not exceed 100 characters.',
             }),
-            classNumber: Joi.string().required().trim().max(6).messages({
-                'string.empty': 'Class number is required.',
-                'string.max': 'Class number must not exceed 6 characters.',
-            }),
-            studentCost: Joi.string().required().regex(/^[0-9]+$/).messages({ 'string.empty': 'Student cost is required.', 'string.pattern.base': 'Student cost must be a number.', }),
-            currencyOfCost: Joi.string().valid('usd', 'eur', 'jpy', 'ps').required(),
         }),
     },
 

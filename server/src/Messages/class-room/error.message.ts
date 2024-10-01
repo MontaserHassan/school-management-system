@@ -16,6 +16,7 @@ enum errorClassRoomMessage {
     TOPIC_EXISTING_IN_ROOM = "This topic has already been added in this room",
     TEACHER_NOT_FOUND = "Teacher not found. Please check the teacher ID and try again.",
     TEACHER_NOT_ADDED = "Teacher doesn't added.",
+    STUDENT_NOT_DELETED = "These students didn't delete",
 };
 
 

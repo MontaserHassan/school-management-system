@@ -10,6 +10,8 @@ interface SubscriptionSchoolModel extends mongoose.Document {
     employees: string[];
     subscriptionFees: string;
     subscriptionDate: Date;
+    subscriptionWay: string;
+    endOfSubscription: Date;
     subscriptionStatus: string;
 };
 
@@ -40,12 +42,16 @@ const subscriptionSchoolSchema = new mongoose.Schema(
         },
         subscriptionDate: {
             type: Date,
-            default: new Date(),
+            required: true,
         },
         subscriptionWay: {
             type: String,
             default: 'monthly',
             enum: ['monthly', 'yearly'],
+        },
+        endOfSubscription: {
+            type: Date,
+            required: true,
         },
         subscriptionStatus: {
             type: String,

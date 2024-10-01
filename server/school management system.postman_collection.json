@@ -128,7 +128,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI5MDEzNTAxNjVmNjAzNjEzNDMyNGE0MWUiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJCODUwODAyMSIsImlhdCI6MTcyNzEzMjQxMCwiZXhwIjoxNzI3MjE4ODEwfQ.HajFdjVTzN_LqeTxsIWkBZJFPELN5wH0zhmZRYlvVJk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzNDFhZjQ2YmRmNGU5YmE4ZThjYTgxNjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJCODUwODAyMSIsImlhdCI6MTcyNzY1NjQ3MSwiZXhwIjoxNzI3NzQyODcxfQ.h3zSgG0u1rFcxdIvhoOogtTqWIXKdgLF63kE_sf5oxQ",
 									"type": "string"
 								}
 							]
@@ -584,7 +584,7 @@
 			]
 		},
 		{
-			"name": "super admin",
+			"name": "school",
 			"item": [
 				{
 					"name": "create school",
@@ -594,7 +594,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3NmZjZjU3MWU4ZTIxNzlkYjA1ZTQ3ZDEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2OTIxMjk0LCJleHAiOjE3MjcwMDc2OTR9.ONUUe2OybFcd3Ms7OvLHkxbWsPjN8J8OX8zK8Dfqklw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3YWM1YjhiMzNiMGU5OWJiMTY5ODc3NDMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI3NzE1Mjk5LCJleHAiOjE3Mjc4MDE2OTl9.cwWxWhjgmf-p6kR-Kg8gvH6FOGTQ79HDFhdcI4bRn4o",
 									"type": "string"
 								}
 							]
@@ -603,7 +603,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"Ali Ebn Aby Taleb\",\n    \"subscriptionFees\": \"50\",\n    \"admin\": {\n        \"userName\": \"admin Ali Ebn Aby Taleb\",\n        \"email\": \"admin.AliEbnAbyTaleb@example.com\"\n    },\n    \"employees\": []\n}",
+							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"BaniSuef language\",\n    \"subscriptionFees\": \"500\",\n    \"subscriptionWay\": \"monthly\",\n    \"admin\": {\n        \"userName\": \"admin BaniSuef language\",\n        \"email\": \"admin.BaniSuef@gmail.com\"\n    },\n    \"employees\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -618,6 +618,44 @@
 							"path": [
 								"user",
 								"superAdmin",
+								"school",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update school",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3YWM1YjhiMzNiMGU5OWJiMTY5ODc3NDMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI3NzE1Mjk5LCJleHAiOjE3Mjc4MDE2OTl9.cwWxWhjgmf-p6kR-Kg8gvH6FOGTQ79HDFhdcI4bRn4o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n    // \"schoolName\": \"BaniSuef language\",\n    // \"subscriptionFees\": \"900\",\n    \"subscriptionWay\": \"monthly\",\n    \"subscriptionStatus\": \"SchoolSystem-7-1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/school/",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
 								"school",
 								""
 							]
@@ -650,13 +688,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/superAdmin/school/add-admin",
+							"raw": "{{SchoolManagementSystem}}/user/school/add-admin",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"superAdmin",
 								"school",
 								"add-admin"
 							]
@@ -675,7 +712,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3OWMxYzlhY2UxMGEwNDhkN2RhMDQwMjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDM3NjE0LCJleHAiOjE3MjY1MjQwMTR9.rN4EGTgAxd9_vmcoa-JvM-FF3490ZyKGuOvmnG_w-s4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJiNTE3M2VjMDU2ZjY4YTY1MzAzYTdhZDMiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NTc3MTUsImV4cCI6MTcyNzc0NDExNX0.YcP22CRgLpt7uKhUpTDSs_OiIEFMt2d3xnT6jKgaVSo",
 									"type": "string"
 								}
 							]
@@ -692,13 +729,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/superAdmin/school/HQiPO_ovyNWpxm8lSHZPxUU8",
+							"raw": "{{SchoolManagementSystem}}/user/school/HQiPO_ovyNWpxm8lSHZPxUU8",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"superAdmin",
 								"school",
 								"HQiPO_ovyNWpxm8lSHZPxUU8"
 							]
@@ -734,13 +770,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/superAdmin/school/?page=1",
+							"raw": "{{SchoolManagementSystem}}/user/school/?page=1",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"superAdmin",
 								"school",
 								""
 							],
@@ -806,7 +841,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIxMjgyMDljMjc4MTQ5ZTdiOTcyYmNiYjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzQ0NDcxOCwiZXhwIjoxNzI3NTMxMTE4fQ.a2xAzILrmrJNUdZoMbWKB_QXPsxQDiBOlebgS79qf2Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzNDFhZjQ2YmRmNGU5YmE4ZThjYTgxNjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJCODUwODAyMSIsImlhdCI6MTcyNzY1NjQ3MSwiZXhwIjoxNzI3NzQyODcxfQ.h3zSgG0u1rFcxdIvhoOogtTqWIXKdgLF63kE_sf5oxQ",
 									"type": "string"
 								}
 							]
@@ -815,7 +850,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"studentId\": \"eRtxL3QXBzdaDlxHlhdNPfGj\",\n    \"subjectId\": \"ulpMOFtV_STeLof7hvqkFb2C\",\n    \"status\": \"SchoolSystem-3-3\"\n}",
+							"raw": "{\n    \"studentId\": \"WGmQDz55J0qFvC5jN6ut9Vqn\",\n    \"subjectId\": \"FMlb3cHQ2vnDZ3AgzNXiuZnT\",\n    \"status\": \"SchoolSystem-3-3\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1081,7 +1116,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjZTAyZjZkNzI5NDFhZGUzNGFlMzg5M2MiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NDAzNzksImV4cCI6MTcyNzcyNjc3OX0.9QjOXbySzGQWAzR4nfo-qPiUW8GXcHJt1VO072zBNsU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzNDFhZjQ2YmRmNGU5YmE4ZThjYTgxNjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJCODUwODAyMSIsImlhdCI6MTcyNzY1NjQ3MSwiZXhwIjoxNzI3NzQyODcxfQ.h3zSgG0u1rFcxdIvhoOogtTqWIXKdgLF63kE_sf5oxQ",
 									"type": "string"
 								}
 							]
@@ -1089,23 +1124,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/student?limit=4&page=2",
+							"raw": "{{SchoolManagementSystem}}/user/student",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"student"
-							],
-							"query": [
-								{
-									"key": "limit",
-									"value": "4"
-								},
-								{
-									"key": "page",
-									"value": "2"
-								}
 							]
 						}
 					},
@@ -1564,7 +1589,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiIyYWRlMGE5OWEzNjRhZjYzZjY4NzJkNzIiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI3MzA1MDg3LCJleHAiOjE3MjczOTE0ODd9.TUg7vZjzBirrPSyYdKblT5wZzfDnxUKrFtEju33DGYk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI3YWM1YjhiMzNiMGU5OWJiMTY5ODc3NDMiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI3NzE1Mjk5LCJleHAiOjE3Mjc4MDE2OTl9.cwWxWhjgmf-p6kR-Kg8gvH6FOGTQ79HDFhdcI4bRn4o",
 									"type": "string"
 								}
 							]
@@ -1573,7 +1598,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"masterCode\": \"6\",\n    \"lookups\": [\n        {\n            \"masterName\": \"currency\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"usd\"\n        },\n        {\n            \"masterName\": \"currency\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"eur\"\n        },\n        {\n            \"masterName\": \"currency\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"jpy\"\n        },\n        {\n            \"masterName\": \"currency\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"4\",\n            \"lookupName\": \"ps\"\n        }\n    ]\n}",
+							"raw": "{\n    \"masterCode\": \"7\",\n    \"lookups\": [\n        {\n            \"masterName\": \"subscriptionStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"paid\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1735,6 +1760,44 @@
 								"user",
 								"class-room",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete student from class room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJiNTE3M2VjMDU2ZjY4YTY1MzAzYTdhZDMiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NTc3MTUsImV4cCI6MTcyNzc0NDExNX0.YcP22CRgLpt7uKhUpTDSs_OiIEFMt2d3xnT6jKgaVSo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"MB4Kez6lbcPynSJgruCCiUIn\",\n    \"studentId\": \"HYE7aXzALRyjWgW5SR7jk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/class-room/unAssign-student",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"class-room",
+								"unAssign-student"
 							]
 						}
 					},
@@ -1974,7 +2037,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"topicName\": \"physics\",\n    \"topicId\": \"6RzzeTB1nSkinzrByIefi3s2\"\n}\n// arithmetic operations",
+							"raw": "{\n    \"topicName\": \"arithmetic operations\",\n    \"topicId\": \"6RzzeTB1nSkinzrByIefi3s2\"\n}\n// arithmetic operations",
 							"options": {
 								"raw": {
 									"language": "json"

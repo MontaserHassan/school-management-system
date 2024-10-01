@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { classRoomService, lookupService, studentService, subjectService, topicService, userService } from "../Services/index.service";
-import { errorClassRoomMessage, successClassRoomMessage } from "../Messages/index.message";
+import { errorClassRoomMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import pagination from "../Utils/pagination.util";
 import IResponse from '../Interfaces/response.interface';
@@ -280,7 +280,36 @@ const updateClassRoom = async (req: Request, res: Response, next: NextFunction) 
 };
 
 
-// ----------------------------- delete subject room -----------------------------
+// ----------------------------- delete student from class room -----------------------------
+
+
+const deleteStudentFromClassRoom = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { roomId, studentId } = req.body;
+        const classRoom = await classRoomService.getById(roomId);
+        if (!classRoom) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "class room");
+        const student = await studentService.getStudentById(studentId);
+        if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
+        const updateClassRoom = await classRoomService.deleteStudentFromClassRoom(roomId, studentId);
+        if (!updateClassRoom) throw new CustomError(errorClassRoomMessage.STUDENT_NOT_DELETED, 400, "student");
+        await studentService.updateStudentData(studentId, { room: '', group: '', studentCost: '', currencyOfCost: '', mainTopics: [], subjects: [] });
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successClassRoomMessage.STUDENT_DELETED,
+            data: {
+                classRoom: updateClassRoom,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
+// ----------------------------- delete class room -----------------------------
 
 
 const deleteClassRoom = async (req: Request, res: Response, next: NextFunction) => {
@@ -314,5 +343,6 @@ export default {
     getAllRoom,
     getClassById,
     getClassByRoom,
+    deleteStudentFromClassRoom,
     deleteClassRoom,
 };

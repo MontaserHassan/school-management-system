@@ -17,6 +17,8 @@ classRoomRouter.post('/', checkRole(['director', 'admin']), validation(classRoom
 
 classRoomRouter.patch('/', checkRole(['director', 'admin']), validation(classRoomValidator.updateClassRoom), classRoomController.updateClassRoom);
 
+classRoomRouter.patch('/unAssign-student', checkRole(['admin', 'director']), validation(classRoomValidator.deleteStudentFromClassRoom), classRoomController.deleteStudentFromClassRoom);
+
 classRoomRouter.delete('/:room', checkRole(['admin']), validation(classRoomValidator.deleteRoom), classRoomController.deleteClassRoom);
 
 

@@ -152,6 +152,12 @@ const updateRoom = async (roomId: string, updatedData: any) => {
 };
 
 
+const deleteStudentFromClassRoom = async (roomId: string, studentId: string) => {
+    const classRoom = await ClassRoom.findByIdAndUpdate(roomId, { $pull: { students: { studentId } } }, { new: true }).select('-__v');
+    return classRoom;
+};
+
+
 // ----------------------------- update topic inside room -----------------------------
 
 const updateTopicDataInClassrooms = async (topicId: string, updatedTopicName: string) => {
@@ -186,5 +192,6 @@ export default {
     findWithPagination,
     updateRoom,
     updateTopicDataInClassrooms,
+    deleteStudentFromClassRoom,
     deleteRoom,
 };
