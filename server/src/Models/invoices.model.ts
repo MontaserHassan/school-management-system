@@ -36,10 +36,18 @@ const invoiceSchema = new mongoose.Schema(
             ref: 'User',
             required: true,
         },
-        studentCode: [
+        student: [
             {
-                type: String,
-                required: true,
+                _id: false,
+                studentId: {
+                    type: String,
+                    ref: 'Student',
+                    required: true,
+                },
+                studentName: {
+                    type: String,
+                    required: true,
+                },
             },
         ],
         schoolId: {
@@ -77,10 +85,6 @@ const invoiceSchema = new mongoose.Schema(
                     type: Boolean,
                     default: false,
                 },
-                // reminder: {
-                //     type: Boolean,
-                //     default: false,
-                // },
                 media: {
                     type: String, // base64
                     required: false,

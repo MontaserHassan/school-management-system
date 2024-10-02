@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { lookupService, schoolService, userService } from "../Services/index.service";
-import { errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
+import { errorLookupMessage, errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import pagination from "../Utils/pagination.util";
@@ -15,12 +15,14 @@ import calculateSubscriptionDate from "../Utils/calculate-subscription-date.util
 
 const createSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admin, employees } = req.body;
+        const { schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admin, employees, currencyOfSubscription } = req.body;
         const IsSchoolExisting = await schoolService.getSchoolByName(schoolName.toLowerCase());
         if (IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_ALREADY_EXISTS, 404, "school");
         let adminUser = await userService.getUserByEmail(admin.email);
+        const currency = await lookupService.getById(currencyOfSubscription);
+        if (!currency) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "currency");
         if (!adminUser) adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null, '');
-        const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
+        const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, currency.lookupName, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });
         const response: IResponse = {
@@ -122,15 +124,20 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
 
 const updateSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolId, schoolName, subscriptionStatus, subscriptionWay, subscriptionFees } = req.body;
+        const { schoolId, schoolName, subscriptionStatus, subscriptionWay, subscriptionFees, currencyOfSubscription } = req.body;
         const IsSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         let updatedSchool: SubscriptionSchoolModel;
         let updatedData: {};
         let newSubscriptionStatus: string;
+        let currency: string;
         if (subscriptionStatus) {
             const subscriptionStatusName = await lookupService.getById(subscriptionStatus)
             newSubscriptionStatus = subscriptionStatus ? subscriptionStatusName.lookupName : IsSchoolExisting.subscriptionStatus;
+        };
+        if (currencyOfSubscription) {
+            const currencyName = await lookupService.getById(currencyOfSubscription)
+            currency = currencyOfSubscription ? currencyName.lookupName : IsSchoolExisting.currencyOfSubscription;
         };
         const newSchoolName = schoolName ? schoolName : IsSchoolExisting.schoolName;
         const newSubscriptionWay = subscriptionWay ? subscriptionWay : IsSchoolExisting.subscriptionWay;
@@ -140,7 +147,7 @@ const updateSchool = async (req: Request, res: Response, next: NextFunction) => 
             const endOfSubscription = calculateSubscriptionDate(newSubscriptionWay, subscriptionDate);
             updatedData = { subscriptionDate: subscriptionDate, subscriptionWay: newSubscriptionWay, endOfSubscription: endOfSubscription, subscriptionStatus: newSubscriptionStatus };
         };
-        updatedSchool = await schoolService.updateSchoolData(schoolId, { schoolName: newSchoolName, subscriptionFees: newSubscriptionFees, ...updatedData });
+        updatedSchool = await schoolService.updateSchoolData(schoolId, { schoolName: newSchoolName, currencyOfSubscription: currency, subscriptionFees: newSubscriptionFees, ...updatedData });
         if (!updatedSchool) throw new CustomError(errorSchoolMessage.NOT_UPDATED, 404, "school");
         const response: IResponse = {
             type: "info",

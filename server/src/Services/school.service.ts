@@ -6,13 +6,14 @@ import calculateSubscriptionDate from "../Utils/calculate-subscription-date.util
 // ----------------------------- create school -----------------------------
 
 
-const createSchool = async (schoolName: string, subscriptionFees: string, subscriptionWay: string = 'monthly', subscriptionStatus: string = 'pending', admin: string, employees: string[] = []) => {
+const createSchool = async (schoolName: string, subscriptionFees: string, currencyOfSubscription: string, subscriptionWay: string = 'monthly', subscriptionStatus: string = 'pending', admin: string, employees: string[] = []) => {
     const subscriptionDate = new Date();
     const endOfSubscription = calculateSubscriptionDate(subscriptionWay, subscriptionDate);
     const newSchool: SubscriptionSchoolModel = new SubscriptionSchool({
         schoolName: schoolName,
         subscriptionFees: subscriptionFees,
         subscriptionWay: subscriptionWay,
+        currencyOfSubscription: currencyOfSubscription,
         subscriptionStatus: subscriptionStatus,
         subscriptionDate: subscriptionDate,
         endOfSubscription: endOfSubscription,
