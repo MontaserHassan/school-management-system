@@ -4,8 +4,9 @@ import { nanoid } from 'nanoid';
 
 
 interface NotificationModel extends mongoose.Document {
-    email: string;
+    userId: string;
     schoolId: string;
+    header: string;
     message: string;
     read: boolean;
 };

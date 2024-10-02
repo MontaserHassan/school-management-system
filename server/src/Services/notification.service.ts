@@ -38,7 +38,7 @@ const findNotificationsByUserId = async (userId: string, schoolId: string) => {
 // ----------------------------- update notification -----------------------------
 
 
-const updateUser = async (userId: string, updatedData: any) => {
+const updateNotification = async (userId: string, updatedData: any) => {
     const updatedUser: NotificationModel = await Notification.findOneAndUpdate({ userId }, updatedData, { new: true }).select('-__v');
     return updatedUser;
 };
@@ -49,5 +49,5 @@ export default {
     createNotification,
     findNotificationById,
     findNotificationsByUserId,
-    updateUser,
+    updateNotification,
 };
