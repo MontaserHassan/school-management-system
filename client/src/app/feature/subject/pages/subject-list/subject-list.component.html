@@ -15,14 +15,21 @@
 
       <ng-template pTemplate="body" let-subject>
         <tr>
-          <td>{{ subject.subjectName }}</td>
+          <td (click)="viewSubject(subject._id)">{{ subject.subjectName }}</td>
           <td>{{ subject.courseTime }}</td>
           <td>{{ subject.typeOfTime || 'N/A' }}</td>
           <td>{{ subject.createdAt | date:'shortDate' }}</td>
           <td>{{ subject.updatedAt | date:'shortDate' }}</td>
           <td>
-            <button pButton type="button" icon="pi pi-eye" label="View Details" class="p-button-outlined"
-              (click)="viewSubject(subject._id)"></button>
+            <p-menu #menu [model]="subjectAction" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label,subject)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
           </td>
         </tr>
       </ng-template>

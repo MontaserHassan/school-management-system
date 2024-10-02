@@ -23,6 +23,9 @@ export class IClassDetailsPayload {
   room?: string;
 
   @Expose()
+  roomId?: string;
+
+  @Expose()
   teachersId?: string[];
 
   @Expose()
@@ -34,6 +37,9 @@ export class IClassDetailsPayload {
 
   @Expose()
   studentCost?: string;
+
+  @Expose()
+  currencyOfCost?: string;
 
   @Expose()
   group?: string;

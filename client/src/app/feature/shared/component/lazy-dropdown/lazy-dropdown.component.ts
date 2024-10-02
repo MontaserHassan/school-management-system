@@ -61,7 +61,7 @@ export class LazyDropdownComponent implements OnInit {
 
   onOptionSelect(event: any): void {
     this.selectedOption = event.value;
-    
+
     this.onChange(this.selectedOption);
     this.onTouched();
   }
@@ -78,8 +78,6 @@ export class LazyDropdownComponent implements OnInit {
             label: item.value,
             value: item._id,
           }));
-
-          console.log(this.dropdownOptions);
 
           this.lookupCache[this.lookup] = this.dropdownOptions;
           this.isDataLoaded = true;

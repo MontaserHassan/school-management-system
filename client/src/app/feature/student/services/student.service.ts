@@ -78,4 +78,10 @@ export class StudentService {
       map((res) => this.mapper.fromJson(Student, res.data.student))
     )
   }
+
+  editStudent(body:{studentName:string,studentId:string}): Observable<Student> {
+    return this.baseAPI.patch(ApiConstant.UPDATE_STUDENT, filterNullEntity(body)).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.student))
+    )
+  }
 }

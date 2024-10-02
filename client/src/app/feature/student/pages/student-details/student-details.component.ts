@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddCommentDialogComponent } from '../../component/add-comment-dialog/add-comment-dialog.component';
 import { MenuItem, MessageService } from 'primeng/api';
 import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
+import { EditStudentDialogComponent } from '../../component/edit-student-dialog/edit-student-dialog.component';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
@@ -23,7 +25,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
   displayDialog: boolean = false;
   selectedComment: any = null;
   protected degree = Degree
-
+  protected RolesConstants = RolesConstants
 
 
   degreeStatus = [
@@ -43,6 +45,8 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
 
   degreeOption: MenuItem[] = this.degreeStatus.map((status) => ({ icon: "pi pi-star-fill", label: status._id}));
   id!: string;
+
+  studentAction!: MenuItem[];
 
   constructor(
     private studentService: StudentService,
@@ -68,6 +72,18 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
         this.getStudentDetails(this.id);
       }
     })
+
+     this.studentAction = [
+      {
+        label: 'Actions',
+        items: [
+          {
+            label: 'edit',
+            icon: 'pi pi-pencil'
+          },
+        ]
+      }
+    ];
   }
 
   getStudentDetails(id: string) {
@@ -86,7 +102,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
       degree: id
     }
     this.load(this.studentService.updateStudentDegree(payload), { isLoadingTransparent: true }).subscribe(res => {
-      this.studentProfile = res;
+      this.getStudentDetails(this.id);
     })
   }
 
@@ -119,7 +135,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
   }
 
   updateStudentProfile(event: Student) {
-    this.studentProfile = event;
+    this.getStudentDetails(this.id);
   }
 
   handleAddStudentToClassRoom(){
@@ -135,5 +151,22 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
         this.getStudentDetails(this.id);
       }
     })
+  }
+
+  handleClick(label: string): void {
+    if (!this.studentAction.length) {
+      return
+    }
+    if (label === this.studentAction?.[0]?.items?.[0]?.label) {
+      const dialog = this.dialog.open(EditStudentDialogComponent, {
+        data: { student: this.studentProfile }
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+        this.getStudentDetails(this.id);
+        }
+      })
+    }
   }
 }

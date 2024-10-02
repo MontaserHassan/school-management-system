@@ -14,13 +14,20 @@
       </ng-template>
       <ng-template pTemplate="body" let-user>
         <tr>
-          <td>{{ user.userName }}</td>
+          <td (click)="viewProfile(user)">{{ user.userName }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td>{{ user.lastSeen | date: 'short' }}</td>
           <td>
-            <button pButton type="button" label="View Profile" icon="pi pi-user" class="p-button-rounded p-button-info"
-              (click)="viewProfile(user)"></button>
+            <p-menu #menu [model]="userActions" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label,user)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
           </td>
         </tr>
       </ng-template>

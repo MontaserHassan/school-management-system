@@ -1,0 +1,82 @@
+.school-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.school-list-wrapper .p-paginator {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.school-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 20px;
+  cursor: pointer;
+}
+.school-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+.school-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.school-card .card-header h2 {
+  font-size: 20px;
+  margin: 0;
+}
+.school-card .card-header .status-tag {
+  padding: 5px 10px;
+  border-radius: 15px;
+  text-transform: capitalize;
+  font-size: 12px;
+}
+.school-card .card-header .status-tag.status-active {
+  background-color: #28a745;
+  color: #fff;
+}
+.school-card .card-header .status-tag.status-pending {
+  background-color: #ffc107;
+  color: #fff;
+}
+.school-card .card-header .status-tag.status-inactive {
+  background-color: #dc3545;
+  color: #fff;
+}
+.school-card .card-content .school-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.school-card .card-content .school-info .info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.school-card .card-content .school-info .info-item i {
+  font-size: 16px;
+  color: #666;
+}
+.school-card .card-content .school-info .info-item strong {
+  margin-right: 5px;
+}
+.school-card .card-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #777;
+}
+.school-card .card-footer small {
+  display: block;
+}/*# sourceMappingURL=schools-list.component.css.map */

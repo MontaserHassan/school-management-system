@@ -1,13 +1,29 @@
 <p-card header="User Profile">
   <app-state-section [state]="sectionState">
     <div class="profile-container">
-      <div class="profile-header">
-        <img src="assets/img/profile.jpg" alt="Profile Picture" class="profile-picture">
-        <div class="profile-info">
-          <h2>{{ currentUser?.userName }}</h2>
-          <p><strong>Role:</strong> {{ currentUser?.role }}</p>
-          <p class="profile-email">{{ currentUser?.email }}</p>
+      <div class="d-flex justify-content-between">
+        <div class="profile-header">
+          <img src="assets/img/profile.jpg" alt="Profile Picture" class="profile-picture">
+          <div class="profile-info">
+            <h2>{{ currentUser?.userName }}</h2>
+            <p class="d-flex align-items-center gap-2"><strong>Role:</strong> {{ currentUser?.role }}
+              <span *ngIf="currentUser?.role === UserRole.Admin ">
+                <p-button *grantAccess="RolesConstants.VIEW_SCHOOL_BUTTON" (onClick)="navigateToSchoolDetails(currentUser?.schoolId || '')" text label="School"></p-button>
+              </span>
+            </p>
+            <p class="profile-email">{{ currentUser?.email }}</p>
+          </div>
         </div>
+
+        <p-menu #menu [model]="userActions" appendTo="body" [popup]="true">
+          <ng-template pTemplate="item" let-item>
+            <div class="p-menuitem-link" (click)="handleClick(item.label)">
+              <span [class]="item.icon"></span>
+              <span class="mx-2">{{ item.label }}</span>
+            </div>
+          </ng-template>
+        </p-menu>
+        <p-button (onClick)="menu.toggle($event)" text label="edit" icon="pi pi-spin pi-cog" />
       </div>
 
       <div class="profile-details p-grid">
@@ -49,7 +65,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-student>
             <tr>
-              <td>{{ student.studentName }}</td>
+              <td (click)="gotoStudentDetails(student._id)">{{ student.studentName }}</td>
               <td>{{ student.group }}</td>
               <td>{{ student.classRoom }}</td>
             </tr>

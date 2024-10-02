@@ -9,6 +9,8 @@ import { AuthResponse, User, UsersList } from '../../models/user.model';
 import { JWTTokenValidation } from '../../enums/JWT-token-validation.enum';
 import { Mapper } from '../../mapper/base-mapper.mapper';
 import { BaseComponent } from '../../component/base-component/base.component';
+import { Router } from '@angular/router';
+import { RoutesUtil } from '../../utils/routes.util';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +23,14 @@ export class AuthService extends BaseComponent {
     private baseAPI: ApiBaseService,
     private mapper: Mapper,
     private jwtDecoderService: JwtDecoderService,
+    private router: Router
   ) {
     super();
     if (this.jwtDecoderService.isThereValidToken() === JWTTokenValidation.Valid) {
       this.currentUser$.next(this.jwtDecoderService.getCurrentUserFromJWTToken());
+    }else{
+      this.jwtDecoderService.removeCurrentToken();
+      this.router.navigate([RoutesUtil.AuthLogin.url()]);
     }
   }
 

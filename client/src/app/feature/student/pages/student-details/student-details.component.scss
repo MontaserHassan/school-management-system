@@ -146,8 +146,10 @@
     border-radius: 4px;
   }
 
-  ::ng-deep .p-timeline-event-opposite {
-    display: none;
+  .comment {
+    ::ng-deep .p-timeline-event-opposite {
+      display: none;
+    }
   }
 
   ::ng-deep .p-speeddial {
@@ -187,7 +189,7 @@
     }
 
     ::ng-deep .p-speeddial-item:nth-child(2) {
-       .p-element {
+      .p-element {
         background: var(--orange-100);
         color: var(--orange-700);
       }
@@ -199,5 +201,59 @@
         color: var(--green-700);
       }
     }
+  }
+
+  .progress {
+
+    /* General timeline styling */
+    .custom-timeline .timeline-event {
+      padding: 1.5rem;
+      background-color: #fff;
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Header styles */
+    .timeline-header {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .badge-success {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .badge-warning {
+      background-color: #ffc107;
+      color: #fff;
+    }
+
+    /* Topic list styling */
+    .list-group-item {
+      background-color: transparent;
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .text-success {
+      color: #28a745 !important;
+    }
+
+    .text-danger {
+      color: #dc3545 !important;
+    }
+
+    .text-muted {
+      color: #6c757d !important;
+    }
+
+    /* Timeline footer */
+    .timeline-footer {
+      text-align: right;
+      font-size: 0.875rem;
+    }
+
   }
 }

@@ -204,10 +204,17 @@ const addStudent = async (req: Request, res: Response, next: NextFunction) => {
 const updateClassRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId } = req.user;
-        const { room, teachersId, studentCost, currencyOfCost, schedule, group, students } = req.body;
-        const classRoomData = await classRoomService.getById(room);
+        const { roomId, room, teachersId, studentCost, currencyOfCost, schedule, group, students } = req.body;
+        const classRoomData = await classRoomService.getById(roomId);        
         if (!classRoomData || classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         let updateClassRoom: ClassRoomModel;
+        if (room) {
+            const isRoomExisting = await classRoomService.getByRoomAndSchoolId(room, schoolId);
+            if (isRoomExisting && isRoomExisting._id !== classRoomData._id) {
+                throw new CustomError(errorClassRoomMessage.ROOM_ALREADY_TOKED, 400, "room");
+            }
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { room });
+        }
         if (teachersId) {
             const newTeachers = [];
             for (const teacherId of teachersId) {

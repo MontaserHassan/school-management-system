@@ -24,6 +24,12 @@ constructor(
     )
   }
 
+  editClassRoom(body:IClassDetailsPayload):Observable<ClassRoom> {
+    return this.baseAPI.patch(ApiConstant.EDIT_CLASS_ROOM, filterNullEntity(body)).pipe(
+      map((res) => this.mapper.fromJson(ClassRoom, res.data.classRoom))
+    )
+  }
+
   getClassRoomById(id:string):Observable<ClassRoom> {
     return this.baseAPI.get(ApiConstant.GET_CLASS_ROOM_BY_ID.replace('{id}',id)).pipe(
       map((res) => this.mapper.fromJson(ClassRoom, res.data.classRoom))
@@ -51,6 +57,24 @@ constructor(
   addStudentToClassRoom(body: {students:string[],classRoom:string}):Observable<Student[]> {
     return this.baseAPI.post(ApiConstant.ADD_STUDENT_TO_CLASS, body).pipe(
       map((res) => this.mapper.fromJson(Student, res.data.students))
+    )
+  }
+
+  editTopic(body: {topicName:string,topicId:string}):Observable<Topic> {
+    return this.baseAPI.patch(ApiConstant.EDIT_TOPIC, body).pipe(
+      map((res) => this.mapper.fromJson(Topic, res.data.topic))
+    )
+  }
+
+  deleteStudentFromClassRoom(body: {studentId:string,roomId:string}):Observable<Student> {
+    return this.baseAPI.patch(ApiConstant.DELETE_STUDENT_FROM_CLASS, body).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.students))
+    )
+  }
+
+  removeClassRoom(id:string):Observable<any> {
+    return this.baseAPI.delete(ApiConstant.DELETE_CLASS_ROOM_BY_ID.replace('{id}',id)).pipe(
+      map((res) => res.data)
     )
   }
 }

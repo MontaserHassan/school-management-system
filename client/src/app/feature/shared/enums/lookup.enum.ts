@@ -4,6 +4,7 @@ export enum Lookup {
   Roles = 'roles',
   Students = 'students',
   Subjects = 'subjects',
+  Currency = 'currency',
   Users = 'user/data',
   Schools = 'schools',
   Topics = 'topics',

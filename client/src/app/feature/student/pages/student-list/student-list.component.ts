@@ -4,6 +4,9 @@ import { StudentService } from '../../services/student.service';
 import { Student } from '../../models/student.model';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { MenuItem } from 'primeng/api';
+import { EditStudentDialogComponent } from '../../component/edit-student-dialog/edit-student-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-student-list',
@@ -12,11 +15,28 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 })
 export class StudentListComponent extends BaseComponent implements OnInit {
   students!: Student[]
-  constructor(private studentService: StudentService, private router: Router) {
+  studentAction!:MenuItem[]
+  constructor(private studentService: StudentService, private router: Router, private dialog: MatDialog) {
     super();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.studentAction = [
+      {
+        label: 'Actions',
+        items: [
+          {
+            label: 'view Student',
+            icon: 'pi pi-eye',
+          },
+          {
+            label: 'edit',
+            icon: 'pi pi-pencil'
+          },
+        ]
+      }
+    ];
+  }
 
   getStudentsList() {
     const params = { page: this.offset, limit: this.pageSize };
@@ -37,5 +57,25 @@ export class StudentListComponent extends BaseComponent implements OnInit {
     this.offset = event.first / event.rows + 1;
     this.pageSize = event.rows;
     this.getStudentsList();
+  }
+
+  handleClick(label: string, student:Student): void {
+    if (!this.studentAction.length) {
+      return
+    }
+    if (label === this.studentAction?.[0]?.items?.[0]?.label) {
+      this.gotoStudentDetails(student._id || "")
+    }
+    else if (label === this.studentAction?.[0]?.items?.[1]?.label) {
+      const dialog = this.dialog.open(EditStudentDialogComponent, {
+        data: { student }
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.getStudentsList()
+        }
+      })
+    }
   }
 }

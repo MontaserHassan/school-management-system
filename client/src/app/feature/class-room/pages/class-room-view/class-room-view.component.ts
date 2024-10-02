@@ -7,6 +7,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
 import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { RolesConstants } from '../../../shared/config/roles-constants';
+import { MenuItem } from 'primeng/api';
+import { LeaveStudentDialogComponent } from '../../component/leave-student-dialog/leave-student-dialog.component';
+import { RemoveClassroomDialogComponent } from '../../component/remove-classroom-dialog/remove-classroom-dialog.component';
+import { UserRoleService } from '../../../shared/services/auth/user-role.service';
+import { EditClassroomDialogComponent } from '../../component/edit-classroom-dialog/edit-classroom-dialog.component';
 
 @Component({
   selector: 'app-class-room-view',
@@ -17,8 +23,11 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
   mainTopics: string[] = [];
   classroom: ClassRoom = new ClassRoom();
   id!: string
+  protected RolesConstants = RolesConstants
+  studentAction!:MenuItem[];
+  classroomActions!:MenuItem[];
 
-  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute, private dialog: MatDialog, private router: Router) {
+  constructor(private classRoomService: ClassRoomService, private activeRoute: ActivatedRoute, private dialog: MatDialog, private router: Router, private userRoleService: UserRoleService) {
     super()
   }
 
@@ -28,6 +37,38 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
       this.getClassRoomDetails(this.id)
     })
 
+    this.studentAction = [
+      {
+        label: 'Actions',
+        items: [
+          {
+            label: 'view Student',
+            icon: 'pi pi-eye',
+          },
+          {
+            label: 'Leave',
+            icon: 'pi pi-sign-out',
+            visible: this.userRoleService.isUserHasRoles(RolesConstants.EDIT_DELETE_CLASS_ROOM),
+          },
+        ]
+      }
+    ];
+
+    this.classroomActions = [
+      {
+        label: 'Actions',
+        items: [
+          {
+            label: 'Edit Classroom',
+            icon: 'pi pi-pencil',
+          },
+          {
+            label: 'Remove Classroom',
+            icon: 'pi pi-trash'
+          }
+        ]
+      }
+    ];
   }
 
   getClassRoomDetails(id: string): void {
@@ -65,6 +106,54 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
         this.getClassRoomDetails(this.id)
       }
     })
+  }
+
+  handleClick(label: string, student:any): void {
+    if (!this.studentAction.length) {
+      return
+    }
+    if (label === this.studentAction?.[0]?.items?.[0]?.label) {
+      this.viewDetails(student.studentId || "")
+    }
+    else if (label === this.studentAction?.[0]?.items?.[1]?.label) {
+      const dialog = this.dialog.open(LeaveStudentDialogComponent, {
+        data: { studentId: student.studentId, roomId: this.id }
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.getClassRoomDetails(this.id)
+        }
+      })
+    }
+  }
+
+  handleClickClassroomAction(label: string, classroom: ClassRoom): void {
+    if (!this.classroomActions.length) {
+      return
+    }
+    if (label === this.classroomActions?.[0]?.items?.[0]?.label) {
+      const dialog = this.dialog.open(EditClassroomDialogComponent, {
+        data: { classroom },
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.getClassRoomDetails(this.id)
+        }
+      })
+    }
+    else if (label === this.classroomActions?.[0]?.items?.[1]?.label) {
+      const dialog = this.dialog.open(RemoveClassroomDialogComponent, {
+        data: { roomId: classroom._id }
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.router.navigate([RoutesUtil.ClassRoomList.url()]);
+        }
+      })
+    }
   }
 }
 

@@ -1,0 +1,29 @@
+.details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.info-item {
+  padding: 0.5rem;
+}
+
+p-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+button {
+  margin-top: 1.5rem;
+}
+
+.details-section ::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+  width: 2rem;
+  height: 2rem;
+}/*# sourceMappingURL=class-room-view.component.css.map */

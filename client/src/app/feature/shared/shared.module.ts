@@ -59,9 +59,14 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 
 import { FileUploadModule } from 'primeng/fileupload';
 import { AddStudentToClassRoomDialogComponent } from './component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
+import { GrantAccessDirective } from './directive/grant-access.directive';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+const DIRECTIVES = [
+  GrantAccessDirective,
+]
 
 const COMPONENT =[
   ChangeLanguageButtonComponent,
@@ -70,7 +75,6 @@ const COMPONENT =[
   LoaderComponent,
   LazyDropdownComponent,
   AddStudentToClassRoomDialogComponent
-
 ]
 
 const OTHER_MODULES = [
@@ -132,6 +136,7 @@ const PRIME_NG_MODULES = [
 @NgModule({
   declarations: [
     ...COMPONENT,
+    ...DIRECTIVES
   ],
   imports: [
     CommonModule,
@@ -148,12 +153,14 @@ const PRIME_NG_MODULES = [
     ...MATERIAL_MODULES,
     ...PRIME_NG_MODULES,
     ...OTHER_MODULES
+
   ],
   exports:[
     FormsModule,
     TranslateModule,
     ReactiveFormsModule,
     ...COMPONENT,
+    ...DIRECTIVES,
     ...MATERIAL_MODULES,
     ...PRIME_NG_MODULES,
     ...OTHER_MODULES

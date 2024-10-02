@@ -1,0 +1,38 @@
+.introduction-section {
+  width: 100%;
+  margin-top: 100px;
+}
+.introduction-section--right {
+  flex-direction: row;
+}
+.introduction-section--left {
+  flex-direction: row-reverse;
+}
+.introduction-section__text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.introduction-section__shape {
+  width: 50%;
+  padding: 20px;
+  background: #ffffff;
+  background: linear-gradient(90deg, #ffffff 0%, #cbdaf7 100%);
+  display: flex;
+  justify-content: end;
+  height: 500px;
+  border-top-right-radius: 500px;
+  border-bottom-right-radius: 500px;
+}
+.introduction-section__shape--left {
+  border-top-left-radius: 500px;
+  border-bottom-left-radius: 500px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  justify-content: start;
+  background: linear-gradient(270deg, #ffffff 0%, #cbdaf7 100%);
+}
+.introduction-section__shape img {
+  width: 75%;
+}/*# sourceMappingURL=introduction-section.component.css.map */

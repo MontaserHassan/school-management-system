@@ -5,8 +5,8 @@
       <div class="d-flex justify-content-between px-3 pt-3">
         <h2 class="header">Topics List</h2>
 
-        <button pButton icon="pi pi-plus" label="Add Topic" [outlined]="true" severity="secondary"
-          (click)="openAddTopicDialog()" type="button"></button>
+        <button *grantAccess="RolesConstants.ADD_Edit_TOPIC" pButton icon="pi pi-plus" label="Add Topic"
+          [outlined]="true" severity="secondary" (click)="openAddTopicDialog()" type="button"></button>
       </div>
     </ng-template>
 
@@ -14,8 +14,20 @@
       <div *ngFor="let topic of topics" class="topic-card col-12 col-md-4">
         <p-card>
           <ng-template pTemplate="header">
-            <div class="topic-header">
+            <div class="topic-header position-relative">
               <h3>{{ topic.topicName }}</h3>
+
+              <div class="menu" *grantAccess="RolesConstants.ADD_Edit_TOPIC">
+                <p-menu #menu [model]="topicAction" appendTo="body" [popup]="true">
+                  <ng-template pTemplate="item" let-item>
+                    <div class="p-menuitem-link" (click)="handleClick(item.label,topic)">
+                      <span [class]="item.icon"></span>
+                      <span class="mx-2">{{ item.label }}</span>
+                    </div>
+                  </ng-template>
+                </p-menu>
+                <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
+              </div>
             </div>
           </ng-template>
 

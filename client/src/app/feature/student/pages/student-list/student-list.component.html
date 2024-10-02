@@ -13,12 +13,20 @@
     </ng-template>
     <ng-template pTemplate="body" let-student>
       <tr>
-        <td>{{ student.studentName }}</td>
+        <td (click)="gotoStudentDetails(student._id)">{{ student.studentName }}</td>
         <td>{{ student.studentCode }}</td>
         <td>{{ student.classRoom }}</td>
         <td>{{ student.group }}</td>
         <td>
-          <p-button icon="pi pi-eye" label="View Details" (onClick)="gotoStudentDetails(student._id)"></p-button>
+          <p-menu #menu [model]="studentAction" appendTo="body" [popup]="true">
+            <ng-template pTemplate="item" let-item>
+              <div class="p-menuitem-link" (click)="handleClick(item.label,student)">
+                <span [class]="item.icon"></span>
+                <span class="mx-2">{{ item.label }}</span>
+              </div>
+            </ng-template>
+          </p-menu>
+          <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
         </td>
       </tr>
     </ng-template>

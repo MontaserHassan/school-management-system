@@ -1,0 +1,39 @@
+.classroom-card .p-inputtext {
+  height: 42px;
+}
+.classroom-card .field {
+  margin-bottom: 1.5rem;
+}
+.classroom-card .form-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.classroom-card .p-inputtext-sm, .classroom-card .p-multiselect-sm, .classroom-card .p-dropdown-sm {
+  width: 100%;
+  font-size: 0.875rem;
+}
+.classroom-card .schedule-section {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-height: 300px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.classroom-card .schedule-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.classroom-card .schedule-item ::ng-deep .p-divider-content {
+  background-color: #eef2f7;
+}
+.classroom-card .subjects-section {
+  background-color: #eef2f7;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  flex-grow: 2;
+}
+.classroom-card .submit-btn {
+  width: 100%;
+}/*# sourceMappingURL=add-class-room.component.css.map */

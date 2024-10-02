@@ -1,0 +1,37 @@
+.calender-app {
+  display: flex;
+  min-height: 100%;
+  font-size: 14px;
+}
+.calender-app .calender-app-main {
+  flex-grow: 1;
+}
+.calender-app .fullcalendar {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.calender-app ::ng-deep .fc-event {
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: none !important;
+}
+.calender-app ::ng-deep .tooltip-text {
+  background-color: #333;
+  margin-top: 2px;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  z-index: 1000;
+  white-space: wrap;
+  font-size: 12px;
+  transition: 1s ease-in-out all;
+}
+.calender-app ::ng-deep .fc-event:hover .tooltip-text {
+  transform: scale(1.1);
+  top: 2px;
+}/*# sourceMappingURL=attendance-calender.component.css.map */

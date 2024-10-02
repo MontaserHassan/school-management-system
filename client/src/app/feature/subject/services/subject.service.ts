@@ -34,4 +34,10 @@ export class SubjectService {
       map((res) => this.mapper.fromJson(SubjectsList, res.data))
     )
   }
+
+  editSubject(body: {subjectName:string ,courseTime:string, subjectId:string}):Observable<Subject> {
+    return this.baseAPI.patch(ApiConstant.EDIT_SUBJECT, body).pipe(
+      map((res) => this.mapper.fromJson(Subject, res.data.subject))
+    )
+  }
 }

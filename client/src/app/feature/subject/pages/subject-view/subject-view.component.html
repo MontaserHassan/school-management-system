@@ -1,6 +1,22 @@
 <p-card>
   <app-state-section [state]="sectionState">
-    <p-panel header="Subject Information" class="subject-panel">
+    <p-panel class="subject-panel">
+      <ng-template pTemplate="header">
+        <div class="w-100 d-flex justify-content-between align-items-center">
+          <span class="fw-bold">Subject Information</span>
+          <div>
+            <p-menu #menu [model]="subjectAction" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text label="edit" icon="pi pi-spin pi-cog" />
+          </div>
+        </div>
+      </ng-template>
       <div class="subject-details">
         <div class="subject-detail-row">
           <label>Subject Name:</label>

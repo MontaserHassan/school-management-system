@@ -17,7 +17,7 @@
 
       <ng-template pTemplate="body" let-classroom>
         <tr>
-          <td>{{ classroom.room }}</td>
+          <td (click)="viewDetails(classroom._id)">{{ classroom.room }}</td>
           <td>{{ classroom.group }}</td>
           <td>
             <ul>
@@ -47,8 +47,15 @@
             </p-accordion>
           </td>
           <td>
-            <button pButton type="button" icon="pi pi-eye" label="View Details" class="p-button-outlined"
-              (click)="viewDetails(classroom._id)"></button>
+            <p-menu #menu [model]="classroomActions" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label,classroom)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
           </td>
         </tr>
       </ng-template>

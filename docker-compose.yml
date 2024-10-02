@@ -38,15 +38,15 @@ services:
       networks:
         - my-network
 
-  angular:
-    container_name: school-system-angular
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - "4500:4500"
-    networks:
-      - my-network
+  # angular:
+  #   container_name: school-system-angular
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4500:4500"
+  #   networks:
+  #     - my-network
 
 volumes:
   mongo_data: 

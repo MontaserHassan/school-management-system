@@ -1,13 +1,30 @@
 <div class="student-profile-container">
   <app-state-section [state]="sectionState">
-    <p-card [header]="studentProfile.studentName + 's Profile'">
+    <p-card>
+      <div class="w-100 d-flex justify-content-between align-items-center mb-3">
+        <span class="fw-bold">{{studentProfile.studentName}}'s Profile</span>
+        <div *grantAccess="RolesConstants.EDIT_STUDENT">
+          <p-menu #menu [model]="studentAction" appendTo="body" [popup]="true">
+            <ng-template pTemplate="item" let-item>
+              <div class="p-menuitem-link" (click)="handleClick(item.label)">
+                <span [class]="item.icon"></span>
+                <span class="mx-2">{{ item.label }}</span>
+              </div>
+            </ng-template>
+          </p-menu>
+          <p-button (onClick)="menu.toggle($event)" text label="Edit" icon="pi pi-spin pi-cog" />
+        </div>
+      </div>
+
       <div class="card-header">
         <div class="d-flex justify-content-between">
           <span>Code: {{ studentProfile.studentCode }}</span>
           <div class="d-flex align-items-center gap-2">Classroom:
             <span *ngIf="studentProfile.classRoom">{{ studentProfile.classRoom }}</span>
-            <p-button *ngIf="!studentProfile.classRoom" label="add to classroom" [rounded]="true" text
-              (click)="handleAddStudentToClassRoom()" />
+            <div *grantAccess="RolesConstants.ADD_STUDENT_TO_CLASSROOM">
+              <p-button *ngIf="!studentProfile.classRoom" label="Add To Classroom" [rounded]="true" text
+                (click)="handleAddStudentToClassRoom()" />
+            </div>
           </div>
           <span>Group: {{ studentProfile.group }}</span>
           <span>Cost: {{ studentProfile.studentCost }} {{ studentProfile.currencyOfCost }}</span>
@@ -21,13 +38,13 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th>Subject Name</th>
-                  <th>Progress Status</th>
+                  <th *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">Progress Status</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-subject>
                 <tr>
                   <td>{{ subject.subjectName }}</td>
-                  <td>
+                  <td *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">
                     <app-subject-action [subject]="subject" [studentId]="studentProfile._id"
                       (updateStudentProfile)="updateStudentProfile($event)"></app-subject-action>
                   </td>
@@ -50,7 +67,7 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th>Topic Name</th>
-                  <th>Degree</th>
+                  <th *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">Degree</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-topic>
@@ -58,7 +75,7 @@
                   <td>
                     <p-chip class="mx-1" [label]="topic.topicName"></p-chip>
                   </td>
-                  <td>
+                  <td *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">
                     <div class="d-flex gap-2 align-items-center">
                       <p-tag [severity]="setDegreeColor(topic?.degree || 'secondary')">{{ topic.degree || "Not
                         Completed"
@@ -85,29 +102,31 @@
           </p-tabPanel>
 
           <p-tabPanel header="Comments">
-            <div class="d-flex justify-content-end mb-3">
+            <div class="d-flex justify-content-end mb-3" *grantAccess="RolesConstants.ADD_ATTENDANCE_AND_COMMENT">
               <button pButton type="button" label="Add Comment" (click)="openAddCommentDialog()" class="mt-2"></button>
             </div>
-            <p-timeline [value]="studentProfile.comments" align="left" layout="vertical">
-              <ng-template let-comment pTemplate="content">
-                <div class="timeline-item-content" (click)="openCommentDialog(comment)">
-                  <div class="timeline-icon">
-                    <i class="pi pi-comments"></i>
-                  </div>
+            <div class="comment">
+              <p-timeline [value]="studentProfile.comments" align="left" layout="vertical">
+                <ng-template let-comment pTemplate="content">
+                  <div class="timeline-item-content" (click)="openCommentDialog(comment)">
+                    <div class="timeline-icon">
+                      <i class="pi pi-comments"></i>
+                    </div>
 
-                  <div class="card card-timeline">
-                    <div class="card-body">
-                      <p>{{ comment.comment }}</p>
+                    <div class="card card-timeline">
+                      <div class="card-body">
+                        <p>{{ comment.comment }}</p>
 
-                      <p class="timeline-date">
-                        <i class="pi pi-calendar" style="margin-right: 5px;"></i>
-                        {{ comment.dateOfComment | date: 'medium' }}
-                      </p>
+                        <p class="timeline-date">
+                          <i class="pi pi-calendar" style="margin-right: 5px;"></i>
+                          {{ comment.dateOfComment | date: 'medium' }}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ng-template>
-            </p-timeline>
+                </ng-template>
+              </p-timeline>
+            </div>
 
             <p-dialog header="Comment Details" [(visible)]="displayDialog" [modal]="true" [style]="{width: '450px'}"
               (onHide)="onDialogHide()">
@@ -124,8 +143,37 @@
           </p-tabPanel>
 
           <p-tabPanel header="Progress History">
-            <div *ngFor="let progress of studentProfile.progressHistory" class="card mb-3">
-              <div class="card-body">{{ progress }}</div>
+            <div class="progress">
+              <p-timeline [value]="studentProfile.progressHistory" align="alternate" layout="vertical"
+                class="custom-timeline">
+                <ng-template let-progress pTemplate="content">
+                  <div class="timeline-event p-card shadow-sm border-0">
+                    <div class="timeline-header d-flex justify-content-between align-items-center">
+                      <h4 class="m-0">{{ progress.subjectName }}</h4>
+                      <p-tag [severity]="'success'">{{ progress.status }}</p-tag>
+                    </div>
+                    <hr />
+                    <div class="timeline-body">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let topic of progress.topics">
+                          <div class="d-flex justify-content-between">
+                            <span>Topic: <strong>{{ topic.topicName }}</strong></span>
+                            <span>
+                              <p-tag [severity]="setDegreeColor(topic.degree)">{{topic.degree}}</p-tag>
+                            </span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <hr />
+                    <div class="timeline-footer">
+                      <small class="text-muted">Created At: {{ progress.createdAt | date:'short' }}</small>
+                      <br />
+                      <small class="text-muted">Updated At: {{ progress.updatedAt | date:'short' }}</small>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-timeline>
             </div>
           </p-tabPanel>
         </p-tabView>

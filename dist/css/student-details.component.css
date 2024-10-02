@@ -1,0 +1,204 @@
+.student-profile-container {
+  margin: 0 auto;
+}
+.student-profile-container .profile-card {
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+.student-profile-container .profile-card .profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.student-profile-container .profile-card .profile-header .profile-header-content {
+  display: flex;
+  align-items: center;
+}
+.student-profile-container .profile-card .profile-header .profile-header-content .profile-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 2rem;
+}
+.student-profile-container .profile-card .profile-header .profile-header-content .profile-details h2 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+.student-profile-container .profile-card .profile-header .profile-header-content .profile-details p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+.student-profile-container .profile-card .profile-header .profile-header-content .profile-details .student-code {
+  color: #007ad9;
+}
+.student-profile-container .profile-card .profile-section {
+  margin-bottom: 2rem;
+}
+.student-profile-container .profile-card .profile-section h3 {
+  font-size: 1.4rem;
+  color: #007ad9;
+  margin-bottom: 1rem;
+}
+.student-profile-container .profile-card .profile-section .chips-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.student-profile-container .profile-card .profile-section .chips-wrapper .subject-chip,
+.student-profile-container .profile-card .profile-section .chips-wrapper .topic-chip {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.student-profile-container .profile-card .attendance-list,
+.student-profile-container .profile-card .comments-list,
+.student-profile-container .profile-card .progress-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+.student-profile-container .profile-card .attendance-list li,
+.student-profile-container .profile-card .comments-list li,
+.student-profile-container .profile-card .progress-list li {
+  background-color: #f4f4f4;
+  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 5px;
+}
+.student-profile-container .profile-card .cost-section h3 {
+  font-size: 1.4rem;
+  color: #007ad9;
+  margin-bottom: 1rem;
+}
+.student-profile-container .profile-card .cost-section p {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+}
+.student-profile-container .profile-card .profile-footer {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-top: 2rem;
+}
+.student-profile-container .degree-blue {
+  background-color: lightblue;
+  color: darkblue;
+}
+.student-profile-container .degree-green {
+  background-color: lightgreen;
+  color: darkgreen;
+}
+.student-profile-container .timeline-date {
+  font-weight: bold;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+.student-profile-container .timeline-item-content {
+  display: flex;
+  align-items: center;
+}
+.student-profile-container .timeline-icon {
+  background-color: #007bff;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.student-profile-container .card-timeline {
+  flex-grow: 1;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.student-profile-container .comment-media {
+  max-width: 100%;
+  border-radius: 4px;
+}
+.student-profile-container .comment ::ng-deep .p-timeline-event-opposite {
+  display: none;
+}
+.student-profile-container ::ng-deep .p-speeddial {
+  position: relative;
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-button.p-button.p-button-icon-only,
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-action {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-button.p-button.p-button-icon-only .p-button-icon,
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-button.p-button.p-button-icon-only .pi,
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-action .p-button-icon,
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-action .pi {
+  font-size: 12px;
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-item .p-element {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-item .p-element:hover {
+  opacity: 1;
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-item:nth-child(1) .p-element {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-item:nth-child(2) .p-element {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+.student-profile-container ::ng-deep .p-speeddial ::ng-deep .p-speeddial-item:nth-child(3) .p-element {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+.student-profile-container .progress {
+  /* General timeline styling */
+  /* Header styles */
+  /* Topic list styling */
+  /* Timeline footer */
+}
+.student-profile-container .progress .custom-timeline .timeline-event {
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+.student-profile-container .progress .timeline-header {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.student-profile-container .progress .badge-success {
+  background-color: #28a745;
+  color: #fff;
+}
+.student-profile-container .progress .badge-warning {
+  background-color: #ffc107;
+  color: #fff;
+}
+.student-profile-container .progress .list-group-item {
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.student-profile-container .progress .text-success {
+  color: #28a745 !important;
+}
+.student-profile-container .progress .text-danger {
+  color: #dc3545 !important;
+}
+.student-profile-container .progress .text-muted {
+  color: #6c757d !important;
+}
+.student-profile-container .progress .timeline-footer {
+  text-align: right;
+  font-size: 0.875rem;
+}/*# sourceMappingURL=student-details.component.css.map */

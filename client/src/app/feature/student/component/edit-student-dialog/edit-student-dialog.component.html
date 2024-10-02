@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Edit Student</h2>
+<mat-dialog-content>
+  <form [formGroup]="editStudentForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <label for="studentName">Student Name</label>
+      <input pInputText id="studentName" formControlName="studentName" class="p-inputtext" />
+      <div *ngIf="editStudentForm.get('studentName')?.invalid && editStudentForm.get('studentName')?.touched"
+        class="error">
+        <small *ngIf="editStudentForm.get('studentName')?.errors?.['required']">Student Name is required.</small>
+      </div>
+    </div>
+
+    <div class="mat-dialog-actions">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button color="primary" [disabled]="editStudentForm.invalid" type="submit">Save</button>
+    </div>
+  </form>
+</mat-dialog-content>

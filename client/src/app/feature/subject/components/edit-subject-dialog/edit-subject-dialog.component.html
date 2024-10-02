@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Edit Subject</h2>
+<mat-dialog-content>
+  <form [formGroup]="editSubjectForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <label for="subjectName">Subject Name</label>
+      <input pInputText id="subjectName" formControlName="subjectName" class="p-inputtext" />
+      <div *ngIf="editSubjectForm.get('subjectName')?.invalid && editSubjectForm.get('subjectName')?.touched"
+        class="error">
+        <small *ngIf="editSubjectForm.get('subjectName')?.errors?.['required']">Subject Name is required.</small>
+      </div>
+    </div>
+
+    <div class="p-field mt-2">
+      <label for="courseTime">Course Time</label>
+      <input pInputText id="courseTime" formControlName="courseTime" class="p-inputtext" />
+      <div *ngIf="editSubjectForm.get('courseTime')?.invalid && editSubjectForm.get('courseTime')?.touched"
+        class="error">
+        <small *ngIf="editSubjectForm.get('courseTime')?.errors?.['required']">Course Time is required.</small>
+      </div>
+    </div>
+
+    <div class="mat-dialog-actions">
+      <button mat-button mat-dialog-close="">Cancel</button>
+      <button mat-button color="primary" [disabled]="editSubjectForm.invalid" type="submit">Save</button>
+    </div>
+  </form>
+</mat-dialog-content>

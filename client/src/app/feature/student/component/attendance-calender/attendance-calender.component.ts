@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddAttendanceComponent } from '../add-attendance/add-attendance.component';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { UserRoleService } from '../../../shared/services/auth/user-role.service';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-attendance-calender',
@@ -45,7 +47,8 @@ export class AttendanceCalenderComponent extends BaseComponent implements OnInit
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private userRoleService: UserRoleService
   ) {
     super();
   }
@@ -115,7 +118,12 @@ export class AttendanceCalenderComponent extends BaseComponent implements OnInit
       eventDate.getMonth() === today.getMonth() &&
       eventDate.getDate() === today.getDate();
 
-    if (!isToday) {
+    if(!this.userRoleService.isUserHasRoles(RolesConstants.ADD_ATTENDANCE_AND_COMMENT)){
+      this.showSuccessMessage('You are not allowed to add attendance');
+      return
+    }
+
+    if (!isToday ) {
       this.showSuccessMessage('You can only add attendance for today');
       return
     }

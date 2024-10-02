@@ -72,7 +72,7 @@ export class SideNavComponent {
       {
         label: 'Class Rooms',
         icon: 'pi pi-users',
-        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_CLASS_ROOM),
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_List_CLASS_ROOM),
         items: [
           {
             label: 'Class Rooms List',
@@ -84,6 +84,7 @@ export class SideNavComponent {
           {
             label: 'Add Class Room',
             icon: 'pi pi-thumbtack',
+            visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_CLASS_ROOM),
             command: () => {
               this.router.navigate([RoutesUtil.AddClassRoom.url()]);
             }
@@ -93,7 +94,7 @@ export class SideNavComponent {
       {
         label: 'topics',
         icon: 'pi pi-clipboard',
-        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_CLASS_ROOM),
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_TOPIC),
         command: () => {
           this.router.navigate([RoutesUtil.TopicsList.url()]);
         }
@@ -101,7 +102,7 @@ export class SideNavComponent {
       {
         label: 'Students',
         icon: 'pi pi-graduation-cap',
-        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_STUDENT),
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_List_STUDENT),
         items: [
           {
             label: 'Students List',
@@ -113,6 +114,7 @@ export class SideNavComponent {
           {
             label: 'Add Student',
             icon: 'pi pi-plus',
+            visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_STUDENT),
             command: () => {
               this.router.navigate([RoutesUtil.AddStudent.url()]);
             }

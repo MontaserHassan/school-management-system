@@ -20,6 +20,7 @@ export class User {
   @Transform(({ value }) => new Date(value), { toClassOnly: true })
   lastSeen?: Date;
   @Expose() logged?: boolean;
+  @Expose() schoolId?: string;
 }
 
 export class AuthResponse extends Model {

@@ -52,5 +52,23 @@
   "PasswordNotMatch":"Password does not match",
   "PasswordDosntMatch":"Password does not match",
   "Confirm":"Confirm",
-  "SetYourPassword":"Set Your Password"
+  "SetYourPassword":"Set Your Password",
+  "userDialog": {
+    "title": "Update User Information",
+    "userNameLabel": "User Name",
+    "userNameRequiredError": "User Name is required.",
+    "userNameMinLengthError": "User Name must be at least 3 characters.",
+    "emailLabel": "Email",
+    "emailRequiredError": "Email is required.",
+    "emailInvalidError": "Please enter a valid email.",
+    "cancelButton": "Cancel",
+    "updateButton": "Update"
+  },
+  "resetPasswordDialog": {
+    "title": "Reset Password Confirmation",
+    "userText": "user :",
+    "confirmationText": "Are you sure you want to reset the password?",
+    "cancelButton": "Cancel",
+    "confirmButton": "Confirm"
+  }
 }

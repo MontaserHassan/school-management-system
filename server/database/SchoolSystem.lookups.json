@@ -267,4 +267,64 @@
   "updatedAt": {
     "$date": "2024-09-17T22:32:40.265Z"
   }
+},
+{
+  "_id": "SchoolSystem-6-1",
+  "masterCode": "6",
+  "masterName": "currency",
+  "lookupCode": "1",
+  "lookupName": "usd",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  }
+},
+{
+  "_id": "SchoolSystem-6-2",
+  "masterCode": "6",
+  "masterName": "currency",
+  "lookupCode": "2",
+  "lookupName": "eur",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  }
+},
+{
+  "_id": "SchoolSystem-6-3",
+  "masterCode": "6",
+  "masterName": "currency",
+  "lookupCode": "3",
+  "lookupName": "jpy",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  }
+},
+{
+  "_id": "SchoolSystem-6-4",
+  "masterCode": "6",
+  "masterName": "currency",
+  "lookupCode": "4",
+  "lookupName": "ps",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-25T22:58:15.736Z"
+  }
 }]

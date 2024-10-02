@@ -4,87 +4,114 @@ import { Topic } from '../../class-room/models/topic.model';
 import { Degree } from '../enums/degree.enum';
 
 export class Subject {
-    @Expose()
-    subjectId!: string;
+  @Expose()
+  subjectId!: string;
 
-    @Expose()
-    subjectName!: string;
+  @Expose()
+  subjectName!: string;
 
-    @Expose()
-    progressStatus!: string;
+  @Expose()
+  progressStatus!: string;
 
-    @Expose()
-    degree!: Degree;
+  @Expose()
+  degree!: Degree;
 }
 
 
 export class Attendance {
-    @Expose()
-    status!: string;
+  @Expose()
+  status!: string;
 
-    @Expose()
-    comment!: string;
+  @Expose()
+  comment!: string;
 
-    @Expose()
-    date!: string;
+  @Expose()
+  date!: string;
 }
 
 export class Comment {
-    @Expose()
-    comment!: string;
+  @Expose()
+  comment!: string;
 
-    @Expose()
-    media!: string; // Base64 string
+  @Expose()
+  media!: string; // Base64 string
 
-    @Expose()
-    dateOfComment!: string;
+  @Expose()
+  dateOfComment!: string;
+}
+
+export class progressHistory {
+  @Expose()
+  _id!: string
+  @Expose()
+  studentId!: string
+  @Expose()
+  subjectId!: string
+  @Expose()
+  subjectName!: "math"
+  @Expose()
+  topics!: Topic[]
+
+  @Expose()
+  completed!: boolean
+  @Expose()
+  status!:string
+  @Expose()
+  createdAt!: Date
+  @Expose()
+  updatedAt!: Date
+  @Expose()
+  __v!: number
 }
 
 export class Student {
-    @Expose()
-    _id!: string;
+  @Expose()
+  _id!: string;
 
-    @Expose()
-    studentName!: string;
+  @Expose()
+  studentName!: string;
 
-    @Expose()
-    studentCode!: string;
+  @Expose()
+  studentCode!: string;
 
-    @Expose()
-    classRoom!: string;
+  @Expose()
+  classRoom!: string;
 
-    @Expose()
-    group!: string;
+  @Expose()
+  group!: string;
 
-    @Expose()
-    subjects!: Subject[];
+  @Expose()
+  subjects!: Subject[];
 
-    @Expose()
-    mainTopics!: Topic[];
+  @Expose()
+  mainTopics!: Topic[];
 
-    @Expose()
-    studentCost!: string;
+  @Expose()
+  degree!: Degree;
 
-    @Expose()
-    currencyOfCost!: string;
+  @Expose()
+  studentCost!: string;
 
-    @Expose()
-    attendance!: Attendance[];
+  @Expose()
+  currencyOfCost!: string;
 
-    @Expose()
-    comments!: Comment[];
+  @Expose()
+  attendance!: Attendance[];
 
-    @Expose()
-    createdAt!: string;
+  @Expose()
+  comments!: Comment[];
 
-    @Expose()
-    updatedAt!: string;
+  @Expose()
+  createdAt!: string;
 
-    @Expose()
-    schoolId!: string;
+  @Expose()
+  updatedAt!: string;
 
-    @Expose()
-    progressHistory!: any[];
+  @Expose()
+  schoolId!: string;
+
+  @Expose()
+  progressHistory!: progressHistory[];
 }
 
 

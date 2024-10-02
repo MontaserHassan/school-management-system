@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ 'userDialog.title' | translate }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="userNameForm" (ngSubmit)="onSubmit()">
+    <!-- User Name Field -->
+    <div class="p-field">
+      <label for="userName">{{ 'userDialog.userNameLabel' | translate }}</label>
+      <input pInputText id="userName" formControlName="userName" class="p-inputtext" />
+      <div *ngIf="userNameForm.get('userName')?.invalid && userNameForm.get('userName')?.touched" class="error">
+        <small *ngIf="userNameForm.get('userName')?.errors?.['required']">
+          {{ 'userDialog.userNameRequiredError' | translate }}
+        </small>
+        <small *ngIf="userNameForm.get('userName')?.errors?.['minlength']">
+          {{ 'userDialog.userNameMinLengthError' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="p-field mt-3">
+      <label for="email">{{ 'userDialog.emailLabel' | translate }}</label>
+      <input pInputText id="email" formControlName="email" class="p-inputtext" type="email" />
+      <div *ngIf="userNameForm.get('email')?.invalid && userNameForm.get('email')?.touched" class="error">
+        <small *ngIf="userNameForm.get('email')?.errors?.['required']">
+          {{ 'userDialog.emailRequiredError' | translate }}
+        </small>
+        <small *ngIf="userNameForm.get('email')?.errors?.['email']">
+          {{ 'userDialog.emailInvalidError' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="mat-dialog-actions">
+      <button mat-button mat-dialog-close>{{ 'userDialog.cancelButton' | translate }}</button>
+      <button mat-button [disabled]="userNameForm.invalid" type="submit">
+        {{ 'userDialog.updateButton' | translate }}
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

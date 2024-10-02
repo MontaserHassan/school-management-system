@@ -20,8 +20,9 @@
 
       <div class="field d-flex flex-column gap-2" *ngIf="!data.studentId">
         <label for="student" class="form-label">Student</label>
-        <app-lazy-dropdown id="student" [multiply]="!data.studentId ? true : false" [lookup]="Lookup.Students"
-          formControlName="student" placeholder="Enter Student name"></app-lazy-dropdown>
+        <app-lazy-dropdown id="student" [lookUpExtraParams]="{existClassRoom:true}"
+          [multiply]="!data.studentId ? true : false" [lookup]="Lookup.Students" formControlName="student"
+          placeholder="Enter Student name"></app-lazy-dropdown>
         <small *ngIf="addStudentForm.get('student')?.hasError('required') && addStudentForm.get('student')?.touched"
           class="p-error">
           Student is required

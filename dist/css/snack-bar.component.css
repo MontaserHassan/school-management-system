@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container .info {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container .info span {
+  max-width: 100%;
+}
+.container .info a {
+  text-decoration: underline;
+  color: rgb(94, 94, 204);
+}
+.container .info .icon {
+  margin-inline-end: 15px;
+}
+.container .close-button {
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-inline-start: 15px;
+  cursor: pointer;
+}
+.container.rtl {
+  direction: rtl;
+}
+.container.rtl .icon {
+  margin: 0;
+  margin-inline-start: 15px;
+}/*# sourceMappingURL=snack-bar.component.css.map */
