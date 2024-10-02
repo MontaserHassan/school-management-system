@@ -22,32 +22,22 @@ import successSchoolMessage from './school/success.message';
 import ErrorMediaMessage from './media/error.message';
 import errorProgressHistoryMessage from './progress-history/error.message';
 import successProgressHistoryMessage from './progress-history/success.message';
+import errorNotificationMessage from './notification/error.message';
+import successNotificationMessage from './notification/success.message';
 
 
 
 export {
-    errorCommonMessage,
-    httpMessage,
-    ErrorTokenMessage,
-    ErrorUserMessage,
-    SuccessUserMessage,
-    errorStudentDegreeMessage,
-    successStudentDegreeMessage,
-    errorStudentMessage,
-    successStudentMessage,
-    errorSubjectMessage,
-    successSubjectMessage,
-    errorTopicMessage,
-    successTopicMessage,
-    errorTeacherMessage,
-    successTeacherMessage,
-    errorClassRoomMessage,
-    successClassRoomMessage,
-    errorLookupMessage,
-    successLookupMessage,
-    errorSchoolMessage,
-    successSchoolMessage,
-    ErrorMediaMessage,
-    errorProgressHistoryMessage,
-    successProgressHistoryMessage,
+    errorCommonMessage, httpMessage, ErrorMediaMessage, ErrorTokenMessage,
+    ErrorUserMessage, SuccessUserMessage,
+    errorStudentDegreeMessage, successStudentDegreeMessage,
+    errorStudentMessage, successStudentMessage,
+    errorSubjectMessage, successSubjectMessage,
+    errorTopicMessage, successTopicMessage,
+    errorTeacherMessage, successTeacherMessage,
+    errorClassRoomMessage, successClassRoomMessage,
+    errorLookupMessage, successLookupMessage,
+    errorSchoolMessage, successSchoolMessage,
+    errorProgressHistoryMessage, successProgressHistoryMessage,
+    errorNotificationMessage, successNotificationMessage
 };

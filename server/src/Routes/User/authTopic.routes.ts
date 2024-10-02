@@ -6,12 +6,12 @@ import topicRouter from './Topic/topic.routes';
 
 
 
-const authTeacherRouter = express.Router();
+const authTopicRouter = express.Router();
 
 
-authTeacherRouter.use(checkRole(['director', 'admin', 'teacher']),);
-authTeacherRouter.use('/topic', topicRouter);
+authTopicRouter.use(checkRole(['director', 'admin', 'teacher']),);
+authTopicRouter.use('/topic', topicRouter);
 
 
 
-export default authTeacherRouter;
+export default authTopicRouter;

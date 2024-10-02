@@ -6,7 +6,7 @@ import topicController from "./topic.controller";
 import lookupController from "./lookup.controller";
 import schoolController from "./school.controller";
 import progressHistoryController from "./progress-history.controller";
-
+import notificationController from "./notification.controller";
 
 export {
     userController,
@@ -17,4 +17,5 @@ export {
     lookupController,
     schoolController,
     progressHistoryController,
+    notificationController,
 };
