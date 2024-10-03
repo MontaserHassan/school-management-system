@@ -2149,12 +2149,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/invoice/",
+							"raw": "{{SchoolManagementSystem}}/user/school/invoice/",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
+								"school",
 								"invoice",
 								""
 							]
@@ -2187,12 +2188,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/invoice/",
+							"raw": "{{SchoolManagement}}/user/school/invoice/",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
+								"school",
 								"invoice",
 								""
 							]
@@ -2216,12 +2218,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/invoice?limit=4&page=2",
+							"raw": "{{SchoolManagement}}/use/schoolr/invoice?limit=4&page=2",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
-								"user",
+								"use",
+								"schoolr",
 								"invoice"
 							],
 							"query": [
@@ -2254,12 +2257,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/invoice/IkTRffpX5L0jYaC2WSysHdLt",
+							"raw": "{{SchoolManagement}}/user/school/invoice/IkTRffpX5L0jYaC2WSysHdLt",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
+								"school",
 								"invoice",
 								"IkTRffpX5L0jYaC2WSysHdLt"
 							]
