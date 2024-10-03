@@ -8,6 +8,8 @@ import lookupService from "./lookup.service";
 import schoolService from "./school.service";
 import progressHistoryService from "./progress-history.service";
 import notificationService from "./notification.service";
+import invoiceService from "./invoice.service";
+import studentInvoiceService from "./student-invoice.service";
 
 
 
@@ -22,4 +24,6 @@ export {
     schoolService,
     progressHistoryService,
     notificationService,
+    invoiceService,
+    studentInvoiceService,
 };

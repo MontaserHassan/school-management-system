@@ -1,18 +1,36 @@
-import { Invoice, InvoiceModel } from 'Models/invoices.model';
-import { Notification, NotificationModel } from '../Models/notification.model';
+import { Invoice, InvoiceModel } from '../Models/invoices.model';
 
 
 
-// ----------------------------- create notification -----------------------------
+// ----------------------------- create invoice -----------------------------
 
 
-const createInvoice = async (schoolId: string, invoices: any,) => {
+const createInvoice = async (schoolId: string, admin: { adminId: string, adminName: string }, media: string,) => {
     const invoice: InvoiceModel = new Invoice({
         schoolId: schoolId,
-        invoices: invoices,
+        admin: admin,
+        media: media,
     });
     await invoice.save();
     return invoice;
+};
+
+
+// ----------------------------- find invoices -----------------------------
+
+
+const findInvoices = async (limit: number, skip: number) => {
+    const invoices: InvoiceModel[] = await Invoice.find().limit(limit).skip(skip).select('-__v');
+    return invoices;
+};
+
+
+// ----------------------------- find invoices by user id -----------------------------
+
+
+const findInvoicesBySchoolId = async (SchoolId: string, limit: number, skip: number) => {
+    const invoices: InvoiceModel[] = await Invoice.find({ SchoolId }).limit(limit).skip(skip).select('-__v');
+    return invoices;
 };
 
 
@@ -25,28 +43,30 @@ const findInvoiceById = async (invoiceId: string) => {
 };
 
 
-// ----------------------------- find invoice by user id -----------------------------
+// ----------------------------- update invoices -----------------------------
 
 
-const findInvoiceByInvoiceNumber = async (invoiceNumber: string) => {
-    const notifications: InvoiceModel[] = await Invoice.find({ 'invoices.invoiceNumber': invoiceNumber, }).select('-__v');
-    return notifications;
+const updateInvoice = async (invoiceId: string, updatedData: any) => {
+    const updatedInvoice: InvoiceModel = await Invoice.findByIdAndUpdate(invoiceId, updatedData, { new: true }).select('-__v');
+    return updatedInvoice;
 };
 
 
-// ----------------------------- update notification -----------------------------
+// ----------------------------- get total documents -----------------------------
 
 
-const updateInvoice = async (userId: string, updatedData: any) => {
-    const updatedUser: NotificationModel = await Notification.findOneAndUpdate({ userId }, updatedData, { new: true }).select('-__v');
-    return updatedUser;
+const totalDocument = async (schoolId?: string) => {
+    const invoices = await Invoice.countDocuments(schoolId ? { schoolId } : {});
+    return invoices;
 };
 
 
 
 export default {
     createInvoice,
+    findInvoices,
+    findInvoicesBySchoolId,
     findInvoiceById,
-    findInvoiceByInvoiceNumber,
     updateInvoice,
+    totalDocument,
 };

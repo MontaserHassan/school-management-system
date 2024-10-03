@@ -24,6 +24,8 @@ import errorProgressHistoryMessage from './progress-history/error.message';
 import successProgressHistoryMessage from './progress-history/success.message';
 import errorNotificationMessage from './notification/error.message';
 import successNotificationMessage from './notification/success.message';
+import errorInvoiceMessage from './invoice/error.message';
+import successInvoiceMessage from './invoice/success.message';
 
 
 
@@ -39,5 +41,6 @@ export {
     errorLookupMessage, successLookupMessage,
     errorSchoolMessage, successSchoolMessage,
     errorProgressHistoryMessage, successProgressHistoryMessage,
-    errorNotificationMessage, successNotificationMessage
+    errorNotificationMessage, successNotificationMessage,
+    errorInvoiceMessage, successInvoiceMessage,
 };
