@@ -35,6 +35,7 @@
     "mysql2": "^3.11.0",
     "nanoid": "^3.3.7",
     "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.15",
     "pdfkit": "^0.15.0",
     "typeorm": "^0.3.20",
     "winston": "^3.14.2"

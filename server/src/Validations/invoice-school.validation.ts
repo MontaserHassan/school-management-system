@@ -2,21 +2,21 @@ import Joi from 'joi';
 
 
 
-const invoiceValidator = {
-    createInvoice: {
+const schoolInvoiceValidator = {
+    createSchoolInvoice: {
         body: Joi.object().keys({
             schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School Id is required.', }),
             media: Joi.string().required().trim().messages({ 'string.empty': 'Media is required.', }),
         }),
     },
 
-    getInvoice: {
+    getSchoolInvoice: {
         params: Joi.object().keys({
             invoiceId: Joi.string().required().trim().messages({ 'string.empty': 'Notification Id is required.', }),
         }),
     },
 
-    updateInvoice: {
+    updateSchoolInvoice: {
         body: Joi.object().keys({
             invoiceId: Joi.string().required().trim().messages({ 'string.empty': 'Notification Id is required.', }),
             media: Joi.string().required().trim().messages({ 'string.empty': 'Media is required.', }),
@@ -27,5 +27,5 @@ const invoiceValidator = {
 
 
 export {
-    invoiceValidator,
+    schoolInvoiceValidator,
 };

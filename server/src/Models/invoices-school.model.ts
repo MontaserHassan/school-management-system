@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 
 
-interface InvoiceModel extends mongoose.Document {
+interface SchoolInvoiceModel extends mongoose.Document {
     _id: string;
     schoolId: string;
     admin: { adminId: string, adminName: string };
@@ -11,7 +11,7 @@ interface InvoiceModel extends mongoose.Document {
 };
 
 
-const invoiceSchema = new mongoose.Schema(
+const schoolInvoiceSchema = new mongoose.Schema(
     {
         _id: {
             type: String,
@@ -45,11 +45,11 @@ const invoiceSchema = new mongoose.Schema(
 
 
 
-const Invoice = mongoose.model<InvoiceModel>('invoice', invoiceSchema);
+const SchoolInvoice = mongoose.model<SchoolInvoiceModel>('schoolInvoice', schoolInvoiceSchema);
 
 
 
 export {
-    Invoice,
-    InvoiceModel,
+    SchoolInvoice,
+    SchoolInvoiceModel,
 };

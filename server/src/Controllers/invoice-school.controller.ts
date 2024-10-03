@@ -4,7 +4,7 @@ import { invoiceService, schoolService, userService, } from "../Services/index.s
 import IResponse from '../Interfaces/response.interface';
 import CustomError from "../Utils/customError.util";
 import { errorInvoiceMessage, errorSchoolMessage, successInvoiceMessage } from "../Messages/index.message";
-import { InvoiceModel } from "Models/invoices.model";
+import { SchoolInvoiceModel } from "Models/invoices-school.model";
 import pagination from "../Utils/pagination.util";
 
 
@@ -42,7 +42,7 @@ const getInvoices = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId, role } = req.user;
         const { limit, page } = req.query;
-        let invoices: InvoiceModel[];
+        let invoices: SchoolInvoiceModel[];
         let paginateData;
         if (role === 'superAdmin') {
             const invoicesCounts = await invoiceService.totalDocument();

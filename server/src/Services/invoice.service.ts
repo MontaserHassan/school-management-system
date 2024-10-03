@@ -1,4 +1,4 @@
-import { Invoice, InvoiceModel } from '../Models/invoices.model';
+import { SchoolInvoice, SchoolInvoiceModel } from '../Models/invoices-school.model';
 
 
 
@@ -6,7 +6,7 @@ import { Invoice, InvoiceModel } from '../Models/invoices.model';
 
 
 const createInvoice = async (schoolId: string, admin: { adminId: string, adminName: string }, media: string,) => {
-    const invoice: InvoiceModel = new Invoice({
+    const invoice: SchoolInvoiceModel = new SchoolInvoice({
         schoolId: schoolId,
         admin: admin,
         media: media,
@@ -20,7 +20,7 @@ const createInvoice = async (schoolId: string, admin: { adminId: string, adminNa
 
 
 const findInvoices = async (limit: number, skip: number) => {
-    const invoices: InvoiceModel[] = await Invoice.find().limit(limit).skip(skip).select('-__v');
+    const invoices: SchoolInvoiceModel[] = await SchoolInvoice.find().limit(limit).skip(skip).select('-__v');
     return invoices;
 };
 
@@ -29,7 +29,7 @@ const findInvoices = async (limit: number, skip: number) => {
 
 
 const findInvoicesBySchoolId = async (SchoolId: string, limit: number, skip: number) => {
-    const invoices: InvoiceModel[] = await Invoice.find({ SchoolId }).limit(limit).skip(skip).select('-__v');
+    const invoices: SchoolInvoiceModel[] = await SchoolInvoice.find({ SchoolId }).limit(limit).skip(skip).select('-__v');
     return invoices;
 };
 
@@ -38,7 +38,7 @@ const findInvoicesBySchoolId = async (SchoolId: string, limit: number, skip: num
 
 
 const findInvoiceById = async (invoiceId: string) => {
-    const notification: InvoiceModel = await Invoice.findById(invoiceId).select('-__v');
+    const notification: SchoolInvoiceModel = await SchoolInvoice.findById(invoiceId).select('-__v');
     return notification;
 };
 
@@ -47,7 +47,7 @@ const findInvoiceById = async (invoiceId: string) => {
 
 
 const updateInvoice = async (invoiceId: string, updatedData: any) => {
-    const updatedInvoice: InvoiceModel = await Invoice.findByIdAndUpdate(invoiceId, updatedData, { new: true }).select('-__v');
+    const updatedInvoice: SchoolInvoiceModel = await SchoolInvoice.findByIdAndUpdate(invoiceId, updatedData, { new: true }).select('-__v');
     return updatedInvoice;
 };
 
@@ -56,7 +56,7 @@ const updateInvoice = async (invoiceId: string, updatedData: any) => {
 
 
 const totalDocument = async (schoolId?: string) => {
-    const invoices = await Invoice.countDocuments(schoolId ? { schoolId } : {});
+    const invoices = await SchoolInvoice.countDocuments(schoolId ? { schoolId } : {});
     return invoices;
 };
 

@@ -7,7 +7,7 @@ import lookupController from "./lookup.controller";
 import schoolController from "./school.controller";
 import progressHistoryController from "./progress-history.controller";
 import notificationController from "./notification.controller";
-import invoiceController from "./invoice.controller";
+import schoolInvoiceController from "./invoice-school.controller";
 
 
 
@@ -21,5 +21,5 @@ export {
     schoolController,
     progressHistoryController,
     notificationController,
-    invoiceController,
+    schoolInvoiceController,
 };
