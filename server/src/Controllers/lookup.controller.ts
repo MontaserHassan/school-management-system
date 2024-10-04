@@ -120,7 +120,7 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
 
 const getUsersBySpecificData = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { role, page } = req.query;
+        const { role } = req.query;
         const { schoolId } = req.user;
         let lookupsData;
         if (schoolId === "superAdmin") {

@@ -273,7 +273,7 @@
   "masterCode": "6",
   "masterName": "currency",
   "lookupCode": "1",
-  "lookupName": "usd",
+  "lookupName": "USD",
   "parentCode": "",
   "__v": 0,
   "createdAt": {
@@ -288,7 +288,7 @@
   "masterCode": "6",
   "masterName": "currency",
   "lookupCode": "2",
-  "lookupName": "eur",
+  "lookupName": "EUR",
   "parentCode": "",
   "__v": 0,
   "createdAt": {
@@ -299,32 +299,47 @@
   }
 },
 {
-  "_id": "SchoolSystem-6-3",
-  "masterCode": "6",
-  "masterName": "currency",
+  "_id": "SchoolSystem-7-1",
+  "masterCode": "7",
+  "masterName": "subscriptionStatus",
+  "lookupCode": "1",
+  "lookupName": "pending",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-04T15:12:36.571Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-04T15:12:36.571Z"
+  }
+},
+{
+  "_id": "SchoolSystem-7-2",
+  "masterCode": "7",
+  "masterName": "subscriptionStatus",
+  "lookupCode": "2",
+  "lookupName": "paid",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-04T15:12:36.571Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-04T15:12:36.571Z"
+  }
+},
+{
+  "_id": "SchoolSystem-7-3",
+  "masterCode": "7",
+  "masterName": "subscriptionStatus",
   "lookupCode": "3",
-  "lookupName": "jpy",
+  "lookupName": "expired",
   "parentCode": "",
   "__v": 0,
   "createdAt": {
-    "$date": "2024-09-25T22:58:15.736Z"
+    "$date": "2024-10-04T15:12:36.571Z"
   },
   "updatedAt": {
-    "$date": "2024-09-25T22:58:15.736Z"
-  }
-},
-{
-  "_id": "SchoolSystem-6-4",
-  "masterCode": "6",
-  "masterName": "currency",
-  "lookupCode": "4",
-  "lookupName": "ps",
-  "parentCode": "",
-  "__v": 0,
-  "createdAt": {
-    "$date": "2024-09-25T22:58:15.736Z"
-  },
-  "updatedAt": {
-    "$date": "2024-09-25T22:58:15.736Z"
+    "$date": "2024-10-04T15:12:36.571Z"
   }
 }]
