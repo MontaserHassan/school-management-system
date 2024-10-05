@@ -13,6 +13,7 @@ enum ErrorUserMessage {
     PASSWORD_ALREADY_UPDATED = 'You have already updated your password.',
     NOT_SAME_SCHOOL = "You are not in the same school.",
     DUPLICATE_EMAIL = "This email is already in use. Please use another email.",
+    PARENT_NOT_FOUND = "Parent not found. Please check the parent ID and try again.",
 };
 
 

@@ -1,53 +1,76 @@
-import { StudentInvoice, StudentInvoiceModel } from "../Models/student-invoices.model";
+import { StudentInvoice, StudentInvoiceModel } from "../Models/invoices-student.model";
 
 
 
 // ----------------------------- create invoice for student -----------------------------
 
 
-const createInvoice = async (schoolId: string, parent: { parentId: string, parentName: string, }, student: { studentId: string, studentName: string, }, invoices: any,) => {
+const createInvoice = async (schoolId: string, parent: { parentId: string, parentName: string, }, student: { studentId: string, studentName: string, }, media: string,) => {
     const invoice: StudentInvoiceModel = new StudentInvoice({
         schoolId: schoolId,
         parent: parent,
         student: student,
-        invoices: invoices,
+        media: media,
     });
     await invoice.save();
     return invoice;
 };
 
 
-// ----------------------------- find invoices by parent id -----------------------------
+// ----------------------------- find invoices -----------------------------
 
 
-const findInvoiceById = async (parentId: string) => {
-    const notification: StudentInvoiceModel = await StudentInvoice.findOne({ parentId }).select('-__v');
-    return notification;
+const findInvoices = async (schoolId: string, limit: number, skip: number) => {
+    const invoices: StudentInvoiceModel[] = await StudentInvoice.find({ schoolId }).limit(limit).skip(skip).select('-__v');
+    return invoices;
 };
 
 
-// ----------------------------- find invoice by invoice number -----------------------------
+// ----------------------------- find invoices by parent id -----------------------------
 
 
-const findInvoiceByInvoiceNumber = async (invoiceNumber: string) => {
-    const notifications: StudentInvoiceModel[] = await StudentInvoice.find({ 'invoices.invoiceNumber': invoiceNumber, }).select('-__v');
-    return notifications;
+const findInvoicesByParentId = async (parentId: string, limit: number, skip: number) => {
+    const invoices: StudentInvoiceModel[] = await StudentInvoice.find({ parentId }).limit(limit).skip(skip).select('-__v');
+    return invoices;
+};
+
+
+
+// ----------------------------- find invoice by id -----------------------------
+
+
+const findInvoiceById = async (invoiceId: string) => {
+    const notification: StudentInvoiceModel = await StudentInvoice.findById(invoiceId).select('-__v');
+    return notification;
 };
 
 
 // ----------------------------- update notification -----------------------------
 
 
-const updateInvoice = async (parentId: string, updatedData: any) => {
-    const updatedUser: StudentInvoiceModel = await StudentInvoice.findOneAndUpdate({ parentId }, updatedData, { new: true }).select('-__v');
+const updateInvoice = async (invoiceId: string, updatedData: any) => {
+    const updatedUser: StudentInvoiceModel = await StudentInvoice.findByIdAndUpdate(invoiceId, updatedData, { new: true }).select('-__v');
     return updatedUser;
+};
+
+
+// ----------------------------- get total documents -----------------------------
+
+
+const totalDocument = async (schoolId: string, parentId?: string) => {
+    const query: Record<string, any> = { schoolId };
+    if (parentId) query['parent.parentId'] = parentId;
+    const invoices = await StudentInvoice.countDocuments({ schoolId, });
+    return invoices;
 };
 
 
 
 export default {
     createInvoice,
+    findInvoices,
+    findInvoicesByParentId,
     findInvoiceById,
-    findInvoiceByInvoiceNumber,
     updateInvoice,
+    totalDocument,
 };

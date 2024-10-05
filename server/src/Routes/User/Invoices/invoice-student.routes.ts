@@ -2,20 +2,21 @@
 import express from 'express';
 
 import validation from '../../../Validations/validationHandler.validation';
-import { } from '../../../Controllers/index.controller';
-// import { } from '../../../Validations';
+import { studentInvoiceController } from '../../../Controllers/index.controller';
+import { studentInvoiceValidator } from '../../../Validations/invoice-student.validation';
+import checkRole from '../../../Middlewares/check-role.middleware';
 
 
 
 const invoiceStudentRouter = express.Router();
 
 
-invoiceStudentRouter.get('/',);
-invoiceStudentRouter.get('/:invoiceId',);
+invoiceStudentRouter.get('/', checkRole(['director', 'parent', 'admin']), studentInvoiceController.getInvoices);
+invoiceStudentRouter.get('/:invoiceId', checkRole(['director', 'parent', 'admin']), validation(studentInvoiceValidator.getStudentInvoice), studentInvoiceController.getInvoice);
 
-invoiceStudentRouter.post('/',);
+invoiceStudentRouter.post('/', checkRole(['director', 'admin']), validation(studentInvoiceValidator.createStudentInvoice), studentInvoiceController.createInvoice);
 
-invoiceStudentRouter.patch('/',);
+invoiceStudentRouter.patch('/', checkRole(['director', 'admin']), validation(studentInvoiceValidator.updateStudentInvoice), studentInvoiceController.updateInvoice);
 
 
 

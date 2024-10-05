@@ -50,18 +50,10 @@ const studentInvoiceSchema = new mongoose.Schema(
                 required: true,
             }
         },
-        invoices: [
-            {
-                invoiceNumber: {
-                    type: String,
-                    required: true,
-                },
-                media: {
-                    type: String, // base64
-                    required: false,
-                },
-            },
-        ],
+        media: {
+            type: String, // base64
+            required: false,
+        },
     },
     {
         timestamps: true,
