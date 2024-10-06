@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer';
 
-import Logger from '../Config/logging.config';
 
 
 function sendEmail(to: string, subject: string, message: string, id: string) {
@@ -15,16 +14,14 @@ function sendEmail(to: string, subject: string, message: string, id: string) {
         },
     });
     const mailOption = {
-        from: `"Fred Foo 👻" <${process.env.SENDER_EMAIL}>`,
+        from: `${process.env.SENDER_EMAIL}`,
         to: to,
         subject: subject,
         text: subject,
         html: message
     }
     transporter.sendMail(mailOption, (err, _) => {
-        if (err) {
-            console.log('error through send mail');
-        }
+        if (err) console.log('error through send mail');
         console.log('Message sent: %s', id);
     });
 };
