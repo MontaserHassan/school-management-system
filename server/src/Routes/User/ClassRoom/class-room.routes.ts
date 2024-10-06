@@ -12,6 +12,7 @@ const classRoomRouter = express.Router();
 
 classRoomRouter.get('/', classRoomController.getAllRoom);
 classRoomRouter.get('/:classRoom', validation(classRoomValidator.getRoom), classRoomController.getClassById);
+classRoomRouter.get('/exportCSV/:classRoom', validation(classRoomValidator.getRoom), classRoomController.exportCSVClassData);
 
 classRoomRouter.post('/', checkRole(['director', 'admin']), validation(classRoomValidator.createClassRoom), classRoomController.createClassRoom);
 

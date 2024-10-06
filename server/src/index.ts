@@ -3,6 +3,7 @@ import http, { Server } from 'http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import * as path from 'path';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const server: Server = http.createServer(app);
 
 
 app.use(cors());
+app.use('/Public', express.static(path.join(__dirname, '../src/Public')));
 app.use(express.json({ limit: '10mb' }));
 app.use(bodyParser.json({ limit: '10mb' }));
 

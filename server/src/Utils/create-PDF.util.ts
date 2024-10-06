@@ -3,7 +3,7 @@ import PDFDocument from 'pdfkit';
 
 
 
-const generatePDFReport = (res: Response, studentRecords: any) => {
+export const generatePDFReport = (res: Response, studentRecords: any) => {
     const doc = new PDFDocument();
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=student_report.pdf');
@@ -22,6 +22,3 @@ const generatePDFReport = (res: Response, studentRecords: any) => {
 
     doc.end();
 };
-
-
-export default generatePDFReport;

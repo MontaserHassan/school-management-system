@@ -1,12 +1,14 @@
 import { NextFunction, Request, Response } from "express";
+import * as path from 'path';
+import * as fs from 'fs';
 
-import { classRoomService, lookupService, studentService, subjectService, topicService, userService } from "../Services/index.service";
+import { ClassRoomModel } from "../Models/class-room.model";
+import { classRoomService, lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
 import { errorClassRoomMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
-import pagination from "../Utils/pagination.util";
+import { pagination, exportToCsv, CSVClassRoom } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { addTime } from "../helpers/calculate-endTime.helper";
-import { ClassRoomModel } from "Models/class-room.model";
 
 
 
@@ -81,7 +83,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
 
 const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page, limit } = req.query;
+        const { page, limit, isExport } = req.query;
         const { schoolId, role, userId } = req.user;
         const rooms: ClassRoomModel[] = [];
         let paginateData;
@@ -97,6 +99,10 @@ const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
             if (!rooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
             rooms.push(...getRooms);
         };
+        let base64String: string;
+        if (isExport === "true") {
+            base64String = await CSVClassRoom(rooms);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -108,6 +114,7 @@ const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
                 skip: paginateData ? paginateData.skip : 1,
                 totalDocuments: paginateData ? paginateData.totalDocuments : 1,
                 rooms: rooms,
+                base64String: base64String ? base64String : "",
             },
         };
         res.data = response;
@@ -170,6 +177,53 @@ const getClassById = async (req: Request, res: Response, next: NextFunction) => 
     };
 };
 
+
+// ----------------------------- export csv class room data -----------------------------
+
+
+const exportCSVClassData = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { classRoom } = req.params;
+        const { schoolId, role } = req.user;
+        const classRoomData = await classRoomService.getById(classRoom);
+        if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
+        if (classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.ROOM_NOT_SCHOOL, 404, "school");
+        if (role === "teacher") {
+            if (!classRoomData.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
+        };
+        const headers = [
+            { id: 'studentId', title: 'Student ID' },
+            { id: 'studentName', title: 'Student Name' },
+            { id: 'schedule', title: 'Schedule' },
+            { id: 'mainTopics', title: 'Main Topics' },
+        ];
+        const studentsData = classRoomData.students?.map(student => ({
+            studentId: student.studentId,
+            studentName: student.studentName,
+            schedule: classRoomData.schedule?.map(s => `${s.day}: ${s.subjects.map(sub => sub.subjectName).join(', ')}`).join('; '),
+            mainTopics: classRoomData.mainTopics?.map(topic => topic.topicName).join(', '),
+        })) || [];
+        const fileName = `classroom_${classRoomData.room}_students.csv`;
+        const filePath = path.join(__dirname, '../../src/Public/CSV', fileName);
+        await exportToCsv({ filePath, headers, data: studentsData, fileName });
+        const fileContents = fs.readFileSync(filePath, { encoding: 'utf8' });
+        const base64String = Buffer.from(fileContents, 'utf8').toString('base64');
+        // fs.unlinkSync(filePath);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successClassRoomMessage.GET_CLASS_ROOM_DATA,
+            data: {
+                fileName: fileName,
+                base64String: base64String,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).sendFile(filePath);
+    } catch (err) {
+        next(err)
+    };
+};
 
 
 // ----------------------------- add student -----------------------------
@@ -348,6 +402,7 @@ export default {
     updateClassRoom,
     getAllRoom,
     getClassById,
+    exportCSVClassData,
     getClassByRoom,
     deleteStudentFromClassRoom,
     deleteClassRoom,
