@@ -13,7 +13,7 @@ const authUserRouter = express.Router();
 
 authUserRouter.get('/profile', userController.getProfile);
 authUserRouter.get('/user-list', userController.getAllUsers);
-authUserRouter.get('/student-data/:studentCode', studentController.getStudent);
+authUserRouter.get('/student-data/:studentId', studentController.getStudent);
 authUserRouter.get('/parents', checkRole(['director', 'admin']), userController.getAllParents);
 
 authUserRouter.post('/register', checkRole(['director', 'admin']), validation(userValidator.registerUser), userController.registerUser);

@@ -5,7 +5,7 @@ import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, errorT
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import { StudentModel } from "../Models/student.model";
-import pagination from "../Utils/pagination.util";
+import { pagination, CSVStudent, CSVStudents } from "../Utils/index.util";
 
 
 
@@ -245,6 +245,7 @@ const getProgressHistory = async (req: Request, res: Response, next: NextFunctio
 const getStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentId } = req.params;
+        const { isExport } = req.query;
         const { schoolId, role, userId } = req.user;
         let student = await studentService.getStudentById(studentId);
         if (!student || student.schoolId !== schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
@@ -255,12 +256,17 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
         };
         const progressHistory = await progressHistoryService.getProgressHistoryPerStudent(studentId);
         student = { ...student.toObject(), progressHistory };
+        let base64String: string;
+        if (isExport === "true") {
+            base64String = await CSVStudent(student);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successStudentMessage.GET_PROFILE,
             data: {
                 student: student,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;
@@ -276,7 +282,7 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page, limit } = req.query;
+        const { page, limit, isExport } = req.query;
         const { schoolId, role, userId } = req.user;
         let paginateData: any;
         let students: StudentModel[];
@@ -297,6 +303,10 @@ const getAllStudents = async (req: Request, res: Response, next: NextFunction) =
             if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
             students = await studentService.findAllStudentsOfSchool(schoolId, paginateData.limit, paginateData.skip);
         };
+        let base64String: string;
+        if (isExport === "true") {
+            base64String = await CSVStudents(students);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -308,6 +318,7 @@ const getAllStudents = async (req: Request, res: Response, next: NextFunction) =
                 skip: paginateData.skip,
                 totalDocuments: paginateData.totalDocuments,
                 students: students,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;

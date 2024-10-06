@@ -3,10 +3,10 @@ import { NextFunction, Request, Response } from "express";
 import { userTokenService, userService, schoolService, studentService } from "../Services/index.service";
 import { ErrorUserMessage, SuccessUserMessage, ErrorTokenMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
-import { createToken, pagination } from "../Utils/index.util";
+import { createToken, CSVUsers, pagination } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import RoleHierarchy from "../Interfaces/user-hierarchy.interface";
-import { UserModel } from "Models/user.model";
+import { UserModel } from "../Models/user.model";
 
 
 
@@ -256,12 +256,16 @@ const getProfile = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page, limit } = req.query;
+        const { page, limit, isExport } = req.query;
         const { schoolId } = req.user;
         const totalSchools = await userService.totalDocument("schoolId", schoolId);
         const paginateData = pagination(totalSchools, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
         const users = await userService.findAllUserOfSchool(schoolId, paginateData.limit, paginateData.skip);
+        let base64String: string;
+        if (isExport === "true") {
+            base64String = await CSVUsers(users);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -272,7 +276,8 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
                 limit: paginateData.limit,
                 skip: paginateData.skip,
                 totalDocuments: paginateData.totalDocuments,
-                users: users
+                users: users,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;
@@ -288,14 +293,20 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllParents = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { isExport } = req.query;
         const { schoolId } = req.user;
         const parents = await userService.findUserById('parent', schoolId);
+        let base64String: string;
+        if (isExport === "true") {
+            base64String = await CSVUsers(parents);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: SuccessUserMessage.GET_USERS,
             data: {
-                parents: parents
+                parents: parents,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;

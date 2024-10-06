@@ -7,6 +7,7 @@ import IResponse from '../Interfaces/response.interface';
 import pagination from "../Utils/pagination.util";
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import calculateSubscriptionDate from "../Utils/calculate-subscription-date.util";
+import { CSVSchool } from "../Utils/index.util";
 
 
 
@@ -46,6 +47,7 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
 
 const getSchoolData = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { isExport } = req.query;
         const { schoolId } = req.params;
         const { userId, role } = req.user;
         const school = await schoolService.getSchoolById(schoolId);
@@ -60,12 +62,19 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
                 _id: admin._id
             },
         };
+        let base64String: string;
+        if (isExport === 'true') {
+            const schools = [];
+            schools.push(transformedSchool);
+            base64String = await CSVSchool(schools);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successSchoolMessage.GET_SCHOOL_DATA,
             data: {
                 school: transformedSchool,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;
@@ -81,7 +90,7 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
 
 const getAllSchools = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page, limit } = req.query;
+        const { page, limit, isExport } = req.query;
         const totalSchools = await schoolService.totalDocument();
         const paginateData = pagination(totalSchools, Number(page), Number(limit));
         if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
@@ -98,6 +107,10 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
                 },
             };
         }));
+        let base64String: string;
+        if (isExport === 'true') {
+            base64String = await CSVSchool(schoolsData);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -109,6 +122,7 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
                 skip: paginateData.skip,
                 totalDocuments: paginateData.totalDocuments,
                 schools: schoolsData,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;

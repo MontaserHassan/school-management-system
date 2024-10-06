@@ -156,11 +156,18 @@ const getClassById = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const { classRoom } = req.params;
         const { schoolId, role } = req.user;
+        const { isExport } = req.query;
         const classRoomData = await classRoomService.getById(classRoom);
         if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         if (classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.ROOM_NOT_SCHOOL, 404, "school");
         if (role === "teacher") {
             if (!classRoomData.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
+        };
+        let base64String: string;
+        if (isExport === "true") {
+            const rooms = [];
+            rooms.push(classRoomData);
+            base64String = await CSVClassRoom(rooms);
         };
         const response: IResponse = {
             type: "info",
@@ -168,58 +175,11 @@ const getClassById = async (req: Request, res: Response, next: NextFunction) => 
             responseMessage: successClassRoomMessage.GET_CLASS_ROOM_DATA,
             data: {
                 classRoom: classRoomData,
+                base64String: base64String ? base64String : '',
             },
         };
         res.data = response;
         return res.status(response.responseCode).send(response);
-    } catch (err) {
-        next(err)
-    };
-};
-
-
-// ----------------------------- export csv class room data -----------------------------
-
-
-const exportCSVClassData = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const { classRoom } = req.params;
-        const { schoolId, role } = req.user;
-        const classRoomData = await classRoomService.getById(classRoom);
-        if (!classRoomData) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
-        if (classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.ROOM_NOT_SCHOOL, 404, "school");
-        if (role === "teacher") {
-            if (!classRoomData.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
-        };
-        const headers = [
-            { id: 'studentId', title: 'Student ID' },
-            { id: 'studentName', title: 'Student Name' },
-            { id: 'schedule', title: 'Schedule' },
-            { id: 'mainTopics', title: 'Main Topics' },
-        ];
-        const studentsData = classRoomData.students?.map(student => ({
-            studentId: student.studentId,
-            studentName: student.studentName,
-            schedule: classRoomData.schedule?.map(s => `${s.day}: ${s.subjects.map(sub => sub.subjectName).join(', ')}`).join('; '),
-            mainTopics: classRoomData.mainTopics?.map(topic => topic.topicName).join(', '),
-        })) || [];
-        const fileName = `classroom_${classRoomData.room}_students.csv`;
-        const filePath = path.join(__dirname, '../../src/Public/CSV', fileName);
-        await exportToCsv({ filePath, headers, data: studentsData, fileName });
-        const fileContents = fs.readFileSync(filePath, { encoding: 'utf8' });
-        const base64String = Buffer.from(fileContents, 'utf8').toString('base64');
-        // fs.unlinkSync(filePath);
-        const response: IResponse = {
-            type: "info",
-            responseCode: 200,
-            responseMessage: successClassRoomMessage.GET_CLASS_ROOM_DATA,
-            data: {
-                fileName: fileName,
-                base64String: base64String,
-            },
-        };
-        res.data = response;
-        return res.status(response.responseCode).sendFile(filePath);
     } catch (err) {
         next(err)
     };
@@ -352,7 +312,7 @@ const deleteStudentFromClassRoom = async (req: Request, res: Response, next: Nex
         if (!student || !studentExists) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const updateClassRoom = await classRoomService.deleteStudentFromClassRoom(roomId, studentId);
         if (!updateClassRoom) throw new CustomError(errorClassRoomMessage.STUDENT_NOT_DELETED, 400, "student");
-        await studentService.updateStudentData(studentId, { room: '', group: '', studentCost: '', currencyOfCost: '', mainTopics: [], subjects: [] });
+        await studentService.updateStudentData(studentId, { classRoom: '', group: '', studentCost: '', currencyOfCost: '', mainTopics: [], subjects: [] });
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -402,7 +362,6 @@ export default {
     updateClassRoom,
     getAllRoom,
     getClassById,
-    exportCSVClassData,
     getClassByRoom,
     deleteStudentFromClassRoom,
     deleteClassRoom,

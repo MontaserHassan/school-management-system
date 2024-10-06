@@ -28,7 +28,7 @@ const createUser = async (userName: string, email: string, role: string, schoolI
 // ----------------------------- find users by role -----------------------------
 
 
-const findUserById = async (role: string, schoolId) => {
+const findUserById = async (role: string, schoolId: string) => {
     const users: UserModel[] = await User.find({ schoolId, role }).select('-__v');
     return users;
 };
