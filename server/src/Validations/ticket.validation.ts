@@ -5,7 +5,8 @@ import Joi from 'joi';
 const ticketValidator = {
     sendMail: {
         body: Joi.object().keys({
-            receiverMail: Joi.string().required().trim().messages({ 'string.empty': 'Receiver email is required.', }),
+            receiverIds: Joi.array().items(Joi.string().trim().required().messages({ 'string.empty': 'Receiver email is required.', 'any.required': 'Receiver email is required.' })
+            ).required().messages({ 'array.base': 'Receiver IDs must be an array.', 'array.includesRequiredUnknowns': 'At least one receiver email is required.' }),
             subject: Joi.string().required().empty("").trim().messages({ 'string.empty': 'Subject is required.', }),
             content: Joi.string().required().empty("").trim().messages({ 'string.empty': 'Content is required.', }),
         }),

@@ -2214,7 +2214,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"receiverMail\": \"montaser.mohamed.hassan@gmail.com\",\n    \"subject\": \"first mail\",\n    \"content\": \"content content content\"\n}",
+							"raw": "{\n    \"receiverIds\": [\n        \"nbPmYJaTQsSxVG-XKP7uN\",\n        \"wpr7VC3R2Qh1uZ-bWDa2G\",\n        \"5CyZbAO0ksY9KdOwlboDH\",\n        \"ooLjZefsdOSG5mMWdw5ys\",\n        \"ABjdBV4ATgHecitxS0wrd\",\n        \"TmTckRthrIBFpC9nnasCv\",\n        \"BYuIkX4_zo3eJif1zSMge\",\n        \"dUjircLQ3vI2rpwCakeK5\"\n    ],\n    \"subject\": \"first mail\",\n    \"content\": \"content\\n content\\n content\\n\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

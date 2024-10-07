@@ -12,12 +12,12 @@ import { sendEmail, CustomError } from "../Utils/index.util";
 
 const sendMail = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId } = req.user;
-        const { receiverMail, subject, content } = req.body;
-        const sender = await userService.getById(userId);
-        if (!sender) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
-        const senderId = sender.email;
-        await sendEmail(senderId, receiverMail, subject, content);
+        const { receiverIds, subject, content } = req.body;
+        for (const receiverId of receiverIds) {
+            const recipient = await userService.getById(receiverId);
+            if (!recipient) throw new CustomError(`User not found for ID: ${receiverId}`, 404, "user");
+            sendEmail(recipient.email, subject, content);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,

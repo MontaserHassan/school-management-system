@@ -32,7 +32,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-    const timeout = 20000;
+    const timeout = Number(process.env.TIME_OUT);
     res.setTimeout(timeout, () => {
         res.status(503).json({ message: 'Request timed out' });
     });
