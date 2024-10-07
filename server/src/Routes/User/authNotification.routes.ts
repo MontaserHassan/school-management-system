@@ -10,7 +10,7 @@ const authNotificationRouter = express.Router();
 
 
 authNotificationRouter.use(checkRole(['admin',]),);
-authNotificationRouter.use('/notification', notificationRouter);
+authNotificationRouter.use('/', notificationRouter);
 
 
 

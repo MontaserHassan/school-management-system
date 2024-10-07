@@ -9,6 +9,7 @@ import progressHistoryController from "./progress-history.controller";
 import notificationController from "./notification.controller";
 import schoolInvoiceController from "./invoice-school.controller";
 import studentInvoiceController from "./invoice-student.controller";
+import ticketController from './ticket.controller';
 
 
 
@@ -24,4 +25,5 @@ export {
     notificationController,
     schoolInvoiceController,
     studentInvoiceController,
+    ticketController,
 };

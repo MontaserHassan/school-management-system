@@ -5,14 +5,16 @@ import { Ticket, TicketModel } from '../Models/tickets.model';
 // ----------------------------- create ticket -----------------------------
 
 
-const createTicket = async (schoolId: string, employeeId: string, parentId: string, message?: string) => {
+const createTicket = async (schoolId: string, employeeId: string, parentId: string, message?: { content: string, senderId: string, senderName: string, receiverId: string, receiverName: string, }) => {
     const newTicket: TicketModel = new Ticket({
         schoolId: schoolId,
         employeeId: employeeId,
         parentId: parentId,
         messages: [
             {
-                content: message,
+                senderId: message?.senderId,
+                senderName: message?.senderName,
+                receiverId: message?.receiverId,
                 dateCreation: new Date(),
             },
         ],

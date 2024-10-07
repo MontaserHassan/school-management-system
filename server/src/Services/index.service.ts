@@ -10,6 +10,7 @@ import progressHistoryService from "./progress-history.service";
 import notificationService from "./notification.service";
 import SchoolsInvoiceService from "./school-invoice.service";
 import studentInvoiceService from "./student-invoice.service";
+import ticketService from './ticket.service';
 
 
 
@@ -26,4 +27,5 @@ export {
     notificationService,
     SchoolsInvoiceService,
     studentInvoiceService,
+    ticketService,
 };

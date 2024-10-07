@@ -26,6 +26,8 @@ import errorNotificationMessage from './notification/error.message';
 import successNotificationMessage from './notification/success.message';
 import errorInvoiceMessage from './invoice/error.message';
 import successInvoiceMessage from './invoice/success.message';
+import errorTicketMessage from './ticket/error.message';
+import successTicketMessage from './ticket/success.message';
 
 
 
@@ -43,4 +45,5 @@ export {
     errorProgressHistoryMessage, successProgressHistoryMessage,
     errorNotificationMessage, successNotificationMessage,
     errorInvoiceMessage, successInvoiceMessage,
+    errorTicketMessage, successTicketMessage,
 };

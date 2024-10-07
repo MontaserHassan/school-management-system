@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"superadmin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"admin.banisuef@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,9 +91,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/auth/login",
+							"raw": "{{SchoolManagementSystem}}/user/auth/login",
 							"host": [
-								"{{SchoolManagement}}"
+								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
@@ -354,7 +354,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlJtbHdsVTFCRUpEVGR0SXIyQzNRTiIsImVtYWlsIjoiZGlyZWN0b3IyQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiZGFhNmJiZmI3ZTUyYTFlOGI5OWIyZjcwIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlAxMDEzMzEiLCJpYXQiOjE3MjcyOTM3NzIsImV4cCI6MTcyNzM4MDE3Mn0.CSe-bUkqf76nZz5Kc6hIqkC_1Ibr3XN4dCj7i3MiGLw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJjZTk0MDQ1YjZlYTY3OWViNzg2NDMyZDkiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI4MjI4MDIwLCJleHAiOjE3MjgzMTQ0MjB9.5N6W6ALF_Lilv7PHXWnuq3b4P5PTlzSP9Nf65jBH-7U",
 									"type": "string"
 								}
 							]
@@ -363,7 +363,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"teacher 10 teacher\",\n    \"email\": \"teacher10@gmail.com\",\n    \"role\": \"teacher\"\n}",
+							"raw": "{\n    \"userName\": \"admin BaniSuef language\",\n    \"email\": \"admin.baniSuef@gmail.com\",\n    \"role\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -565,7 +565,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"admin.BaniSuef@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2157,6 +2157,148 @@
 			]
 		},
 		{
+			"name": "ticket",
+			"item": [
+				{
+					"name": "add ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIxMjgyMDljMjc4MTQ5ZTdiOTcyYmNiYjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzQ0NDcxOCwiZXhwIjoxNzI3NTMxMTE4fQ.a2xAzILrmrJNUdZoMbWKB_QXPsxQDiBOlebgS79qf2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"room\": \"201\",\n    \"topicName\": \"physics\",\n    \"subjectId\": \"j0xvshvJO0S4b8vMxiK50rJT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/ticket/",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send mail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIyOTljMzY1NjU2MmI1OTcwYTg2YTAzNjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3MjgyNTg2ODgsImV4cCI6MTcyODM0NTA4OH0.TmPhs-vJhhAQU8uF0CsBDLah7cZlMjrrfUQFKptXkSk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"receiverMail\": \"montaser.mohamed.hassan@gmail.com\",\n    \"subject\": \"first mail\",\n    \"content\": \"content content content\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/ticket/mail/",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"ticket",
+								"mail",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all topics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"teacher",
+								"topic",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get topic by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagement}}/user/teacher/topic/hOiwDEyO3PokX4G84PkuRE1s",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"teacher",
+								"topic",
+								"hOiwDEyO3PokX4G84PkuRE1s"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "invoice",
 			"item": [
 				{
@@ -2458,6 +2600,69 @@
 								"invoice",
 								"student",
 								"FKdoXJDBVXJa9qL_vAp4AGZS"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "get notification by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIyOTljMzY1NjU2MmI1OTcwYTg2YTAzNjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3MjgyNTg2ODgsImV4cCI6MTcyODM0NTA4OH0.TmPhs-vJhhAQU8uF0CsBDLah7cZlMjrrfUQFKptXkSk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/notification/V9Kf1Y-Kltx54IiN3V2uN",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"notification",
+								"V9Kf1Y-Kltx54IiN3V2uN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIyOTljMzY1NjU2MmI1OTcwYTg2YTAzNjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3MjgyNTg2ODgsImV4cCI6MTcyODM0NTA4OH0.TmPhs-vJhhAQU8uF0CsBDLah7cZlMjrrfUQFKptXkSk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/notification/",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"notification",
+								""
 							]
 						}
 					},

@@ -2,32 +2,28 @@ import nodemailer from 'nodemailer';
 
 
 
-function sendEmail(to: string, subject: string, message: string, id: string) {
+export function sendEmail(from: string, to: string, subject: string, message: string) {
     const transporter = nodemailer.createTransport({
         host: 'smtp.office365.com',
         port: 587,
         secure: false,
         requireTLS: true,
-        auth: {
-            user: process.env.SENDER_EMAIL,
-            pass: process.env.SENDER_PASSWORD
-        },
+        // auth: {
+        //     user: process.env.SENDER_EMAIL,
+        //     pass: process.env.SENDER_PASSWORD
+        // },
     });
     const mailOption = {
-        from: `${process.env.SENDER_EMAIL}`,
+        from: "montaser.hassan.bns@gmail.com",
         to: to,
         subject: subject,
         text: subject,
         html: message
-    }
+    };
+    console.log('mailOption: ', mailOption);
     transporter.sendMail(mailOption, (err, _) => {
-        if (err) console.log('error through send mail');
-        console.log('Message sent: %s', id);
+        if (err) return console.log('error through send mail');
+        console.log('Message sent: %s', from);
     });
-};
-
-
-
-export {
-    sendEmail,
+    return true;
 };

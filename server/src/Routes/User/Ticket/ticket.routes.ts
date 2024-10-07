@@ -2,23 +2,20 @@
 import express from 'express';
 
 import validation from '../../../Validations/validationHandler.validation';
-import { topicController } from '../../../Controllers/index.controller';
-import { topicValidator } from '../../../Validations/topic.validation';
-import checkRole from '../../../Middlewares/check-role.middleware';
+import { ticketController } from '../../../Controllers/index.controller';
+import { ticketValidator } from '../../../Validations/ticket.validation';
 
 
 
-const topicRouter = express.Router();
+const ticketRouter = express.Router();
 
 
-// topicRouter.get('/', getِAllTicketByUserId);
-topicRouter.get('/:ticketId',);
+ticketRouter.get('/', ticketController.getTickets);
+ticketRouter.get('/:ticketId', validation(ticketValidator.getTicket), ticketController.getTicket);
 
-topicRouter.post('/',);
-topicRouter.post('/mail',);
-
-topicRouter.patch('/',);
+ticketRouter.post('/', validation(ticketValidator.createTicket), ticketController.createTicket);
+ticketRouter.post('/mail', validation(ticketValidator.sendMail), ticketController.sendMail);
 
 
 
-export default topicRouter;
+export default ticketRouter;

@@ -9,6 +9,8 @@ interface TicketModel extends mongoose.Document {
     parentId: string;
     schoolId: string;
     messages: {
+        sender: { senderId: string; senderName: string; };
+        receiver: { receiverId: string; receiverName: string; };
         content: string;
         dateCreation: Date;
     }[];
@@ -39,6 +41,29 @@ const ticketsSchema = new mongoose.Schema(
         },
         messages: [
             {
+                _id: false,
+                sender: {
+                    senderId: {
+                        type: String,
+                        ref: 'User',
+                        required: true,
+                    },
+                    senderName: {
+                        type: String,
+                        required: true,
+                    },
+                },
+                receiver: {
+                    receiverId: {
+                        type: String,
+                        ref: 'User',
+                        required: true,
+                    },
+                    receiverName: {
+                        type: String,
+                        required: true,
+                    },
+                },
                 content: {
                     type: String,
                     required: true,
@@ -52,10 +77,6 @@ const ticketsSchema = new mongoose.Schema(
         opened: {
             type: Boolean,
             default: true,
-        },
-        reminder: {
-            type: Boolean,
-            default: false,
         },
     },
     {
