@@ -3,9 +3,9 @@
     <div class="card-header">
       <h2>{{ school.schoolName }}</h2>
       <span class="status-tag" [ngClass]="{
-        'status-active': school.subscriptionStatus === 'active',
+        'status-active': school.subscriptionStatus === 'paid',
         'status-pending': school.subscriptionStatus === 'pending',
-        'status-inactive': school.subscriptionStatus === 'inactive'
+        'status-inactive': school.subscriptionStatus === 'expired'
       }">{{ school.subscriptionStatus }}</span>
     </div>
     <div class="card-content">

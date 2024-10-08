@@ -68,6 +68,13 @@ const routes: Routes = [
             (m) => m.SchoolModule
           ),
       },
+      {
+        path: RoutesUtil.Invoice.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/invoice/invoice.module').then(
+            (m) => m.InvoiceModule
+          ),
+      },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
     ]
   },

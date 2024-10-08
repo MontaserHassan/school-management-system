@@ -45,8 +45,8 @@ export class UserListComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  getUsersList() {
-    const params = { page: this.offset, limit: this.pageSize };
+  getUsersList(isExport?: boolean) {
+    const params = { page: this.offset, limit: this.pageSize , isExport};
     this.load(this.authService.getUsersList(params)).subscribe(res => {
       this.users = res.users || []
       this.totalRowsCount = res.totalDocuments || 1;
@@ -94,5 +94,9 @@ export class UserListComponent extends BaseComponent implements OnInit {
         }
       })
     }
+  }
+
+  handleExport() {
+    this.getUsersList(true)
   }
 }

@@ -142,6 +142,22 @@ export class SideNavComponent {
           }
         ]
       },
+      {
+        label: 'Invoices',
+        icon: 'pi pi-receipt',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_INVOICE_SCHOOL),
+        command: () => {
+          this.router.navigate([RoutesUtil.SchoolInvoiceList.url()]);
+        }
+      },
+      {
+        label: 'Invoices',
+        icon: 'pi pi-receipt',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_INVOICE_STUDENT),
+        command: () => {
+          this.router.navigate([RoutesUtil.StudentInvoiceList.url()]);
+        }
+      },
     ];
   }
 }

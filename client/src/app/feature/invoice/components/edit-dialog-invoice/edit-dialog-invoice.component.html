@@ -1,0 +1,24 @@
+<app-state-section [state]="sectionState">
+  <h2 mat-dialog-title>Edit Invoice</h2>
+  <mat-dialog-content>
+    <form [formGroup]="invoiceForm" class="d-flex flex-column gap-3">
+      <div class="field">
+        <label for="media">Attach Media</label>
+        <p-fileUpload name="media" accept="image/*" maxFileSize="1000000" (onSelect)="onFileSelect($event)"
+          [customUpload]="true" (onClear)="clearFile()" [showUploadButton]="false" (onRemove)="clearFile()">
+          <ng-template pTemplate="content">
+            <div class="w-100 d-flex justify-content-center">
+              <img *ngIf="previewImage" (click)="openMediaDialog(previewImage)" [src]="previewImage" alt="Image Preview"
+                class="img-fluid" style="max-width: 200px; height: auto;" />
+            </div>
+          </ng-template>
+        </p-fileUpload>
+        <small *ngIf="imageError" class="p-error">{{ imageError }}</small>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [disabled]="invoiceForm.invalid" (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</app-state-section>

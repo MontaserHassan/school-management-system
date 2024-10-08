@@ -21,6 +21,7 @@ export class LazyDropdownComponent implements OnInit {
   @Input() lookUpExtraParams!: any;
   @Input() placeholder: string = "Select an option";
   @Input() multiply: boolean = false;
+  @Input() disable: boolean = false;
   dropdownOptions: any[] = [];
   selectedOption: any;
   isDataLoaded: boolean = false;

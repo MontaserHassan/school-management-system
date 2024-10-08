@@ -45,6 +45,7 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { lookups } = req.params;
         const { existClassRoom } = req.query;
+        const { parentId } = req.query;
         const { schoolId } = req.user;
         const targetData = lookups;
         let lookupsData;
@@ -61,6 +62,8 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             let lookups;
             if (existClassRoom && existClassRoom === 'true') {
                 lookups = await studentService.getAllStudentsLookups(schoolId, true);
+            } else if (parentId) {
+                lookups = await studentService.getStudentsByParentId(parentId , schoolId);
             } else {
                 lookups = await studentService.getAllStudentsLookups(schoolId, false);
             };

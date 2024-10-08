@@ -1,5 +1,12 @@
-<p-card header="School Details" class="classroom-card">
-  <app-state-section [state]="sectionState">
+<app-state-section [state]="sectionState">
+<p-card class="classroom-card">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+        <h2 class="header">School Details</h2>
+
+        <p-button text label="edit" icon="pi pi-spin pi-cog" (onClick)="handleEditClick()" />
+      </div>
+    </ng-template>
 
     <!-- School Information -->
     <div>
@@ -24,20 +31,13 @@
         <i class="pi pi-circle-on"></i>
         <strong>Subscription Status:</strong>
         <span class="status-tag" [ngClass]="{
-          'status-active': school.subscriptionStatus === 'active',
+          'status-active': school.subscriptionStatus === 'paid',
           'status-pending': school.subscriptionStatus === 'pending',
-          'status-inactive': school.subscriptionStatus === 'inactive'
+          'status-inactive': school.subscriptionStatus === 'expired'
         }">{{ school.subscriptionStatus }}</span>
 
         <div>
-          <p-menu #menu [model]="subscriptionAction" appendTo="body" [popup]="true">
-            <ng-template pTemplate="item" let-item>
-              <div class="p-menuitem-link" (click)="handleClick(item.label,student)">
-                <span [class]="item.icon"></span>
-                <span class="mx-2">{{ item.label }}</span>
-              </div>
-            </ng-template>
-          </p-menu>
+          <p-menu #menu [model]="subscriptionActions" appendTo="body" [popup]="true"/>
           <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
         </div>
       </div>
@@ -99,5 +99,5 @@
         </p-tabPanel>
       </p-tabView>
     </div>
-  </app-state-section>
-</p-card>
+  </p-card>
+</app-state-section>

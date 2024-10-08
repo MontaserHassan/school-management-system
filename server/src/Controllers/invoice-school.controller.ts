@@ -18,7 +18,7 @@ const createInvoice = async (req: Request, res: Response, next: NextFunction) =>
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const userInfo = await userService.getById(isSchoolExisting.admin);
-        const invoice = await SchoolsInvoiceService.createInvoice(isSchoolExisting._id, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
+        const invoice = await SchoolsInvoiceService.createInvoice({schoolId:isSchoolExisting._id , schoolName:isSchoolExisting.schoolName}, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

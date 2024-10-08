@@ -49,4 +49,14 @@ export class ApiConstant {
   static ADD_ATTENDANCE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'attendance';
   static ADD_COMMENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'comment';
   static UPDATE_STUDENT_DEGREE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'degree';
+
+  static ADD_SCHOOL_INVOICE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.School;
+  static Edit_SCHOOL_INVOICE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.School;
+  static GET_SCHOOL_INVOICE_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.School + '{id}';
+  static GET_ALL_SCHOOL_INVOICES = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.School;
+
+  static ADD_STUDENT_INVOICE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.Student;
+  static Edit_STUDENT_INVOICE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.Student;
+  static GET_STUDENT_INVOICE_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.Student + '{id}';
+  static GET_ALL_STUDENT_INVOICES = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.Student;
 }

@@ -89,4 +89,19 @@ export class RolesConstants {
   public static ADD_Edit_TOPIC = [
     UserRole.Teacher
   ]
+
+  //Invoices
+  public static ADD_VIEW_INVOICE_SCHOOL = [
+    UserRole.SuperAdmin
+  ]
+
+  public static VIEW_INVOICE_STUDENT = [
+    UserRole.Admin,
+    UserRole.Director,
+    UserRole.Parent
+  ]
+  public static ADD_EDIT_INVOICE_STUDENT = [
+    UserRole.Admin,
+    UserRole.Director,
+  ]
 }

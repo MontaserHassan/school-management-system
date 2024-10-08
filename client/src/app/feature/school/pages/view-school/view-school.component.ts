@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { Menu } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
+import { SubscriptionStatus } from '../../../shared/config/drop-down-value.constant';
+import { EditSchoolDialogComponent } from '../../components/edit-school-dialog/edit-school-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-school',
@@ -14,34 +17,30 @@ import { MenuItem } from 'primeng/api';
 })
 export class ViewSchoolComponent extends BaseComponent implements OnInit {
   school: School= new School();
-
+  id!: string;
   subscriptionActions!:MenuItem[];
 
-  constructor(private activeRoute: ActivatedRoute, private schoolService: SchoolService, private router: Router) {
+  protected subscriptionStatus = SubscriptionStatus
+
+  constructor(private activeRoute: ActivatedRoute, private schoolService: SchoolService, private router: Router , private matDialog: MatDialog) {
     super();
   }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
-      const id = params?.['id']
-      if (id) {
-        this.getSchoolDetails(id);
+      this.id = params?.['id']
+      if (this.id) {
+        this.getSchoolDetails(this.id);
       }
     })
 
     this.subscriptionActions = [
       {
         label: 'Actions',
-        items: [
-          {
-            label: 'Edit',
-            icon: 'pi pi-pencil',
-          },
-          {
-            label: 'Delete',
-            icon: 'pi pi-trash',
-          }
-        ]
+        items: this.subscriptionStatus.map((status) => ({
+          label: status.label,
+          command: () => this.handleClick(status.value)
+        }))
       }
     ];
   }
@@ -58,32 +57,28 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
     this.router.navigate([RoutesUtil.UserProfile.url({params: {id}})]);
   }
 
-
-  handleClick(label: string, school: School): void {
-    if (label === this.classroomActions?.[0]?.items?.[0]?.label) {
-      this.viewDetails(classroom._id || "");
+  handleClick(value: string): void {
+    const body = {
+      schoolId: this.school._id || "",
+      subscriptionStatus: value
     }
-    else if (label === this.classroomActions?.[0]?.items?.[1]?.label) {
-      const dialog = this.matDialog.open(EditClassroomDialogComponent, {
-        data: { classroom },
-      })
 
-      dialog.afterClosed().subscribe(res => {
-        if (res) {
-          this.getClassRoomList()
-        }
-      })
-    }
-    else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
-      const dialog = this.matDialog.open(RemoveClassroomDialogComponent, {
-        data: { roomId: classroom._id }
-      })
+    this.load(this.schoolService.editSchool(body), {
+      isLoadingTransparent: true,
+    }).subscribe((res) => {
+      this.getSchoolDetails(this.id);
+    })
+  }
 
-      dialog.afterClosed().subscribe(res => {
-        if (res) {
-          this.getClassRoomList()
-        }
-      })
-    }
+  handleEditClick(){
+    const dialogRef = this.matDialog.open(EditSchoolDialogComponent, {
+      data: {school : this.school}
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+        this.getSchoolDetails(this.id);
+      }
+    })
   }
 }

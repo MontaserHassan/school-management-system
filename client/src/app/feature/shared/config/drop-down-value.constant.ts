@@ -38,3 +38,18 @@ export const Group = [
     label: "9-12"
   }
 ]
+
+export const SubscriptionStatus = [
+  {
+    value: "SchoolSystem-7-1",
+    label: "pending"
+  },
+  {
+    value: "SchoolSystem-7-2",
+    label: "paid"
+  },
+  {
+    value: "SchoolSystem-7-3",
+    label: "expired"
+  }
+]

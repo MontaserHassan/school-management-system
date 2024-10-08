@@ -1,0 +1,40 @@
+<app-state-section [state]="sectionState">
+  <h2 mat-dialog-title>Add Invoice</h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="invoiceForm" class="d-flex flex-column gap-3">
+      <!-- School ID Input -->
+      <div class="field d-flex flex-column gap-2">
+        <label for="parentId" class="form-label">Parent</label>
+        <app-lazy-dropdown for="parentId" [lookup]="Lookup.Users" [lookUpExtraParams]="{role:'parent'}" formControlName="parentId"></app-lazy-dropdown>
+        <small *ngIf="invoiceForm.get('parentId')?.hasError('required') && invoiceForm.get('parentId')?.touched"
+          class="p-error">
+          Parent is required
+        </small>
+      </div>
+
+      <div class="field d-flex flex-column gap-2">
+        <label for="studentId" class="form-label">Student</label>
+        <app-lazy-dropdown for="studentId" [disable]="invoiceForm.get('parentId')?.invalid || false" [lookup]="Lookup.Students" [lookUpExtraParams]="{parent: invoiceForm.get('parentId')?.value.value}" formControlName="studentId"></app-lazy-dropdown>
+        <small *ngIf="invoiceForm.get('studentId')?.hasError('required') && invoiceForm.get('studentId')?.touched"
+          class="p-error">
+          Student is required
+        </small>
+      </div>
+
+      <!-- File Upload -->
+      <div class="field d-flex flex-column gap-2">
+        <label for="media" class="form-label">Attach Media</label>
+        <p-fileUpload name="media" (onSelect)="onSelect($event)" accept="image/*" maxFileSize="1000000"
+          [customUpload]="true" chooseLabel="Select Media" [showUploadButton]="false">
+        </p-fileUpload>
+        <small *ngIf="imageError" class="p-error">{{ imageError }}</small>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [disabled]="invoiceForm.invalid" (click)="addInvoice()">Add Invoice</button>
+  </mat-dialog-actions>
+</app-state-section>
