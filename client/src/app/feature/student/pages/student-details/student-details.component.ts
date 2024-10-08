@@ -78,18 +78,24 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
         label: 'Actions',
         items: [
           {
-            label: 'edit',
+            label: 'Edit',
             icon: 'pi pi-pencil'
+          },
+          {
+            label: 'Export',
+            icon: 'pi pi-file-export'
           },
         ]
       }
     ];
   }
 
-  getStudentDetails(id: string) {
-    this.load(this.studentService.getStudentById(id), { isLoadingTransparent: true }).subscribe(res => {
-      this.studentProfile = res;
-      this.mainTopics = this.studentProfile.mainTopics.map((topic: any) => topic?.topicName);
+  getStudentDetails(id: string,params?:{isExport?:boolean}) {
+    this.load(this.studentService.getStudentById(id,params), { isLoadingTransparent: true }).subscribe(res => {
+      if (!params?.isExport) {
+        this.studentProfile = res;
+        this.mainTopics = this.studentProfile.mainTopics.map((topic: any) => topic?.topicName);
+      }
     })
   }
 
@@ -167,6 +173,9 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
         this.getStudentDetails(this.id);
         }
       })
+    }
+    else if (label === this.studentAction?.[0]?.items?.[1]?.label) {
+      this.getStudentDetails(this.id, {isExport: true})
     }
   }
 }

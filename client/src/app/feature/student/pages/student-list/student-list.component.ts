@@ -41,14 +41,15 @@ export class StudentListComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  getStudentsList() {
-    const params = { page: this.offset, limit: this.pageSize };
+  getStudentsList(isExport?: boolean) {
+    const params = { page: this.offset, limit: this.pageSize , isExport};
 
     this.load(this.studentService.getStudents(params), { isLoadingTransparent: true }).subscribe(res => {
-      this.students = res.students || [];
-      this.totalRowsCount = res.totalDocuments || 1;
-      this.pageSize = res?.limit || 0
-
+      if (!isExport) {
+        this.students = res?.students || []
+        this.totalRowsCount = res.totalDocuments || 1;
+        this.pageSize = res?.limit || 0
+      }
     })
   }
 
@@ -80,5 +81,9 @@ export class StudentListComponent extends BaseComponent implements OnInit {
         }
       })
     }
+  }
+
+  handleExport() {
+    this.getStudentsList(true)
   }
 }

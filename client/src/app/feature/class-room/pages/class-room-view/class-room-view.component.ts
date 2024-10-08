@@ -65,16 +65,22 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
           {
             label: 'Remove Classroom',
             icon: 'pi pi-trash'
+          },
+          {
+            label: 'Export',
+            icon: 'pi pi-file-export'
           }
         ]
       }
     ];
   }
 
-  getClassRoomDetails(id: string): void {
-    this.load(this.classRoomService.getClassRoomById(id), { isLoadingTransparent: true }).subscribe((response) => {
-      this.classroom = response || {}
-      this.mainTopics = this.classroom.mainTopics?.map(topic => topic?.topicName).filter((name): name is string => !!name) || [];
+  getClassRoomDetails(id: string, params?:{isExport?:Boolean}): void {
+    this.load(this.classRoomService.getClassRoomById(id,params), { isLoadingTransparent: true }).subscribe((response) => {
+      if (!params?.isExport) {
+        this.classroom = response || {}
+        this.mainTopics = this.classroom.mainTopics?.map(topic => topic?.topicName).filter((name): name is string => !!name) || [];
+      }
     })
   }
 
@@ -153,6 +159,9 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
           this.router.navigate([RoutesUtil.ClassRoomList.url()]);
         }
       })
+    }
+    else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
+      this.getClassRoomDetails(this.id, {isExport: true})
     }
   }
 }

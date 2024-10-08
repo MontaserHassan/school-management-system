@@ -11,6 +11,7 @@ import { Mapper } from '../../mapper/base-mapper.mapper';
 import { BaseComponent } from '../../component/base-component/base.component';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../utils/routes.util';
+import { downloadFile } from '../../utils/download-file.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -61,8 +62,9 @@ export class AuthService extends BaseComponent {
     );
   }
 
-  getUsersList(params:{}): Observable<UsersList> {
+  getUsersList(params: { isExport?: boolean }): Observable<UsersList> {
     return this.baseAPI.get(ApiConstant.GET_USERS_LIST,{params}).pipe(
+      tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(UsersList, res.data)));
   }
 

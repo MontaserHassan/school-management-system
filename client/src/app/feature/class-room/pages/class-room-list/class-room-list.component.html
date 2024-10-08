@@ -1,5 +1,9 @@
-<p-card header="Classroom List" class="classroom-list-card">
-  <app-state-section [state]="sectionState">
+<app-state-section [state]="sectionState">
+  <p-card class="classroom-list-card">
+    <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+      <h2 class="header">Classroom List</h2>
+      <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
+    </div>
     <p-table [value]="classrooms" dataKey="_id" [lazy]="true" [paginator]="true" [rows]="pageSize"
       [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
       responsiveLayout="scroll" class="p-datatable-striped">
@@ -60,5 +64,5 @@
         </tr>
       </ng-template>
     </p-table>
-  </app-state-section>
-</p-card>
+  </p-card>
+</app-state-section>

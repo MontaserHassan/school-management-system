@@ -24,16 +24,17 @@ export class SchoolsListComponent extends BaseComponent implements OnInit {
   }
 
 
-  getSchools():void{
-    const params = { page: this.offset.toString(), limit: this.pageSize.toString() };
+  getSchools(isExport?:Boolean):void{
+    const params = { page: this.offset.toString(), limit: this.pageSize.toString(), isExport };
 
     this.load(this.schoolService.getSchools(params), {
       isLoadingTransparent: true,
     }).subscribe((res) => {
-      this.schools = res.schools || [];
-      this.totalRowsCount = res.totalDocuments|| 1;
-      this.pageSize = res?.limit || 0
-
+      if (!isExport) {
+        this.schools = res.schools || [];
+        this.totalRowsCount = res.totalDocuments|| 1;
+        this.pageSize = res?.limit || 0
+      }
     })
   }
 
@@ -58,5 +59,9 @@ export class SchoolsListComponent extends BaseComponent implements OnInit {
         this.getSchools()
       }
     })
+  }
+
+  handleExport():void{
+    this.getSchools(true)
   }
 }

@@ -47,15 +47,19 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  getClassRoomList(): void {
-    const params = { page: this.offset, limit: this.pageSize};
+  getClassRoomList(isExport?:Boolean): void {
+    const params = { page: this.offset, limit: this.pageSize , isExport};
 
     this.load(this.classRoomService.getClassRoomList(params),{isLoadingTransparent: true}).subscribe((response) => {
-      this.classrooms = response?.rooms || []
-      this.totalRowsCount = response.totalDocuments || 1;
-      this.pageSize = response?.limit || 0
+      if (!isExport) {
+        this.classrooms = response?.rooms || []
+        this.totalRowsCount = response.totalDocuments || 1;
+        this.pageSize = response?.limit || 0
+      }
     }, (error) => {
+      if (!isExport) {
       this.classrooms = []
+    }
     })
   }
 
@@ -98,5 +102,9 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
         }
       })
     }
+  }
+
+  handleExport(): void {
+    this.getClassRoomList(true);
   }
 }

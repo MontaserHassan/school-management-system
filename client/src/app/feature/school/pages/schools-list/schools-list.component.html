@@ -1,49 +1,56 @@
-<div class="school-list-wrapper">
-  <div *ngFor="let school of schools" class="school-card" (click)="navigateToSchoolDetails(school._id || '')">
-    <div class="card-header">
-      <h2>{{ school.schoolName }}</h2>
-      <span class="status-tag" [ngClass]="{
-        'status-active': school.subscriptionStatus === 'paid',
-        'status-pending': school.subscriptionStatus === 'pending',
-        'status-inactive': school.subscriptionStatus === 'expired'
-      }">{{ school.subscriptionStatus }}</span>
+<app-state-section [state]="sectionState">
+  <div class="school-list-wrapper">
+    <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+      <h2 class="header">Classroom List</h2>
+      <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
     </div>
-    <div class="card-content">
-      <div class="school-info row g-3">
-        <div class="info-item col-12 col-md-6 ">
-          <i class="pi pi-user"></i>
-          <strong>Admin:</strong> {{ school.admin?.userName }}
-        </div>
-        <div class="info-item col-12 col-md-6">
-          <i class="pi pi-envelope"></i>
-          <strong>Email:</strong> {{ school.admin?.email }}
-        </div>
-        <div class="info-item col-12 col-md-6">
-          <i class="pi pi-calendar"></i>
-          <strong>Subscription Fees:</strong> {{ school.subscriptionFees }} {{ school.currencyOfSubscription }}
-        </div>
-        <div class="info-item col-12 col-md-6">
-          <i class="pi pi-clock"></i>
-          <strong>Subscription Way:</strong> {{ school.subscriptionWay }}
-        </div>
-        <div class="info-item col-12 col-md-6 text-nowrap">
-          <i class="pi pi-calendar-plus"></i>
-          <strong class="text-nowrap">Subscription Date:</strong> {{ school.subscriptionDate | date: 'short' }}
+
+    <div *ngFor="let school of schools" class="school-card" (click)="navigateToSchoolDetails(school._id || '')">
+      <div class="card-header">
+        <h2>{{ school.schoolName }}</h2>
+        <span class="status-tag" [ngClass]="{
+          'status-active': school.subscriptionStatus === 'paid',
+          'status-pending': school.subscriptionStatus === 'pending',
+          'status-inactive': school.subscriptionStatus === 'expired'
+        }">{{ school.subscriptionStatus }}</span>
+      </div>
+      <div class="card-content">
+        <div class="school-info row g-3">
+          <div class="info-item col-12 col-md-6 ">
+            <i class="pi pi-user"></i>
+            <strong>Admin:</strong> {{ school.admin?.userName }}
+          </div>
+          <div class="info-item col-12 col-md-6">
+            <i class="pi pi-envelope"></i>
+            <strong>Email:</strong> {{ school.admin?.email }}
+          </div>
+          <div class="info-item col-12 col-md-6">
+            <i class="pi pi-calendar"></i>
+            <strong>Subscription Fees:</strong> {{ school.subscriptionFees }} {{ school.currencyOfSubscription }}
+          </div>
+          <div class="info-item col-12 col-md-6">
+            <i class="pi pi-clock"></i>
+            <strong>Subscription Way:</strong> {{ school.subscriptionWay }}
+          </div>
+          <div class="info-item col-12 col-md-6 text-nowrap">
+            <i class="pi pi-calendar-plus"></i>
+            <strong class="text-nowrap">Subscription Date:</strong> {{ school.subscriptionDate | date: 'short' }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card-footer">
-      <small><strong>Created At:</strong> {{ school.createdAt | date: 'short' }}</small>
-      <small><strong>Last Updated:</strong> {{ school.updatedAt | date: 'short' }}</small>
+      <div class="card-footer">
+        <small><strong>Created At:</strong> {{ school.createdAt | date: 'short' }}</small>
+        <small><strong>Last Updated:</strong> {{ school.updatedAt | date: 'short' }}</small>
+      </div>
+
+      <div class="hover-button" (click)="open($event, school)">
+        <button pButton text icon="pi pi-spin pi-cog"></button>
+      </div>
     </div>
 
-    <div class="hover-button" (click)="open($event, school)">
-      <button pButton text icon="pi pi-spin pi-cog"></button>
-    </div>
+    <!-- Paginator -->
+    <p-paginator [rows]="pageSize" [totalRecords]="totalRowsCount" (onPageChange)="paginate($event)"
+      [rowsPerPageOptions]="rowsPerPageOptions">
+    </p-paginator>
   </div>
-
-  <!-- Paginator -->
-  <p-paginator [rows]="pageSize" [totalRecords]="totalRowsCount" (onPageChange)="paginate($event)"
-    [rowsPerPageOptions]="rowsPerPageOptions">
-  </p-paginator>
-</div>
+</app-state-section>
