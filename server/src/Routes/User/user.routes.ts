@@ -20,7 +20,7 @@ const user = express.Router();
 
 user.use('/auth', authRouter);
 user.use(getUser());
-// user.use(isSchoolSubscription());
+user.use(isSchoolSubscription());
 user.use('/', authUserRouter);
 user.use('/teacher', authTeacherRouter);
 user.use('/class-room', authClassRoomRouter);

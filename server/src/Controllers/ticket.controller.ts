@@ -40,6 +40,31 @@ const createTicket = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const { schoolId } = req.user;
         const { user1, user2 } = req.body;
+        const ticket = await ticketService.createTicket(user1, user2, schoolId);
+        if (!ticket) throw new CustomError(errorTicketMessage.NOT_FOUND_TICKET, 404, "ticket");
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successTicketMessage.CREATED,
+            data: {
+                ticket: ticket,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
+// ----------------------------- send message -----------------------------
+
+
+const sendMessage = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId } = req.user;
+        const { user1, user2 } = req.body;
         const response: IResponse = {
             type: "info",
             responseCode: 200,

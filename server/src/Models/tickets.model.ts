@@ -5,15 +5,16 @@ import { nanoid } from "nanoid";
 
 interface TicketModel extends mongoose.Document {
     _id: string;
-    userId1: string;
-    userId2: string;
+    userOne: { userId: string; userName: string; };
+    userTwo: { userId: string; userName: string; };
     schoolId: string;
     messages: {
         sender: { senderId: string; senderName: string; };
         receiver: { receiverId: string; receiverName: string; };
-        content: string;
+        message: string;
         dateCreation: Date;
     }[];
+    read: boolean;
     opened: boolean;
 };
 
@@ -24,7 +25,7 @@ const ticketsSchema = new mongoose.Schema(
             type: String,
             default: () => nanoid(24),
         },
-        user1: {
+        userOne: {
             userId: {
                 type: String,
                 ref: 'User',
@@ -35,7 +36,7 @@ const ticketsSchema = new mongoose.Schema(
                 required: true,
             },
         },
-        user2: {
+        userTwo: {
             userId: {
                 type: String,
                 ref: 'User',
@@ -76,7 +77,7 @@ const ticketsSchema = new mongoose.Schema(
                         required: true,
                     },
                 },
-                content: {
+                message: {
                     type: String,
                     required: true,
                 },
@@ -86,6 +87,10 @@ const ticketsSchema = new mongoose.Schema(
                 },
             },
         ],
+        read: {
+            type: Boolean,
+            default: false,
+        },
         opened: {
             type: Boolean,
             default: true,

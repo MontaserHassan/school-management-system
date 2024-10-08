@@ -1,0 +1,75 @@
+[{
+  "_id": "V9Kf1Y-Kltx54IiN3V2uN",
+  "userId": "8bk08p1B2NJb5luoFS1jY",
+  "schoolId": "R0rezDHmRufs7Px9w929C1Lb",
+  "header": "Subscription Expiration",
+  "message": "Your subscription will expire in 5 days. Please renew your subscription before: 2024-10-11.",
+  "read": true,
+  "createdAt": {
+    "$date": "2024-10-06T17:15:00.713Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T23:52:00.148Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "6qT-KjddLNyHiTkewIYQm",
+  "userId": "8bk08p1B2NJb5luoFS1jY",
+  "schoolId": "R0rezDHmRufs7Px9w929C1Lb",
+  "header": "Subscription Expiration",
+  "message": "Your subscription will expire in 5 days. Please renew your subscription before: 2024-10-11.",
+  "read": false,
+  "createdAt": {
+    "$date": "2024-10-06T17:16:00.781Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:16:00.781Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "y1MctFxLIv31goLpUE0-v",
+  "userId": "8bk08p1B2NJb5luoFS1jY",
+  "schoolId": "R0rezDHmRufs7Px9w929C1Lb",
+  "header": "Subscription Expiration",
+  "message": "Your subscription will expire in 3 days. Please renew your subscription before: 2024-10-09.",
+  "read": false,
+  "createdAt": {
+    "$date": "2024-10-06T17:17:00.868Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:17:00.868Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "nme9Hsg71-ZYRY94Al9t8",
+  "userId": "8bk08p1B2NJb5luoFS1jY",
+  "schoolId": "R0rezDHmRufs7Px9w929C1Lb",
+  "header": "Subscription Expiration",
+  "message": "Your subscription will expire in 1 day. Please renew your subscription before: 2024-10-07.",
+  "read": false,
+  "createdAt": {
+    "$date": "2024-10-06T17:18:00.950Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:18:00.950Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "Y8sZZYXlFaQSJpO5jDyDe",
+  "userId": "8bk08p1B2NJb5luoFS1jY",
+  "schoolId": "R0rezDHmRufs7Px9w929C1Lb",
+  "header": "Subscription Expiration",
+  "message": "Your subscription will expire in 1 day. Please renew your subscription before: 2024-10-07.",
+  "read": false,
+  "createdAt": {
+    "$date": "2024-10-06T17:19:00.015Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:19:00.015Z"
+  },
+  "__v": 0
+}]
