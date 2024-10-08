@@ -63,7 +63,7 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             if (existClassRoom && existClassRoom === 'true') {
                 lookups = await studentService.getAllStudentsLookups(schoolId, true);
             } else if (parentId) {
-                lookups = await studentService.getStudentsByParentId(parentId , schoolId);
+                lookups = await studentService.getStudentsByParentId(String(parentId), schoolId);
             } else {
                 lookups = await studentService.getAllStudentsLookups(schoolId, false);
             };

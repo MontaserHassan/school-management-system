@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { ticketService, userService } from "../Services/index.service";
 import IResponse from '../Interfaces/response.interface';
-import { successTicketMessage, ErrorUserMessage } from "../Messages/index.message";
+import { successTicketMessage, ErrorUserMessage, errorTicketMessage } from "../Messages/index.message";
 import { sendEmail, CustomError } from "../Utils/index.util";
 
 
@@ -39,6 +39,7 @@ const sendMail = async (req: Request, res: Response, next: NextFunction) => {
 const createTicket = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId } = req.user;
+        const { user1, user2 } = req.body;
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -57,12 +58,14 @@ const createTicket = async (req: Request, res: Response, next: NextFunction) => 
 
 const getTickets = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolId } = req.user;
+        const { userId } = req.user;
+        const tickets = await ticketService.getTicketsByUserId(userId);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successTicketMessage.GET_TICKETS,
             data: {
+                tickets: tickets,
             },
         };
         res.data = response;
@@ -78,12 +81,15 @@ const getTickets = async (req: Request, res: Response, next: NextFunction) => {
 
 const getTicket = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { } = req.params;
+        const { ticketId } = req.params;
+        const ticket = await ticketService.getById(ticketId);
+        if (!ticket) throw new CustomError(errorTicketMessage.NOT_FOUND_TICKET, 404, "ticket");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successTicketMessage.GET_TICKET,
             data: {
+                ticket: ticket,
             },
         };
         res.data = response;

@@ -33,6 +33,18 @@ const getById = async (ticketId: string) => {
 };
 
 
+// ----------------------------- get by user id -----------------------------
+
+
+const getTicketsByUserId = async (userId: string) => {
+    const tickets: TicketModel[] = await Ticket.find({ $or: [{ 'user1.userId': userId }, { 'user2.userId': userId }] }).select('-__v');
+    return tickets;
+};
+
+
+// ----------------------------- update by id -----------------------------
+
+
 const updateById = async (ticketId: string, updatedData: any) => {
     const updatedTicket: TicketModel = await Ticket.findByIdAndUpdate(ticketId, updatedData, { new: true }).select('-__v');
     return updatedTicket;
@@ -43,5 +55,6 @@ const updateById = async (ticketId: string, updatedData: any) => {
 export default {
     createTicket,
     getById,
+    getTicketsByUserId,
     updateById,
 };

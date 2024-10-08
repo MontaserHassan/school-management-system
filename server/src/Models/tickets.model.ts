@@ -5,8 +5,8 @@ import { nanoid } from "nanoid";
 
 interface TicketModel extends mongoose.Document {
     _id: string;
-    employeeId: string;
-    parentId: string;
+    userId1: string;
+    userId2: string;
     schoolId: string;
     messages: {
         sender: { senderId: string; senderName: string; };
@@ -24,15 +24,27 @@ const ticketsSchema = new mongoose.Schema(
             type: String,
             default: () => nanoid(24),
         },
-        employeeId: {
-            type: String,
-            ref: 'User',
-            required: true,
+        user1: {
+            userId: {
+                type: String,
+                ref: 'User',
+                required: true,
+            },
+            userName: {
+                type: String,
+                required: true,
+            },
         },
-        parentId: {
-            type: String,
-            ref: 'User',
-            required: true,
+        user2: {
+            userId: {
+                type: String,
+                ref: 'User',
+                required: true,
+            },
+            userName: {
+                type: String,
+                required: true,
+            },
         },
         schoolId: {
             type: String,
