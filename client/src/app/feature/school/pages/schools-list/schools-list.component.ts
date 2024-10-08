@@ -4,6 +4,8 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { School } from '../../models/school.model';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { MatDialog } from '@angular/material/dialog';
+import { EditSchoolDialogComponent } from '../../components/edit-school-dialog/edit-school-dialog.component';
 
 @Component({
   selector: 'app-schools-list',
@@ -13,7 +15,7 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 export class SchoolsListComponent extends BaseComponent implements OnInit {
   schools!:School[]
 
-  constructor(private schoolService:SchoolService, private router:Router) {
+  constructor(private schoolService:SchoolService, private router:Router ,private matDialog:MatDialog) {
     super();
   }
 
@@ -43,5 +45,18 @@ export class SchoolsListComponent extends BaseComponent implements OnInit {
 
   navigateToSchoolDetails(id: string): void {
     this.router.navigate([RoutesUtil.SchoolView.url({ params: { id } })]);
+  }
+
+  open(event:Event, school:School):void{
+    event.stopPropagation()
+    const dialogRef = this.matDialog.open(EditSchoolDialogComponent, {
+      data: {school}
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+        this.getSchools()
+      }
+    })
   }
 }

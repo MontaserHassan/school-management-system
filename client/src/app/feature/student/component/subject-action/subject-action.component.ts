@@ -3,6 +3,7 @@ import { Student, Subject } from '../../models/student.model';
 import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { StudentService } from '../../services/student.service';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-subject-action',
@@ -28,6 +29,8 @@ export class SubjectActionComponent extends BaseComponent implements OnInit {
       "value": "Completed"
     }
   ]
+
+  protected RolesConstants = RolesConstants
 
   progressStatusOptions: MenuItem[] = this.progressStatus.map((status) => ({ label: status.value, command: (data: any,) => this.updateProgressStatus(status._id) }));
   constructor(

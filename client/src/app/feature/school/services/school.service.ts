@@ -22,9 +22,23 @@ export class SchoolService {
         userName: string,
         email: string
     },
+    subscriptionWay: string,
+    currencyOfSubscription: string,
     employees?: []
   }): Observable<School> {
     return this.baseAPI.post(ApiConstant.ADD_SCHOOL, body).pipe(
+      map((res) => this.mapper.fromJson(School, res.data.school))
+    )
+  }
+
+  editSchool(body: {
+    schoolId: string,
+    schoolName?: string,
+    subscriptionFees?: string,
+    subscriptionWay?: string,
+    currencyOfSubscription?: string,
+  }): Observable<School> {
+    return this.baseAPI.patch(ApiConstant.EDIT_SCHOOL, body).pipe(
       map((res) => this.mapper.fromJson(School, res.data.school))
     )
   }

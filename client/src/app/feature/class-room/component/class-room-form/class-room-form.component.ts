@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClassRoom } from '../../models/class-room.model';
 import { UserRole } from '../../../shared/enums/user-role.enum';
 import { Lookup } from '../../../shared/enums/lookup.enum';
+import { Days } from '../../../shared/config/drop-down-value.constant';
 
 @Component({
   selector: 'app-class-room-form',
@@ -16,15 +17,7 @@ export class ClassRoomFormComponent implements OnInit {
   protected Lookup = Lookup;
   protected UserRole = UserRole;
 
-  days = [
-    { label: 'Sunday', value: 'Sunday' },
-    { label: 'Monday', value: 'Monday' },
-    { label: 'Tuesday', value: 'Tuesday' },
-    { label: 'Wednesday', value: 'Wednesday' },
-    { label: 'Thursday', value: 'Thursday' },
-    { label: 'Friday', value: 'Friday' },
-    { label: 'Saturday', value: 'Saturday' },
-  ];
+  protected days = Days
 
   constructor(private fb: FormBuilder) {
 
@@ -53,8 +46,14 @@ export class ClassRoomFormComponent implements OnInit {
     return this.classroomForm.get('schedule') as FormArray;
   }
 
+
   getSubjects(index: number): FormArray {
     return this.scheduleControls.at(index).get('subjects') as FormArray;
+  }
+
+  // Method to get the specific schedule item
+  getSchedule(index: number): FormGroup {
+    return this.scheduleControls.at(index) as FormGroup;
   }
 
   addScheduleItem(): void {

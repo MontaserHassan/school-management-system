@@ -21,10 +21,10 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.classroomForm = this.fb.group({
       room: ['', Validators.required],
-      teachersId: [[], Validators.required],
+      teachersId: ['', Validators.required],
       schedule: this.fb.array([]),
       studentCost: ['', Validators.required],
-      currencyOfCost: ["", Validators.required],
+      currencyOfCost: ['', Validators.required],
       group: ['', Validators.required],
       mainTopics: [''],
     });

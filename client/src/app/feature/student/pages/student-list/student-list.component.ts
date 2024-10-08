@@ -7,6 +7,8 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { MenuItem } from 'primeng/api';
 import { EditStudentDialogComponent } from '../../component/edit-student-dialog/edit-student-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserRoleService } from '../../../shared/services/auth/user-role.service';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-student-list',
@@ -16,7 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class StudentListComponent extends BaseComponent implements OnInit {
   students!: Student[]
   studentAction!:MenuItem[]
-  constructor(private studentService: StudentService, private router: Router, private dialog: MatDialog) {
+  constructor(private studentService: StudentService, private router: Router, private dialog: MatDialog, private userRoleService:UserRoleService) {
     super();
   }
 
@@ -31,7 +33,8 @@ export class StudentListComponent extends BaseComponent implements OnInit {
           },
           {
             label: 'edit',
-            icon: 'pi pi-pencil'
+            icon: 'pi pi-pencil',
+            visible: this.userRoleService.isUserHasRoles(RolesConstants.EDIT_STUDENT),
           },
         ]
       }

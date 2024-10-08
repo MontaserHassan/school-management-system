@@ -60,7 +60,7 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
     this.load(this.authService.login(this.loginForm.value), {
       isLoadingTransparent: true,
     }).subscribe(res => {
-      this.router.navigate([this.RoutesUtil.Dashboard.path])
+      this.router.navigate([this.RoutesUtil.UserProfile.url({ params: { id: res.user?._id }})])
     }, err => {
       if (err.errors[0] === "You need to update your password password") {
         this.loginFirstTime = true

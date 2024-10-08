@@ -168,7 +168,7 @@ const updateSchool = async (req: Request, res: Response, next: NextFunction) => 
             responseCode: 200,
             responseMessage: successSchoolMessage.UPDATED,
             data: {
-                student: updatedSchool,
+                school: updatedSchool,
             },
         };
         res.data = response;

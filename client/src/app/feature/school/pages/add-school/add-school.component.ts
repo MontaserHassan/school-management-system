@@ -4,6 +4,8 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { SchoolService } from '../../services/school.service';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Lookup } from '../../../shared/enums/lookup.enum';
+import { SubscriptionWay } from '../../../shared/config/drop-down-value.constant';
 
 @Component({
   selector: 'app-add-school',
@@ -11,7 +13,6 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
   styleUrls: ['./add-school.component.scss']
 })
 export class AddSchoolComponent extends BaseComponent implements OnInit {
-
   schoolForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private schoolService: SchoolService, private router: Router) {
@@ -22,6 +23,8 @@ export class AddSchoolComponent extends BaseComponent implements OnInit {
     this.schoolForm = this.fb.group({
       schoolName: ['', Validators.required],
       subscriptionFees: ['', Validators.required],
+      currencyOfSubscription: ['', Validators.required],
+      subscriptionWay: ['', Validators.required],
       adminUserName: ['', Validators.required],
       adminEmail: ['', [Validators.required, Validators.email]]
     });
@@ -29,10 +32,12 @@ export class AddSchoolComponent extends BaseComponent implements OnInit {
 
   onSubmit(): void {
     if (this.schoolForm.valid) {
-      const { schoolName, subscriptionFees, adminEmail, adminUserName } = this.schoolForm.value;
+      const { schoolName, subscriptionFees, adminEmail, adminUserName, currencyOfSubscription, subscriptionWay} = this.schoolForm.value;
       const body = {
         schoolName,
         subscriptionFees,
+        subscriptionWay: subscriptionWay.value,
+        currencyOfSubscription: currencyOfSubscription.value,
         admin: {
           email: adminEmail,
           userName: adminUserName

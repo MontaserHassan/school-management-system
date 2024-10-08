@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RemoveClassroomDialogComponent } from '../../component/remove-classroom-dialog/remove-classroom-dialog.component';
 import { UserRoleService } from '../../../shared/services/auth/user-role.service';
 import { RolesConstants } from '../../../shared/config/roles-constants';
+import { EditClassroomDialogComponent } from '../../component/edit-classroom-dialog/edit-classroom-dialog.component';
 
 @Component({
   selector: 'app-class-room-list',
@@ -76,15 +77,15 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
       this.viewDetails(classroom._id || "");
     }
     else if (label === this.classroomActions?.[0]?.items?.[1]?.label) {
-      // const dialog = this.matDialog.open(UpdateUserDialogComponent, {
-      //   data: { user }
-      // })
+      const dialog = this.matDialog.open(EditClassroomDialogComponent, {
+        data: { classroom },
+      })
 
-      // dialog.afterClosed().subscribe(res => {
-      //   if (res) {
-      //     this.getUsersList()
-      //   }
-      // })
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.getClassRoomList()
+        }
+      })
     }
     else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
       const dialog = this.matDialog.open(RemoveClassroomDialogComponent, {

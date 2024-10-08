@@ -11,6 +11,7 @@ export class ApiConstant {
 
   static GET_SCHOOLS = ApiConstant.URL_BASE + URLSegment.User + 'school';
   static ADD_SCHOOL = ApiConstant.URL_BASE + URLSegment.User + 'school';
+  static EDIT_SCHOOL = ApiConstant.URL_BASE + URLSegment.User + 'school';
   static GET_SCHOOL_BY_ID = ApiConstant.URL_BASE + URLSegment.User + 'school/' + '{id}';
 
   static GET_USERS_LIST = ApiConstant.URL_BASE + URLSegment.User + 'user-list';

@@ -64,6 +64,18 @@ body {
   cursor: pointer;
 }
 
+.p-dropdown ,.p-multiselect{
+  width: 100%;
+}
+
+.p-inputtext{
+  font-size: 1rem !important;
+}
+
+.p-dropdown-label {
+  padding: 10px 0.75rem;
+}
+
 .p-panelmenu {
   .p-panelmenu-panel {
     border: none;

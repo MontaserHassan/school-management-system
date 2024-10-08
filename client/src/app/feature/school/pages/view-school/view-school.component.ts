@@ -4,6 +4,8 @@ import { School } from '../../models/school.model';
 import { SchoolService } from '../../services/school.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Menu } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-view-school',
@@ -11,7 +13,9 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
   styleUrls: ['./view-school.component.scss']
 })
 export class ViewSchoolComponent extends BaseComponent implements OnInit {
-  school!: School;
+  school: School= new School();
+
+  subscriptionActions!:MenuItem[];
 
   constructor(private activeRoute: ActivatedRoute, private schoolService: SchoolService, private router: Router) {
     super();
@@ -24,15 +28,22 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
         this.getSchoolDetails(id);
       }
     })
-  }
 
-  getStatusColor(status: string): string {
-    switch (status) {
-      case 'active': return 'p-chip-success';
-      case 'pending': return 'p-chip-warning';
-      case 'inactive': return 'p-chip-danger';
-      default: return '';
-    }
+    this.subscriptionActions = [
+      {
+        label: 'Actions',
+        items: [
+          {
+            label: 'Edit',
+            icon: 'pi pi-pencil',
+          },
+          {
+            label: 'Delete',
+            icon: 'pi pi-trash',
+          }
+        ]
+      }
+    ];
   }
 
   getSchoolDetails(id: string): void {
@@ -45,5 +56,34 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
 
   goToUserProfile(id: string): void {
     this.router.navigate([RoutesUtil.UserProfile.url({params: {id}})]);
+  }
+
+
+  handleClick(label: string, school: School): void {
+    if (label === this.classroomActions?.[0]?.items?.[0]?.label) {
+      this.viewDetails(classroom._id || "");
+    }
+    else if (label === this.classroomActions?.[0]?.items?.[1]?.label) {
+      const dialog = this.matDialog.open(EditClassroomDialogComponent, {
+        data: { classroom },
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.getClassRoomList()
+        }
+      })
+    }
+    else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
+      const dialog = this.matDialog.open(RemoveClassroomDialogComponent, {
+        data: { roomId: classroom._id }
+      })
+
+      dialog.afterClosed().subscribe(res => {
+        if (res) {
+          this.getClassRoomList()
+        }
+      })
+    }
   }
 }

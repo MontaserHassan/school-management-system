@@ -29,6 +29,7 @@ export class LazyDropdownComponent implements OnInit {
 
   constructor(private lazyDropdownService: LazyDropdownService) {}
 
+
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -57,6 +58,11 @@ export class LazyDropdownComponent implements OnInit {
     if (!this.isDataLoaded) {
       this.loadOptions();
     }
+  }
+
+  onDropdownClose(){
+    this.isDataLoaded = false;
+    this.onTouched();
   }
 
   onOptionSelect(event: any): void {

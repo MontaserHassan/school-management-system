@@ -23,6 +23,12 @@ export class School {
   subscriptionDate?: Date;
 
   @Expose()
+  endOfSubscription?: Date;
+
+  @Expose()
+  currencyOfSubscription?: string;
+
+  @Expose()
   subscriptionWay?: string;
 
   @Expose()

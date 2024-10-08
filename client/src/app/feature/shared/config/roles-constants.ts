@@ -40,6 +40,12 @@ export class RolesConstants {
     UserRole.Teacher
   ]
 
+  public static VIEW_PROGRESS_AND_DEGREE = [
+    UserRole.Admin,
+    UserRole.Director,
+    UserRole.Parent
+  ]
+
   public static ADD_ATTENDANCE_AND_COMMENT = [
     UserRole.Teacher,
     UserRole.Admin,

@@ -38,13 +38,13 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th>Subject Name</th>
-                  <th *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">Progress Status</th>
+                  <th>Progress Status</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-subject>
                 <tr>
                   <td>{{ subject.subjectName }}</td>
-                  <td *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">
+                  <td>
                     <app-subject-action [subject]="subject" [studentId]="studentProfile._id"
                       (updateStudentProfile)="updateStudentProfile($event)"></app-subject-action>
                   </td>
@@ -67,7 +67,7 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th>Topic Name</th>
-                  <th *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">Degree</th>
+                  <th>Degree</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-topic>
@@ -75,12 +75,12 @@
                   <td>
                     <p-chip class="mx-1" [label]="topic.topicName"></p-chip>
                   </td>
-                  <td *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE">
+                  <td>
                     <div class="d-flex gap-2 align-items-center">
                       <p-tag [severity]="setDegreeColor(topic?.degree || 'secondary')">{{ topic.degree || "Not
                         Completed"
                         }}</p-tag>
-                      <p-speedDial [model]="degreeOption" direction="right" appendTo="body" transitionDelay="80"
+                      <p-speedDial *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [model]="degreeOption" direction="right" appendTo="body" transitionDelay="80"
                         size="small" showIcon="pi pi-ellipsis-v" hideIcon="pi pi-times"
                         buttonClassName="p-button-outlined" class="custom-speeddial">
                         <ng-template let-item pTemplate="item">
@@ -155,7 +155,7 @@
                     <hr />
                     <div class="timeline-body">
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item" *ngFor="let topic of progress.topics">
+                        <li class="list-group-item py-1" *ngFor="let topic of progress.topics">
                           <div class="d-flex justify-content-between">
                             <span>Topic: <strong>{{ topic.topicName }}</strong></span>
                             <span>

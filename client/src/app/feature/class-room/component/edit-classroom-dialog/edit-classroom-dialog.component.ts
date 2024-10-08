@@ -4,6 +4,7 @@ import { ClassRoom } from '../../models/class-room.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClassRoomService } from '../../services/class-room.service';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
+import { Currency, Days, Group } from '../../../shared/config/drop-down-value.constant';
 
 @Component({
   selector: 'app-edit-classroom-dialog',
@@ -13,41 +14,9 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 export class EditClassroomDialogComponent extends BaseComponent implements OnInit {
   classroomForm!: FormGroup;
 
-  days = [
-    { label: 'Sunday', value: 'Sunday' },
-    { label: 'Monday', value: 'Monday' },
-    { label: 'Tuesday', value: 'Tuesday' },
-    { label: 'Wednesday', value: 'Wednesday' },
-    { label: 'Thursday', value: 'Thursday' },
-    { label: 'Friday', value: 'Friday' },
-    { label: 'Saturday', value: 'Saturday' },
-  ];
-
-  currency = [
-    {
-      "value": "SchoolSystem-6-1",
-      "label": "USD"
-    },
-    {
-      "value": "SchoolSystem-6-2",
-      "label": "EUR"
-    }
-  ]
-
-  group = [
-    {
-      "value": "SchoolSystem-2-1",
-      "label": "3-6"
-    },
-    {
-      "value": "SchoolSystem-2-2",
-      "label": "6-9"
-    },
-    {
-      "value": "SchoolSystem-2-3",
-      "label": "9-12"
-    }
-  ]
+  protected days = Days
+  protected currency = Currency
+  protected group = Group
 
   constructor(
     private dialogRef: MatDialogRef<EditClassroomDialogComponent>,
@@ -88,7 +57,7 @@ export class EditClassroomDialogComponent extends BaseComponent implements OnIni
         day: scheduleItem.day.value,
         subjects: scheduleItem?.subjects.map((subject: any) => ({
           subjectId: subject?.subjectId.value,
-          startTime: this.convertToTimeString(subject.startTime)
+          startTime: typeof subject.startTime  === 'string' ? subject.startTime : this.convertToTimeString(subject.startTime)
         }))
       })),
       studentCost: data?.studentCost,

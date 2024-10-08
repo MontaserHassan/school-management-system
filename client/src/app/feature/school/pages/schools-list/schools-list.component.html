@@ -9,32 +9,36 @@
       }">{{ school.subscriptionStatus }}</span>
     </div>
     <div class="card-content">
-      <div class="school-info">
-        <div class="info-item">
+      <div class="school-info row g-3">
+        <div class="info-item col-12 col-md-6 ">
           <i class="pi pi-user"></i>
           <strong>Admin:</strong> {{ school.admin?.userName }}
         </div>
-        <div class="info-item">
+        <div class="info-item col-12 col-md-6">
           <i class="pi pi-envelope"></i>
           <strong>Email:</strong> {{ school.admin?.email }}
         </div>
-        <div class="info-item">
+        <div class="info-item col-12 col-md-6">
           <i class="pi pi-calendar"></i>
-          <strong>Subscription Fees:</strong> {{ school.subscriptionFees }} USD
+          <strong>Subscription Fees:</strong> {{ school.subscriptionFees }} {{ school.currencyOfSubscription }}
         </div>
-        <div class="info-item">
+        <div class="info-item col-12 col-md-6">
           <i class="pi pi-clock"></i>
           <strong>Subscription Way:</strong> {{ school.subscriptionWay }}
         </div>
-        <div class="info-item">
+        <div class="info-item col-12 col-md-6 text-nowrap">
           <i class="pi pi-calendar-plus"></i>
-          <strong>Subscription Date:</strong> {{ school.subscriptionDate | date: 'short' }}
+          <strong class="text-nowrap">Subscription Date:</strong> {{ school.subscriptionDate | date: 'short' }}
         </div>
       </div>
     </div>
     <div class="card-footer">
       <small><strong>Created At:</strong> {{ school.createdAt | date: 'short' }}</small>
       <small><strong>Last Updated:</strong> {{ school.updatedAt | date: 'short' }}</small>
+    </div>
+
+    <div class="hover-button" (click)="open($event, school)">
+      <button pButton text icon="pi pi-spin pi-cog"></button>
     </div>
   </div>
 

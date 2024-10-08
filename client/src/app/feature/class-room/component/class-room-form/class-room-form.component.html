@@ -1,12 +1,14 @@
-<form [formGroup]="classroomForm"  class="classroom-card">
+<form [formGroup]="classroomForm" class="classroom-card">
 
   <!-- Room Input -->
   <div class="row">
     <div class="col-12">
       <div class="field">
         <label for="room" class="form-label">Room</label>
-        <input id="room" type="text" pInputText formControlName="room" placeholder="Enter room number"
-          class="p-inputtext-sm" />
+        <input id="room" type="text" pInputText formControlName="room" placeholder="Enter room number" class="p-inputtext-sm" />
+        <small *ngIf="classroomForm.get('room')?.invalid && classroomForm.get('room')?.touched" class="p-error">
+          Room is required
+        </small>
       </div>
     </div>
 
@@ -15,12 +17,17 @@
       <div class="row">
         <div class="field col-8">
           <label for="studentCost" class="form-label">Student Cost</label>
-          <input id="studentCost" type="number" class="w-100" pInputText formControlName="studentCost"
-            placeholder="Enter Cost" class="p-inputtext-sm" />
+          <input id="studentCost" type="number" class="w-100" pInputText formControlName="studentCost" placeholder="Enter Cost" class="p-inputtext-sm" />
+          <small *ngIf="classroomForm.get('studentCost')?.invalid && classroomForm.get('studentCost')?.touched" class="p-error">
+            Student Cost is required
+          </small>
         </div>
         <div class="col-4">
-          <label for="studentCost" class="form-label">Currency</label>
+          <label for="currencyOfCost" class="form-label">Currency</label>
           <app-lazy-dropdown [lookup]="Lookup.Currency" formControlName="currencyOfCost"></app-lazy-dropdown>
+          <small *ngIf="classroomForm.get('currencyOfCost')?.invalid && classroomForm.get('currencyOfCost')?.touched" class="p-error">
+            Currency is required
+          </small>
         </div>
       </div>
     </div>
@@ -31,8 +38,10 @@
     <div class="col-12">
       <div class="field">
         <label for="teachers" class="form-label">Teachers</label>
-        <app-lazy-dropdown [multiply]="true" id="teachers" [lookup]="Lookup.Users"
-          [lookUpExtraParams]="{role:UserRole.Teacher}" formControlName="teachersId"></app-lazy-dropdown>
+        <app-lazy-dropdown [multiply]="true" id="teachers" [lookup]="Lookup.Users" [lookUpExtraParams]="{role:UserRole.Teacher}" formControlName="teachersId"></app-lazy-dropdown>
+        <small *ngIf="classroomForm.get('teachersId')?.invalid && classroomForm.get('teachersId')?.touched" class="p-error">
+          At least one teacher must be selected
+        </small>
       </div>
     </div>
 
@@ -40,8 +49,10 @@
     <div class="col-12">
       <div class="field">
         <label for="group" class="form-label">Group</label>
-        <app-lazy-dropdown id="group" [lookup]="Lookup.Groups" formControlName="group"
-          placeholder="Enter Group"></app-lazy-dropdown>
+        <app-lazy-dropdown id="group" [lookup]="Lookup.Groups" formControlName="group" placeholder="Enter Group"></app-lazy-dropdown>
+        <small *ngIf="classroomForm.get('group')?.invalid && classroomForm.get('group')?.touched" class="p-error">
+          Group is required
+        </small>
       </div>
     </div>
   </div>
@@ -52,55 +63,52 @@
   </p-divider>
 
   <div class="row g-2 mb-4">
-    <div formArrayName="schedule" class="schedule-section" [ngClass]="!InitializeValue ? 'col-lg-6 col-xl-4 col-12' :'col-12'"
-      *ngFor="let scheduleItem of scheduleControls.controls; let i = index">
+    <div formArrayName="schedule" class="schedule-section" [ngClass]="!InitializeValue ? 'col-lg-6 col-xl-4 col-12' :'col-12'" *ngFor="let scheduleItem of scheduleControls.controls; let i = index">
       <div [formGroupName]="i" class="schedule-item">
         <div class="mb-4">
           <label for="day-{{i}}" class="form-label">Day</label>
-          <app-lazy-dropdown [lookup]="days" placeholder="Select Day" id="day-{{i}}"
-            formControlName="day"></app-lazy-dropdown>
+          <app-lazy-dropdown [lookup]="days" placeholder="Select Day" id="day-{{i}}" formControlName="day"></app-lazy-dropdown>
+          <small *ngIf="getSchedule(i).get('day')?.invalid && getSchedule(i).get('day')?.touched" class="p-error">
+            Day is required
+          </small>
         </div>
 
         <div class="subjects-section">
           <label class="form-label">Subjects</label>
-          <p-divider>
-          </p-divider>
+          <p-divider></p-divider>
           <div formArrayName="subjects" *ngFor="let subject of getSubjects(i).controls; let j = index">
             <div [formGroupName]="j" class="mb-2">
               <div class="row">
-
                 <div class="col-5">
                   <label for="subject-{{i}}-{{j}}" class="form-label">Subject</label>
-                  <app-lazy-dropdown [lookup]="Lookup.Subjects" id="subject-{{i}}-{{j}}" formControlName="subjectId"
-                    placeholder="Enter subject"></app-lazy-dropdown>
+                  <app-lazy-dropdown [lookup]="Lookup.Subjects" id="subject-{{i}}-{{j}}" formControlName="subjectId" placeholder="Enter subject"></app-lazy-dropdown>
+                  <small *ngIf="getSubjects(i).get([j, 'subjectId'])?.invalid && getSubjects(i).get([j, 'subjectId'])?.touched" class="p-error">
+                    Subject is required
+                  </small>
                 </div>
                 <div class="col-5">
                   <label for="startTime-{{i}}-{{j}}" class="form-label">Start Time</label>
-
-                  <p-calendar formControlName="startTime" id="startTime-{{i}}-{{j}}" timeOnly hourFormat="24"
-                    placeholder="Start Time" class="p-inputtext-sm"></p-calendar>
+                  <p-calendar formControlName="startTime" id="startTime-{{i}}-{{j}}" timeOnly hourFormat="24" placeholder="Start Time" class="p-inputtext-sm"></p-calendar>
+                  <small *ngIf="getSubjects(i).get([j, 'startTime'])?.invalid && getSubjects(i).get([j, 'startTime'])?.touched" class="p-error">
+                    Start Time is required
+                  </small>
                 </div>
                 <div class="col-1">
-                  <button *ngIf="getSubjects(i).controls.length > 1" pButton icon="pi pi-trash" [rounded]="true"
-                    [text]="true" severity="danger" class="p-button-danger mt-4" (click)="removeSubject(i, j)"
-                    type="button"></button>
+                  <button *ngIf="getSubjects(i).controls.length > 1" pButton icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" class="p-button-danger mt-4" (click)="removeSubject(i, j)" type="button"></button>
                 </div>
               </div>
             </div>
           </div>
           <p-divider align="left">
-            <button pButton icon="pi pi-plus" (click)="addSubject(i)" [rounded]="true" [text]="true"
-              type="button"></button>
+            <button pButton icon="pi pi-plus" (click)="addSubject(i)" [rounded]="true" [text]="true" type="button"></button>
           </p-divider>
         </div>
-        <button *ngIf="scheduleControls.length > 1" pButton icon="pi pi-trash" class="p-button-danger mt-2 w-100"
-          (click)="removeScheduleItem(i)" type="button"></button>
+        <button *ngIf="scheduleControls.length > 1" pButton icon="pi pi-trash" class="p-button-danger mt-2 w-100" (click)="removeScheduleItem(i)" type="button"></button>
       </div>
     </div>
 
     <div class="schedule-section d-flex justify-content-center align-items-center" [ngClass]="!InitializeValue ? 'col-lg-6 col-xl-4 col-12' :'col-12'">
-      <button pButton icon="pi pi-plus" class="p-button-lg mt-0" [rounded]="true" [outlined]="true"
-        (click)="addScheduleItem()" type="button"></button>
+      <button pButton icon="pi pi-plus" class="p-button-lg mt-0" [rounded]="true" [outlined]="true" (click)="addScheduleItem()" type="button"></button>
     </div>
   </div>
 
@@ -109,9 +117,8 @@
     <div class="col-12 w-100">
       <div class="field w-100">
         <label for="mainTopics" class="form-label">Main Topics</label>
-        <app-lazy-dropdown [multiply]="true" [lookup]="Lookup.Topics" placeholder="Enter topics" id="mainTopics"
-          formControlName="mainTopics"></app-lazy-dropdown>
+        <app-lazy-dropdown [multiply]="true" [lookup]="Lookup.Topics" placeholder="Enter topics" id="mainTopics" formControlName="mainTopics"></app-lazy-dropdown>
       </div>
     </div>
   </div>
-  </form>
+</form>

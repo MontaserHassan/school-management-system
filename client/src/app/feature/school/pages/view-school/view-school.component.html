@@ -11,7 +11,7 @@
       <p class="d-flex gap-2 align-items-center">
         <i class="pi pi-money-bill"></i>
         <strong>Subscription Fees:</strong>
-        <span>{{ school.subscriptionFees }} USD</span>
+        <span>{{ school.subscriptionFees }} {{school.currencyOfSubscription}}</span>
       </p>
 
       <p class="d-flex gap-2 align-items-center">
@@ -23,9 +23,23 @@
       <div class="d-flex gap-2 align-items-center">
         <i class="pi pi-circle-on"></i>
         <strong>Subscription Status:</strong>
-        <p-chip label="{{ school.subscriptionStatus }}" class="status-chip"
-          [styleClass]="getStatusColor(school.subscriptionStatus || '')">
-        </p-chip>
+        <span class="status-tag" [ngClass]="{
+          'status-active': school.subscriptionStatus === 'active',
+          'status-pending': school.subscriptionStatus === 'pending',
+          'status-inactive': school.subscriptionStatus === 'inactive'
+        }">{{ school.subscriptionStatus }}</span>
+
+        <div>
+          <p-menu #menu [model]="subscriptionAction" appendTo="body" [popup]="true">
+            <ng-template pTemplate="item" let-item>
+              <div class="p-menuitem-link" (click)="handleClick(item.label,student)">
+                <span [class]="item.icon"></span>
+                <span class="mx-2">{{ item.label }}</span>
+              </div>
+            </ng-template>
+          </p-menu>
+          <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
+        </div>
       </div>
 
       <div class="mt-2">
@@ -69,31 +83,19 @@
             </div>
             <div class="col-6">
               <p class="d-flex gap-2 align-items-center">
+                <i class="pi pi-calendar"></i>
+                <strong>Subscription End Date:</strong>
+                <span>{{ school.endOfSubscription| date:'medium' }}</span>
+              </p>
+            </div>
+            <div class="col-6">
+              <p class="d-flex gap-2 align-items-center">
                 <i class="pi pi-circle-on"></i>
                 <strong>Subscription Status:</strong>
                 <span>{{ school.subscriptionStatus }}</span>
               </p>
             </div>
           </div>
-        </p-tabPanel>
-
-        <p-tabPanel header="Employees" *ngIf="school.employees?.length">
-          <p-table [value]="school.employees || []">
-            <ng-template pTemplate="header">
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-employee>
-              <tr>
-                <td>{{ employee.name }}</td>
-                <td>{{ employee.email }}</td>
-                <td>{{ employee.role }}</td>
-              </tr>
-            </ng-template>
-          </p-table>
         </p-tabPanel>
       </p-tabView>
     </div>

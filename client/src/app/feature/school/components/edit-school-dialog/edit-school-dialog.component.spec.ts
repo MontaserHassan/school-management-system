@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { HiComponent } from './hi.component';
+import { EditSchoolDialogComponent } from './edit-school-dialog.component';
 
-describe('HiComponent', () => {
-  let component: HiComponent;
-  let fixture: ComponentFixture<HiComponent>;
+describe('EditSchoolDialogComponent', () => {
+  let component: EditSchoolDialogComponent;
+  let fixture: ComponentFixture<EditSchoolDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HiComponent ]
+      declarations: [ EditSchoolDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HiComponent);
+    fixture = TestBed.createComponent(EditSchoolDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
