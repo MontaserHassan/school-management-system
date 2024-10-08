@@ -45,11 +45,13 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  getSchoolDetails(id: string): void {
-    this.load(this.schoolService.getSchoolDetails(id), {
+  getSchoolDetails(id: string,params?:{isExport?:boolean}): void {
+    this.load(this.schoolService.getSchoolDetails(id,params), {
       isLoadingTransparent: true,
     }).subscribe((res) => {
-      this.school = res;
+      if(!params?.isExport){
+        this.school = res;
+      }
     })
   }
 
@@ -80,5 +82,9 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
         this.getSchoolDetails(this.id);
       }
     })
+  }
+
+  handleExport(): void {
+    this.getSchoolDetails(this.id, {isExport: true})
   }
 }

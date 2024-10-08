@@ -1,34 +1,44 @@
-<p-card header="Students List" class="students-list-card">
-  <p-table [value]="students" [paginator]="true" [rows]="10" [lazy]="true" [paginator]="true" [rows]="pageSize"
-    [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
-    [sortField]="'studentName'" [sortOrder]="1">
+<app-state-section [state]="sectionState">
+  <p-card class="students-list-card">
     <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
-        <th pSortableColumn="studentCode">Student Code <p-sortIcon field="studentCode"></p-sortIcon></th>
-        <th pSortableColumn="classRoom">Classroom <p-sortIcon field="classRoom"></p-sortIcon></th>
-        <th pSortableColumn="group">Group <p-sortIcon field="group"></p-sortIcon></th>
-        <th>Actions</th>
-      </tr>
+      <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+        <h2 class="header">Students List</h2>
+
+        <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
+      </div>
     </ng-template>
-    <ng-template pTemplate="body" let-student>
-      <tr>
-        <td (click)="gotoStudentDetails(student._id)">{{ student.studentName }}</td>
-        <td>{{ student.studentCode }}</td>
-        <td>{{ student.classRoom }}</td>
-        <td>{{ student.group }}</td>
-        <td>
-          <p-menu #menu [model]="studentAction" appendTo="body" [popup]="true">
-            <ng-template pTemplate="item" let-item>
-              <div class="p-menuitem-link" (click)="handleClick(item.label,student)">
-                <span [class]="item.icon"></span>
-                <span class="mx-2">{{ item.label }}</span>
-              </div>
-            </ng-template>
-          </p-menu>
-          <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</p-card>
+
+    <p-table [value]="students" [paginator]="true" [rows]="10" [lazy]="true" [paginator]="true" [rows]="pageSize"
+      [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+      [sortField]="'studentName'" [sortOrder]="1">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
+          <th pSortableColumn="studentCode">Student Code <p-sortIcon field="studentCode"></p-sortIcon></th>
+          <th pSortableColumn="classRoom">Classroom <p-sortIcon field="classRoom"></p-sortIcon></th>
+          <th pSortableColumn="group">Group <p-sortIcon field="group"></p-sortIcon></th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-student>
+        <tr>
+          <td (click)="gotoStudentDetails(student._id)">{{ student.studentName }}</td>
+          <td>{{ student.studentCode }}</td>
+          <td>{{ student.classRoom }}</td>
+          <td>{{ student.group }}</td>
+          <td>
+            <p-menu #menu [model]="studentAction" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label,student)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</app-state-section>

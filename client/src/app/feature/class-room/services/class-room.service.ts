@@ -3,11 +3,12 @@ import { ApiBaseService } from '../../shared/services/general/api-base.service';
 import { Mapper } from '../../shared/mapper/base-mapper.mapper';
 import { IClassDetailsPayload } from '../models/class-room-payload.model';
 import { ApiConstant } from '../../shared/config/api.constant';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
 import { ClassRoom, ClassRoomResponse } from '../models/class-room.model';
 import { Topic, TopicList } from '../models/topic.model';
 import { Student } from '../../student/models/student.model';
+import { downloadFile } from '../../shared/utils/download-file.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -30,14 +31,16 @@ constructor(
     )
   }
 
-  getClassRoomById(id:string):Observable<ClassRoom> {
-    return this.baseAPI.get(ApiConstant.GET_CLASS_ROOM_BY_ID.replace('{id}',id)).pipe(
+  getClassRoomById(id:string,params?:any):Observable<ClassRoom> {
+    return this.baseAPI.get(ApiConstant.GET_CLASS_ROOM_BY_ID.replace('{id}',id),{params}).pipe(
+      tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(ClassRoom, res.data.classRoom))
     )
   }
 
-  getClassRoomList(params:{}):Observable<ClassRoomResponse> {
+  getClassRoomList(params:any):Observable<ClassRoomResponse> {
     return this.baseAPI.get(ApiConstant.GET_CLASS_ROOMS,{params}).pipe(
+      tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(ClassRoomResponse, res.data))
     )
   }

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Mapper } from '../../shared/mapper/base-mapper.mapper';
 import { ApiBaseService } from '../../shared/services/general/api-base.service';
 import { ApiConstant } from '../../shared/config/api.constant';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { School, SchoolList } from '../models/school.model';
+import { downloadFile } from '../../shared/utils/download-file.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -43,14 +44,16 @@ export class SchoolService {
     )
   }
 
-  getSchoolDetails(id:string): Observable<School> {
-    return this.baseAPI.get(ApiConstant.GET_SCHOOL_BY_ID.replace('{id}', id)).pipe(
+  getSchoolDetails(id:string ,params?:any): Observable<School> {
+    return this.baseAPI.get(ApiConstant.GET_SCHOOL_BY_ID.replace('{id}', id),{params}).pipe(
+      tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(School, res.data.school))
     )
   }
 
-  getSchools(params:{}): Observable<SchoolList> {
+  getSchools(params:any): Observable<SchoolList> {
     return this.baseAPI.get(ApiConstant.GET_SCHOOLS,{params}).pipe(
+      tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(SchoolList, res.data))
     )
   }

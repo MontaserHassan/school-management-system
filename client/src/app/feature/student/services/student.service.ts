@@ -3,10 +3,11 @@ import { ApiBaseService } from '../../shared/services/general/api-base.service';
 import { Mapper } from '../../shared/mapper/base-mapper.mapper';
 import { ISubjectPayload } from '../../subject/models/sybject-payload';
 import { Student, StudentList } from '../models/student.model';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { ApiConstant } from '../../shared/config/api.constant';
 import { IStudentPayload } from '../models/student-payload.model';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
+import { downloadFile } from '../../shared/utils/download-file.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,16 @@ export class StudentService {
     )
   }
 
-  getStudentById(id: string): Observable<Student> {
-    return this.baseAPI.get(ApiConstant.GET_STUDENTS_BY_ID.replace('{id}', id)).pipe(
+  getStudentById(id: string,params?:any): Observable<Student> {
+    return this.baseAPI.get(ApiConstant.GET_STUDENTS_BY_ID.replace('{id}', id), {params}).pipe(
+      tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(Student, res.data.student))
     )
   }
 
-  getStudents(params:{}): Observable<StudentList> {
+  getStudents(params:any): Observable<StudentList> {
     return this.baseAPI.get(ApiConstant.GET_STUDENTS,{params}).pipe(
+      tap((res) => {if(params?.isExport) downloadFile(res.data.base64String)}),
       map((res) => this.mapper.fromJson(StudentList, res.data))
     )
   }
