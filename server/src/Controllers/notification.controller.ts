@@ -36,13 +36,13 @@ const getNotification = async (req: Request, res: Response, next: NextFunction) 
     try {
         const { notificationId } = req.params;
         const notification = await notificationService.findNotificationById(notificationId);
-        await notificationService.updateNotification(notification.userId, { read: true });
+        const updatedNotification = await notificationService.updateNotification(notification.userId, { read: true });
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successNotificationMessage.GET_NOTIFICATION,
             data: {
-                notification: notification,
+                notification: updatedNotification,
             },
         };
         res.data = response;
