@@ -1,0 +1,50 @@
+<app-state-section [state]="sectionState">
+  <p-card>
+    <form [formGroup]="emailForm" class="p-fluid" (ngSubmit)="sendEmail()">
+      <!-- Receivers -->
+      <div class="d-flex flex-wrap gap-3 field" *grantAccess=" RolesConstants.SEND_FROM_ADMIN">
+        <div class="d-flex align-items-center gap-2" *ngFor="let role of roles">
+            <p-radioButton
+              name="role"
+              [value]="role"
+              inputId="{{role}}"
+              formControlName="role"
+            />
+            <label for="ingredient1" class="ml-2">
+              <label for="{{role}}">{{ role }}</label>
+            </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="receivers">Receivers</label>
+        <app-lazy-dropdown for="receivers" [multiply]="true" [lookup]="Lookup.Users" [lookUpExtraParams]="lookUpExtraParams" formControlName="receiverIds"></app-lazy-dropdown>
+        <small *ngIf="emailForm.get('receiverIds')?.hasError('required') && emailForm.get('receiverIds')?.touched"
+          class="p-error">Receivers are required</small>
+      </div>
+
+      <!-- Subject -->
+      <div class="field">
+        <label for="subject">Subject</label>
+        <input id="subject" pInputText formControlName="subject" class="p-inputtext p-component"
+          placeholder="Email Subject" />
+        <small *ngIf="emailForm.get('subject')?.hasError('required') && emailForm.get('subject')?.touched"
+          class="p-error">Subject is required</small>
+      </div>
+
+      <!-- Content -->
+      <div class="field">
+        <label for="content">Content</label>
+        <textarea id="content" pInputTextarea formControlName="content" rows="6" class="p-inputtext p-component"
+          placeholder="Email Content"></textarea>
+        <small *ngIf="emailForm.get('content')?.hasError('required') && emailForm.get('content')?.touched"
+          class="p-error">Content is required</small>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="field">
+        <button pButton type="submit" label="Send Email" [disabled]="emailForm.invalid" class="p-button-success"></button>
+      </div>
+    </form>
+  </p-card>
+</app-state-section>

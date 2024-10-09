@@ -62,4 +62,5 @@ export class ApiConstant {
 
   static GET_ALL_NOTIFICATIONS = ApiConstant.URL_BASE + URLSegment.User + 'notification';
   static GET_NOTIFICATION_BY_ID = ApiConstant.URL_BASE + URLSegment.User + 'notification/' + '{id}';
+  static SEND_EMAIL = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket + 'mail';
 }

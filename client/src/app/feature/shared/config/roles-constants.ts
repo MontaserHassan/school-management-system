@@ -100,8 +100,18 @@ export class RolesConstants {
     UserRole.Director,
     UserRole.Parent
   ]
+
   public static ADD_EDIT_INVOICE_STUDENT = [
     UserRole.Admin,
     UserRole.Director,
+  ]
+
+  public static SEND_EMAILS = [
+    UserRole.SuperAdmin,
+    UserRole.Admin,
+  ]
+
+  public static SEND_FROM_ADMIN = [
+    UserRole.Admin,
   ]
 }

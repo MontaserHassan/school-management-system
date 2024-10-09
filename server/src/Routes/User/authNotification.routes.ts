@@ -9,7 +9,7 @@ import notificationRouter from './notification/notification.routes';
 const authNotificationRouter = express.Router();
 
 
-authNotificationRouter.use(checkRole(['admin',]),);
+// authNotificationRouter.use(checkRole(['admin',]),);
 authNotificationRouter.use('/', notificationRouter);
 
 

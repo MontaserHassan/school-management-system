@@ -75,6 +75,13 @@ const routes: Routes = [
             (m) => m.InvoiceModule
           ),
       },
+      {
+        path: RoutesUtil.Social.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/social/social.module').then(
+            (m) => m.SocialModule
+          ),
+      },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
     ]
   },

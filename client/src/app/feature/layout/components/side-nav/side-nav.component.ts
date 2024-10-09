@@ -158,6 +158,14 @@ export class SideNavComponent {
           this.router.navigate([RoutesUtil.StudentInvoiceList.url()]);
         }
       },
+      {
+        label: 'Send Email',
+        icon: 'pi pi-envelope',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.SEND_EMAILS),
+        command: () => {
+          this.router.navigate([RoutesUtil.SocialEmail.url()]);
+        }
+      },
     ];
   }
 }

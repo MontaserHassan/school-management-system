@@ -1,0 +1,38 @@
+.card {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.input-text, .textarea {
+  border-radius: 0.3rem;
+  border: 1px solid #cccccc;
+  transition: border-color 0.3s;
+}
+
+.input-text:focus, .textarea:focus {
+  border-color: #007ad9;
+  outline: none;
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.multi-select {
+  width: 100%; /* Full width */
+}
+
+.p-button-secondary {
+  margin-left: 1rem;
+}

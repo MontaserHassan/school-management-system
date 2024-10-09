@@ -133,8 +133,13 @@ const getUsersBySpecificData = async (req: Request, res: Response, next: NextFun
             const lookups = await userService.findAllUserOfSchoolLookup(String(schoolId));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (role && schoolId !== "superAdmin") {
-            const lookups = await userService.findSpecificUserOfSchool(String(role), String(schoolId));
-            lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
+            if(role !== 'superAdmin'){
+                const lookups = await userService.findSpecificUserOfSchool(String(role), String(schoolId));
+                lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
+            }else{
+                const lookups = await userService.findUserByRole(String("superAdmin"));
+                lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
+            }
         };
         if (!lookupsData) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         const response: IResponse = {

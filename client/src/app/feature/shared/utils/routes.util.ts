@@ -57,9 +57,12 @@ export class RoutesUtil {
   static SchoolList = new RouteConfig('list', RoutesUtil.School);
   static AddSchool = new RouteConfig('add', RoutesUtil.School);
 
-
   //invoice
   static Invoice = new RouteConfig('invoice');
   static SchoolInvoiceList = new RouteConfig('School-list', RoutesUtil.Invoice);
   static StudentInvoiceList = new RouteConfig('student-list', RoutesUtil.Invoice);
+
+  //Social
+  static Social = new RouteConfig('social');
+  static SocialEmail = new RouteConfig('email', RoutesUtil.Social);
 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { LazyDropdownService } from '../../services/lazy-dropdown.service';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 
-export class LazyDropdownComponent implements OnInit {
+export class LazyDropdownComponent implements OnInit, OnChanges  {
   @Input() lookup!: any;
   @Input() lookUpExtraParams!: any;
   @Input() placeholder: string = "Select an option";
@@ -27,12 +27,20 @@ export class LazyDropdownComponent implements OnInit {
   isDataLoaded: boolean = false;
 
   private lookupCache: { [key: string]: any[] } = {};
+  skipCash: boolean = false;
 
   constructor(private lazyDropdownService: LazyDropdownService) {}
 
 
   ngOnInit(): void {
     this.loadOptions();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['lookUpExtraParams']) {
+      this.skipCash = true
+      this.loadOptions();
+    }
   }
 
   writeValue(value: any): void {
@@ -63,6 +71,7 @@ export class LazyDropdownComponent implements OnInit {
 
   onDropdownClose(){
     this.isDataLoaded = false;
+    this.skipCash = false;
     this.onTouched();
   }
 
@@ -75,7 +84,7 @@ export class LazyDropdownComponent implements OnInit {
 
   loadOptions(event: any = { first: 0, rows: 10 }) {
     if (typeof this.lookup === "string") {
-      if (this.lookupCache[this.lookup]) {
+      if (this.lookupCache[this.lookup] && !this.skipCash) {
         this.dropdownOptions = this.lookupCache[this.lookup];
         this.isDataLoaded = true;
       } else {
