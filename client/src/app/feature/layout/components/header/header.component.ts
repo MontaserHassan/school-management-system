@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { LayoutService } from '../../../shared/services/general/layout.service';
 import { ScreenSizes } from '../../../shared/enums/screen-sizes.enum';
+import { BaseComponent } from '../../../shared/component/base-component/base.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends BaseComponent implements OnInit {
   currentUser!: any;
   items!: MenuItem[];
   size!: number;
@@ -23,7 +24,9 @@ export class HeaderComponent implements OnInit {
   protected ScreenSizes = ScreenSizes
   constructor(
     private authService: AuthService, private jwtDecoderService: JwtDecoderService, private router: Router, private LayoutService:LayoutService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
       this.size = this.LayoutService.currentScreenWidth
@@ -56,5 +59,4 @@ export class HeaderComponent implements OnInit {
   goToUserProfile() {
     this.router.navigate([RoutesUtil.UserProfile.url({params: {id: this.currentUser._id}})]);
   }
-
 }

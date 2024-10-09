@@ -56,6 +56,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 import { FileUploadModule } from 'primeng/fileupload';
 import { AddStudentToClassRoomDialogComponent } from './component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
@@ -131,6 +132,7 @@ const PRIME_NG_MODULES = [
   FileUploadModule,
   SpeedDialModule,
   FloatLabelModule,
+  OverlayPanelModule
 ]
 
 @NgModule({

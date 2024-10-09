@@ -1,0 +1,20 @@
+<app-state-section [state]="sectionState">
+  <h2 mat-dialog-title>Notification Details</h2>
+  <mat-dialog-content>
+    <div class="d-flex flex-column gap-2">
+      <div>
+        <h4>{{ data.header }}</h4>
+        <p>{{ data.message }}</p>
+      </div>
+      <div>
+        <p>
+          <i class="pi pi-calendar" style="margin-right: 5px;"></i>
+          {{ data.createdAt | date: 'medium' }}
+        </p>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</app-state-section>

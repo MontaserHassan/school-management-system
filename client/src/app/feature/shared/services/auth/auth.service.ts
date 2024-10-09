@@ -12,6 +12,7 @@ import { BaseComponent } from '../../component/base-component/base.component';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../utils/routes.util';
 import { downloadFile } from '../../utils/download-file.utils';
+import { Notification, NotificationList } from '../../../layout/models/notification.model';
 
 @Injectable({
   providedIn: 'root',
@@ -77,5 +78,17 @@ export class AuthService extends BaseComponent {
   private saveTokenAndUpdateUser(user: AuthResponse): void {
     this.jwtDecoderService.saveToken(user.toJson!());
     this.currentUser$.next(this.jwtDecoderService.getCurrentUserFromJWTToken());
+  }
+
+  getAllNotifications(): Observable<NotificationList> {
+    return this.baseAPI.get(ApiConstant.GET_ALL_NOTIFICATIONS).pipe(
+      map((res) => this.mapper.fromJson(NotificationList, res.data))
+    )
+  }
+
+  getNotificationById(id: string): Observable<Notification> {
+    return this.baseAPI.get(ApiConstant.GET_NOTIFICATION_BY_ID.replace('{id}',id)).pipe(
+      map((res) => this.mapper.fromJson(Notification, res.data.notification))
+    )
   }
 }

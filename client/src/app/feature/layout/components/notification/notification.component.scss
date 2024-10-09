@@ -1,0 +1,79 @@
+.menubar-custom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+
+  ::ng-deep .p-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 1rem;
+    width: 1rem;
+    min-width: 1rem;
+    line-height: 1rem;
+  }
+}
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.notification-content:hover {
+  background-color: #f0f0f0;
+}
+
+.notification-content.unread {
+  background-color: #e8f0fe;
+  font-weight: bold;
+}
+
+.notification-content .header {
+  font-size: 14px;
+  margin: 0;
+}
+
+.notification-content .message {
+  font-size: 12px;
+  color: #555;
+}
+
+.notification-content .timestamp {
+  font-size: 10px;
+  color: #888;
+}
+
+.no-notifications {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+  color: #666;
+}
+
+.no-notifications i {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.notification-content.read {
+  background-color: #ffffff;
+  font-weight: normal;
+}
