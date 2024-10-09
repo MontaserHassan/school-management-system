@@ -14,15 +14,13 @@ const ticketValidator = {
 
     createTicket: {
         body: Joi.object().keys({
-            userOne: Joi.string().required().empty('').trim().messages({ 'string.empty': 'User one is required.', }),
-            userTwo: Joi.string().required().empty('').trim().messages({ 'string.empty': 'User two is required.', }),
+            receiver: Joi.string().required().empty('').trim().messages({ 'string.empty': 'receiver is required.', }),
         }),
     },
 
-    sendTicket: {
+    sendMessage: {
         body: Joi.object().keys({
-            sender: Joi.string().required().empty('').trim().messages({ 'string.empty': 'Sender is required.', }),
-            receiver: Joi.string().required().empty('').trim().messages({ 'string.empty': 'Receiver is required.', }),
+            ticketId: Joi.string().required().empty('').trim().messages({ 'string.empty': 'Ticket Id is required.', }),
             message: Joi.string().required().empty('').trim().messages({ 'string.empty': 'Message is required.', }),
         }),
     },

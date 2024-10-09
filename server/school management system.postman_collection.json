@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin.banisuef@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"superadmin@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -293,7 +293,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJlYzk3MGQzOTBjODk5MmU1ZmNmNTk0N2QiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc1NDI1ODQsImV4cCI6MTcyNzYyODk4NH0.WbI5IQ7ipdp2gM5Cvu3KCwHRFjp4jNeKDAZ4F_3swkk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI3MGUzZjljNDZmNjg4YTJhMGFkZmRmOWIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg0Mjg5MTUsImV4cCI6MTcyODUxNTMxNX0.PSH31SUduvNMFRnmbEYXOQkQ6qYfCOjxrSS8XLbZRoY",
 									"type": "string"
 								}
 							]
@@ -308,7 +308,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/user-list?page=1&limit=4",
+							"raw": "{{SchoolManagementSystem}}/user/user-list?page=1&limit=10&isExport=true",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
@@ -323,7 +323,11 @@
 								},
 								{
 									"key": "limit",
-									"value": "4"
+									"value": "10"
+								},
+								{
+									"key": "isExport",
+									"value": "true"
 								}
 							]
 						},
@@ -2160,6 +2164,109 @@
 			"name": "ticket",
 			"item": [
 				{
+					"name": "send message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJhNjc5MGY1OWNmMzRlMDA3MGNmOWU2MTgiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI4NDk4NjA4LCJleHAiOjE3Mjg1ODUwMDh9.57KIUxQjir2IitoMwcm6BN_PvoqV2kPgBI7ALWYHVoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ticketId\": \"fx9unGP2KrCaS46URVSdV4od\",\n    \"message\": \"First Message\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/ticket",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"ticket"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "send message",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ticketId\": \"fx9unGP2KrCaS46URVSdV4od\",\n    \"message\": \"First Message\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/ticket",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"ticket"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 18:38:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2022"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7e6-Is5N2gWD3pEH0pHQyONKS9uPMbQ\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \" You add New message\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"userTwo\": {\n                \"userId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                \"userName\": \"super admin\"\n            },\n            \"_id\": \"fx9unGP2KrCaS46URVSdV4od\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"read\": false,\n            \"opened\": true,\n            \"messages\": [\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:08.465Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"senderName\": \"super admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"receiverName\": \"admin admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:36:52.399Z\"\n                }\n            ],\n            \"expirationDate\": \"2025-07-09T17:40:14.362Z\",\n            \"createdAt\": \"2024-10-09T17:40:14.364Z\",\n            \"updatedAt\": \"2024-10-09T18:38:00.920Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
 					"name": "add ticket",
 					"request": {
 						"auth": {
@@ -2167,7 +2274,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIxMjgyMDljMjc4MTQ5ZTdiOTcyYmNiYjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzQ0NDcxOCwiZXhwIjoxNzI3NTMxMTE4fQ.a2xAzILrmrJNUdZoMbWKB_QXPsxQDiBOlebgS79qf2Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI2ZjUzMWEyMGYwMjE1YWNjOTFmNzdjM2QiLCJyb2xlIjoiZGlyZWN0b3IiLCJjb2RlIjoiWTMyNzcxIiwiaWF0IjoxNzI4NDk1ODYxLCJleHAiOjE3Mjg1ODIyNjF9.V81zHp2pHersgT2YSSdBc-1TRh-yxyJ4AibYs3KhfQk",
 									"type": "string"
 								}
 							]
@@ -2176,7 +2283,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"201\",\n    \"topicName\": \"physics\",\n    \"subjectId\": \"j0xvshvJO0S4b8vMxiK50rJT\"\n}",
+							"raw": "{\n    \"receiver\": \"kttyDR1Gz3AHotyA8tvtm\"\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2195,7 +2302,74 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add ticket",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"receiver\": \"kttyDR1Gz3AHotyA8tvtm\"\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/ticket/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"ticket",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 18:10:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "474"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1da-sq1uyP8+R2woXuS3FKXgwP+s9Mc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Ticket Data get successfully\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"ooLjZefsdOSG5mMWdw5ys\",\n                \"userName\": \"director\"\n            },\n            \"userTwo\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"_id\": \"Pr97MNfFmK-hAJ0gDb73dJQD\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"read\": false,\n            \"opened\": true,\n            \"messages\": [],\n            \"expirationDate\": \"2025-07-09T17:49:28.413Z\",\n            \"createdAt\": \"2024-10-09T17:49:28.415Z\",\n            \"updatedAt\": \"2024-10-09T17:49:28.415Z\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "send mail",
@@ -2205,7 +2379,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIyOTljMzY1NjU2MmI1OTcwYTg2YTAzNjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3MjgyNTg2ODgsImV4cCI6MTcyODM0NTA4OH0.TmPhs-vJhhAQU8uF0CsBDLah7cZlMjrrfUQFKptXkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIwZDc5NWM1OWVlMWFlNzkzZDU1ZWJhYjkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3Mjg0MjU2OTMsImV4cCI6MTcyODUxMjA5M30.vL-qmzL6WSf5g7yfhgyNEtKWRdabXgof7zh3iV_tomw",
 									"type": "string"
 								}
 							]
@@ -2234,17 +2408,85 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "send mail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"receiverIds\": [\n        \"nbPmYJaTQsSxVG-XKP7uN\",\n        \"wpr7VC3R2Qh1uZ-bWDa2G\",\n        \"5CyZbAO0ksY9KdOwlboDH\",\n        \"ooLjZefsdOSG5mMWdw5ys\",\n        \"ABjdBV4ATgHecitxS0wrd\",\n        \"TmTckRthrIBFpC9nnasCv\",\n        \"BYuIkX4_zo3eJif1zSMge\",\n        \"dUjircLQ3vI2rpwCakeK5\"\n    ],\n    \"subject\": \"first mail\",\n    \"content\": \"content\\n content\\n content\\n\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/ticket/mail/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"ticket",
+										"mail",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 18:10:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-jISw5cU4wv+HB/4ffduxwLgixXY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Mail sent successfully\",\n    \"data\": {}\n}"
+						}
+					]
 				},
 				{
-					"name": "get all topics",
+					"name": "get all ticket",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI3MGUzZjljNDZmNjg4YTJhMGFkZmRmOWIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg0Mjg5MTUsImV4cCI6MTcyODUxNTMxNX0.PSH31SUduvNMFRnmbEYXOQkQ6qYfCOjxrSS8XLbZRoY",
 									"type": "string"
 								}
 							]
@@ -2252,29 +2494,104 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"raw": "{{SchoolManagementSystem}}/user/ticket?limit=1&page=1",
 							"host": [
-								"{{SchoolManagement}}"
+								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"teacher",
-								"topic",
-								""
+								"ticket"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get all ticket",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/ticket?limit=1&page=1",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"ticket"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 18:09:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "548"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"224-uNr533oFueEZLaCdZk3o4Ow1x2A\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Tickets fetched successfully\",\n    \"data\": {\n        \"totalPage\": 2,\n        \"currentPage\": 1,\n        \"limit\": 1,\n        \"skip\": 0,\n        \"totalDocuments\": 2,\n        \"tickets\": [\n            {\n                \"userOne\": {\n                    \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                    \"userName\": \"admin admin\"\n                },\n                \"userTwo\": {\n                    \"userId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                    \"userName\": \"super admin\"\n                },\n                \"_id\": \"fx9unGP2KrCaS46URVSdV4od\",\n                \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n                \"read\": false,\n                \"opened\": true,\n                \"messages\": [],\n                \"expirationDate\": \"2025-07-09T17:40:14.362Z\",\n                \"createdAt\": \"2024-10-09T17:40:14.364Z\",\n                \"updatedAt\": \"2024-10-09T17:40:14.364Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "get topic by id",
+					"name": "get ticket Id",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI3MGUzZjljNDZmNjg4YTJhMGFkZmRmOWIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg0Mjg5MTUsImV4cCI6MTcyODUxNTMxNX0.PSH31SUduvNMFRnmbEYXOQkQ6qYfCOjxrSS8XLbZRoY",
 									"type": "string"
 								}
 							]
@@ -2282,19 +2599,76 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/teacher/topic/hOiwDEyO3PokX4G84PkuRE1s",
+							"raw": "{{SchoolManagement}}/user/ticket/fx9unGP2KrCaS46URVSdV4od",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"teacher",
-								"topic",
-								"hOiwDEyO3PokX4G84PkuRE1s"
+								"ticket",
+								"fx9unGP2KrCaS46URVSdV4od"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get ticket Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/ticket/fx9unGP2KrCaS46URVSdV4od",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"ticket",
+										"fx9unGP2KrCaS46URVSdV4od"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "475"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1db-OsNhq9lK1qpBnpTMjoEHadkJ7MI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 18:10:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Ticket fetched successfully\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"userTwo\": {\n                \"userId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                \"userName\": \"super admin\"\n            },\n            \"_id\": \"fx9unGP2KrCaS46URVSdV4od\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"read\": true,\n            \"opened\": true,\n            \"messages\": [],\n            \"expirationDate\": \"2025-07-09T17:40:14.362Z\",\n            \"createdAt\": \"2024-10-09T17:40:14.364Z\",\n            \"updatedAt\": \"2024-10-09T18:10:23.246Z\"\n        }\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -2618,7 +2992,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIyOTljMzY1NjU2MmI1OTcwYTg2YTAzNjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3MjgyNTg2ODgsImV4cCI6MTcyODM0NTA4OH0.TmPhs-vJhhAQU8uF0CsBDLah7cZlMjrrfUQFKptXkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIwZDc5NWM1OWVlMWFlNzkzZDU1ZWJhYjkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3Mjg0MjU2OTMsImV4cCI6MTcyODUxMjA5M30.vL-qmzL6WSf5g7yfhgyNEtKWRdabXgof7zh3iV_tomw",
 									"type": "string"
 								}
 							]
@@ -2647,7 +3021,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIyOTljMzY1NjU2MmI1OTcwYTg2YTAzNjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3MjgyNTg2ODgsImV4cCI6MTcyODM0NTA4OH0.TmPhs-vJhhAQU8uF0CsBDLah7cZlMjrrfUQFKptXkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIwZDc5NWM1OWVlMWFlNzkzZDU1ZWJhYjkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3Mjg0MjU2OTMsImV4cCI6MTcyODUxMjA5M30.vL-qmzL6WSf5g7yfhgyNEtKWRdabXgof7zh3iV_tomw",
 									"type": "string"
 								}
 							]
@@ -2666,7 +3040,65 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get notifications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/notification/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"notification",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 07:17:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1778"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6f2-FPQEiwBaTI3vlMB5t3QSgkfq46A\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Notifications fetched successfully\",\n    \"data\": {\n        \"notifications\": [\n            {\n                \"_id\": \"V9Kf1Y-Kltx54IiN3V2uN\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 5 days. Please renew your subscription before: 2024-10-11.\",\n                \"read\": true,\n                \"createdAt\": \"2024-10-06T17:15:00.713Z\",\n                \"updatedAt\": \"2024-10-06T23:52:00.148Z\"\n            },\n            {\n                \"_id\": \"6qT-KjddLNyHiTkewIYQm\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 5 days. Please renew your subscription before: 2024-10-11.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:16:00.781Z\",\n                \"updatedAt\": \"2024-10-06T17:16:00.781Z\"\n            },\n            {\n                \"_id\": \"y1MctFxLIv31goLpUE0-v\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 3 days. Please renew your subscription before: 2024-10-09.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:17:00.868Z\",\n                \"updatedAt\": \"2024-10-06T17:17:00.868Z\"\n            },\n            {\n                \"_id\": \"nme9Hsg71-ZYRY94Al9t8\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 1 day. Please renew your subscription before: 2024-10-07.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:18:00.950Z\",\n                \"updatedAt\": \"2024-10-06T17:18:00.950Z\"\n            },\n            {\n                \"_id\": \"Y8sZZYXlFaQSJpO5jDyDe\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 1 day. Please renew your subscription before: 2024-10-07.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:19:00.015Z\",\n                \"updatedAt\": \"2024-10-06T17:19:00.015Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
 				}
 			]
 		}

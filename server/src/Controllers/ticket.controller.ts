@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 
-import { ticketService, userService } from "../Services/index.service";
+import { notificationService, ticketService, userService } from "../Services/index.service";
 import IResponse from '../Interfaces/response.interface';
 import { successTicketMessage, ErrorUserMessage, errorTicketMessage } from "../Messages/index.message";
-import { sendEmail, CustomError } from "../Utils/index.util";
+import { sendEmail, CustomError, pagination } from "../Utils/index.util";
 
 
 
@@ -38,14 +38,26 @@ const sendMail = async (req: Request, res: Response, next: NextFunction) => {
 
 const createTicket = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolId } = req.user;
-        const { user1, user2 } = req.body;
-        const ticket = await ticketService.createTicket(user1, user2, schoolId);
-        if (!ticket) throw new CustomError(errorTicketMessage.NOT_FOUND_TICKET, 404, "ticket");
+        const { userId, schoolId } = req.user;
+        const { receiver } = req.body;
+        if (userId === receiver) throw new CustomError(errorTicketMessage.SAME_USER, 406, "user");
+        const isSender = await userService.getById(userId);
+        if (!isSender) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
+        const isReceiver = await userService.getById(receiver);
+        if (!isReceiver) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
+        let ticket = await ticketService.getTicketBetweenTwoUser(String(isSender.id), String(isReceiver._id));
+        let responseMessage: string = successTicketMessage.GET_TICKET_DATA;
+        if (!ticket) {
+            const userOne = { userId: String(isSender._id), userName: isSender.userName };
+            const userTwo = { userId: String(isReceiver._id), userName: isReceiver.userName };
+            ticket = await ticketService.createTicket(schoolId, userOne, userTwo,);
+            await notificationService.createNotification(receiver, isReceiver.schoolId, 'New Ticket', `Hi ${isReceiver.userName}, You have a new ticket from ${isSender.userName}, check it`);
+            responseMessage = successTicketMessage.CREATED;
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: successTicketMessage.CREATED,
+            responseMessage: responseMessage,
             data: {
                 ticket: ticket,
             },
@@ -63,15 +75,27 @@ const createTicket = async (req: Request, res: Response, next: NextFunction) => 
 
 const sendMessage = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolId } = req.user;
-        const { user1, user2 } = req.body;
+        const { userId } = req.user;
+        const { ticketId, message } = req.body;
+        const isTicket = await ticketService.getById(ticketId);
+        if (!isTicket) throw new CustomError(errorTicketMessage.NOT_FOUND_TICKET, 404, "ticket");
+        const isSender = await userService.getById(userId);
+        if (!isSender || ![isTicket.userOne.userId, isTicket.userTwo.userId].includes(String(userId))) throw new CustomError(errorTicketMessage.WRONG_SENDER, 404, "user");
+        const receiverId = isTicket.userOne.userId === userId ? isTicket.userTwo.userId : isTicket.userOne.userId;
+        const isReceiver = await userService.getById(receiverId);
+        const newMessage = await ticketService.addNewMessageById(ticketId, { sender: { senderId: isSender._id, senderName: isSender.userName }, receiver: { receiverId: isReceiver._id, receiverName: isReceiver.userName }, message: message, });
+        if (!newMessage) throw new CustomError(errorTicketMessage.DOES_NOT_ADD_MESSAGE, 404, "message");
+        await notificationService.createNotification(String(isReceiver._id), isReceiver.schoolId, 'New Message', `Hi ${isReceiver.userName}, You have a new message from ${isSender.userName}, check it`);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: successTicketMessage.CREATED,
+            responseMessage: successTicketMessage.NEW_MESSAGE,
             data: {
+                ticket: newMessage,
             },
         };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
     } catch (err) {
         next(err)
     };
@@ -84,12 +108,20 @@ const sendMessage = async (req: Request, res: Response, next: NextFunction) => {
 const getTickets = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { userId } = req.user;
-        const tickets = await ticketService.getTicketsByUserId(userId);
+        const { limit, page } = req.query;
+        const totalUserTickets = await ticketService.totalDocument(userId);
+        const paginateData = pagination(totalUserTickets, Number(page), Number(limit));
+        const tickets = await ticketService.getTicketsByUserId(userId, paginateData.limit, paginateData.skip);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
             responseMessage: successTicketMessage.GET_TICKETS,
             data: {
+                totalPage: paginateData.totalPages,
+                currentPage: paginateData.currentPage,
+                limit: paginateData.limit,
+                skip: paginateData.skip,
+                totalDocuments: paginateData.totalDocuments,
                 tickets: tickets,
             },
         };
@@ -107,7 +139,7 @@ const getTickets = async (req: Request, res: Response, next: NextFunction) => {
 const getTicket = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { ticketId } = req.params;
-        const ticket = await ticketService.getById(ticketId);
+        const ticket = await ticketService.updateById(ticketId, { read: true });
         if (!ticket) throw new CustomError(errorTicketMessage.NOT_FOUND_TICKET, 404, "ticket");
         const response: IResponse = {
             type: "info",
@@ -129,6 +161,7 @@ const getTicket = async (req: Request, res: Response, next: NextFunction) => {
 export default {
     sendMail,
     createTicket,
+    sendMessage,
     getTickets,
     getTicket,
 };

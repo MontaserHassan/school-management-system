@@ -5,7 +5,7 @@ import { Ticket, TicketModel } from '../Models/tickets.model';
 // ----------------------------- create ticket -----------------------------
 
 
-const createTicket = async (schoolId: string, userOne: string, userTwo: string, message?: { content: string, senderId: string, senderName: string, receiverId: string, receiverName: string, }) => {
+const createTicket = async (schoolId: string, userOne: { userId: string, userName: string, }, userTwo: { userId: string, userName: string, }) => {
     const newTicket: TicketModel = new Ticket({
         schoolId: schoolId,
         userOne: userOne,
@@ -28,9 +28,36 @@ const getById = async (ticketId: string) => {
 // ----------------------------- get by user id -----------------------------
 
 
-const getTicketsByUserId = async (userId: string) => {
-    const tickets: TicketModel[] = await Ticket.find({ $or: [{ 'user1.userId': userId }, { 'user2.userId': userId }] }).select('-__v');
+const totalDocument = async (userId: string) => {
+    const tickets = await Ticket.countDocuments({ $or: [{ 'userOne.userId': userId }, { 'userTwo.userId': userId }], });
     return tickets;
+};
+
+
+// ----------------------------- get by user id -----------------------------
+
+
+const getTicketsByUserId = async (userId: string, limit: number, skip: number) => {
+    const tickets: TicketModel[] = await Ticket.find({ $or: [{ 'userOne.userId': userId }, { 'userTwo.userId': userId }] }).limit(limit).skip(skip).select('-__v');
+    return tickets;
+};
+
+
+// ----------------------------- get by user id -----------------------------
+
+
+const getTicketBetweenTwoUser = async (userOne: string, userTwo: string) => {
+    const ticket: TicketModel = await Ticket.findOne({ $or: [{ 'userOne.userId': userOne, 'userTwo.userId': userTwo }, { 'userOne.userId': userTwo, 'userTwo.userId': userOne },] }).select('-__v');
+    return ticket;
+};
+
+
+// ----------------------------- add new message -----------------------------
+
+
+const addNewMessageById = async (ticketId: string, messageData: any) => {
+    const updatedTicket: TicketModel = await Ticket.findByIdAndUpdate(ticketId, { $push: { messages: messageData }, read: false }, { new: true }).select('-__v');
+    return updatedTicket;
 };
 
 
@@ -47,6 +74,9 @@ const updateById = async (ticketId: string, updatedData: any) => {
 export default {
     createTicket,
     getById,
+    totalDocument,
     getTicketsByUserId,
+    getTicketBetweenTwoUser,
+    addNewMessageById,
     updateById,
 };

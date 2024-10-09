@@ -16,6 +16,8 @@ ticketRouter.get('/:ticketId', validation(ticketValidator.getTicket), ticketCont
 ticketRouter.post('/', validation(ticketValidator.createTicket), ticketController.createTicket);
 ticketRouter.post('/mail', validation(ticketValidator.sendMail), ticketController.sendMail);
 
+ticketRouter.patch('/', validation(ticketValidator.sendMessage), ticketController.sendMessage);
+
 
 
 export default ticketRouter;

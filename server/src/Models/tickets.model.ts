@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { nanoid } from "nanoid";
+import { calculateExpirationDate } from "../Utils/index.util";
 
 
 
@@ -16,6 +17,7 @@ interface TicketModel extends mongoose.Document {
     }[];
     read: boolean;
     opened: boolean;
+    expirationDate: Date;
 };
 
 
@@ -83,7 +85,7 @@ const ticketsSchema = new mongoose.Schema(
                 },
                 dateCreation: {
                     type: Date,
-                    required: true,
+                    default: new Date(),
                 },
             },
         ],
@@ -94,6 +96,11 @@ const ticketsSchema = new mongoose.Schema(
         opened: {
             type: Boolean,
             default: true,
+        },
+        expirationDate: {
+            type: Date,
+            required: true,
+            default: () => calculateExpirationDate('9m'),
         },
     },
     {

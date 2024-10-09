@@ -4,7 +4,6 @@ import { classRoomService, lookupService, schoolService, studentService, subject
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
-import pagination from "../Utils/pagination.util";
 
 
 
@@ -133,10 +132,10 @@ const getUsersBySpecificData = async (req: Request, res: Response, next: NextFun
             const lookups = await userService.findAllUserOfSchoolLookup(String(schoolId));
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
         } else if (role && schoolId !== "superAdmin") {
-            if(role !== 'superAdmin'){
+            if (role !== 'superAdmin') {
                 const lookups = await userService.findSpecificUserOfSchool(String(role), String(schoolId));
                 lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
-            }else{
+            } else {
                 const lookups = await userService.findUserByRole(String("superAdmin"));
                 lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
             }
