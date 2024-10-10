@@ -1,22 +1,81 @@
-<div class="chat-container">
-  <div *ngFor="let msg of chatData.messages" class="message-wrapper">
-    <!-- Sender message -->
-    <div
-      class="message"
-      [ngClass]="{
-        'message-right': msg.sender.senderId === chatData.userOne.userId,
-        'message-left': msg.sender.senderId === chatData.userTwo.userId
-      }"
-    >
-      <div class="message-content">
-        <div class="message-text">
-          {{ msg.message }}
+<app-state-section>
+  <div class="ticket-box">
+    <p-card *ngIf="chatData ; else noChatData">
+      <ng-template pTemplate="header">
+        <div class="d-flex align-items-center p-3">
+          <img src="assets/img/profile.jpg" alt="Profile Picture" class="rounded-circle me-3 header-avatar"/>
+          <h5 *ngIf="chatData.userOne.userId !== userId">{{ chatData.userOne.userName }}</h5>
+          <h5 *ngIf="chatData.userTwo.userId !== userId">{{ chatData.userTwo.userName }}</h5>
         </div>
-        <div class="message-meta">
-          <span>{{ msg.dateCreation | date: 'shortTime' }}</span>
-          <i class="pi pi-check"></i>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="message-list" #messageList>
+          <div *ngFor="let msg of chatData.messages" class="message-wrapper">
+            <!-- Message Row -->
+            <div
+              class="message-row"
+              [ngClass]="{
+                'message-row-right': msg.sender.senderId === userId,
+                'message-row-left': msg.sender.senderId !== userId
+              }"
+            >
+              <!-- Avatar -->
+              <img
+                src="assets/img/profile.jpg"
+                alt="Sender Avatar"
+                class="avatar"
+              />
+
+              <!-- Message Bubble -->
+              <div
+                class="message"
+                [ngClass]="{
+                  'message-right': msg.sender.senderId === userId,
+                  'message-left': msg.sender.senderId !== userId
+                }"
+              >
+                <div class="message-content">
+                  <div class="message-text">{{ msg.message }}</div>
+                  <div class="message-meta"  [ngClass]="{
+                    'message-meta-right': msg.sender.senderId === userId
+                  }">
+                    <span>{{ msg.dateCreation | date: 'shortTime' }}</span>
+                    <i *ngIf="msg.sender.senderId === userId" class="pi pi-check"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <div class="input-container p-3">
+          <input
+            type="text"
+            [(ngModel)]="newMessage"
+            placeholder="Type a message"
+            class="message-input"
+            (keyup)="onEnter($event)"
+          />
+          <button
+            pButton
+            type="button"
+            icon="pi pi-send"
+            class="send-button"
+            (click)="sendMessage()"
+          ></button>
+        </div>
+      </ng-template>
+    </p-card>
   </div>
-</div>
+
+  <ng-template #noChatData>
+    <p-card>
+      <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100">
+        <img  class="img-empty" src="assets/img/No_Messages.png" alt="" srcset="" >
+      </div>
+    </p-card>
+  </ng-template>
+
+</app-state-section>

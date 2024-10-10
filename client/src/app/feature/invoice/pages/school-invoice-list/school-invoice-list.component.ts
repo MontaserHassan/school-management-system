@@ -20,7 +20,7 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
    }
 
   ngOnInit(): void {
-    
+
   }
 
   getInvoicesList(){
@@ -47,7 +47,7 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
   editInvoice(invoice: any) {
     const dialogRef = this.dialog.open(EditDialogInvoiceComponent, {
       width: '500px',
-      data: invoice
+      data: {invoice}
     });
 
     dialogRef.afterClosed().subscribe(result => {

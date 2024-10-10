@@ -97,6 +97,17 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
         } else if (targetData === 'subscriptionStatus') {
             const lookups = await lookupService.getByMasterCodeAndParent('7');
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'allUsers') {
+            const lookups = await userService.findAllUserOfSchoolLookup(String(schoolId));
+            lookupsData = lookups.filter(item=> item._id !== req.user.userId ).map(item => { return { _id: item._id, value: item.userName } });
+            if(req.user.role === 'admin') {
+                const superAdmin = await userService.findUserByRole(String("superAdmin"));
+                lookupsData.push({ _id: superAdmin[0]._id, value: superAdmin[0].userName });
+            }
+            if(req.user.role === 'superAdmin') {
+                const lookups = await userService.findUserByRole(String("admin"));
+                lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
+            }
         } else {
             throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "lookup");
         };

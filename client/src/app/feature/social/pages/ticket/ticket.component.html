@@ -1,8 +1,18 @@
-<div class="row w-100" style="height: 100%;">
-  <div class="col-4" style="height: 100%;">
+<div class="row w-100 g-0 position-relative" style="height: 100%;">
+  <div *ngIf="size < ScreenSizes.md" class="chat-button">
+    <p-button pButton icon="pi pi pi-comments" rounded="true" outlined="true"
+    (onClick)="sidebarVisible = true" />
+  </div>
+
+  <div class="col-12 col-lg-3" style="height: 100%;" *ngIf="size > ScreenSizes.md">
     <app-tickets-list ></app-tickets-list>
   </div>
-  <div class="col-8" >
+
+  <div class="col-12 col-lg-9" style="height: 100%;" >
     <app-ticket-box></app-ticket-box>
   </div>
 </div>
+
+<p-sidebar [(visible)]="sidebarVisible">
+  <app-tickets-list></app-tickets-list>
+</p-sidebar>

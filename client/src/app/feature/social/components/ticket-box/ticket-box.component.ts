@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { Ticket } from '../../models/ticket.model';
 
 @Component({
   selector: 'app-ticket-box',
@@ -6,57 +8,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket-box.component.scss']
 })
 export class TicketBoxComponent implements OnInit {
-  chatData = {
-    userOne: {
-      userId: 'kttyDR1Gz3AHotyA8tvtm',
-      userName: 'admin admin'
-    },
-    userTwo: {
-      userId: '5CyZbAO0ksY9KdOwlboDH',
-      userName: 'super admin'
-    },
-    messages: [
-      {
-        sender: {
-          senderId: 'kttyDR1Gz3AHotyA8tvtm',
-          senderName: 'admin admin'
-        },
-        receiver: {
-          receiverId: '5CyZbAO0ksY9KdOwlboDH',
-          receiverName: 'super admin'
-        },
-        message: 'First Message',
-        dateCreation: new Date('2024-10-09T18:28:08.465Z')
-      },
-      {
-        sender: {
-          senderId: 'kttyDR1Gz3AHotyA8tvtm',
-          senderName: 'admin admin'
-        },
-        receiver: {
-          receiverId: '5CyZbAO0ksY9KdOwlboDH',
-          receiverName: 'super admin'
-        },
-        message: 'Second Message',
-        dateCreation: new Date('2024-10-09T18:28:59.385Z')
-      },
-      {
-        sender: {
-          senderId:'5CyZbAO0ksY9KdOwlboDH',
-          senderName:'super admin',
-        },
-        receiver: {
-          receiverId: 'kttyDR1Gz3AHotyA8tvtm',
-          receiverName:'admin admin',
-        },
-        message: 'Message',
-        dateCreation: new Date('2024-10-09T18:28:59.385Z')
-      }
-    ]
-  };
-  constructor() { }
+  @ViewChild('messageList') messageList!: ElementRef;
+  chatData!:Ticket;
+  userId!: string;
+  newMessage: string = '';
 
-  ngOnInit() {
+  constructor(
+    private auth:AuthService
+  ) {
+    this.userId = this.auth.currentUser$.value.user?._id || '';
   }
 
+  ngOnInit(): void {
+
+  }
+
+  scrollToBottom(): void {
+    const messageBox = this.messageList.nativeElement;
+    setTimeout(() => {
+      messageBox.scrollTop = messageBox.scrollHeight;
+    });
+  }
+
+  sendMessage() {
+    if (this.newMessage.trim()) {
+      const newMsg = {
+        sender: {
+          senderId: this.chatData.userOne.userId,
+          senderName: this.chatData.userOne.userName
+        },
+        receiver: {
+          receiverId: this.chatData.userTwo.userId,
+          receiverName: this.chatData.userTwo.userName
+        },
+        message: this.newMessage,
+        dateCreation: new Date()
+      };
+
+      this.chatData.messages.push(newMsg);
+      this.newMessage = '';
+
+      this.scrollToBottom();
+    }
+  }
+
+  onEnter(event: any) {
+    if (event.key === 'Enter') {
+      this.sendMessage();
+    }
+  }
 }

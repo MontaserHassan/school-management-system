@@ -12,5 +12,6 @@ export enum Lookup {
   ClassRooms = 'classRooms',
   Progress = "progress",
   Degree ="degree",
-  AttendanceStatus = "attendanceStatus"
+  AttendanceStatus = "attendanceStatus",
+  AllUsers = 'allUsers',
 }

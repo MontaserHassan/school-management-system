@@ -1,16 +1,46 @@
-<div class="ticket-list">
-  <p-card>
-    <div *ngFor="let ticket of tickets" class="card mb-3 ticket-card">
-      <div class="d-flex align-items-center p-3">
-        <img src="assets/img/profile.jpg" alt="Profile Picture" class="rounded-circle me-3" width="50" />
-        <div class="flex-grow-1">
-          <h5 class="mb-1">{{ ticket.userOne.userName }}</h5>
-          <p class="mb-0 text-muted">{{ ticket.messages[ticket.messages.length - 1].message }}</p>
+<app-state-section [state]="sectionState">
+  <div class="ticket-list me-3">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="d-flex flex-column p-3">
+          <h5>Tickets</h5>
+          <div [formGroup]="receiverForm" class="row g-2">
+            <div class="col-12">
+              <label for="receiver" class="form-label">Start New Ticket With: </label>
+              <app-lazy-dropdown  for="receiver" [lookup]="Lookup.AllUsers" formControlName="receiver"></app-lazy-dropdown>
+            </div>
+            <button pButton type="button" icon="pi pi-send" class="col-12"  [disabled]="receiverForm.invalid"></button>
+          </div>
+
+          <p-divider></p-divider>
         </div>
-        <div class="text-end ms-auto">
-          <span class="text-muted">{{ getTimeAgo(ticket.createdAt) }}</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div *ngIf="tickets?.length; else noTickets">
+          <div *ngFor="let ticket of tickets" class="card mb-3 ticket-card">
+            <div class="d-flex align-items-center p-3" [ngClass]="{'fw-bolder read': ticket.read}">
+              <img src="assets/img/profile.jpg" alt="Profile Picture" class="rounded-circle me-3" width="50" />
+              <div class="flex-grow-1">
+                <h5 class="mb-0" style="margin-top: 10px;">{{ ticket.userOne.userName }}</h5>
+                <p class="mb-0 text-muted">{{ ticket.messages[ticket.messages.length - 1].message }}</p>
+              </div>
+              <div class="text-end ms-auto">
+                <span class="text-muted">{{ getTimeAgo(ticket.createdAt) }}</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+
+
+  <ng-template #noTickets>
+    <div class="no-Tickets">
+      <i class="pi pi-info-circle"></i>
+      <p>No Tickets yet</p>
     </div>
-  </p-card>
-</div>
+  </ng-template>
+
+</app-state-section>
