@@ -1,0 +1,13 @@
+.ticket-list{
+  height: 100%;
+  ::ng-deep .p-card{
+    height: 100%;
+  }
+  ::ng-deep .p-card-body{
+    height: 100%;
+  }
+  ::ng-deep .p-card-content{
+    height: 100%;
+    overflow-y: auto;
+  }
+}

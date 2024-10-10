@@ -1,0 +1,22 @@
+<div class="chat-container">
+  <div *ngFor="let msg of chatData.messages" class="message-wrapper">
+    <!-- Sender message -->
+    <div
+      class="message"
+      [ngClass]="{
+        'message-right': msg.sender.senderId === chatData.userOne.userId,
+        'message-left': msg.sender.senderId === chatData.userTwo.userId
+      }"
+    >
+      <div class="message-content">
+        <div class="message-text">
+          {{ msg.message }}
+        </div>
+        <div class="message-meta">
+          <span>{{ msg.dateCreation | date: 'shortTime' }}</span>
+          <i class="pi pi-check"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
