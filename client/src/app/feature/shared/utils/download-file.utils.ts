@@ -7,12 +7,12 @@ export function downloadFile(base64Data: any) {
     byteNumbers[i] = byteCharacters.charCodeAt(i);
   }
 
-  const blob = new Blob([byteNumbers], { type: 'text/csv' });
+  const blob = new Blob([byteNumbers], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
   const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
   link.href = url;
-  link.download = generateDownloadName("Report");
+  link.download = generateDownloadName("Report","xlsx");
 
   document.body.appendChild(link);
   link.click();
@@ -23,7 +23,7 @@ export function downloadFile(base64Data: any) {
   }, 100);
 }
 
-function generateDownloadName(baseName: string, extension: string = 'csv') {
+function generateDownloadName(baseName: string, extension: string ="xlsx") {
   const date = new Date();
   const formattedDate = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
   const formattedTime = date.toTimeString().split(' ')[0].replace(/:/g, '-'); // Format time as HH-MM-SS

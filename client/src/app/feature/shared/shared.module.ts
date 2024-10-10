@@ -59,6 +59,9 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 import { FileUploadModule } from 'primeng/fileupload';
 import { AddStudentToClassRoomDialogComponent } from './component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
@@ -81,7 +84,8 @@ const COMPONENT =[
 ]
 
 const OTHER_MODULES = [
-  FullCalendarModule
+  FullCalendarModule,
+  InfiniteScrollModule
 ]
 
 const MATERIAL_MODULES = [
@@ -136,7 +140,9 @@ const PRIME_NG_MODULES = [
   FloatLabelModule,
   OverlayPanelModule,
   CheckboxModule,
-  RadioButtonModule
+  RadioButtonModule,
+  VirtualScrollerModule,
+  ScrollPanelModule
 ]
 
 @NgModule({

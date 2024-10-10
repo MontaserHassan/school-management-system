@@ -65,4 +65,5 @@ export class RoutesUtil {
   //Social
   static Social = new RouteConfig('social');
   static SocialEmail = new RouteConfig('email', RoutesUtil.Social);
+  static SocialTicket = new RouteConfig('tickets', RoutesUtil.Social);
 }

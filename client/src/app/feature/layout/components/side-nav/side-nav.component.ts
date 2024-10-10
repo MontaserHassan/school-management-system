@@ -166,6 +166,13 @@ export class SideNavComponent {
           this.router.navigate([RoutesUtil.SocialEmail.url()]);
         }
       },
+      {
+        label: 'Tickets',
+        icon: 'pi pi-comments',
+        command: () => {
+          this.router.navigate([RoutesUtil.SocialTicket.url()]);
+        }
+      },
     ];
   }
 }

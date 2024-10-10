@@ -94,3 +94,21 @@ body {
     width: 100%;
   }
 }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

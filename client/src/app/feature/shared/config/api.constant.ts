@@ -63,4 +63,8 @@ export class ApiConstant {
   static GET_ALL_NOTIFICATIONS = ApiConstant.URL_BASE + URLSegment.User + 'notification';
   static GET_NOTIFICATION_BY_ID = ApiConstant.URL_BASE + URLSegment.User + 'notification/' + '{id}';
   static SEND_EMAIL = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket + 'mail';
+  static ADD_TICKET = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket;
+  static SEND_MESSAGE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket;
+  static GET_TICKETS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket;
+  static GET_TICKET_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket + '{id}';
 }
