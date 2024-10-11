@@ -38,7 +38,7 @@ const totalDocument = async (userId: string) => {
 
 
 const getTicketsByUserId = async (userId: string, limit: number, skip: number) => {
-    const tickets: TicketModel[] = await Ticket.find({ $or: [{ 'userOne.userId': userId }, { 'userTwo.userId': userId }] }).limit(limit).skip(skip).select('-__v');
+    const tickets: TicketModel[] = await Ticket.find({ $or: [{ 'userOne.userId': userId }, { 'userTwo.userId': userId }] }).limit(limit).skip(skip).select('-__v').sort({ createdAt: -1 });;
     return tickets;
 };
 
