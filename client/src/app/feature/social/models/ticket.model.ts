@@ -39,6 +39,14 @@ class Message {
   dateCreation!: Date;
 }
 
+class read {
+  @Expose()
+  isRead!: boolean;
+
+  @Expose()
+  userId!: string;
+}
+
 export class Ticket {
   @Expose()
   userOne!: User;
@@ -53,7 +61,7 @@ export class Ticket {
   schoolId!: string;
 
   @Expose()
-  read!: boolean;
+  read!: read;
 
   @Expose()
   opened!: boolean;

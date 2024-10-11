@@ -1,5 +1,11 @@
 import { Expose } from "class-transformer";
+class ticket {
+  @Expose()
+  isTicket!: boolean;
 
+  @Expose()
+  ticketId!: string;
+}
 export class Notification {
   @Expose()
   _id!: string;
@@ -14,7 +20,7 @@ export class Notification {
   @Expose()
   read!: boolean;
   @Expose()
-  isTicket!: boolean;
+  ticket!: ticket;
   @Expose()
   createdAt!: Date;
   @Expose()

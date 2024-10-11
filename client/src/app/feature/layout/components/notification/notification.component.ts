@@ -48,8 +48,15 @@ export class NotificationComponent extends BaseComponent implements OnInit {
   }
 
   markAllAsRead() {
-    this.notifications.forEach(notification => (notification.read = true));
-    this.unreadCount = 0;
+    this.load(
+      this.authService.markAllAsRead(), {
+        isLoadingTransparent: true
+      }
+    ).subscribe( () => {
+        this.notifications.forEach(notification => (notification.read = true));
+        this.unreadCount = 0;
+      }
+    )
   }
 
   isLast(notification: any): boolean {

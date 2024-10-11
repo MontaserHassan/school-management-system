@@ -91,4 +91,10 @@ export class AuthService extends BaseComponent {
       map((res) => this.mapper.fromJson(Notification, res.data.notification))
     )
   }
+
+  markAllAsRead(): Observable<NotificationList> {
+    return this.baseAPI.patch(ApiConstant.MARK_ALL_AS_READ,{}).pipe(
+      map((res) => this.mapper.fromJson(NotificationList, res.data))
+    )
+  }
 }

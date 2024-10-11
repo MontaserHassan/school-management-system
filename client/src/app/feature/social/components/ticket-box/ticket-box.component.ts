@@ -50,10 +50,12 @@ export class TicketBoxComponent extends BaseComponent implements OnChanges {
         createdAt: new Date(),
         updatedAt: new Date(),
         opened: true,
-        read: false
+        read: {
+          isRead: true,
+          userId: this.userId
+        }
       }
     }
-
   }
 
   scrollToBottom(): void {
