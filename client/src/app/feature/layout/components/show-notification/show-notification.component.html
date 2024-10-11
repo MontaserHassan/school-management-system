@@ -4,7 +4,9 @@
     <div class="d-flex flex-column gap-2">
       <div>
         <h4>{{ data.header }}</h4>
-        <p>{{ data.message }}</p>
+        <p>{{ data.message }}
+          <a *ngIf="data.isTicket" mat-dialog-close [routerLink]="RoutesUtil.SocialTicket.url()"><i class="pi pi-external-link" style="font-size: 9px"></i></a>
+        </p>
       </div>
       <div>
         <p>

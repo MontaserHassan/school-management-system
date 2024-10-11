@@ -17,7 +17,8 @@ export const updateExpiredSubscriptions = async () => {
                     subscription.admin,
                     subscription._id,
                     'Subscription Expiration',
-                    'Your subscription has expired. Please renew your subscription.'
+                    'Your subscription has expired. Please renew your subscription.',
+                    false
                 );
             };
             // console.log('Subscription status check completed.');

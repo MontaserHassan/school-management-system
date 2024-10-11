@@ -34,6 +34,7 @@ export const sendNotification = () => {
                             school._id,
                             'Subscription Expiration',
                             `${check.message}${dayjs(school.endOfSubscription).format('YYYY-MM-DD')}.`,
+                            false
                         );
                         notifiedSchoolIds.add(school._id.toString());
                         break;

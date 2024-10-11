@@ -48,7 +48,8 @@ export class TicketsListComponent extends BaseComponent implements OnInit, OnCha
     }
   }
 
-  getTimeAgo(date: Date): string {
+  getTimeAgo(Ticket: Ticket): string {
+    const date = Ticket.messages[Ticket.messages.length - 1].dateCreation;
     const timeDifference = new Date().getTime() - new Date(date).getTime();
 
     const daysAgo = Math.floor(timeDifference / (1000 * 3600 * 24));

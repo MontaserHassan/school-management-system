@@ -9,6 +9,7 @@ interface NotificationModel extends mongoose.Document {
     header: string;
     message: string;
     read: boolean;
+    isTicket: boolean;
 };
 
 
@@ -36,6 +37,10 @@ const notificationSchema = new mongoose.Schema(
             required: true,
         },
         read: {
+            type: Boolean,
+            default: false,
+        },
+        isTicket: {
             type: Boolean,
             default: false,
         },

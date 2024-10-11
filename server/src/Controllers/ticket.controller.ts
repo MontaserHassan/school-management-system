@@ -51,7 +51,7 @@ const createTicket = async (req: Request, res: Response, next: NextFunction) => 
             const userOne = { userId: String(isSender._id), userName: isSender.userName };
             const userTwo = { userId: String(isReceiver._id), userName: isReceiver.userName };
             ticket = await ticketService.createTicket(schoolId, userOne, userTwo,);
-            await notificationService.createNotification(receiver, isReceiver.schoolId, 'New Ticket', `Hi ${isReceiver.userName}, You have a new ticket from ${isSender.userName}, check it`);
+            await notificationService.createNotification(receiver, isReceiver.schoolId, 'New Ticket', `Hi ${isReceiver.userName}, You have a new ticket from ${isSender.userName}, check it`, true);
             responseMessage = successTicketMessage.CREATED;
         };
         const response: IResponse = {
@@ -85,7 +85,7 @@ const sendMessage = async (req: Request, res: Response, next: NextFunction) => {
         const isReceiver = await userService.getById(receiverId);
         const newMessage = await ticketService.addNewMessageById(ticketId, { sender: { senderId: isSender._id, senderName: isSender.userName }, receiver: { receiverId: isReceiver._id, receiverName: isReceiver.userName }, message: message, });
         if (!newMessage) throw new CustomError(errorTicketMessage.DOES_NOT_ADD_MESSAGE, 404, "message");
-        await notificationService.createNotification(String(isReceiver._id), isReceiver.schoolId, 'New Message', `Hi ${isReceiver.userName}, You have a new message from ${isSender.userName}, check it`);
+        await notificationService.createNotification(String(isReceiver._id), isReceiver.schoolId, 'New Message', `Hi ${isReceiver.userName}, You have a new message from ${isSender.userName}, check it`, true);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

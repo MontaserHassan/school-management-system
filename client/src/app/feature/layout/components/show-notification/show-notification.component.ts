@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Notification } from '../../models/notification.model';
+import { RoutesUtil } from '../../../shared/utils/routes.util';
 
 @Component({
   selector: 'app-show-notification',
@@ -10,6 +11,8 @@ import { Notification } from '../../models/notification.model';
   styleUrls: ['./show-notification.component.scss']
 })
 export class ShowNotificationComponent extends BaseComponent implements OnInit {
+  protected RoutesUtil = RoutesUtil
+
   constructor(
     public dialogRef: MatDialogRef<ShowNotificationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Notification,

@@ -5,12 +5,13 @@ import { Notification, NotificationModel } from '../Models/notification.model';
 // ----------------------------- create notification -----------------------------
 
 
-const createNotification = async (userId: string, schoolId: string, header: string, message: string) => {
+const createNotification = async (userId: string, schoolId: string, header: string, message: string, isTicket:Boolean) => {
     const notification: NotificationModel = new Notification({
         userId,
         schoolId,
         header,
         message,
+        isTicket
     });
     await notification.save();
     return notification;
@@ -30,7 +31,7 @@ const findNotificationById = async (notificationId: string) => {
 
 
 const findNotificationsByUserId = async (userId: string, schoolId: string) => {
-    const notifications: NotificationModel[] = await Notification.find({ schoolId, userId }).select('-__v');
+    const notifications: NotificationModel[] = await Notification.find({ schoolId, userId }).select('-__v').sort({ createdAt: -1 });
     return notifications;
 };
 

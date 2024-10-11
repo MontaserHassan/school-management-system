@@ -26,7 +26,7 @@
                 <p class="mb-0 text-muted" *ngIf="ticket.messages.length">{{ ticket.messages[ticket.messages.length - 1].message }}</p>
               </div>
               <div class="text-end ms-auto">
-                <span class="text-muted">{{ getTimeAgo(ticket.createdAt) }}</span>
+                <span class="text-muted">{{ getTimeAgo(ticket) }}</span>
               </div>
             </div>
           </div>

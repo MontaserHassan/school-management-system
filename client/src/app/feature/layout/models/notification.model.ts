@@ -14,6 +14,8 @@ export class Notification {
   @Expose()
   read!: boolean;
   @Expose()
+  isTicket!: boolean;
+  @Expose()
   createdAt!: Date;
   @Expose()
   updatedAt!: Date;
