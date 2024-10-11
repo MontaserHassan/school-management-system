@@ -14,5 +14,5 @@
 </div>
 
 <p-sidebar [(visible)]="sidebarVisible">
-  <app-tickets-list></app-tickets-list>
+  <app-tickets-list [newTicket]="newTicket" (openTicket)="openTicket($event)" (openNewTicket)="openNewTicket($event)"></app-tickets-list>
 </p-sidebar>
