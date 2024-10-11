@@ -2171,7 +2171,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJhNjc5MGY1OWNmMzRlMDA3MGNmOWU2MTgiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI4NDk4NjA4LCJleHAiOjE3Mjg1ODUwMDh9.57KIUxQjir2IitoMwcm6BN_PvoqV2kPgBI7ALWYHVoA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1ODYyZjBiYTBiNmMyNjFiMjRiYWFmMTkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg2NjA5NjQsImV4cCI6MTcyODc0NzM2NH0.T4DOMspHBeKFWOhpVlollo8DmJKW3DFhsAtSShL-LUc",
 									"type": "string"
 								}
 							]
@@ -2180,7 +2180,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ticketId\": \"fx9unGP2KrCaS46URVSdV4od\",\n    \"message\": \"First Message\"\n}",
+							"raw": "{\n    \"ticketId\": \"AjwgoyMxQfc4F128OHFjAKvM\",\n    \"message\": \"First Message from admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2188,13 +2188,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/ticket",
+							"raw": "{{SchoolManagementSystem}}/user/ticket/",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"ticket"
+								"ticket",
+								""
 							]
 						}
 					},
@@ -2206,7 +2207,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"ticketId\": \"fx9unGP2KrCaS46URVSdV4od\",\n    \"message\": \"First Message\"\n}",
+									"raw": "{\n    \"ticketId\": \"AjwgoyMxQfc4F128OHFjAKvM\",\n    \"message\": \"First Message\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2214,13 +2215,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{SchoolManagementSystem}}/user/ticket",
+									"raw": "{{SchoolManagementSystem}}/user/ticket/",
 									"host": [
 										"{{SchoolManagementSystem}}"
 									],
 									"path": [
 										"user",
-										"ticket"
+										"ticket",
+										""
 									]
 								}
 							},
@@ -2234,7 +2236,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 09 Oct 2024 18:38:00 GMT"
+									"value": "Fri, 11 Oct 2024 16:15:06 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -2242,7 +2244,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "2022"
+									"value": "942"
 								},
 								{
 									"key": "Connection",
@@ -2258,11 +2260,11 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"7e6-Is5N2gWD3pEH0pHQyONKS9uPMbQ\""
+									"value": "W/\"3ae-660tSsyZYZxfj07b7Zvk+mNX640\""
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \" You add New message\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"userTwo\": {\n                \"userId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                \"userName\": \"super admin\"\n            },\n            \"_id\": \"fx9unGP2KrCaS46URVSdV4od\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"read\": false,\n            \"opened\": true,\n            \"messages\": [\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:08.465Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"senderName\": \"admin admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"receiverName\": \"super admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:28:59.385Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"senderName\": \"super admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"receiverName\": \"admin admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-09T18:36:52.399Z\"\n                }\n            ],\n            \"expirationDate\": \"2025-07-09T17:40:14.362Z\",\n            \"createdAt\": \"2024-10-09T17:40:14.364Z\",\n            \"updatedAt\": \"2024-10-09T18:38:00.920Z\"\n        }\n    }\n}"
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \" You add New message\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                \"userName\": \"super admin\"\n            },\n            \"userTwo\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"read\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"isRead\": false\n            },\n            \"_id\": \"AjwgoyMxQfc4F128OHFjAKvM\",\n            \"schoolId\": \"superAdmin\",\n            \"opened\": true,\n            \"messages\": [\n                {\n                    \"sender\": {\n                        \"senderId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"senderName\": \"super admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"receiverName\": \"admin admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-11T16:13:44.891Z\"\n                },\n                {\n                    \"sender\": {\n                        \"senderId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                        \"senderName\": \"super admin\"\n                    },\n                    \"receiver\": {\n                        \"receiverId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                        \"receiverName\": \"admin admin\"\n                    },\n                    \"message\": \"First Message\",\n                    \"dateCreation\": \"2024-10-11T16:13:44.891Z\"\n                }\n            ],\n            \"expirationDate\": \"2025-07-11T16:13:48.449Z\",\n            \"createdAt\": \"2024-10-11T16:13:48.452Z\",\n            \"updatedAt\": \"2024-10-11T16:15:06.612Z\"\n        }\n    }\n}"
 						}
 					]
 				},
@@ -2274,7 +2276,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9vTGpaZWZzZE9TRzVtTVdkdzV5cyIsImVtYWlsIjoiZGlyZWN0b3JAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI2ZjUzMWEyMGYwMjE1YWNjOTFmNzdjM2QiLCJyb2xlIjoiZGlyZWN0b3IiLCJjb2RlIjoiWTMyNzcxIiwiaWF0IjoxNzI4NDk1ODYxLCJleHAiOjE3Mjg1ODIyNjF9.V81zHp2pHersgT2YSSdBc-1TRh-yxyJ4AibYs3KhfQk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI5NDMxY2IwZDdhYTA3MGE3OTJkYjUxMWIiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI4NjU4NTEyLCJleHAiOjE3Mjg3NDQ5MTF9.UkqLqDLiHBeiTM8F8wCpT7mtOP3dsPytm8WCxlsYNB0",
 									"type": "string"
 								}
 							]
@@ -2339,7 +2341,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 09 Oct 2024 18:10:32 GMT"
+									"value": "Fri, 11 Oct 2024 16:13:48 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -2347,7 +2349,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "474"
+									"value": "514"
 								},
 								{
 									"key": "Connection",
@@ -2363,11 +2365,11 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"1da-sq1uyP8+R2woXuS3FKXgwP+s9Mc\""
+									"value": "W/\"202-60xB2HmcJD7zByC+Bu1QtuWX9FI\""
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Ticket Data get successfully\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"ooLjZefsdOSG5mMWdw5ys\",\n                \"userName\": \"director\"\n            },\n            \"userTwo\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"_id\": \"Pr97MNfFmK-hAJ0gDb73dJQD\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"read\": false,\n            \"opened\": true,\n            \"messages\": [],\n            \"expirationDate\": \"2025-07-09T17:49:28.413Z\",\n            \"createdAt\": \"2024-10-09T17:49:28.415Z\",\n            \"updatedAt\": \"2024-10-09T17:49:28.415Z\"\n        }\n    }\n}"
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Ticket created successfully\",\n    \"data\": {\n        \"ticket\": {\n            \"userOne\": {\n                \"userId\": \"5CyZbAO0ksY9KdOwlboDH\",\n                \"userName\": \"super admin\"\n            },\n            \"userTwo\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"userName\": \"admin admin\"\n            },\n            \"schoolId\": \"superAdmin\",\n            \"read\": {\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"isRead\": false\n            },\n            \"opened\": true,\n            \"_id\": \"AjwgoyMxQfc4F128OHFjAKvM\",\n            \"messages\": [],\n            \"expirationDate\": \"2025-07-11T16:13:48.449Z\",\n            \"createdAt\": \"2024-10-11T16:13:48.452Z\",\n            \"updatedAt\": \"2024-10-11T16:13:48.452Z\",\n            \"__v\": 0\n        }\n    }\n}"
 						}
 					]
 				},
@@ -2591,7 +2593,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI3MGUzZjljNDZmNjg4YTJhMGFkZmRmOWIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg0Mjg5MTUsImV4cCI6MTcyODUxNTMxNX0.PSH31SUduvNMFRnmbEYXOQkQ6qYfCOjxrSS8XLbZRoY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI5NDMxY2IwZDdhYTA3MGE3OTJkYjUxMWIiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI4NjU4NTEyLCJleHAiOjE3Mjg3NDQ5MTF9.UkqLqDLiHBeiTM8F8wCpT7mtOP3dsPytm8WCxlsYNB0",
 									"type": "string"
 								}
 							]
@@ -2599,14 +2601,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/ticket/fx9unGP2KrCaS46URVSdV4od",
+							"raw": "{{SchoolManagement}}/user/ticket/AjwgoyMxQfc4F128OHFjAKvM",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
 								"ticket",
-								"fx9unGP2KrCaS46URVSdV4od"
+								"AjwgoyMxQfc4F128OHFjAKvM"
 							]
 						}
 					},
@@ -2992,7 +2994,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIwZDc5NWM1OWVlMWFlNzkzZDU1ZWJhYjkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3Mjg0MjU2OTMsImV4cCI6MTcyODUxMjA5M30.vL-qmzL6WSf5g7yfhgyNEtKWRdabXgof7zh3iV_tomw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1ODYyZjBiYTBiNmMyNjFiMjRiYWFmMTkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg2NjA5NjQsImV4cCI6MTcyODc0NzM2NH0.T4DOMspHBeKFWOhpVlollo8DmJKW3DFhsAtSShL-LUc",
 									"type": "string"
 								}
 							]
@@ -3000,18 +3002,76 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/notification/V9Kf1Y-Kltx54IiN3V2uN",
+							"raw": "{{SchoolManagementSystem}}/user/notification/IFtAExo2lKpiltFE9t8qj",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"notification",
-								"V9Kf1Y-Kltx54IiN3V2uN"
+								"IFtAExo2lKpiltFE9t8qj"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get notification by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/notification/IFtAExo2lKpiltFE9t8qj",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"notification",
+										"IFtAExo2lKpiltFE9t8qj"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Oct 2024 15:43:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "469"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d5-wiESxrmCtE/PKTKZTtd6WQYTazw\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Notification fetched successfully\",\n    \"data\": {\n        \"notification\": {\n            \"ticket\": {\n                \"isTicket\": true,\n                \"ticketId\": \"eQBPkbQmHawuAo4x5KcZ_B18\"\n            },\n            \"_id\": \"IFtAExo2lKpiltFE9t8qj\",\n            \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"header\": \"New Ticket\",\n            \"message\": \"Hi admin admin, You have a new ticket from super admin, check it\",\n            \"read\": true,\n            \"createdAt\": \"2024-10-11T15:35:36.839Z\",\n            \"updatedAt\": \"2024-10-11T15:43:55.080Z\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get notifications",
@@ -3021,7 +3081,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiazA4cDFCMk5KYjVsdW9GUzFqWSIsImVtYWlsIjoiYWRtaW4uYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJSMHJlekRIbVJ1ZnM3UHg5dzkyOUMxTGIiLCJzZWNyZXRLZXkiOiIwZDc5NWM1OWVlMWFlNzkzZDU1ZWJhYjkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiQTI1MzAiLCJpYXQiOjE3Mjg0MjU2OTMsImV4cCI6MTcyODUxMjA5M30.vL-qmzL6WSf5g7yfhgyNEtKWRdabXgof7zh3iV_tomw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1ODYyZjBiYTBiNmMyNjFiMjRiYWFmMTkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg2NjA5NjQsImV4cCI6MTcyODc0NzM2NH0.T4DOMspHBeKFWOhpVlollo8DmJKW3DFhsAtSShL-LUc",
 									"type": "string"
 								}
 							]
@@ -3068,7 +3128,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 09 Oct 2024 07:17:04 GMT"
+									"value": "Fri, 11 Oct 2024 15:36:13 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -3076,7 +3136,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "1778"
+									"value": "1451"
 								},
 								{
 									"key": "Connection",
@@ -3092,13 +3152,42 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"6f2-FPQEiwBaTI3vlMB5t3QSgkfq46A\""
+									"value": "W/\"5ab-lM8rXPalxSV4Y9aQ/zeC71V78SQ\""
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Notifications fetched successfully\",\n    \"data\": {\n        \"notifications\": [\n            {\n                \"_id\": \"V9Kf1Y-Kltx54IiN3V2uN\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 5 days. Please renew your subscription before: 2024-10-11.\",\n                \"read\": true,\n                \"createdAt\": \"2024-10-06T17:15:00.713Z\",\n                \"updatedAt\": \"2024-10-06T23:52:00.148Z\"\n            },\n            {\n                \"_id\": \"6qT-KjddLNyHiTkewIYQm\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 5 days. Please renew your subscription before: 2024-10-11.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:16:00.781Z\",\n                \"updatedAt\": \"2024-10-06T17:16:00.781Z\"\n            },\n            {\n                \"_id\": \"y1MctFxLIv31goLpUE0-v\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 3 days. Please renew your subscription before: 2024-10-09.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:17:00.868Z\",\n                \"updatedAt\": \"2024-10-06T17:17:00.868Z\"\n            },\n            {\n                \"_id\": \"nme9Hsg71-ZYRY94Al9t8\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 1 day. Please renew your subscription before: 2024-10-07.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:18:00.950Z\",\n                \"updatedAt\": \"2024-10-06T17:18:00.950Z\"\n            },\n            {\n                \"_id\": \"Y8sZZYXlFaQSJpO5jDyDe\",\n                \"userId\": \"8bk08p1B2NJb5luoFS1jY\",\n                \"schoolId\": \"R0rezDHmRufs7Px9w929C1Lb\",\n                \"header\": \"Subscription Expiration\",\n                \"message\": \"Your subscription will expire in 1 day. Please renew your subscription before: 2024-10-07.\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-06T17:19:00.015Z\",\n                \"updatedAt\": \"2024-10-06T17:19:00.015Z\"\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Notifications fetched successfully\",\n    \"data\": {\n        \"notifications\": [\n            {\n                \"ticket\": {\n                    \"isTicket\": true,\n                    \"ticketId\": \"eQBPkbQmHawuAo4x5KcZ_B18\"\n                },\n                \"_id\": \"IFtAExo2lKpiltFE9t8qj\",\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n                \"header\": \"New Ticket\",\n                \"message\": \"Hi admin admin, You have a new ticket from super admin, check it\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-11T15:35:36.839Z\",\n                \"updatedAt\": \"2024-10-11T15:35:36.839Z\"\n            },\n            {\n                \"ticket\": {\n                    \"isTicket\": false\n                },\n                \"_id\": \"oVMDWKXSgVocoKiyGOsTh\",\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n                \"header\": \"New Ticket\",\n                \"message\": \"Hi admin admin, You have a new ticket from super admin, check it\",\n                \"read\": true,\n                \"isTicket\": true,\n                \"createdAt\": \"2024-10-11T15:00:58.507Z\",\n                \"updatedAt\": \"2024-10-11T15:34:35.180Z\"\n            },\n            {\n                \"ticket\": {\n                    \"isTicket\": false\n                },\n                \"_id\": \"t1KbAX8idFO1PKBCSZ0uP\",\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n                \"header\": \"New Message\",\n                \"message\": \"Hi admin admin, You have a new message from super admin, check it\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-09T18:38:00.930Z\",\n                \"updatedAt\": \"2024-10-09T18:38:00.930Z\"\n            },\n            {\n                \"ticket\": {\n                    \"isTicket\": false\n                },\n                \"_id\": \"lrH6b4pPtA2cwZ7izxGY9\",\n                \"userId\": \"kttyDR1Gz3AHotyA8tvtm\",\n                \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n                \"header\": \"New Ticket\",\n                \"message\": \"Hi admin admin, You have a new ticket from director, check it\",\n                \"read\": false,\n                \"createdAt\": \"2024-10-09T17:49:28.419Z\",\n                \"updatedAt\": \"2024-10-09T17:49:28.419Z\"\n            }\n        ]\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "read all notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1ODYyZjBiYTBiNmMyNjFiMjRiYWFmMTkiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg2NjA5NjQsImV4cCI6MTcyODc0NzM2NH0.T4DOMspHBeKFWOhpVlollo8DmJKW3DFhsAtSShL-LUc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/notification/",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"notification",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

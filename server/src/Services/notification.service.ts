@@ -5,13 +5,13 @@ import { Notification, NotificationModel } from '../Models/notification.model';
 // ----------------------------- create notification -----------------------------
 
 
-const createNotification = async (userId: string, schoolId: string, header: string, message: string, isTicket:Boolean) => {
+const createNotification = async (userId: string, schoolId: string, header: string, message: string, ticket?: { isTicket: boolean, ticketId: string }) => {
     const notification: NotificationModel = new Notification({
         userId,
         schoolId,
         header,
         message,
-        isTicket
+        ticket,
     });
     await notification.save();
     return notification;
@@ -36,11 +36,20 @@ const findNotificationsByUserId = async (userId: string, schoolId: string) => {
 };
 
 
+// ----------------------------- update notifications by user id -----------------------------
+
+
+const updateNotificationsByUserId = async (userId: string) => {
+    const notifications = await Notification.updateMany({ userId, read: false }, { $set: { read: true } },);
+    return notifications;
+};
+
+
 // ----------------------------- update notification -----------------------------
 
 
-const updateNotification = async (userId: string, updatedData: any) => {
-    const updatedUser: NotificationModel = await Notification.findOneAndUpdate({ userId }, updatedData, { new: true }).select('-__v');
+const updateNotification = async (notificationId: string, updatedData: any) => {
+    const updatedUser: NotificationModel = await Notification.findByIdAndUpdate(notificationId, updatedData, { new: true }).select('-__v');
     return updatedUser;
 };
 
@@ -50,5 +59,6 @@ export default {
     createNotification,
     findNotificationById,
     findNotificationsByUserId,
+    updateNotificationsByUserId,
     updateNotification,
 };

@@ -29,13 +29,7 @@ export const sendNotification = () => {
                 });
                 for (const school of expiringSchools) {
                     if (!notifiedSchoolIds.has(school._id.toString())) {
-                        await notificationService.createNotification(
-                            school.admin,
-                            school._id,
-                            'Subscription Expiration',
-                            `${check.message}${dayjs(school.endOfSubscription).format('YYYY-MM-DD')}.`,
-                            false
-                        );
+                        await notificationService.createNotification(school.admin, school._id, 'Subscription Expiration', `${check.message}${dayjs(school.endOfSubscription).format('YYYY-MM-DD')}.`,);
                         notifiedSchoolIds.add(school._id.toString());
                         break;
                     };

@@ -10,6 +10,7 @@ const createTicket = async (schoolId: string, userOne: { userId: string, userNam
         schoolId: schoolId,
         userOne: userOne,
         userTwo: userTwo,
+        read: { userId: userTwo.userId, read: false },
     });
     await newTicket.save();
     return newTicket;
@@ -55,8 +56,8 @@ const getTicketBetweenTwoUser = async (userOne: string, userTwo: string) => {
 // ----------------------------- add new message -----------------------------
 
 
-const addNewMessageById = async (ticketId: string, messageData: any) => {
-    const updatedTicket: TicketModel = await Ticket.findByIdAndUpdate(ticketId, { $push: { messages: messageData }, read: false }, { new: true }).select('-__v');
+const addNewMessageById = async (ticketId: string, messageData: any, userRead: string) => {
+    const updatedTicket: TicketModel = await Ticket.findByIdAndUpdate(ticketId, { $push: { messages: messageData }, read: { userId: userRead, isRead: false } }, { new: true }).select('-__v');
     return updatedTicket;
 };
 

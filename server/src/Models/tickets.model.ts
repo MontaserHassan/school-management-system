@@ -15,7 +15,7 @@ interface TicketModel extends mongoose.Document {
         message: string;
         dateCreation: Date;
     }[];
-    read: boolean;
+    read: { userId: string; isRead: boolean; };
     opened: boolean;
     expirationDate: Date;
 };
@@ -90,8 +90,14 @@ const ticketsSchema = new mongoose.Schema(
             },
         ],
         read: {
-            type: Boolean,
-            default: false,
+            userId: {
+                type: String,
+                required: true,
+            },
+            isRead: {
+                type: Boolean,
+                default: false,
+            },
         },
         opened: {
             type: Boolean,

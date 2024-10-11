@@ -13,6 +13,8 @@ const notificationRouter = express.Router();
 notificationRouter.get('/', notificationController.getNotifications);
 notificationRouter.get('/:notificationId', validation(notificationValidator.getNotification), notificationController.getNotification);
 
+notificationRouter.patch('/', notificationController.readAllNotifications);
+
 
 
 export default notificationRouter;

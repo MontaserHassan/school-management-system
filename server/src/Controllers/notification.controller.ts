@@ -35,8 +35,7 @@ const getNotifications = async (req: Request, res: Response, next: NextFunction)
 const getNotification = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { notificationId } = req.params;
-        const notification = await notificationService.findNotificationById(notificationId);
-        const updatedNotification = await notificationService.updateNotification(notification.userId, { read: true });
+        const updatedNotification = await notificationService.updateNotification(notificationId, { read: true });
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -54,8 +53,30 @@ const getNotification = async (req: Request, res: Response, next: NextFunction) 
 
 
 
+// ----------------------------- get notifications -----------------------------
+
+
+const readAllNotifications = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { userId } = req.user;
+        const updatedNotification = await notificationService.updateNotificationsByUserId(userId);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successNotificationMessage.READ_ALL,
+            data: {},
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err)
+    };
+};
+
+
 
 export default {
     getNotifications,
     getNotification,
+    readAllNotifications,
 };

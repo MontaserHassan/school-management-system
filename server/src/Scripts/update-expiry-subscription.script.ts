@@ -13,13 +13,7 @@ export const updateExpiredSubscriptions = async () => {
             for (const subscription of subscriptions) {
                 subscription.subscriptionStatus = 'expired';
                 await subscription.save();
-                await notificationService.createNotification(
-                    subscription.admin,
-                    subscription._id,
-                    'Subscription Expiration',
-                    'Your subscription has expired. Please renew your subscription.',
-                    false
-                );
+                await notificationService.createNotification(subscription.admin, subscription._id, 'Subscription Expiration', 'Your subscription has expired. Please renew your subscription.',);
             };
             // console.log('Subscription status check completed.');
         } catch (error) {
