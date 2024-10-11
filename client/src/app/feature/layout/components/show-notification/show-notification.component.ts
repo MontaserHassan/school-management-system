@@ -4,6 +4,7 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Notification } from '../../models/notification.model';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-notification',
@@ -16,7 +17,8 @@ export class ShowNotificationComponent extends BaseComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ShowNotificationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Notification,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     super();
   }
@@ -29,6 +31,13 @@ export class ShowNotificationComponent extends BaseComponent implements OnInit {
     ).subscribe((res) => {
       this.data = res;
     })
+  }
+
+  navigateToTicket(ticketId: string) {
+    this.router.navigate(
+      [RoutesUtil.SocialTicket.url()],
+      { queryParams: { id: ticketId } }
+    );
   }
 
 }

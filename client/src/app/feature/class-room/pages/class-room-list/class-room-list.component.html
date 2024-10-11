@@ -4,8 +4,8 @@
       <h2 class="header">Classroom List</h2>
       <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
     </div>
-    <p-table [value]="classrooms" dataKey="_id" [lazy]="true" [paginator]="true" [rows]="pageSize"
-      [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+    <p-table [value]="classrooms" dataKey="_id" [paginator]="true" [rows]="pageSize"
+      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
       responsiveLayout="scroll" class="p-datatable-striped">
       <ng-template pTemplate="header">
         <tr>

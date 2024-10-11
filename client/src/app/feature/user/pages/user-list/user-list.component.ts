@@ -43,6 +43,8 @@ export class UserListComponent extends BaseComponent implements OnInit {
         ]
       }
     ];
+
+    this.getUsersList()
   }
 
   getUsersList(isExport?: boolean) {

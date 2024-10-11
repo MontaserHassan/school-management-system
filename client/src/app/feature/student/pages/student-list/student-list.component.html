@@ -8,8 +8,8 @@
       </div>
     </ng-template>
 
-    <p-table [value]="students" [paginator]="true" [rows]="10" [lazy]="true" [paginator]="true" [rows]="pageSize"
-      [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+    <p-table [value]="students" [paginator]="true" [rows]="10" [paginator]="true" [rows]="pageSize"
+      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
       [sortField]="'studentName'" [sortOrder]="1">
       <ng-template pTemplate="header">
         <tr>

@@ -5,8 +5,8 @@
 
       <p-button (onClick)="openInvoiceDialog()" text label="Add Invoice" icon="pi pi-receipt" />
     </div>
-    <p-table [value]="invoices" class="p-datatable-striped"  [lazy]="true" [paginator]="true" [rows]="pageSize"
-    [totalRecords]="totalRowsCount" (onLazyLoad)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+    <p-table [value]="invoices" class="p-datatable-striped" [paginator]="true" [rows]="pageSize"
+    [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
     responsiveLayout="scroll" >
       <ng-template pTemplate="header">
         <tr>

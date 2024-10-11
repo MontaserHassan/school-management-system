@@ -20,7 +20,7 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
    }
 
   ngOnInit(): void {
-
+    this.getInvoicesList();
   }
 
   getInvoicesList(){

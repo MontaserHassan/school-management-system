@@ -37,6 +37,7 @@ export class SubjectListComponent extends BaseComponent implements OnInit {
         ]
       }
     ];
+    this.getSubjects()
   }
 
   getSubjects() {

@@ -9,10 +9,10 @@
   </div>
 
   <div class="col-12 col-lg-9" style="height: 100%;" >
-    <app-ticket-box [selectedTicket]="selectedTicket" [sender]="sender" (onOpenNewTicket)="onOpenNewTicket($event)"></app-ticket-box>
+    <app-ticket-box [sender]="sender" (onOpenNewTicket)="onOpenNewTicket($event)"></app-ticket-box>
   </div>
 </div>
 
-<p-sidebar [(visible)]="sidebarVisible">
+<p-sidebar [(visible)]="sidebarVisible" *ngIf="sidebarVisible">
   <app-tickets-list [newTicket]="newTicket" (openTicket)="openTicket($event)" (openNewTicket)="openNewTicket($event)"></app-tickets-list>
 </p-sidebar>

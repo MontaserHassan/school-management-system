@@ -16,7 +16,7 @@
       </ng-template>
       <ng-template pTemplate="content">
         <div *ngIf="tickets?.length; else noTickets" class="list-container" #scrollContainer (scroll)="onScroll()">
-          <div *ngFor="let ticket of tickets" class="card mb-3 ticket-card" (click)="openTicket.emit(ticket)">
+          <div *ngFor="let ticket of tickets" class="card mb-3 ticket-card" (click)="openTicketDetails(ticket)">
             <div class="d-flex align-items-center p-1" [ngClass]="{'fw-bolder read': ticket.read.userId === userId ? !ticket.read.isRead : null }">
               <img src="assets/img/profile.jpg" alt="Profile Picture" class="rounded-circle me-3" width="50" />
               <div class="flex-grow-1">

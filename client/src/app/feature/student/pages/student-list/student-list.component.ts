@@ -39,6 +39,8 @@ export class StudentListComponent extends BaseComponent implements OnInit {
         ]
       }
     ];
+    
+    this.getStudentsList()
   }
 
   getStudentsList(isExport?: boolean) {

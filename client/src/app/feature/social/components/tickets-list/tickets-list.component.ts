@@ -1,11 +1,13 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Ticket } from '../../models/ticket.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Lookup } from '../../../shared/enums/lookup.enum';
 import { SocialService } from '../../services/social.service';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { SectionStateStatus } from '../../../shared/enums/section-state-status.enum';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LookupModel } from '../../../shared/models/lookup.model';
+import { Lookup } from '../../../shared/enums/lookup.enum';
 
 @Component({
   selector: 'app-tickets-list',
@@ -27,7 +29,9 @@ export class TicketsListComponent extends BaseComponent implements OnInit, OnCha
   constructor(
     private fb: FormBuilder,
     private socialService: SocialService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     super();
     this.userId = this.auth.currentUser$.value.user?._id || '';
@@ -49,7 +53,7 @@ export class TicketsListComponent extends BaseComponent implements OnInit, OnCha
   }
 
   getTimeAgo(Ticket: Ticket): string {
-    const date = Ticket.messages[Ticket.messages.length - 1].dateCreation;
+    const date = Ticket.messages[Ticket.messages.length - 1]?.dateCreation;
     const timeDifference = new Date().getTime() - new Date(date).getTime();
 
     const daysAgo = Math.floor(timeDifference / (1000 * 3600 * 24));
@@ -93,7 +97,20 @@ export class TicketsListComponent extends BaseComponent implements OnInit, OnCha
     }
   }
 
-  onClickOpenNewTicket(sender:Lookup){
+  setParams(params?:{}): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params,
+    });
+  }
+
+  openTicketDetails(ticket: Ticket): void {
+    this.openTicket.emit(ticket)
+    this.setParams({ id: ticket._id })
+  }
+
+  onClickOpenNewTicket(sender:LookupModel){
+    this.setParams({})
     this.openNewTicket.emit(sender)
     this.receiverForm.get('receiver')?.setValue('')
   }

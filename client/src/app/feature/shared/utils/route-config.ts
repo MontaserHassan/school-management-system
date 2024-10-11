@@ -35,6 +35,7 @@ export class RouteConfig<p= void, q= void> {
         }
         return list;
       }, '');
+
       pathFromRoot = `${pathFromRoot}?${queries}`;
     }
 

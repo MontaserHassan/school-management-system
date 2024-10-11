@@ -3,36 +3,48 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Ticket } from '../../models/ticket.model';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { SocialService } from '../../services/social.service';
-import { Lookup } from '../../../shared/models/lookup.model';
+import { LookupModel } from '../../../shared/models/lookup.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-box',
   templateUrl: './ticket-box.component.html',
   styleUrls: ['./ticket-box.component.scss']
 })
-export class TicketBoxComponent extends BaseComponent implements OnChanges {
+export class TicketBoxComponent extends BaseComponent implements OnInit, OnChanges {
   @ViewChild('messageList') messageList!: ElementRef;
   chatData!:Ticket;
   userId!: string;
   newMessage: string = '';
-  @Input() selectedTicket!: Ticket;
+  selectedTicketId!: string;
+  GetMessages: boolean = true;
   @Output() onOpenNewTicket = new EventEmitter();
-  @Input() sender!: Lookup;
+  @Input() sender!: LookupModel;
 
   constructor(
     private auth:AuthService,
-    private socialService:SocialService
+    private socialService:SocialService,
+    private activeRoute:ActivatedRoute,
+    private router: Router,
   ) {
     super();
     this.userId = this.auth.currentUser$.value.user?._id || '';
   }
 
+  ngOnInit() {
+    this.activeRoute.queryParams.subscribe(params => {
+      this.selectedTicketId = params?.['id']
+      if (this.selectedTicketId && this.GetMessages) {
+        this.getTicketById(this.selectedTicketId);
+      }
+
+      if(!this.GetMessages) {
+        this.GetMessages = true
+      }
+    })
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-
-    if (changes?.['selectedTicket'] && changes['selectedTicket'].currentValue) {
-      this.getTicketById(this.selectedTicket._id || "");
-    }
-
     if (changes?.['sender'] && changes['sender'].currentValue) {
       this.chatData = {
         _id: '',
@@ -74,7 +86,7 @@ export class TicketBoxComponent extends BaseComponent implements OnChanges {
   }
 
   sendMessage() {
-    if (!this.selectedTicket && !this.chatData?._id ) {
+    if (!this.selectedTicketId && !this.chatData._id) {
       this.openNewTicket();
       return;
     }
@@ -82,7 +94,7 @@ export class TicketBoxComponent extends BaseComponent implements OnChanges {
     if (this.newMessage.trim()) {
       const body ={
         message:this.newMessage.trim(),
-        ticketId:this.selectedTicket?._id||""
+        ticketId:this.chatData._id || ""
       }
       this.load(
         this.socialService.sendMessage(body)
@@ -90,17 +102,26 @@ export class TicketBoxComponent extends BaseComponent implements OnChanges {
         this.newMessage = '';
         this.chatData = res
         this.scrollToBottom();
+        this.onOpenNewTicket.emit(res)
       })
     }
+  }
+
+  setParams(params?:{}): void {
+    this.router.navigate([], {
+      relativeTo: this.activeRoute,
+      queryParams: params,
+    });
   }
 
   openNewTicket() {
     this.load(
       this.socialService.addTicket({receiver: this.sender?.value || ''})
     ).subscribe((res) => {
-      this.selectedTicket = res;
+      this.GetMessages = false;
+      this.setParams({ id: res._id })
+
       this.chatData = res;
-      this.onOpenNewTicket.emit(res)
       if (this.newMessage.trim()) {
         this.sendMessage();
       }
@@ -112,7 +133,6 @@ export class TicketBoxComponent extends BaseComponent implements OnChanges {
       this.socialService.getTicketById(id)
     ).subscribe((res) => {
       this.chatData = res;
-      this.onOpenNewTicket.emit(res)
       this.scrollToBottom();
     })
   }

@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class Lookup  {
+export class LookupModel  {
   @Expose() label!: string;
   @Expose() value!: string;
 }

@@ -45,6 +45,8 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
         ]
       }
     ];
+
+    this.getClassRoomList();
   }
 
   getClassRoomList(isExport?:Boolean): void {
