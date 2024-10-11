@@ -3,6 +3,7 @@ import { Ticket } from '../../models/ticket.model';
 import { LayoutService } from '../../../shared/services/general/layout.service';
 import { ScreenSizes } from '../../../shared/enums/screen-sizes.enum';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
+import { Lookup } from '../../../shared/models/lookup.model';
 
 @Component({
   selector: 'app-ticket',
@@ -14,6 +15,9 @@ export class TicketComponent implements OnInit {
   size!: number;
   sidebarVisible: boolean = false;
 
+  selectedTicket!: Ticket;
+  sender!: Lookup;
+  newTicket!: Ticket;
   protected ScreenSizes = ScreenSizes
 
   constructor(private LayoutService:LayoutService ) {  }
@@ -23,5 +27,17 @@ export class TicketComponent implements OnInit {
     this.LayoutService.currentScreenWidth$.subscribe((size) => {
       this.size = size
     });
+  }
+
+  openTicket(ticket: Ticket) {
+    this.selectedTicket = {...ticket};
+
+  }
+  openNewTicket(sender: Lookup) {
+    this.sender = {...sender};
+  }
+
+  onOpenNewTicket($event: Ticket) {
+    this.newTicket = $event;
   }
 }

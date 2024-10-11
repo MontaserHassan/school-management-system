@@ -32,11 +32,11 @@ export class SocialService {
     )
   }
 
-  sendMessages(body: {
+  sendMessage(body: {
     ticketId: string,
     message: string,
   }): Observable<Ticket> {
-    return this.baseAPI.post(ApiConstant.SEND_MESSAGE, body).pipe(
+    return this.baseAPI.patch(ApiConstant.SEND_MESSAGE, body).pipe(
       map((res) => this.mapper.fromJson(Ticket, res.data.ticket))
     )
   }

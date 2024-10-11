@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
 export class Lookup  {
-  @Expose() _id!: number;
+  @Expose() label!: string;
   @Expose() value!: string;
 }

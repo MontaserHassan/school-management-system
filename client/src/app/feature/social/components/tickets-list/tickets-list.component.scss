@@ -4,14 +4,19 @@
     height: 100%;
   }
   ::ng-deep .p-card-body{
-    height: 100%;
-    padding: 6px;
+    height: 73%;
+    padding:6px;
+    padding-top: 0;
   }
   ::ng-deep .p-card-content{
     height: 100%;
-    padding: 10px;
-    overflow-y: auto;
+    padding:0 10px;
   }
+}
+
+.list-container{
+  height: 100%;
+  overflow-y: auto;
 }
 
 .read{
