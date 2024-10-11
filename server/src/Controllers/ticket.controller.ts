@@ -84,7 +84,7 @@ const sendMessage = async (req: Request, res: Response, next: NextFunction) => {
         if (!isSender || ![isTicket.userOne.userId, isTicket.userTwo.userId].includes(String(userId))) throw new CustomError(errorTicketMessage.WRONG_SENDER, 404, "user");
         const receiverId = isTicket.userOne.userId === userId ? isTicket.userTwo.userId : isTicket.userOne.userId;
         const isReceiver = await userService.getById(receiverId);
-        const newMessage = await ticketService.addNewMessageById(ticketId, { sender: { senderId: isSender._id, senderName: isSender.userName }, receiver: { receiverId: isReceiver._id, receiverName: isReceiver.userName }, message: message, }, String(isReceiver._id));
+        const newMessage = await ticketService.addNewMessageById(ticketId, { sender: { senderId: isSender._id, senderName: isSender.userName }, receiver: { receiverId: isReceiver._id, receiverName: isReceiver.userName }, message: message, dateCreation: new Date() }, String(isReceiver._id));
         if (!newMessage) throw new CustomError(errorTicketMessage.DOES_NOT_ADD_MESSAGE, 404, "message");
         await notificationService.createNotification(String(isReceiver._id), isReceiver.schoolId, 'New Message', `Hi ${isReceiver.userName}, You have a new message from ${isSender.userName}, check it`, { isTicket: true, ticketId: isTicket._id });
         const response: IResponse = {
