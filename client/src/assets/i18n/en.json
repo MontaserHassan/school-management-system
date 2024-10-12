@@ -283,5 +283,33 @@
   },
   "connectionBroken": "Connection was broken while loading",
   "tryAgain": "Try Again",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "ticket": {
+    "typeMessage": "Type a message",
+    "sendMessage": "Send Message",
+    "noMessages": "No messages available.",
+    "header": "Tickets",
+    "startNewTicket": "Start New Ticket With:",
+    "noTickets": "No Tickets yet",
+    "justNow": "Just now",
+    "receiver": "Receiver",
+  },
+  "email": {
+    "receivers": "Receivers",
+    "subject": "Subject",
+    "content": "Content",
+    "sendEmail": "Send Email",
+    "receiversRequired": "Receivers are required",
+    "subjectRequired": "Subject is required",
+    "contentRequired": "Content is required",
+    "emailSubject":"Email Subject",
+    "emailContent":"Email Content",
+    "role":{
+      "superAdmin": "super Admin",
+      "teacher": "Teacher",
+      "parent": "Parent",
+      "director": "Director",
+      "all": "All"
+    }
+  }
 }

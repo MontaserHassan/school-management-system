@@ -3,17 +3,25 @@
     <p-card>
       <ng-template pTemplate="header">
         <div class="d-flex flex-column p-3 pb-0">
-          <h5>Tickets</h5>
+          <h5>{{ 'ticket.header' | translate }}</h5>
           <div [formGroup]="receiverForm" class="row g-2">
             <div class="col-12">
-              <label for="receiver" class="form-label">Start New Ticket With: </label>
-              <app-lazy-dropdown  for="receiver" [lookup]="Lookup.AllUsers" formControlName="receiver"></app-lazy-dropdown>
+              <label for="receiver" class="form-label">{{ 'ticket.startNewTicket' | translate }}</label> <!-- Use wrapped translation key -->
+              <app-lazy-dropdown for="receiver" [lookup]="Lookup.AllUsers" [placeholder]="'ticket.receiver' | translate" formControlName="receiver"></app-lazy-dropdown>
             </div>
-            <button pButton type="button" icon="pi pi-send" class="col-12" [disabled]="receiverForm.invalid" (click)="onClickOpenNewTicket(receiverForm.get('receiver')?.value)"></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-send"
+              class="col-12"
+              [disabled]="receiverForm.invalid"
+              (click)="onClickOpenNewTicket(receiverForm.get('receiver')?.value)"
+            ></button>
           </div>
           <p-divider></p-divider>
         </div>
       </ng-template>
+
       <ng-template pTemplate="content">
         <div *ngIf="tickets?.length; else noTickets" class="list-container" #scrollContainer (scroll)="onScroll()">
           <div *ngFor="let ticket of tickets" class="card mb-3 ticket-card" (click)="openTicketDetails(ticket)">
@@ -40,13 +48,10 @@
     </p-card>
   </div>
 
-
-
   <ng-template #noTickets>
     <div class="no-Tickets">
       <i class="pi pi-info-circle"></i>
-      <p>No Tickets yet</p>
+      <p>{{ 'ticket.noTickets' | translate }}</p>
     </div>
   </ng-template>
-
 </app-state-section>

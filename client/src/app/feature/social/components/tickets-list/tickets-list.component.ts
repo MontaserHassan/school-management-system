@@ -72,7 +72,7 @@ export class TicketsListComponent extends BaseComponent implements OnInit, OnCha
       return `${minutesAgo}m`;
     }
 
-    return 'Just now';
+    return this.translate('ticket.justNow');
   }
 
   getTicketsList() {
