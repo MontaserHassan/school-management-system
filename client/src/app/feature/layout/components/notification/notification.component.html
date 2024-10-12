@@ -1,13 +1,14 @@
 <div class="menubar-custom">
-  <p-button icon="pi pi-bell" severity="secondary"  [rounded]="true" [text]="true" (click)="toggleNotifications($event)" />
-  <p-badge *ngIf="unreadCount > 0" value="{{ unreadCount }}" severity="danger" styleClass="ml-2 notification-badge"></p-badge>
+  <p-button icon="pi pi-bell" severity="secondary" [rounded]="true" [text]="true" (click)="toggleNotifications($event)"/>
+  <p-badge *ngIf="unreadCount > 0" [value]="unreadCount" severity="danger" styleClass="ml-2 notification-badge"></p-badge>
 </div>
 
 <p-overlayPanel #notificationPanel [style]="{width: '350px', maxHeight: '600px', overflow:'auto'}">
   <div *ngIf="notifications.length > 0; else noNotifications">
     <div class="notification-header">
-      <h3>Notifications</h3>
-      <button pButton label="Mark all as read" class="p-button-sm p-button-text" [disabled]="!unreadCount" (click)="markAllAsRead()"></button>
+      <h3>{{ 'notifications.title' | translate }}</h3>
+      <button pButton [label]=" 'notifications.markAllRead' | translate" class="p-button-sm p-button-text"
+        [disabled]="!unreadCount" (click)="markAllAsRead()"></button>
     </div>
     <p-divider styleClass="mb-3 mt-1"></p-divider>
 
@@ -27,7 +28,7 @@
   <ng-template #noNotifications>
     <div class="no-notifications">
       <i class="pi pi-info-circle"></i>
-      <p>No new notifications</p>
+      <p>{{ 'notifications.noNew' | translate }}</p>
     </div>
   </ng-template>
 </p-overlayPanel>

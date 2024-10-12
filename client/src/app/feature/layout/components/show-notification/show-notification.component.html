@@ -1,5 +1,5 @@
 <app-state-section [state]="sectionState">
-  <h2 mat-dialog-title>Notification Details</h2>
+  <h2 mat-dialog-title>{{ 'notifications.details.title' | translate }}</h2>
   <mat-dialog-content>
     <div class="d-flex flex-column gap-2">
       <div>
@@ -22,6 +22,6 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button mat-dialog-close>{{ 'notifications.details.close' | translate }}</button>
   </mat-dialog-actions>
 </app-state-section>

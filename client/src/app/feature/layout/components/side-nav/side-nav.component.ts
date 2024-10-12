@@ -3,44 +3,54 @@ import { MenuItem } from 'primeng/api';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { Router } from '@angular/router';
 import { UserRoleService } from '../../../shared/services/auth/user-role.service';
-import { AuthService } from '../../../shared/services/auth/auth.service';
 import { User } from '../../../shared/models/user.model';
 import { RolesConstants } from '../../../shared/config/roles-constants';
+import { BaseComponent } from '../../../shared/component/base-component/base.component';
 
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss']
 })
-export class SideNavComponent {
+export class SideNavComponent extends BaseComponent implements OnInit {
   items!: MenuItem[];
-  user!: User
+  user!: User;
 
-  constructor(private router: Router, private userRoleService: UserRoleService) { }
+  constructor(private router: Router, private userRoleService: UserRoleService) {
+    super();
+  }
 
   ngOnInit() {
+    this.generateMenu();
+  }
+
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+
+  generateMenu() {
     this.items = [
       {
-        label: 'Users',
+        label: this.translate('Users'),
         icon: 'pi pi-user',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_USER),
         items: [
           {
-            label: 'Users List',
+            label: this.translate('UsersList'),
             icon: 'pi pi-list',
             command: () => {
               this.router.navigate([RoutesUtil.UserList.url()]);
             }
           },
           {
-            label: 'Add User',
+            label: this.translate('AddUser'),
             icon: 'pi pi-user-plus',
             command: () => {
               this.router.navigate([RoutesUtil.AddUser.url()]);
             }
           },
           {
-            label: 'Add Parent',
+            label: this.translate('AddParent'),
             icon: 'pi pi-user-plus',
             command: () => {
               this.router.navigate([RoutesUtil.AddParent.url()]);
@@ -49,19 +59,19 @@ export class SideNavComponent {
         ]
       },
       {
-        label: 'Subjects',
+        label: this.translate('Subjects'),
         icon: 'pi pi-book',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_SUBJECT),
         items: [
           {
-            label: 'Subjects List',
+            label: this.translate('SubjectsList'),
             icon: 'pi pi-list',
             command: () => {
               this.router.navigate([RoutesUtil.SubjectList.url()]);
             }
           },
           {
-            label: 'Add Subject',
+            label: this.translate('AddSubject'),
             icon: 'pi pi-file-plus',
             command: () => {
               this.router.navigate([RoutesUtil.AddSubject.url()]);
@@ -70,19 +80,19 @@ export class SideNavComponent {
         ]
       },
       {
-        label: 'Class Rooms',
+        label: this.translate('ClassRooms'),
         icon: 'pi pi-users',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_List_CLASS_ROOM),
         items: [
           {
-            label: 'Class Rooms List',
+            label: this.translate('ClassRoomsList'),
             icon: 'pi pi-list',
             command: () => {
               this.router.navigate([RoutesUtil.ClassRoomList.url()]);
             }
           },
           {
-            label: 'Add Class Room',
+            label: this.translate('AddClassRoom'),
             icon: 'pi pi-thumbtack',
             visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_CLASS_ROOM),
             command: () => {
@@ -92,7 +102,7 @@ export class SideNavComponent {
         ]
       },
       {
-        label: 'topics',
+        label: this.translate('Topics'),
         icon: 'pi pi-clipboard',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_TOPIC),
         command: () => {
@@ -100,19 +110,19 @@ export class SideNavComponent {
         }
       },
       {
-        label: 'Students',
+        label: this.translate('Students'),
         icon: 'pi pi-graduation-cap',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_List_STUDENT),
         items: [
           {
-            label: 'Students List',
+            label: this.translate('StudentsList'),
             icon: 'pi pi-list',
             command: () => {
               this.router.navigate([RoutesUtil.StudentList.url()]);
             }
           },
           {
-            label: 'Add Student',
+            label: this.translate('AddStudent'),
             icon: 'pi pi-plus',
             visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_STUDENT),
             command: () => {
@@ -122,19 +132,19 @@ export class SideNavComponent {
         ]
       },
       {
-        label: 'Schools',
+        label: this.translate('Schools'),
         icon: 'pi pi-building-columns',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_SCHOOL),
         items: [
           {
-            label: 'Schools List',
+            label: this.translate('SchoolsList'),
             icon: 'pi pi-list',
             command: () => {
               this.router.navigate([RoutesUtil.SchoolList.url()]);
             }
           },
           {
-            label: 'Add School',
+            label: this.translate('AddSchool'),
             icon: 'pi pi-plus',
             command: () => {
               this.router.navigate([RoutesUtil.AddSchool.url()]);
@@ -143,7 +153,7 @@ export class SideNavComponent {
         ]
       },
       {
-        label: 'Invoices',
+        label: this.translate('Invoices'),
         icon: 'pi pi-receipt',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_INVOICE_SCHOOL),
         command: () => {
@@ -151,7 +161,7 @@ export class SideNavComponent {
         }
       },
       {
-        label: 'Invoices',
+        label: this.translate('Invoices'),
         icon: 'pi pi-receipt',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_INVOICE_STUDENT),
         command: () => {
@@ -159,7 +169,7 @@ export class SideNavComponent {
         }
       },
       {
-        label: 'Send Email',
+        label: this.translate('SendEmail'),
         icon: 'pi pi-envelope',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.SEND_EMAILS),
         command: () => {
@@ -167,7 +177,7 @@ export class SideNavComponent {
         }
       },
       {
-        label: 'Tickets',
+        label: this.translate('Tickets'),
         icon: 'pi pi-comments',
         command: () => {
           this.router.navigate([RoutesUtil.SocialTicket.url()]);

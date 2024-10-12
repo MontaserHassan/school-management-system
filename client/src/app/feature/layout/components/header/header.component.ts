@@ -39,10 +39,14 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     this.generateMenuItems()
   }
 
+  protected override onLanguageChange(): void {
+    this.generateMenuItems();
+  }
+
   generateMenuItems() {
     this.items = [
       {
-        label: 'logout' ,
+        label: this.translate('logout') ,
         icon: 'pi pi-sign-out',
         command: () => {
           this.logout();

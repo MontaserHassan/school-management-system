@@ -188,6 +188,15 @@
     "studentName": "Student Name",
     "parentName": "Parent Name",
     "noInvoicesFound": "No invoices found."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "noNew": "No new notifications",
+    "details": {
+      "title": "Notification Details",
+      "close": "Close"
+    }
   }
   ,
   "actions": "Actions",
@@ -196,5 +205,26 @@
   "removeClassroom": "Remove Classroom",
   "viewStudent": "View Student",
   "leave": "Leave",
-  "export": "Export"
+  "menu":"Menu",
+  "export": "Export",
+  "logout": "Logout",
+  "Users": "Users",
+  "UsersList": "Users List",
+  "AddUser": "Add User",
+  "AddParent": "Add Parent",
+  "Subjects": "Subjects",
+  "SubjectsList": "Subjects List",
+  "AddSubject": "Add Subject",
+  "ClassRooms": "Class Rooms",
+  "ClassRoomsList": "Class Rooms List",
+  "AddClassRoom": "Add Class Room",
+  "Topics": "Topics",
+  "Students": "Students",
+  "StudentsList": "Students List",
+  "AddStudent": "Add Student",
+  "SchoolsList": "Schools List",
+  "AddSchool": "Add School",
+  "Invoices": "Invoices",
+  "SendEmail": "Send Email",
+  "Tickets": "Tickets"
 }
