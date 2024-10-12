@@ -22,22 +22,29 @@ export class SubjectListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getSubjects()
+    this.generateMenu()
+  }
+
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+  generateMenu() {
     this.subjectAction = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: [
           {
-            label: 'view Subject',
+            label: this.translate('viewSubject'),
             icon: 'pi pi-book',
           },
           {
-            label: 'edit',
+            label: this.translate('edit'),
             icon: 'pi pi-pencil'
           },
         ]
       }
     ];
-    this.getSubjects()
   }
 
   getSubjects() {

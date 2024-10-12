@@ -1,23 +1,23 @@
-<p-card header="Add New Subject">
+<p-card [header]="'subject.addNewSubject' | translate">
   <app-state-section [state]="sectionState">
     <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
       <div class="p-fluid">
         <div class="my-3">
-          <label for="subjectName">Subject Name</label>
+          <label for="subjectName">{{ 'subject.subjectName' | translate }}</label>
           <input id="subjectName" type="text" pInputText formControlName="subjectName" />
           <small *ngIf="subjectForm.controls['subjectName'].invalid && subjectForm.controls['subjectName'].touched"
-            class="p-error">Subject name is required</small>
+            class="p-error">{{ 'subject.subjectNameRequired' | translate }}</small>
         </div>
 
         <div class="my-3">
-          <label for="courseTime">Course Time (in Minutes)</label>
+          <label for="courseTime">{{ 'subject.courseTime' | translate }}</label>
           <input id="courseTime" type="number" pInputText formControlName="courseTime" />
           <small *ngIf="subjectForm.controls['courseTime'].invalid && subjectForm.controls['courseTime'].touched"
-            class="p-error">Course time is required and should be a valid number</small>
+            class="p-error">{{ 'subject.courseTimeRequired' | translate }}</small>
         </div>
 
         <div class="my-3">
-          <button pButton type="submit" label="Add Subject" class="p-button-primary"
+          <button pButton type="submit" [label]="'subject.addSubject' | translate" class="p-button-primary"
             [disabled]="subjectForm.invalid"></button>
         </div>
       </div>

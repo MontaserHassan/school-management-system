@@ -24,20 +24,25 @@ export class SubjectViewComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.id =  this.activatedRoute.snapshot.params?.['id'];
     this.getSubjectById()
+  }
 
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+
+  generateMenu() {
     this.subjectAction = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: [
           {
-            label: 'edit',
+            label: this.translate('edit'),
             icon: 'pi pi-pencil'
           },
         ]
       }
     ];
   }
-
   getSubjectById() {
     this.load(this.subjectService.getSubjectById(this.id || ""), { isLoadingTransparent: true }).subscribe(subject => {
       this.subject = subject;
