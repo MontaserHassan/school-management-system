@@ -56,5 +56,6 @@ export class ChangeLanguageButtonComponent implements OnInit {
     this.translate.use(language);
     this.savedLang = language;
     localStorage.setItem(StorageConstant.LANGUAGE, language);
+    window.location.reload();
   }
 }

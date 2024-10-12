@@ -271,6 +271,17 @@
     },
     "adminName": "Admin Name",
     "subscriptionInfo": "Subscription Info",
-    "subscriptionEndDate": "Subscription End Date"
-  }
+    "subscriptionEndDate": "Subscription End Date",
+    "addStudents": "Add Students",
+    "room": "Room",
+    "enterRoomName": "Enter Room name",
+    "roomRequired": "Room Name is required",
+    "student": "Student",
+    "enterStudentName": "Enter Student name",
+    "studentRequired": "Student is required",
+    "save": "Save"
+  },
+  "connectionBroken": "Connection was broken while loading",
+  "tryAgain": "Try Again",
+  "loading": "Loading..."
 }
