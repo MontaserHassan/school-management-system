@@ -2,43 +2,44 @@
   <app-state-section [state]="sectionState">
     <p-card>
       <div class="w-100 d-flex justify-content-between align-items-center mb-3">
-        <span class="fw-bold">{{studentProfile.studentName}}'s Profile</span>
+        <span class="fw-bold">{{ studentProfile.studentName }}'s {{ 'student.profile' | translate }}</span>
         <div *grantAccess="RolesConstants.EDIT_STUDENT">
           <p-menu #menu [model]="studentAction" appendTo="body" [popup]="true">
             <ng-template pTemplate="item" let-item>
               <div class="p-menuitem-link" (click)="handleClick(item.label)">
                 <span [class]="item.icon"></span>
-                <span class="mx-2">{{ item.label }}</span>
+                <span class="mx-2">{{ item.label | translate }}</span>
               </div>
             </ng-template>
           </p-menu>
-          <p-button (onClick)="menu.toggle($event)" text label="Settings" icon="pi pi-spin pi-cog" />
+          <p-button (onClick)="menu.toggle($event)" text [label]="'student.settings' | translate" icon="pi pi-spin pi-cog" />
         </div>
       </div>
 
       <div class="card-header">
         <div class="d-flex justify-content-between">
-          <span>Code: {{ studentProfile.studentCode }}</span>
-          <div class="d-flex align-items-center gap-2">Classroom:
+          <span>{{ 'student.code' | translate }}: {{ studentProfile.studentCode }}</span>
+          <div class="d-flex align-items-center gap-2">{{ 'student.classroom' | translate }}:
             <span *ngIf="studentProfile.classRoom">{{ studentProfile.classRoom }}</span>
             <div *grantAccess="RolesConstants.ADD_STUDENT_TO_CLASSROOM">
-              <p-button *ngIf="!studentProfile.classRoom" label="Add To Classroom" [rounded]="true" text
+              <p-button *ngIf="!studentProfile.classRoom" [label]="'student.addToClassroom' | translate" [rounded]="true" text
                 (click)="handleAddStudentToClassRoom()" />
             </div>
           </div>
-          <span>Group: {{ studentProfile.group }}</span>
-          <span>Cost: {{ studentProfile.studentCost }} {{ studentProfile.currencyOfCost }}</span>
+          <span>{{ 'student.group' | translate }}: {{ studentProfile.group }}</span>
+          <span>{{ 'student.cost' | translate }}: {{ studentProfile.studentCost }} {{ studentProfile.currencyOfCost }}</span>
         </div>
       </div>
 
       <div class="card-body">
         <p-tabView (onChange)="onTabChange($event)">
-          <p-tabPanel header="Subjects">
+          <!-- Subjects Tab -->
+          <p-tabPanel [header]="'student.subjects' | translate">
             <p-table [value]="studentProfile.subjects">
               <ng-template pTemplate="header">
                 <tr>
-                  <th>Subject Name</th>
-                  <th>Progress Status</th>
+                  <th>{{ 'student.subjectName' | translate }}</th>
+                  <th>{{ 'student.progressStatusLabel' | translate }}</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-subject>
@@ -53,36 +54,33 @@
             </p-table>
           </p-tabPanel>
 
-          <p-tabPanel header="Main Topics">
+          <!-- Main Topics Tab -->
+          <p-tabPanel [header]="'student.mainTopics' | translate">
             <div class="d-flex justify-content-end">
               <span class="d-flex gap-2">
-                <small><strong>Degrees:</strong></small>
-                <p-tag severity="secondary">Not Completed</p-tag>
-                <p-tag>Blue</p-tag>
-                <p-tag severity="success">Green</p-tag>
-                <p-tag severity="warning">yellow</p-tag>
+                <small><strong>{{ 'student.degrees' | translate }}:</strong></small>
+                <p-tag severity="secondary">{{ 'student.notCompleted' | translate }}</p-tag>
+                <p-tag> {{ 'student.Blue' | translate }}</p-tag>
+                <p-tag severity="success">{{ 'student.Green' | translate }}</p-tag>
+                <p-tag severity="warning">{{ 'student.Yellow' | translate }}</p-tag>
               </span>
             </div>
             <p-table [value]="studentProfile.mainTopics">
               <ng-template pTemplate="header">
                 <tr>
-                  <th>Topic Name</th>
-                  <th>Degree</th>
+                  <th>{{ 'student.topicName' | translate }}</th>
+                  <th>{{ 'student.degree' | translate }}</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-topic>
                 <tr>
-                  <td>
-                    <p-chip class="mx-1" [label]="topic.topicName"></p-chip>
-                  </td>
+                  <td><p-chip class="mx-1" [label]="topic.topicName"></p-chip></td>
                   <td>
                     <div class="d-flex gap-2 align-items-center">
-                      <p-tag [severity]="setDegreeColor(topic?.degree || 'secondary')">{{ topic.degree || "Not
-                        Completed"
-                        }}</p-tag>
-                      <p-speedDial *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [model]="degreeOption" direction="right" appendTo="body" transitionDelay="80"
-                        size="small" showIcon="pi pi-ellipsis-v" hideIcon="pi pi-times"
-                        buttonClassName="p-button-outlined" class="custom-speeddial">
+                      <p-tag [severity]="setDegreeColor(topic?.degree || 'secondary')">{{ topic.degree || ('student.notCompleted' | translate) }}</p-tag>
+                      <p-speedDial *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [model]="degreeOption" direction="right" appendTo="body"
+                        transitionDelay="80" size="small" showIcon="pi pi-ellipsis-v" hideIcon="pi pi-times" buttonClassName="p-button-outlined"
+                        class="custom-speeddial">
                         <ng-template let-item pTemplate="item">
                           <div class="p-speeddial-action cursor-pointer" (click)="updateDegree(item.label,topic)">
                             <i class="p-element " [class]="item.icon"></i>
@@ -96,14 +94,15 @@
             </p-table>
           </p-tabPanel>
 
-          <p-tabPanel header="Attendance">
-            <app-attendance-calender #attendanceCalendar *ngIf="studentProfile?.attendance"
-              [data]="studentProfile"></app-attendance-calender>
+          <!-- Attendance Tab -->
+          <p-tabPanel [header]="'student.attendance' | translate">
+            <app-attendance-calender #attendanceCalendar *ngIf="studentProfile?.attendance" [data]="studentProfile"></app-attendance-calender>
           </p-tabPanel>
 
-          <p-tabPanel header="Comments">
+          <!-- Comments Tab -->
+          <p-tabPanel [header]="'student.comments' | translate">
             <div class="d-flex justify-content-end mb-3" *grantAccess="RolesConstants.ADD_ATTENDANCE_AND_COMMENT">
-              <button pButton type="button" label="Add Comment" (click)="openAddCommentDialog()" class="mt-2"></button>
+              <button pButton type="button" [label]="'student.addComment' | translate" (click)="openAddCommentDialog()" class="mt-2"></button>
             </div>
             <div class="comment">
               <p-timeline [value]="studentProfile.comments" align="left" layout="vertical">
@@ -128,24 +127,23 @@
               </p-timeline>
             </div>
 
-            <p-dialog header="Comment Details" [(visible)]="displayDialog" [modal]="true" [style]="{width: '450px'}"
-              (onHide)="onDialogHide()">
+            <!-- Comment Details Dialog -->
+            <p-dialog [header]="'student.commentDetails' | translate" [(visible)]="displayDialog" [modal]="true" [style]="{width: '450px'}" (onHide)="onDialogHide()">
               <div *ngIf="selectedComment">
                 <div>
-                  <p><strong>Comment:</strong> {{ selectedComment.comment }}</p>
-                  <p *ngIf="selectedComment.media"><strong>Media:</strong></p>
-                  <img *ngIf="selectedComment.media" [src]="selectedComment.media" alt="Comment Media"
-                    class="img-fluid mb-2" width="100%" height="400px" />
-                  <p><strong>Date:</strong> {{ selectedComment.dateOfComment | date: 'medium' }}</p>
+                  <p><strong>{{ 'student.comment' | translate }}:</strong> {{ selectedComment.comment }}</p>
+                  <p *ngIf="selectedComment.media"><strong>{{ 'student.media' | translate }}:</strong></p>
+                  <img *ngIf="selectedComment.media" [src]="selectedComment.media" alt="Comment Media" class="img-fluid mb-2" width="100%" height="400px" />
+                  <p><strong>{{ 'student.date' | translate }}:</strong> {{ selectedComment.dateOfComment | date: 'medium' }}</p>
                 </div>
               </div>
             </p-dialog>
           </p-tabPanel>
 
-          <p-tabPanel header="Progress History">
+          <!-- Progress History Tab -->
+          <p-tabPanel [header]="'student.progressHistory' | translate">
             <div class="progress">
-              <p-timeline [value]="studentProfile.progressHistory" align="alternate" layout="vertical"
-                class="custom-timeline">
+              <p-timeline [value]="studentProfile.progressHistory" align="alternate" layout="vertical" class="custom-timeline">
                 <ng-template let-progress pTemplate="content">
                   <div class="timeline-event p-card shadow-sm border-0">
                     <div class="timeline-header d-flex justify-content-between align-items-center">
@@ -157,9 +155,9 @@
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item py-1" *ngFor="let topic of progress.topics">
                           <div class="d-flex justify-content-between">
-                            <span>Topic: <strong>{{ topic.topicName }}</strong></span>
+                            <span>{{ 'student.topic' | translate }}: <strong>{{ topic.topicName }}</strong></span>
                             <span>
-                              <p-tag [severity]="setDegreeColor(topic.degree)">{{topic.degree}}</p-tag>
+                              <p-tag [severity]="setDegreeColor(topic.degree)">{{ topic.degree }}</p-tag>
                             </span>
                           </div>
                         </li>
@@ -167,9 +165,9 @@
                     </div>
                     <hr />
                     <div class="timeline-footer">
-                      <small class="text-muted">Created At: {{ progress.createdAt | date:'short' }}</small>
+                      <small class="text-muted">{{ 'student.createdAt' | translate }}: {{ progress.createdAt | date:'short' }}</small>
                       <br />
-                      <small class="text-muted">Updated At: {{ progress.updatedAt | date:'short' }}</small>
+                      <small class="text-muted">{{ 'student.updatedAt' | translate }}: {{ progress.updatedAt | date:'short' }}</small>
                     </div>
                   </div>
                 </ng-template>

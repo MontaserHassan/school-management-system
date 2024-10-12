@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Lookup } from '../../../shared/enums/lookup.enum';
 import { StudentService } from '../../services/student.service';
+import { AttendStatus } from '../../../shared/config/drop-down-value.constant';
 
 @Component({
   selector: 'app-add-attendance',
@@ -14,24 +15,7 @@ export class AddAttendanceComponent extends BaseComponent implements OnInit {
   addAttendance!: FormGroup;
 
   protected Lookup = Lookup;
-  attendStatus =[
-    {
-        "label": "present",
-        "value": "SchoolSystem-5-1"
-    },
-    {
-        "label": "absent",
-        "value": "SchoolSystem-5-2"
-    },
-    {
-        "label": "late",
-        "value": "SchoolSystem-5-3"
-    },
-    {
-        "label": "excused",
-        "value": "SchoolSystem-5-4"
-    }
-  ]
+  protected attendStatus = AttendStatus
 
   constructor(
     public dialogRef: MatDialogRef<AddAttendanceComponent>,

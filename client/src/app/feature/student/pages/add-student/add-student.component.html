@@ -1,29 +1,29 @@
-<p-card header="Add New Student" class="add-student-card">
+<p-card [header]="'student.addNewStudent' | translate" class="add-student-card">
   <app-state-section [state]="sectionState">
     <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
       <!-- Student Name -->
       <div class="form-group">
-        <label for="studentName">Student Name</label>
-        <input id="studentName" pInputText formControlName="studentName" placeholder="Enter Student Name" />
+        <label for="studentName">{{ 'student.studentNameLabel' | translate }}</label>
+        <input id="studentName" pInputText formControlName="studentName" [placeholder]="'student.enterStudentName' | translate" />
         <div *ngIf="studentForm.controls['studentName'].invalid && studentForm.controls['studentName'].touched"
           class="error mt-1">
-          Student Name is required
+          {{ 'student.studentNameRequired' | translate }}
         </div>
       </div>
 
       <!-- Parent ID -->
       <div class="form-group">
-        <label for="parentId">Parent ID</label>
-        <app-lazy-dropdown id="parentId" [lookup]="lookup.Users" [lookUpExtraParams]="{ role:'parent'}"
-          formControlName="parentId" placeholder="Enter Parent ID"></app-lazy-dropdown>
+        <label for="parentId">{{ 'student.parentIdLabel' | translate }}</label>
+        <app-lazy-dropdown id="parentId" [lookup]="lookup.Users" [lookUpExtraParams]="{ role: 'parent' }"
+          formControlName="parentId" [placeholder]="'student.enterParentId' | translate"></app-lazy-dropdown>
         <div *ngIf="studentForm.controls['parentId'].invalid && studentForm.controls['parentId'].touched"
           class="error mt-1">
-          Parent is Required
+          {{ 'student.parentIdRequired' | translate }}
         </div>
       </div>
 
       <!-- Submit Button -->
-      <button pButton type="submit" class="w-100" label="Add Student" [disabled]="studentForm.invalid"></button>
+      <button pButton type="submit" class="w-100" [label]="'student.addStudentButton' | translate" [disabled]="studentForm.invalid"></button>
     </form>
   </app-state-section>
 </p-card>

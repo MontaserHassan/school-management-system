@@ -119,12 +119,12 @@ export class AttendanceCalenderComponent extends BaseComponent implements OnInit
       eventDate.getDate() === today.getDate();
 
     if(!this.userRoleService.isUserHasRoles(RolesConstants.ADD_ATTENDANCE_AND_COMMENT)){
-      this.showSuccessMessage('You are not allowed to add attendance');
+      this.showSuccessMessage('student.youAreNotAllowToEdit');
       return
     }
 
     if (!isToday ) {
-      this.showSuccessMessage('You can only add attendance for today');
+      this.showSuccessMessage('student.youCanOnlyAdd');
       return
     }
 

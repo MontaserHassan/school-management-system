@@ -53,3 +53,52 @@ export const SubscriptionStatus = [
     label: "expired"
   }
 ]
+
+export const AttendStatus = [
+  {
+    label: "present",
+    value: "SchoolSystem-5-1"
+  },
+  {
+    label: "absent",
+    value: "SchoolSystem-5-2"
+  },
+  {
+    label: "late",
+    value: "SchoolSystem-5-3"
+  },
+  {
+    label: "excused",
+    value: "SchoolSystem-5-4"
+  }
+]
+
+export const ProgressStatus = [
+  {
+    _id: "SchoolSystem-3-1",
+    value: "In Progress"
+  },
+  {
+    _id: "SchoolSystem-3-2",
+    value: "Almost Done"
+  },
+  {
+    _id: "SchoolSystem-3-3",
+    value: "Completed"
+  }
+]
+
+export const DegreeStatus = [
+  {
+    _id: "SchoolSystem-4-1",
+    value: "blue"
+  },
+  {
+    _id: "SchoolSystem-4-2",
+    value: "yellow"
+  },
+  {
+    _id: "SchoolSystem-4-3",
+    value: "green"
+  }
+]

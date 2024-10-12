@@ -4,6 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { StudentService } from '../../services/student.service';
 import { RolesConstants } from '../../../shared/config/roles-constants';
+import { ProgressStatus } from '../../../shared/config/drop-down-value.constant';
 
 @Component({
   selector: 'app-subject-action',
@@ -15,24 +16,11 @@ export class SubjectActionComponent extends BaseComponent implements OnInit {
   @Input() studentId!: string
   @Output() updateStudentProfile = new EventEmitter<Student>()
 
-  progressStatus = [
-    {
-      "_id": "SchoolSystem-3-1",
-      "value": "In Progress"
-    },
-    {
-      "_id": "SchoolSystem-3-2",
-      "value": "Almost Done"
-    },
-    {
-      "_id": "SchoolSystem-3-3",
-      "value": "Completed"
-    }
-  ]
+  protected progressStatus = ProgressStatus
 
   protected RolesConstants = RolesConstants
 
-  progressStatusOptions: MenuItem[] = this.progressStatus.map((status) => ({ label: status.value, command: (data: any,) => this.updateProgressStatus(status._id) }));
+  progressStatusOptions: MenuItem[] = this.progressStatus.map((status) => ({ label: this.translate("student.progressStatus."+ status.value), command: (data: any,) => this.updateProgressStatus(status._id) }));
   constructor(
     private studentService: StudentService
   ) {

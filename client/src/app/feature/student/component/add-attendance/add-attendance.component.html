@@ -1,19 +1,19 @@
 <app-state-section [state]="sectionState">
-  <h1 mat-dialog-title>Add Attendance</h1>
+  <h1 mat-dialog-title>{{ 'student.title' | translate }}</h1>
   <div mat-dialog-content>
     <form [formGroup]="addAttendance" class="d-flex flex-column gap-3">
       <div class="field d-flex flex-column gap-2">
-        <label for="status" class="form-label">Attend status</label>
+        <label for="status" class="form-label">{{ 'student.statusLabel' | translate }}</label>
         <app-lazy-dropdown valuePath="id" id="status" [lookup]="Lookup.AttendanceStatus" formControlName="status"
-          placeholder="Enter Status"></app-lazy-dropdown>
+          [placeholder]="'student.enterStatus' | translate"></app-lazy-dropdown>
         <small *ngIf="addAttendance.get('status')?.hasError('required') && addAttendance.get('status')?.touched"
           class="p-error">
-          Attend status is required
+          {{ 'student.statusRequired' | translate }}
         </small>
       </div>
 
       <div class="field d-flex flex-column gap-2">
-        <label for="comment" class="form-label">Comment</label>
+        <label for="comment" class="form-label">{{ 'student.commentLabel' | translate }}</label>
         <textarea class="p-2" id="comment" rows="5" cols="30" pInputTextarea formControlName="comment">
         </textarea>
       </div>
@@ -21,7 +21,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [disabled]="addAttendance.invalid" (click)="onSave()">Save</button>
+    <button mat-button mat-dialog-close>{{ 'student.cancel' | translate }}</button>
+    <button mat-button [disabled]="addAttendance.invalid" (click)="onSave()">{{ 'student.save' | translate }}</button>
   </div>
 </app-state-section>

@@ -12,6 +12,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 import { EditStudentDialogComponent } from '../../component/edit-student-dialog/edit-student-dialog.component';
 import { RolesConstants } from '../../../shared/config/roles-constants';
+import { DegreeStatus } from '../../../shared/config/drop-down-value.constant';
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
@@ -28,20 +29,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
   protected RolesConstants = RolesConstants
 
 
-  degreeStatus = [
-    {
-      "_id": "SchoolSystem-4-1",
-      "value": "blue"
-    },
-    {
-      "_id": "SchoolSystem-4-2",
-      "value": "yellow"
-    },
-    {
-      "_id": "SchoolSystem-4-3",
-      "value": "green"
-    }
-  ]
+  protected degreeStatus = DegreeStatus
 
   degreeOption: MenuItem[] = this.degreeStatus.map((status) => ({ icon: "pi pi-star-fill", label: status._id}));
   id!: string;
@@ -72,17 +60,24 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
         this.getStudentDetails(this.id);
       }
     })
+    this.generateStudentAction()
+  }
 
-     this.studentAction = [
+  protected override onLanguageChange(): void {
+    this.generateStudentAction();
+  }
+
+  generateStudentAction() {
+    this.studentAction = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: [
           {
-            label: 'Edit',
+            label: this.translate('edit'),
             icon: 'pi pi-pencil'
           },
           {
-            label: 'Export',
+            label: this.translate('export'),
             icon: 'pi pi-file-export'
           },
         ]
