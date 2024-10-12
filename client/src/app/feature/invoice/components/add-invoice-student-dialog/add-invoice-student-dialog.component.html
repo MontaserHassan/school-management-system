@@ -1,32 +1,49 @@
 <app-state-section [state]="sectionState">
-  <h2 mat-dialog-title>Add Invoice</h2>
+  <h2 mat-dialog-title>{{ 'invoice.addInvoice' | translate }}</h2>
 
   <mat-dialog-content>
     <form [formGroup]="invoiceForm" class="d-flex flex-column gap-3">
-      <!-- School ID Input -->
+      <!-- Parent ID Input -->
       <div class="field d-flex flex-column gap-2">
-        <label for="parentId" class="form-label">Parent</label>
-        <app-lazy-dropdown for="parentId" [lookup]="Lookup.Users" [lookUpExtraParams]="{role:'parent'}" formControlName="parentId"></app-lazy-dropdown>
+        <label for="parentId" class="form-label">{{ 'invoice.parent' | translate }}</label>
+        <app-lazy-dropdown
+          for="parentId"
+          [lookup]="Lookup.Users"
+          [lookUpExtraParams]="{role: 'parent'}"
+          formControlName="parentId">
+        </app-lazy-dropdown>
         <small *ngIf="invoiceForm.get('parentId')?.hasError('required') && invoiceForm.get('parentId')?.touched"
           class="p-error">
-          Parent is required
+          {{ 'invoice.parentRequired' | translate }}
         </small>
       </div>
 
+      <!-- Student ID Input -->
       <div class="field d-flex flex-column gap-2">
-        <label for="studentId" class="form-label">Student</label>
-        <app-lazy-dropdown for="studentId" [disable]="invoiceForm.get('parentId')?.invalid || false" [lookup]="Lookup.Students" [lookUpExtraParams]="{parent: invoiceForm.get('parentId')?.value.value}" formControlName="studentId"></app-lazy-dropdown>
+        <label for="studentId" class="form-label">{{ 'invoice.student' | translate }}</label>
+        <app-lazy-dropdown
+          for="studentId"
+          [disable]="invoiceForm.get('parentId')?.invalid || false"
+          [lookup]="Lookup.Students"
+          [lookUpExtraParams]="{parent: invoiceForm.get('parentId')?.value?.value}"
+          formControlName="studentId">
+        </app-lazy-dropdown>
         <small *ngIf="invoiceForm.get('studentId')?.hasError('required') && invoiceForm.get('studentId')?.touched"
           class="p-error">
-          Student is required
+          {{ 'invoice.studentRequired' | translate }}
         </small>
       </div>
 
       <!-- File Upload -->
       <div class="field d-flex flex-column gap-2">
-        <label for="media" class="form-label">Attach Media</label>
-        <p-fileUpload name="media" (onSelect)="onSelect($event)" accept="image/*" maxFileSize="1000000"
-          [customUpload]="true" chooseLabel="Select Media" [showUploadButton]="false">
+        <label for="media" class="form-label">{{ 'invoice.attachMedia' | translate }}</label>
+        <p-fileUpload name="media"
+          (onSelect)="onSelect($event)"
+          accept="image/*"
+          maxFileSize="1000000"
+          [customUpload]="true"
+          [chooseLabel]="'invoice.selectMedia' | translate"
+          [showUploadButton]="false">
         </p-fileUpload>
         <small *ngIf="imageError" class="p-error">{{ imageError }}</small>
       </div>
@@ -34,7 +51,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [disabled]="invoiceForm.invalid" (click)="addInvoice()">Add Invoice</button>
+    <button mat-button mat-dialog-close>{{ 'invoice.cancel' | translate }}</button>
+    <button mat-button [disabled]="invoiceForm.invalid" (click)="addInvoice()">{{ 'invoice.addInvoice' | translate }}</button>
   </mat-dialog-actions>
 </app-state-section>

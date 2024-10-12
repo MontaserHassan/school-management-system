@@ -1,12 +1,14 @@
-<h2 mat-dialog-title>Media Preview</h2>
+<h2 mat-dialog-title>{{ 'invoice.previewTitle' | translate }}</h2>
+
 <mat-dialog-content>
   <!-- Display Image -->
   <div *ngIf="data">
-    <img [src]="data" alt="Media Preview" width="100%" />
+    <img [src]="data" alt="{{ 'invoice.previewAltText' | translate }}" width="100%" />
   </div>
   <!-- Add any other media types you want to handle, like videos -->
 </mat-dialog-content>
+
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-  <button mat-button (click)="downloadFile()">Download</button>
+  <button mat-button mat-dialog-close>{{ 'invoice.close' | translate }}</button>
+  <button mat-button (click)="downloadFile()">{{ 'invoice.download' | translate }}</button>
 </mat-dialog-actions>

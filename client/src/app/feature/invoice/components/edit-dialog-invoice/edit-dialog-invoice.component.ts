@@ -41,7 +41,7 @@ export class EditDialogInvoiceComponent extends BaseComponent {
     const file = event.files[0];
     if (file) {
       if (!file.type.startsWith('image/')) {
-        this.imageError = 'Please upload a valid image file.';
+        this.imageError =  this.translate('invoice.uploadCheck');
         return;
       }
       this.imageError = null;  // Clear error if valid image

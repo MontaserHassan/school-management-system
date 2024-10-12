@@ -1,23 +1,23 @@
 <app-state-section [state]="sectionState">
-  <h2 mat-dialog-title>Add Invoice</h2>
+  <h2 mat-dialog-title>{{ 'invoice.addInvoice' | translate }}</h2>
 
   <mat-dialog-content>
     <form [formGroup]="invoiceForm" class="d-flex flex-column gap-3">
       <!-- School ID Input -->
       <div class="field d-flex flex-column gap-2">
-        <label for="schoolId" class="form-label">School ID</label>
+        <label for="schoolId" class="form-label">{{ 'invoice.schoolId' | translate }}</label>
         <app-lazy-dropdown for="schoolId" [lookup]="Lookup.Schools" formControlName="schoolId"></app-lazy-dropdown>
         <small *ngIf="invoiceForm.get('schoolId')?.hasError('required') && invoiceForm.get('schoolId')?.touched"
           class="p-error">
-          School is required
+          {{ 'invoice.schoolRequired' | translate }}
         </small>
       </div>
 
       <!-- File Upload -->
       <div class="field d-flex flex-column gap-2">
-        <label for="media" class="form-label">Attach Media</label>
+        <label for="media" class="form-label">{{ 'invoice.attachMedia' | translate }}</label>
         <p-fileUpload name="media" (onSelect)="onSelect($event)" accept="image/*" maxFileSize="1000000"
-          [customUpload]="true" chooseLabel="Select Media" [showUploadButton]="false">
+          [customUpload]="true" [chooseLabel]="'invoice.selectMedia' | translate" [showUploadButton]="false">
         </p-fileUpload>
         <small *ngIf="imageError" class="p-error">{{ imageError }}</small>
       </div>
@@ -25,7 +25,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [disabled]="invoiceForm.invalid" (click)="addInvoice()">Add Invoice</button>
+    <button mat-button mat-dialog-close>{{ 'invoice.cancel' | translate }}</button>
+    <button mat-button [disabled]="invoiceForm.invalid" (click)="addInvoice()">{{ 'invoice.addInvoice' | translate }}</button>
   </mat-dialog-actions>
 </app-state-section>
