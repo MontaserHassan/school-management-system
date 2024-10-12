@@ -1,11 +1,11 @@
 <app-state-section [state]="sectionState">
-  <h2 mat-dialog-title>Edit School</h2>
+  <h2 mat-dialog-title>{{ 'school.editSchool' | translate }}</h2>
   <mat-dialog-content>
     <app-school-form [schoolForm]="schoolForm" [editMode]="true"></app-school-form>
 
-      <div class="mat-dialog-actions mt-2">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button [disabled]="schoolForm.invalid" (click)="onSubmit()" type="submit">Update</button>
-      </div>
+    <div class="mat-dialog-actions mt-2">
+      <button mat-button mat-dialog-close>{{ 'school.cancel' | translate }}</button>
+      <button mat-button [disabled]="schoolForm.invalid" (click)="onSubmit()" type="submit">{{ 'school.update' | translate }}</button>
+    </div>
   </mat-dialog-content>
 </app-state-section>

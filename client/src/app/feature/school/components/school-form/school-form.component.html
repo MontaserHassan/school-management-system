@@ -1,86 +1,84 @@
 <form [formGroup]="schoolForm">
   <p-divider align="left">
-    <h3 class="p-text-center p-mt-5 p-mb-3">School Details</h3>
+    <h3 class="p-text-center p-mt-5 p-mb-3">{{ 'school.schoolDetails' | translate }}</h3>
   </p-divider>
   <div class="row g-2 px-4">
     <!-- School Name -->
     <div class="p-field col-12">
-      <label for="schoolName" class="d-block mb-2">School Name</label>
+      <label for="schoolName" class="d-block mb-2">{{ 'school.schoolName' | translate }}</label>
       <input id="schoolName" pInputText formControlName="schoolName" class="d-block p-inputtext-lg w-100"
-        placeholder="Enter school name" />
+        placeholder="{{ 'school.schoolName' | translate }}" />
       <small *ngIf="schoolForm.get('schoolName')?.invalid && schoolForm.get('schoolName')?.touched" class="p-error">
-        School name is required
+        {{ 'school.schoolName' | translate }} is required
       </small>
     </div>
   </div>
 
   <p-divider align="left">
-    <h3 class="p-text-center p-mt-5 p-mb-3">Subscription Details</h3>
+    <h3 class="p-text-center p-mt-5 p-mb-3">{{ 'school.subscriptionDetails' | translate }}</h3>
   </p-divider>
   <div class="row g-2 px-4">
     <!-- Subscription Fees -->
     <div class="p-field col-12 col-md-8">
-      <label for="subscriptionFees" class="d-block mb-2">Subscription Fees</label>
+      <label for="subscriptionFees" class="d-block mb-2">{{ 'school.subscriptionFees' | translate }}</label>
       <input id="subscriptionFees" pInputText formControlName="subscriptionFees"
-        class="d-block p-inputtext-lg w-100" placeholder="Enter subscription fees" />
+        class="d-block p-inputtext-lg w-100" placeholder="{{ 'school.subscriptionFees' | translate }}" />
       <small *ngIf="schoolForm.get('subscriptionFees')?.invalid && schoolForm.get('subscriptionFees')?.touched"
         class="p-error">
-        Subscription fees are required
+        {{ 'school.subscriptionFees' | translate }} are required
       </small>
     </div>
 
-    <!-- Subscription Currency -->
+    <!-- Currency -->
     <div class="p-field col-12 col-md-4">
-      <label for="currency" class="d-block mb-2">Currency</label>
+      <label for="currency" class="d-block mb-2">{{ 'school.currency' | translate }}</label>
       <app-lazy-dropdown for="currency" [lookup]="Lookup.Currency" formControlName="currencyOfSubscription"></app-lazy-dropdown>
       <small *ngIf="schoolForm.get('currencyOfSubscription')?.invalid && schoolForm.get('currencyOfSubscription')?.touched"
       class="p-error">
-      Currency are required
-    </small>
+      {{ 'school.currency' | translate }} are required
+      </small>
     </div>
 
     <!-- Subscription Way -->
     <div class="p-field col-12">
-      <label for="subscriptionway" class="d-block mb-2">Subscription Way</label>
+      <label for="subscriptionway" class="d-block mb-2">{{ 'school.subscriptionWay' | translate }}</label>
       <p-dropdown id="subscriptionway" [options]="subscriptionWay" [filter]="true"
-      placeholder="Select Subscription Way" appendTo="body" optionLabel="label" formControlName="subscriptionWay">
-    </p-dropdown>
-    <small *ngIf="schoolForm.get('subscriptionWay')?.invalid && schoolForm.get('subscriptionWay')?.touched"
-    class="p-error">
-    Subscription Way are required
-  </small>
+      placeholder="{{ 'school.subscriptionWay' | translate }}" appendTo="body" optionLabel="label" formControlName="subscriptionWay">
+      </p-dropdown>
+      <small *ngIf="schoolForm.get('subscriptionWay')?.invalid && schoolForm.get('subscriptionWay')?.touched"
+      class="p-error">
+      {{ 'school.subscriptionWay' | translate }} are required
+      </small>
     </div>
   </div>
 
   <!-- Admin Section -->
   <div *ngIf="!editMode">
     <p-divider align="left">
-      <h3 class="p-text-center p-mt-5 p-mb-3">Admin Details</h3>
+      <h3 class="p-text-center p-mt-5 p-mb-3">{{ 'school.adminDetails' | translate }}</h3>
     </p-divider>
-
 
     <div class="row g-2 px-4">
       <!-- Admin Username -->
       <div class="p-field col-12 col-md-6">
-        <label for="adminUserName" class="d-block mb-2">Admin Username</label>
+        <label for="adminUserName" class="d-block mb-2">{{ 'school.adminUserName' | translate }}</label>
         <input id="adminUserName" pInputText formControlName="adminUserName" class="d-block p-inputtext-lg w-100"
-          placeholder="Enter admin username" />
+          placeholder="{{ 'school.adminUserName' | translate }}" />
         <small *ngIf="schoolForm.get('adminUserName')?.invalid && schoolForm.get('adminUserName')?.touched"
           class="p-error">
-          Admin username is required
+          {{ 'school.adminUserName' | translate }} is required
         </small>
       </div>
 
       <!-- Admin Email -->
       <div class="p-field col-12 col-md-6">
-        <label for="adminEmail" class="d-block mb-2">Admin Email</label>
+        <label for="adminEmail" class="d-block mb-2">{{ 'school.adminEmail' | translate }}</label>
         <input id="adminEmail" pInputText formControlName="adminEmail" class="d-block p-inputtext-lg w-100"
-          placeholder="Enter admin email" />
+          placeholder="{{ 'school.adminEmail' | translate }}" />
         <small *ngIf="schoolForm.get('adminEmail')?.invalid && schoolForm.get('adminEmail')?.touched" class="p-error">
-          Admin email is required and must be valid
+          {{ 'school.adminEmail' | translate }} is required and must be valid
         </small>
       </div>
     </div>
   </div>
-
 </form>

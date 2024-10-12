@@ -1,12 +1,14 @@
 <app-state-section [state]="sectionState">
-<p-card class="classroom-card">
+  <p-card class="classroom-card">
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-        <h2 class="header">School Details</h2>
+        <h2 class="header">{{ 'school.schoolDetails' | translate }}</h2>
 
         <div>
-          <p-button text label="Edit" icon="pi pi-spin pi-cog" (onClick)="handleEditClick()" />
-          <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
+          <p-button text label="{{ 'school.edit' | translate }}" icon="pi pi-spin pi-cog"
+            (onClick)="handleEditClick()" />
+          <p-button text label="{{ 'school.export' | translate }}" icon="pi pi-file-export"
+            (onClick)="handleExport()" />
         </div>
       </div>
     </ng-template>
@@ -20,47 +22,47 @@
 
       <p class="d-flex gap-2 align-items-center">
         <i class="pi pi-money-bill"></i>
-        <strong>Subscription Fees:</strong>
-        <span>{{ school.subscriptionFees }} {{school.currencyOfSubscription}}</span>
+        <strong>{{ 'school.subscriptionFees' | translate }}:</strong>
+        <span>{{ school.subscriptionFees }} {{ school.currencyOfSubscription }}</span>
       </p>
 
       <p class="d-flex gap-2 align-items-center">
         <i class="pi pi-calendar"></i>
-        <strong>Subscription Way:</strong>
+        <strong>{{ 'school.subscriptionWay' | translate }}:</strong>
         <span>{{ school.subscriptionWay }}</span>
       </p>
 
       <div class="d-flex gap-2 align-items-center">
         <i class="pi pi-circle-on"></i>
-        <strong>Subscription Status:</strong>
+        <strong>{{ 'school.subscriptionStatusLabel' | translate }}:</strong>
         <span class="status-tag" [ngClass]="{
           'status-active': school.subscriptionStatus === 'paid',
           'status-pending': school.subscriptionStatus === 'pending',
           'status-inactive': school.subscriptionStatus === 'expired'
-        }">{{ school.subscriptionStatus }}</span>
+        }">{{ 'school.subscriptionStatus.' + school.subscriptionStatus | translate }}</span>
 
         <div>
-          <p-menu #menu [model]="subscriptionActions" appendTo="body" [popup]="true"/>
+          <p-menu #menu [model]="subscriptionActions" appendTo="body" [popup]="true" />
           <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
         </div>
       </div>
 
       <div class="mt-2">
-        <small><strong>Created At:</strong> {{ school.createdAt | date: 'short' }}</small>
+        <small><strong>{{ 'school.createdAt' | translate }}:</strong> {{ school.createdAt | date: 'short' }}</small>
       </div>
     </div>
 
     <!-- Tabs for Details -->
     <div class="mt-4">
       <p-tabView>
-        <p-tabPanel header="Admin Details">
+        <p-tabPanel header="{{ 'school.adminDetails' | translate }}">
           <div class="row">
             <div class="col-6">
               <p class="d-flex gap-2 m-0 align-items-center">
                 <i class="pi pi-user"></i>
                 <span class="d-flex align-items-center">
-                  <strong>Admin Name:</strong>
-                  <p-button (onClick)="goToUserProfile(school.admin?._id || '')" label='{{ school.admin?.userName }}'
+                  <strong>{{ 'school.adminName' | translate }}:</strong>
+                  <p-button (onClick)="goToUserProfile(school.admin?._id || '')" label="{{ school.admin?.userName }}"
                     [text]="true" severity="secondary" />
                 </span>
               </p>
@@ -68,34 +70,34 @@
             <div class="col-6">
               <p class="d-flex gap-2 align-items-center">
                 <i class="pi pi-envelope"></i>
-                <strong>Email:</strong>
+                <strong>{{ 'school.email' | translate }}:</strong>
                 <span>{{ school.admin?.email }}</span>
               </p>
             </div>
           </div>
         </p-tabPanel>
 
-        <p-tabPanel header="Subscription Info">
+        <p-tabPanel header="{{ 'school.subscriptionInfo' | translate }}">
           <div class="row">
             <div class="col-6">
               <p class="d-flex gap-2 align-items-center">
                 <i class="pi pi-calendar"></i>
-                <strong>Subscription Date:</strong>
+                <strong>{{ 'school.subscriptionDate' | translate }}:</strong>
                 <span>{{ school.subscriptionDate | date:'medium' }}</span>
               </p>
             </div>
             <div class="col-6">
               <p class="d-flex gap-2 align-items-center">
                 <i class="pi pi-calendar"></i>
-                <strong>Subscription End Date:</strong>
-                <span>{{ school.endOfSubscription| date:'medium' }}</span>
+                <strong>{{ 'school.subscriptionEndDate' | translate }}:</strong>
+                <span>{{ school.endOfSubscription | date:'medium' }}</span>
               </p>
             </div>
             <div class="col-6">
               <p class="d-flex gap-2 align-items-center">
                 <i class="pi pi-circle-on"></i>
-                <strong>Subscription Status:</strong>
-                <span>{{ school.subscriptionStatus }}</span>
+                <strong>{{ 'school.subscriptionStatusLabel' | translate }}:</strong>
+                <span>{{ 'school.subscriptionStatus.' + school.subscriptionStatus | translate }}</span>
               </p>
             </div>
           </div>

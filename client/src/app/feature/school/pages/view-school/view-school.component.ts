@@ -33,12 +33,19 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
         this.getSchoolDetails(this.id);
       }
     })
+    this.generateMenu()
+  }
 
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+
+  generateMenu(): void {
     this.subscriptionActions = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: this.subscriptionStatus.map((status) => ({
-          label: status.label,
+          label: this.translate("school.subscriptionStatus."+ status.label),
           command: () => this.handleClick(status.value)
         }))
       }
