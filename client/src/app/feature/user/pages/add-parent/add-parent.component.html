@@ -1,37 +1,40 @@
 <app-state-section [state]="sectionState">
   <p-card class="add-parent-card">
-    <h2>Add Parent</h2>
+    <h2>{{ 'parent.add' | translate }}</h2>
     <form [formGroup]="parentForm" class="d-flex flex-column gap-4">
       <div class="field d-flex flex-column gap-2">
-        <label for="userName">Parent Name</label>
-        <input pInputText formControlName="userName" id="userName" placeholder="Enter parent name" class="p-inputtext">
+        <label for="userName">{{ 'parent.parentName' | translate }}</label>
+        <input pInputText formControlName="userName" id="userName"
+          placeholder="{{ 'parent.enterParentName' | translate }}" class="p-inputtext">
         <small *ngIf="parentForm.get('userName')?.hasError('required') && parentForm.get('userName')?.touched"
-          class="p-error">Parent Name is required</small>
+          class="p-error">{{ 'parent.nameRequired' | translate }}</small>
       </div>
 
       <div class="field d-flex flex-column gap-2">
-        <label for="email">Email</label>
-        <input pInputText formControlName="email" id="email" placeholder="Enter email" class="p-inputtext">
+        <label for="email">{{ 'parent.email' | translate }}</label>
+        <input pInputText formControlName="email" id="email" placeholder="{{ 'parent.enterEmail' | translate }}"
+          class="p-inputtext">
         <small *ngIf="parentForm.get('email')?.hasError('required') && parentForm.get('email')?.touched"
-          class="p-error">Email is required</small>
-        <small *ngIf="parentForm.get('email')?.hasError('email') && parentForm.get('email')?.touched"
-          class="p-error">Enter a valid email</small>
+          class="p-error">{{ 'parent.emailRequired' | translate }}</small>
+        <small *ngIf="parentForm.get('email')?.hasError('email') && parentForm.get('email')?.touched" class="p-error">{{
+          'parent.validEmail' | translate }}</small>
       </div>
 
       <div formArrayName="students">
-        <h3>Students</h3>
+        <h3>{{ 'parent.students' | translate }}</h3>
         <div *ngFor="let student of students.controls; let i = index" [formGroupName]="i" class="student-row">
           <p-divider></p-divider>
           <div class="d-flex gap-4 align-items-center">
             <div class="field">
-              <label for="studentName">Student Name</label>
-              <input pInputText formControlName="studentName" placeholder="Enter student name" class="p-inputtext">
+              <label for="studentName">{{ 'parent.studentName' | translate }}</label>
+              <input pInputText formControlName="studentName" placeholder="{{ 'parent.enterStudentName' | translate }}"
+                class="p-inputtext">
               <small *ngIf="student.get('studentName')?.hasError('required') && student.get('studentName')?.touched"
-                class="p-error">Student name is required</small>
+                class="p-error">{{ 'parent.studentNameRequired' | translate }}</small>
             </div>
 
             <div class="field">
-              <label for="media">Attach Media</label>
+              <label for="media">{{ 'parent.attachMedia' | translate }}</label>
               <p-fileUpload mode="basic" name="media" accept="image/*" (onSelect)="onFileSelect($event, i)">
               </p-fileUpload>
             </div>
@@ -43,12 +46,13 @@
         </div>
       </div>
 
-      <button pButton type="button" label="Add Another Student" (click)="addStudent()" class="p-button-outlined mt-2">
+      <button pButton type="button" label="{{ 'parent.addAnotherStudent' | translate }}" (click)="addStudent()"
+        class="p-button-outlined mt-2">
       </button>
 
       <div class="actions mt-4 w-100">
-        <button pButton type="submit" label="Submit" class="w-100 p-button-primary" (click)="submitForm()"
-          [disabled]="parentForm.invalid"></button>
+        <button pButton type="submit" label="{{ 'parent.submit' | translate }}" class="w-100 p-button-primary"
+          (click)="submitForm()" [disabled]="parentForm.invalid"></button>
       </div>
     </form>
   </p-card>

@@ -37,21 +37,29 @@ export class UserViewComponent extends BaseComponent implements OnInit {
       this.getUserProfile(this.id)
     })
 
+    this.generateMenu();
+  }
+
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+
+  generateMenu() {
     this.userActions = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: [
           {
-            label: 'Edit user',
-            icon: 'pi pi-pencil'
+            label: this.translate('edit'),
+            icon: 'pi pi-pencil',
           },
           {
-            label: 'Reset Password',
-            icon: 'pi pi-spin pi-cog'
+            label: this.translate('resetPassword'),
+            icon: 'pi pi-spin pi-cog',
           }
         ]
       }
-    ];
+    ]
   }
 
   getUserProfile(id: string) {

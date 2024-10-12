@@ -24,31 +24,38 @@ export class UserListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUsersList();
+    this.generateMenu();
+  }
+
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+
+  generateMenu() {
     this.userActions = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: [
           {
-            label: 'View Profile',
+            label: this.translate('viewProfile'),
             icon: 'pi pi-user',
           },
           {
-            label: 'Edit User',
-            icon: 'pi pi-pencil',
+            label: this.translate('edit'),
+            icon: 'pi pi-pencil'
           },
           {
-            label: 'Reset Password',
+            label: this.translate('resetPassword'),
             icon: 'pi pi-spin pi-cog'
           }
         ]
       }
-    ];
-
-    this.getUsersList()
+    ]
   }
 
   getUsersList(isExport?: boolean) {
-    const params = { page: this.offset, limit: this.pageSize , isExport};
+    const params = { page: this.offset, limit: this.pageSize, isExport };
     this.load(this.authService.getUsersList(params)).subscribe(res => {
       if (!isExport) {
         this.users = res?.users || []

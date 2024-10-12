@@ -1,32 +1,29 @@
-<p-card header="Add New User">
+<p-card header="{{ 'user.addNewUser' | translate }}">
   <app-state-section [state]="sectionState">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="p-fluid ">
+      <div class="p-fluid">
         <div class="my-4">
-          <label for="userName">Username</label>
+          <label for="userName">{{ 'user.username' | translate }}</label>
           <input id="userName" type="text" pInputText formControlName="userName" />
           <small *ngIf="userForm.controls['userName'].invalid && userForm.controls['userName'].touched"
-            class="p-error">Username is required</small>
+            class="p-error">{{ 'user.usernameRequired' | translate }}</small>
         </div>
 
         <div class="my-4">
-          <label for="email">Email</label>
+          <label for="email">{{ 'user.email' | translate }}</label>
           <input id="email" type="email" pInputText formControlName="email" />
-          <small *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched" class="p-error">Enter
-            a
-            valid email</small>
+          <small *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched" class="p-error">{{ 'user.enterValidEmail' | translate }}</small>
         </div>
 
         <div class="my-4">
-          <label for="role">Role</label>
+          <label for="role">{{ 'user.role' | translate }}</label>
           <app-lazy-dropdown [lookup]="Lookup.Roles" formControlName="role"
-            placeholder="Select a Role"></app-lazy-dropdown>
-          <small *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" class="p-error">Role is
-            required</small>
+            [placeholder]="'user.selectRole' | translate"></app-lazy-dropdown>
+          <small *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" class="p-error">{{ 'user.roleRequired' | translate }}</small>
         </div>
 
         <div class="my-4">
-          <button pButton type="submit" label="Add User" class="p-button-primary"
+          <button pButton type="submit" [label]="'user.addUser' | translate" class="p-button-primary"
             [disabled]="userForm.invalid"></button>
         </div>
       </div>

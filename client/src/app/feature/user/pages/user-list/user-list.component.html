@@ -2,9 +2,9 @@
   <p-card>
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-        <h2 class="header">User List</h2>
+        <h2 class="header">{{ 'user.userList' | translate }}</h2>
 
-        <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
+        <p-button text label="{{ 'user.export' | translate }}" icon="pi pi-file-export" (onClick)="handleExport()" />
       </div>
     </ng-template>
     <p-table [value]="users" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
@@ -12,11 +12,11 @@
       responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="userName">Username <p-sortIcon field="userName"></p-sortIcon></th>
-          <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-          <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
-          <th pSortableColumn="lastSeen">Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
-          <th>Actions</th>
+          <th pSortableColumn="userName">{{ 'user.username' | translate }} <p-sortIcon field="userName"></p-sortIcon></th>
+          <th pSortableColumn="email">{{ 'user.email' | translate }} <p-sortIcon field="email"></p-sortIcon></th>
+          <th pSortableColumn="role">{{ 'user.role' | translate }} <p-sortIcon field="role"></p-sortIcon></th>
+          <th pSortableColumn="lastSeen">{{ 'user.lastSeen' | translate }} <p-sortIcon field="lastSeen"></p-sortIcon></th>
+          <th>{{ 'user.actions' | translate }}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-user>

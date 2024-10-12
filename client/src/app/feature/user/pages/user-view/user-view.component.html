@@ -1,4 +1,4 @@
-<p-card header="User Profile">
+<p-card header="{{ 'user.userProfile' | translate }}">
   <app-state-section [state]="sectionState">
     <div class="profile-container">
       <div class="d-flex justify-content-between">
@@ -6,9 +6,10 @@
           <img src="assets/img/profile.jpg" alt="Profile Picture" class="profile-picture">
           <div class="profile-info">
             <h2>{{ currentUser?.userName }}</h2>
-            <p class="d-flex align-items-center gap-2"><strong>Role:</strong> {{ currentUser?.role }}
-              <span *ngIf="currentUser?.role === UserRole.Admin ">
-                <p-button *grantAccess="RolesConstants.VIEW_SCHOOL_BUTTON" (onClick)="navigateToSchoolDetails(currentUser?.schoolId || '')" text label="School"></p-button>
+            <p class="d-flex align-items-center gap-2">
+              <strong>{{ 'user.role' | translate }}:</strong> {{ currentUser?.role }}
+              <span *ngIf="currentUser?.role === UserRole.Admin">
+                <p-button *grantAccess="RolesConstants.VIEW_SCHOOL_BUTTON" (onClick)="navigateToSchoolDetails(currentUser?.schoolId || '')" text label="{{ 'user.school' | translate }}"></p-button>
               </span>
             </p>
             <p class="profile-email">{{ currentUser?.email }}</p>
@@ -23,44 +24,44 @@
             </div>
           </ng-template>
         </p-menu>
-        <p-button (onClick)="menu.toggle($event)" text label="edit" icon="pi pi-spin pi-cog" />
+        <p-button (onClick)="menu.toggle($event)" text label="{{ 'user.edit' | translate }}" icon="pi pi-spin pi-cog" />
       </div>
 
       <div class="profile-details p-grid">
         <div class="p-col-12 p-md-6 detail-item">
           <i class="pi pi-id-card"></i>
-          <p><strong>Code:</strong> {{ currentUser?.code }}</p>
+          <p><strong>{{ 'user.code' | translate }}:</strong> {{ currentUser?.code }}</p>
         </div>
         <div class="p-col-12 p-md-6 detail-item">
           <i class="pi pi-clock"></i>
-          <p><strong>Last Seen:</strong> {{ currentUser?.lastSeen | date: 'short' }}</p>
+          <p><strong>{{ 'user.lastSeen' | translate }}:</strong> {{ currentUser?.lastSeen | date: 'short' }}</p>
         </div>
         <div class="p-col-12 p-md-6 detail-item">
           <i class="pi pi-lock"></i>
-          <p><strong>Password Update:</strong> {{ currentUser?.updatePassword ? 'Yes' : 'No' }}</p>
+          <p><strong>{{ 'user.passwordUpdate' | translate }}:</strong> {{ currentUser?.updatePassword ? 'Yes' : 'No' }}</p>
         </div>
         <div class="p-col-12 p-md-6 detail-item">
           <i class="pi pi-check-circle"></i>
-          <p><strong>Logged In:</strong> {{ currentUser?.logged ? 'Yes' : 'No' }}</p>
+          <p><strong>{{ 'user.loggedIn' | translate }}:</strong> {{ currentUser?.logged ? 'Yes' : 'No' }}</p>
         </div>
         <div class="p-col-12 p-md-6 detail-item">
           <i class="pi pi-calendar-plus"></i>
-          <p><strong>Created At:</strong> {{ currentUser?.createdAt | date: 'short' }}</p>
+          <p><strong>{{ 'user.createdAt' | translate }}:</strong> {{ currentUser?.createdAt | date: 'short' }}</p>
         </div>
         <div class="p-col-12 p-md-6 detail-item">
           <i class="pi pi-calendar-edit"></i>
-          <p><strong>Updated At:</strong> {{ currentUser?.updatedAt | date: 'short' }}</p>
+          <p><strong>{{ 'user.updatedAt' | translate }}:</strong> {{ currentUser?.updatedAt | date: 'short' }}</p>
         </div>
       </div>
 
       <div *ngIf="students">
-        <h3>Students</h3>
+        <h3>{{ 'user.students' | translate }}</h3>
         <p-table [value]="students">
           <ng-template pTemplate="header">
             <tr>
-              <th>Student Name</th>
-              <th>Group</th>
-              <th>Classroom</th>
+              <th>{{ 'user.studentName' | translate }}</th>
+              <th>{{ 'user.group' | translate }}</th>
+              <th>{{ 'user.classroom' | translate }}</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-student>
