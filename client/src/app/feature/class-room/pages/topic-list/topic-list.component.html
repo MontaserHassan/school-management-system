@@ -1,12 +1,12 @@
-<!-- topics-list.component.html -->
 <div class="topics-list-container">
   <p-card>
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between px-3 pt-3">
-        <h2 class="header">Topics List</h2>
+        <h2 class="header">{{ 'topic.topicsList' | translate }}</h2>
 
-        <button *grantAccess="RolesConstants.ADD_Edit_TOPIC" pButton icon="pi pi-plus" label="Add Topic"
-          [outlined]="true" severity="secondary" (click)="openAddTopicDialog()" type="button"></button>
+        <button *grantAccess="RolesConstants.ADD_Edit_TOPIC" pButton icon="pi pi-plus"
+          label="{{ 'topic.addTopic' | translate }}" [outlined]="true" severity="secondary"
+          (click)="openAddTopicDialog()" type="button"></button>
       </div>
     </ng-template>
 
@@ -20,7 +20,7 @@
               <div class="menu" *grantAccess="RolesConstants.ADD_Edit_TOPIC">
                 <p-menu #menu [model]="topicAction" appendTo="body" [popup]="true">
                   <ng-template pTemplate="item" let-item>
-                    <div class="p-menuitem-link" (click)="handleClick(item.label,topic)">
+                    <div class="p-menuitem-link" (click)="handleClick(item.label, topic)">
                       <span [class]="item.icon"></span>
                       <span class="mx-2">{{ item.label }}</span>
                     </div>
@@ -33,10 +33,10 @@
 
           <ng-template pTemplate="content">
             <div class="d-flex flex-column">
-              <small><strong>Subject:</strong> {{ topic.subject?.subjectName }}</small>
-              <small><strong>Class Room:</strong> {{ topic.classRoom }}</small>
-              <small><strong>Created At:</strong> {{ topic.createdAt | date: 'medium' }}</small>
-              <small><strong>Last Updated:</strong> {{ topic.updatedAt | date: 'medium' }}</small>
+              <small><strong>{{ 'topic.subject' | translate }}:</strong> {{ topic.subject?.subjectName }}</small>
+              <small><strong>{{ 'topic.classRoom' | translate }}:</strong> {{ topic.classRoom }}</small>
+              <small><strong>{{ 'topic.createdAt' | translate }}:</strong> {{ topic.createdAt | date: 'medium' }}</small>
+              <small><strong>{{ 'topic.updatedAt' | translate }}:</strong> {{ topic.updatedAt | date: 'medium' }}</small>
             </div>
           </ng-template>
         </p-card>

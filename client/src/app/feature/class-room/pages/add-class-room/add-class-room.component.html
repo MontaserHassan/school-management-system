@@ -1,13 +1,13 @@
-<p-card header="Add Classroom" class="classroom-card">
+<p-card header="{{ 'classroom.addClassroom' | translate }}" class="classroom-card">
   <app-state-section [state]="sectionState">
-
     <app-class-room-form *ngIf="classroomForm" [classroomForm]="classroomForm"></app-class-room-form>
-      <!-- Submit Button -->
-      <div class="p-grid">
-        <div class="p-col-12">
-          <button pButton type="submit" (click)="onSubmit()" [disabled]="classroomForm.invalid" label="Add Classroom"
-            class="p-button-primary w-100 p-button-lg"></button>
-        </div>
+
+    <!-- Submit Button -->
+    <div class="p-grid">
+      <div class="p-col-12">
+        <button pButton type="submit" (click)="onSubmit()" [disabled]="classroomForm.invalid"
+          label="{{ 'classroom.addClassroom' | translate }}" class="p-button-primary w-100 p-button-lg"></button>
       </div>
+    </div>
   </app-state-section>
 </p-card>

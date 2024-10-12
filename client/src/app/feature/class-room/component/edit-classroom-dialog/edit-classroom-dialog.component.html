@@ -1,11 +1,14 @@
 <app-state-section [state]="sectionState">
-  <h2 mat-dialog-title>Edit Classroom</h2>
+  <h2 mat-dialog-title>{{ 'classroom.editClassroom' | translate }}</h2>
   <mat-dialog-content>
-      <app-class-room-form *ngIf="classroomForm" [classroomForm]="classroomForm" [InitializeValue]="this.data.classroom"></app-class-room-form>
+    <app-class-room-form *ngIf="classroomForm" [classroomForm]="classroomForm"
+      [InitializeValue]="this.data.classroom"></app-class-room-form>
 
-      <div class="mat-dialog-actions">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button [disabled]="classroomForm.invalid" (click)="onSubmit()" type="submit">Update</button>
-      </div>
+    <div class="mat-dialog-actions">
+      <button mat-button mat-dialog-close>{{ 'classroom.cancel' | translate }}</button>
+      <button mat-button [disabled]="classroomForm.invalid" (click)="onSubmit()" type="submit">
+        {{ 'classroom.update' | translate }}
+      </button>
+    </div>
   </mat-dialog-content>
 </app-state-section>

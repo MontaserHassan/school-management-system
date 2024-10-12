@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Confirm Action</h2>
+<h2 mat-dialog-title>{{ 'confirmation.confirmAction' | translate }}</h2>
 <mat-dialog-content>
-  <p>Are you sure you want to remove the student from the classroom?</p>
+  <p>{{ 'confirmation.confirmRemoval' | translate }}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button color="warn" (click)="confirm()">Yes, Leave</button>
+  <button mat-button mat-dialog-close>{{ 'confirmation.cancel' | translate }}</button>
+  <button mat-button color="warn" (click)="confirm()">{{ 'confirmation.yesLeave' | translate }}</button>
 </mat-dialog-actions>

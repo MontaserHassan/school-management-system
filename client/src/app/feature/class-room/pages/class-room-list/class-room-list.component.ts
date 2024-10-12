@@ -17,52 +17,68 @@ import { EditClassroomDialogComponent } from '../../component/edit-classroom-dia
   styleUrls: ['./class-room-list.component.scss']
 })
 export class ClassRoomListComponent extends BaseComponent implements OnInit {
-  classrooms!:ClassRoom[]
-  classroomActions!:MenuItem[]
-  constructor(private router: Router ,private classRoomService:ClassRoomService, private matDialog: MatDialog, private userRoleService:UserRoleService) {
-    super()
+  classrooms!: ClassRoom[];
+  classroomActions!: MenuItem[];
+
+  constructor(
+    private router: Router,
+    private classRoomService: ClassRoomService,
+    private matDialog: MatDialog,
+    private userRoleService: UserRoleService
+  ) {
+    super();
   }
 
   ngOnInit() {
+    this.generateMenu(); // Call to generate menu on initialization
+    this.getClassRoomList();
+  }
+
+  protected override onLanguageChange(): void {
+    this.generateMenu(); // Regenerate the menu when the language changes
+  }
+
+  generateMenu() {
     this.classroomActions = [
       {
-        label: 'Actions',
+        label: this.translate('actions'), // Fetching translation for 'actions'
         items: [
           {
-            label: 'View',
+            label: this.translate('view'), // Fetching translation for 'view'
             icon: 'pi pi-eye',
+            command: () => this.handleClick(this.translate('view'), null), // Adjusted to handle click
           },
           {
-            label: 'Edit Classroom',
+            label: this.translate('editClassroom'), // Fetching translation for 'edit classroom'
             icon: 'pi pi-pencil',
             visible: this.userRoleService.isUserHasRoles(RolesConstants.EDIT_DELETE_CLASS_ROOM),
+            command: () => this.handleClick(this.translate('editClassroom'), null), // Adjusted to handle click
           },
           {
-            label: 'Remove Classroom',
+            label: this.translate('removeClassroom'), // Fetching translation for 'remove classroom'
             icon: 'pi pi-trash',
             visible: this.userRoleService.isUserHasRoles(RolesConstants.EDIT_DELETE_CLASS_ROOM),
+            command: () => this.handleClick(this.translate('removeClassroom'), null), // Adjusted to handle click
           }
         ]
       }
     ];
-
-    this.getClassRoomList();
   }
 
-  getClassRoomList(isExport?:Boolean): void {
-    const params = { page: this.offset, limit: this.pageSize , isExport};
+  getClassRoomList(isExport?: Boolean): void {
+    const params = { page: this.offset, limit: this.pageSize, isExport };
 
-    this.load(this.classRoomService.getClassRoomList(params),{isLoadingTransparent: true}).subscribe((response) => {
+    this.load(this.classRoomService.getClassRoomList(params), { isLoadingTransparent: true }).subscribe((response) => {
       if (!isExport) {
-        this.classrooms = response?.rooms || []
+        this.classrooms = response?.rooms || [];
         this.totalRowsCount = response.totalDocuments || 1;
-        this.pageSize = response?.limit || 0
+        this.pageSize = response?.limit || 0;
       }
     }, (error) => {
       if (!isExport) {
-      this.classrooms = []
-    }
-    })
+        this.classrooms = [];
+      }
+    });
   }
 
   viewDetails(classroomId: string): void {
@@ -70,39 +86,37 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
   }
 
   paginate(event: any): void {
-    this.offset =  event.first / event.rows + 1;
+    this.offset = event.first / event.rows + 1;
     this.pageSize = event.rows;
     this.getClassRoomList();
   }
 
-  handleClick(label: string, classroom: ClassRoom): void {
+  handleClick(label: string, classroom: ClassRoom | null): void {
     if (!this.classroomActions.length) {
-      return
+      return;
     }
     if (label === this.classroomActions?.[0]?.items?.[0]?.label) {
-      this.viewDetails(classroom._id || "");
-    }
-    else if (label === this.classroomActions?.[0]?.items?.[1]?.label) {
+      this.viewDetails(classroom?._id || "");
+    } else if (label === this.classroomActions?.[0]?.items?.[1]?.label) {
       const dialog = this.matDialog.open(EditClassroomDialogComponent, {
         data: { classroom },
-      })
+      });
 
       dialog.afterClosed().subscribe(res => {
         if (res) {
-          this.getClassRoomList()
+          this.getClassRoomList();
         }
-      })
-    }
-    else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
+      });
+    } else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
       const dialog = this.matDialog.open(RemoveClassroomDialogComponent, {
-        data: { roomId: classroom._id }
-      })
+        data: { roomId: classroom?._id }
+      });
 
       dialog.afterClosed().subscribe(res => {
         if (res) {
-          this.getClassRoomList()
+          this.getClassRoomList();
         }
-      })
+      });
     }
   }
 

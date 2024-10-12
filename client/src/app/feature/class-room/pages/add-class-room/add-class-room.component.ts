@@ -65,7 +65,7 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
     if (this.classroomForm.valid) {
       const classroomData = this.mapClassroomData(this.classroomForm.value);
       this.load(this.classRoomService.addClassRoom(classroomData), {isLoadingTransparent: true}).subscribe((res) => {
-        this.showSuccessMessage('Class Room Added Successfully');
+        this.showSuccessMessage('classroom.classRoomAddedSuccessfully');
         this.router.navigate([RoutesUtil.ClassRoomView.url({ params: { id: res._id } })]);
       })
     }

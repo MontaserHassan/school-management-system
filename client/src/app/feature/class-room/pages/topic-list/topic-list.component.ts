@@ -24,13 +24,20 @@ export class TopicListComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTopics();
+    this.generateMenu();
+  }
 
+  protected override onLanguageChange(): void {
+    this.generateMenu();
+  }
+
+  generateMenu(): void {
     this.topicAction = [
       {
-        label: 'Actions',
+        label: this.translate('actions'),
         items: [
           {
-            label: 'edit',
+            label: this.translate('edit'),
             icon: 'pi pi-pencil'
           },
         ]
@@ -67,7 +74,7 @@ export class TopicListComponent extends BaseComponent implements OnInit {
     this.getTopics();
   }
 
-   handleClick(label: string,topic:Topic) {
+  handleClick(label: string, topic: Topic) {
     if (!this.topicAction.length) {
       return
     }

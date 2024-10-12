@@ -83,7 +83,7 @@ export class EditClassroomDialogComponent extends BaseComponent implements OnIni
     if (this.classroomForm.valid) {
       const classroomData = this.mapClassroomData(this.classroomForm.value);
       this.load(this.classRoomService.editClassRoom(classroomData), { isLoadingTransparent: true }).subscribe((res) => {
-        this.showSuccessMessage('Class Room Edited Successfully');
+        this.showSuccessMessage('classroom.classRoomEditedSuccessfully');
         this.dialogRef.close(true);
       })
     }

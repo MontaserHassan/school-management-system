@@ -1,21 +1,21 @@
 <app-state-section [state]="sectionState">
   <p-card class="classroom-list-card">
     <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-      <h2 class="header">Classroom List</h2>
-      <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
+      <h2 class="header">{{ 'classroom.classroomList' | translate }}</h2>
+      <p-button text label="{{ 'classroom.export' | translate }}" icon="pi pi-file-export" (onClick)="handleExport()" />
     </div>
     <p-table [value]="classrooms" dataKey="_id" [paginator]="true" [rows]="pageSize"
       [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
       responsiveLayout="scroll" class="p-datatable-striped">
       <ng-template pTemplate="header">
         <tr>
-          <th>Room</th>
-          <th>Group</th>
-          <th>Teachers</th>
-          <th>Main Topics</th>
-          <th>Student Cost</th>
-          <th>Schedule</th>
-          <th>Actions</th>
+          <th>{{ 'classroom.room' | translate }}</th>
+          <th>{{ 'classroom.group' | translate }}</th>
+          <th>{{ 'classroom.teachers' | translate }}</th>
+          <th>{{ 'classroom.mainTopics' | translate }}</th>
+          <th>{{ 'classroom.studentCost' | translate }}</th>
+          <th>{{ 'classroom.schedule' | translate }}</th>
+          <th>{{ 'classroom.actions' | translate }}</th>
         </tr>
       </ng-template>
 
@@ -36,7 +36,7 @@
           <td>{{ classroom.studentCost }} {{ classroom.currencyOfCost | uppercase }}</td>
           <td>
             <p-accordion>
-              <p-accordionTab header="View Schedule">
+              <p-accordionTab header="{{ 'classroom.viewSchedule' | translate }}">
                 <ul>
                   <li *ngFor="let day of classroom.schedule">
                     <strong>{{ day.day }}</strong>
