@@ -22,11 +22,12 @@
               <div class="flex-grow-1">
                 <h5 class="mb-0" style="margin-top: 10px;" *ngIf="ticket.userOne.userId !== userId">{{ ticket.userOne.userName }}</h5>
                 <h5 class="mb-0" style="margin-top: 10px;" *ngIf="ticket.userTwo.userId !== userId">{{ ticket.userTwo.userName }}</h5>
-
-                <p class="mb-0 text-muted" *ngIf="ticket.messages.length">{{ ticket.messages[ticket.messages.length - 1].message }}</p>
+                <small>
+                  <p class="mb-0 text-muted" *ngIf="ticket.messages.length">{{ ticket.messages[ticket.messages.length - 1].message }}</p>
+                </small>
               </div>
               <div class="text-end ms-auto">
-                <span class="text-muted">{{ getTimeAgo(ticket) }}</span>
+                <small><span class="text-muted">{{ getTimeAgo(ticket) }}</span></small>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TicketBoxComponent extends BaseComponent implements OnInit, OnChanges {
   @ViewChild('messageList') messageList!: ElementRef;
-  chatData!:Ticket;
+  chatData!: Ticket;
   userId!: string;
   newMessage: string = '';
   selectedTicketId!: string;
@@ -22,9 +22,9 @@ export class TicketBoxComponent extends BaseComponent implements OnInit, OnChang
   @Input() sender!: LookupModel;
 
   constructor(
-    private auth:AuthService,
-    private socialService:SocialService,
-    private activeRoute:ActivatedRoute,
+    private auth: AuthService,
+    private socialService: SocialService,
+    private activeRoute: ActivatedRoute,
     private router: Router,
   ) {
     super();
@@ -38,7 +38,7 @@ export class TicketBoxComponent extends BaseComponent implements OnInit, OnChang
         this.getTicketById(this.selectedTicketId);
       }
 
-      if(!this.GetMessages) {
+      if (!this.GetMessages) {
         this.GetMessages = true
       }
     })
@@ -71,12 +71,12 @@ export class TicketBoxComponent extends BaseComponent implements OnInit, OnChang
   }
 
   scrollToBottom(): void {
-    const messageBox = this.messageList?.nativeElement;
-    if(messageBox){
-      setTimeout(() => {
+    setTimeout(() => {
+      const messageBox = this.messageList?.nativeElement;
+      if (messageBox) {
         messageBox!.scrollTop = messageBox?.scrollHeight;
-      });
-    }
+      }
+    });
   }
 
   onEnter(event: any) {
@@ -92,9 +92,9 @@ export class TicketBoxComponent extends BaseComponent implements OnInit, OnChang
     }
 
     if (this.newMessage.trim()) {
-      const body ={
-        message:this.newMessage.trim(),
-        ticketId:this.chatData._id || ""
+      const body = {
+        message: this.newMessage.trim(),
+        ticketId: this.chatData._id || ""
       }
       this.load(
         this.socialService.sendMessage(body)
@@ -107,7 +107,7 @@ export class TicketBoxComponent extends BaseComponent implements OnInit, OnChang
     }
   }
 
-  setParams(params?:{}): void {
+  setParams(params?: {}): void {
     this.router.navigate([], {
       relativeTo: this.activeRoute,
       queryParams: params,
@@ -116,7 +116,7 @@ export class TicketBoxComponent extends BaseComponent implements OnInit, OnChang
 
   openNewTicket() {
     this.load(
-      this.socialService.addTicket({receiver: this.sender?.value || ''})
+      this.socialService.addTicket({ receiver: this.sender?.value || '' })
     ).subscribe((res) => {
       this.GetMessages = false;
       this.setParams({ id: res._id })
