@@ -16,8 +16,8 @@ services:
       - my-network
 
   mongo:
-    container_name: school-system-mongo
     image: mongo:latest
+    container_name: school-system-mongo
     restart: always
     ports:
       - "27018:27017"
@@ -27,26 +27,43 @@ services:
       - my-network
 
   nginx:
-      container_name: school-system-nginx
-      image: nginx:latest
-      ports:
-        - "80:80"
-      volumes:
-        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      depends_on:
-        - app
-      networks:
-        - my-network
+    image: nginx:latest
+    container_name: school-system-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      # - ./certbot/conf:/etc/letsencrypt
+      # - ./certbot/www:/var/www/certbot
+      - ./nginx/certs:/etc/nginx/certs
+    depends_on:
+      - app
+      # - certbot
+    networks:
+      - my-network
 
-  # angular:
-  #   container_name: school-system-angular
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "4500:4500"
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: school-system-certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $!; certbot renew; done'"
+  #   env_file:
+  #     - ./.env
   #   networks:
   #     - my-network
+
+  angular:
+    container_name: school-system-angular
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4500:4500"
+    networks:
+      - my-network
 
 volumes:
   mongo_data: 
