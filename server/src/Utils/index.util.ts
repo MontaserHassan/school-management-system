@@ -2,10 +2,12 @@ import CustomError from "./customError.util";
 import generateSecretKey from './createSecretKey.util';
 import createToken from "./createToken.util";
 import calculateExpirationDate from "./calculateExpirationDate";
+
 import pagination from "./pagination.util";
 import generateCode from './generateCode.util';
-import { sendEmail } from './send-mail.util';
-import { calculateDuration } from './calculate-duration.util';
+import sendEmail from './send-mail.util';
+import calculateDuration from './calculate-duration.util';
+import calculateSubscriptionDate from './calculate-subscription-date.util';
 
 import { generatePDFReport } from './create-PDF.util';
 import { exportToCsv } from './create-Excel.util';
@@ -25,6 +27,7 @@ export {
     pagination,
     generateCode,
     calculateDuration,
+    calculateSubscriptionDate,
     sendEmail,
 
     generatePDFReport,

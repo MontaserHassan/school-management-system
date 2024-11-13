@@ -4,7 +4,7 @@ import * as ExcelJS from 'exceljs';
 
 import { ClassRoomModel } from "../../Models/class-room.model";
 import { schoolService } from "../../Services/index.service";
-import { calculateDuration } from '../../Utils/calculate-duration.util';
+import { calculateDuration } from '../index.util';
 
 
 

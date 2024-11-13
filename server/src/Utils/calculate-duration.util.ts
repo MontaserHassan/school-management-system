@@ -1,4 +1,4 @@
-export function calculateDuration(start, end) {
+export default function calculateDuration(start, end) {
     const [startHours, startMinutes] = start.split(':').map(Number);
     const [endHours, endMinutes] = end.split(':').map(Number);
     const startTotalMinutes = startHours * 60 + startMinutes;

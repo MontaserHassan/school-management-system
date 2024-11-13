@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from "express";
+import fs from 'fs';
+import path from 'path';
 
 import { SchoolsInvoiceService, schoolService, userService, } from "../Services/index.service";
 import IResponse from '../Interfaces/response.interface';
-import CustomError from "../Utils/customError.util";
 import { errorInvoiceMessage, errorSchoolMessage, successInvoiceMessage } from "../Messages/index.message";
 import { SchoolInvoiceModel } from "Models/invoices-school.model";
-import pagination from "../Utils/pagination.util";
+import { CustomError, sendEmail, pagination } from "../Utils/index.util";
 
 
 
@@ -18,7 +19,10 @@ const createInvoice = async (req: Request, res: Response, next: NextFunction) =>
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const userInfo = await userService.getById(isSchoolExisting.admin);
-        const invoice = await SchoolsInvoiceService.createInvoice({schoolId:isSchoolExisting._id , schoolName:isSchoolExisting.schoolName}, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
+        const invoice = await SchoolsInvoiceService.createInvoice({ schoolId: isSchoolExisting._id, schoolName: isSchoolExisting.schoolName }, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
+        const subject = 'New Invoice';
+        const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/invoice.html'), 'utf8');
+        sendEmail(userInfo.email, subject, content);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
+import fs from 'fs';
+import path from 'path';
 
 import { userTokenService, userService, schoolService, studentService } from "../Services/index.service";
 import { ErrorUserMessage, SuccessUserMessage, ErrorTokenMessage } from "../Messages/index.message";
-import CustomError from "../Utils/customError.util";
-import { createToken, CSVUsers, pagination } from "../Utils/index.util";
+import { sendEmail, CustomError, createToken, CSVUsers, pagination } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import RoleHierarchy from "../Interfaces/user-hierarchy.interface";
 import { UserModel } from "../Models/user.model";
@@ -24,6 +25,9 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
         const newUser = await userService.createUser(userName, (email).toLowerCase(), role, req.user.schoolId, media);
         if (!newUser) throw new CustomError(ErrorUserMessage.DOES_NOT_CREATED, 406, "user");
         if (!['superAdmin', 'admin', 'parent'].includes(role)) await schoolService.addEmployee(req.user.schoolId, String(newUser._id));
+        const subject = 'New Account';
+        const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/activate-account.html'), 'utf8');
+        sendEmail(newUser.email, subject, content);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -45,12 +49,12 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
 
 const addParent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userName, email, media, students } = req.body;
+        const { userName, email, media, students, termsAndCondition } = req.body;
         const currentUserRole = req?.user?.role;
         if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy["parent"]) throw new CustomError(`You do not have permission to create a user with this role: parent.`, 403, "role");
         const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
         if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
-        const newUser = await userService.createUser(userName, (email).toLowerCase(), "parent", req.user.schoolId, media);
+        const newUser = await userService.createUser(userName, (email).toLowerCase(), "parent", req.user.schoolId, media, termsAndCondition);
         if (!newUser) throw new CustomError(ErrorUserMessage.DOES_NOT_CREATED, 406, "user");
         const addStudents = await Promise.all(
             students.map(async (student: any) => {
@@ -62,6 +66,9 @@ const addParent = async (req: Request, res: Response, next: NextFunction) => {
                 );
             }),
         );
+        const subject = 'New Parent Account';
+        const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/activate-account.html'), 'utf8');
+        sendEmail(newUser.email, subject, content);
         const response: IResponse = {
             type: "info",
             responseCode: 201,

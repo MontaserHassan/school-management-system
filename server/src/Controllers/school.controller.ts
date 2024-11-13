@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
+import fs from 'fs';
+import path from 'path';
 
 import { lookupService, schoolService, userService } from "../Services/index.service";
 import { errorLookupMessage, errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
-import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
-import pagination from "../Utils/pagination.util";
 import { SubscriptionSchoolModel } from "../Models/school.model";
-import calculateSubscriptionDate from "../Utils/calculate-subscription-date.util";
-import { CSVSchool } from "../Utils/index.util";
+import { CSVSchool, CustomError, calculateSubscriptionDate, sendEmail, pagination } from "../Utils/index.util";
+import { UserModel } from "Models/user.model";
 
 
 
@@ -19,10 +19,15 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
         const { schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admin, employees, currencyOfSubscription } = req.body;
         const IsSchoolExisting = await schoolService.getSchoolByName(schoolName.toLowerCase());
         if (IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_ALREADY_EXISTS, 404, "school");
-        let adminUser = await userService.getUserByEmail(admin.email);
+        let adminUser: UserModel | null = await userService.getUserByEmail(admin.email);
         const currency = await lookupService.getById(currencyOfSubscription);
         if (!currency) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "currency");
-        if (!adminUser) adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null, '');
+        if (!adminUser) {
+            adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null, '');
+            const subject = 'New Account';
+            const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/activate-account.html'), 'utf8');
+            sendEmail(adminUser.email, subject, content);
+        };
         const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, currency.lookupName, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });

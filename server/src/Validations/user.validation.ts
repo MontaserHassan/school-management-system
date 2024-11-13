@@ -12,7 +12,7 @@ const userValidator = {
             schoolId: Joi.string().optional().trim().max(24).when('role', {
                 is: Joi.string().valid('admin', 'director', 'teacher', 'parent'),
                 then: Joi.string().invalid('superAdmin').messages({ 'any.invalid': 'SchoolId cannot be "superAdmin" for non-superAdmin roles.' })
-            })
+            }),
         }),
     },
 
@@ -31,6 +31,7 @@ const userValidator = {
                     media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media is required.', }),
                 }),
             ).min(1).messages({ 'array.min': 'At least one student must be provided.', 'array.empty': 'At least one student must be provided.', }),
+            termsAndCondition: Joi.boolean().required().messages({ 'any.required': 'Please accept the terms and condition.', 'boolean.base': 'Please accept the terms and condition.', }),
         }),
     },
 
