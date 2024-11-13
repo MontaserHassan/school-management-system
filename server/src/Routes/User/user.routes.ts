@@ -13,6 +13,7 @@ import authSchoolRouter from './authSchool.routes';
 import authInvoiceRouter from './authInvoice.routes';
 import authTicketRouter from './authTicket.routes'
 import authNotificationRouter from './authNotification.routes';
+import authGroupRouter from './authGroup.routes';
 
 
 
@@ -28,6 +29,7 @@ user.use('/subject', authSubjectRouter);
 user.use('/invoice', authInvoiceRouter);
 user.use('/ticket', authTicketRouter);
 user.use('/notification', authNotificationRouter);
+user.use('/group', authGroupRouter);
 user.use('/student', authStudentRouter);
 user.use('/parent', authParentRouter);
 user.use('/school', authSchoolRouter);

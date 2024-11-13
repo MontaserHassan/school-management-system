@@ -11,6 +11,7 @@ import notificationService from "./notification.service";
 import SchoolsInvoiceService from "./school-invoice.service";
 import studentInvoiceService from "./student-invoice.service";
 import ticketService from './ticket.service';
+import groupService from "./group.service";
 
 
 
@@ -28,4 +29,5 @@ export {
     SchoolsInvoiceService,
     studentInvoiceService,
     ticketService,
+    groupService,
 };

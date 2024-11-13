@@ -5,8 +5,7 @@ import * as fs from 'fs';
 import { ClassRoomModel } from "../Models/class-room.model";
 import { classRoomService, lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
 import { errorClassRoomMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
-import CustomError from "../Utils/customError.util";
-import { pagination, exportToCsv, CSVClassRoom } from "../Utils/index.util";
+import { pagination, CSVClassRoom, CustomError } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { addTime } from "../helpers/calculate-endTime.helper";
 

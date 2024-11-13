@@ -28,6 +28,8 @@ import errorInvoiceMessage from './invoice/error.message';
 import successInvoiceMessage from './invoice/success.message';
 import errorTicketMessage from './ticket/error.message';
 import successTicketMessage from './ticket/success.message';
+import errorGroupMessage from './group/error.message';
+import successGroupMessage from './group/success.message';
 
 
 
@@ -46,4 +48,5 @@ export {
     errorNotificationMessage, successNotificationMessage,
     errorInvoiceMessage, successInvoiceMessage,
     errorTicketMessage, successTicketMessage,
+    errorGroupMessage, successGroupMessage,
 };
