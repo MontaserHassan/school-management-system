@@ -1,4 +1,4 @@
-import { Group, GroupModel } from 'Models/groups.model';
+import { Group, GroupModel } from '../Models/groups.model';
 
 
 

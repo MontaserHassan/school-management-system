@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import IResponse from '../Interfaces/response.interface';
 import { groupService } from '../Services/index.service';
-import { errorGroupMessage, successGroupMessage } from "Messages/index.message";
+import { errorGroupMessage, successGroupMessage } from "../Messages/index.message";
 import { CustomError } from "../Utils/index.util";
 
 

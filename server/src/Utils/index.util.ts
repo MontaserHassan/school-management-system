@@ -1,5 +1,6 @@
 import CustomError from "./customError.util";
 import generateSecretKey from './createSecretKey.util';
+import generateId from "./generate-id.util";
 import createToken from "./createToken.util";
 import calculateExpirationDate from "./calculateExpirationDate";
 
@@ -22,6 +23,7 @@ import { CSVSchool } from './CSV-functions/csv-school.util'
 export {
     CustomError,
     generateSecretKey,
+    generateId,
     createToken,
     calculateExpirationDate,
     pagination,

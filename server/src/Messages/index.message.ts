@@ -30,6 +30,8 @@ import errorTicketMessage from './ticket/error.message';
 import successTicketMessage from './ticket/success.message';
 import errorGroupMessage from './group/error.message';
 import successGroupMessage from './group/success.message';
+import errorEventMessage from './event/error.message';
+import successEventMessage from './event/success.message';
 
 
 
@@ -49,4 +51,5 @@ export {
     errorInvoiceMessage, successInvoiceMessage,
     errorTicketMessage, successTicketMessage,
     errorGroupMessage, successGroupMessage,
+    errorEventMessage, successEventMessage,
 };

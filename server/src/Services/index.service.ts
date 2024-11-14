@@ -12,7 +12,7 @@ import SchoolsInvoiceService from "./school-invoice.service";
 import studentInvoiceService from "./student-invoice.service";
 import ticketService from './ticket.service';
 import groupService from "./group.service";
-
+import eventService from "./event.service";
 
 
 export {
@@ -30,4 +30,5 @@ export {
     studentInvoiceService,
     ticketService,
     groupService,
+    eventService,
 };

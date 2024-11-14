@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import * as path from 'path';
-import * as fs from 'fs';
 
 import { ClassRoomModel } from "../Models/class-room.model";
-import { classRoomService, lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
+import { classRoomService, groupService, lookupService, studentService, subjectService, topicService, userService } from "../Services/index.service";
 import { errorClassRoomMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
 import { pagination, CSVClassRoom, CustomError } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
@@ -60,6 +58,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
         const groupData = await lookupService.getById(group);
         const currency = await lookupService.getById(currencyOfCost);
         const newClassRoom = await classRoomService.createClassRoom(room, groupData.lookupName, teachersData, schedule, studentCost, currency.lookupName, mainTopicsData, schoolId);
+        await groupService.addClassToGroup(group, newClassRoom._id, newClassRoom.room);
         if (!newClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",
