@@ -30,11 +30,11 @@
     "$date": "2024-09-06T22:43:10.482Z"
   },
   "updatedAt": {
-    "$date": "2024-09-21T12:21:34.119Z"
+    "$date": "2024-11-15T15:53:46.501Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-21T12:21:34.119Z"
+    "$date": "2024-11-15T15:53:46.501Z"
   },
   "logged": true,
   "schoolId": "superAdmin"
@@ -342,6 +342,138 @@
   },
   "updatedAt": {
     "$date": "2024-09-21T23:14:32.278Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "UaW_0owVXzBmjhpM-FWvW",
+  "userName": "admin BaniSuef language",
+  "email": "montaser.hassan.bns@gmail.com",
+  "role": "admin",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "media": "",
+  "code": "H28963",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$RsYeWamg2FpFNVsXM0Qc3Q$oBz3gtZD+NOo/BikC4YHJZlMqWcaxivlzaetmcgKkmg",
+  "createdAt": {
+    "$date": "2024-11-12T21:45:38.954Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-15T16:17:55.610Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-11-15T16:17:55.610Z"
+  },
+  "logged": true
+},
+{
+  "_id": "Lw267SYx0LgraUv01tkcS",
+  "userName": "director BaniSuef language",
+  "email": "montaser.mohamed.hassan@gmail.com",
+  "role": "director",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "P536",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$V0xG8T00M8tf9W7LOiJNSw$c9DNroFaXAs9kZyFlX1NABYHbN0akZShA0hJjCnzvEA",
+  "createdAt": {
+    "$date": "2024-11-12T21:48:53.300Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-12T21:48:53.300Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "TNWCI4reAr11PynOMrS15",
+  "userName": "teacher 1 BaniSuef language",
+  "email": "teacher1.banisuef@gmail.com",
+  "role": "teacher",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "V8332955",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$I3BAT8Vb6GrM3JvyPfMgvQ$0rC44vQESHkfVa3GX+wrKsSS5gX8tCCVE6r0RkUPoCo",
+  "createdAt": {
+    "$date": "2024-11-15T16:19:46.616Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-15T16:22:51.997Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-11-15T16:22:51.997Z"
+  },
+  "logged": true
+},
+{
+  "_id": "2OnP9vQ2PoioKGWdfCcnJ",
+  "userName": "parent 4 parent",
+  "email": "montaser.hassan.bns22@gmail.com",
+  "role": "parent",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "W6409039",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$AwLPYyB3R/bsSpqNhryTeA$W6lsivjtcR86KV/5arh1ixSoc1+AzJka8DpacwxC+wA",
+  "termsAndCondition": true,
+  "createdAt": {
+    "$date": "2024-11-15T17:43:10.732Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-15T17:43:10.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "6ksXgKt2_96pwDgBwet-d",
+  "userName": "parent parent",
+  "email": "montaser.hassan.bns54@gmail.com",
+  "role": "parent",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "I3498626",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$u6cAx+dCDm74yvp7x2kwXw$ONJj+M+xfUb37It6DS5aeLb0Q6FG/ipAFLczMShrq5s",
+  "termsAndCondition": true,
+  "createdAt": {
+    "$date": "2024-11-15T17:44:52.851Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-15T17:44:52.851Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "gVSC8-rvBECLYmH_zRciF",
+  "userName": "parent 22",
+  "email": "montaser.hassan@gmail.com",
+  "role": "parent",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "I221285",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$3aMuaeM9uJDUVo/sV6J4lg$W4zBtwXtKbeZFmK3EXl/fOvcv7cExEDNzm0YNS+kT6w",
+  "termsAndCondition": true,
+  "createdAt": {
+    "$date": "2024-11-15T17:45:09.578Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-15T17:45:09.578Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "1gzRc8p2VnD4PQ_l4j6E5",
+  "userName": "mohamed AboTrieka",
+  "email": "mohamed.abotrieka@gmail.com",
+  "role": "parent",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "G0693",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$EpGQMoU2gJM5kXzSwRpT2w$8NW9ujcHqDwn8vfb4odgJ/npbjbe971TFOE5P0W8HFY",
+  "termsAndCondition": true,
+  "createdAt": {
+    "$date": "2024-11-15T17:46:27.033Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-15T17:46:27.033Z"
   },
   "__v": 0
 }]

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import IResponse from '../Interfaces/response.interface';
 import { eventService, lookupService, notificationService, userService } from '../Services/index.service';
 import { errorEventMessage, successEventMessage, ErrorUserMessage } from "../Messages/index.message";
-import { CustomError } from "../Utils/index.util";
+import { calculateExpirationDate, CustomError, generateId } from "../Utils/index.util";
 
 
 
@@ -12,7 +12,7 @@ import { CustomError } from "../Utils/index.util";
 
 const createEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { eventName, description, membersId } = req.body;
+        const { eventName, description, membersId, date } = req.body;
         const userId = req.user.userId;
         if (!membersId.includes(userId)) membersId.push(userId);
         const eventUsers = membersId.map(async (memberId) => {
@@ -21,16 +21,17 @@ const createEvent = async (req: Request, res: Response, next: NextFunction) => {
             await notificationService.createNotification(user._id.toString(), user.schoolId, 'New Event', `Hi ${user.userName}, You have a new Event, check it from events calender`,);
             return {
                 schoolId: user.schoolId,
-                eventName,
-                date: new Date(),
-                description,
+                eventId: generateId(),
+                eventName: eventName,
+                date: new Date(date),
+                description: description,
                 userId: user._id.toString(),
                 username: user.userName,
+                expiryDate: calculateExpirationDate('6m'),
             };
         });
         const eventData = await Promise.all(eventUsers);
         await eventService.createEvent(eventData);
-
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -95,6 +96,9 @@ const getEventById = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 
+// ----------------------------- update event -----------------------------
+
+
 const updateEventResponse = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { eventId, newResponse } = req.body;
@@ -115,6 +119,7 @@ const updateEventResponse = async (req: Request, res: Response, next: NextFuncti
         next(err);
     };
 };
+
 
 
 export default {

@@ -49,7 +49,7 @@ const classRoomSchema = new mongoose.Schema(
         group: {
             type: String,
             required: true,
-            enum: ['3-6', '6-9', '9-12']
+            enum: ['2-3', '3-6', '9-12']
         },
         teachers: [
             {

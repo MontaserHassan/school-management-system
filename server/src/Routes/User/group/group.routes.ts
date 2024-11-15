@@ -7,12 +7,15 @@ import { groupValidator } from '../../../Validations/group.validation';
 
 
 
-const groupRouter = express.Router();
+const eventRouter = express.Router();
 
 
-groupRouter.get('/', groupController.getGroups);
-groupRouter.get('/:groupId', validation(groupValidator.getGroups), groupController.getGroup);
+eventRouter.post('/', groupController.createGroup);
+
+eventRouter.get('/', groupController.getGroups);
+eventRouter.get('/:groupId', validation(groupValidator.getGroup), groupController.getGroup);
+eventRouter.get('/classes/:groupId', validation(groupValidator.getClassesByGroupId), groupController.getClasses);
 
 
 
-export default groupRouter;
+export default eventRouter;

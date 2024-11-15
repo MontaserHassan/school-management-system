@@ -55,10 +55,9 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
                 timeRanges.push({ startTime: subjectStartTime, endTime: subjectEndTime });
             };
         };
-        const groupData = await lookupService.getById(group);
+        const groupData = await groupService.findGroupById(group);
         const currency = await lookupService.getById(currencyOfCost);
-        const newClassRoom = await classRoomService.createClassRoom(room, groupData.lookupName, teachersData, schedule, studentCost, currency.lookupName, mainTopicsData, schoolId);
-        await groupService.addClassToGroup(group, newClassRoom._id, newClassRoom.room);
+        const newClassRoom = await classRoomService.createClassRoom(room, groupData.groupName, teachersData, schedule, studentCost, currency.lookupName, mainTopicsData, schoolId);
         if (!newClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",
@@ -245,8 +244,8 @@ const updateClassRoom = async (req: Request, res: Response, next: NextFunction) 
             updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { currencyOfCost: currency.lookupName });
         };
         if (group) {
-            const getGroupName = await lookupService.getById(group);
-            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { group: getGroupName.lookupName });
+            const getGroupName = await groupService.findGroupById(group);
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { group: getGroupName.groupName });
         };
         if (schedule) {
             const newSchedule = [];

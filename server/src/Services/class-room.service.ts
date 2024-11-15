@@ -143,6 +143,12 @@ const getAllClassRoomLookups = async (schoolId: string) => {
 };
 
 
+const getClassesByGroup = async (schoolId: string, group: string) => {
+    const classRooms: ClassRoomModel[] = await ClassRoom.find({ group: group, schoolId: schoolId }).select('-__v');
+    return classRooms;
+};
+
+
 // ----------------------------- update room -----------------------------
 
 
@@ -192,6 +198,7 @@ export default {
     addTopic,
     totalDocument,
     getAllClassRoomLookups,
+    getClassesByGroup,
     findWithPagination,
     updateRoom,
     updateTopicDataInClassrooms,

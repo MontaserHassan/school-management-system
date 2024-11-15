@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import IResponse from '../Interfaces/response.interface';
-import { groupService } from '../Services/index.service';
+import { classRoomService, groupService } from '../Services/index.service';
 import { errorGroupMessage, successGroupMessage } from "../Messages/index.message";
 import { CustomError } from "../Utils/index.util";
 
@@ -18,7 +18,7 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: 'group',
+            responseMessage: successGroupMessage.CREATED,
             data: {
                 group: newGroup,
             },
@@ -26,7 +26,7 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -36,12 +36,12 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
 
 const getGroups = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const groups = await groupService.findAllGroups(req.user.schoolId);
+        const groups = await groupService.findAllGroups();
         if (!groups) throw new CustomError(errorGroupMessage.NOT_FOUND_GROUP, 404, "group");
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: 'group',
+            responseMessage: successGroupMessage.GET_GROUPS,
             data: {
                 groups: groups,
             },
@@ -49,12 +49,12 @@ const getGroups = async (req: Request, res: Response, next: NextFunction) => {
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
 
-// ----------------------------- get notification -----------------------------
+// ----------------------------- get group -----------------------------
 
 
 const getGroup = async (req: Request, res: Response, next: NextFunction) => {
@@ -65,7 +65,7 @@ const getGroup = async (req: Request, res: Response, next: NextFunction) => {
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: 'group',
+            responseMessage: successGroupMessage.GET_GROUP,
             data: {
                 group: group,
             },
@@ -73,7 +73,32 @@ const getGroup = async (req: Request, res: Response, next: NextFunction) => {
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
+    };
+};
+
+
+// ----------------------------- get classes by group -----------------------------
+
+
+const getClasses = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { groupId } = req.params;
+        const isGroupExisting = await groupService.findGroupById(groupId);
+        if (!isGroupExisting) throw new CustomError(errorGroupMessage.NOT_FOUND_GROUP, 404, "group");
+        const classes = await classRoomService.getClassesByGroup(req.user.schoolId, isGroupExisting.groupName);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successGroupMessage.GET_CLASSES_BY_GROUP,
+            data: {
+                classes: classes,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
     };
 };
 
@@ -83,4 +108,5 @@ export default {
     createGroup,
     getGroups,
     getGroup,
+    getClasses,
 };

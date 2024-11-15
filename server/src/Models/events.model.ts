@@ -12,15 +12,12 @@ interface EventModel extends mongoose.Document {
     userId: string;
     username: string;
     response: string;
+    expiryDate: Date;
 };
 
 
 const eventSchema = new mongoose.Schema(
     {
-        _id: {
-            type: String,
-            required: true,
-        },
         eventId: {
             type: String,
             required: true,
@@ -54,6 +51,11 @@ const eventSchema = new mongoose.Schema(
             enum: ['Accepted', 'Rejected', 'Not Response'],
             required: true,
             default: 'Not Response',
+        },
+        expiryDate: {
+            type: Date,
+            required: true,
+            index: { expireAfterSeconds: 0 },
         },
     },
     {

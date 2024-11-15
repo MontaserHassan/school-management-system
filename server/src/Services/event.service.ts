@@ -6,7 +6,7 @@ import generateId from 'Utils/generate-id.util';
 // ----------------------------- create Event -----------------------------
 
 
-const createEvent = async (eventData: { schoolId: string, eventName: string, date: Date, description: string, userId: string, username: string }[]) => {
+const createEvent = async (eventData: { schoolId: string, eventName: string, date: Date, description: string, userId: string, username: string, expiryDate: Date }[]) => {
     const event = await Event.insertMany(eventData);
     return event;
 };

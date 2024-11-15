@@ -3,19 +3,21 @@ import express from 'express';
 
 import { eventController } from '../../../Controllers/index.controller';
 import validation from '../../../Validations/validationHandler.validation';
-import checkRole from 'Middlewares/check-role.middleware';
+import { eventValidator } from '../../../Validations/event.validation';
+import checkRole from '../../../Middlewares/check-role.middleware';
 
 
 
 const eventRouter = express.Router();
 
 
-eventRouter.post('/', checkRole(['admin', 'director']), eventController.createEvent);
+eventRouter.post('/', checkRole(['admin', 'director']), validation(eventValidator.createEvent), eventController.createEvent);
 
 eventRouter.get('/', eventController.getEventsForUser);
-eventRouter.get('/:eventId', eventController.getEventById);
+eventRouter.get('/:eventId', validation(eventValidator.getEvent), eventController.getEventById);
 
-eventRouter.patch('/', eventController.updateEventResponse);
+eventRouter.patch('/', validation(eventValidator.updateEvent), eventController.updateEventResponse);
+
 
 
 export default eventRouter;
