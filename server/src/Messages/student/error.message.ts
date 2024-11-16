@@ -9,9 +9,9 @@ enum errorStudentMessage {
     EXISTING_STUDENT = 'This student already exists in this class, you can\'t add him again',
     LOOKUPS_NOT_EXISTING = "Lookups does not exist",
     PARENT_NOT_EXIST = "Parent does not exist",
-    SUBJECT_NOT_EXISTING = "This Subject does not exist for this student",
+    DOMAIN_NOT_EXISTING = "This Domain does not exist for this student",
     STUDENT_AND_TEACHER = "This Teacher Is NOT assigned to this student, you can't add a comment for this student",
-    TOPIC_WITHOUT_DEGREE = "Cannot complete subject because some topics have no degree."
+    TOPIC_WITHOUT_DEGREE = "Cannot complete domain because some topics have no degree."
 };
 
 

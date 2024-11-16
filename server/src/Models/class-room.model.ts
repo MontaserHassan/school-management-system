@@ -3,16 +3,16 @@ import { nanoid } from "nanoid";
 
 
 
-interface Subjects {
-    subjectId: string;
-    subjectName: string
+interface Domains {
+    domainId: string;
+    domainName: string
     startTime: string;
     endTime: string;
 };
 
 interface Schedule {
     day: string;
-    subjects: Subjects[];
+    domains: Domains[];
 };
 
 interface ClassRoomModel extends mongoose.Document {
@@ -101,15 +101,15 @@ const classRoomSchema = new mongoose.Schema(
                     enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                     required: true,
                 },
-                subjects: [
+                domains: [
                     {
                         _id: false,
-                        subjectId: {
+                        domainId: {
                             type: String,
-                            ref: 'Subject',
+                            ref: 'Domain',
                             required: true,
                         },
-                        subjectName: {
+                        domainName: {
                             type: String,
                             required: true,
                         },

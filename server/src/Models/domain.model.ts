@@ -3,16 +3,16 @@ import { nanoid } from "nanoid";
 
 
 
-interface SubjectModel extends mongoose.Document {
+interface DomainModel extends mongoose.Document {
     _id: string;
     schoolId: string;
-    subjectName: string;
+    domainName: string;
     courseTime: string;
     typeOfTime: string;
 };
 
 
-const subjectSchema = new mongoose.Schema(
+const domainSchema = new mongoose.Schema(
     {
         _id: {
             type: String,
@@ -23,7 +23,11 @@ const subjectSchema = new mongoose.Schema(
             ref: 'School',
             required: false,
         },
-        subjectName: {
+        domainId: {
+            type: String,
+            required: true,
+        },
+        domainName: {
             type: String,
             required: true,
         },
@@ -35,6 +39,17 @@ const subjectSchema = new mongoose.Schema(
             type: String,
             default: 'min',
         },
+        skills: [
+            {
+                _id: false,
+                skillId: {
+                    type: String,
+                },
+                skillName: {
+                    type: String,
+                },
+            },
+        ],
     },
     {
         timestamps: true,
@@ -43,11 +58,11 @@ const subjectSchema = new mongoose.Schema(
 
 
 
-const Subject = mongoose.model<SubjectModel>('subject', subjectSchema);
+const Domain = mongoose.model<DomainModel>('domain', domainSchema);
 
 
 
 export {
-    Subject,
-    SubjectModel,
+    Domain,
+    DomainModel,
 };

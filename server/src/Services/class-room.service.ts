@@ -2,7 +2,7 @@ import { ClassRoom, ClassRoomModel } from "../Models/class-room.model";
 
 
 
-// ----------------------------- create subject room -----------------------------
+// ----------------------------- create room -----------------------------
 
 
 const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, currencyOfCost: string, mainTopics: { topicId: string, topicName: string }[], schoolId: string) => {

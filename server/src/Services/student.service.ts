@@ -1,11 +1,11 @@
 import generateCode from "../Utils/generateCode.util";
 import { Student, StudentModel } from "../Models/student.model";
-import { SubjectModel } from "Models/subject.model";
+import { DomainModel } from "../Models/domain.model";
 import classRoomService from "./class-room.service";
 
 
 
-// ----------------------------- create subject -----------------------------
+// ----------------------------- create student -----------------------------
 
 
 const createStudent = async (studentName: string, parentId: string, schoolId: string, media: string,) => {
@@ -25,8 +25,8 @@ const createStudent = async (studentName: string, parentId: string, schoolId: st
 // ----------------------------- add more data to student -----------------------------
 
 
-const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, subjects: any[], mainTopics: any[], studentCost: string, currencyOfCost: string,) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, subjects: subjects, mainTopics: mainTopics, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
+const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, domains: any[], mainTopics: any[], studentCost: string, currencyOfCost: string,) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, mainTopics: mainTopics, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
     return student;
 };
 
@@ -89,8 +89,8 @@ const updateTopicDataInStudents = async (topicId: string, newTopicName: string) 
 // ----------------------------- add new progress status -----------------------------
 
 
-const addProgressStatus = async (studentId: string, subjectId: string, status: string) => {
-    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "subjects.subjectId": subjectId }, { $set: { "subjects.$.progressStatus": status } }, { new: true });
+const addProgressStatus = async (studentId: string, domainId: string, status: string) => {
+    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "domains.domainId": domainId }, { $set: { "domains.$.progressStatus": status } }, { new: true });
     return student;
 };
 
@@ -115,7 +115,7 @@ const getStudentsByClassRoom = async (room: string) => {
 
 
 const updateStudentByClassRoomData = async (studentId: string) => {
-    const students = await Student.findByIdAndUpdate(studentId, { $unset: { classRoom: "", subjects: [], mainTopics: [], attendance: [], studentCost: '', currencyOfCost: '', group: '' }, }, { new: true });
+    const students = await Student.findByIdAndUpdate(studentId, { $unset: { classRoom: "", domains: [], mainTopics: [], attendance: [], studentCost: '', currencyOfCost: '', group: '' }, }, { new: true });
     return students;
 };
 
@@ -133,7 +133,7 @@ const getStudentById = async (studentId: string) => {
 
 
 const getStudentByStudentCode = async (studentCode: string) => {
-    const student: StudentModel = await Student.findOne({ code: studentCode }).select('-__v').populate([{ path: 'subjects.subjectId', select: 'subjectName', }, { path: 'teacherId', select: 'userName' }]);
+    const student: StudentModel = await Student.findOne({ code: studentCode }).select('-__v').populate([{ path: 'domains.domainId', select: 'domainName', }, { path: 'teacherId', select: 'userName' }]);
     return student;
 };
 

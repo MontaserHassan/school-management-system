@@ -48,7 +48,7 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
     const scheduleHeaders = [
         { header: 'Room', key: 'room', width: 15 },
         { header: 'Day', key: 'day', width: 15 },
-        { header: 'Subject', key: 'subject', width: 30 },
+        { header: 'Domain', key: 'domain', width: 30 },
         { header: 'Start', key: 'start', width: 15 },
         { header: 'End', key: 'end', width: 15 },
         { header: 'Duration', key: 'duration', width: 15 },
@@ -59,15 +59,15 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
         if (classRoom.schedule) {
             for (const daySchedule of classRoom.schedule) {
                 const day = daySchedule.day;
-                for (const sub of daySchedule.subjects) {
-                    const subjectEntry = `${sub.subjectName}`;
-                    const startTime = sub.startTime;
-                    const endTime = sub.endTime;
+                for (const dom of daySchedule.domains) {
+                    const domainEntry = `${dom.domainName}`;
+                    const startTime = dom.startTime;
+                    const endTime = dom.endTime;
                     const duration = calculateDuration(startTime, endTime);
                     scheduleTable.addRow({
                         room: classRoom.room,
                         day: day,
-                        subject: subjectEntry,
+                        domain: domainEntry,
                         start: startTime,
                         end: endTime,
                         duration: duration,

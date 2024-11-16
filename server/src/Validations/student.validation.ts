@@ -56,7 +56,7 @@ const studentValidator = {
     addProgressHistory: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
-            subjectId: Joi.string().required().trim().messages({ 'string.empty': 'Subject Id is required.', }),
+            domainId: Joi.string().required().trim().messages({ 'string.empty': 'Domain Id is required.', }),
             status: Joi.string().required().messages({ 'string.empty': 'status is required.', }),
         }),
     },
@@ -64,7 +64,7 @@ const studentValidator = {
     addDegree: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
-            topicId: Joi.string().required().trim().messages({ 'string.empty': 'Subject Id is required.', }),
+            topicId: Joi.string().required().trim().messages({ 'string.empty': 'Topic Id is required.', }),
             degree: Joi.string().required().messages({ 'string.empty': 'Degree is required.', }),
         }),
     },

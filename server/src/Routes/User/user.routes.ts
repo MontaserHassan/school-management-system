@@ -8,7 +8,7 @@ import authTeacherRouter from './authTopic.routes';
 import authParentRouter from './authParent.routes';
 import authStudentRouter from './authStudent.routes';
 import authClassRoomRouter from './authClassRoom.routes';
-import authSubjectRouter from './authSubject.routes';
+import authDomainRouter from './authDomain.routes';
 import authSchoolRouter from './authSchool.routes';
 import authInvoiceRouter from './authInvoice.routes';
 import authTicketRouter from './authTicket.routes'
@@ -26,7 +26,7 @@ user.use(isSchoolSubscription());
 user.use('/', authUserRouter);
 user.use('/teacher', authTeacherRouter);
 user.use('/class-room', authClassRoomRouter);
-user.use('/subject', authSubjectRouter);
+user.use('/domain', authDomainRouter);
 user.use('/invoice', authInvoiceRouter);
 user.use('/ticket', authTicketRouter);
 user.use('/notification', authNotificationRouter);

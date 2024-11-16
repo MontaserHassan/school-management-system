@@ -14,7 +14,7 @@ export const generatePDFReport = (res: Response, studentRecords: any) => {
     doc.moveDown();
 
     studentRecords.forEach((record: any, index: number) => {
-        doc.fontSize(12).text(`${index + 1}. Subject: ${record.subjectName}`);
+        doc.fontSize(12).text(`${index + 1}. Domain: ${record.domainName}`);
         doc.text(`Degree: ${record.degree}`);
         doc.text(`Teacher ID: ${record.teacherId}`);
         doc.moveDown();

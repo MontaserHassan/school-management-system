@@ -1,0 +1,64 @@
+[{
+  "_id": "pXAgWnY6U5d6PnjVuQ92rsFa",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d1",
+  "domainName": "social studies",
+  "courseTime": "80",
+  "typeOfTime": "min",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-16T14:43:37.802Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-16T15:00:53.698Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "qqNw1LBwPwyxTeHzSlpE3raJ",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d2",
+  "domainName": "math",
+  "courseTime": "80",
+  "typeOfTime": "min",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-16T14:44:13.500Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-16T14:44:13.500Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "SYdyAaE9Tp6NUuitU1bUWEe8",
+  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
+  "domainId": "d1",
+  "domainName": "math",
+  "courseTime": "80",
+  "typeOfTime": "min",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-16T14:45:30.064Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-16T14:45:30.064Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "GEbR_8prXIlFtnq6WO_kMyJQ",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d3",
+  "domainName": "science",
+  "courseTime": "130",
+  "typeOfTime": "min",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-16T14:57:48.377Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-16T14:57:48.377Z"
+  },
+  "__v": 0
+}]

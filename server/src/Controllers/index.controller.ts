@@ -1,6 +1,6 @@
 import userController from "./user.controller";
 import studentController from "./student.controller";
-import subjectController from './subject.controller';
+import domainController from './domain.controller';
 import classRoomController from './class-room.controller';
 import topicController from "./topic.controller";
 import lookupController from "./lookup.controller";
@@ -18,7 +18,7 @@ import eventController from "./event.controller";
 export {
     userController,
     studentController,
-    subjectController,
+    domainController,
     topicController,
     classRoomController,
     lookupController,

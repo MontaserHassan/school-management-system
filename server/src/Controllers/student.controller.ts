@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { classRoomService, lookupService, progressHistoryService, studentService, topicService } from "../Services/index.service";
-import { errorClassRoomMessage, errorStudentMessage, errorSubjectMessage, errorTopicMessage, successStudentMessage, successSubjectMessage } from "../Messages/index.message";
+import { errorClassRoomMessage, errorStudentMessage, errorTopicMessage, successStudentMessage, errorDomainMessage, successDomainMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import { StudentModel } from "../Models/student.model";
@@ -51,15 +51,15 @@ const addStudentToClass = async (req: Request, res: Response, next: NextFunction
             const { studentId } = student;
             const isStudentExisting = await studentService.getStudentById(studentId);
             if (!isStudentExisting || isStudentExisting.schoolId !== schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 400, "student");
-            const subjectsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
-                return schedule.subjects.map(subject => ({ subjectId: subject.subjectId, subjectName: subject.subjectName }));
+            const domainsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
+                return schedule.domains.map(domain => ({ domainId: domain.domainId, domainName: domain.domainName }));
             }) : [];
             const mainTopicsData = isClassRoomExisting.mainTopics ? isClassRoomExisting.mainTopics.map(topic => {
                 return { topicId: topic.topicId, topicName: topic.topicName };
             }) : [];
-            const subjects = Array.from(new Map(subjectsData.map(sub => [sub.subjectId.toString(), sub])).values());
+            const domains = Array.from(new Map(domainsData.map(dom => [dom.domainId.toString(), dom])).values());
             const mainTopics = Array.from(new Map(mainTopicsData.map(topic => [topic.topicId.toString(), topic])).values());
-            await studentService.addMoreDataToStudent(studentId, classRoom, isClassRoomExisting.group, subjects, mainTopics, isClassRoomExisting.studentCost, isClassRoomExisting.currencyOfCost);
+            await studentService.addMoreDataToStudent(studentId, classRoom, isClassRoomExisting.group, domains, mainTopics, isClassRoomExisting.studentCost, isClassRoomExisting.currencyOfCost);
             const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (studentId).toString(), studentName: isStudentExisting.studentName }]);
             if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
             return updatedClassroom;
@@ -67,7 +67,7 @@ const addStudentToClass = async (req: Request, res: Response, next: NextFunction
         const response: IResponse = {
             type: "info",
             responseCode: 201,
-            responseMessage: successSubjectMessage.CREATED,
+            responseMessage: successDomainMessage.CREATED,
             data: {
                 students: newStudents,
             },
@@ -129,8 +129,6 @@ const addComment = async (req: Request, res: Response, next: NextFunction) => {
         const teacherId = req.user.userId;
         const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
-        // const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
-        // if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
         const updatedStudent = await studentService.addComment(student._id, teacherId, comment, media);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const response: IResponse = {
@@ -154,27 +152,27 @@ const addComment = async (req: Request, res: Response, next: NextFunction) => {
 
 const addProgressStatus = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentId, subjectId, status } = req.body;
+        const { studentId, domainId, status } = req.body;
         const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 400, "student");
-        const subjectExists = student.subjects?.find((subject: any) => subject.subjectId === subjectId);
-        if (!subjectExists) throw new CustomError(errorStudentMessage.SUBJECT_NOT_EXISTING, 400, "subject");
+        const domainExists = student.domains?.find((domain: any) => domain.domainId === domainId);
+        if (!domainExists) throw new CustomError(errorStudentMessage.DOMAIN_NOT_EXISTING, 400, "domain");
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
         const topicsWithoutDegree = await Promise.all(
             student.mainTopics?.map(async (topic) => {
                 const topicExists = await topicService.getById(String(topic.topicId));
-                if (topicExists.subject.subjectId === subjectId && !topic.degree) return topicExists;
+                if (topicExists.domain.domainId === domainId && !topic.degree) return topicExists;
                 return null;
             }) || [],
         );
         const filteredTopicsWithoutDegree = topicsWithoutDegree.filter(topic => topic !== null);
-        if (progressStatus.lookupName === "Completed" && filteredTopicsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.TOPIC_WITHOUT_DEGREE, 400, "subject");
-        const updatedStudent = await studentService.addProgressStatus(studentId, subjectId, progressStatus.lookupName);
+        if (progressStatus.lookupName === "Completed" && filteredTopicsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.TOPIC_WITHOUT_DEGREE, 400, "domain");
+        const updatedStudent = await studentService.addProgressStatus(studentId, domainId, progressStatus.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const topics = await Promise.all(student.mainTopics.map(async (topic) => {
-            const topicsForSubject = await topicService.getBySubjectId(subjectId);
-            const filteredTopics = topicsForSubject.filter((t) => t._id === topic.topicId);
+            const topicsForDomain = await topicService.getByDomainId(domainId);
+            const filteredTopics = topicsForDomain.filter((t) => t._id === topic.topicId);
             return filteredTopics.map((filteredTopic) => ({
                 topicId: filteredTopic._id,
                 topicName: filteredTopic.topicName,
@@ -182,7 +180,7 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
             }));
         }));
         const flattedTopics = topics.flat();
-        if (progressStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, subjectId, subjectExists.subjectName, flattedTopics, 'Completed', true)
+        if (progressStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedTopics, 'Completed', true)
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -411,7 +409,7 @@ const updateStudentData = async (req: Request, res: Response, next: NextFunction
         const IsStudentExisting = await studentService.getStudentById(studentId);
         if (!IsStudentExisting) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const updatedStudent = await studentService.updateStudentData(IsStudentExisting._id, { studentName, });
-        if (!updatedStudent) throw new CustomError(errorSubjectMessage.NOT_UPDATED, 404, "student");
+        if (!updatedStudent) throw new CustomError(errorDomainMessage.NOT_UPDATED, 404, "student");
         const response: IResponse = {
             type: "info",
             responseCode: 200,

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, studentService, subjectService, topicService } from "../Services/index.service";
-import { errorClassRoomMessage, errorSubjectMessage, errorTopicMessage, successTopicMessage } from "../Messages/index.message";
+import { classRoomService, studentService, domainService, topicService } from "../Services/index.service";
+import { errorClassRoomMessage, errorDomainMessage, errorTopicMessage, successTopicMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import pagination from '../Utils/pagination.util';
@@ -13,17 +13,17 @@ import pagination from '../Utils/pagination.util';
 
 const createTopic = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { topicName, subjectId, room } = req.body;
+        const { topicName, domainId, room } = req.body;
         const { schoolId } = req.user;
-        const isSubjectExisting = await subjectService.getById(subjectId);
-        if (!isSubjectExisting) throw new CustomError(errorSubjectMessage.NOT_FOUND_SUBJECT, 404, "subject");
+        const isDomainExisting = await domainService.getById(domainId);
+        if (!isDomainExisting) throw new CustomError(errorDomainMessage.NOT_FOUND_DOMAIN, 404, "domain");
         const isRoomExisting = await classRoomService.getByRoomAndSchoolId(room, schoolId);
         if (!isRoomExisting) throw new CustomError(errorClassRoomMessage.NOT_FOUND_ROOM, 404, "room");
         const isOperationTrue = isRoomExisting.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId);
         if (!isOperationTrue) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 400, "teacher");
         const isTopicExisting = await topicService.getByNameAndClassRoom(topicName.toLowerCase(), room, schoolId);
         if (isTopicExisting) throw new CustomError(errorClassRoomMessage.TOPIC_EXISTING_IN_ROOM, 400, "topic");
-        const newTopic = await topicService.createTopic(topicName.toLowerCase(), room, { subjectId: isSubjectExisting._id, subjectName: isSubjectExisting.subjectName }, schoolId);
+        const newTopic = await topicService.createTopic(topicName.toLowerCase(), room, { domainId: isDomainExisting._id, domainName: isDomainExisting.domainName }, schoolId);
         if (!newTopic) throw new CustomError(errorTopicMessage.DOES_NOT_CREATED, 400, "none");
         const addTopicToRoom = await classRoomService.addTopic(room, { topicId: newTopic._id, topicName: newTopic.topicName });
         if (!addTopicToRoom) throw new CustomError(errorClassRoomMessage.TOPIC_NOT_ADDED, 400, "none");

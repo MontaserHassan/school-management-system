@@ -10,8 +10,8 @@ const classRoomValidator = {
             teachersId: Joi.array().unique().items(Joi.string().required()).required().messages({ 'array.empty': 'Teachers is required.', 'array.unique': 'Teachers must be unique.' }),
             schedule: Joi.array().items(Joi.object().keys({
                 day: Joi.string().required().messages({ 'string.empty': 'Day is required.', }),
-                subjects: Joi.array().items(Joi.object().keys({
-                    subjectId: Joi.string().required().messages({ 'string.empty': 'subject Id is required.', }),
+                domains: Joi.array().items(Joi.object().keys({
+                    domainId: Joi.string().required().messages({ 'string.empty': 'Domain Id is required.', }),
                     startTime: Joi.string().required().messages({ 'string.empty': 'Start time is required.', }),
                 }))
             })),
@@ -23,7 +23,7 @@ const classRoomValidator = {
 
     getRoom: {
         params: Joi.object().keys({
-            classRoom: Joi.string().required().trim().messages({ 'string.empty': 'Subject is required.', }),
+            classRoom: Joi.string().required().trim().messages({ 'string.empty': 'Class Room is required.', }),
         }),
     },
 
@@ -35,8 +35,8 @@ const classRoomValidator = {
             teachersId: Joi.array().unique().optional().items(Joi.string().required()).messages({ 'array.empty': 'Teachers is required.', 'array.unique': 'Teachers must be unique.' }),
             schedule: Joi.array().optional().items(Joi.object().keys({
                 day: Joi.string().required().messages({ 'string.empty': 'Day is required.', }),
-                subjects: Joi.array().items(Joi.object().keys({
-                    subjectId: Joi.string().required().messages({ 'string.empty': 'subject Id is required.', }),
+                domains: Joi.array().items(Joi.object().keys({
+                    domainId: Joi.string().required().messages({ 'string.empty': 'Domain Id is required.', }),
                     startTime: Joi.string().required().messages({ 'string.empty': 'Start time is required.', }),
                 }))
             })),

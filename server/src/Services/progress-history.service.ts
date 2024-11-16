@@ -5,11 +5,11 @@ import { ProgressHistory, ProgressHistoryModel } from '../Models/progress-histor
 // ----------------------------- create new progress history -----------------------------
 
 
-const createNewProgressHistory = async (studentId: string, subjectId: string, subjectName: string, topics: { topicId: string, topicName: string, degree: string }[], status: string, completed: boolean) => {
+const createNewProgressHistory = async (studentId: string, domainId: string, domainName: string, topics: { topicId: string, topicName: string, degree: string }[], status: string, completed: boolean) => {
     const newProgressHistory: ProgressHistoryModel = new ProgressHistory({
         studentId: studentId,
-        subjectId: subjectId,
-        subjectName: subjectName,
+        domainId: domainId,
+        domainName: domainName,
         topics: topics,
         status: status,
         completed: completed,

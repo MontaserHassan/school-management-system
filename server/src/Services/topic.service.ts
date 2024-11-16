@@ -5,10 +5,10 @@ import { MainTopic, MainTopicModel } from '../Models/main-topics.model';
 // ----------------------------- create topic -----------------------------
 
 
-const createTopic = async (topicName: string, room: string, subject: { subjectId: string, subjectName: string }, schoolId: string) => {
+const createTopic = async (topicName: string, room: string, domain: { domainId: string, domainName: string }, schoolId: string) => {
     const newTopic: MainTopicModel = new MainTopic({
         topicName: (topicName).toLowerCase(),
-        subject: subject,
+        domain: domain,
         schoolId: schoolId,
         classRoom: room,
     });
@@ -21,8 +21,8 @@ const createTopic = async (topicName: string, room: string, subject: { subjectId
 
 
 const getByName = async (topicName: string) => {
-    const subject: MainTopicModel = await MainTopic.findOne({ topicName }).select('-__v');
-    return subject;
+    const topic: MainTopicModel = await MainTopic.findOne({ topicName }).select('-__v');
+    return topic;
 };
 
 
@@ -30,16 +30,16 @@ const getByName = async (topicName: string) => {
 
 
 const getByNameAndClassRoom = async (topicName: string, classRoom: string, schoolId) => {
-    const subject: MainTopicModel = await MainTopic.findOne({ topicName, classRoom, schoolId }).select('-__v');
-    return subject;
+    const topic: MainTopicModel = await MainTopic.findOne({ topicName, classRoom, schoolId }).select('-__v');
+    return topic;
 };
 
 
-// ----------------------------- get by subject id -----------------------------
+// ----------------------------- get by domain id -----------------------------
 
 
-const getBySubjectId = async (subjectId: string) => {
-    const topics: MainTopicModel[] = await MainTopic.find({ 'subject.subjectId': subjectId }).select('-__v');
+const getByDomainId = async (domainId: string) => {
+    const topics: MainTopicModel[] = await MainTopic.find({ 'domain.domainId': domainId }).select('-__v');
     return topics;
 };
 
@@ -111,7 +111,7 @@ const deleteTopic = async (topicId: string) => {
 export default {
     createTopic,
     getById,
-    getBySubjectId,
+    getByDomainId,
     getByName,
     getByNameAndClassRoom,
     getTopicsById,

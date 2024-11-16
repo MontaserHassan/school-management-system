@@ -1,6 +1,6 @@
 import userService from "./user.service";
 import userTokenService from "./user-token.service";
-import subjectService from './subject.service';
+import domainService from './domain.service';
 import studentService from './student.service';
 import classRoomService from './class-room.service';
 import topicService from "./topic.service";
@@ -18,7 +18,7 @@ import eventService from "./event.service";
 export {
     userService,
     userTokenService,
-    subjectService,
+    domainService,
     topicService,
     studentService,
     classRoomService,

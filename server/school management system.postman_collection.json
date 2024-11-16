@@ -4,7 +4,7 @@
 		"name": "school management system",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28090962",
-		"_collection_link": "https://web.postman.co/workspace/Team-Workspace~faacda42-8504-486e-872b-5f649314f2c6/collection/28090962-be26bf09-09de-448a-a6d7-b5850a99b6c7?action=share&source=collection_link&creator=28090962"
+		"_collection_link": "https://montaser99.postman.co/workspace/Team-Workspace~faacda42-8504-486e-872b-5f649314f2c6/collection/28090962-be26bf09-09de-448a-a6d7-b5850a99b6c7?action=share&source=collection_link&creator=28090962"
 	},
 	"item": [
 		{
@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    //\"email\": \"superadmin@gmail.com\", //\n    //\"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    \"email\": \"teacher1.banisuef@gmail.com\", // teacher\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    //\"email\": \"superadmin@gmail.com\", //\n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    \"email\": \"admin@gmail.com\", // admin\n    //\"email\": \"teacher1.banisuef@gmail.com\", // teacher\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1556,14 +1556,14 @@
 					"response": []
 				},
 				{
-					"name": "get subjects",
+					"name": "get domains",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI0M2RmZjQ3Njk0ZDkzZDM4NzU5MDJiZjAiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0MjE4MTQsImV4cCI6MTcyNjQzNjIxNH0.MZmlmUDDHtEi2hf9Sm2juF-BvAX-Bdr1qhzCJ4GGoq4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
 									"type": "string"
 								}
 							]
@@ -1571,16 +1571,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/lookups/subjects",
-							"protocol": "http",
+							"raw": "{{SchoolManagement}}/lookups/domains",
 							"host": [
-								"localhost"
+								"{{SchoolManagement}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
 								"lookups",
-								"subjects"
+								"domains"
 							]
 						}
 					},
@@ -1674,7 +1671,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"100\",\n    \"teachersId\": [\n        \"TNWCI4reAr11PynOMrS15\"\n    ],\n    \"schedule\": [\n        {\n            \"day\": \"Tuesday\",\n            \"subjects\": [\n                {\n                    \"subjectId\": \"Aoncefh0kNpTqWsJSo4CV7Vf\",\n                    \"startTime\": \"09:30\"\n                }\n            ]\n        }\n    ],\n    // \"mainTopics\": [],\n    \"studentCost\": \"200\",\n    \"currencyOfCost\": \"SchoolSystem-6-1\",\n    \"group\": \"673770f705920cfeccd341b5\"\n}",
+							"raw": "{\n    \"room\": \"100\",\n    \"teachersId\": [\n        \"TNWCI4reAr11PynOMrS15\"\n    ],\n    \"schedule\": [\n        {\n            \"day\": \"Tuesday\",\n            \"domains\": [\n                {\n                    \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n                    \"startTime\": \"09:30\"\n                }\n            ]\n        }\n    ],\n    // \"mainTopics\": [],\n    \"studentCost\": \"200\",\n    \"currencyOfCost\": \"SchoolSystem-6-1\",\n    \"group\": \"673770f705920cfeccd341b5\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1693,7 +1690,74 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add class room",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"room\": \"100\",\n    \"teachersId\": [\n        \"TNWCI4reAr11PynOMrS15\"\n    ],\n    \"schedule\": [\n        {\n            \"day\": \"Tuesday\",\n            \"domains\": [\n                {\n                    \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n                    \"startTime\": \"09:30\"\n                }\n            ]\n        }\n    ],\n    // \"mainTopics\": [],\n    \"studentCost\": \"200\",\n    \"currencyOfCost\": \"SchoolSystem-6-1\",\n    \"group\": \"673770f705920cfeccd341b5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/class-room/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"class-room",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "612"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"264-pSB5vb1ORocLZhosp/q2xcf6jAY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 15:15:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"Class Room created successfully\",\n    \"data\": {\n        \"classRoom\": {\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"room\": \"100\",\n            \"group\": \"2-3\",\n            \"teachers\": [\n                {\n                    \"teacherId\": \"TNWCI4reAr11PynOMrS15\",\n                    \"teacherName\": \"teacher 1 BaniSuef language\"\n                }\n            ],\n            \"mainTopics\": [],\n            \"schedule\": [\n                {\n                    \"day\": \"Tuesday\",\n                    \"domains\": [\n                        {\n                            \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n                            \"domainName\": \"social studies\",\n                            \"startTime\": \"09:30\",\n                            \"endTime\": \"10:50\"\n                        }\n                    ]\n                }\n            ],\n            \"studentCost\": \"200\",\n            \"currencyOfCost\": \"USD\",\n            \"_id\": \"ijsmx6pq385IlmmW4MQsOmhl\",\n            \"students\": [],\n            \"createdAt\": \"2024-11-16T15:15:30.897Z\",\n            \"updatedAt\": \"2024-11-16T15:15:30.897Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get all rooms",
@@ -1703,7 +1767,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhZjMxYzM2OTU4ZjhmNjQ3OWQ1NGY1YzgiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjgyMTk0MDUsImV4cCI6MTcyODMwNTgwNX0.I6f_jpDNVcNq8b19W5N4Zd4YKyNGcPmUpAnDlnhfkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
 									"type": "string"
 								}
 							]
@@ -1731,7 +1795,74 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get all rooms",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/class-room?page=1&isExport=true",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"class-room"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "isExport",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"343f-tebXP+Mry459xiHanL/oklRu5ag\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 15:30:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Class Rooms fetched successfully\",\n    \"data\": {\n        \"totalPages\": 1,\n        \"currentPage\": 1,\n        \"limit\": 10,\n        \"skip\": 0,\n        \"totalDocuments\": 1,\n        \"rooms\": [\n            {\n                \"_id\": \"ijsmx6pq385IlmmW4MQsOmhl\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"room\": \"100\",\n                \"group\": \"2-3\",\n                \"teachers\": [\n                    {\n                        \"teacherId\": \"TNWCI4reAr11PynOMrS15\",\n                        \"teacherName\": \"teacher 1 BaniSuef language\"\n                    }\n                ],\n                \"mainTopics\": [],\n                \"schedule\": [\n                    {\n                        \"day\": \"Tuesday\",\n                        \"domains\": [\n                            {\n                                \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n                                \"domainName\": \"social studies\",\n                                \"startTime\": \"09:30\",\n                                \"endTime\": \"10:50\"\n                            }\n                        ]\n                    }\n                ],\n                \"studentCost\": \"200\",\n                \"currencyOfCost\": \"USD\",\n                \"students\": [],\n                \"createdAt\": \"2024-11-16T15:15:30.897Z\",\n                \"updatedAt\": \"2024-11-16T15:15:30.897Z\"\n            }\n        ],\n        \"base64String\": \"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\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get room by roomId",
@@ -1741,7 +1872,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhZjMxYzM2OTU4ZjhmNjQ3OWQ1NGY1YzgiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjgyMTk0MDUsImV4cCI6MTcyODMwNTgwNX0.I6f_jpDNVcNq8b19W5N4Zd4YKyNGcPmUpAnDlnhfkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
 									"type": "string"
 								}
 							]
@@ -1749,14 +1880,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/class-room/GWt5QUWMgkUTokrwLm8IzEBN?isExport=true",
+							"raw": "{{SchoolManagement}}/user/class-room/ijsmx6pq385IlmmW4MQsOmhl?isExport=true",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
 								"class-room",
-								"GWt5QUWMgkUTokrwLm8IzEBN"
+								"ijsmx6pq385IlmmW4MQsOmhl"
 							],
 							"query": [
 								{
@@ -1766,7 +1897,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get room by roomId",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/class-room/ijsmx6pq385IlmmW4MQsOmhl?isExport=true",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"class-room",
+										"ijsmx6pq385IlmmW4MQsOmhl"
+									],
+									"query": [
+										{
+											"key": "isExport",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13307"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33fb-L/JwK2dPOjdWnJYajwmqDAKbNqU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 15:20:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Class Room room fetched successfully\",\n    \"data\": {\n        \"classRoom\": {\n            \"_id\": \"ijsmx6pq385IlmmW4MQsOmhl\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"room\": \"100\",\n            \"group\": \"2-3\",\n            \"teachers\": [\n                {\n                    \"teacherId\": \"TNWCI4reAr11PynOMrS15\",\n                    \"teacherName\": \"teacher 1 BaniSuef language\"\n                }\n            ],\n            \"mainTopics\": [],\n            \"schedule\": [\n                {\n                    \"day\": \"Tuesday\",\n                    \"domains\": [\n                        {\n                            \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n                            \"domainName\": \"social studies\",\n                            \"startTime\": \"09:30\",\n                            \"endTime\": \"10:50\"\n                        }\n                    ]\n                }\n            ],\n            \"studentCost\": \"200\",\n            \"currencyOfCost\": \"USD\",\n            \"students\": [],\n            \"createdAt\": \"2024-11-16T15:15:30.897Z\",\n            \"updatedAt\": \"2024-11-16T15:15:30.897Z\"\n        },\n        \"base64String\": \"UEsDBAoAAAAIAIV6cFk0kHOibAEAABAHAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbM2Vy27CMBBF9/2KyFuUGOhDVUVgUdpli1T6AW48IRaObXnM6+87MRRVFQ8hkMomVuI791yPkklvsKx1MgePypqcdbI2S8AUViozydnn+DV9ZAkGYaTQ1kDOVoBs0L/pjVcOMKFigzmrQnBPnGNRQS0wsw4M7ZTW1yLQrZ9wJ4qpmADvttsPvLAmgAlpaDxYvzeEUsx0SF6W9HgdxINGljyvhQ0rZ8I5rQoRaJ/PjfxDSTeEjCqjBivlsEUCxncSmp39gE3dO3XGKwnJSPjwJmpS8aXmC+unX9ZOs8MmO1LaslQFSFvMairJ0HkQEiuAUOssrlktlGkd50cx8rh0Lhxk639iju6V5Li9khx3V5Lj/p9yBJoHsL6e/4pGmyNADCsNeOnPMpoeI1fCg/wIngbnxQP89j4w0uZnUql+6MWCKPsOStKRtw5phHs4/ZQ/M7qpTh0ZgQ/qcGu3RLI+u63Q9EqC3MHm8YfW/wZQSwMECgAAAAAAhXpwWQAAAAAAAAAAAAAAAAYAAABfcmVscy9QSwMECgAAAAgAhXpwWfKfSdrpAAAASwIAAAsAAABfcmVscy8ucmVsc62SwU7DMAxA73xF5PuabkgIoaW7IKTdJjQ+wCRuG7WNo8SD7u+JkEAMjWkHjnHs52fL6808jeqNUvYcDCyrGhQFy86HzsDL/mlxDyoLBocjBzJwpAyb5mb9TCNKqcm9j1kVSMgGepH4oHW2PU2YK44Uyk/LaUIpz9TpiHbAjvSqru90+smA5oSpts5A2rolqP0x0jVsbltv6ZHtYaIgZ1r8yihkTB2JgXnU75yGV+ahKlDQ511W17v8PaeeSNChoLacaBFTqU7iy1q/dRzbXQnnz4xLQrf/uRyahYIjd1kJY/wy0ic30HwAUEsDBAoAAAAAAIV6cFkAAAAAAAAAAAAAAAADAAAAeGwvUEsDBAoAAAAAAIV6cFkAAAAAAAAAAAAAAAAJAAAAeGwvX3JlbHMvUEsDBAoAAAAIAIV6cFnVbx6eBAEAAO0EAAAaAAAAeGwvX3JlbHMvd29ya2Jvb2sueG1sLnJlbHO9lM1qwzAQhO99CrH3Wrbz0xAi51ICubbuAwh7bZnYkpE2bf32VRvaOBBED8YnMSt25mME2u0/u5a9o3WN0QKSKAaGujBlo2sBb/nhcQPMkdSlbI1GAQM62GcPuxdsJfkdp5reMW+inQBF1G85d4XCTrrI9Kj9TWVsJ8lLW/NeFidZI0/jeM3t2AOyG092LAXYY5kAy4ce/+Ntqqop8NkU5w413YngjobW87Nc2hpJwEVH3gf4/fh0ynjyu3hN/5GXYRJiWExagZIWy1ey/oHHTYzHIZjllDAfxp6cQqQryN/oG9UfwWZWM8OkIZj1zDCLEMzTzDDLEMxmZpjVLwy/+aWyL1BLAwQKAAAAAACFenBZAAAAAAAAAAAAAAAADgAAAHhsL3dvcmtzaGVldHMvUEsDBAoAAAAIAIV6cFmzWqnGVQIAABIGAAAYAAAAeGwvd29ya3NoZWV0cy9zaGVldDEueG1sjVTbjtowEH3vV1h+X5yE24IIq+1S1EqtVLVb9dk4DrHWzkS2uWy/vhMnsEAQ4gUyM+ccz82ePe2NJltpnYIypXEvokSWAjJVrlP653X58EiJ87zMuIZSpvRdOvo0/zTbgX1zhZSeoEDpUlp4X00Zc6KQhrseVLLESA7WcI+mXTNXWcmzQDKaJVE0YoarkjYKU3uPBuS5EnIBYmNk6RsRKzX3mL4rVOUOakbcI2e4fdtUDwJMhRIrpZV/D6KUGDH9ti7B8pXGsvfxgIuDdjA68kYJCw5y30O5NtFuzRM2Yag0n2UKK6i7TqzMU/ocT5cJZfNZwC5Djj8tyWTON9r/gt1XqdaFxxENKYGN16qU3+VWagylNDr3vYAOvpDoNHtfSCewXSkdDusjBGgXfolR9dCxWL4P/zuV+aI5Q2ycB/O3dbS0hpC0hOSDEN0k9FtC/0hIbp8waAmDe1MatoThvSmNWsLoI6WrBNY0K0xlwT2fzyzsiA3dchWvNz+eoogLnobfTC84OhOIelg65lFLPMcHHgYcerfzaMa29aEt4nMXEZ8jXrqI5Byx6CL654gvXcTgHLHsIoZHBMOOHNuSnLfldv3Jid7oovLT2Pii5uRarxanjMeLCk9jk4vaTmNxdFEWO5l8xdfyB7drVTqiZR6qGVNim4sZvj1U4Qv3cAUed+FgFfgMSFtbeAlyAH8wWKP7W/pNRcAq7FJ4zVJagfWWK49k9P8DDOhFpfBWJJPBZDROJqiLT7dX4krAoVPW1wDXOlf+FY5b3ZjH9yRs+fE5n/8HUEsDBAoAAAAIAIV6cFkPkZIzRQIAAI4FAAAYAAAAeGwvd29ya3NoZWV0cy9zaGVldDIueG1sjVTbjtowEH3vV1h+X5yE24IIqy0UtVIrrdqt+mwch1hrZyLb3Pr1nTiASEDbfUGZOWeO5wxjz54ORpOdtE5BmdK4F1EiSwGZKjcp/f26enikxHleZlxDKVN6lI4+zT/N9mDfXCGlJyhQupQW3ldTxpwopOGuB5UsEcnBGu4xtBvmKit5FoqMZkkUjZjhqqSNwtR+RAPyXAm5BLE1svSNiJWae2zfFapyZzUjPiJnuH3bVg8CTIUSa6WVPwZRSoyYftuUYPlao+1DPODirB2CG3mjhAUHue+h3KnRW88TNmGoNJ9lCh3UUydW5il9jqerhLL5LHBXoccXSzKZ8632P2H/VapN4fEvGlICW69VKb/LndQIpTRq5xagQy40Os2OS+kEjiulw2F9hADtwi8xqv7T0Sw/pDShZK8yXzRniK3zYP6cEqeypqB/KuhfCvrRuwWDU8HoPyewprMwgiX3fD6zsCc2tOgqXq9ZPEURFzJNfTOqkLixG/WSIY5a1BLP8bkOAYfZ3TyasV196Inx+ZYRx23K4g4laVOWdyj9NuXLHcqgTVndoQwvFIZjucwmac/m/SEkV4Kjjv1rLO6AixY47lhugY8dsy1w0rF5DSZRxyC7WoSKb+QPbjeqdETLPPgaU2KbSxG+PVThC1drDR5X4xwVeAWlrSPc2BzAnwPW6P6SflsRsArnFV6SlFZgveXKYzHm/wICelkpXOVkMpiMxskEdfHZ9ErcARwm8dGII7wWufKvcFnyJrzc5bD0l6d0/g9QSwMECgAAAAgAhXpwWem3lcX5AQAA8AMAABgAAAB4bC93b3Jrc2hlZXRzL3NoZWV0My54bWyNU8tu2zAQvPcrCN5jSoqd1IKkIKkRtEALFG2KnmmKkoiQXIKk/OjXd0XZRgvnkAulnd2ZfXBZPRyMJjvpgwJb03yRUSKtgFbZvqa/Xp5vPlISIrct12BlTY8y0IfmQ7UH/xoGKSNBARtqOsToSsaCGKThYQFOWvR04A2PaPqeBeclbxPJaFZk2R0zXFk6K5T+PRrQdUrIDYjRSBtnES81j1h+GJQLZzUj3iNnuH8d3Y0A41Biq7SKxyRKiRHll96C51uNbR/yJRdn7WRcyRslPATo4gLlToVe97xma4ZKTdUq7GCaOvGyq+ljXj7llDVVin1ONX73pJUdH3X8AfvPUvVDxCtaUQJj1MrKr3InNbpqmv2PfQKdsFRo2R43MggcV01XqymFAB3SSYyaLh2b5Yf03as2DnMOMYYI5vcJONFmQnEiFBfCbfYWgc2JUkcbHnlTedgTnzIFx6etyUsUCQmZ+XPnCbiqPlsUK5ycmCQe8zMPHQHRXZNVbDclPUU8XUcU+SWEYSl4/lOb4738xn2vbCBadinfPSV+Hnv6j+DSH45nCxGrPVsDXrL0k3VLSQcQzwabdX/KODoCXmEfaVdr6sBHz1VEMuJ/AB1641RNl8V6ub67L9aoiw8zKvGGIyCIa5lnOPhOxRe4zH02L9uS7uHyWJu/UEsDBAoAAAAIAIV6cFkyzx3R+QEAAPADAAAYAAAAeGwvd29ya3NoZWV0cy9zaGVldDQueG1sjVPLbtswELz3KwjeY0qKndSCpCCpEbRACxRtip5pipKIkFyCpPzo13dF2UYL55ALpZ3dmX1wWT0cjCY76YMCW9N8kVEirYBW2b6mv16ebz5SEiK3LddgZU2PMtCH5kO1B/8aBikjQQEbajrE6ErGghik4WEBTlr0dOANj2j6ngXnJW8TyWhWZNkdM1xZOiuU/j0a0HVKyA2I0UgbZxEvNY9YfhiUC2c1I94jZ7h/Hd2NAONQYqu0isckSokR5ZfegudbjW0f8iUXZ+1kXMkbJTwE6OIC5U6FXve8ZmuGSk3VKuxgmjrxsqvpY14+5ZQ1VYp9TjV+96SVHR91/AH7z1L1Q8QrWlECY9TKyq9yJzW6apr9j30CnbBUaNkeNzIIHFdNV6sphQAd0kmMmi4dm+WH9N2rNg5zDjGGCOb3CTjRZkJxIhQXwm32FoHNiVJHGx55U3nYE58yBcenrclLFAkJmflz5wm4qj5bFCucnJgkHvMzDx0B0V2TVWw3JT1FPF1HFMUlhGEpeP5Tm+O9/MZ9r2wgWnYp3z0lfh57+o/g0h+OZwsRqz1bA16y9JN1S0kHEM8Gm3V/yjg6Al5hH2lXa+rAR89VRDLifwAdeuNUTZfFerm+uy/WqIsPMyrxhiMgiGuZZzj4TsUXuMx9Ni/bku7h8libv1BLAwQKAAAACACFenBZveVvMA4CAABdBAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQ1LnhtbI1U3W+bMBB/319h+b0xkI8uCKjaRdUmbdLUddqzYwxYtTlkm3zsr99hEpQ21dSXhLvz7+PuDNndwWiyk9YpaHMazyJKZCugVG2d09/PjzefKXGetyXX0MqcHqWjd8WnbA/2xTVSeoIErctp432XMuZEIw13M+hki5UKrOEeQ1sz11nJywAymiVRtGKGq5aODKn9CAdUlRJyA6I3svUjiZWae7TvGtW5M5sRH6Ez3L703Y0A0yHFVmnlj4GUEiPSb3ULlm81tn2IF1ycuUNwRW+UsOCg8jOkOxm97nnN1gyZiqxU2MEwdWJlldP7OH1IKCuycPYxePxpSSkr3mv/BPuvUtWNxxUtKYHea9XK73InNZZyGr3OfQEdcsFoWh430gkcV06Xy0FCgHbhlxg1LB2b5Yfwv1elb0YN0TsP5s8pcYKNgOQESCbAPHoPwEah0NGGe15kFvbEBiXX8eHWxCmSuJAZ8WPnIXHlPpolS5ycGCju4zMOCw6zuyLK2G4QPZ14uD6RzKcjDK1MfpLXfv4vnFwQrt5IXtaSxRsxdjGIjtfyB7e1ah3Rsgoat5TYccfh2UMXnnAXW/A4mnPU4I2SdojmlFQA/hywkfeX9H1HwCr0Hl6MnHZgveXKIxjzfwELetOpnC6S9WK9uk3WyItfAa/EOwWHSXwH4gi3XCn/DNOSx3C6mmHp05eh+AdQSwMECgAAAAgAhXpwWd4Kjlg6AQAAAwMAABQAAAB4bC9zaGFyZWRTdHJpbmdzLnhtbHWSwU7DMAyG7zxFlPuWtNMQVG0nsQEndmDlAbLWayM1cYkTxN6eTNupGcd8vy3n/+1y82tG9gOONNqKZ0vJGdgWO237in81b4snzsgr26kRLVT8DMQ39UNJ5FlstVTxwfupEILaAYyiJU5go3JCZ5SPT9cLmhyojgYAb0aRS/kojNKWsxaD9RVfZZwFq78DbK8gX/O6JF2Xvv5ENKXwdSku7yt7dximOdwHcwTH8MQOPnRgPc0rbpxtkfxc2wbnovFz0tMOiCPbKwNzKZNyjvLFKkFp1ddhN0dHZTUFOLFR2T6oPhm2U8nXdngJMTWpXOLu1XZJd3DKx6XPeROAunQYYavVGE8hdBqSZOVzsUpsZrJYJ1BmRZ7Aj+iDNTjp9t+d3VtAAyrenLur+ZuWsZcY7eF+tCJecf0HUEsDBAoAAAAAAIV6cFkAAAAAAAAAAAAAAAAJAAAAeGwvdGhlbWUvUEsDBAoAAAAIAIV6cFl2mzDfIQYAABkfAAATAAAAeGwvdGhlbWUvdGhlbWUxLnhtbO1ZTW/bNhi+71cQurfyl1InqFPEjt1ubdogcTv0SEu0xIYSBZJO4tvQHgcMGNYNuwzYbYdhW4EW2KX7Ndk6bB3Qv7BX1ocpm2qcJt1QIDk4IvU87xff9yVpX79xHDJ0SISkPOpY9as1C5HI5R6N/I51fzi40raQVDjyMOMR6VhTIq0bmx9dxxsqICFBQI/kBu5YgVLxhm1LF6axvMpjEsG7MRchVjAUvu0JfARiQ2Y3arU1O8Q0slCEQ5B6bzymLkHDRKS1iXLpfQYfkZKzGZeJfXemU+ekaO+gPvsvp7LHBDrErGOBLo8fDcmxshDDUsGLjlWb/Vk2oO05jakqukYdzP5yak7xDhopVfijglsftNavbc+1NDItBmi/3+/163OpKQS7LvhdX4a3Bu16t5Csw9Jng4Zezam1Fii6luYyZb3b7TrrZUpTo7SWKe3aWmurUaa0NIpj8KW71eutlSmORllbpgyura+1FigpLGA0OlgmJKs9X7Q5aMzZLTOjDYx2kSEaztZSMJMRqcqMDPEjLgaASJceKxohNY3JGLuA7OFwJCieacEbBGuvsjlXLs8lCpF0BY1Vx/okxlA+c8yblz+9efkcvXn57OTxi5PHv548eXLy+BcT8xaOfJ35+ocv//nuM/T38+9fP/26giB1wh8/f/77b19VIJWOfPXNsz9fPHv17Rd//fjUhN8SeKTjhzQkEt0lR2iPh+CfSQUZiTNShgGmJQoOAGpC9lVQQt6dYmYEdkk5hg8EtAsj8ubkUcne/UBMFDUhbwdhCbnDOetyYfbpdqJO92kS+RX6xUQH7mF8aFTfW1jl/iSG3KZGob2AlEzdZbDw2CcRUSh5xw8IMfEeUlqK7w51BZd8rNBDirqYmgMzpCNlZt2iISzQ1GgjrHopQjsPUJczo4JtcliGQoVgZhRKWCmaN/FE4dBsNQ6ZDr2DVWA0dH8q3FLgpYJF9wnjqO8RKY2ke2JaMvk2hjZlzoAdNg3LUKHogRF6B3OuQ7f5QS/AYWy2m0aBDv5YHkDGYrTLldkOXq6ZZAwLgqPqlX9AiTpjsd+nfmBOluTNRBhrhPByjU7ZGJMo3wTKvTyk0Vs7O6PQ2i87+0Jn34LtzlhRi/28EviBdvFtPIl2CVTKZRO/bOKXTfxtFf4+WrfWrG39yJ5KCqsP8GPK2L6aMnJHpp1egpveAGbT0YxX3BriAB5zpWWkL/BsgARXn1IV7Ac4Bl31VI0vc/m+RDGXcGWxqhWkV2MK/s8mneIyC3isdriXzjdLt9xCUjr0ZUldMxGyusrmtfOrrKfYlXXWnQqdzmk6bT3AUFsIJ19r1NcaqQWQRZgRL1mMTEi+WO975eo1fekC7BHTvOZrvfn+4uuc0ZaLi3vNEHfbUHssWhiio4617jQcC7k47lhjOIbBYxiDTJk0KMz8qGO5KvN1hdpd9H69IunqNafa+bKeWEi1jWWQEmfvii96Is2RhtNKgnJRnhi70Kq2NNv1/90We2nByXhMXFU1pY3zt3yiiNgPvCM0YhOxh8GDVpp6HpWwbTTygYD0b2VZWS7zvIAWv07KKwuzOMBZQbT1lEgJ6aCwIx3qRtpVPryzT80L9cm59Cnf+V04Eze92bMLBwWBUZLCHYsLFXBoXXFA3YGAs0WqEexDUDqJaYglX6snNpNDrd2lUrLu6Adqj/pIUGiRKhCE7KrM49Pk1RulXTcXlbemudUyzh5G5JCwYVLoa0kwLBTk7SePSopcWkjbWIQjf/ABHJNa77yPzdW1zraltvTdQ9tU1s9vyWq7u6a0UeF+w3nLTra8jcdw9UHJB+wAVLhMOycP+R5kBiqOEghy9Uo7K9ZicgS2t3U/E2H/7bGrXZUJF3561eLfrIr/qUrPE3/HEH7n1Ojbhpq2tYtSOlz+cY6PHoEF23AJm7BsSsYwzJ52Rer+iHvT/JnJtJdkgSk2CBbtkTGi3nGx5AtRzn71mh8Z9jI9SSgKbnMVbsbQNqaC31iFX3A284tpwZ/dPI0ymKY/ZWQZMG+189ix6NxRXMmTiiia83z1KK60gu8URXV8ahTz2NnG/CTHSuBe/osepLqtJffmv1BLAwQKAAAACACFenBZ4O/JO6ECAACLBgAADQAAAHhsL3N0eWxlcy54bWylVd9vmzAQft9fYfFODSRkSRSolqZIlbppWjNprw6YxKp/INu0yab97ztjkhB1W6fuBZ8/3333nX02i+u94OiJasOUzIL4KgoQlaWqmNxmwdd1EU4DZCyRFeFK0iw4UBNc5+8Wxh44fdhRahEwSJMFO2ubOcam3FFBzJVqqISVWmlBLEz1FptGU1IZFyQ4TqJoggVhMvAMc1H+C4kg+rFtwlKJhli2YZzZQ8cVIFHO77ZSabLhoHQfj0mJ9vFEJ8cMHfQiiWClVkbV9gpIsaprVtKXWmd4hkl5ZgLatzHFKY4SX3i+qJW0BpWqlTYLnE6ncP4o1bMs3BIcSe+VL0rFlUYWUlEHY8CJYPyAngh3wQB0QqgHBIOt6MDvHoi7GEmODjeEs41mDsQ+g/9uhjGjy5g1E9SgT/QZfVGCyEFsNxjgYJwPKvJAvoDDslTLAiaot9eHBgqR0FaepvN7xXurySFO0kFAN0DejdIVtPExs9s2D+ULTmsLAZptd260qsFu0Vo4pHxRMbJVknBHeYzoDaAtKecPrte/1Rfc+xrJVhTC3lVZAJfGVX80QVBveho/cfxDNs89oE3eRIv29Yn/T9Hx69GINA0/uJ7rewv36gZbcLEBJxS57siCT+6O8gHhpmXcMvmb4oGz2p/r7latu7SXWYCjojVpuV2fFqEDT/ZHWrFWJCevz+xJ2d7rbN+7U48nLgfd23tjuxG1mmXBj9vl+9nqtkjCabSchuMRTcNZulyF6fhmuVoVsyiJbn4OXo//eDv6Cw8kc8PBS/fF9uIfzlgWDCZefrd/IHuofZZMog9pHIXFKIrD8YRMw+lklIZFGieryXh5mxbpQHv6xtcqwnF8Fp/OLbwAnEl6KX89RP0z8Zci8PEk8Pk3kv8CUEsDBAoAAAAAAIV6cFkAAAAAAAAAAAAAAAAJAAAAZG9jUHJvcHMvUEsDBAoAAAAIAIV6cFkFu8mMqQEAAKUDAAAQAAAAZG9jUHJvcHMvYXBwLnhtbJ1Ty27bMBC89ysE3mMqSRMUBsUgcFrkUKNGpaTnLbWyiFAkwaUFu19fSoYVufGpt+HOYDT7kHjYdybrMZB2tmDXi5xlaJWrtd0W7KX6dvWFZRTB1mCcxYIdkNiD/CQ2wXkMUSNlycFSwdoY/ZJzUi12QItE28Q0LnQQ0zNsuWsarfDJqV2HNvKbPL/nuI9oa6yv/GTIjo7LPv6vae3UkI9eq4NPflI8em+0gpialGutgiPXxOzrXqERfE6KZFSi2gUdDzIXfP4UpQKDq2QsGzCEgr8XxDPCMLMN6EBS9HHZo4ouZKT/pKndsOw3EA5xCtZD0GAjO8qOjxEbTzHIXy68UYsYSfCpOMK5do71Z3k3ChI4F/IpSMLnESsdDdKPZgMhXkh8N088ZmCzjCsDRNlP5zrKniDCPOmEyrS0epc+cpFdg7ZZ5bxWl/ky7uq00MtkhZDMw8cJnXr9p7uV6zzYtEI+oTVY2OKgndB3bd/oxVcutYSnHZ8XRdlCwDqdxXQDU0E8p2EFM+hXLdgt1ifNR2K4yNfjXyev7xf5bZ6Ph3iqCf7+g8m/UEsDBAoAAAAIAIV6cFnB6ES3XgEAAOMCAAARAAAAZG9jUHJvcHMvY29yZS54bWydUstOwzAQvPMVke+p4xYqFKWpBKgnKiFRBOJm7G1rmtiWvSXN3+M8mraiJ247O7PjfTibH8oi+gHnldEzwkYJiUALI5XezMjbahHfk8gj15IXRsOM1ODJPL/JhE2FcfDijAWHCnwUjLRPhZ2RLaJNKfViCyX3o6DQgVwbV3IM0G2o5WLHN0DHSTKlJSCXHDltDGM7OJLeUorB0u5d0RpIQaGAEjR6ykaMnrQIrvRXC1rmTFkqrC1clR7JQX3wahBWVTWqJq009M/ox/L5tR01VrpZlQCSZ1KkwgFH4/I3vdOm0hk9yzU8Kiwgb9N9GCK///oGgV16ACGW4IVTFsOdOvIiEc6xg7oyTvrAXqDmUhxhY1zdUScUQME9LsO51wrkQ33q9S+V9bvtZgAZhZ2k3QaPzPvk8Wm1IPk4Gd/GjMVsumJ36ThJGftser6oPxmW/SP/djwa9PNd/Mv8F1BLAwQKAAAACACFenBZxC3LS54BAAB/AwAADwAAAHhsL3dvcmtib29rLnhtbI2Sy27bMBBF9/0KgvuYkl9JDcsB2rSAFw2Cxul+TFI2YZJDkJQT/31GcuSgiGNkI4oc3DN3HvPbF2fZXsdk0Fe8HBScaS9RGb+p+NPq99UNZymDV2DR64ofdOK3i2/zZ4y7NeKOkd6nim9zDjMhktxqB2mAQXuK1BgdZLrGjUghalBpq3V2VgyLYiocGM+PhFn8CgPr2kh9h7Jx2ucjJGoLmdynrQmppzn5FZyDuGvClUQXCLE21uRDB+XMydly4zHC2lLVL+WkJ9PvB7QzMmLCOg8I9WbyQ71lIcryWPJiXhur/x27ziCEe3BtFsuZhZR/KZO1qjjltPis/3uITfjRGEuX76NixMXiNImHyJSuobF5Ra56Os10Oi7KkjNKmXV8iGYP8kDPrbZzl95O1n2Xqo0x3zn6SXYS+4voEruDDN0uZArsTTLUGfIzMySISzU+8d45w57zSI1SjaXd+RwwOQMY9YA/1Da2wmDkJcT0DGJ88pAbRUtzSX99Rj/p9SsNVEW8pL9p9aJvqgQraSjt0TX1uiyGXQbRj2zxClBLAQIUAAoAAAAIAIV6cFk0kHOibAEAABAHAAATAAAAAAAAAAAAAAAAAAAAAABbQ29udGVudF9UeXBlc10ueG1sUEsBAhQACgAAAAAAhXpwWQAAAAAAAAAAAAAAAAYAAAAAAAAAAAAQAAAAnQEAAF9yZWxzL1BLAQIUAAoAAAAIAIV6cFnyn0na6QAAAEsCAAALAAAAAAAAAAAAAAAAAMEBAABfcmVscy8ucmVsc1BLAQIUAAoAAAAAAIV6cFkAAAAAAAAAAAAAAAADAAAAAAAAAAAAEAAAANMCAAB4bC9QSwECFAAKAAAAAACFenBZAAAAAAAAAAAAAAAACQAAAAAAAAAAABAAAAD0AgAAeGwvX3JlbHMvUEsBAhQACgAAAAgAhXpwWdVvHp4EAQAA7QQAABoAAAAAAAAAAAAAAAAAGwMAAHhsL19yZWxzL3dvcmtib29rLnhtbC5yZWxzUEsBAhQACgAAAAAAhXpwWQAAAAAAAAAAAAAAAA4AAAAAAAAAAAAQAAAAVwQAAHhsL3dvcmtzaGVldHMvUEsBAhQACgAAAAgAhXpwWbNaqcZVAgAAEgYAABgAAAAAAAAAAAAAAAAAgwQAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAAoAAAAIAIV6cFkPkZIzRQIAAI4FAAAYAAAAAAAAAAAAAAAAAA4HAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAAKAAAACACFenBZ6beVxfkBAADwAwAAGAAAAAAAAAAAAAAAAACJCQAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQACgAAAAgAhXpwWTLPHdH5AQAA8AMAABgAAAAAAAAAAAAAAAAAuAsAAHhsL3dvcmtzaGVldHMvc2hlZXQ0LnhtbFBLAQIUAAoAAAAIAIV6cFm95W8wDgIAAF0EAAAYAAAAAAAAAAAAAAAAAOcNAAB4bC93b3Jrc2hlZXRzL3NoZWV0NS54bWxQSwECFAAKAAAACACFenBZ3gqOWDoBAAADAwAAFAAAAAAAAAAAAAAAAAArEAAAeGwvc2hhcmVkU3RyaW5ncy54bWxQSwECFAAKAAAAAACFenBZAAAAAAAAAAAAAAAACQAAAAAAAAAAABAAAACXEQAAeGwvdGhlbWUvUEsBAhQACgAAAAgAhXpwWXabMN8hBgAAGR8AABMAAAAAAAAAAAAAAAAAvhEAAHhsL3RoZW1lL3RoZW1lMS54bWxQSwECFAAKAAAACACFenBZ4O/JO6ECAACLBgAADQAAAAAAAAAAAAAAAAAQGAAAeGwvc3R5bGVzLnhtbFBLAQIUAAoAAAAAAIV6cFkAAAAAAAAAAAAAAAAJAAAAAAAAAAAAEAAAANwaAABkb2NQcm9wcy9QSwECFAAKAAAACACFenBZBbvJjKkBAAClAwAAEAAAAAAAAAAAAAAAAAADGwAAZG9jUHJvcHMvYXBwLnhtbFBLAQIUAAoAAAAIAIV6cFnB6ES3XgEAAOMCAAARAAAAAAAAAAAAAAAAANocAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAAoAAAAIAIV6cFnELctLngEAAH8DAAAPAAAAAAAAAAAAAAAAAGceAAB4bC93b3JrYm9vay54bWxQSwUGAAAAABQAFADeBAAAMiAAAAAA\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "update class room",
@@ -1876,10 +2071,10 @@
 			]
 		},
 		{
-			"name": "subject",
+			"name": "domain",
 			"item": [
 				{
-					"name": "add subject",
+					"name": "add domain",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1895,7 +2090,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"subjectName\": \"History\",\n  \"courseTime\": \"80\"\n}\n",
+							"raw": "{\n  \"domainName\": \"science\",\n  \"courseTime\": \"130\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1903,28 +2098,95 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/subject/",
+							"raw": "{{SchoolManagement}}/user/domain/",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"subject",
+								"domain",
 								""
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add domain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"domainName\": \"science\",\n  \"courseTime\": \"130\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/domain/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"domain",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-BgDj1G5NJofs8xuyfhXOBdCCYlo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 14:57:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"Domain created successfully\",\n    \"data\": {\n        \"domain\": {\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d3\",\n            \"domainName\": \"science\",\n            \"courseTime\": \"130\",\n            \"typeOfTime\": \"min\",\n            \"_id\": \"GEbR_8prXIlFtnq6WO_kMyJQ\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-16T14:57:48.377Z\",\n            \"updatedAt\": \"2024-11-16T14:57:48.377Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "edit subject",
+					"name": "edit domain",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJjZTAyZjZkNzI5NDFhZGUzNGFlMzg5M2MiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc2NDAzNzksImV4cCI6MTcyNzcyNjc3OX0.9QjOXbySzGQWAzR4nfo-qPiUW8GXcHJt1VO072zBNsU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
 									"type": "string"
 								}
 							]
@@ -1933,7 +2195,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"subjectId\": \"LxKe0r5z-P5KHDlDVSqP73BH\",\n    \"subjectName\": \"social studies\"\n    //\"courseTime\": \"20\"\n}\n",
+							"raw": "{\n    \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n    \"domainName\": \"social studies\"\n    //\"courseTime\": \"20\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1941,28 +2203,95 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/subject/",
+							"raw": "{{SchoolManagement}}/user/domain/",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"subject",
+								"domain",
 								""
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "edit domain",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"domainId\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n    \"domainName\": \"social studies\"\n    //\"courseTime\": \"20\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/domain/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"domain",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "346"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15a-uCHUpH22lEmm5FKZtB0OtDtpWFI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 15:00:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Domain created successfully\",\n    \"data\": {\n        \"domain\": {\n            \"_id\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d1\",\n            \"domainName\": \"social studies\",\n            \"courseTime\": \"80\",\n            \"typeOfTime\": \"min\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-16T14:43:37.802Z\",\n            \"updatedAt\": \"2024-11-16T15:00:53.698Z\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "get all subject",
+					"name": "get all domain",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJmNjA2NDBmOWZlNGI2ODU3YTkyMTRkZjMiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc0MzcwMDEsImV4cCI6MTcyNzUyMzQwMX0.NBQN7-JubEXQTKTdilq1A-M7B-eIE8au4oZr7IZKftw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
 									"type": "string"
 								}
 							]
@@ -1970,13 +2299,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/subject?page=1",
+							"raw": "{{SchoolManagement}}/user/domain?page=1",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"subject"
+								"domain"
 							],
 							"query": [
 								{
@@ -1986,17 +2315,80 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get all domain",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/domain?page=1",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"domain"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "652"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28c-vO/GU0FZHWZm00F9C2Zq88akWAU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 14:50:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Domain get profile successfully\",\n    \"data\": {\n        \"totalPages\": 1,\n        \"currentPage\": 1,\n        \"limit\": 10,\n        \"skip\": 0,\n        \"totalDocuments\": 2,\n        \"domains\": [\n            {\n                \"_id\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"domainId\": \"d1\",\n                \"domainName\": \"history\",\n                \"courseTime\": \"80\",\n                \"typeOfTime\": \"min\",\n                \"skills\": [],\n                \"createdAt\": \"2024-11-16T14:43:37.802Z\",\n                \"updatedAt\": \"2024-11-16T14:43:37.802Z\"\n            },\n            {\n                \"_id\": \"qqNw1LBwPwyxTeHzSlpE3raJ\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"domainId\": \"d2\",\n                \"domainName\": \"math\",\n                \"courseTime\": \"80\",\n                \"typeOfTime\": \"min\",\n                \"skills\": [],\n                \"createdAt\": \"2024-11-16T14:44:13.500Z\",\n                \"updatedAt\": \"2024-11-16T14:44:13.500Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "get subject by subjectId",
+					"name": "get domain by domain Id",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJmNjA2NDBmOWZlNGI2ODU3YTkyMTRkZjMiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjc0MzcwMDEsImV4cCI6MTcyNzUyMzQwMX0.NBQN7-JubEXQTKTdilq1A-M7B-eIE8au4oZr7IZKftw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
 									"type": "string"
 								}
 							]
@@ -2004,18 +2396,76 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/subject/dRixjtVJ2NMMMeFbb5RmjJfo",
+							"raw": "{{SchoolManagement}}/user/domain/pXAgWnY6U5d6PnjVuQ92rsFa",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"subject",
-								"dRixjtVJ2NMMMeFbb5RmjJfo"
+								"domain",
+								"pXAgWnY6U5d6PnjVuQ92rsFa"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get domain by domain Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/domain/pXAgWnY6U5d6PnjVuQ92rsFa",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"domain",
+										"pXAgWnY6U5d6PnjVuQ92rsFa"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "343"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"157-Gl77NbOSeTiR/eGeCsiNHvcOTpQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 14:58:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Domain get profile successfully\",\n    \"data\": {\n        \"domain\": {\n            \"_id\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d1\",\n            \"domainName\": \"history\",\n            \"courseTime\": \"80\",\n            \"typeOfTime\": \"min\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-16T14:43:37.802Z\",\n            \"updatedAt\": \"2024-11-16T14:43:37.802Z\"\n        }\n    }\n}"
+						}
+					]
 				}
 			]
 		},

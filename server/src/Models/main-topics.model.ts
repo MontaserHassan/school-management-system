@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 interface MainTopicModel extends mongoose.Document {
     _id: string;
     topicName: string;
-    subject: { subjectId: string, subjectName: string }
+    domain: { domainId: string, domainName: string }
     schoolId: string;
     classRoom: string;
 };
@@ -23,14 +23,14 @@ const mainTopicSchema = new mongoose.Schema(
             max: 30,
             required: true,
         },
-        subject: {
+        domain: {
             _id: false,
-            subjectId: {
+            domainId: {
                 type: String,
-                ref: 'subject',
+                ref: 'domain',
                 required: true,
             },
-            subjectName: {
+            domainName: {
                 type: String,
                 required: true,
             },

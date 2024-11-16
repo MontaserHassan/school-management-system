@@ -7,8 +7,8 @@ import errorStudentDegreeMessage from './studentDegrees/error.message';
 import successStudentDegreeMessage from './studentDegrees/success.message';
 import errorStudentMessage from './student/error.message';
 import successStudentMessage from './student/success.message';
-import errorSubjectMessage from './subject/error.message';
-import successSubjectMessage from './subject/success.message';
+import errorDomainMessage from './domain/error.message';
+import successDomainMessage from './domain/success.message';
 import errorTopicMessage from './topic/error.message';
 import successTopicMessage from './topic/success.message';
 import errorTeacherMessage from './teacher/error.message';
@@ -40,7 +40,7 @@ export {
     ErrorUserMessage, SuccessUserMessage,
     errorStudentDegreeMessage, successStudentDegreeMessage,
     errorStudentMessage, successStudentMessage,
-    errorSubjectMessage, successSubjectMessage,
+    errorDomainMessage, successDomainMessage,
     errorTopicMessage, successTopicMessage,
     errorTeacherMessage, successTeacherMessage,
     errorClassRoomMessage, successClassRoomMessage,
