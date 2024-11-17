@@ -77,23 +77,23 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
         };
     };
 
-    const topicsTable = workbook.addWorksheet('Main Topics');
-    topicsTable.eachRow((row) => {
+    const skillsTable = workbook.addWorksheet('Skills');
+    skillsTable.eachRow((row) => {
         row.font = { name: 'Times New Roman' };
         row.alignment = { horizontal: 'left' };
     });
-    const topicsHeaders = [
+    const skillsHeaders = [
         { header: 'Room', key: 'room', width: 15 },
-        { header: 'Main Topics', key: 'mainTopics', width: 30 },
+        { header: 'Skills', key: 'skills', width: 30 },
     ];
-    topicsTable.columns = topicsHeaders;
-    topicsTable.getRow(1).font = { name: 'Times New Roman', size: 13, bold: true };
+    skillsTable.columns = skillsHeaders;
+    skillsTable.getRow(1).font = { name: 'Times New Roman', size: 13, bold: true };
     for (const classRoom of rooms) {
         if (classRoom.skills) {
-            for (const topic of classRoom.skills) {
-                topicsTable.addRow({
+            for (const skill of classRoom.skills) {
+                skillsTable.addRow({
                     room: classRoom.room,
-                    skill: topic.skillName,
+                    skills: skill.skillName,
                 });
             };
         };
