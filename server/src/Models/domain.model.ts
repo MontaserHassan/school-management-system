@@ -3,10 +3,17 @@ import { nanoid } from "nanoid";
 
 
 
+interface skills {
+    skillId: string;
+    skillName: string;
+};
+
 interface DomainModel extends mongoose.Document {
     _id: string;
     schoolId: string;
+    domainId: string;
     domainName: string;
+    skills?: skills[];
     courseTime: string;
     typeOfTime: string;
 };

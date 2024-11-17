@@ -1,6 +1,5 @@
 import generateCode from "../Utils/generateCode.util";
 import { Student, StudentModel } from "../Models/student.model";
-import { DomainModel } from "../Models/domain.model";
 import classRoomService from "./class-room.service";
 
 
@@ -25,8 +24,8 @@ const createStudent = async (studentName: string, parentId: string, schoolId: st
 // ----------------------------- add more data to student -----------------------------
 
 
-const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, domains: any[], mainTopics: any[], studentCost: string, currencyOfCost: string,) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, mainTopics: mainTopics, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
+const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, domains: any[], skills: any[], studentCost: string, currencyOfCost: string,) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, skills: skills, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
     return student;
 };
 
@@ -68,20 +67,20 @@ const isTeacherInClassroom = async (room: string, teacher: string) => {
 };
 
 
-// ----------------------------- add new topic -----------------------------
+// ----------------------------- add new skill -----------------------------
 
 
-const addTopic = async (studentId: string, topicId: string, topicName: string) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { mainTopics: { topicId: topicId, topicName: topicName } } }, { new: true });
+const addSkill = async (studentId: string, skillId: string, skillName: string) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { skills: { skillId: skillId, skillName: skillName } } }, { new: true });
     return student;
 };
 
 
-// ----------------------------- update topic -----------------------------
+// ----------------------------- update skill -----------------------------
 
 
-const updateTopicDataInStudents = async (topicId: string, newTopicName: string) => {
-    const updatedStudents = await Student.updateMany({ "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.topicName": newTopicName } }, { multi: true });
+const updateSkillDataInStudents = async (skillId: string, newSkillName: string) => {
+    const updatedStudents = await Student.updateMany({ "skills.skillId": skillId }, { $set: { "skills.$.skillName": newSkillName } }, { multi: true });
     return updatedStudents;
 };
 
@@ -98,8 +97,8 @@ const addProgressStatus = async (studentId: string, domainId: string, status: st
 // ----------------------------- add new degree -----------------------------
 
 
-const addDegree = async (studentId: string, topicId: string, degree: string) => {
-    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.degree": degree } }, { new: true });
+const addDegree = async (studentId: string, skillId: string, degree: string) => {
+    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "skills.skillId": skillId }, { $set: { "skills.$.degree": degree } }, { new: true });
     return student;
 };
 
@@ -115,7 +114,7 @@ const getStudentsByClassRoom = async (room: string) => {
 
 
 const updateStudentByClassRoomData = async (studentId: string) => {
-    const students = await Student.findByIdAndUpdate(studentId, { $unset: { classRoom: "", domains: [], mainTopics: [], attendance: [], studentCost: '', currencyOfCost: '', group: '' }, }, { new: true });
+    const students = await Student.findByIdAndUpdate(studentId, { $unset: { classRoom: "", domains: [], skills: [], attendance: [], studentCost: '', currencyOfCost: '', group: '' }, }, { new: true });
     return students;
 };
 
@@ -255,8 +254,8 @@ const deleteStudent = async (studentId: string) => {
 export default {
     createStudent,
     addMoreDataToStudent,
-    addTopic,
-    updateTopicDataInStudents,
+    addSkill,
+    updateSkillDataInStudents,
     addAttendance,
     updateAttendanceByDate,
     addComment,

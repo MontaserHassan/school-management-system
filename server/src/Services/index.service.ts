@@ -3,7 +3,7 @@ import userTokenService from "./user-token.service";
 import domainService from './domain.service';
 import studentService from './student.service';
 import classRoomService from './class-room.service';
-import topicService from "./topic.service";
+import skillService from "./skill.service";
 import lookupService from "./lookup.service";
 import schoolService from "./school.service";
 import progressHistoryService from "./progress-history.service";
@@ -19,7 +19,7 @@ export {
     userService,
     userTokenService,
     domainService,
-    topicService,
+    skillService,
     studentService,
     classRoomService,
     lookupService,

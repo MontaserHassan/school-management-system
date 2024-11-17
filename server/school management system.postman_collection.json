@@ -33,7 +33,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiMGYxMzRiNTEwNDUzZmQ0ZGE4MzFmYTYwIiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiVTkzNzAwNTciLCJpYXQiOjE3MjcwMjAxNjIsImV4cCI6MTcyNzEwNjU2Mn0.15vWzmp9ym-9rjpPhdsDzD_0V1pUQfFyKPz5L-IXKqM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -48,18 +48,84 @@
 							}
 						],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/logout",
+							"raw": "{{SchoolManagementSystem}}/user/logout/",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
-								"logout"
+								"logout",
+								""
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "logout user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDNkZWE5M2MwYzMyYzlhOGVmOGVhNCIsInNlY3JldEtleSI6IjNlYzUzYjM0ZWM4YTBmNTFlZGU2ZDIyMiIsImlhdCI6MTcxMTUyOTY0MSwiZXhwIjoxNzExNjE2MDQxfQ.8ggU1K3dGrXSuF35Ug8QJhRW369-3sNHkrP63JuJ0qs",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/logout/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"logout",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:50:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-GF/L3LeLLxWddMQE7+clCpWUfA0\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"User logout successfully\",\n    \"data\": {}\n}"
+						}
+					]
 				},
 				{
 					"name": "login user",
@@ -86,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    //\"email\": \"superadmin@gmail.com\", //\n    \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    //\"email\": \"teacher1.banisuef@gmail.com\", // teacher\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"superadmin@gmail.com\", \n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    //\"email\": \"teacher1.banisuef@gmail.com\", // teacher\n    // \"email\": \"mohamed.abotrieka@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -106,7 +172,74 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "login user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    //\"email\": \"superadmin@gmail.com\", //\n    \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    //\"email\": \"teacher1.banisuef@gmail.com\", // teacher\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/auth/login",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:42:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "810"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32a-hykSaM9RnfWdCz/4jQbUD2Y6VFo\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"User login successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"userName\": \"admin BaniSuef language\",\n            \"email\": \"montaser.hassan.bns@gmail.com\",\n            \"role\": \"admin\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"media\": \"\",\n            \"code\": \"H28963\",\n            \"updatePassword\": true,\n            \"createdAt\": \"2024-11-12T21:45:38.954Z\",\n            \"updatedAt\": \"2024-11-17T22:42:07.530Z\",\n            \"lastSeen\": \"2024-11-17T22:42:07.530Z\",\n            \"logged\": true\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get profile",
@@ -131,7 +264,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzNDFhZjQ2YmRmNGU5YmE4ZThjYTgxNjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJCODUwODAyMSIsImlhdCI6MTcyNzY1NjQ3MSwiZXhwIjoxNzI3NzQyODcxfQ.h3zSgG0u1rFcxdIvhoOogtTqWIXKdgLF63kE_sf5oxQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -157,7 +290,71 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/profile",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:42:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "441"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b9-p3flUPjnIxYKhGI+7VfRKZXo2Bs\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"User get profile successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"userName\": \"admin BaniSuef language\",\n            \"email\": \"montaser.hassan.bns@gmail.com\",\n            \"role\": \"admin\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"media\": \"\",\n            \"code\": \"H28963\",\n            \"updatePassword\": true,\n            \"createdAt\": \"2024-11-12T21:45:38.954Z\",\n            \"updatedAt\": \"2024-11-17T22:42:27.690Z\",\n            \"lastSeen\": \"2024-11-17T22:42:27.690Z\",\n            \"logged\": true\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get profile for user",
@@ -182,7 +379,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkOTBmYmU3ZjI5NzA5ZDkzMGNhMTBkNjYiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI2NDEwNjAyLCJleHAiOjE3MjY0MjUwMDJ9.z2YwJw_V_KFf2bqFWiulVoBkIpLCHncMbYXB-R3iuSI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -214,7 +411,77 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get profile for user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/profile?id=kttyDR1Gz3AHotyA8tvtm",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "kttyDR1Gz3AHotyA8tvtm"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:43:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "406"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"196-+S8yrgDMCypuCZEZKBNnZkOCRkg\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"User get profile successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"kttyDR1Gz3AHotyA8tvtm\",\n            \"userName\": \"admin admin\",\n            \"email\": \"admin@gmail.com\",\n            \"role\": \"admin\",\n            \"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\",\n            \"code\": \"H2706759\",\n            \"updatePassword\": true,\n            \"createdAt\": \"2024-09-14T17:58:16.912Z\",\n            \"updatedAt\": \"2024-11-17T20:43:22.570Z\",\n            \"lastSeen\": \"2024-11-17T20:43:22.570Z\",\n            \"logged\": true\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get parents",
@@ -239,7 +506,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhZjMxYzM2OTU4ZjhmNjQ3OWQ1NGY1YzgiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjgyMTk0MDUsImV4cCI6MTcyODMwNTgwNX0.I6f_jpDNVcNq8b19W5N4Zd4YKyNGcPmUpAnDlnhfkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -271,7 +538,77 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get parents",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/parents?isExport=true",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"parents"
+									],
+									"query": [
+										{
+											"key": "isExport",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:46:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10686"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29be-sr4KeNpfSABd9n/F3eFRYz5lop4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Users fetched successfully\",\n    \"data\": {\n        \"parents\": [\n            {\n                \"_id\": \"2OnP9vQ2PoioKGWdfCcnJ\",\n                \"userName\": \"parent 4 parent\",\n                \"email\": \"montaser.hassan.bns22@gmail.com\",\n                \"role\": \"parent\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"W6409039\",\n                \"updatePassword\": false,\n                \"termsAndCondition\": true,\n                \"createdAt\": \"2024-11-15T17:43:10.732Z\",\n                \"updatedAt\": \"2024-11-15T17:43:10.732Z\"\n            },\n            {\n                \"_id\": \"6ksXgKt2_96pwDgBwet-d\",\n                \"userName\": \"parent parent\",\n                \"email\": \"montaser.hassan.bns54@gmail.com\",\n                \"role\": \"parent\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"I3498626\",\n                \"updatePassword\": false,\n                \"termsAndCondition\": true,\n                \"createdAt\": \"2024-11-15T17:44:52.851Z\",\n                \"updatedAt\": \"2024-11-15T17:44:52.851Z\"\n            },\n            {\n                \"_id\": \"gVSC8-rvBECLYmH_zRciF\",\n                \"userName\": \"parent 22\",\n                \"email\": \"montaser.hassan@gmail.com\",\n                \"role\": \"parent\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"I221285\",\n                \"updatePassword\": false,\n                \"termsAndCondition\": true,\n                \"createdAt\": \"2024-11-15T17:45:09.578Z\",\n                \"updatedAt\": \"2024-11-15T17:45:09.578Z\"\n            },\n            {\n                \"_id\": \"1gzRc8p2VnD4PQ_l4j6E5\",\n                \"userName\": \"mohamed AboTrieka\",\n                \"email\": \"mohamed.abotrieka@gmail.com\",\n                \"role\": \"parent\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"G0693\",\n                \"updatePassword\": false,\n                \"termsAndCondition\": true,\n                \"createdAt\": \"2024-11-15T17:46:27.033Z\",\n                \"updatedAt\": \"2024-11-15T17:46:27.033Z\"\n            },\n            {\n                \"_id\": \"OD6X9LRaai44GJo9afdha\",\n                \"userName\": \"mohamed Barakat\",\n                \"email\": \"mohamed.barakat@gmail.com\",\n                \"role\": \"parent\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"H605694\",\n                \"updatePassword\": false,\n                \"termsAndCondition\": true,\n                \"createdAt\": \"2024-11-17T22:44:13.133Z\",\n                \"updatedAt\": \"2024-11-17T22:44:13.133Z\"\n            }\n        ],\n        \"base64String\": \"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\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get all users",
@@ -296,7 +633,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI3MGUzZjljNDZmNjg4YTJhMGFkZmRmOWIiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3Mjg0Mjg5MTUsImV4cCI6MTcyODUxNTMxNX0.PSH31SUduvNMFRnmbEYXOQkQ6qYfCOjxrSS8XLbZRoY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -311,7 +648,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/user-list?page=1&limit=10&isExport=true",
+							"raw": "{{SchoolManagementSystem}}/user/user-list?page=1&limit=3&isExport=true",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
@@ -326,7 +663,7 @@
 								},
 								{
 									"key": "limit",
-									"value": "10"
+									"value": "3"
 								},
 								{
 									"key": "isExport",
@@ -336,7 +673,85 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get all users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDRjNjI2MWQ1YjUzMDAyMWZjNTJlOSIsInNlY3JldEtleSI6ImFmZTdkMmFhMjNhZWQ2ODU1Nzg3YWQ0MyIsImlhdCI6MTcxMTczMDE2NCwiZXhwIjoxNzExNzQ0NTY0fQ.lXRUQU4PNf1aaOU6XoldHdZrxpyxcV3Fp0tJe9qbj_c",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/user-list?page=1&limit=3&isExport=true",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"user-list"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										},
+										{
+											"key": "isExport",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:47:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10135"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2797-AAwhhuwagF89obMZAZ7ME7vfx6c\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Users fetched successfully\",\n    \"data\": {\n        \"totalPages\": 3,\n        \"currentPage\": 1,\n        \"limit\": 3,\n        \"skip\": 0,\n        \"totalDocuments\": 9,\n        \"users\": [\n            {\n                \"_id\": \"UaW_0owVXzBmjhpM-FWvW\",\n                \"userName\": \"admin BaniSuef language\",\n                \"email\": \"montaser.hassan.bns@gmail.com\",\n                \"role\": \"admin\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"media\": \"\",\n                \"code\": \"H28963\",\n                \"updatePassword\": true,\n                \"createdAt\": \"2024-11-12T21:45:38.954Z\",\n                \"updatedAt\": \"2024-11-17T22:42:27.690Z\",\n                \"lastSeen\": \"2024-11-17T22:42:27.690Z\",\n                \"logged\": true\n            },\n            {\n                \"_id\": \"Lw267SYx0LgraUv01tkcS\",\n                \"userName\": \"director BaniSuef language\",\n                \"email\": \"montaser.mohamed.hassan@gmail.com\",\n                \"role\": \"director\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"P536\",\n                \"updatePassword\": false,\n                \"createdAt\": \"2024-11-12T21:48:53.300Z\",\n                \"updatedAt\": \"2024-11-12T21:48:53.300Z\"\n            },\n            {\n                \"_id\": \"TNWCI4reAr11PynOMrS15\",\n                \"userName\": \"teacher 1 BaniSuef language\",\n                \"email\": \"teacher1.banisuef@gmail.com\",\n                \"role\": \"teacher\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"code\": \"V8332955\",\n                \"updatePassword\": true,\n                \"createdAt\": \"2024-11-15T16:19:46.616Z\",\n                \"updatedAt\": \"2024-11-15T16:22:51.997Z\",\n                \"lastSeen\": \"2024-11-15T16:22:51.997Z\",\n                \"logged\": true\n            }\n        ],\n        \"base64String\": \"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\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "register user",
@@ -361,7 +776,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -370,7 +785,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"teacher 1 BaniSuef language\",\n    \"email\": \"teacher1.banisuef@gmail.com\",\n    \"role\": \"teacher\"\n}",
+							"raw": "{\n    \"userName\": \"teacher 2 BaniSuef language\",\n    \"email\": \"teacher2.banisuef@gmail.com\",\n    \"role\": \"teacher\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -389,7 +804,73 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "register user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\": \"teacher 2 BaniSuef language\",\n    \"email\": \"teacher2.banisuef@gmail.com\",\n    \"role\": \"teacher\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/register",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:46:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "386"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"182-Bryq6KmfuhdYlqv8sfbraTPeCvM\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"User created successfully\",\n    \"data\": {\n        \"user\": {\n            \"userName\": \"teacher 2 BaniSuef language\",\n            \"email\": \"teacher2.banisuef@gmail.com\",\n            \"role\": \"teacher\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"code\": \"L6905\",\n            \"updatePassword\": false,\n            \"_id\": \"FMVw7ZVf-oVj8bAbdacDc\",\n            \"createdAt\": \"2024-11-17T22:46:52.071Z\",\n            \"updatedAt\": \"2024-11-17T22:46:52.071Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "add parent",
@@ -414,7 +895,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -423,7 +904,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"mohamed AboTrieka\",\n    \"email\": \"Mohamed.AboTrieka@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Seif Mohamed Abo trieka\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+							"raw": "{\n    \"userName\": \"mohamed Barakat\",\n    \"email\": \"Mohamed.Barakat@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Mohamed Moahmed Barakat\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -442,7 +923,73 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add parent",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\": \"mohamed Barakat\",\n    \"email\": \"Mohamed.Barakat@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Mohamed Moahmed Barakat\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/add-parent",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"add-parent"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:44:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "724"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d4-MyupWi7Bk96FItDHOTEkLm42fZs\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"User created successfully\",\n    \"data\": {\n        \"user\": {\n            \"userName\": \"mohamed Barakat\",\n            \"email\": \"mohamed.barakat@gmail.com\",\n            \"role\": \"parent\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"code\": \"H605694\",\n            \"updatePassword\": false,\n            \"termsAndCondition\": true,\n            \"_id\": \"OD6X9LRaai44GJo9afdha\",\n            \"createdAt\": \"2024-11-17T22:44:13.133Z\",\n            \"updatedAt\": \"2024-11-17T22:44:13.133Z\",\n            \"__v\": 0\n        },\n        \"students\": [\n            {\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"studentName\": \"Mohamed Moahmed Barakat\",\n                \"studentCode\": \"C405685\",\n                \"parentId\": \"OD6X9LRaai44GJo9afdha\",\n                \"_id\": \"KtjoQW2vnpEdco95YNVqPk_I\",\n                \"domains\": [],\n                \"skills\": [],\n                \"attendance\": [],\n                \"comments\": [],\n                \"createdAt\": \"2024-11-17T22:44:13.200Z\",\n                \"updatedAt\": \"2024-11-17T22:44:13.200Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "update user data",
@@ -467,7 +1014,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlJtbHdsVTFCRUpEVGR0SXIyQzNRTiIsImVtYWlsIjoiZGlyZWN0b3IyQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiZGFhNmJiZmI3ZTUyYTFlOGI5OWIyZjcwIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlAxMDEzMzEiLCJpYXQiOjE3MjcyOTM3NzIsImV4cCI6MTcyNzM4MDE3Mn0.CSe-bUkqf76nZz5Kc6hIqkC_1Ibr3XN4dCj7i3MiGLw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -476,7 +1023,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"director 2 director\"\n}",
+							"raw": "{\n    \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n    \"userName\": \"montaser admin BaniSuef language\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -495,7 +1042,73 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update user data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n    \"userName\": \"montaser admin BaniSuef language\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:50:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "446"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1be-M1o8s/ybU5Tw9uT9G7b7GEQTr2c\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"User updated successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"userName\": \"montaser admin BaniSuef language\",\n            \"email\": \"montaser.hassan.bns@gmail.com\",\n            \"role\": \"admin\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"media\": \"\",\n            \"code\": \"H28963\",\n            \"updatePassword\": true,\n            \"createdAt\": \"2024-11-12T21:45:38.954Z\",\n            \"updatedAt\": \"2024-11-17T22:50:39.533Z\",\n            \"lastSeen\": \"2024-11-17T22:49:54.857Z\",\n            \"logged\": true\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "update password",
@@ -529,7 +1142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"11111111\",\n}",
+							"raw": "{\n    \"userId\": \"11111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -572,7 +1185,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"teacher1.banisuef@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"mohamed.abotrieka@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -592,7 +1205,74 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"mohamed.abotrieka@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/auth/add-password",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"auth",
+										"add-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 23:21:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "430"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ae-diZ692eb6oGt/KcLTzfrFr/dxZM\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Your password updated successfully, please login again.\",\n    \"data\": {\n        \"admin\": {\n            \"_id\": \"1gzRc8p2VnD4PQ_l4j6E5\",\n            \"userName\": \"mohamed AboTrieka\",\n            \"email\": \"mohamed.abotrieka@gmail.com\",\n            \"role\": \"parent\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"code\": \"G0693\",\n            \"updatePassword\": true,\n            \"termsAndCondition\": true,\n            \"createdAt\": \"2024-11-15T17:46:27.033Z\",\n            \"updatedAt\": \"2024-11-17T23:21:36.995Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1290,6 +1970,91 @@
 					"response": []
 				},
 				{
+					"name": "get event response",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI4MDExMzBlOTNlODZiZGJlYjY2Y2M5ZWUiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMxODg1ODQxLCJleHAiOjE3MzE5NzIyNDF9.xPtND_WQkogw7Z7NKW6fSlX18bAO8r_4jyuidQFuyiQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/lookups/event-response",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"lookups",
+								"event-response"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get event response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/lookups/event-response",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"lookups",
+										"event-response"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 23:27:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ee-RAvI0fkLSkfBSf8aE6Gvh35FF90\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Lookups get successfully\",\n    \"data\": {\n        \"lookups\": [\n            {\n                \"_id\": \"SchoolSystem-8-1\",\n                \"value\": \"accept\"\n            },\n            {\n                \"_id\": \"SchoolSystem-8-2\",\n                \"value\": \"reject\"\n            },\n            {\n                \"_id\": \"SchoolSystem-8-3\",\n                \"value\": \"not response\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
 					"name": "get currency",
 					"request": {
 						"auth": {
@@ -1620,7 +2385,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkZTEyNWE2ZTRkZDJmYzgxMWMxODZiNGEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzI4MDU0NzI3LCJleHAiOjE3MjgxNDExMjd9.aglGfGvuJaGImMbX8x-8M_iaE1EI1_n2dAMDtCvW8wA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI4MDExMzBlOTNlODZiZGJlYjY2Y2M5ZWUiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMxODg1ODQxLCJleHAiOjE3MzE5NzIyNDF9.xPtND_WQkogw7Z7NKW6fSlX18bAO8r_4jyuidQFuyiQ",
 									"type": "string"
 								}
 							]
@@ -1629,7 +2394,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"masterCode\": \"7\",\n    \"lookups\": [\n        {\n            \"masterName\": \"subscriptionStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"pending\"\n        },\n        {\n            \"masterName\": \"subscriptionStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"paid\"\n        },\n        {\n            \"masterName\": \"subscriptionStatus\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"expired\"\n        }\n    ]\n}",
+							"raw": "{\n    \"masterCode\": \"8\",\n    \"lookups\": [\n        {\n            \"masterName\": \"eventResponse\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"1\",\n            \"lookupName\": \"accept\"\n        },\n        {\n            \"masterName\": \"eventResponse\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"2\",\n            \"lookupName\": \"reject\"\n        },\n        {\n            \"masterName\": \"eventResponse\",\n            \"parentCode\": \"\",\n            \"lookupCode\": \"3\",\n            \"lookupName\": \"not response\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2291,7 +3056,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -2470,17 +3235,17 @@
 			]
 		},
 		{
-			"name": "topic",
+			"name": "skill",
 			"item": [
 				{
-					"name": "add topic",
+					"name": "add skill",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlROV0NJNHJlQXIxMVB5bk9NclMxNSIsImVtYWlsIjoidGVhY2hlcjEuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiJlZGE0YTI2ZmY3MDY5OWZkN2M0Yjk1OGIiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJWODMzMjk1NSIsImlhdCI6MTczMTY4Nzc3MSwiZXhwIjoxNzMxNzc0MTcxfQ.rmObt96ENAO5hr1TdxBajV6j2trnGeKCkCEnoRAHVlE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -2489,7 +3254,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"100\",\n    \"topicName\": \"Osmanien period\",\n    \"subjectId\": \"Aoncefh0kNpTqWsJSo4CV7Vf\"\n}",
+							"raw": "{\n    \"room\": \"100\",\n    \"skillName\": \"Osmanien period\",\n    \"domainId\": \"2oI41ujfXNRbO7G5x0xZ6DHl\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2497,29 +3262,95 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"raw": "{{SchoolManagement}}/user/skill/",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"teacher",
-								"topic",
+								"skill",
 								""
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add skill",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"room\": \"100\",\n    \"skillName\": \"Osmanien period\",\n    \"domainId\": \"2oI41ujfXNRbO7G5x0xZ6DHl\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/skill/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"skill",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "387"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"183-GeYp84guTrPNeYcqdv24GAh1bsg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:21:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"Skill created successfully and added to class room\",\n    \"data\": {\n        \"skill\": {\n            \"skillId\": \"s1\",\n            \"skillName\": \"osmanien period\",\n            \"domainId\": \"2oI41ujfXNRbO7G5x0xZ6DHl\",\n            \"domainName\": \"science\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"_id\": \"HfpDwzqr19-kpNjx5e1QJEcV\",\n            \"createdAt\": \"2024-11-17T22:21:33.300Z\",\n            \"updatedAt\": \"2024-11-17T22:21:33.300Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "edit topic",
+					"name": "edit skill",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkhZRTdhWHpBTFJ5aldnVzVTUjdqayIsImVtYWlsIjoidGVhY2hlcjEwQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiMWY1NjM1YThhYmY3Yjk4ZDdjMzk2OTNlIiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiVDAwMTMiLCJpYXQiOjE3Mjc2NTEwMjMsImV4cCI6MTcyNzczNzQyM30.q3nPXEiMJK9bvuYTS_WLsIjGjzdtqqFyPtUI1BCq-Sg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -2528,7 +3359,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"topicName\": \"arithmetic operations\",\n    \"topicId\": \"6RzzeTB1nSkinzrByIefi3s2\"\n}\n// arithmetic operations",
+							"raw": "{\n    \"skillName\": \"arithmetic operations\",\n    \"skillId\": \"YW6PXyEpvLz01CkOvivtMKOV\"\n}\n// arithmetic operations\n// YW6PXyEpvLz01CkOvivtMKOV",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2536,29 +3367,95 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"raw": "{{SchoolManagement}}/user/skill/",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"teacher",
-								"topic",
+								"skill",
 								""
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "edit skill",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skillName\": \"arithmetic operations\",\n    \"skillId\": \"YW6PXyEpvLz01CkOvivtMKOV\"\n}\n// arithmetic operations\n// YW6PXyEpvLz01CkOvivtMKOV",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/skill/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"skill",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"181-g20Ncodj2IPmWYLM2tMjaUZpelE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:28:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Skill created successfully and added to class room\",\n    \"data\": {\n        \"skill\": {\n            \"_id\": \"YW6PXyEpvLz01CkOvivtMKOV\",\n            \"skillId\": \"s1\",\n            \"skillName\": \"arithmetic operations\",\n            \"domainId\": \"wAIgmHTgJX_AhKIaKgfkbjLV\",\n            \"domainName\": \"science\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"createdAt\": \"2024-11-17T22:20:23.916Z\",\n            \"updatedAt\": \"2024-11-17T22:28:04.731Z\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "get all topics",
+					"name": "get all skills",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5iUG1ZSmFUUXNTeFZHLVhLUDd1TiIsImVtYWlsIjoidGVhY2hlcjNAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NTVlYTg0ODY3YzdjMDdmZTNlM2U1YTciLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJVOTM3MDA1NyIsImlhdCI6MTcyNzAyMTA4NSwiZXhwIjoxNzI3MTA3NDg1fQ.6kZRsAmVIghAt3j-t7FmdfSyTL3am6yaqKRvzhAyIw0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -2566,29 +3463,104 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/teacher/topic/",
+							"raw": "{{SchoolManagement}}/user/skill?limit=1&page=1",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"teacher",
-								"topic",
-								""
+								"skill"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get all skills",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/skill?limit=1&page=1",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"skill"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "428"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ac-Qx9ArU74qkwkeJT9PCmJ1J4YQks\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:25:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Skills fetched successfully\",\n    \"data\": {\n        \"totalPages\": 2,\n        \"currentPage\": 1,\n        \"limit\": 1,\n        \"skip\": 0,\n        \"totalDocuments\": 2,\n        \"skills\": [\n            {\n                \"_id\": \"YW6PXyEpvLz01CkOvivtMKOV\",\n                \"skillId\": \"s1\",\n                \"skillName\": \"osmanien period\",\n                \"domainId\": \"wAIgmHTgJX_AhKIaKgfkbjLV\",\n                \"domainName\": \"science\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"createdAt\": \"2024-11-17T22:20:23.916Z\",\n                \"updatedAt\": \"2024-11-17T22:20:23.916Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "get topic by id",
+					"name": "get skill by id",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2VjcmV0S2V5IjoiNzkyMDNlN2NjYTQxZDM5MzkzMDU3NGY3Iiwicm9sZSI6InRlYWNoZXIiLCJjb2RlIjoiQjg1MDgwMjEiLCJpYXQiOjE3MjU2Njg5NjgsImV4cCI6MTcyNTY4MzM2OH0.yVYzRqC9bCqQg2ZSPhNy-kgiUNY-JwecEWK4LeiwZDc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -2596,19 +3568,76 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SchoolManagement}}/user/teacher/topic/hOiwDEyO3PokX4G84PkuRE1s",
+							"raw": "{{SchoolManagement}}/user/skill/YW6PXyEpvLz01CkOvivtMKOV",
 							"host": [
 								"{{SchoolManagement}}"
 							],
 							"path": [
 								"user",
-								"teacher",
-								"topic",
-								"hOiwDEyO3PokX4G84PkuRE1s"
+								"skill",
+								"YW6PXyEpvLz01CkOvivtMKOV"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get skill by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagement}}/user/skill/YW6PXyEpvLz01CkOvivtMKOV",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"skill",
+										"YW6PXyEpvLz01CkOvivtMKOV"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "355"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"163-Bb+KfV5vfan9gEYuVRR0/8T5Pyc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:25:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Skill fetched successfully\",\n    \"data\": {\n        \"skill\": {\n            \"_id\": \"YW6PXyEpvLz01CkOvivtMKOV\",\n            \"skillId\": \"s1\",\n            \"skillName\": \"osmanien period\",\n            \"domainId\": \"wAIgmHTgJX_AhKIaKgfkbjLV\",\n            \"domainName\": \"science\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"createdAt\": \"2024-11-17T22:20:23.916Z\",\n            \"updatedAt\": \"2024-11-17T22:20:23.916Z\"\n        }\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -4027,7 +5056,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
 									"type": "string"
 								}
 							]
@@ -4121,6 +5150,393 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Event created successfully\",\n    \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "update event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": \"au4cL9w_YsFCMg5fd4sYsQYx\",\n    \"newResponse\": \"SchoolSystem-8-2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/event/update-response",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"event",
+								"update-response"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update event",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eventId\": \"au4cL9w_YsFCMg5fd4sYsQYx\",\n    \"newResponse\": \"SchoolSystem-8-2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/event/update-response",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"event",
+										"update-response"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 23:33:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "586"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24a-hJrs78n5Y+SnzOrYoZ4r+Yteubs\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Event updated successfully\",\n    \"data\": {\n        \"event\": {\n            \"_id\": \"au4cL9w_YsFCMg5fd4sYsQYx\",\n            \"eventId\": \"17fd1b00c29aa6daaafe1065\",\n            \"eventName\": \"Science Fair 2024\",\n            \"date\": \"2024-12-15T10:30:00.000Z\",\n            \"description\": \"An annual event showcasing students' science projects and innovations.\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"username\": \"montaser admin BaniSuef language\",\n            \"response\": \"Reject\",\n            \"expiryDate\": \"2025-05-17T23:05:43.090Z\",\n            \"__v\": 0,\n            \"createdAt\": \"2024-11-17T23:05:43.093Z\",\n            \"updatedAt\": \"2024-11-17T23:33:40.264Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/event/",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"event",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get events",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/event/",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"event",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:53:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "588"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24c-iYvsZtrb9zT1LphlMHfftL7hNcU\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Events fetched successfully\",\n    \"data\": {\n        \"events\": [\n            {\n                \"_id\": \"673a73d485f9ed60e12dbeb6\",\n                \"eventId\": \"3a030de9958fdcb72d9d4936\",\n                \"eventName\": \"Science Fair 2024\",\n                \"date\": \"2024-12-15T10:30:00.000Z\",\n                \"description\": \"An annual event showcasing students' science projects and innovations.\",\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n                \"username\": \"montaser admin BaniSuef language\",\n                \"response\": \"Not Response\",\n                \"expiryDate\": \"2025-05-17T22:53:08.044Z\",\n                \"createdAt\": \"2024-11-17T22:53:08.053Z\",\n                \"updatedAt\": \"2024-11-17T22:53:08.053Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get event by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/event/au4cL9w_YsFCMg5fd4sYsQYx",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"event",
+								"au4cL9w_YsFCMg5fd4sYsQYx"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get event by id - all reject",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/event/au4cL9w_YsFCMg5fd4sYsQYx",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"event",
+										"au4cL9w_YsFCMg5fd4sYsQYx"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 23:17:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1034"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40a-UufaqtZ4kaJtNeUdQSn6yffmFbU\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Event fetched successfully\",\n    \"data\": {\n        \"event\": {\n            \"_id\": \"au4cL9w_YsFCMg5fd4sYsQYx\",\n            \"eventId\": \"17fd1b00c29aa6daaafe1065\",\n            \"eventName\": \"Science Fair 2024\",\n            \"date\": \"2024-12-15T10:30:00.000Z\",\n            \"description\": \"An annual event showcasing students' science projects and innovations.\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"username\": \"montaser admin BaniSuef language\",\n            \"response\": \"Not Response\",\n            \"expiryDate\": \"2025-05-17T23:05:43.090Z\",\n            \"createdAt\": \"2024-11-17T23:05:43.093Z\",\n            \"updatedAt\": \"2024-11-17T23:05:43.093Z\"\n        },\n        \"eventDetails\": {\n            \"totalAttending\": 0,\n            \"totalRejected\": 0,\n            \"totalNoResponse\": 5,\n            \"attendees\": [],\n            \"rejected\": [],\n            \"notResponse\": [\n                {\n                    \"userId\": \"gVSC8-rvBECLYmH_zRciF\",\n                    \"username\": \"parent 22\"\n                },\n                {\n                    \"userId\": \"1gzRc8p2VnD4PQ_l4j6E5\",\n                    \"username\": \"mohamed AboTrieka\"\n                },\n                {\n                    \"userId\": \"6ksXgKt2_96pwDgBwet-d\",\n                    \"username\": \"parent parent\"\n                },\n                {\n                    \"userId\": \"2OnP9vQ2PoioKGWdfCcnJ\",\n                    \"username\": \"parent 4 parent\"\n                },\n                {\n                    \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n                    \"username\": \"montaser admin BaniSuef language\"\n                }\n            ]\n        }\n    }\n}"
+						},
+						{
+							"name": "get event by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/event/au4cL9w_YsFCMg5fd4sYsQYx",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"event",
+										"au4cL9w_YsFCMg5fd4sYsQYx"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 23:33:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1026"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"402-OYH0pu1s4coYzWs1Z/gNqiF4RLg\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Event fetched successfully\",\n    \"data\": {\n        \"event\": {\n            \"_id\": \"au4cL9w_YsFCMg5fd4sYsQYx\",\n            \"eventId\": \"17fd1b00c29aa6daaafe1065\",\n            \"eventName\": \"Science Fair 2024\",\n            \"date\": \"2024-12-15T10:30:00.000Z\",\n            \"description\": \"An annual event showcasing students' science projects and innovations.\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"username\": \"montaser admin BaniSuef language\",\n            \"response\": \"Reject\",\n            \"expiryDate\": \"2025-05-17T23:05:43.090Z\",\n            \"createdAt\": \"2024-11-17T23:05:43.093Z\",\n            \"updatedAt\": \"2024-11-17T23:33:40.264Z\"\n        },\n        \"eventDetails\": {\n            \"totalAttending\": 1,\n            \"totalRejected\": 1,\n            \"totalNoResponse\": 3,\n            \"attendees\": [\n                {\n                    \"userId\": \"1gzRc8p2VnD4PQ_l4j6E5\",\n                    \"username\": \"mohamed AboTrieka\"\n                }\n            ],\n            \"rejected\": [\n                {\n                    \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n                    \"username\": \"montaser admin BaniSuef language\"\n                }\n            ],\n            \"notResponse\": [\n                {\n                    \"userId\": \"gVSC8-rvBECLYmH_zRciF\",\n                    \"username\": \"parent 22\"\n                },\n                {\n                    \"userId\": \"6ksXgKt2_96pwDgBwet-d\",\n                    \"username\": \"parent parent\"\n                },\n                {\n                    \"userId\": \"2OnP9vQ2PoioKGWdfCcnJ\",\n                    \"username\": \"parent 4 parent\"\n                }\n            ]\n        }\n    }\n}"
 						}
 					]
 				}

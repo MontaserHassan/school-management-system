@@ -9,8 +9,8 @@ import errorStudentMessage from './student/error.message';
 import successStudentMessage from './student/success.message';
 import errorDomainMessage from './domain/error.message';
 import successDomainMessage from './domain/success.message';
-import errorTopicMessage from './topic/error.message';
-import successTopicMessage from './topic/success.message';
+import errorSkillMessage from './topic/error.message';
+import successSkillMessage from './topic/success.message';
 import errorTeacherMessage from './teacher/error.message';
 import successTeacherMessage from './teacher/success.message';
 import errorClassRoomMessage from './class-room/error.message'
@@ -41,7 +41,7 @@ export {
     errorStudentDegreeMessage, successStudentDegreeMessage,
     errorStudentMessage, successStudentMessage,
     errorDomainMessage, successDomainMessage,
-    errorTopicMessage, successTopicMessage,
+    errorSkillMessage, successSkillMessage,
     errorTeacherMessage, successTeacherMessage,
     errorClassRoomMessage, successClassRoomMessage,
     errorLookupMessage, successLookupMessage,

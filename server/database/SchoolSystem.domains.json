@@ -6,12 +6,17 @@
   "courseTime": "130",
   "typeOfTime": "min",
   "group": "2-3",
-  "skills": [],
+  "skills": [
+    {
+      "skillId": "YW6PXyEpvLz01CkOvivtMKOV",
+      "skillName": "osmanien period"
+    }
+  ],
   "createdAt": {
     "$date": "2024-11-17T20:48:25.708Z"
   },
   "updatedAt": {
-    "$date": "2024-11-17T20:48:25.708Z"
+    "$date": "2024-11-17T22:20:23.930Z"
   },
   "__v": 0
 },
@@ -23,12 +28,17 @@
   "courseTime": "130",
   "typeOfTime": "min",
   "group": "3-6",
-  "skills": [],
+  "skills": [
+    {
+      "skillId": "HfpDwzqr19-kpNjx5e1QJEcV",
+      "skillName": "osmanien period"
+    }
+  ],
   "createdAt": {
     "$date": "2024-11-17T20:51:57.544Z"
   },
   "updatedAt": {
-    "$date": "2024-11-17T20:51:57.544Z"
+    "$date": "2024-11-17T22:21:33.305Z"
   },
   "__v": 0
 },

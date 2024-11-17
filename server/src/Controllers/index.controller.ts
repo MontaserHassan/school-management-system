@@ -2,7 +2,7 @@ import userController from "./user.controller";
 import studentController from "./student.controller";
 import domainController from './domain.controller';
 import classRoomController from './class-room.controller';
-import topicController from "./topic.controller";
+import skillController from "./skill.controller";
 import lookupController from "./lookup.controller";
 import schoolController from "./school.controller";
 import progressHistoryController from "./progress-history.controller";
@@ -19,7 +19,7 @@ export {
     userController,
     studentController,
     domainController,
-    topicController,
+    skillController,
     classRoomController,
     lookupController,
     schoolController,

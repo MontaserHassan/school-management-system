@@ -16,9 +16,9 @@ interface Domains {
     progressStatus?: string;
 };
 
-interface mainTopics {
-    topicId: String;
-    topicName: string;
+interface skills {
+    skillId: String;
+    skillName: string;
     degree?: String;
 };
 
@@ -38,7 +38,7 @@ interface StudentModel extends mongoose.Document {
     classRoom: string;
     parentId: string;
     domains?: Domains[];
-    mainTopics?: mainTopics[];
+    skills?: skills[];
     attendance?: attendance[];
     comments?: Comment[];
     studentCost?: string;
@@ -101,15 +101,15 @@ const studentSchema = new mongoose.Schema(
                 },
             },
         ],
-        mainTopics: [
+        skills: [
             {
                 _id: false,
-                topicId: {
+                skillId: {
                     type: String,
-                    ref: 'MainTopic',
+                    ref: 'skill',
                     required: true,
                 },
-                topicName: {
+                skillName: {
                     type: String,
                     required: true,
                 },

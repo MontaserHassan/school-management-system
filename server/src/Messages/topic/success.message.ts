@@ -1,10 +1,11 @@
-enum successTopicMessage {
-    CREATED = 'Topic created successfully and added to class room',
-    UPDATED = 'Topic updated successfully',
-    DELETED = 'Topic deleted successfully',
-    GET_TOPIC_DATA = 'Topic get profile successfully',
+enum successSkillMessage {
+    CREATED = 'Skill created successfully and added to class room',
+    UPDATED = 'Skill updated successfully',
+    DELETED = 'Skill deleted successfully',
+    GET_SKILL_DATA = 'Skill fetched successfully',
+    GET_ALL_SKILLS_DATA = 'Skills fetched successfully',
 };
 
 
 
-export default successTopicMessage;
+export default successSkillMessage;

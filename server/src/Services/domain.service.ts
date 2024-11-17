@@ -72,6 +72,15 @@ const getAllDomainsLookups = async (schoolId: string) => {
 };
 
 
+// ----------------------------- add new skill -----------------------------
+
+
+const addNewSkill = async (domainId: string, skillId: string, skillName: string) => {
+    const domain: DomainModel = await Domain.findByIdAndUpdate(domainId, { $push: { skills: { skillId: skillId, skillName: skillName } } }, { new: true }).select('-__v');
+    return domain;
+};
+
+
 // ----------------------------- update by id -----------------------------
 
 
@@ -93,6 +102,7 @@ const deleteDomain = async (domainId: string) => {
 
 export default {
     createDomain,
+    addNewSkill,
     getLengthDomainsForSchool,
     getById,
     getByName,

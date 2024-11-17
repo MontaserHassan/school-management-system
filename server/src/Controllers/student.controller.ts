@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, progressHistoryService, studentService, topicService } from "../Services/index.service";
-import { errorClassRoomMessage, errorStudentMessage, errorTopicMessage, successStudentMessage, errorDomainMessage, successDomainMessage } from "../Messages/index.message";
+import { classRoomService, lookupService, progressHistoryService, studentService, skillService } from "../Services/index.service";
+import { errorClassRoomMessage, errorStudentMessage, errorSkillMessage, successStudentMessage, errorDomainMessage, successDomainMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import { StudentModel } from "../Models/student.model";
@@ -54,12 +54,12 @@ const addStudentToClass = async (req: Request, res: Response, next: NextFunction
             const domainsData = isClassRoomExisting.schedule ? isClassRoomExisting.schedule.flatMap(schedule => {
                 return schedule.domains.map(domain => ({ domainId: domain.domainId, domainName: domain.domainName }));
             }) : [];
-            const mainTopicsData = isClassRoomExisting.mainTopics ? isClassRoomExisting.mainTopics.map(topic => {
-                return { topicId: topic.topicId, topicName: topic.topicName };
+            const mainTopicsData = isClassRoomExisting.skills ? isClassRoomExisting.skills.map(skill => {
+                return { skillId: skill.skillId, skillName: skill.skillName };
             }) : [];
             const domains = Array.from(new Map(domainsData.map(dom => [dom.domainId.toString(), dom])).values());
-            const mainTopics = Array.from(new Map(mainTopicsData.map(topic => [topic.topicId.toString(), topic])).values());
-            await studentService.addMoreDataToStudent(studentId, classRoom, isClassRoomExisting.group, domains, mainTopics, isClassRoomExisting.studentCost, isClassRoomExisting.currencyOfCost);
+            const skills = Array.from(new Map(mainTopicsData.map(skill => [skill.skillId.toString(), skill])).values());
+            await studentService.addMoreDataToStudent(studentId, classRoom, isClassRoomExisting.group, domains, skills, isClassRoomExisting.studentCost, isClassRoomExisting.currencyOfCost);
             const updatedClassroom = await classRoomService.addStudent(classRoom, [{ studentId: (studentId).toString(), studentName: isStudentExisting.studentName }]);
             if (!updatedClassroom) throw new CustomError(errorClassRoomMessage.DOES_NOT_UPDATED, 400, "classRoom");
             return updatedClassroom;
@@ -160,27 +160,27 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
         const progressStatus = await lookupService.getById(status);
         if (!progressStatus) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
         const topicsWithoutDegree = await Promise.all(
-            student.mainTopics?.map(async (topic) => {
-                const topicExists = await topicService.getById(String(topic.topicId));
-                if (topicExists.domain.domainId === domainId && !topic.degree) return topicExists;
+            student.skills?.map(async (skill) => {
+                const skillExists = await skillService.getById(String(skill.skillId));
+                if (skillExists.domainId === domainId && !skill.degree) return skillExists;
                 return null;
             }) || [],
         );
-        const filteredTopicsWithoutDegree = topicsWithoutDegree.filter(topic => topic !== null);
-        if (progressStatus.lookupName === "Completed" && filteredTopicsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.TOPIC_WITHOUT_DEGREE, 400, "domain");
+        const filteredSkillsWithoutDegree = topicsWithoutDegree.filter(topic => topic !== null);
+        if (progressStatus.lookupName === "Completed" && filteredSkillsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.SKILL_WITHOUT_DEGREE, 400, "domain");
         const updatedStudent = await studentService.addProgressStatus(studentId, domainId, progressStatus.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
-        const topics = await Promise.all(student.mainTopics.map(async (topic) => {
-            const topicsForDomain = await topicService.getByDomainId(domainId);
-            const filteredTopics = topicsForDomain.filter((t) => t._id === topic.topicId);
-            return filteredTopics.map((filteredTopic) => ({
-                topicId: filteredTopic._id,
-                topicName: filteredTopic.topicName,
-                degree: String(topic.degree),
+        const skills = await Promise.all(student.skills.map(async (skill) => {
+            const skillsForDomain = await skillService.getByDomainId(domainId);
+            const filteredSkills = skillsForDomain.filter((t) => t._id === skill.skillId);
+            return filteredSkills.map((filteredSkill) => ({
+                skillId: filteredSkill._id,
+                skillName: filteredSkill.skillName,
+                degree: String(skill.degree),
             }));
         }));
-        const flattedTopics = topics.flat();
-        if (progressStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedTopics, 'Completed', true)
+        const flattedSkills = skills.flat();
+        if (progressStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedSkills, 'Completed', true)
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -202,7 +202,7 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
 
 const addDegreeOfTopic = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentId, topicId, degree } = req.body;
+        const { studentId, skillId, degree } = req.body;
         const teacherId = req.user.userId;
         const degreeName = await lookupService.getById(degree);
         if (!degreeName) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
@@ -210,9 +210,9 @@ const addDegreeOfTopic = async (req: Request, res: Response, next: NextFunction)
         if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
         if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
-        const topicExists = student.mainTopics?.some((topic: any) => topic.topicId === topicId);
-        if (!topicExists) throw new CustomError(errorTopicMessage.TOPIC_NOT_FOUND, 400, "topic");
-        const updatedStudent = await studentService.addDegree(studentId, topicId, degreeName.lookupName);
+        const topicExists = student.skills?.some((skill: any) => skill.skillId === skillId);
+        if (!topicExists) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 400, "topic");
+        const updatedStudent = await studentService.addDegree(studentId, skillId, degreeName.lookupName);
         const response: IResponse = {
             type: "info",
             responseCode: 201,

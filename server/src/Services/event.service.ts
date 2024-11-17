@@ -1,5 +1,4 @@
 import { Event, EventModel } from '../Models/events.model';
-import generateId from 'Utils/generate-id.util';
 
 
 
@@ -15,8 +14,8 @@ const createEvent = async (eventData: { schoolId: string, eventName: string, dat
 // ----------------------------- find events by event id -----------------------------
 
 
-const findEventByEventId = async (eventId: string, schoolId: string) => {
-    const event: EventModel[] = await Event.find({ eventId, schoolId }).select('-__v');
+const findEventByEventId = async (eventId: string,) => {
+    const event: EventModel = await Event.findById(eventId).select('-__v');
     return event;
 };
 
@@ -30,16 +29,24 @@ const eventDetails = async (eventId: string) => {
         {
             $group: {
                 _id: null,
-                totalAttending: { $sum: { $cond: [{ $eq: ['$response', 'Accepted'] }, 1, 0] } },
-                totalRejected: { $sum: { $cond: [{ $eq: ['$response', 'Rejected'] }, 1, 0] } },
+                totalAttending: { $sum: { $cond: [{ $eq: ['$response', 'Accept'] }, 1, 0] } },
+                totalRejected: { $sum: { $cond: [{ $eq: ['$response', 'Reject'] }, 1, 0] } },
                 totalNoResponse: { $sum: { $cond: [{ $eq: ['$response', 'Not Response'] }, 1, 0] } },
-                attendees: { $push: { userId: '$userId', username: '$username' } },
-                rejected: { $push: { userId: '$userId', username: '$username' } },
-                noResponse: { $push: { userId: '$userId', username: '$username' } },
+                attendees: { $push: { $cond: [{ $eq: ['$response', 'Accept'] }, { userId: '$userId', username: '$username' }, null], }, },
+                rejected: { $push: { $cond: [{ $eq: ['$response', 'Reject'] }, { userId: '$userId', username: '$username' }, null], }, },
+                noResponse: { $push: { $cond: [{ $eq: ['$response', 'Not Response'] }, { userId: '$userId', username: '$username' }, null], }, },
+            },
+        },
+        {
+            $project: {
+                _id: 0, totalAttending: 1, totalRejected: 1, totalNoResponse: 1,
+                attendees: { $filter: { input: '$attendees', as: 'item', cond: { $ne: ['$$item', null] }, }, },
+                rejected: { $filter: { input: '$rejected', as: 'item', cond: { $ne: ['$$item', null] }, }, },
+                notResponse: { $filter: { input: '$noResponse', as: 'item', cond: { $ne: ['$$item', null] }, }, },
             },
         },
     ]);
-    return eventDetails;
+    return eventDetails.length ? eventDetails[0] : { totalAttending: 0, totalRejected: 0, totalNoResponse: 0, attendees: [], rejected: [], noResponse: [], };
 };
 
 

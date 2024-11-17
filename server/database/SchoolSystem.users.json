@@ -30,11 +30,11 @@
     "$date": "2024-09-06T22:43:10.482Z"
   },
   "updatedAt": {
-    "$date": "2024-11-15T15:53:46.501Z"
+    "$date": "2024-11-17T23:24:01.664Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-11-15T15:53:46.501Z"
+    "$date": "2024-11-17T23:24:01.664Z"
   },
   "logged": true,
   "schoolId": "superAdmin"
@@ -194,11 +194,11 @@
     "$date": "2024-09-14T17:58:16.912Z"
   },
   "updatedAt": {
-    "$date": "2024-09-21T14:35:42.631Z"
+    "$date": "2024-11-17T20:43:22.570Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-09-21T14:35:42.631Z"
+    "$date": "2024-11-17T20:43:22.570Z"
   },
   "logged": true
 },
@@ -347,7 +347,7 @@
 },
 {
   "_id": "UaW_0owVXzBmjhpM-FWvW",
-  "userName": "admin BaniSuef language",
+  "userName": "montaser admin BaniSuef language",
   "email": "montaser.hassan.bns@gmail.com",
   "role": "admin",
   "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
@@ -359,11 +359,11 @@
     "$date": "2024-11-12T21:45:38.954Z"
   },
   "updatedAt": {
-    "$date": "2024-11-15T16:17:55.610Z"
+    "$date": "2024-11-17T22:52:48.287Z"
   },
   "__v": 0,
   "lastSeen": {
-    "$date": "2024-11-15T16:17:55.610Z"
+    "$date": "2024-11-17T22:52:48.286Z"
   },
   "logged": true
 },
@@ -466,14 +466,53 @@
   "role": "parent",
   "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
   "code": "G0693",
-  "updatePassword": false,
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$EpGQMoU2gJM5kXzSwRpT2w$8NW9ujcHqDwn8vfb4odgJ/npbjbe971TFOE5P0W8HFY",
+  "updatePassword": true,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$w3T68WrNnC3S7dAVtPibTA$nqolap66qtciBg729on3jgIht1h+uFPXH+Kw+D4istQ",
   "termsAndCondition": true,
   "createdAt": {
     "$date": "2024-11-15T17:46:27.033Z"
   },
   "updatedAt": {
-    "$date": "2024-11-15T17:46:27.033Z"
+    "$date": "2024-11-17T23:21:47.436Z"
+  },
+  "__v": 0,
+  "lastSeen": {
+    "$date": "2024-11-17T23:21:47.436Z"
+  },
+  "logged": true
+},
+{
+  "_id": "OD6X9LRaai44GJo9afdha",
+  "userName": "mohamed Barakat",
+  "email": "mohamed.barakat@gmail.com",
+  "role": "parent",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "H605694",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$8z8pE0RMAAoDYm8QHBiuhA$ERDcHWRBtNzT7GTy/lVI6YKVAJPa95bbCw1Pm5L+D2U",
+  "termsAndCondition": true,
+  "createdAt": {
+    "$date": "2024-11-17T22:44:13.133Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T22:44:13.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "FMVw7ZVf-oVj8bAbdacDc",
+  "userName": "teacher 2 BaniSuef language",
+  "email": "teacher2.banisuef@gmail.com",
+  "role": "teacher",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "code": "L6905",
+  "updatePassword": false,
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$qQoodkSiXqayjfGF925lMw$CLS4KDY6kSEUUyE5aD/DB/kHMrqX/Le/jQnCuw0XV7Y",
+  "createdAt": {
+    "$date": "2024-11-17T22:46:52.071Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T22:46:52.071Z"
   },
   "__v": 0
 }]

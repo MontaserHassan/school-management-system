@@ -27,6 +27,13 @@ const eventValidator = {
         }),
     },
 
+    updateResponse: {
+        body: Joi.object().keys({
+            eventId: Joi.string().required().trim().messages({ 'string.empty': 'Event Id is required.', }),
+            newResponse: Joi.string().trim().messages({ 'string.empty': 'New Response is required' }),
+        }),
+    },
+
 };
 
 

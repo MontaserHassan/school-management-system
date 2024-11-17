@@ -89,11 +89,11 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
     topicsTable.columns = topicsHeaders;
     topicsTable.getRow(1).font = { name: 'Times New Roman', size: 13, bold: true };
     for (const classRoom of rooms) {
-        if (classRoom.mainTopics) {
-            for (const topic of classRoom.mainTopics) {
+        if (classRoom.skills) {
+            for (const topic of classRoom.skills) {
                 topicsTable.addRow({
                     room: classRoom.room,
-                    mainTopics: topic.topicName,
+                    skill: topic.skillName,
                 });
             };
         };

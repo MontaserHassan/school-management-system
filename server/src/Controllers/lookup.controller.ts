@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, schoolService, studentService, domainService, topicService, userService } from "../Services/index.service";
+import { classRoomService, lookupService, schoolService, studentService, domainService, skillService, userService } from "../Services/index.service";
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -70,9 +70,9 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
         } else if (targetData === 'domains') {
             const lookups = await domainService.getAllDomainsLookups(schoolId);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.domainName } });
-        } else if (targetData === 'topics') {
-            const lookups = await topicService.getAllTopicsLookups(schoolId);
-            lookupsData = lookups.map(item => { return { _id: item._id, value: item.topicName } });
+        } else if (targetData === 'skills') {
+            const lookups = await skillService.getAllSkillsLookups(schoolId);
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.skillName } });
         } else if (targetData === 'schools') {
             const lookups = await schoolService.getAllSchools();
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.schoolName } });
@@ -96,6 +96,9 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
         } else if (targetData === 'subscriptionStatus') {
             const lookups = await lookupService.getByMasterCodeAndParent('7');
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'event-response') {
+            const lookups = await lookupService.getByMasterCodeAndParent('8');
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
         } else if (targetData === 'allUsers') {
             const lookups = await userService.findAllUserOfSchoolLookup(String(schoolId));

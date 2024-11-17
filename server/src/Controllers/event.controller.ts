@@ -15,13 +15,14 @@ const createEvent = async (req: Request, res: Response, next: NextFunction) => {
         const { eventName, description, membersId, date } = req.body;
         const userId = req.user.userId;
         if (!membersId.includes(userId)) membersId.push(userId);
+        const eventId = generateId();
         const eventUsers = membersId.map(async (memberId) => {
             const user = await userService.getById(memberId);
             if (!user) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
             await notificationService.createNotification(user._id.toString(), user.schoolId, 'New Event', `Hi ${user.userName}, You have a new Event, check it from events calender`,);
             return {
                 schoolId: user.schoolId,
-                eventId: generateId(),
+                eventId: eventId,
                 eventName: eventName,
                 date: new Date(date),
                 description: description,
@@ -75,10 +76,11 @@ const getEventsForUser = async (req: Request, res: Response, next: NextFunction)
 const getEventById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { eventId } = req.params;
-        const event = await eventService.findEventByEventId(eventId, req.user.schoolId);
-        if (!event) throw new CustomError(errorEventMessage.NOT_FOUND_EVENT, 404, "event");
+        const { userId } = req.user;
+        const event = await eventService.findEventByEventId(eventId);
+        if (!event || event.userId !== userId) throw new CustomError(errorEventMessage.NOT_FOUND_EVENT, 404, "event");
         let eventDetails = null;
-        if (['admin', 'director'].includes(req.user.role)) eventDetails = await eventService.eventDetails(eventId);
+        if (['admin', 'director'].includes(req.user.role)) eventDetails = await eventService.eventDetails(event.eventId);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

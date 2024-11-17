@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { nanoid } from "nanoid";
 
 
 interface EventModel extends mongoose.Document {
@@ -18,6 +18,10 @@ interface EventModel extends mongoose.Document {
 
 const eventSchema = new mongoose.Schema(
     {
+        _id: {
+            type: String,
+            default: () => nanoid(24),
+        },
         eventId: {
             type: String,
             required: true,
@@ -48,7 +52,7 @@ const eventSchema = new mongoose.Schema(
         },
         response: {
             type: String,
-            enum: ['Accepted', 'Rejected', 'Not Response'],
+            enum: ['Accept', 'Reject', 'Not Response'],
             required: true,
             default: 'Not Response',
         },

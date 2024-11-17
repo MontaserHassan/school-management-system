@@ -16,7 +16,8 @@ eventRouter.post('/', checkRole(['admin', 'director']), validation(eventValidato
 eventRouter.get('/', eventController.getEventsForUser);
 eventRouter.get('/:eventId', validation(eventValidator.getEvent), eventController.getEventById);
 
-eventRouter.patch('/', validation(eventValidator.updateEvent), eventController.updateEventResponse);
+// eventRouter.patch('/', validation(eventValidator.updateEvent), eventController.updateEventResponse);
+eventRouter.patch('/update-response', validation(eventValidator.updateResponse), eventController.updateEventResponse);
 
 
 

@@ -7,7 +7,7 @@
     "$date": "2024-09-14T16:59:12.888Z"
   },
   "subscriptionWay": "monthly",
-  "subscriptionStatus": "pending",
+  "subscriptionStatus": "paid",
   "createdAt": {
     "$date": "2024-09-14T16:59:15.364Z"
   },
@@ -52,6 +52,33 @@
   },
   "updatedAt": {
     "$date": "2024-09-21T12:26:00.497Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "schoolName": "banisuef language",
+  "admin": "UaW_0owVXzBmjhpM-FWvW",
+  "employees": [
+    "Lw267SYx0LgraUv01tkcS",
+    "TNWCI4reAr11PynOMrS15",
+    "FMVw7ZVf-oVj8bAbdacDc"
+  ],
+  "subscriptionFees": "500",
+  "subscriptionDate": {
+    "$date": "2024-11-12T21:48:47.984Z"
+  },
+  "subscriptionWay": "yearly",
+  "currencyOfSubscription": "USD",
+  "endOfSubscription": {
+    "$date": "2025-11-12T21:48:47.984Z"
+  },
+  "subscriptionStatus": "paid",
+  "createdAt": {
+    "$date": "2024-11-12T21:45:39.031Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T22:46:52.126Z"
   },
   "__v": 0
 }]
