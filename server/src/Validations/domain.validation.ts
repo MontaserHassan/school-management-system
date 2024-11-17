@@ -10,6 +10,7 @@ const domainValidator = {
                 'string.min': 'Domain name must be at least 3 characters long.',
                 'string.max': 'Domain name must not exceed 100 characters.',
             }),
+            groupId: Joi.string().required().trim().messages({ 'string.empty': 'Group Id is required.', }),
             courseTime: Joi.number().required().min(1).max(240).messages({ 'string.empty': 'Course time is required.', })
         }),
     },

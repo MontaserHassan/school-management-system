@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import { domainService } from "../Services/index.service";
-import { errorDomainMessage, successDomainMessage } from "../Messages/index.message";
+import { domainService, groupService } from "../Services/index.service";
+import { errorDomainMessage, successDomainMessage, errorGroupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import pagination from '../Utils/pagination.util';
@@ -13,13 +13,15 @@ import pagination from '../Utils/pagination.util';
 
 const createDomain = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { domainName, courseTime } = req.body;
+        const { domainName, courseTime, groupId } = req.body;
         const { schoolId } = req.user;
-        const isDomainExisting = await domainService.getByName((domainName).toLowerCase(), schoolId);
+        const isGroupExisting = await groupService.findGroupById(groupId,);
+        if (!isGroupExisting) throw new CustomError(errorGroupMessage.NOT_FOUND_GROUP, 404, "group");
+        const isDomainExisting = await domainService.getByName((domainName).toLowerCase(), schoolId, isGroupExisting.groupName);
         if (isDomainExisting) throw new CustomError(errorDomainMessage.EXISTING_DOMAIN, 400, "domain");
-        const domainsLength = await domainService.getLengthDomainsForSchool(schoolId);
+        const domainsLength = await domainService.getLengthDomainsForSchool(schoolId, isGroupExisting.groupName);
         const newDomainId = domainsLength + 1;
-        const newDomain = await domainService.createDomain(`d${newDomainId}`, (domainName).toLowerCase(), courseTime, schoolId);
+        const newDomain = await domainService.createDomain(`d${newDomainId}`, (domainName).toLowerCase(), courseTime, isGroupExisting.groupName, schoolId);
         if (!newDomain) throw new CustomError(errorDomainMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",

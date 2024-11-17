@@ -5,12 +5,13 @@ import { Domain, DomainModel } from "../Models/domain.model";
 // ----------------------------- create domain -----------------------------
 
 
-const createDomain = async (domainId: string, domainName: string, courseTime: string, schoolId: string) => {
+const createDomain = async (domainId: string, domainName: string, courseTime: string, group: string, schoolId: string) => {
     const newDomain: DomainModel = new Domain({
         domainId: domainId,
         domainName: (domainName).toLowerCase(),
         courseTime: courseTime,
         schoolId: schoolId,
+        group: group
     });
     await newDomain.save();
     return newDomain;
@@ -20,8 +21,8 @@ const createDomain = async (domainId: string, domainName: string, courseTime: st
 // ----------------------------- get domains number by school id -----------------------------
 
 
-const getLengthDomainsForSchool = async (schoolId: string) => {
-    const domainSchools = await Domain.countDocuments({ schoolId: schoolId });
+const getLengthDomainsForSchool = async (schoolId: string, group: string) => {
+    const domainSchools = await Domain.countDocuments({ schoolId: schoolId, group: group });
     return domainSchools;
 };
 
@@ -29,8 +30,8 @@ const getLengthDomainsForSchool = async (schoolId: string) => {
 // ----------------------------- get by id -----------------------------
 
 
-const getByName = async (domainName: string, schoolId: string) => {
-    const domain: DomainModel = await Domain.findOne({ domainName, schoolId: schoolId }).select('-__v');
+const getByName = async (domainName: string, schoolId: string, groupName: string) => {
+    const domain: DomainModel = await Domain.findOne({ domainName, schoolId: schoolId, group: groupName }).select('-__v');
     return domain;
 };
 

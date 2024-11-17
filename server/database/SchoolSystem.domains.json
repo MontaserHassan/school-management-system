@@ -1,64 +1,119 @@
 [{
-  "_id": "pXAgWnY6U5d6PnjVuQ92rsFa",
+  "_id": "wAIgmHTgJX_AhKIaKgfkbjLV",
   "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
   "domainId": "d1",
-  "domainName": "social studies",
-  "courseTime": "80",
-  "typeOfTime": "min",
-  "skills": [],
-  "createdAt": {
-    "$date": "2024-11-16T14:43:37.802Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-16T15:00:53.698Z"
-  },
-  "__v": 0
-},
-{
-  "_id": "qqNw1LBwPwyxTeHzSlpE3raJ",
-  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
-  "domainId": "d2",
-  "domainName": "math",
-  "courseTime": "80",
-  "typeOfTime": "min",
-  "skills": [],
-  "createdAt": {
-    "$date": "2024-11-16T14:44:13.500Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-16T14:44:13.500Z"
-  },
-  "__v": 0
-},
-{
-  "_id": "SYdyAaE9Tp6NUuitU1bUWEe8",
-  "schoolId": "HQiPO_ovyNWpxm8lSHZPxUU8",
-  "domainId": "d1",
-  "domainName": "math",
-  "courseTime": "80",
-  "typeOfTime": "min",
-  "skills": [],
-  "createdAt": {
-    "$date": "2024-11-16T14:45:30.064Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-16T14:45:30.064Z"
-  },
-  "__v": 0
-},
-{
-  "_id": "GEbR_8prXIlFtnq6WO_kMyJQ",
-  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
-  "domainId": "d3",
   "domainName": "science",
   "courseTime": "130",
   "typeOfTime": "min",
+  "group": "2-3",
   "skills": [],
   "createdAt": {
-    "$date": "2024-11-16T14:57:48.377Z"
+    "$date": "2024-11-17T20:48:25.708Z"
   },
   "updatedAt": {
-    "$date": "2024-11-16T14:57:48.377Z"
+    "$date": "2024-11-17T20:48:25.708Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "2oI41ujfXNRbO7G5x0xZ6DHl",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d1",
+  "domainName": "science",
+  "courseTime": "130",
+  "typeOfTime": "min",
+  "group": "3-6",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-17T20:51:57.544Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T20:51:57.544Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "xkRNrzMfD8zp4jhvIJhc5rtB",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d2",
+  "domainName": "math",
+  "courseTime": "90",
+  "typeOfTime": "min",
+  "group": "2-3",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-17T20:52:43.741Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T20:52:43.741Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "JDg4Ea1O7wk2XFHS9hewfn1X",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d2",
+  "domainName": "math",
+  "courseTime": "90",
+  "typeOfTime": "min",
+  "group": "3-6",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-17T20:52:57.555Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T20:52:57.555Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "DhawLSrz4grsStS26_Syal0y",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d3",
+  "domainName": "english",
+  "courseTime": "90",
+  "typeOfTime": "min",
+  "group": "3-6",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-17T20:53:13.837Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T20:53:13.837Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "TTJiVtAUyTdxrDiK0KApeouE",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d4",
+  "domainName": "duetch",
+  "courseTime": "60",
+  "typeOfTime": "min",
+  "group": "3-6",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-17T20:53:32.690Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T20:53:32.690Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "vcZCZAcF8fsL7Uq5nqDBHnF3",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "domainId": "d3",
+  "domainName": "arabic",
+  "courseTime": "210",
+  "typeOfTime": "min",
+  "group": "2-3",
+  "skills": [],
+  "createdAt": {
+    "$date": "2024-11-17T20:54:33.209Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T20:54:33.209Z"
   },
   "__v": 0
 }]

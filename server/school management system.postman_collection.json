@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    //\"email\": \"superadmin@gmail.com\", //\n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    \"email\": \"admin@gmail.com\", // admin\n    //\"email\": \"teacher1.banisuef@gmail.com\", // teacher\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    //\"email\": \"superadmin@gmail.com\", //\n    \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    //\"email\": \"teacher1.banisuef@gmail.com\", // teacher\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2081,7 +2081,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjQ4NWU0NGU0NDUwYTMwNzQ5YzA4NWMzYyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE2ODU4MzcsImV4cCI6MTczMTc3MjIzN30.qLdjU2YCHV4G2X2rrS6EHW3xte8PLAu-v12U9EXfsyk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
 									"type": "string"
 								}
 							]
@@ -2090,7 +2090,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"domainName\": \"science\",\n  \"courseTime\": \"130\"\n}\n",
+							"raw": "{\n    \"domainName\": \"Arabic\",\n    \"courseTime\": \"210\",\n    \"groupId\": \"673770f705920cfeccd341b5\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2117,7 +2117,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"domainName\": \"science\",\n  \"courseTime\": \"130\"\n}\n",
+									"raw": "{\n    \"domainName\": \"Arabic\",\n    \"courseTime\": \"210\",\n    \"groupId\": \"673770f705920cfeccd341b5\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2154,15 +2154,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "348"
+									"value": "361"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"15c-BgDj1G5NJofs8xuyfhXOBdCCYlo\""
+									"value": "W/\"169-fb+PECxtwQ6b7r1rGRm0jqIY98Q\""
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 16 Nov 2024 14:57:48 GMT"
+									"value": "Sun, 17 Nov 2024 20:54:33 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2174,7 +2174,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"Domain created successfully\",\n    \"data\": {\n        \"domain\": {\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d3\",\n            \"domainName\": \"science\",\n            \"courseTime\": \"130\",\n            \"typeOfTime\": \"min\",\n            \"_id\": \"GEbR_8prXIlFtnq6WO_kMyJQ\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-16T14:57:48.377Z\",\n            \"updatedAt\": \"2024-11-16T14:57:48.377Z\",\n            \"__v\": 0\n        }\n    }\n}"
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"Domain created successfully\",\n    \"data\": {\n        \"domain\": {\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d3\",\n            \"domainName\": \"arabic\",\n            \"courseTime\": \"210\",\n            \"typeOfTime\": \"min\",\n            \"group\": \"2-3\",\n            \"_id\": \"vcZCZAcF8fsL7Uq5nqDBHnF3\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-17T20:54:33.209Z\",\n            \"updatedAt\": \"2024-11-17T20:54:33.209Z\",\n            \"__v\": 0\n        }\n    }\n}"
 						}
 					]
 				},
@@ -3741,7 +3741,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiJkNjJiNDA0OTg4NDI4NDFlNzRjYzViNzQiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMxNjg2MDI2LCJleHAiOjE3MzE3NzI0MjZ9.fqChFuX9pH6KPSC8jEDQn8-6THAhegRETiPkEFk9rmg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiI1NDUxMDVhYWUzMDhmYzgzYTA5MmYyOGMiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MzE4NzYyMDIsImV4cCI6MTczMTk2MjYwMn0.uV22kwBy92hOQyCWH-q9ybULn3utOljQO3HsV5sx6OU",
 									"type": "string"
 								}
 							]

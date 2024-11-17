@@ -39,6 +39,10 @@ const domainSchema = new mongoose.Schema(
             type: String,
             default: 'min',
         },
+        group: {
+            type: String,
+            required: true,
+        },
         skills: [
             {
                 _id: false,

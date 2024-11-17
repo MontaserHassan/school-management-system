@@ -160,7 +160,6 @@ const getClassById = async (req: Request, res: Response, next: NextFunction) => 
         if (role === "teacher") {
             if (!classRoomData.teachers.some(teacher => teacher.teacherId.toString() === req.user.userId)) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 404, "teacher");
         };
-        console.log('classRoomData: ', classRoomData);
         let base64String: string;
         if (isExport === "true") {
             const rooms = [];
