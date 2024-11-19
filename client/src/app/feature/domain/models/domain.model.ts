@@ -7,6 +7,9 @@ export class Domain extends Model{
   domainName?: string;
 
   @Expose()
+  domainId?: string;
+
+  @Expose()
   courseTime?: string;
 
   @Expose()

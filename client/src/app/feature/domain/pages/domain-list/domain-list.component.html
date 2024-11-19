@@ -4,6 +4,7 @@
       (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortMode]="'single'" [dataKey]="'_id'">
       <ng-template pTemplate="header">
         <tr>
+          <th pSortableColumn="domainName">{{ 'domain.domainId' | translate }} <p-sortIcon field="domainName"></p-sortIcon></th>
           <th pSortableColumn="domainName">{{ 'domain.domainName' | translate }} <p-sortIcon field="domainName"></p-sortIcon></th>
           <th pSortableColumn="courseTime">{{ 'domain.courseTime' | translate }} <p-sortIcon field="courseTime"></p-sortIcon></th>
           <th pSortableColumn="typeOfTime">{{ 'domain.typeOfTime' | translate }} <p-sortIcon field="typeOfTime"></p-sortIcon></th>
@@ -15,6 +16,7 @@
 
       <ng-template pTemplate="body" let-domain>
         <tr>
+          <td (click)="viewDomain(domain._id)">{{ domain.domainId }}</td>
           <td (click)="viewDomain(domain._id)">{{ domain.domainName }}</td>
           <td>{{ domain.courseTime }}</td>
           <td>{{ domain.typeOfTime || ('domain.n/a' | translate) }}</td>
