@@ -12,7 +12,7 @@ const userValidator = {
             schoolId: Joi.string().optional().trim().max(24).when('role', {
                 is: Joi.string().valid('admin', 'director', 'teacher', 'parent'),
                 then: Joi.string().invalid('superAdmin').messages({ 'any.invalid': 'SchoolId cannot be "superAdmin" for non-superAdmin roles.' })
-            })
+            }),
         }),
     },
 
@@ -31,6 +31,7 @@ const userValidator = {
                     media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media is required.', }),
                 }),
             ).min(1).messages({ 'array.min': 'At least one student must be provided.', 'array.empty': 'At least one student must be provided.', }),
+            termsAndCondition: Joi.boolean().required().messages({ 'any.required': 'Please accept the terms and condition.', 'boolean.base': 'Please accept the terms and condition.', }),
         }),
     },
 
@@ -52,7 +53,7 @@ const userValidator = {
         body: Joi.object().keys({
             userId: Joi.string().required().trim().messages({ 'string.empty': 'User Id is required.', 'string.max': 'User Id cannot be longer than 24 characters', }),
             email: Joi.string().optional().trim().email().messages({ 'string.empty': 'Email cannot be an empty string', 'string.email': 'Please enter a valid email', }),
-            userName: Joi.string().optional().trim().max(30).empty('').messages({ 'string.empty': 'userName cannot be an empty string', 'string.min': 'userName must be at least 8 characters long', 'string.max': 'userName cannot be longer than 30 characters', }),
+            userName: Joi.string().optional().trim().max(50).empty('').messages({ 'string.empty': 'userName cannot be an empty string', 'string.min': 'userName must be at least 8 characters long', 'string.max': 'userName cannot be longer than 30 characters', }),
             media: Joi.string().optional().empty('').messages({ 'string.empty': 'media cannot be an empty string', }),
         }),
     },

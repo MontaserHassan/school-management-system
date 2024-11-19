@@ -342,4 +342,49 @@
   "updatedAt": {
     "$date": "2024-10-04T15:12:36.571Z"
   }
+},
+{
+  "_id": "SchoolSystem-8-1",
+  "masterCode": "8",
+  "masterName": "eventResponse",
+  "lookupCode": "1",
+  "lookupName": "Accept",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-17T23:25:15.817Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T23:25:15.817Z"
+  }
+},
+{
+  "_id": "SchoolSystem-8-2",
+  "masterCode": "8",
+  "masterName": "eventResponse",
+  "lookupCode": "2",
+  "lookupName": "Reject",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-17T23:25:15.817Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T23:25:15.817Z"
+  }
+},
+{
+  "_id": "SchoolSystem-8-3",
+  "masterCode": "8",
+  "masterName": "eventResponse",
+  "lookupCode": "3",
+  "lookupName": "not response",
+  "parentCode": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-17T23:25:15.817Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-17T23:25:15.817Z"
+  }
 }]

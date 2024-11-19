@@ -2,16 +2,16 @@ import { ClassRoom, ClassRoomModel } from "../Models/class-room.model";
 
 
 
-// ----------------------------- create subject room -----------------------------
+// ----------------------------- create room -----------------------------
 
 
-const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, currencyOfCost: string, mainTopics: { topicId: string, topicName: string }[], schoolId: string) => {
+const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, currencyOfCost: string, skills: { skillId: string, skillName: string }[], schoolId: string) => {
     const newClassRoom: ClassRoomModel = new ClassRoom({
         room: room,
         group: group,
         teachers: teachers,
         schedule: schedule,
-        mainTopics: mainTopics,
+        skills: skills,
         studentCost: studentCost,
         currencyOfCost: currencyOfCost,
         schoolId: schoolId,
@@ -39,11 +39,11 @@ const addTeacher = async (roomId: string, teachers: { teacherId: string, teacher
 };
 
 
-// ----------------------------- add topic -----------------------------
+// ----------------------------- add skill -----------------------------
 
 
-const addTopic = async (room: string, newTopic: { topicId: string, topicName: string }) => {
-    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { mainTopics: newTopic }, }, { new: true });
+const addSkill = async (room: string, newSkill: { skillId: string, skillName: string }) => {
+    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { skills: newSkill }, }, { new: true });
     return newClassRoomData;
 };
 
@@ -143,6 +143,12 @@ const getAllClassRoomLookups = async (schoolId: string) => {
 };
 
 
+const getClassesByGroup = async (schoolId: string, group: string) => {
+    const classRooms: ClassRoomModel[] = await ClassRoom.find({ group: group, schoolId: schoolId }).select('-__v');
+    return classRooms;
+};
+
+
 // ----------------------------- update room -----------------------------
 
 
@@ -161,10 +167,10 @@ const deleteStudentFromClassRoom = async (roomId: string, studentId: string) => 
 };
 
 
-// ----------------------------- update topic inside room ---------------               --------------
+// ----------------------------- update skill inside room ---------------               --------------
 
-const updateTopicDataInClassrooms = async (topicId: string, updatedTopicName: string) => {
-    const updatedClassrooms = await ClassRoom.updateMany({ "mainTopics.topicId": topicId }, { $set: { "mainTopics.$.topicName": updatedTopicName } }, { multi: true });
+const updateSkillDataInClassrooms = async (skillId: string, updatedSkillName: string) => {
+    const updatedClassrooms = await ClassRoom.updateMany({ "skills.skillId": skillId }, { $set: { "skills.$.skillName": updatedSkillName } }, { multi: true });
     return updatedClassrooms;
 };
 
@@ -189,12 +195,13 @@ export default {
     getStudentsByTeacherId,
     addStudent,
     addTeacher,
-    addTopic,
+    addSkill,
     totalDocument,
     getAllClassRoomLookups,
+    getClassesByGroup,
     findWithPagination,
     updateRoom,
-    updateTopicDataInClassrooms,
+    updateSkillDataInClassrooms,
     deleteStudentFromClassRoom,
     deleteRoom,
 };

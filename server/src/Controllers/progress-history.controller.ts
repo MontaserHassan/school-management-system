@@ -6,7 +6,7 @@ import IResponse from '../Interfaces/response.interface';
 
 
 
-// ----------------------------- get topic data -----------------------------
+// ----------------------------- get degree data -----------------------------
 
 
 const getStudentProgressHistory = async (req: Request, res: Response, next: NextFunction) => {

@@ -3,16 +3,16 @@ import { nanoid } from "nanoid";
 
 
 
-interface Subjects {
-    subjectId: string;
-    subjectName: string
+interface Domains {
+    domainId: string;
+    domainName: string
     startTime: string;
     endTime: string;
 };
 
 interface Schedule {
     day: string;
-    subjects: Subjects[];
+    domains: Domains[];
 };
 
 interface ClassRoomModel extends mongoose.Document {
@@ -22,7 +22,7 @@ interface ClassRoomModel extends mongoose.Document {
     schoolId: string;
     teachers: { teacherId: string, teacherName: string }[],
     students?: { studentId: string, studentName: string }[],
-    mainTopics?: { topicId: string, topicName: string }[]
+    skills?: { skillId: string, skillName: string }[]
     schedule?: Schedule[];
     studentCost: string;
     currencyOfCost: string;
@@ -49,7 +49,7 @@ const classRoomSchema = new mongoose.Schema(
         group: {
             type: String,
             required: true,
-            enum: ['3-6', '6-9', '9-12']
+            enum: ['2-3', '3-6', '9-12']
         },
         teachers: [
             {
@@ -79,15 +79,15 @@ const classRoomSchema = new mongoose.Schema(
                 },
             },
         ],
-        mainTopics: [
+        skills: [
             {
                 _id: false,
-                topicId: {
+                skillId: {
                     type: String,
-                    ref: 'MainTopic',
+                    ref: 'skill',
                     required: true,
                 },
-                topicName: {
+                skillName: {
                     type: String,
                     required: true,
                 }
@@ -101,15 +101,15 @@ const classRoomSchema = new mongoose.Schema(
                     enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                     required: true,
                 },
-                subjects: [
+                domains: [
                     {
                         _id: false,
-                        subjectId: {
+                        domainId: {
                             type: String,
-                            ref: 'Subject',
+                            ref: 'Domain',
                             required: true,
                         },
-                        subjectName: {
+                        domainName: {
                             type: String,
                             required: true,
                         },

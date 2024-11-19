@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
+import { classRoomService, lookupService, schoolService, studentService, domainService, skillService, userService } from "../Services/index.service";
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -67,12 +67,12 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
                 lookups = await studentService.getAllStudentsLookups(schoolId, false);
             };
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.studentName } });
-        } else if (targetData === 'subjects') {
-            const lookups = await subjectService.getAllSubjectsLookups(schoolId);
-            lookupsData = lookups.map(item => { return { _id: item._id, value: item.subjectName } });
-        } else if (targetData === 'topics') {
-            const lookups = await topicService.getAllTopicsLookups(schoolId);
-            lookupsData = lookups.map(item => { return { _id: item._id, value: item.topicName } });
+        } else if (targetData === 'domains') {
+            const lookups = await domainService.getAllDomainsLookups(schoolId);
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.domainName } });
+        } else if (targetData === 'skills') {
+            const lookups = await skillService.getAllSkillsLookups(schoolId);
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.skillName } });
         } else if (targetData === 'schools') {
             const lookups = await schoolService.getAllSchools();
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.schoolName } });
@@ -97,14 +97,17 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
         } else if (targetData === 'subscriptionStatus') {
             const lookups = await lookupService.getByMasterCodeAndParent('7');
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+        } else if (targetData === 'event-response') {
+            const lookups = await lookupService.getByMasterCodeAndParent('8');
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
         } else if (targetData === 'allUsers') {
             const lookups = await userService.findAllUserOfSchoolLookup(String(schoolId));
-            lookupsData = lookups.filter(item=> item._id !== req.user.userId ).map(item => { return { _id: item._id, value: item.userName } });
-            if(req.user.role === 'admin') {
+            lookupsData = lookups.filter(item => item._id !== req.user.userId).map(item => { return { _id: item._id, value: item.userName } });
+            if (req.user.role === 'admin') {
                 const superAdmin = await userService.findUserByRole(String("superAdmin"));
                 lookupsData.push({ _id: superAdmin[0]._id, value: superAdmin[0].userName });
             }
-            if(req.user.role === 'superAdmin') {
+            if (req.user.role === 'superAdmin') {
                 const lookups = await userService.findUserByRole(String("admin"));
                 lookupsData = lookups.map(item => { return { _id: item._id, value: item.userName } });
             }

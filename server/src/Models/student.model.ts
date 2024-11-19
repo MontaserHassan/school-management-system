@@ -10,21 +10,20 @@ interface Comment {
     dateOfComment: Date;
 };
 
-interface subjects {
-    subjectId: String;
-    subjectName: string;
+interface Domains {
+    domainId: String;
+    domainName: string;
     progressStatus?: string;
 };
 
-interface mainTopics {
-    topicId: String;
-    topicName: string;
+interface skills {
+    skillId: String;
+    skillName: string;
     degree?: String;
 };
 
 interface attendance {
     date?: Date;
-    subjectId: String;
     teacherId: String;
     status: string;
     comment?: string;
@@ -38,8 +37,8 @@ interface StudentModel extends mongoose.Document {
     group: string;
     classRoom: string;
     parentId: string;
-    subjects?: subjects[];
-    mainTopics?: mainTopics[];
+    domains?: Domains[];
+    skills?: skills[];
     attendance?: attendance[];
     comments?: Comment[];
     studentCost?: string;
@@ -83,15 +82,15 @@ const studentSchema = new mongoose.Schema(
             required: false,
             enum: ['3-6', '6-9', '9-12']
         },
-        subjects: [
+        domains: [
             {
                 _id: false,
-                subjectId: {
+                domainId: {
                     type: String,
-                    ref: 'Subject',
+                    ref: 'domain',
                     required: true,
                 },
-                subjectName: {
+                domainName: {
                     type: String,
                     required: true,
                 },
@@ -102,15 +101,15 @@ const studentSchema = new mongoose.Schema(
                 },
             },
         ],
-        mainTopics: [
+        skills: [
             {
                 _id: false,
-                topicId: {
+                skillId: {
                     type: String,
-                    ref: 'MainTopic',
+                    ref: 'skill',
                     required: true,
                 },
-                topicName: {
+                skillName: {
                     type: String,
                     required: true,
                 },

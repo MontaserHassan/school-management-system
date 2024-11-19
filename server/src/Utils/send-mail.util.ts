@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 
 
-export function sendEmail(to: string, subject: string, message: string) {
+export default function sendEmail(to: string, subject: string, message: string) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -20,7 +20,6 @@ export function sendEmail(to: string, subject: string, message: string) {
         text: subject,
         html: message,
     };
-    let responseMessage: string;
     transporter.sendMail(mailOption, (err, info) => {
         if (err) {
             console.log(`Error sending email to: ${to}`);

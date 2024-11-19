@@ -4,7 +4,7 @@ import * as ExcelJS from 'exceljs';
 
 import { ClassRoomModel } from "../../Models/class-room.model";
 import { schoolService } from "../../Services/index.service";
-import { calculateDuration } from '../../Utils/calculate-duration.util';
+import { calculateDuration } from '../index.util';
 
 
 
@@ -48,7 +48,7 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
     const scheduleHeaders = [
         { header: 'Room', key: 'room', width: 15 },
         { header: 'Day', key: 'day', width: 15 },
-        { header: 'Subject', key: 'subject', width: 30 },
+        { header: 'Domain', key: 'domain', width: 30 },
         { header: 'Start', key: 'start', width: 15 },
         { header: 'End', key: 'end', width: 15 },
         { header: 'Duration', key: 'duration', width: 15 },
@@ -59,15 +59,15 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
         if (classRoom.schedule) {
             for (const daySchedule of classRoom.schedule) {
                 const day = daySchedule.day;
-                for (const sub of daySchedule.subjects) {
-                    const subjectEntry = `${sub.subjectName}`;
-                    const startTime = sub.startTime;
-                    const endTime = sub.endTime;
+                for (const dom of daySchedule.domains) {
+                    const domainEntry = `${dom.domainName}`;
+                    const startTime = dom.startTime;
+                    const endTime = dom.endTime;
                     const duration = calculateDuration(startTime, endTime);
                     scheduleTable.addRow({
                         room: classRoom.room,
                         day: day,
-                        subject: subjectEntry,
+                        domain: domainEntry,
                         start: startTime,
                         end: endTime,
                         duration: duration,
@@ -77,23 +77,23 @@ export async function CSVClassRoom(rooms: ClassRoomModel[]) {
         };
     };
 
-    const topicsTable = workbook.addWorksheet('Main Topics');
-    topicsTable.eachRow((row) => {
+    const skillsTable = workbook.addWorksheet('Skills');
+    skillsTable.eachRow((row) => {
         row.font = { name: 'Times New Roman' };
         row.alignment = { horizontal: 'left' };
     });
-    const topicsHeaders = [
+    const skillsHeaders = [
         { header: 'Room', key: 'room', width: 15 },
-        { header: 'Main Topics', key: 'mainTopics', width: 30 },
+        { header: 'Skills', key: 'skills', width: 30 },
     ];
-    topicsTable.columns = topicsHeaders;
-    topicsTable.getRow(1).font = { name: 'Times New Roman', size: 13, bold: true };
+    skillsTable.columns = skillsHeaders;
+    skillsTable.getRow(1).font = { name: 'Times New Roman', size: 13, bold: true };
     for (const classRoom of rooms) {
-        if (classRoom.mainTopics) {
-            for (const topic of classRoom.mainTopics) {
-                topicsTable.addRow({
+        if (classRoom.skills) {
+            for (const skill of classRoom.skills) {
+                skillsTable.addRow({
                     room: classRoom.room,
-                    mainTopics: topic.topicName,
+                    skills: skill.skillName,
                 });
             };
         };

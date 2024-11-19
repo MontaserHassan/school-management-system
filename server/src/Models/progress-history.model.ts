@@ -6,9 +6,9 @@ import { nanoid } from "nanoid";
 interface ProgressHistoryModel extends mongoose.Document {
     _id: string;
     studentId: string;
-    subjectId: string;
-    topics: { topicId: string, topicName: string, degree: string }[];
-    subjectName: string;
+    domainNameId: string;
+    domainNameName: string;
+    skills: { skillId: string, skillName: string, degree: string }[];
     status: string;
     completed: boolean;
 };
@@ -25,24 +25,24 @@ const progressHistorySchema = new mongoose.Schema(
             ref: 'Student',
             required: true,
         },
-        subjectId: {
+        domainId: {
             type: String,
-            ref: 'Subject',
+            ref: 'domain',
             required: true,
         },
-        subjectName: {
+        domainName: {
             type: String,
             required: true,
         },
-        topics: [
+        skills: [
             {
                 _id: false,
-                topicId: {
+                skillId: {
                     type: String,
-                    ref: 'MainTopic',
+                    ref: 'skill',
                     required: true,
                 },
-                topicName: {
+                skillName: {
                     type: String,
                     required: true,
                 },

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Screen</title>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <h1>Complete Your Payment</h1>
+  <form id="payment-form">
+    <div id="card-element"><!-- Stripe Card Element will be inserted here --></div>
+    <button type="submit" id="submit-button">Pay</button>
+    <p id="payment-message" style="display: none;"></p>
+  </form>
+
+  <script>
+    // Initialize Stripe
+    const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY'); // Replace with your Stripe public key
+
+    const paymentForm = document.getElementById('payment-form');
+    const paymentMessage = document.getElementById('payment-message');
+    const cardElement = stripe.elements().create('card');
+    cardElement.mount('#card-element');
+
+    fetch('/payment/pay-with-stripe', {
+      method: 'POST',
+      headers: {        'Content-Type': 'application/json',},
+      body: JSON.stringify({ amount: 50, currency: 'usd' }), 
+    })
+      .then((res) => res.json())
+      .then(({ data }) => {
+        const clientSecret = data.clientSecret;
+
+        paymentForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: { card: cardElement },
+          });
+
+          if (error) {
+            paymentMessage.textContent = `Payment failed: ${error.message}`;
+            paymentMessage.style.display = 'block';
+          } else if (paymentIntent.status === 'succeeded') {
+            window.location.href = 'payment-success.html';
+          }
+        });
+      })
+      .catch((error) => {
+        paymentMessage.textContent = 'Failed to initiate payment';
+        paymentMessage.style.display = 'block';
+      });
+  </script>
+</body>
+</html>

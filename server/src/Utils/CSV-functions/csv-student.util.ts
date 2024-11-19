@@ -35,43 +35,43 @@ export async function CSVStudent(student: StudentModel) {
         });
     };
 
-    const subjectsSheet = workbook.addWorksheet('Subjects');
-    subjectsSheet.columns = [
+    const domainsSheet = workbook.addWorksheet('Domains');
+    domainsSheet.columns = [
         { header: 'Student Code', key: 'studentCode', width: 15 },
         { header: 'Student Name', key: 'studentName', width: 20 },
-        { header: 'Subject', key: 'subject', width: 25 },
+        { header: 'Domain', key: 'domain', width: 25 },
         { header: 'Progress Status', key: 'progressStatus', width: 20 },
     ];
-    subjectsSheet.getRow(1).font = { size: 13, bold: true, name: 'Times New Roman' };
-    subjectsSheet.getRow(1).alignment = { horizontal: 'left' };
-    if (student.subjects) {
-        for (const subject of student.subjects) {
-            subjectsSheet.addRow({
+    domainsSheet.getRow(1).font = { size: 13, bold: true, name: 'Times New Roman' };
+    domainsSheet.getRow(1).alignment = { horizontal: 'left' };
+    if (student.domains) {
+        for (const domain of student.domains) {
+            domainsSheet.addRow({
                 studentCode: student.studentCode,
                 studentName: student.studentName,
-                subject: subject.subjectName,
-                progressStatus: subject.progressStatus,
+                domain: domain.domainName,
+                progressStatus: domain.progressStatus,
             });
         };
     };
 
-    const topicsSheet = workbook.addWorksheet('Main Topics');
-    topicsSheet.columns = [
+    const skillsSheet = workbook.addWorksheet('Skills');
+    skillsSheet.columns = [
         { header: 'Student Code', key: 'studentCode', width: 15 },
         { header: 'Student Name', key: 'studentName', width: 20 },
-        { header: 'Topic', key: 'topic', width: 25 },
+        { header: 'Skill', key: 'skill', width: 25 },
         { header: 'Degree', key: 'degree', width: 20 },
     ];
-    topicsSheet.getRow(1).font = { size: 13, bold: true, name: 'Times New Roman' };
-    topicsSheet.getRow(1).alignment = { horizontal: 'left' };
+    skillsSheet.getRow(1).font = { size: 13, bold: true, name: 'Times New Roman' };
+    skillsSheet.getRow(1).alignment = { horizontal: 'left' };
 
-    if (student.mainTopics) {
-        for (const topic of student.mainTopics) {
-            topicsSheet.addRow({
+    if (student.skills) {
+        for (const skill of student.skills) {
+            skillsSheet.addRow({
                 studentCode: student.studentCode,
                 studentName: student.studentName,
-                topic: topic.topicName,
-                degree: topic.degree || 'N/A',
+                skill: skill.skillName,
+                degree: skill.degree || 'N/A',
             });
         };
     };

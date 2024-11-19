@@ -220,4 +220,40 @@
     "$date": "2024-09-21T23:23:51.807Z"
   },
   "__v": 0
+},
+{
+  "_id": "ijsmx6pq385IlmmW4MQsOmhl",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "room": "100",
+  "group": "2-3",
+  "teachers": [
+    {
+      "teacherId": "TNWCI4reAr11PynOMrS15",
+      "teacherName": "teacher 1 BaniSuef language"
+    }
+  ],
+  "mainTopics": [],
+  "schedule": [
+    {
+      "day": "Tuesday",
+      "domains": [
+        {
+          "domainId": "pXAgWnY6U5d6PnjVuQ92rsFa",
+          "domainName": "social studies",
+          "startTime": "09:30",
+          "endTime": "10:50"
+        }
+      ]
+    }
+  ],
+  "studentCost": "200",
+  "currencyOfCost": "USD",
+  "students": [],
+  "createdAt": {
+    "$date": "2024-11-16T15:15:30.897Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-16T15:15:30.897Z"
+  },
+  "__v": 0
 }]

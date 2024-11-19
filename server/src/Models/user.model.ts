@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import * as bcrypt from 'bcrypt';
 import argon2 from 'argon2';
 import { nanoid } from 'nanoid';
 
@@ -16,11 +15,12 @@ interface UserModel extends mongoose.Document {
     password: string;
     lastSeen: Date;
     logged: boolean;
+    termsAndCondition?: boolean;
     verifyPassword(password: string): Promise<boolean>;
-}
+};
 
 
-const userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema<UserModel>(
     {
         _id: {
             type: String,
@@ -67,6 +67,10 @@ const userSchema = new mongoose.Schema(
         },
         logged: {
             type: Boolean,
+        },
+        termsAndCondition: {
+            type: Boolean,
+            required: function () { return this.role === 'parent' },
         },
     },
     {

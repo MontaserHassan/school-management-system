@@ -1,28 +1,25 @@
 import { NextFunction, Request, Response } from "express";
-import * as path from 'path';
-import * as fs from 'fs';
 
 import { ClassRoomModel } from "../Models/class-room.model";
-import { classRoomService, lookupService, schoolService, studentService, subjectService, topicService, userService } from "../Services/index.service";
+import { classRoomService, groupService, lookupService, studentService, domainService, skillService, userService } from "../Services/index.service";
 import { errorClassRoomMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
-import CustomError from "../Utils/customError.util";
-import { pagination, exportToCsv, CSVClassRoom } from "../Utils/index.util";
+import { pagination, CSVClassRoom, CustomError } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { addTime } from "../helpers/calculate-endTime.helper";
 
 
 
-// ----------------------------- create subject room -----------------------------
+// ----------------------------- create room -----------------------------
 
 
 const createClassRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { room, group, teachersId, schedule, studentCost, currencyOfCost, mainTopics } = req.body;
+        const { room, group, teachersId, schedule, studentCost, currencyOfCost, skills } = req.body;
         const { schoolId } = req.user;
         const isRoomExisting = await classRoomService.getByRoomAndSchoolId(room, schoolId);
         if (isRoomExisting) throw new CustomError(errorClassRoomMessage.ROOM_ALREADY_TOKED, 400, "room");
         const teachers = await userService.getUserByIdAsTeacher(teachersId);
-        const mainTopicsInfo = await topicService.getTopicsById(mainTopics);
+        const skillsInfo = await skillService.getSkillsById(skills);
         if (teachers.length !== teachersId.length) throw new CustomError('Some teachers do not exist.', 400, 'teachers');
         if (teachersId.length >= 1) {
             for (const teacher of teachersId) {
@@ -34,33 +31,33 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
             teacherId: teacher._id.toString(),
             teacherName: teacher.userName,
         }));
-        const mainTopicsData = mainTopicsInfo.map(mainTopic => ({
-            topicId: mainTopic._id,
-            topicName: mainTopic.topicName,
+        const skillsData = skillsInfo.map(skill => ({
+            skillId: skill._id,
+            skillName: skill.skillName,
         }));
         for (const entry of schedule) {
             const timeRanges = [];
-            for (const subject of entry.subjects) {
-                const subjectExists = await subjectService.getById(subject.subjectId);
-                if (!subjectExists) throw new CustomError(`Subject ${subject.subjectId} does not exist.`, 400, 'subject');
-                subject.endTime = addTime(subject.startTime, subjectExists.courseTime);
-                subject.subjectName = subjectExists.subjectName;
-                const subjectStartTime = new Date(`1970-01-01T${subject.startTime}:00Z`);
-                const subjectEndTime = new Date(`1970-01-01T${subject.endTime}:00Z`);
+            for (const domain of entry.domains) {
+                const domainExists = await domainService.getById(domain.domainId);
+                if (!domainExists) throw new CustomError(`Domain ${domain.domainId} does not exist.`, 400, 'domain');
+                domain.endTime = addTime(domain.startTime, domainExists.courseTime);
+                domain.domainName = domainExists.domainName;
+                const domainStartTime = new Date(`1970-01-01T${domain.startTime}:00Z`);
+                const domainEndTime = new Date(`1970-01-01T${domain.endTime}:00Z`);
                 for (const { startTime, endTime } of timeRanges) {
-                    if ((subjectStartTime >= startTime && subjectStartTime < endTime) || (subjectEndTime > startTime && subjectEndTime <= endTime) || (subjectStartTime <= startTime && subjectEndTime >= endTime)) {
-                        throw new CustomError(`Subject time conflict: ${subject.subjectId} overlaps with another subject from ${startTime.toTimeString()} to ${endTime.toTimeString()}.`, 400, 'timeConflict');
+                    if ((domainStartTime >= startTime && domainStartTime < endTime) || (domainEndTime > startTime && domainEndTime <= endTime) || (domainStartTime <= startTime && domainEndTime >= endTime)) {
+                        throw new CustomError(`Domain time conflict: ${domain.domainId} overlaps with another domain from ${startTime.toTimeString()} to ${endTime.toTimeString()}.`, 400, 'timeConflict');
                     };
-                    if (subjectStartTime.getTime() === startTime.getTime()) {
-                        throw new CustomError(`Subject time conflict: ${subject.subjectId} has the same start time as another subject (${subject.startTime}).`, 400, 'timeConflict');
+                    if (domainStartTime.getTime() === startTime.getTime()) {
+                        throw new CustomError(`Domain time conflict: ${domain.domainId} has the same start time as another domain (${domain.startTime}).`, 400, 'timeConflict');
                     };
                 };
-                timeRanges.push({ startTime: subjectStartTime, endTime: subjectEndTime });
+                timeRanges.push({ startTime: domainStartTime, endTime: domainEndTime });
             };
         };
-        const groupData = await lookupService.getById(group);
+        const groupData = await groupService.findGroupById(group);
         const currency = await lookupService.getById(currencyOfCost);
-        const newClassRoom = await classRoomService.createClassRoom(room, groupData.lookupName, teachersData, schedule, studentCost, currency.lookupName, mainTopicsData, schoolId);
+        const newClassRoom = await classRoomService.createClassRoom(room, groupData.groupName, teachersData, schedule, studentCost, currency.lookupName, skillsData, schoolId);
         if (!newClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",
@@ -89,14 +86,14 @@ const getAllRoom = async (req: Request, res: Response, next: NextFunction) => {
         let paginateData;
         if (role === "teacher") {
             const teacherClassRoom = await classRoomService.getClassRoomByTeacherId(userId);
-            if (!teacherClassRoom) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
+            if (!teacherClassRoom) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "domain");
             rooms.push(teacherClassRoom);
         } else {
             const totalRooms = await classRoomService.totalDocument(schoolId);
             paginateData = pagination(totalRooms, Number(page), Number(limit));
             if (paginateData.status === 404) throw new CustomError(paginateData.message, paginateData.status, paginateData.path);
             const getRooms = await classRoomService.findWithPagination(schoolId, paginateData.limit, paginateData.skip);
-            if (!rooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "subject");
+            if (!rooms) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "domain");
             rooms.push(...getRooms);
         };
         let base64String: string;
@@ -247,27 +244,27 @@ const updateClassRoom = async (req: Request, res: Response, next: NextFunction) 
             updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { currencyOfCost: currency.lookupName });
         };
         if (group) {
-            const getGroupName = await lookupService.getById(group);
-            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { group: getGroupName.lookupName });
+            const getGroupName = await groupService.findGroupById(group);
+            updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { group: getGroupName.groupName });
         };
         if (schedule) {
             const newSchedule = [];
             for (const entry of schedule) {
                 const timeRanges = [];
-                for (const subject of entry.subjects) {
-                    const subjectExists = await subjectService.getById(subject.subjectId);
-                    if (!subjectExists) throw new CustomError(`Subject ${subject.subjectId} does not exist.`, 400, 'subject');
-                    subject.endTime = addTime(subject.startTime, subjectExists.courseTime);
-                    subject.subjectName = subjectExists.subjectName;
-                    const subjectStartTime = new Date(`1970-01-01T${subject.startTime}:00Z`);
-                    const subjectEndTime = new Date(`1970-01-01T${subject.endTime}:00Z`);
+                for (const domain of entry.domains) {
+                    const domainExists = await domainService.getById(domain.domainId);
+                    if (!domainExists) throw new CustomError(`Domain ${domain.domainId} does not exist.`, 400, 'domain');
+                    domain.endTime = addTime(domain.startTime, domainExists.courseTime);
+                    domain.domainName = domainExists.domainName;
+                    const domainStartTime = new Date(`1970-01-01T${domain.startTime}:00Z`);
+                    const domainEndTime = new Date(`1970-01-01T${domain.endTime}:00Z`);
                     for (const { startTime, endTime } of timeRanges) {
-                        if ((subjectStartTime >= startTime && subjectStartTime < endTime) || (subjectEndTime > startTime && subjectEndTime <= endTime) || (subjectStartTime <= startTime && subjectEndTime >= endTime)) {
-                            throw new CustomError(`Subject time conflict: ${subject.subjectId} overlaps with another subject from ${startTime.toTimeString()} to ${endTime.toTimeString()}.`, 400, 'timeConflict');
+                        if ((domainStartTime >= startTime && domainStartTime < endTime) || (domainEndTime > startTime && domainEndTime <= endTime) || (domainStartTime <= startTime && domainEndTime >= endTime)) {
+                            throw new CustomError(`Domain time conflict: ${domain.domainId} overlaps with another domain from ${startTime.toTimeString()} to ${endTime.toTimeString()}.`, 400, 'timeConflict');
                         };
-                        if (subjectStartTime.getTime() === startTime.getTime()) throw new CustomError(`Subject time conflict: ${subject.subjectId} has the same start time as another subject (${subject.startTime}).`, 400, 'timeConflict');
+                        if (domainStartTime.getTime() === startTime.getTime()) throw new CustomError(`Domain time conflict: ${domain.domainId} has the same start time as another domain (${domain.startTime}).`, 400, 'timeConflict');
                     };
-                    timeRanges.push({ startTime: subjectStartTime, endTime: subjectEndTime });
+                    timeRanges.push({ startTime: domainStartTime, endTime: domainEndTime });
                 };
                 newSchedule.push(entry);
             };
@@ -312,7 +309,7 @@ const deleteStudentFromClassRoom = async (req: Request, res: Response, next: Nex
         if (!student || !studentExists) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const updateClassRoom = await classRoomService.deleteStudentFromClassRoom(roomId, studentId);
         if (!updateClassRoom) throw new CustomError(errorClassRoomMessage.STUDENT_NOT_DELETED, 400, "student");
-        await studentService.updateStudentData(studentId, { classRoom: '', group: '', studentCost: '', currencyOfCost: '', mainTopics: [], subjects: [] });
+        await studentService.updateStudentData(studentId, { classRoom: '', group: '', studentCost: '', currencyOfCost: '', skills: [], domains: [] });
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -338,7 +335,7 @@ const deleteClassRoom = async (req: Request, res: Response, next: NextFunction) 
         const classRoom = await classRoomService.getById(room);
         if (!classRoom) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "class room");
         const students = await studentService.getStudentsByClassRoom(classRoom.room);
-        const updateStudent = students.map(student => { return studentService.updateStudentData(student._id, { classRoom: "", studentCost: '', currencyOfCost: '', group: '', subjects: [], mainTopics: [], attendance: [] }); });
+        const updateStudent = students.map(student => { return studentService.updateStudentData(student._id, { classRoom: "", studentCost: '', currencyOfCost: '', group: '', domains: [], skills: [], attendance: [] }); });
         await Promise.all(updateStudent);
         await classRoomService.deleteRoom(classRoom._id);
         const response: IResponse = {

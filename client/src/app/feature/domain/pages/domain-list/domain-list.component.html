@@ -1,6 +1,6 @@
 <p-card [header]="'domain.domainsList' | translate" class="domains-card">
   <app-state-section [state]="sectionState">
-    <p-table [value]="domains" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
+    <p-table [value]="domains" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount" [lazy]="true"
       (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortMode]="'single'" [dataKey]="'_id'">
       <ng-template pTemplate="header">
         <tr>

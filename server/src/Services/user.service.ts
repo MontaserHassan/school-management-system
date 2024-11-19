@@ -8,7 +8,7 @@ import generatePassword from "../Utils/generate-password.util";
 // ----------------------------- create user -----------------------------
 
 
-const createUser = async (userName: string, email: string, role: string, schoolId: string, media: string) => {
+const createUser = async (userName: string, email: string, role: string, schoolId: string, media: string, termsAndCondition?: boolean) => {
     const newCode = generateCode();
     const password = generatePassword(10);
     const newUser: UserModel = new User({
@@ -19,6 +19,7 @@ const createUser = async (userName: string, email: string, role: string, schoolI
         password: password,
         schoolId: schoolId,
         media: media,
+        termsAndCondition: termsAndCondition
     });
     await newUser.save();
     return newUser;
