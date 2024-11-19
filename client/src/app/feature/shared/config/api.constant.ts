@@ -17,10 +17,10 @@ export class ApiConstant {
   static GET_USERS_LIST = ApiConstant.URL_BASE + URLSegment.User + 'user-list';
   static GET_USER_PROFILE = ApiConstant.URL_BASE + URLSegment.User + 'profile';
 
-  static ADD_SUBJECT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
-  static GET_SUBJECT_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain + '{id}';
-  static GET_SUBJECT_LIST = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
-  static EDIT_SUBJECT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
+  static ADD_DOMAIN = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
+  static GET_DOMAIN_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain + '{id}';
+  static GET_DOMAIN_LIST = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
+  static EDIT_DOMAIN = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
 
   static GET_LOOKUP = ApiConstant.URL_BASE +  URLSegment.Lookups + '{type}';
 
@@ -32,9 +32,9 @@ export class ApiConstant {
   static ADD_STUDENT_TO_CLASS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'add-data';
   static DELETE_STUDENT_FROM_CLASS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.classRoom + 'unAssign-student';
 
-  static ADD_TOPIC = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Teacher + 'topic';
-  static EDIT_TOPIC = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Teacher + 'topic';
-  static GET_TOPICS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Teacher + 'topic';
+  static ADD_SKILL = ApiConstant.URL_BASE + URLSegment.User + 'skill';
+  static EDIT_SKILL = ApiConstant.URL_BASE + URLSegment.User + 'skill';
+  static GET_SKILLS = ApiConstant.URL_BASE + URLSegment.User + 'skill';
 
   static ADD_PARENT = ApiConstant.URL_BASE + URLSegment.User + 'add-parent';
   static GET_PARENTS = ApiConstant.URL_BASE + URLSegment.User + 'parents';

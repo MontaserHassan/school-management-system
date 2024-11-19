@@ -6,7 +6,7 @@ import { ApiConstant } from '../../shared/config/api.constant';
 import { map, Observable, tap } from 'rxjs';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
 import { ClassRoom, ClassRoomResponse } from '../models/class-room.model';
-import { Topic, TopicList } from '../models/topic.model';
+import { Skill, SkillList } from '../models/skill.model';
 import { Student } from '../../student/models/student.model';
 import { downloadFile } from '../../shared/utils/download-file.utils';
 
@@ -45,15 +45,15 @@ constructor(
     )
   }
 
-  addTopic(body: {classRoomId:string,topicName:string , domainId:string}):Observable<Topic> {
-    return this.baseAPI.post(ApiConstant.ADD_TOPIC, body).pipe(
-      map((res) => this.mapper.fromJson(Topic, res.data.topic))
+  addSkill(body: {classRoomId:string,skillName:string , domainId:string}):Observable<Skill> {
+    return this.baseAPI.post(ApiConstant.ADD_SKILL, body).pipe(
+      map((res) => this.mapper.fromJson(Skill, res.data.skill))
     )
   }
 
-  getTopics(params:{}):Observable<TopicList> {
-    return this.baseAPI.get(ApiConstant.GET_TOPICS,{params}).pipe(
-      map((res) => this.mapper.fromJson(TopicList, res.data))
+  getSkills(params:{}):Observable<SkillList> {
+    return this.baseAPI.get(ApiConstant.GET_SKILLS,{params}).pipe(
+      map((res) => this.mapper.fromJson(SkillList, res.data))
     )
   }
 
@@ -63,9 +63,9 @@ constructor(
     )
   }
 
-  editTopic(body: {topicName:string,topicId:string}):Observable<Topic> {
-    return this.baseAPI.patch(ApiConstant.EDIT_TOPIC, body).pipe(
-      map((res) => this.mapper.fromJson(Topic, res.data.topic))
+  editSkill(body: {skillName:string,skillId:string}):Observable<Skill> {
+    return this.baseAPI.patch(ApiConstant.EDIT_SKILL, body).pipe(
+      map((res) => this.mapper.fromJson(Skill, res.data.skill))
     )
   }
 

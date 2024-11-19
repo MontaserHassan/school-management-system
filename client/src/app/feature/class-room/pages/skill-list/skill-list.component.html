@@ -1,0 +1,53 @@
+<div class="skills-list-container">
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between px-3 pt-3">
+        <h2 class="header">{{ 'skill.skillsList' | translate }}</h2>
+
+        <button *grantAccess="RolesConstants.ADD_Edit_SKILL" pButton icon="pi pi-plus"
+          label="{{ 'skill.addSkill' | translate }}" [outlined]="true" severity="secondary"
+          (click)="openAddSkillDialog()" type="button"></button>
+      </div>
+    </ng-template>
+
+    <div class="skills-grid row g-4">
+      <div *ngFor="let skill of skills" class="skill-card col-12 col-md-4">
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="skill-header position-relative">
+              <h3>{{ skill.skillName }}</h3>
+
+              <div class="menu" *grantAccess="RolesConstants.ADD_Edit_SKILL">
+                <p-menu #menu [model]="skillAction" appendTo="body" [popup]="true">
+                  <ng-template pTemplate="item" let-item>
+                    <div class="p-menuitem-link" (click)="handleClick(item.label, skill)">
+                      <span [class]="item.icon"></span>
+                      <span class="mx-2">{{ item.label }}</span>
+                    </div>
+                  </ng-template>
+                </p-menu>
+                <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="content">
+            <div class="d-flex flex-column">
+              <small><strong>{{ 'skill.domain' | translate }}:</strong> {{ skill.domain?.domainName }}</small>
+              <small><strong>{{ 'skill.classRoom' | translate }}:</strong> {{ skill.classRoom }}</small>
+              <small><strong>{{ 'skill.createdAt' | translate }}:</strong> {{ skill.createdAt | date: 'medium' }}</small>
+              <small><strong>{{ 'skill.updatedAt' | translate }}:</strong> {{ skill.updatedAt | date: 'medium' }}</small>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <!-- Paginator -->
+      <p-paginator [rows]="pageSize" [totalRecords]="totalRowsCount" (onPageChange)="paginate($event)"
+        [rowsPerPageOptions]="rowsPerPageOptions">
+      </p-paginator>
+    </div>
+  </p-card>
+</div>

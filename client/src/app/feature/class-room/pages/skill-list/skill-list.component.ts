@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
+import { AddSkillDialogComponent } from '../../component/add-skill-dialog/add-skill-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Topic } from '../../models/topic.model';
+import { Skill } from '../../models/skill.model';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { ClassRoomService } from '../../services/class-room.service';
 import { MenuItem } from 'primeng/api';
-import { EditTopicDialogComponent } from '../../component/edit-topic-dialog/edit-topic-dialog.component';
+import { EditSkillDialogComponent } from '../../component/edit-skill-dialog/edit-skill-dialog.component';
 import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
-  selector: 'app-topic-list',
-  templateUrl: './topic-list.component.html',
-  styleUrls: ['./topic-list.component.scss']
+  selector: 'app-skill-list',
+  templateUrl: './skill-list.component.html',
+  styleUrls: ['./skill-list.component.scss']
 })
-export class TopicListComponent extends BaseComponent implements OnInit {
-  topics!: Topic[]
-  topicAction!:MenuItem[]
+export class SkillListComponent extends BaseComponent implements OnInit {
+  skills!: Skill[]
+  skillAction!:MenuItem[]
   protected RolesConstants = RolesConstants
 
   constructor(private dialog: MatDialog, private classRoomService: ClassRoomService) {
@@ -23,7 +23,7 @@ export class TopicListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTopics();
+    this.getSkills();
     this.generateMenu();
   }
 
@@ -32,7 +32,7 @@ export class TopicListComponent extends BaseComponent implements OnInit {
   }
 
   generateMenu(): void {
-    this.topicAction = [
+    this.skillAction = [
       {
         label: this.translate('actions'),
         items: [
@@ -45,25 +45,25 @@ export class TopicListComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  getTopics(): void {
+  getSkills(): void {
     const params = { page: this.offset.toString(), limit: this.pageSize.toString() };
 
-    this.load(this.classRoomService.getTopics(params), { isLoadingTransparent: true }).subscribe((response) => {
-      this.topics = response.topics || [];
+    this.load(this.classRoomService.getSkills(params), { isLoadingTransparent: true }).subscribe((response) => {
+      this.skills = response.skills || [];
       this.totalRowsCount = response.totalDocuments || 1;
       this.pageSize = response?.limit || 0
     })
   }
 
-  openAddTopicDialog(): void {
-    const dialogRef = this.dialog.open(AddTopicDialogComponent, {
+  openAddSkillDialog(): void {
+    const dialogRef = this.dialog.open(AddSkillDialogComponent, {
       width: '400px',
       data: { addRoom: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getTopics()
+        this.getSkills()
       }
     });
   }
@@ -71,21 +71,21 @@ export class TopicListComponent extends BaseComponent implements OnInit {
   paginate(event: any): void {
     this.offset = event.page + 1;
     this.pageSize = event.rows;
-    this.getTopics();
+    this.getSkills();
   }
 
-  handleClick(label: string, topic: Topic) {
-    if (!this.topicAction.length) {
+  handleClick(label: string, skill: Skill) {
+    if (!this.skillAction.length) {
       return
     }
-    if (label === this.topicAction?.[0]?.items?.[0]?.label) {
-      const dialog = this.dialog.open(EditTopicDialogComponent, {
-        data: { topic }
+    if (label === this.skillAction?.[0]?.items?.[0]?.label) {
+      const dialog = this.dialog.open(EditSkillDialogComponent, {
+        data: { skill }
       })
 
       dialog.afterClosed().subscribe(res => {
         if (res) {
-          this.getTopics()
+          this.getSkills()
         }
       })
     }

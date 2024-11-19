@@ -18,7 +18,7 @@ export class RolesConstants {
   ];
 
   //domain
-  public static ADD_VIEW_List_SUBJECT = [
+  public static ADD_VIEW_List_DOMAIN = [
     UserRole.Admin,
     UserRole.Director,
   ];
@@ -79,15 +79,16 @@ export class RolesConstants {
     UserRole.Director
   ]
 
-  //topic
-  public static VIEW_TOPIC = [
+  //skill
+  public static VIEW_SKILL = [
     UserRole.Admin,
     UserRole.Director,
     UserRole.Teacher
   ];
 
-  public static ADD_Edit_TOPIC = [
-    UserRole.Teacher
+  public static ADD_Edit_SKILL = [
+    UserRole.Admin,
+    UserRole.Director,
   ]
 
   //Invoices

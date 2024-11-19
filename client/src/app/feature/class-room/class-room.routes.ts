@@ -4,7 +4,7 @@ import { RoutesUtil } from '../shared/utils/routes.util';
 import { ClassRoomListComponent } from './pages/class-room-list/class-room-list.component';
 import { AddClassRoomComponent } from './pages/add-class-room/add-class-room.component';
 import { ClassRoomViewComponent } from './pages/class-room-view/class-room-view.component';
-import { TopicListComponent } from './pages/topic-list/topic-list.component';
+import { SkillListComponent } from './pages/skill-list/skill-list.component';
 
 const routes: Routes = [
   {
@@ -20,8 +20,8 @@ const routes: Routes = [
     component: ClassRoomViewComponent
   },
   {
-    path:RoutesUtil.TopicsList.path,
-    component: TopicListComponent
+    path:RoutesUtil.SkillsList.path,
+    component: SkillListComponent
   }
 ];
 

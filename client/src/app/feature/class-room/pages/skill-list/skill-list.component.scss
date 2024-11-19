@@ -1,5 +1,5 @@
-/* topics-list.component.scss */
-.topics-list-container {
+/* skills-list.component.scss */
+.skills-list-container {
 
   ::ng-deep .p-card-content {
     padding: 0;
@@ -10,8 +10,8 @@
     height: 2rem;
   }
 
-  .topics-grid {
-    .topic-card {
+  .skills-grid {
+    .skill-card {
 
       &:hover {
         transform: scale(1.02);
@@ -20,7 +20,7 @@
       p-card {
         border-radius: 10px;
 
-        .topic-header {
+        .skill-header {
           background-color: #e8ecf5;
           padding: 15px;
           border-top-left-radius: 10px;

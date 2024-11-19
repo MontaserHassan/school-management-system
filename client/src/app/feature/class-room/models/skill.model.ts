@@ -4,15 +4,15 @@ import e from "express";
 import { list } from "../../shared/models/list";
 import { Domain } from "../../student/models/student.model";
 
-export class Topic{
+export class Skill{
   @Expose()
   _id?: string;
 
   @Expose()
-  topicId?: string;
+  skillId?: string;
 
   @Expose()
-  topicName?: string;
+  skillName?: string;
 
   @Expose()
   schoolId?: string;
@@ -31,7 +31,7 @@ export class Topic{
 }
 
 
-export class TopicList extends list{
+export class SkillList extends list{
   @Expose()
-  topics?: Topic[];
+  skills?: Skill[];
 }

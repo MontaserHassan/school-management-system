@@ -73,7 +73,7 @@ export class StudentService {
   updateStudentDegree(
     body: {
       studentId: string,
-      topicId: string,
+      skillId: string,
       degree: string
     }
   ): Observable<Student> {

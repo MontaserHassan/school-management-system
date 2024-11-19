@@ -6,24 +6,24 @@ import { ClassRoomService } from '../../services/class-room.service';
 import { Lookup } from '../../../shared/enums/lookup.enum';
 
 @Component({
-  selector: 'app-add-topic-dialog',
-  templateUrl: './add-topic-dialog.component.html',
-  styleUrls: ['./add-topic-dialog.component.scss']
+  selector: 'app-add-skill-dialog',
+  templateUrl: './add-skill-dialog.component.html',
+  styleUrls: ['./add-skill-dialog.component.scss']
 })
-export class AddTopicDialogComponent  extends BaseComponent implements OnInit {
-  addTopicForm!: FormGroup;
+export class AddSkillDialogComponent  extends BaseComponent implements OnInit {
+  addSkillForm!: FormGroup;
   protected Lookup = Lookup;
 
   ngOnInit(): void {
-    this.addTopicForm = this.fb.group({
+    this.addSkillForm = this.fb.group({
       room: [this.data?.classRoomId ?  {label: this.data?.classRoomId } : '', Validators.required],
       domainId: ["", Validators.required],
-      topicName: ['', Validators.required]
+      skillName: ['', Validators.required]
     });
   }
 
   constructor(
-    public dialogRef: MatDialogRef<AddTopicDialogComponent>,
+    public dialogRef: MatDialogRef<AddSkillDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { classRoomId?: string ,addRoom?: boolean },
     private fb: FormBuilder,
     private classRoomService: ClassRoomService
@@ -32,15 +32,15 @@ export class AddTopicDialogComponent  extends BaseComponent implements OnInit {
   }
 
   onSave(): void {
-    if (this.addTopicForm.valid) {
-      const domainId = this.addTopicForm.get('domainId')?.value.value;
-      const room = this.addTopicForm.get('room')?.value.label;
+    if (this.addSkillForm.valid) {
+      const domainId = this.addSkillForm.get('domainId')?.value.value;
+      const room = this.addSkillForm.get('room')?.value.label;
       const payload ={
-        ...this.addTopicForm.value,
+        ...this.addSkillForm.value,
         room,
         domainId: domainId,
       }
-      this.load(this.classRoomService.addTopic(payload), {isLoadingTransparent: true}).subscribe(res => {
+      this.load(this.classRoomService.addSkill(payload), {isLoadingTransparent: true}).subscribe(res => {
         this.dialogRef.close(res);
       })
     }

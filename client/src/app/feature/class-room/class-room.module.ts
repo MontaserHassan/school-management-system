@@ -5,9 +5,9 @@ import { SharedModule } from '../shared/shared.module';
 import { ClassRoomViewComponent } from './pages/class-room-view/class-room-view.component';
 import { AddClassRoomComponent } from './pages/add-class-room/add-class-room.component';
 import { ClassRoomListComponent } from './pages/class-room-list/class-room-list.component';
-import { AddTopicDialogComponent } from './component/add-topic-dialog/add-topic-dialog.component';
-import { TopicListComponent } from './pages/topic-list/topic-list.component';
-import { EditTopicDialogComponent } from './component/edit-topic-dialog/edit-topic-dialog.component';
+import { AddSkillDialogComponent } from './component/add-skill-dialog/add-skill-dialog.component';
+import { SkillListComponent } from './pages/skill-list/skill-list.component';
+import { EditSkillDialogComponent } from './component/edit-skill-dialog/edit-skill-dialog.component';
 import { LeaveStudentDialogComponent } from './component/leave-student-dialog/leave-student-dialog.component';
 import { RemoveClassroomDialogComponent } from './component/remove-classroom-dialog/remove-classroom-dialog.component';
 import { ClassRoomFormComponent } from './component/class-room-form/class-room-form.component';
@@ -19,9 +19,9 @@ import { EditClassroomDialogComponent } from './component/edit-classroom-dialog/
     ClassRoomViewComponent,
     AddClassRoomComponent,
     ClassRoomListComponent,
-    AddTopicDialogComponent,
-    TopicListComponent,
-    EditTopicDialogComponent,
+    AddSkillDialogComponent,
+    SkillListComponent,
+    EditSkillDialogComponent,
     LeaveStudentDialogComponent,
     RemoveClassroomDialogComponent,
     ClassRoomFormComponent,

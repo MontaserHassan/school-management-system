@@ -1,6 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 import { list } from '../../shared/models/list';
-import { Topic } from '../../class-room/models/topic.model';
+import { Skill } from '../../class-room/models/skill.model';
 import { Degree } from '../enums/degree.enum';
 
 export class Domain {
@@ -50,7 +50,7 @@ export class progressHistory {
   @Expose()
   domainName!: "math"
   @Expose()
-  topics!: Topic[]
+  skills!: Skill[]
 
   @Expose()
   completed!: boolean
@@ -84,7 +84,7 @@ export class Student {
   domains!: Domain[];
 
   @Expose()
-  mainTopics!: Topic[];
+  mainSkills!: Skill[];
 
   @Expose()
   degree!: Degree;

@@ -7,7 +7,7 @@ export enum Lookup {
   Currency = 'currency',
   Users = 'user/data',
   Schools = 'schools',
-  Topics = 'topics',
+  Skills = 'skills',
   Groups = 'groups',
   ClassRooms = 'classRooms',
   Progress = "progress",

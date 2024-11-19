@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { Degree } from '../../enums/degree.enum';
 import { Student, Domain } from '../../models/student.model';
-import { Topic } from '../../../class-room/models/topic.model';
+import { Skill } from '../../../class-room/models/skill.model';
 import { AttendanceCalenderComponent } from '../../component/attendance-calender/attendance-calender.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCommentDialogComponent } from '../../component/add-comment-dialog/add-comment-dialog.component';
@@ -22,7 +22,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
 
   studentProfile: Student = new Student();
-  mainTopics: Topic[] = [];
+  mainSkills: Skill[] = [];
   displayDialog: boolean = false;
   selectedComment: any = null;
   protected degree = Degree
@@ -89,17 +89,17 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     this.load(this.studentService.getStudentById(id,params), { isLoadingTransparent: true }).subscribe(res => {
       if (!params?.isExport) {
         this.studentProfile = res;
-        this.mainTopics = this.studentProfile.mainTopics.map((topic: any) => topic?.topicName);
+        this.mainSkills = this.studentProfile.mainSkills.map((skill: any) => skill?.skillName);
       }
     })
   }
 
-  updateDegree(id: string, topic:Topic) {
-    const topicId = topic.topicId || '';
+  updateDegree(id: string, skill:Skill) {
+    const skillId = skill.skillId || '';
     const studentId = this.studentProfile._id;
     const payload = {
       studentId,
-      topicId,
+      skillId,
       degree: id
     }
     this.load(this.studentService.updateStudentDegree(payload), { isLoadingTransparent: true }).subscribe(res => {

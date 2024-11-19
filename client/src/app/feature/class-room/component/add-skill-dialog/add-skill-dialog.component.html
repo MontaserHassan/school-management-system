@@ -1,0 +1,43 @@
+<app-state-section [state]="sectionState">
+  <h1 mat-dialog-title>{{ 'addSkillDialog.title' | translate }}</h1>
+
+  <div mat-dialog-content>
+    <form [formGroup]="addSkillForm" class="d-flex flex-column gap-3">
+
+      <input type="hidden" formControlName="room" *ngIf="!data.addRoom" />
+
+      <div class="field d-flex flex-column gap-2" *ngIf="data.addRoom">
+        <label for="room" class="form-label">{{ 'addSkillDialog.roomLabel' | translate }}</label>
+        <app-lazy-dropdown [lookup]="Lookup.ClassRooms" formControlName="room"
+          [placeholder]=" 'addSkillDialog.roomPlaceholder' | translate"></app-lazy-dropdown>
+        <small *ngIf="addSkillForm.get('room')?.hasError('required') && addSkillForm.get('room')?.touched" class="p-error">
+          {{ 'addSkillDialog.roomRequiredError' | translate }}
+        </small>
+      </div>
+
+      <div class="field d-flex flex-column gap-2">
+        <label for="domain" class="form-label">{{ 'addSkillDialog.domainLabel' | translate }}</label>
+        <app-lazy-dropdown [lookup]="Lookup.Domains" formControlName="domainId"
+          [placeholder]=" 'addSkillDialog.domainPlaceholder' | translate"></app-lazy-dropdown>
+        <small *ngIf="addSkillForm.get('domainId')?.hasError('required') && addSkillForm.get('domainId')?.touched" class="p-error">
+          {{ 'addSkillDialog.domainRequiredError' | translate }}
+        </small>
+      </div>
+
+      <div class="field d-flex flex-column gap-2">
+        <label for="skill" class="form-label">{{ 'addSkillDialog.skillLabel' | translate }}</label>
+        <input id="skill" type="text" pInputText
+          [placeholder]=" 'addSkillDialog.skillPlaceholder' | translate"
+          formControlName="skillName" class="p-inputtext-sm" />
+        <small *ngIf="addSkillForm.get('skillName')?.hasError('required') && addSkillForm.get('skillName')?.touched" class="p-error">
+          {{ 'addSkillDialog.skillRequiredError' | translate }}
+        </small>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ 'addSkillDialog.cancelButton' | translate }}</button>
+    <button mat-button [disabled]="addSkillForm.invalid" (click)="onSave()">{{ 'addSkillDialog.saveButton' | translate }}</button>
+  </div>
+</app-state-section>

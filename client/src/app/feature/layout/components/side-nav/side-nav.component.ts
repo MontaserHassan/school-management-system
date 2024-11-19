@@ -61,7 +61,7 @@ export class SideNavComponent extends BaseComponent implements OnInit {
       {
         label: this.translate('Domains'),
         icon: 'pi pi-book',
-        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_SUBJECT),
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_DOMAIN),
         items: [
           {
             label: this.translate('DomainsList'),
@@ -102,11 +102,11 @@ export class SideNavComponent extends BaseComponent implements OnInit {
         ]
       },
       {
-        label: this.translate('Topics'),
+        label: this.translate('Skills'),
         icon: 'pi pi-clipboard',
-        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_TOPIC),
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_SKILL),
         command: () => {
-          this.router.navigate([RoutesUtil.TopicsList.url()]);
+          this.router.navigate([RoutesUtil.SkillsList.url()]);
         }
       },
       {

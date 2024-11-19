@@ -43,7 +43,7 @@ export class RoutesUtil {
   static ClassRoomView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.ClassRoom);
   static ClassRoomList = new RouteConfig('list', RoutesUtil.ClassRoom);
   static AddClassRoom = new RouteConfig('add', RoutesUtil.ClassRoom);
-  static TopicsList = new RouteConfig('topic', RoutesUtil.ClassRoom);
+  static SkillsList = new RouteConfig('skill', RoutesUtil.ClassRoom);
 
   //class Student
   static Student = new RouteConfig('student');

@@ -52,11 +52,11 @@
         </div>
 
         <div class="details-section">
-          <h3>{{ 'classroom.mainTopics' | translate }}</h3>
+          <h3>{{ 'classroom.mainSkills' | translate }}</h3>
           <div class="chips-container">
-            <p-chip *ngFor="let topic of mainTopics" class="mx-1" [label]="topic"></p-chip>
-            <button *grantAccess="RolesConstants.ADD_Edit_TOPIC" pButton icon="pi pi-plus" class="m-0 mx-2"
-              [rounded]="true" [outlined]="true" severity="secondary" (click)="openAddTopicDialog()"
+            <p-chip *ngFor="let skill of mainSkills" class="mx-1" [label]="skill"></p-chip>
+            <button *grantAccess="RolesConstants.ADD_Edit_SKILL" pButton icon="pi pi-plus" class="m-0 mx-2"
+              [rounded]="true" [outlined]="true" severity="secondary" (click)="openAddSkillDialog()"
               type="button"></button>
           </div>
         </div>

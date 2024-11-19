@@ -54,8 +54,8 @@
             </p-table>
           </p-tabPanel>
 
-          <!-- Main Topics Tab -->
-          <p-tabPanel [header]="'student.mainTopics' | translate">
+          <!-- Main Skills Tab -->
+          <p-tabPanel [header]="'student.mainSkills' | translate">
             <div class="d-flex justify-content-end">
               <span class="d-flex gap-2">
                 <small><strong>{{ 'student.degrees' | translate }}:</strong></small>
@@ -65,24 +65,24 @@
                 <p-tag severity="warning">{{ 'student.Yellow' | translate }}</p-tag>
               </span>
             </div>
-            <p-table [value]="studentProfile.mainTopics">
+            <p-table [value]="studentProfile.mainSkills">
               <ng-template pTemplate="header">
                 <tr>
-                  <th>{{ 'student.topicName' | translate }}</th>
+                  <th>{{ 'student.skillName' | translate }}</th>
                   <th>{{ 'student.degree' | translate }}</th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-topic>
+              <ng-template pTemplate="body" let-skill>
                 <tr>
-                  <td><p-chip class="mx-1" [label]="topic.topicName"></p-chip></td>
+                  <td><p-chip class="mx-1" [label]="skill.skillName"></p-chip></td>
                   <td>
                     <div class="d-flex gap-2 align-items-center">
-                      <p-tag [severity]="setDegreeColor(topic?.degree || 'secondary')">{{ topic.degree || ('student.notCompleted' | translate) }}</p-tag>
+                      <p-tag [severity]="setDegreeColor(skill?.degree || 'secondary')">{{ skill.degree || ('student.notCompleted' | translate) }}</p-tag>
                       <p-speedDial *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [model]="degreeOption" direction="right" appendTo="body"
                         transitionDelay="80" size="small" showIcon="pi pi-ellipsis-v" hideIcon="pi pi-times" buttonClassName="p-button-outlined"
                         class="custom-speeddial">
                         <ng-template let-item pTemplate="item">
-                          <div class="p-speeddial-action cursor-pointer" (click)="updateDegree(item.label,topic)">
+                          <div class="p-speeddial-action cursor-pointer" (click)="updateDegree(item.label,skill)">
                             <i class="p-element " [class]="item.icon"></i>
                           </div>
                         </ng-template>
@@ -153,11 +153,11 @@
                     <hr />
                     <div class="timeline-body">
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item py-1" *ngFor="let topic of progress.topics">
+                        <li class="list-group-item py-1" *ngFor="let skill of progress.skills">
                           <div class="d-flex justify-content-between">
-                            <span>{{ 'student.topic' | translate }}: <strong>{{ topic.topicName }}</strong></span>
+                            <span>{{ 'student.skill' | translate }}: <strong>{{ skill.skillName }}</strong></span>
                             <span>
-                              <p-tag [severity]="setDegreeColor(topic.degree)">{{ topic.degree }}</p-tag>
+                              <p-tag [severity]="setDegreeColor(skill.degree)">{{ skill.degree }}</p-tag>
                             </span>
                           </div>
                         </li>

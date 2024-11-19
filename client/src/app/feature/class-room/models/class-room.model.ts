@@ -1,6 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 import { list } from '../../shared/models/list';
-import { Topic } from './topic.model';
+import { Skill } from './skill.model';
 import { Student } from '../../student/models/student.model';
 
 class Domain {
@@ -50,7 +50,7 @@ export class ClassRoom {
   teachers?: Teacher[];
 
   @Expose()
-  mainTopics?: Topic[];
+  mainSkills?: Skill[];
 
   @Expose()
   schedule?: Schedule[];

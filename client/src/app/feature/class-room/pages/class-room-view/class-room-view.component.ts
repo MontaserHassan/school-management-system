@@ -4,7 +4,7 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassRoom } from '../../models/class-room.model';
 import { MatDialog } from '@angular/material/dialog';
-import { AddTopicDialogComponent } from '../../component/add-topic-dialog/add-topic-dialog.component';
+import { AddSkillDialogComponent } from '../../component/add-skill-dialog/add-skill-dialog.component';
 import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { RolesConstants } from '../../../shared/config/roles-constants';
@@ -20,7 +20,7 @@ import { EditClassroomDialogComponent } from '../../component/edit-classroom-dia
   styleUrls: ['./class-room-view.component.scss']
 })
 export class ClassRoomViewComponent extends BaseComponent implements OnInit {
-  mainTopics: string[] = [];
+  mainSkills: string[] = [];
   classroom: ClassRoom = new ClassRoom();
   id!: string;
   protected RolesConstants = RolesConstants;
@@ -55,7 +55,7 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
   private generateStudentActions() {
     this.studentAction = [
       {
-        label: this.translate('actions'), 
+        label: this.translate('actions'),
         items: [
           {
             label: this.translate('viewStudent'),
@@ -97,13 +97,13 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
     this.load(this.classRoomService.getClassRoomById(id, params), { isLoadingTransparent: true }).subscribe((response) => {
       if (!params?.isExport) {
         this.classroom = response || {};
-        this.mainTopics = this.classroom.mainTopics?.map(topic => topic?.topicName).filter((name): name is string => !!name) || [];
+        this.mainSkills = this.classroom.mainSkills?.map(skill => skill?.skillName).filter((name): name is string => !!name) || [];
       }
     });
   }
 
-  openAddTopicDialog(): void {
-    const dialogRef = this.dialog.open(AddTopicDialogComponent, {
+  openAddSkillDialog(): void {
+    const dialogRef = this.dialog.open(AddSkillDialogComponent, {
       width: '400px',
       data: { classRoomId: this.classroom.room }
     });

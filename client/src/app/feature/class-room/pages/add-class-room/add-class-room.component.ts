@@ -26,7 +26,7 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
       studentCost: ['', Validators.required],
       currencyOfCost: ['', Validators.required],
       group: ['', Validators.required],
-      mainTopics: [''],
+      mainSkills: [''],
     });
   }
 
@@ -44,7 +44,7 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
       studentCost: data?.studentCost,
       currencyOfCost: data?.currencyOfCost.value,
       group: data?.group.value,
-      mainTopics: data?.mainTopics ? data?.mainTopics?.map((topic: any) => topic.value) : null
+      mainSkills: data?.mainSkills ? data?.mainSkills?.map((skill: any) => skill.value) : null
     };
   }
 
