@@ -6,7 +6,7 @@
     </div>
     <p-table [value]="classrooms" dataKey="_id" [paginator]="true" [rows]="pageSize"
       [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
-      responsiveLayout="scroll" class="p-datatable-striped">
+      responsiveLayout="scroll" class="p-datatable-striped" [lazy]="true">
       <ng-template pTemplate="header">
         <tr>
           <th>{{ 'classroom.room' | translate }}</th>

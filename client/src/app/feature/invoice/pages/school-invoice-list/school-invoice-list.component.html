@@ -7,7 +7,7 @@
     </div>
 
     <p-table [value]="invoices" class="p-datatable-striped" [paginator]="true" [rows]="pageSize"
-      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [lazy]="true"
       responsiveLayout="scroll">
 
       <ng-template pTemplate="header">

@@ -1,7 +1,7 @@
 <p-card [header]="'subject.subjectsList' | translate" class="subjects-card">
   <app-state-section [state]="sectionState">
     <p-table [value]="subjects" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
-      (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortMode]="'single'" [dataKey]="'_id'">
+      (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortMode]="'single'" [dataKey]="'_id'" [lazy]="true">
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="subjectName">{{ 'subject.subjectName' | translate }} <p-sortIcon field="subjectName"></p-sortIcon></th>

@@ -61,6 +61,9 @@ export class UserListComponent extends BaseComponent implements OnInit {
         this.users = res?.users || []
         this.totalRowsCount = res.totalDocuments || 1;
         this.pageSize = res?.limit || 0
+
+        console.log( this.totalRowsCount , this.pageSize);
+
       }
     })
   }

@@ -9,7 +9,7 @@
     </ng-template>
 
     <p-table [value]="students" [paginator]="true" [rows]="10" [paginator]="true" [rows]="pageSize"
-      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [lazy]="true"
       [sortField]="'studentName'" [sortOrder]="1">
       <ng-template pTemplate="header">
         <tr>

@@ -9,7 +9,9 @@
     </ng-template>
     <p-table [value]="users" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
       (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortField]="'userName'" [sortOrder]="1"
-      responsiveLayout="scroll">
+      responsiveLayout="scroll"
+      [lazy]="true"
+    >
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="userName">{{ 'user.username' | translate }} <p-sortIcon field="userName"></p-sortIcon></th>
