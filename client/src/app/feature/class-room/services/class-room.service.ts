@@ -45,7 +45,7 @@ constructor(
     )
   }
 
-  addTopic(body: {classRoomId:string,topicName:string , subjectId:string}):Observable<Topic> {
+  addTopic(body: {classRoomId:string,topicName:string , domainId:string}):Observable<Topic> {
     return this.baseAPI.post(ApiConstant.ADD_TOPIC, body).pipe(
       map((res) => this.mapper.fromJson(Topic, res.data.topic))
     )

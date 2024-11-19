@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Student, Subject } from '../../models/student.model';
+import { Student, Domain } from '../../models/student.model';
 import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { StudentService } from '../../services/student.service';
@@ -7,12 +7,12 @@ import { RolesConstants } from '../../../shared/config/roles-constants';
 import { ProgressStatus } from '../../../shared/config/drop-down-value.constant';
 
 @Component({
-  selector: 'app-subject-action',
-  templateUrl: './subject-action.component.html',
-  styleUrls: ['./subject-action.component.scss']
+  selector: 'app-domain-action',
+  templateUrl: './domain-action.component.html',
+  styleUrls: ['./domain-action.component.scss']
 })
-export class SubjectActionComponent extends BaseComponent implements OnInit {
-  @Input() subject!: Subject
+export class DomainActionComponent extends BaseComponent implements OnInit {
+  @Input() domain!: Domain
   @Input() studentId!: string
   @Output() updateStudentProfile = new EventEmitter<Student>()
 
@@ -33,7 +33,7 @@ export class SubjectActionComponent extends BaseComponent implements OnInit {
   updateProgressStatus(event: any) {
     const payload = {
       studentId: this.studentId,
-      subjectId: this.subject.subjectId,
+      domainId: this.domain.domainId,
       status: event
     }
     this.load(this.studentService.updateStudentProgressStatus(payload), { isLoadingTransparent: true }).subscribe(res => {

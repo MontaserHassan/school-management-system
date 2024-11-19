@@ -16,11 +16,11 @@
       </div>
 
       <div class="field d-flex flex-column gap-2">
-        <label for="subject" class="form-label">{{ 'addTopicDialog.subjectLabel' | translate }}</label>
-        <app-lazy-dropdown [lookup]="Lookup.Subjects" formControlName="subjectId"
-          [placeholder]=" 'addTopicDialog.subjectPlaceholder' | translate"></app-lazy-dropdown>
-        <small *ngIf="addTopicForm.get('subjectId')?.hasError('required') && addTopicForm.get('subjectId')?.touched" class="p-error">
-          {{ 'addTopicDialog.subjectRequiredError' | translate }}
+        <label for="domain" class="form-label">{{ 'addTopicDialog.domainLabel' | translate }}</label>
+        <app-lazy-dropdown [lookup]="Lookup.Domains" formControlName="domainId"
+          [placeholder]=" 'addTopicDialog.domainPlaceholder' | translate"></app-lazy-dropdown>
+        <small *ngIf="addTopicForm.get('domainId')?.hasError('required') && addTopicForm.get('domainId')?.touched" class="p-error">
+          {{ 'addTopicDialog.domainRequiredError' | translate }}
         </small>
       </div>
 

@@ -3,12 +3,12 @@ import { list } from '../../shared/models/list';
 import { Topic } from '../../class-room/models/topic.model';
 import { Degree } from '../enums/degree.enum';
 
-export class Subject {
+export class Domain {
   @Expose()
-  subjectId!: string;
+  domainId!: string;
 
   @Expose()
-  subjectName!: string;
+  domainName!: string;
 
   @Expose()
   progressStatus!: string;
@@ -46,9 +46,9 @@ export class progressHistory {
   @Expose()
   studentId!: string
   @Expose()
-  subjectId!: string
+  domainId!: string
   @Expose()
-  subjectName!: "math"
+  domainName!: "math"
   @Expose()
   topics!: Topic[]
 
@@ -81,7 +81,7 @@ export class Student {
   group!: string;
 
   @Expose()
-  subjects!: Subject[];
+  domains!: Domain[];
 
   @Expose()
   mainTopics!: Topic[];

@@ -17,10 +17,10 @@ export class ApiConstant {
   static GET_USERS_LIST = ApiConstant.URL_BASE + URLSegment.User + 'user-list';
   static GET_USER_PROFILE = ApiConstant.URL_BASE + URLSegment.User + 'profile';
 
-  static ADD_SUBJECT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Subject ;
-  static GET_SUBJECT_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Subject + '{id}';
-  static GET_SUBJECT_LIST = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Subject ;
-  static EDIT_SUBJECT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Subject ;
+  static ADD_SUBJECT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
+  static GET_SUBJECT_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain + '{id}';
+  static GET_SUBJECT_LIST = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
+  static EDIT_SUBJECT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Domain ;
 
   static GET_LOOKUP = ApiConstant.URL_BASE +  URLSegment.Lookups + '{type}';
 

@@ -1,9 +1,9 @@
 import { Expose, Type } from 'class-transformer';
 import { Model } from '../../shared/models/model';
 
-export class ISubjectPayload {
+export class IDomainPayload {
   @Expose()
-  subjectName?: string;
+  domainName?: string;
 
   @Expose()
   courseTime?: string;

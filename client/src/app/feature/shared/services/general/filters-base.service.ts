@@ -25,9 +25,9 @@ export class FiltersBase<T = {}, D = {}> {
   public fields: T = {} as T;
   public displays: D = {} as D;
 
-  private dataSubject = new BehaviorSubject(this.params);
+  private dataDomain = new BehaviorSubject(this.params);
 
-  public data$ = this.dataSubject.asObservable();
+  public data$ = this.dataDomain.asObservable();
 
   constructor() { }
 
@@ -48,7 +48,7 @@ export class FiltersBase<T = {}, D = {}> {
     this.sort = { ...this.sort, ...this.getParamsOfRelevantObj(this.sort, filterParams) };
     this.search = { ...this.search, ...this.getParamsOfRelevantObj(this.search, filterParams) };
     this.fields = { ...this.fields, ...this.getParamsOfRelevantObj(this.fields, filterParams) };
-    this.dataSubject.next(this.params);
+    this.dataDomain.next(this.params);
   }
 
   get sourceOfAllParams(): FiltersBaseParams & T & D {

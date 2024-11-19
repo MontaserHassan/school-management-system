@@ -65,19 +65,19 @@
           <h3>{{ 'classroom.schedule' | translate }}</h3>
           <p-accordion>
             <p-accordionTab *ngFor="let day of classroom.schedule" [header]="day.day">
-              <p-table [value]="day.subjects || []">
+              <p-table [value]="day.domains || []">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th>{{ 'classroom.subjectName' | translate }}</th>
+                    <th>{{ 'classroom.domainName' | translate }}</th>
                     <th>{{ 'classroom.startTime' | translate }}</th>
                     <th>{{ 'classroom.endTime' | translate }}</th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-subject>
+                <ng-template pTemplate="body" let-domain>
                   <tr>
-                    <td>{{ subject.subjectName }}</td>
-                    <td>{{ subject.startTime }}</td>
-                    <td>{{ subject.endTime }}</td>
+                    <td>{{ domain.domainName }}</td>
+                    <td>{{ domain.startTime }}</td>
+                    <td>{{ domain.endTime }}</td>
                   </tr>
                 </ng-template>
               </p-table>

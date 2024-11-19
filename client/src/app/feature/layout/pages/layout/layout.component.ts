@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
 
     this.size = this.LayoutService.currentScreenWidth
-    this.LayoutService.currentScreenWidth$.subscribe((size) => {
+    this.LayoutService.currentScreenWidth$.subscribe((size:any) => {
       this.size = size
     });
   }

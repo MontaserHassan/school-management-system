@@ -3,7 +3,7 @@ import { lookup } from "dns";
 export enum Lookup {
   Roles = 'roles',
   Students = 'students',
-  Subjects = 'subjects',
+  Domains = 'domains',
   Currency = 'currency',
   Users = 'user/data',
   Schools = 'schools',

@@ -33,21 +33,21 @@
 
       <div class="card-body">
         <p-tabView (onChange)="onTabChange($event)">
-          <!-- Subjects Tab -->
-          <p-tabPanel [header]="'student.subjects' | translate">
-            <p-table [value]="studentProfile.subjects">
+          <!-- Domains Tab -->
+          <p-tabPanel [header]="'student.domains' | translate">
+            <p-table [value]="studentProfile.domains">
               <ng-template pTemplate="header">
                 <tr>
-                  <th>{{ 'student.subjectName' | translate }}</th>
+                  <th>{{ 'student.domainName' | translate }}</th>
                   <th>{{ 'student.progressStatusLabel' | translate }}</th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-subject>
+              <ng-template pTemplate="body" let-domain>
                 <tr>
-                  <td>{{ subject.subjectName }}</td>
+                  <td>{{ domain.domainName }}</td>
                   <td>
-                    <app-subject-action [subject]="subject" [studentId]="studentProfile._id"
-                      (updateStudentProfile)="updateStudentProfile($event)"></app-subject-action>
+                    <app-domain-action [domain]="domain" [studentId]="studentProfile._id"
+                      (updateStudentProfile)="updateStudentProfile($event)"></app-domain-action>
                   </td>
                 </tr>
               </ng-template>
@@ -147,7 +147,7 @@
                 <ng-template let-progress pTemplate="content">
                   <div class="timeline-event p-card shadow-sm border-0">
                     <div class="timeline-header d-flex justify-content-between align-items-center">
-                      <h4 class="m-0">{{ progress.subjectName }}</h4>
+                      <h4 class="m-0">{{ progress.domainName }}</h4>
                       <p-tag [severity]="'success'">{{ progress.status }}</p-tag>
                     </div>
                     <hr />

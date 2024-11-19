@@ -33,10 +33,10 @@ export class EditClassroomDialogComponent extends BaseComponent implements OnIni
       schedule: this.fb.array((this.data?.classroom?.schedule || []).map((scheduleItem: any) =>
         this.fb.group({
           day: [this.days.find(el => el.label === scheduleItem.day)|| ""],
-          subjects: this.fb.array(scheduleItem.subjects.map((subject: any) =>
+          domains: this.fb.array(scheduleItem.domains.map((domain: any) =>
             this.fb.group({
-              subjectId: [{value:subject.subjectId, label:subject.subjectName}],
-              startTime: [subject.startTime],
+              domainId: [{value:domain.domainId, label:domain.domainName}],
+              startTime: [domain.startTime],
             })
           ) || [])
         })
@@ -55,9 +55,9 @@ export class EditClassroomDialogComponent extends BaseComponent implements OnIni
       teachersId: data?.teachersId?.map((teacher: any) => teacher.value),
       schedule: data?.schedule?.map((scheduleItem: any) => ({
         day: scheduleItem.day.value,
-        subjects: scheduleItem?.subjects.map((subject: any) => ({
-          subjectId: subject?.subjectId.value,
-          startTime: typeof subject.startTime  === 'string' ? subject.startTime : this.convertToTimeString(subject.startTime)
+        domains: scheduleItem?.domains.map((domain: any) => ({
+          domainId: domain?.domainId.value,
+          startTime: typeof domain.startTime  === 'string' ? domain.startTime : this.convertToTimeString(domain.startTime)
         }))
       })),
       studentCost: data?.studentCost,

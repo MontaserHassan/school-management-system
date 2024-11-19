@@ -32,11 +32,11 @@ export class RoutesUtil {
   // static ParentProfile = new RouteConfig<{ id: number }>('profile/:id', RoutesUtil.Parent);
   // static ParentList = new RouteConfig('list', RoutesUtil.Parent);
 
-  //subject
-  static Subject = new RouteConfig('subject');
-  static SubjectView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.Subject);
-  static SubjectList = new RouteConfig('list', RoutesUtil.Subject);
-  static AddSubject = new RouteConfig('add', RoutesUtil.Subject);
+  //domain
+  static Domain = new RouteConfig('domain');
+  static DomainView = new RouteConfig<{ id: number }>('view/:id', RoutesUtil.Domain);
+  static DomainList = new RouteConfig('list', RoutesUtil.Domain);
+  static AddDomain = new RouteConfig('add', RoutesUtil.Domain);
 
   //class room
   static ClassRoom = new RouteConfig('class-room');

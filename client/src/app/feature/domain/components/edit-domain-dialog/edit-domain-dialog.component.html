@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>{{ 'domain.editDomain' | translate }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="editDomainForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <label for="domainName">{{ 'domain.domainName' | translate }}</label>
+      <input pInputText id="domainName" formControlName="domainName" class="p-inputtext" />
+      <div *ngIf="editDomainForm.get('domainName')?.invalid && editDomainForm.get('domainName')?.touched"
+        class="error">
+        <small *ngIf="editDomainForm.get('domainName')?.errors?.['required']">{{ 'domain.domainNameRequired' | translate }}</small>
+      </div>
+    </div>
+
+    <div class="p-field mt-2">
+      <label for="courseTime">{{ 'domain.courseTime' | translate }}</label>
+      <input pInputText id="courseTime" formControlName="courseTime" class="p-inputtext" />
+      <div *ngIf="editDomainForm.get('courseTime')?.invalid && editDomainForm.get('courseTime')?.touched"
+        class="error">
+        <small *ngIf="editDomainForm.get('courseTime')?.errors?.['required']">{{ 'domain.courseTimeRequired' | translate }}</small>
+      </div>
+    </div>
+
+    <div class="mat-dialog-actions">
+      <button mat-button mat-dialog-close="">{{ 'domain.cancel' | translate }}</button>
+      <button mat-button color="primary" [disabled]="editDomainForm.invalid" type="submit">{{ 'domain.save' | translate }}</button>
+    </div>
+  </form>
+</mat-dialog-content>

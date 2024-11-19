@@ -36,9 +36,9 @@ export class AddClassRoomComponent extends BaseComponent implements OnInit {
       teachersId: data?.teachersId?.map((teacher: any) => teacher.value),
       schedule: data?.schedule?.map((scheduleItem: any) => ({
         day: scheduleItem.day.value,
-        subjects: scheduleItem?.subjects.map((subject: any) => ({
-          subjectId: subject?.subjectId.value,
-          startTime: this.convertToTimeString(subject.startTime)
+        domains: scheduleItem?.domains.map((domain: any) => ({
+          domainId: domain?.domainId.value,
+          startTime: this.convertToTimeString(domain.startTime)
         }))
       })),
       studentCost: data?.studentCost,

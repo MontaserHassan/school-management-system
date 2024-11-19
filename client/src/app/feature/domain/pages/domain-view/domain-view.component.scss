@@ -1,16 +1,16 @@
-.subject-panel {
+.domain-panel {
   max-width: 700px;
   margin: auto;
 }
 
-.subject-details {
+.domain-details {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem;
 }
 
-.subject-detail-row {
+.domain-detail-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,16 +19,16 @@
   border-radius: 4px;
 }
 
-.subject-detail-row label {
+.domain-detail-row label {
   font-weight: bold;
   color: #333;
 }
 
-.subject-detail-row p {
+.domain-detail-row p {
   margin: 0;
   font-weight: 500;
 }
 
-.subject-detail-row p-tag {
+.domain-detail-row p-tag {
   margin: 0;
 }

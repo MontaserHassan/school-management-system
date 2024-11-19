@@ -73,34 +73,34 @@
           </small>
         </div>
 
-        <div class="subjects-section">
-          <label class="form-label">{{ 'classroom.subjects' | translate }}</label>
+        <div class="domains-section">
+          <label class="form-label">{{ 'classroom.domains' | translate }}</label>
           <p-divider></p-divider>
-          <div formArrayName="subjects" *ngFor="let subject of getSubjects(i).controls; let j = index">
+          <div formArrayName="domains" *ngFor="let domain of getDomains(i).controls; let j = index">
             <div [formGroupName]="j" class="mb-2">
               <div class="row">
                 <div class="col-5">
-                  <label for="subject-{{i}}-{{j}}" class="form-label">{{ 'classroom.subject' | translate }}</label>
-                  <app-lazy-dropdown [lookup]="Lookup.Subjects" id="subject-{{i}}-{{j}}" formControlName="subjectId" placeholder="{{ 'classroom.enterSubject' | translate }}"></app-lazy-dropdown>
-                  <small *ngIf="getSubjects(i).get([j, 'subjectId'])?.invalid && getSubjects(i).get([j, 'subjectId'])?.touched" class="p-error">
-                    {{ 'classroom.subjectRequired' | translate }}
+                  <label for="domain-{{i}}-{{j}}" class="form-label">{{ 'classroom.domain' | translate }}</label>
+                  <app-lazy-dropdown [lookup]="Lookup.Domains" id="domain-{{i}}-{{j}}" formControlName="domainId" placeholder="{{ 'classroom.enterDomain' | translate }}"></app-lazy-dropdown>
+                  <small *ngIf="getDomains(i).get([j, 'domainId'])?.invalid && getDomains(i).get([j, 'domainId'])?.touched" class="p-error">
+                    {{ 'classroom.domainRequired' | translate }}
                   </small>
                 </div>
                 <div class="col-5">
                   <label for="startTime-{{i}}-{{j}}" class="form-label">{{ 'classroom.startTime' | translate }}</label>
                   <p-calendar formControlName="startTime" id="startTime-{{i}}-{{j}}" timeOnly hourFormat="24" placeholder="{{ 'classroom.startTime' | translate }}" class="p-inputtext-sm"></p-calendar>
-                  <small *ngIf="getSubjects(i).get([j, 'startTime'])?.invalid && getSubjects(i).get([j, 'startTime'])?.touched" class="p-error">
+                  <small *ngIf="getDomains(i).get([j, 'startTime'])?.invalid && getDomains(i).get([j, 'startTime'])?.touched" class="p-error">
                     {{ 'classroom.startTimeRequired' | translate }}
                   </small>
                 </div>
                 <div class="col-1">
-                  <button *ngIf="getSubjects(i).controls.length > 1" pButton icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" class="p-button-danger mt-4" (click)="removeSubject(i, j)" type="button"></button>
+                  <button *ngIf="getDomains(i).controls.length > 1" pButton icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" class="p-button-danger mt-4" (click)="removeDomain(i, j)" type="button"></button>
                 </div>
               </div>
             </div>
           </div>
           <p-divider align="left">
-            <button pButton icon="pi pi-plus" (click)="addSubject(i)" [rounded]="true" [text]="true" type="button"></button>
+            <button pButton icon="pi pi-plus" (click)="addDomain(i)" [rounded]="true" [text]="true" type="button"></button>
           </p-divider>
         </div>
         <button *ngIf="scheduleControls.length > 1" pButton icon="pi pi-trash" class="p-button-danger mt-2 w-100" (click)="removeScheduleItem(i)" type="button"></button>

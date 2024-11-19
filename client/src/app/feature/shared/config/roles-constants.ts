@@ -17,7 +17,7 @@ export class RolesConstants {
     UserRole.Director,
   ];
 
-  //subject
+  //domain
   public static ADD_VIEW_List_SUBJECT = [
     UserRole.Admin,
     UserRole.Director,

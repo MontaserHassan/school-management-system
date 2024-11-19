@@ -3,7 +3,7 @@ import { StudentService } from '../../services/student.service';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { Degree } from '../../enums/degree.enum';
-import { Student, Subject } from '../../models/student.model';
+import { Student, Domain } from '../../models/student.model';
 import { Topic } from '../../../class-room/models/topic.model';
 import { AttendanceCalenderComponent } from '../../component/attendance-calender/attendance-calender.component';
 import { MatDialog } from '@angular/material/dialog';

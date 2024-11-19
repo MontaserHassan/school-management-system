@@ -1,0 +1,49 @@
+<p-card>
+  <app-state-section [state]="sectionState">
+    <p-panel class="domain-panel">
+      <ng-template pTemplate="header">
+        <div class="w-100 d-flex justify-content-between align-items-center">
+          <span class="fw-bold">{{ 'domain.information' | translate }}</span>
+          <div>
+            <p-menu #menu [model]="domainAction" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text label="{{ 'domain.edit' | translate }}" icon="pi pi-spin pi-cog" />
+          </div>
+        </div>
+      </ng-template>
+
+      <div class="domain-details">
+        <div class="domain-detail-row">
+          <label>{{ 'domain.domainName' | translate }}:</label>
+          <p>{{ domain.domainName || ('domain.n/a' | translate) }}</p>
+        </div>
+
+        <div class="domain-detail-row">
+          <label>{{ 'domain.courseTime' | translate }}:</label>
+          <p>{{ domain.courseTime || ('domain.n/a' | translate) }}</p>
+        </div>
+
+        <div class="domain-detail-row">
+          <label>{{ 'domain.typeOfTime' | translate }}:</label>
+          <p-tag *ngIf="domain.typeOfTime" value="{{ domain.typeOfTime }}" severity="info"></p-tag>
+        </div>
+
+        <div class="domain-detail-row">
+          <label>{{ 'domain.createdAt' | translate }}:</label>
+          <p>{{ domain.createdAt ? (domain.createdAt | date:'longDate') : ('domain.n/a' | translate) }}</p>
+        </div>
+
+        <div class="domain-detail-row">
+          <label>{{ 'domain.updatedAt' | translate }}:</label>
+          <p>{{ domain.updatedAt ? (domain.updatedAt | date:'longDate') : ('domain.n/a' | translate) }}</p>
+        </div>
+      </div>
+    </p-panel>
+  </app-state-section>
+</p-card>

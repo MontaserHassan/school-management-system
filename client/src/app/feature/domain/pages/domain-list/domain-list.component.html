@@ -1,0 +1,38 @@
+<p-card [header]="'domain.domainsList' | translate" class="domains-card">
+  <app-state-section [state]="sectionState">
+    <p-table [value]="domains" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRowsCount"
+      (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [sortMode]="'single'" [dataKey]="'_id'">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="domainName">{{ 'domain.domainName' | translate }} <p-sortIcon field="domainName"></p-sortIcon></th>
+          <th pSortableColumn="courseTime">{{ 'domain.courseTime' | translate }} <p-sortIcon field="courseTime"></p-sortIcon></th>
+          <th pSortableColumn="typeOfTime">{{ 'domain.typeOfTime' | translate }} <p-sortIcon field="typeOfTime"></p-sortIcon></th>
+          <th pSortableColumn="createdAt">{{ 'domain.createdAt' | translate }} <p-sortIcon field="createdAt"></p-sortIcon></th>
+          <th pSortableColumn="updatedAt">{{ 'domain.updatedAt' | translate }} <p-sortIcon field="updatedAt"></p-sortIcon></th>
+          <th>{{ 'domain.actions' | translate }}</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-domain>
+        <tr>
+          <td (click)="viewDomain(domain._id)">{{ domain.domainName }}</td>
+          <td>{{ domain.courseTime }}</td>
+          <td>{{ domain.typeOfTime || ('domain.n/a' | translate) }}</td>
+          <td>{{ domain.createdAt | date:'shortDate' }}</td>
+          <td>{{ domain.updatedAt | date:'shortDate' }}</td>
+          <td>
+            <p-menu #menu [model]="domainAction" appendTo="body" [popup]="true">
+              <ng-template pTemplate="item" let-item>
+                <div class="p-menuitem-link" (click)="handleClick(item.label,domain)">
+                  <span [class]="item.icon"></span>
+                  <span class="mx-2">{{ item.label }}</span>
+                </div>
+              </ng-template>
+            </p-menu>
+            <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </app-state-section>
+</p-card>

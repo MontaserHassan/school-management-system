@@ -1,9 +1,9 @@
 
 import { Expose, Type } from 'class-transformer';
 
-class Subject {
+class Domain {
   @Expose()
-  subjectId?: string;
+  domainId?: string;
 
   @Expose()
   startTime?: string;
@@ -14,8 +14,8 @@ class Schedule {
   day?: string;
 
   @Expose()
-  @Type(() => Subject)
-  subjects?: Subject[];
+  @Type(() => Domain)
+  domains?: Domain[];
 }
 
 export class IClassDetailsPayload {

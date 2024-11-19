@@ -3,12 +3,12 @@ import { list } from '../../shared/models/list';
 import { Topic } from './topic.model';
 import { Student } from '../../student/models/student.model';
 
-class Subject {
+class Domain {
   @Expose()
-  subjectId?: string;
+  domainId?: string;
 
   @Expose()
-  subjectName?: string;
+  domainName?: string;
 
   @Expose()
   startTime?: string;
@@ -22,7 +22,7 @@ class Schedule {
   day?: string;
 
   @Expose()
-  subjects?: Subject[];
+  domains?: Domain[];
 }
 
 class Teacher {

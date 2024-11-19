@@ -41,10 +41,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: RoutesUtil.Subject.path,
+        path: RoutesUtil.Domain.path,
         loadChildren: () =>
-          import(/* webpackChunkName: "Auth" */ './feature/subject/subject.module').then(
-            (m) => m.SubjectModule
+          import(/* webpackChunkName: "Auth" */ './feature/domain/domain.module').then(
+            (m) => m.DomainModule
           ),
       },
       {

@@ -41,8 +41,8 @@
                   <li *ngFor="let day of classroom.schedule">
                     <strong>{{ day.day }}</strong>
                     <ul>
-                      <li *ngFor="let subject of day.subjects">
-                        {{ subject.subjectName }} ({{ subject.startTime }} - {{ subject.endTime }})
+                      <li *ngFor="let domain of day.domains">
+                        {{ domain.domainName }} ({{ domain.startTime }} - {{ domain.endTime }})
                       </li>
                     </ul>
                   </li>

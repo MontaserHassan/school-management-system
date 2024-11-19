@@ -31,13 +31,13 @@ export class ClassRoomFormComponent implements OnInit {
   createScheduleItem(): FormGroup {
     return this.fb.group({
       day: ['', Validators.required],
-      subjects: this.fb.array([this.createSubject()])
+      domains: this.fb.array([this.createDomain()])
     });
   }
 
-  createSubject(): FormGroup {
+  createDomain(): FormGroup {
     return this.fb.group({
-      subjectId: ['', Validators.required],
+      domainId: ['', Validators.required],
       startTime: [new Date(), Validators.required]
     });
   }
@@ -47,8 +47,8 @@ export class ClassRoomFormComponent implements OnInit {
   }
 
 
-  getSubjects(index: number): FormArray {
-    return this.scheduleControls.at(index).get('subjects') as FormArray;
+  getDomains(index: number): FormArray {
+    return this.scheduleControls.at(index).get('domains') as FormArray;
   }
 
   // Method to get the specific schedule item
@@ -66,14 +66,14 @@ export class ClassRoomFormComponent implements OnInit {
     }
   }
 
-  addSubject(dayIndex: number): void {
-    this.getSubjects(dayIndex).push(this.createSubject());
+  addDomain(dayIndex: number): void {
+    this.getDomains(dayIndex).push(this.createDomain());
   }
 
-  removeSubject(dayIndex: number, subjectIndex: number): void {
-    const subjectsArray = this.getSubjects(dayIndex);
-    if (subjectsArray.length > 1) {
-      subjectsArray.removeAt(subjectIndex);
+  removeDomain(dayIndex: number, domainIndex: number): void {
+    const domainsArray = this.getDomains(dayIndex);
+    if (domainsArray.length > 1) {
+      domainsArray.removeAt(domainIndex);
     }
   }
 }

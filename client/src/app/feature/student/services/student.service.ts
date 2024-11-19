@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiBaseService } from '../../shared/services/general/api-base.service';
 import { Mapper } from '../../shared/mapper/base-mapper.mapper';
-import { ISubjectPayload } from '../../subject/models/sybject-payload';
+import { IDomainPayload } from '../../domain/models/domain-payload';
 import { Student, StudentList } from '../models/student.model';
 import { map, Observable, tap } from 'rxjs';
 import { ApiConstant } from '../../shared/config/api.constant';
@@ -61,7 +61,7 @@ export class StudentService {
   updateStudentProgressStatus(
     body: {
       studentId: string,
-      subjectId: string,
+      domainId: string,
       status: string
     }
   ): Observable<Student> {

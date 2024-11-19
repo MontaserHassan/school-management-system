@@ -59,22 +59,22 @@ export class SideNavComponent extends BaseComponent implements OnInit {
         ]
       },
       {
-        label: this.translate('Subjects'),
+        label: this.translate('Domains'),
         icon: 'pi pi-book',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_SUBJECT),
         items: [
           {
-            label: this.translate('SubjectsList'),
+            label: this.translate('DomainsList'),
             icon: 'pi pi-list',
             command: () => {
-              this.router.navigate([RoutesUtil.SubjectList.url()]);
+              this.router.navigate([RoutesUtil.DomainList.url()]);
             }
           },
           {
-            label: this.translate('AddSubject'),
+            label: this.translate('AddDomain'),
             icon: 'pi pi-file-plus',
             command: () => {
-              this.router.navigate([RoutesUtil.AddSubject.url()]);
+              this.router.navigate([RoutesUtil.AddDomain.url()]);
             }
           }
         ]

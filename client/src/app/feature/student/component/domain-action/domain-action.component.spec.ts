@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AddSubjectComponent } from './add-subject.component';
+import { DomainActionComponent } from '../domain-action/domain-action.component';
 
-describe('AddSubjectComponent', () => {
-  let component: AddSubjectComponent;
-  let fixture: ComponentFixture<AddSubjectComponent>;
+describe('DomainActionComponent', () => {
+  let component: DomainActionComponent;
+  let fixture: ComponentFixture<DomainActionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddSubjectComponent ]
+      declarations: [ DomainActionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSubjectComponent);
+    fixture = TestBed.createComponent(DomainActionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

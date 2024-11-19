@@ -1,0 +1,26 @@
+<p-card [header]="'domain.addNewDomain' | translate">
+  <app-state-section [state]="sectionState">
+    <form [formGroup]="domainForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="my-3">
+          <label for="domainName">{{ 'domain.domainName' | translate }}</label>
+          <input id="domainName" type="text" pInputText formControlName="domainName" />
+          <small *ngIf="domainForm.controls['domainName'].invalid && domainForm.controls['domainName'].touched"
+            class="p-error">{{ 'domain.domainNameRequired' | translate }}</small>
+        </div>
+
+        <div class="my-3">
+          <label for="courseTime">{{ 'domain.courseTime' | translate }}</label>
+          <input id="courseTime" type="number" pInputText formControlName="courseTime" />
+          <small *ngIf="domainForm.controls['courseTime'].invalid && domainForm.controls['courseTime'].touched"
+            class="p-error">{{ 'domain.courseTimeRequired' | translate }}</small>
+        </div>
+
+        <div class="my-3">
+          <button pButton type="submit" [label]="'domain.addDomain' | translate" class="p-button-primary"
+            [disabled]="domainForm.invalid"></button>
+        </div>
+      </div>
+    </form>
+  </app-state-section>
+</p-card>

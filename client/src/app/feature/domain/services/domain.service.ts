@@ -4,40 +4,40 @@ import { Mapper } from '../../shared/mapper/base-mapper.mapper';
 import { ApiConstant } from '../../shared/config/api.constant';
 import { filterNullEntity } from '../../shared/utils/filter-null-entity.util';
 import { map, Observable } from 'rxjs';
-import { ISubjectPayload } from '../models/sybject-payload';
-import { Subject, SubjectsList } from '../models/subject.model';
+import { IDomainPayload } from '../models/domain-payload';
+import { Domain, DomainsList } from '../models/domain.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubjectService {
+export class DomainService {
 
   constructor(
     private baseAPI: ApiBaseService,
     private mapper: Mapper
   ) { }
 
-  addSubject(body:ISubjectPayload):Observable<Subject> {
+  addDomain(body:IDomainPayload):Observable<Domain> {
     return this.baseAPI.post(ApiConstant.ADD_SUBJECT, filterNullEntity(body)).pipe(
-      map((res) => this.mapper.fromJson(Subject, res.data.subject))
+      map((res) => this.mapper.fromJson(Domain, res.data.domain))
     )
   }
 
-  getSubjectById(id:string):Observable<Subject> {
+  getDomainById(id:string):Observable<Domain> {
     return this.baseAPI.get(ApiConstant.GET_SUBJECT_BY_ID.replace('{id}',id)).pipe(
-      map((res) => this.mapper.fromJson(Subject, res.data.subject))
+      map((res) => this.mapper.fromJson(Domain, res.data.domain))
     )
   }
 
-  getSubjects(params:{}):Observable<SubjectsList> {
+  getDomains(params:{}):Observable<DomainsList> {
     return this.baseAPI.get(ApiConstant.GET_SUBJECT_LIST,{params}).pipe(
-      map((res) => this.mapper.fromJson(SubjectsList, res.data))
+      map((res) => this.mapper.fromJson(DomainsList, res.data))
     )
   }
 
-  editSubject(body: {subjectName:string ,courseTime:string, subjectId:string}):Observable<Subject> {
+  editDomain(body: {domainName:string ,courseTime:string, domainId:string}):Observable<Domain> {
     return this.baseAPI.patch(ApiConstant.EDIT_SUBJECT, body).pipe(
-      map((res) => this.mapper.fromJson(Subject, res.data.subject))
+      map((res) => this.mapper.fromJson(Domain, res.data.domain))
     )
   }
 }

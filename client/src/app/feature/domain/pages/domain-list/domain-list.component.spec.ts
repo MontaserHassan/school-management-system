@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EditSubjectDialogComponent } from './edit-subject-dialog.component';
+import { DomainListComponent } from './domain-list.component';
 
-describe('EditSubjectDialogComponent', () => {
-  let component: EditSubjectDialogComponent;
-  let fixture: ComponentFixture<EditSubjectDialogComponent>;
+describe('DomainListComponent', () => {
+  let component: DomainListComponent;
+  let fixture: ComponentFixture<DomainListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditSubjectDialogComponent ]
+      declarations: [ DomainListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditSubjectDialogComponent);
+    fixture = TestBed.createComponent(DomainListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

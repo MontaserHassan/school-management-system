@@ -17,7 +17,7 @@ export class AddTopicDialogComponent  extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.addTopicForm = this.fb.group({
       room: [this.data?.classRoomId ?  {label: this.data?.classRoomId } : '', Validators.required],
-      subjectId: ["", Validators.required],
+      domainId: ["", Validators.required],
       topicName: ['', Validators.required]
     });
   }
@@ -33,12 +33,12 @@ export class AddTopicDialogComponent  extends BaseComponent implements OnInit {
 
   onSave(): void {
     if (this.addTopicForm.valid) {
-      const subjectId = this.addTopicForm.get('subjectId')?.value.value;
+      const domainId = this.addTopicForm.get('domainId')?.value.value;
       const room = this.addTopicForm.get('room')?.value.label;
       const payload ={
         ...this.addTopicForm.value,
         room,
-        subjectId: subjectId,
+        domainId: domainId,
       }
       this.load(this.classRoomService.addTopic(payload), {isLoadingTransparent: true}).subscribe(res => {
         this.dialogRef.close(res);

@@ -2,7 +2,7 @@ export enum URLSegment {
   Auth = 'auth/',
   User = 'user/',
   Director = 'director/',
-  Subject = 'subject/',
+  Domain = 'domain/',
   Lookups = 'lookups/',
   SuperAdmin = 'superAdmin/',
   Teacher = 'teacher/',
