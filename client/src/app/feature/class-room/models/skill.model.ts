@@ -1,6 +1,4 @@
 import { Expose } from "class-transformer";
-import exp from "constants";
-import e from "express";
 import { list } from "../../shared/models/list";
 import { Domain } from "../../student/models/student.model";
 
@@ -24,10 +22,10 @@ export class Skill{
   updatedAt?: Date;
 
   @Expose()
-  classRoom?: string;
+  domainId?: string
 
   @Expose()
-  domain?: Domain
+  domainName?: string
 }
 
 

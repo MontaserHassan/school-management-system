@@ -393,6 +393,7 @@
     "save": "Enregistrer",
     "addNewDomain": "Ajouter un nouveau sujet",
     "domainName": "Nom du sujet",
+    "domainId": "ID du sujet",
     "addDomain": "Ajouter un sujet",
     "domainsList": "Liste des sujets",
     "courseTime": "Temps de cours",

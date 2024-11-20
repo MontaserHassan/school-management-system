@@ -393,6 +393,7 @@
     "save": "Save",
     "addNewDomain": "Add New Domain",
     "domainName": "Domain Name",
+    "domainId": "Domain ID",
     "addDomain": "Add Domain",
     "domainsList": "Domains List",
     "courseTime": "Course Time",
