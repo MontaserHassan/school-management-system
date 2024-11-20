@@ -13,7 +13,7 @@ import pagination from '../Utils/pagination.util';
 
 const createActivity = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { ActivityName, materialName, skillId, room } = req.body;
+        const { activityName, materialName, skillId, room } = req.body;
         const { schoolId } = req.user;
         const isSkillExisting = await skillService.getById(skillId);
         if (!isSkillExisting) throw new CustomError(errorSkillMessage.NOT_FOUND_SKILL, 404, "skill");
@@ -23,7 +23,7 @@ const createActivity = async (req: Request, res: Response, next: NextFunction) =
         if (!isOperationTrue) throw new CustomError(errorClassRoomMessage.NOT_TEACHER_AT_CLASS, 400, "teacher");
         const skillsLength = await activityService.getLengthActivities(isSkillExisting._id);
         const newActivityId = skillsLength + 1;
-        const newActivity = await activityService.createActivity(`s${newActivityId}`, ActivityName.toLowerCase(), materialName.toLowerCase(), isSkillExisting._id, isSkillExisting.domainName, room, isSkillExisting.domainId, isSkillExisting.domainName, schoolId);
+        const newActivity = await activityService.createActivity(`s${newActivityId}`, activityName.toLowerCase(), materialName.toLowerCase(), isSkillExisting._id, isSkillExisting.skillName, room, isSkillExisting.domainId, isSkillExisting.domainName, schoolId);
         if (!newActivity) throw new CustomError(errorActivityMessage.DOES_NOT_CREATED, 400, "none");
         const addActivityToRoom = await classRoomService.addActivity(room, { activityId: newActivity._id, activityName: newActivity.activityName, materialName: newActivity.materialName });
         if (!addActivityToRoom) throw new CustomError(errorClassRoomMessage.SKILLS_NOT_ADDED, 400, "none");
@@ -106,14 +106,15 @@ const getAllActivities = async (req: Request, res: Response, next: NextFunction)
 
 const updateActivityData = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { activityId, activityName } = req.body;
+        const { activityId, activityName, materialName } = req.body;
         const isActivityExisting = await activityService.getById(activityId);
         if (!isActivityExisting) throw new CustomError(errorActivityMessage.NOT_FOUND_ACTIVITY, 404, "activity");
         const newActivityName = !activityName ? isActivityExisting.activityName : (activityName).toLowerCase();
-        const activity = await activityService.updateById(activityId, { activityName: newActivityName });
+        const newMaterialName = !materialName ? isActivityExisting.materialName : (materialName).toLowerCase();
+        const activity = await activityService.updateById(activityId, { activityName: newActivityName, materialName: newMaterialName });
         if (!activity) throw new CustomError(errorActivityMessage.NOT_UPDATED, 404, "activity");
-        // await studentService.updateSkillDataInStudents(isActivityExisting._id, newActivityName);
-        // await classRoomService.updateSkillDataInClassrooms(isActivityExisting._id, newActivityName);
+        await studentService.updateActivityDataInStudents(isActivityExisting._id, newActivityName, newMaterialName);
+        await classRoomService.updateActivityDataInClassrooms(isActivityExisting._id, newActivityName, newMaterialName);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

@@ -94,6 +94,15 @@ const updateSkillDataInStudents = async (skillId: string, newSkillName: string) 
 };
 
 
+// ----------------------------- update activity -----------------------------
+
+
+const updateActivityDataInStudents = async (activityId: string, newActivityName: string, newMaterialName: string) => {
+    const updatedStudents = await Student.updateMany({ "activities.activityId": activityId }, { $set: { "activities.$.ActivityName": newActivityName, "activities.$.materialName": newMaterialName } }, { multi: true });
+    return updatedStudents;
+};
+
+
 // ----------------------------- add new progress status -----------------------------
 
 
@@ -266,6 +275,7 @@ export default {
     addSkill,
     addActivity,
     updateSkillDataInStudents,
+    updateActivityDataInStudents,
     addAttendance,
     updateAttendanceByDate,
     addComment,

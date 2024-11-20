@@ -176,10 +176,18 @@ const deleteStudentFromClassRoom = async (roomId: string, studentId: string) => 
 };
 
 
-// ----------------------------- update skill inside room ---------------               --------------
+// ----------------------------- update skill inside room -----------------------------
 
 const updateSkillDataInClassrooms = async (skillId: string, updatedSkillName: string) => {
     const updatedClassrooms = await ClassRoom.updateMany({ "skills.skillId": skillId }, { $set: { "skills.$.skillName": updatedSkillName } }, { multi: true });
+    return updatedClassrooms;
+};
+
+
+// ----------------------------- update activity inside room -----------------------------
+
+const updateActivityDataInClassrooms = async (activityId: string, updatedActivityName: string, updatedMaterialName: string) => {
+    const updatedClassrooms = await ClassRoom.updateMany({ "activities.activityId": activityId }, { $set: { "activities.$.activityName": updatedActivityName, "activities.$.materialName": updatedMaterialName } }, { multi: true });
     return updatedClassrooms;
 };
 
@@ -212,6 +220,7 @@ export default {
     findWithPagination,
     updateRoom,
     updateSkillDataInClassrooms,
+    updateActivityDataInClassrooms,
     deleteStudentFromClassRoom,
     deleteRoom,
 };

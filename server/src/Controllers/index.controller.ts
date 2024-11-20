@@ -1,8 +1,9 @@
 import userController from "./user.controller";
 import studentController from "./student.controller";
 import domainController from './domain.controller';
-import classRoomController from './class-room.controller';
 import skillController from "./skill.controller";
+import ActivityController from "./Activity.controller";
+import classRoomController from './class-room.controller';
 import lookupController from "./lookup.controller";
 import schoolController from "./school.controller";
 import progressHistoryController from "./progress-history.controller";
@@ -20,6 +21,7 @@ export {
     studentController,
     domainController,
     skillController,
+    ActivityController,
     classRoomController,
     lookupController,
     schoolController,

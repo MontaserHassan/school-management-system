@@ -1,0 +1,54 @@
+[{
+  "_id": "HT4ylmQq2fMfiesQCU1Ehb3T",
+  "activityId": "s1",
+  "activityName": "activity one",
+  "materialName": "material one",
+  "skillId": "YW6PXyEpvLz01CkOvivtMKOV",
+  "skillName": "science",
+  "domainId": "wAIgmHTgJX_AhKIaKgfkbjLV",
+  "domainName": "science",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "createdAt": {
+    "$date": "2024-11-20T18:08:32.820Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-20T18:08:32.820Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "9TQ034t1LAeTIU4ZUXfj49zH",
+  "activityId": "s2",
+  "activityName": "arithmetic operations",
+  "materialName": "material one",
+  "skillId": "YW6PXyEpvLz01CkOvivtMKOV",
+  "skillName": "science",
+  "domainId": "wAIgmHTgJX_AhKIaKgfkbjLV",
+  "domainName": "science",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "createdAt": {
+    "$date": "2024-11-20T18:09:25.861Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-20T18:31:46.839Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "p_uakHU1DDzywsh8MeNmm0kQ",
+  "activityId": "s3",
+  "activityName": "science science",
+  "materialName": "material material",
+  "skillId": "YW6PXyEpvLz01CkOvivtMKOV",
+  "skillName": "arithmetic operations",
+  "domainId": "wAIgmHTgJX_AhKIaKgfkbjLV",
+  "domainName": "science",
+  "schoolId": "_BaVl9M7HmWACPlg2tT1MqDt",
+  "createdAt": {
+    "$date": "2024-11-20T18:12:52.723Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-20T18:36:41.381Z"
+  },
+  "__v": 0
+}]
