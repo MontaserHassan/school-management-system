@@ -24,8 +24,8 @@ const createStudent = async (studentName: string, parentId: string, schoolId: st
 // ----------------------------- add more data to student -----------------------------
 
 
-const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, domains: any[], skills: any[], studentCost: string, currencyOfCost: string,) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, skills: skills, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
+const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, domains: any[], skills: any[], activities: any[], studentCost: string, currencyOfCost: string,) => {
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, skills: skills, activities: activities, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
     return student;
 };
 
@@ -115,8 +115,8 @@ const addProgressStatus = async (studentId: string, domainId: string, status: st
 // ----------------------------- add new degree -----------------------------
 
 
-const addDegree = async (studentId: string, skillId: string, degree: string) => {
-    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "skills.skillId": skillId }, { $set: { "skills.$.degree": degree } }, { new: true });
+const addDegree = async (studentId: string, activityId: string, degree: string) => {
+    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "activities.activityId": activityId }, { $set: { "activities.$.degree": degree } }, { new: true });
     return student;
 };
 

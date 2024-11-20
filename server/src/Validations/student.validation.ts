@@ -64,7 +64,7 @@ const studentValidator = {
     addDegree: {
         body: Joi.object().keys({
             studentId: Joi.string().required().trim().messages({ 'string.empty': 'Student Id is required.', }),
-            skillId: Joi.string().required().trim().messages({ 'string.empty': 'Skill Id is required.', }),
+            activityId: Joi.string().required().trim().messages({ 'string.empty': 'Activity Id is required.', }),
             degree: Joi.string().required().messages({ 'string.empty': 'Degree is required.', }),
         }),
     },
