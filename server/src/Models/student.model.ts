@@ -22,6 +22,14 @@ interface skills {
     degree?: String;
 };
 
+interface activities {
+    skillId: String;
+    skillName: string;
+    materialName: string;
+    degree?: String;
+};
+
+
 interface attendance {
     date?: Date;
     teacherId: String;
@@ -39,6 +47,7 @@ interface StudentModel extends mongoose.Document {
     parentId: string;
     domains?: Domains[];
     skills?: skills[];
+    activities?: activities[];
     attendance?: attendance[];
     comments?: Comment[];
     studentCost?: string;
@@ -110,6 +119,29 @@ const studentSchema = new mongoose.Schema(
                     required: true,
                 },
                 skillName: {
+                    type: String,
+                    required: true,
+                },
+                degree: {
+                    type: String,
+                    enum: ['blue', 'yellow', 'green',],
+                    required: false,
+                },
+            },
+        ],
+        activities: [
+            {
+                _id: false,
+                activityId: {
+                    type: String,
+                    ref: 'Activity',
+                    required: true,
+                },
+                activityName: {
+                    type: String,
+                    required: true,
+                },
+                materialName: {
                     type: String,
                     required: true,
                 },

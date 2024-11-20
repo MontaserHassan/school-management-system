@@ -76,6 +76,15 @@ const addSkill = async (studentId: string, skillId: string, skillName: string) =
 };
 
 
+// ----------------------------- add new activity -----------------------------
+
+
+const addActivity = async (studentId: string, activityId: string, activityName: string, materialName: string) => {
+    const activity: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { activities: { activityId: activityId, activityName: activityName, materialName: materialName } } }, { new: true });
+    return activity;
+};
+
+
 // ----------------------------- update skill -----------------------------
 
 
@@ -255,6 +264,7 @@ export default {
     createStudent,
     addMoreDataToStudent,
     addSkill,
+    addActivity,
     updateSkillDataInStudents,
     addAttendance,
     updateAttendanceByDate,

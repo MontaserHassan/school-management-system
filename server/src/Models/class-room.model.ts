@@ -93,6 +93,24 @@ const classRoomSchema = new mongoose.Schema(
                 }
             },
         ],
+        activities: [
+            {
+                _id: false,
+                activityId: {
+                    type: String,
+                    ref: 'Activity',
+                    required: true,
+                },
+                activityName: {
+                    type: String,
+                    required: true,
+                },
+                materialName: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
         schedule: [
             {
                 _id: false,

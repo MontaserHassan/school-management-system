@@ -119,7 +119,7 @@ const updateSkillData = async (req: Request, res: Response, next: NextFunction) 
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: successSkillMessage.CREATED,
+            responseMessage: successSkillMessage.UPDATED,
             data: {
                 skill: skill,
             },

@@ -1,39 +1,33 @@
 [{
-  "_id": {
-    "$oid": "673770f705920cfeccd341b5"
-  },
+  "_id": "gazyNJnWGgSMRkqaRnL0VjNv",
   "groupName": "2-3",
   "createdAt": {
-    "$date": "2024-11-15T16:04:07.034Z"
+    "$date": "2024-11-19T23:18:52.306Z"
   },
   "updatedAt": {
-    "$date": "2024-11-15T16:04:07.034Z"
+    "$date": "2024-11-19T23:18:52.306Z"
   },
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "673770fd05920cfeccd341b8"
-  },
+  "_id": "ZIOSKyjKMCnjjasfw4Yc0m1Z",
   "groupName": "3-6",
   "createdAt": {
-    "$date": "2024-11-15T16:04:13.033Z"
+    "$date": "2024-11-19T23:19:45.231Z"
   },
   "updatedAt": {
-    "$date": "2024-11-15T16:04:13.033Z"
+    "$date": "2024-11-19T23:19:45.231Z"
   },
   "__v": 0
 },
 {
-  "_id": {
-    "$oid": "6737710305920cfeccd341bb"
-  },
+  "_id": "DeQw_ll3eLdebEgQKylWXn0P",
   "groupName": "6-12",
   "createdAt": {
-    "$date": "2024-11-15T16:04:19.389Z"
+    "$date": "2024-11-19T23:19:58.198Z"
   },
   "updatedAt": {
-    "$date": "2024-11-15T16:04:19.389Z"
+    "$date": "2024-11-19T23:19:58.198Z"
   },
   "__v": 0
 }]

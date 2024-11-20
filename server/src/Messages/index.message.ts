@@ -11,6 +11,8 @@ import errorDomainMessage from './domain/error.message';
 import successDomainMessage from './domain/success.message';
 import errorSkillMessage from './skill/error.message';
 import successSkillMessage from './skill/success.message';
+import errorActivityMessage from './activity/error.message';
+import successActivityMessage from './activity/success.message';
 import errorTeacherMessage from './teacher/error.message';
 import successTeacherMessage from './teacher/success.message';
 import errorClassRoomMessage from './class-room/error.message'
@@ -42,6 +44,7 @@ export {
     errorStudentMessage, successStudentMessage,
     errorDomainMessage, successDomainMessage,
     errorSkillMessage, successSkillMessage,
+    errorActivityMessage, successActivityMessage,
     errorTeacherMessage, successTeacherMessage,
     errorClassRoomMessage, successClassRoomMessage,
     errorLookupMessage, successLookupMessage,

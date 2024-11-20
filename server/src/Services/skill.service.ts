@@ -19,6 +19,15 @@ const createSkill = async (skillId: string, skillName: string, room: string, dom
 };
 
 
+// ----------------------------- add new activity -----------------------------
+
+
+const addNewActivity = async (skillId: string, activityId: string, activityName: string, materialName: string) => {
+    const activity: SkillModel = await Skill.findByIdAndUpdate(skillId, { $push: { ac: { activityId: activityId, skillName: activityName, materialName: materialName } } }, { new: true }).select('-__v');
+    return activity;
+};
+
+
 // ----------------------------- get by name -----------------------------
 
 
@@ -121,6 +130,7 @@ const deleteSkill = async (skillId: string) => {
 
 export default {
     createSkill,
+    addNewActivity,
     getById,
     getByDomainId,
     getByName,

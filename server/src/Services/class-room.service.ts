@@ -43,8 +43,17 @@ const addTeacher = async (roomId: string, teachers: { teacherId: string, teacher
 
 
 const addSkill = async (room: string, newSkill: { skillId: string, skillName: string }) => {
-    const newClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { skills: newSkill }, }, { new: true });
-    return newClassRoomData;
+    const updateClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { skills: newSkill }, }, { new: true });
+    return updateClassRoomData;
+};
+
+
+// ----------------------------- add activity -----------------------------
+
+
+const addActivity = async (room: string, newActivity: { activityId: string, activityName: string, materialName: string }) => {
+    const updateClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { activities: newActivity }, }, { new: true });
+    return updateClassRoomData;
 };
 
 
@@ -196,6 +205,7 @@ export default {
     addStudent,
     addTeacher,
     addSkill,
+    addActivity,
     totalDocument,
     getAllClassRoomLookups,
     getClassesByGroup,

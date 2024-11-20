@@ -3,31 +3,41 @@ import { nanoid } from "nanoid";
 
 
 
-interface activities {
-    skillId: string;
-    skillName: string;
-};
-
-interface SkillModel extends mongoose.Document {
+interface ActivityModel extends mongoose.Document {
     _id: string;
-    skillId: string;
-    skillName: string;
+    activityId: string;
+    activityName: string;
+    materialName: string;
     domainId: string;
     domainName: string;
+    skillId: string;
+    skillName: string;
     schoolId: string;
     classRoom: string;
-    activities: activities[];
 };
 
 
-const skillSchema = new mongoose.Schema(
+const activitySchema = new mongoose.Schema(
     {
         _id: {
             type: String,
             default: () => nanoid(24),
         },
+        activityId: {
+            type: String,
+            required: true,
+        },
+        activityName: {
+            type: String,
+            required: true,
+        },
+        materialName: {
+            type: String,
+            required: true,
+        },
         skillId: {
             type: String,
+            ref: 'skill',
             required: true,
         },
         skillName: {
@@ -48,23 +58,6 @@ const skillSchema = new mongoose.Schema(
             ref: 'subscriptionSchool',
             required: true,
         },
-        activities: [
-            {
-                _id: false,
-                skillId: {
-                    type: String,
-                    required: true,
-                },
-                skillName: {
-                    type: String,
-                    required: true,
-                },
-                materialName: {
-                    type: String,
-                    required: true,
-                },
-            },
-        ]
     },
     {
         timestamps: true,
@@ -72,11 +65,11 @@ const skillSchema = new mongoose.Schema(
 );
 
 
-const Skill = mongoose.model<SkillModel>('skill', skillSchema);
+const Activity = mongoose.model<ActivityModel>('activity', activitySchema);
 
 
 
 export {
-    Skill,
-    SkillModel,
+    Activity,
+    ActivityModel,
 };
