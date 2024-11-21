@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, progressHistoryService, studentService, skillService } from "../Services/index.service";
-import { errorClassRoomMessage, errorStudentMessage, errorSkillMessage, successStudentMessage, errorDomainMessage, successDomainMessage } from "../Messages/index.message";
+import { classRoomService, lookupService, progressHistoryService, studentService, skillService, activityService } from "../Services/index.service";
+import { errorClassRoomMessage, errorStudentMessage, errorSkillMessage, successStudentMessage, errorDomainMessage, successDomainMessage, errorActivityMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
 import { StudentModel } from "../Models/student.model";
-import { pagination, CSVStudent, CSVStudents } from "../Utils/index.util";
+import { pagination, calculateSkillDegree, CSVStudent, CSVStudents } from "../Utils/index.util";
 
 
 
@@ -202,22 +202,30 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
 };
 
 
-// ----------------------------- add degree for skill -----------------------------
+// ----------------------------- add degree for activity -----------------------------
 
 
-const addDegreeOfTopic = async (req: Request, res: Response, next: NextFunction) => {
+const addDegreeOfActivity = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentId, activityId, degree } = req.body;
         const teacherId = req.user.userId;
+        const isActivityExisting = await activityService.getById(activityId);
+        if (!isActivityExisting) throw new CustomError(errorActivityMessage.ACTIVITY_NOT_FOUND, 400, "activity");
         const degreeName = await lookupService.getById(degree);
         if (!degreeName) throw new CustomError(errorStudentMessage.LOOKUPS_NOT_EXISTING, 400, "student");
         const student = await studentService.getStudentById(studentId);
         if (!student) throw new CustomError(errorStudentMessage.DOES_NOT_CREATED, 400, "student");
         const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
         if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
-        const activityExists = student.activities?.some((activity: any) => activity.activityId === activityId);
-        if (!activityExists) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 400, "activity");
-        const updatedStudent = await studentService.addDegree(studentId, activityId, degreeName.lookupName);
+        const studentActivityExists = student.activities?.some((activity: any) => activity.activityId === activityId);
+        if (!studentActivityExists) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 400, "activity");
+        let updatedStudent = await studentService.addDegree(studentId, activityId, degreeName.lookupName);
+        if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
+        const matchActivityAtSkill = updatedStudent.activities.filter(activity => activity.skillId === isActivityExisting.skillId);
+        if (matchActivityAtSkill.length > 0) {
+            const skillDegree = calculateSkillDegree(matchActivityAtSkill);
+            updatedStudent = await studentService.updateSkillStudent(updatedStudent._id, isActivityExisting.skillId, skillDegree);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -464,7 +472,7 @@ export default {
     addAttendance,
     addComment,
     addProgressStatus,
-    addDegreeOfTopic,
+    addDegreeOfActivity,
     getProgressHistory,
     getStudent,
     getAllStudents,

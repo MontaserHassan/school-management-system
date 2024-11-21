@@ -24,7 +24,8 @@ interface skills {
 
 interface activities {
     skillId: String;
-    skillName: string;
+    activityId: String;
+    activityName: string;
     materialName: string;
     degree?: String;
 };
@@ -132,6 +133,11 @@ const studentSchema = new mongoose.Schema(
         activities: [
             {
                 _id: false,
+                skillId: {
+                    type: String,
+                    ref: 'skill',
+                    required: true,
+                },
                 activityId: {
                     type: String,
                     ref: 'Activity',

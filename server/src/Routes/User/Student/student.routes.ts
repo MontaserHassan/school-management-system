@@ -23,7 +23,7 @@ authStudentRouter.patch('/', checkRole(['director', 'admin']), validation(studen
 authStudentRouter.patch('/attendance', checkRole(['teacher', 'director', 'admin']), validation(studentValidator.addAttendance), studentController.addAttendance);
 authStudentRouter.patch('/comment', checkRole(['teacher', 'director', 'admin']), mediaMediaHandler, validation(studentValidator.addComment), studentController.addComment);
 authStudentRouter.patch('/progress-status', checkRole(['teacher']), validation(studentValidator.addProgressHistory), studentController.addProgressStatus);
-authStudentRouter.patch('/degree', checkRole(['teacher']), validation(studentValidator.addDegree), studentController.addDegreeOfTopic);
+authStudentRouter.patch('/degree', checkRole(['teacher']), validation(studentValidator.addDegree), studentController.addDegreeOfActivity);
 
 
 

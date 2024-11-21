@@ -1,14 +1,15 @@
 import CustomError from "./customError.util";
-import generateSecretKey from './createSecretKey.util';
-import generateId from "./generate-id.util";
 import createToken from "./createToken.util";
-import calculateExpirationDate from "./calculateExpirationDate";
-
 import pagination from "./pagination.util";
+import generateId from "./generate-id.util";
 import generateCode from './generateCode.util';
+import generateSecretKey from './createSecretKey.util';
 import sendEmail from './send-mail.util';
+
 import calculateDuration from './calculate-duration.util';
 import calculateSubscriptionDate from './calculate-subscription-date.util';
+import calculateExpirationDate from "./calculateExpirationDate";
+import calculateSkillDegree from "./calculate-skill-degree.util";
 
 import { generatePDFReport } from './create-PDF.util';
 import { exportToCsv } from './create-Excel.util';
@@ -22,15 +23,17 @@ import { CSVSchool } from './CSV-functions/csv-school.util'
 
 export {
     CustomError,
-    generateSecretKey,
-    generateId,
     createToken,
-    calculateExpirationDate,
     pagination,
+    generateId,
     generateCode,
-    calculateDuration,
-    calculateSubscriptionDate,
+    generateSecretKey,
     sendEmail,
+
+    calculateDuration,
+    calculateSkillDegree,
+    calculateExpirationDate,
+    calculateSubscriptionDate,
 
     generatePDFReport,
     exportToCsv,

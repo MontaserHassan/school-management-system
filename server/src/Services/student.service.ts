@@ -79,8 +79,8 @@ const addSkill = async (studentId: string, skillId: string, skillName: string) =
 // ----------------------------- add new activity -----------------------------
 
 
-const addActivity = async (studentId: string, activityId: string, activityName: string, materialName: string) => {
-    const activity: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { activities: { activityId: activityId, activityName: activityName, materialName: materialName } } }, { new: true });
+const addActivity = async (studentId: string, skillId: string, activityId: string, activityName: string, materialName: string) => {
+    const activity: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { activities: { skillId: skillId, activityId: activityId, activityName: activityName, materialName: materialName } } }, { new: true });
     return activity;
 };
 
@@ -250,6 +250,15 @@ const updateStudentData = async (studentId: string, updatedData: any) => {
 };
 
 
+// ----------------------------- update skill student -----------------------------
+
+
+const updateSkillStudent = async (studentId: string, skillId: string, degree: string) => {
+    const student: StudentModel = await Student.findOneAndUpdate({ _id: studentId, "skills.skillId": skillId }, { $set: { "skills.$.degree": degree } }, { new: true }).select('-__v');
+    return student;
+};
+
+
 // ----------------------------- delete students data related class -----------------------------
 
 
@@ -294,6 +303,7 @@ export default {
     getAllStudentsLookups,
     getStudents,
     updateStudentData,
+    updateSkillStudent,
     updateStudentByClassRoomData,
     deleteStudent,
     deleteStudentDataToClass,

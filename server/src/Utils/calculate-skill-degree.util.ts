@@ -1,4 +1,4 @@
-export function calculateSkillDegree(activities) {
+export default function calculateSkillDegree(activities) {
     const total = activities.length;
     const colorCounts = {
         blue: activities.filter(activity => activity.degree === 'blue').length,
