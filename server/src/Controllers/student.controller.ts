@@ -120,7 +120,7 @@ const addAttendance = async (req: Request, res: Response, next: NextFunction) =>
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -147,7 +147,7 @@ const addComment = async (req: Request, res: Response, next: NextFunction) => {
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -172,9 +172,6 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
             }) || [],
         );
         const filteredSkillsWithoutDegree = skillsWithoutDegree.filter(skill => skill !== null);
-        if (progressStatus.lookupName === "Completed" && filteredSkillsWithoutDegree.length > 0) throw new CustomError(errorStudentMessage.SKILL_WITHOUT_DEGREE, 400, "domain");
-        const updatedStudent = await studentService.addProgressStatus(studentId, domainId, progressStatus.lookupName);
-        if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const skills = await Promise.all(student.skills.map(async (skill) => {
             const skillsForDomain = await skillService.getByDomainId(domainId);
             const filteredSkills = skillsForDomain.filter((t) => t._id === skill.skillId);
@@ -184,8 +181,26 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
                 degree: String(skill.degree),
             }));
         }));
+        const activities = await Promise.all(
+            student.activities.map(async (activity) => {
+                const matchedSkill = flattedSkills.find(skill => skill.skillId === activity.skillId);
+                if (matchedSkill) {
+                    return {
+                        activityId: String(activity.activityId),
+                        activityName: activity.activityName,
+                        materialName: activity.materialName,
+                        degree: String(activity.degree),
+                    };
+                };
+                return null;
+            }),
+        );
         const flattedSkills = skills.flat();
-        if (progressStatus.lookupName === "Completed") await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedSkills, 'Completed', true)
+        const filteredActivities = activities.filter(activity => activity !== null);
+        const activitiesWithoutDegree = student.activities?.filter(activity => { return flattedSkills.some(skill => skill.skillId === activity.skillId && !activity.degree) });
+        if (progressStatus.lookupName === "Completed" && (filteredSkillsWithoutDegree.length > 0 || activitiesWithoutDegree.length > 0)) await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedSkills, filteredActivities, 'Completed', true)
+        const updatedStudent = await studentService.addProgressStatus(studentId, domainId, progressStatus.lookupName);
+        if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -197,7 +212,7 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -218,7 +233,7 @@ const addDegreeOfActivity = async (req: Request, res: Response, next: NextFuncti
         const checkTeacherWithStudent = await studentService.isTeacherInClassroom(student.classRoom, teacherId);
         if (!checkTeacherWithStudent) throw new CustomError(errorStudentMessage.STUDENT_AND_TEACHER, 400, "teacher");
         const studentActivityExists = student.activities?.some((activity: any) => activity.activityId === activityId);
-        if (!studentActivityExists) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 400, "activity");
+        if (!studentActivityExists) throw new CustomError(errorActivityMessage.ACTIVITY_NOT_FOUND, 400, "activity");
         let updatedStudent = await studentService.addDegree(studentId, activityId, degreeName.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const matchActivityAtSkill = updatedStudent.activities.filter(activity => activity.skillId === isActivityExisting.skillId);
@@ -237,7 +252,7 @@ const addDegreeOfActivity = async (req: Request, res: Response, next: NextFuncti
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -283,7 +298,7 @@ const getStudent = async (req: Request, res: Response, next: NextFunction) => {
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -335,7 +350,7 @@ const getAllStudents = async (req: Request, res: Response, next: NextFunction) =
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -359,7 +374,7 @@ const getStudentsOfTeacher = async (req: Request, res: Response, next: NextFunct
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -383,7 +398,7 @@ const getStudentsByClassRoom = async (req: Request, res: Response, next: NextFun
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -408,7 +423,7 @@ const getStudentsByParent = async (req: Request, res: Response, next: NextFuncti
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -434,7 +449,7 @@ const updateStudentData = async (req: Request, res: Response, next: NextFunction
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -460,7 +475,7 @@ const deleteStudent = async (req: Request, res: Response, next: NextFunction) =>
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 

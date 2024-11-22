@@ -9,6 +9,7 @@ interface ProgressHistoryModel extends mongoose.Document {
     domainNameId: string;
     domainNameName: string;
     skills: { skillId: string, skillName: string, degree: string }[];
+    activities: { activityId: string, activityName: string, materialName: string, degree: string }[];
     status: string;
     completed: boolean;
 };
@@ -43,6 +44,28 @@ const progressHistorySchema = new mongoose.Schema(
                     required: true,
                 },
                 skillName: {
+                    type: String,
+                    required: true,
+                },
+                degree: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
+        activities: [
+            {
+                _id: false,
+                activityId: {
+                    type: String,
+                    ref: 'Activity',
+                    required: true,
+                },
+                activityName: {
+                    type: String,
+                    required: true,
+                },
+                materialName: {
                     type: String,
                     required: true,
                 },
