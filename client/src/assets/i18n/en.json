@@ -403,7 +403,9 @@
     "actions": "Actions",
     "n/a": "N/A",
     "information": "Domain Information",
-    "edit": "Edit"
+    "edit": "Edit",
+    "group":"Group",
+    "groupRequired":"Group is required"
   },
   "parent": {
     "add": "Add Parent",

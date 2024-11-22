@@ -1,7 +1,7 @@
 export class ConfigConstant {
   static PAGE_SIZE = 10;
   static INIT_PAGE_INDEX = 1;
-  static INIT_PAGE_OFFSET = 0;
+  static INIT_PAGE_OFFSET = 1;
   static NOTIFICATION_LIMIT = 10;
   public static ALL = 'All';
   public static DEFAULT_LANGUAGE = 'en';

@@ -4,6 +4,7 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { DomainService } from '../../services/domain.service';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
+import { Lookup } from '../../../shared/enums/lookup.enum';
 
 @Component({
   selector: 'app-add-domain',
@@ -12,6 +13,7 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 })
 export class AddDomainComponent extends BaseComponent implements OnInit {
   domainForm!: FormGroup;
+  protected Lookup = Lookup
 
   constructor(private fb: FormBuilder, private domainService: DomainService, private router: Router) {
     super()
@@ -20,13 +22,20 @@ export class AddDomainComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.domainForm = this.fb.group({
       domainName: ['', Validators.required],
-      courseTime: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+      courseTime: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      group: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.domainForm.valid) {
-      const newDomain = this.domainForm.value;
+      const formData = this.domainForm.value;
+      const newDomain = {
+        domainName: formData.domainName,
+        courseTime: formData.courseTime,
+        groupId: formData.group.value
+      };
+
       this.load(this.domainService.addDomain(newDomain), { isLoadingTransparent: true }).subscribe(domain => {
         this.router.navigate([RoutesUtil.DomainView.url({ params: { id: domain._id } })])
       })

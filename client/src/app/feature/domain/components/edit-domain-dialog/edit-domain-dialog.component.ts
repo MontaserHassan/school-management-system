@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Domain } from '../../models/domain.model';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { DomainService } from '../../services/domain.service';
+import { Lookup } from '../../../shared/enums/lookup.enum';
+import { group } from 'console';
 
 @Component({
   selector: 'app-edit-domain-dialog',
@@ -12,6 +14,7 @@ import { DomainService } from '../../services/domain.service';
 })
 export class EditDomainDialogComponent extends BaseComponent {
  editDomainForm: FormGroup;
+ protected Lookup = Lookup
 
   constructor(
     private fb: FormBuilder,
@@ -20,9 +23,11 @@ export class EditDomainDialogComponent extends BaseComponent {
     private domainService: DomainService
   ) {
     super();
+
     this.editDomainForm = this.fb.group({
       domainName: [data.domain.domainName || "", [Validators.required]],
       courseTime: [data.domain.courseTime || "", [Validators.required]],
+      group: [data.domain.groupId || "", [Validators.required]]
     });
   }
 
@@ -32,7 +37,8 @@ export class EditDomainDialogComponent extends BaseComponent {
         this.domainService.editDomain({
           domainName: this.editDomainForm.value.domainName,
           courseTime: this.editDomainForm.value.courseTime,
-          domainId: this.data.domain._id || ""
+          domainId: this.data.domain._id || "",
+          groupId: this.editDomainForm.value.group.value
         })
       ).subscribe(res => {
         this.dialogRef.close(res);
