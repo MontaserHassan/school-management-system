@@ -2,6 +2,7 @@ import { Expose, Type } from 'class-transformer';
 import { list } from '../../shared/models/list';
 import { Skill } from '../../class-room/models/skill.model';
 import { Degree } from '../enums/degree.enum';
+import { Activity } from '../../class-room/models/activity.model';
 
 export class Domain {
   @Expose()
@@ -85,6 +86,9 @@ export class Student {
 
   @Expose()
   skills!: Skill[];
+
+  @Expose()
+  activities!: Activity[]
 
   @Expose()
   degree!: Degree;
