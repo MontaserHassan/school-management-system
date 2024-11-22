@@ -1,19 +1,21 @@
-import { stripe } from 'Config/stripe.config';
+import { stripe } from '../Config/index.config';
 
 
 
-export const createCheckoutSession = async (items: { name: string; amount: number; currency: string; quantity: number }[]) => {
+// ----------------------------- create checkout session -----------------------------
+
+
+async function createCheckoutSession(name: string, amount: number, currency: string) {
     try {
-        const lineItems = items.map((item: { name: string; amount: number; currency: string; quantity: number }) => ({
-            price_data: {
-                currency: item.currency,
-                product_data: {
-                    name: item.name,
+        const lineItems = [
+            {
+                price_data: {
+                    currency: currency.toLowerCase(),
+                    product_data: { name: name.toLowerCase(), },
+                    unit_amount: Math.round(Number(amount) * 100),
                 },
-                unit_amount: item.amount,
             },
-            quantity: item.quantity,
-        }));
+        ];
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: lineItems,
@@ -22,8 +24,29 @@ export const createCheckoutSession = async (items: { name: string; amount: numbe
             cancel_url: `${process.env.CANCEL_URL}`,
         });
         if (!session) return false;
-        return session
+        return session;
     } catch (err) {
         throw err;
     };
+};
+
+
+// ----------------------------- retrieve checkout session -----------------------------
+
+
+async function retrieveCheckoutSession(sessionId: string) {
+    try {
+        const session = await stripe.checkout.sessions.retrieve(sessionId);
+        if (!session) return false;
+        return session;
+    } catch (err) {
+        throw err;
+    };
+};
+
+
+
+export default {
+    createCheckoutSession,
+    retrieveCheckoutSession,
 };

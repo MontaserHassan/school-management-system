@@ -95,6 +95,7 @@ const getAllDomain = async (req: Request, res: Response, next: NextFunction) => 
     };
 };
 
+
 // ----------------------------- update domain data -----------------------------
 
 

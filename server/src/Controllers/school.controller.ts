@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import fs from 'fs';
 import path from 'path';
 
-import { lookupService, schoolService, userService } from "../Services/index.service";
+import { lookupService, schoolService, userService, notificationService } from "../Services/index.service";
 import { errorLookupMessage, errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
 import IResponse from '../Interfaces/response.interface';
 import { SubscriptionSchoolModel } from "../Models/school.model";
@@ -85,7 +85,7 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -133,7 +133,32 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
+    };
+};
+
+
+// ----------------------------- verify school -----------------------------
+
+
+const verifySchool = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId, verify } = req.body;
+        const IsSchoolExisting = await schoolService.getSchoolById(schoolId);
+        if (!IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const updatedSchool = await schoolService.updateSchoolData(schoolId, { verify });
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successSchoolMessage.UPDATED,
+            data: {
+                school: updatedSchool,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
     };
 };
 
@@ -179,7 +204,7 @@ const updateSchool = async (req: Request, res: Response, next: NextFunction) => 
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -205,7 +230,7 @@ const deleteSchool = async (req: Request, res: Response, next: NextFunction) => 
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -216,5 +241,6 @@ export default {
     getSchoolData,
     getAllSchools,
     updateSchool,
+    verifySchool,
     deleteSchool,
 };

@@ -15,7 +15,7 @@ const classRoomValidator = {
                     startTime: Joi.string().required().messages({ 'string.empty': 'Start time is required.', }),
                 }))
             })),
-            mainTopics: Joi.array().unique().items(Joi.string().required()).messages({ 'array.empty': 'Main topics is required.', 'array.unique': 'Main topics must be unique.', }),
+            skills: Joi.array().unique().items(Joi.string().required()).messages({ 'array.empty': 'Skills are required.', 'array.unique': 'Skills must be unique.', }),
             studentCost: Joi.number().required().min(1).messages({ 'string.empty': 'Student cost is required.', 'string.pattern.base': 'Student cost must be a number.', }),
             currencyOfCost: Joi.string().required(),
         }),
@@ -40,7 +40,7 @@ const classRoomValidator = {
                     startTime: Joi.string().required().messages({ 'string.empty': 'Start time is required.', }),
                 }))
             })),
-            mainTopics: Joi.array().optional().unique().items(Joi.string().required()).messages({ 'array.empty': 'Main topics is required.', 'array.unique': 'Main topics must be unique.', }),
+            skills: Joi.array().optional().unique().items(Joi.string().required()).messages({ 'array.empty': 'skills are required.', 'array.unique': 'skills must be unique.', }),
             studentCost: Joi.number().optional().min(1).messages({ 'string.empty': 'Student cost is required.', 'string.pattern.base': 'Student cost must be a number.', }),
             currencyOfCost: Joi.string().optional(),
         }),

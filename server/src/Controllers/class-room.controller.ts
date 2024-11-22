@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { ClassRoomModel } from "../Models/class-room.model";
 import { classRoomService, groupService, lookupService, studentService, domainService, skillService, userService } from "../Services/index.service";
-import { errorClassRoomMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
+import { errorClassRoomMessage, errorSkillMessage, errorStudentMessage, successClassRoomMessage } from "../Messages/index.message";
 import { pagination, CSVClassRoom, CustomError } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { addTime } from "../helpers/calculate-endTime.helper";
@@ -35,6 +35,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
             skillId: skill._id,
             skillName: skill.skillName,
         }));
+        const domains = [];
         for (const entry of schedule) {
             const timeRanges = [];
             for (const domain of entry.domains) {
@@ -53,11 +54,12 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
                     };
                 };
                 timeRanges.push({ startTime: domainStartTime, endTime: domainEndTime });
+                domains.push({ domainId: domain.domainId, domainName: domain.domainName, });
             };
         };
         const groupData = await groupService.findGroupById(group);
         const currency = await lookupService.getById(currencyOfCost);
-        const newClassRoom = await classRoomService.createClassRoom(room, groupData.groupName, teachersData, schedule, studentCost, currency.lookupName, skillsData, schoolId);
+        const newClassRoom = await classRoomService.createClassRoom(room, groupData.groupName, teachersData, schedule, studentCost, currency.lookupName, domains, skillsData, schoolId);
         if (!newClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",
@@ -215,7 +217,7 @@ const addStudent = async (req: Request, res: Response, next: NextFunction) => {
 const updateClassRoom = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId } = req.user;
-        const { roomId, room, teachersId, studentCost, currencyOfCost, schedule, group, students } = req.body;
+        const { roomId, room, teachersId, studentCost, currencyOfCost, schedule, group, students, skills } = req.body;
         const classRoomData = await classRoomService.getById(roomId);
         if (!classRoomData || classRoomData.schoolId !== schoolId) throw new CustomError(errorClassRoomMessage.NOT_FOUND_CLASS, 404, "room");
         let updateClassRoom: ClassRoomModel;
@@ -235,6 +237,15 @@ const updateClassRoom = async (req: Request, res: Response, next: NextFunction) 
                 newTeachers.push({ teacherId: teacher._id, teacherName: teacher.userName, });
             };
             if (newTeachers.length > 0) updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { teachers: newTeachers });
+        };
+        if (skills) {
+            const newSkills = [];
+            for (const skill of skills) {
+                const skillData = await skillService.getById(skill);
+                if (!skillData) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 404, "skill");
+                newSkills.push({ skillId: skillData._id, skillName: skillData.skillName });
+            };
+            if (newSkills.length > 0) updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { skills: newSkills });
         };
         if (studentCost) {
             updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { studentCost });

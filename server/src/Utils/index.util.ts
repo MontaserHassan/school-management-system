@@ -6,6 +6,8 @@ import generateCode from './generateCode.util';
 import generateSecretKey from './createSecretKey.util';
 import sendEmail from './send-mail.util';
 
+import stripe from './stripe.util';
+
 import calculateDuration from './calculate-duration.util';
 import calculateSubscriptionDate from './calculate-subscription-date.util';
 import calculateExpirationDate from "./calculateExpirationDate";
@@ -21,6 +23,7 @@ import { CSVSchool } from './CSV-functions/csv-school.util'
 
 
 
+
 export {
     CustomError,
     createToken,
@@ -29,6 +32,8 @@ export {
     generateCode,
     generateSecretKey,
     sendEmail,
+
+    stripe,
 
     calculateDuration,
     calculateSkillDegree,

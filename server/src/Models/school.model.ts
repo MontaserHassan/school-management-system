@@ -14,6 +14,7 @@ interface SubscriptionSchoolModel extends mongoose.Document {
     currencyOfSubscription: string;
     endOfSubscription: Date;
     subscriptionStatus: string;
+    verify: boolean;
 };
 
 
@@ -62,6 +63,10 @@ const subscriptionSchoolSchema = new mongoose.Schema(
             type: String,
             default: 'pending',
             enum: ['pending', 'paid', 'expired'],
+        },
+        verify: {
+            type: Boolean,
+            default: false,
         },
     },
     {

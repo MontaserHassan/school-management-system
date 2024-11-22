@@ -14,6 +14,7 @@ import studentInvoiceService from "./student-invoice.service";
 import ticketService from './ticket.service';
 import groupService from "./group.service";
 import eventService from "./event.service";
+import paymentService from "./payment.service";
 
 
 
@@ -34,4 +35,5 @@ export {
     ticketService,
     groupService,
     eventService,
+    paymentService,
 };

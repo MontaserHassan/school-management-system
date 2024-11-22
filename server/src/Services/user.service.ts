@@ -86,6 +86,15 @@ const getAllUsers = async () => {
 };
 
 
+// ----------------------------- get super admin data -----------------------------
+
+
+const getSuperAdminData = async () => {
+    const user = await User.findOne({ role: 'superAdmin' }).select('-__v');
+    return user;
+};
+
+
 // ----------------------------- get user by email -----------------------------
 
 
@@ -186,6 +195,7 @@ export default {
     getById,
     getByCode,
     getUserByEmail,
+    getSuperAdminData,
     getUserByIdAsTeacher,
     updateUser,
     updateUserPassword,
