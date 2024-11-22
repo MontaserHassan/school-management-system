@@ -7,4 +7,7 @@ export class IDomainPayload {
 
   @Expose()
   courseTime?: string;
+
+  @Expose()
+  groupId?: string;
 }

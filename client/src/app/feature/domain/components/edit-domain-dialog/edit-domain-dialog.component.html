@@ -19,6 +19,14 @@
       </div>
     </div>
 
+    <div class="field d-flex flex-column gap-2">
+      <label for="room" class="form-label">{{ 'domain.group' | translate}}</label>
+      <app-lazy-dropdown [lookup]="Lookup.Groups" formControlName="group" [placeholder]=" 'domain.group' | translate"></app-lazy-dropdown>
+      <small *ngIf="editDomainForm.get('group')?.hasError('required') && editDomainForm.get('group')?.touched" class="p-error">
+        {{ 'addSkillDialog.roomRequiredError' | translate }}
+      </small>
+    </div>
+
     <div class="mat-dialog-actions">
       <button mat-button mat-dialog-close="">{{ 'domain.cancel' | translate }}</button>
       <button mat-button color="primary" [disabled]="editDomainForm.invalid" type="submit">{{ 'domain.save' | translate }}</button>

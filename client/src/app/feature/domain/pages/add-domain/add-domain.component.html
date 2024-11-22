@@ -16,6 +16,15 @@
             class="p-error">{{ 'domain.courseTimeRequired' | translate }}</small>
         </div>
 
+
+        <div class="field d-flex flex-column gap-2">
+          <label for="room" class="form-label">{{ 'domain.group' | translate}}</label>
+          <app-lazy-dropdown [lookup]="Lookup.Groups" formControlName="group" [placeholder]=" 'domain.group' | translate"></app-lazy-dropdown>
+          <small *ngIf="domainForm.get('group')?.hasError('required') && domainForm.get('group')?.touched" class="p-error">
+            {{ 'addSkillDialog.roomRequiredError' | translate }}
+          </small>
+        </div>
+
         <div class="my-3">
           <button pButton type="submit" [label]="'domain.addDomain' | translate" class="p-button-primary"
             [disabled]="domainForm.invalid"></button>
