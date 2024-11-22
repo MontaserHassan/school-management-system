@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, schoolService, studentService, domainService, skillService, userService } from "../Services/index.service";
+import { classRoomService, lookupService, schoolService, studentService, domainService, skillService, userService, groupService } from "../Services/index.service";
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -80,8 +80,8 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             const lookups = await classRoomService.getAllClassRoomLookups(schoolId);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.room } });
         } else if (targetData === 'groups') {
-            const lookups = await lookupService.getByMasterCodeAndParent('2');
-            lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
+            const lookups = await groupService.findAllGroups();
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.groupName } });
         } else if (targetData === 'progress') {
             const lookups = await lookupService.getByMasterCodeAndParent('3');
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.lookupName } });
