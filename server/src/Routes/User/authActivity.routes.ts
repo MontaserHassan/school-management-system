@@ -9,7 +9,7 @@ import activityRouter from './activity/activity.routes';
 const authActivityRouter = express.Router();
 
 
-authActivityRouter.use(checkRole(['teacher',]),);
+authActivityRouter.use(checkRole(['teacher','admin','director']),);
 authActivityRouter.use('/', activityRouter);
 
 

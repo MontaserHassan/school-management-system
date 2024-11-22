@@ -13,5 +13,7 @@ export enum URLSegment {
   Invoice = 'invoice/',
   Ticket  = 'ticket/',
   Group  = 'group/',
+  Skill = 'skill/',
+  Activity = 'activity/',
   Classes  = 'classes/',
 }

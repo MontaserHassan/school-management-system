@@ -1,0 +1,32 @@
+<app-state-section [state]="sectionState">
+  <h2 mat-dialog-title>{{ 'activity.editActivityName' | translate }}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+      <div class="p-field">
+        <label for="activityName">{{ 'activity.activityName' | translate }}</label>
+        <input pInputText id="activityName" formControlName="activityName" class="p-inputtext" />
+        <div *ngIf="activityForm.get('activityName')?.invalid && activityForm.get('activityName')?.touched" class="p-error">
+          <small *ngIf="activityForm.get('activityName')?.errors?.['required']">{{ 'activity.activityNameRequired' | translate
+            }}</small>
+          <small *ngIf="activityForm.get('activityName')?.errors?.['minlength']">{{ 'activity.activityNameMinLength' | translate
+            }}</small>
+        </div>
+      </div>
+
+      <div class="p-field my-2">
+        <label for="materialName">{{ 'activity.materialName' | translate }}</label>
+        <input pInputText id="materialName" formControlName="materialName" class="p-inputtext" />
+        <div *ngIf="activityForm.get('materialName')?.invalid && activityForm.get('materialName')?.touched" class="p-error">
+          <small *ngIf="activityForm.get('materialName')?.errors?.['required']">{{ 'activity.materialNameRequired' | translate
+            }}</small>
+          <small *ngIf="activityForm.get('materialName')?.errors?.['minlength']">{{ 'activity.materialNameMinLength' | translate
+            }}</small>
+        </div>
+      </div>
+      <div class="mat-dialog-actions">
+        <button mat-button mat-dialog-close>{{ 'activity.cancel' | translate }}</button>
+        <button mat-button [disabled]="activityForm.invalid" type="submit">{{ 'activity.update' | translate }}</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</app-state-section>

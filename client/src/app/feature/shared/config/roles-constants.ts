@@ -83,12 +83,22 @@ export class RolesConstants {
   public static VIEW_SKILL = [
     UserRole.Admin,
     UserRole.Director,
-    UserRole.Teacher
   ];
 
   public static ADD_Edit_SKILL = [
     UserRole.Admin,
     UserRole.Director,
+  ]
+
+  //Activity
+  public static VIEW_Activity = [
+    UserRole.Admin,
+    UserRole.Director,
+    UserRole.Teacher
+  ];
+
+  public static ADD_Edit_Activity = [
+    UserRole.Teacher
   ]
 
   //Invoices

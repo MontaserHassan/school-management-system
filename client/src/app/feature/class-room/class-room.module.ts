@@ -12,6 +12,9 @@ import { LeaveStudentDialogComponent } from './component/leave-student-dialog/le
 import { RemoveClassroomDialogComponent } from './component/remove-classroom-dialog/remove-classroom-dialog.component';
 import { ClassRoomFormComponent } from './component/class-room-form/class-room-form.component';
 import { EditClassroomDialogComponent } from './component/edit-classroom-dialog/edit-classroom-dialog.component';
+import { ActivityListComponent } from './pages/activity-list/activity-list.component';
+import { AddActivityDialogComponent } from './component/add-activity-dialog/add-activity-dialog.component';
+import { EditActivityDialogComponent } from './component/edit-activity-dialog/edit-activity-dialog.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { EditClassroomDialogComponent } from './component/edit-classroom-dialog/
     LeaveStudentDialogComponent,
     RemoveClassroomDialogComponent,
     ClassRoomFormComponent,
-    EditClassroomDialogComponent
+    EditClassroomDialogComponent,
+    ActivityListComponent,
+    AddActivityDialogComponent,
+    EditActivityDialogComponent
   ],
   imports: [
     CommonModule, SharedModule, CLassRoomRoutingModule,

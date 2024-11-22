@@ -43,7 +43,7 @@ export class EditClassroomDialogComponent extends BaseComponent implements OnIni
       )),
       studentCost: [this.data.classroom.studentCost, Validators.required],
       currencyOfCost: [this.currency.find(el=> el.label === this.data.classroom.currencyOfCost) || "", Validators.required],
-      group: [this.group.find(el=> el.label === this.data.classroom.group), Validators.required],
+      group: [this.data.classroom.groupId, Validators.required],
       skills: [this.data.classroom.skills?.map(el => ({value:el.skillId, label:el.skillName})) || ''],
     });
   }

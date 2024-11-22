@@ -1,17 +1,21 @@
-<h2 mat-dialog-title>{{ 'skill.editSkillName' | translate }}</h2>
-<mat-dialog-content>
-  <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
-    <div class="p-field">
-      <label for="skillName">{{ 'skill.skillName' | translate }}</label>
-      <input pInputText id="skillName" formControlName="skillName" class="p-inputtext" />
-      <div *ngIf="skillForm.get('skillName')?.invalid && skillForm.get('skillName')?.touched" class="error">
-        <small *ngIf="skillForm.get('skillName')?.errors?.['required']">{{ 'skill.skillNameRequired' | translate }}</small>
-        <small *ngIf="skillForm.get('skillName')?.errors?.['minlength']">{{ 'skill.skillNameMinLength' | translate }}</small>
+<app-state-section [state]="sectionState">
+  <h2 mat-dialog-title>{{ 'skill.editSkillName' | translate }}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+      <div class="p-field">
+        <label for="skillName">{{ 'skill.skillName' | translate }}</label>
+        <input pInputText id="skillName" formControlName="skillName" class="p-inputtext" />
+        <div *ngIf="skillForm.get('skillName')?.invalid && skillForm.get('skillName')?.touched" class="p-error">
+          <small *ngIf="skillForm.get('skillName')?.errors?.['required']">{{ 'skill.skillNameRequired' | translate
+            }}</small>
+          <small *ngIf="skillForm.get('skillName')?.errors?.['minlength']">{{ 'skill.skillNameMinLength' | translate
+            }}</small>
+        </div>
       </div>
-    </div>
-    <div class="mat-dialog-actions">
-      <button mat-button mat-dialog-close>{{ 'skill.cancel' | translate }}</button>
-      <button mat-button [disabled]="skillForm.invalid" type="submit">{{ 'skill.update' | translate }}</button>
-    </div>
-  </form>
-</mat-dialog-content>
+      <div class="mat-dialog-actions">
+        <button mat-button mat-dialog-close>{{ 'skill.cancel' | translate }}</button>
+        <button mat-button [disabled]="skillForm.invalid" type="submit">{{ 'skill.update' | translate }}</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</app-state-section>

@@ -2,6 +2,7 @@ import { Expose, Type } from 'class-transformer';
 import { list } from '../../shared/models/list';
 import { Skill } from './skill.model';
 import { Student } from '../../student/models/student.model';
+import { Activity } from './activity.model';
 
 class Domain {
   @Expose()
@@ -47,10 +48,16 @@ export class ClassRoom {
   group?: string;
 
   @Expose()
+  groupId?: string;
+
+  @Expose()
   teachers?: Teacher[];
 
   @Expose()
   skills?: Skill[];
+
+  @Expose()
+  Activity?: Activity[];
 
   @Expose()
   schedule?: Schedule[];

@@ -118,6 +118,14 @@ export class SideNavComponent extends BaseComponent implements OnInit {
         }
       },
       {
+        label: this.translate('Activity'),
+        icon: 'pi pi-clipboard',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_Activity),
+        command: () => {
+          this.router.navigate([RoutesUtil.ActivityList.url()]);
+        }
+      },
+      {
         label: this.translate('Students'),
         icon: 'pi pi-graduation-cap',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_List_STUDENT),

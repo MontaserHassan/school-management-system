@@ -14,4 +14,5 @@ export enum Lookup {
   Degree ="degree",
   AttendanceStatus = "attendanceStatus",
   AllUsers = 'allUsers',
+  Skill="skill",
 }

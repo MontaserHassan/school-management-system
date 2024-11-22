@@ -126,6 +126,20 @@
     "cancelButton": "Annuler",
     "saveButton": "Sauvegarder"
   },
+  "addActivityDialog": {
+    "title": "Ajouter une nouvelle activité",
+    "roomLabel": "Salle",
+    "roomPlaceholder": "Entrez le nom de la salle",
+    "roomRequiredError": "Le nom de la salle est requis",
+    "domainLabel": "Sujet",
+    "domainPlaceholder": "Entrez le nom du sujet",
+    "domainRequiredError": "Le sujet est requis",
+    "activityLabel": "Nom de l'activité",
+    "activityPlaceholder": "Entrez le nom de l'activité",
+    "activityRequiredError": "Le nom de l'activité est requis",
+    "cancelButton": "Annuler",
+    "saveButton": "Sauvegarder"
+  },
   "classroom": {
     "room": "Salle",
     "enterRoomNumber": "numéro de salle",

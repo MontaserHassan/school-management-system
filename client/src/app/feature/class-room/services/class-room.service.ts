@@ -9,6 +9,7 @@ import { ClassRoom, ClassRoomResponse } from '../models/class-room.model';
 import { Skill, SkillList } from '../models/skill.model';
 import { Student } from '../../student/models/student.model';
 import { downloadFile } from '../../shared/utils/download-file.utils';
+import { Activity, ActivityList } from '../models/activity.model';
 
 @Injectable({
   providedIn: 'root'
@@ -57,15 +58,16 @@ constructor(
     )
   }
 
-  addStudentToClassRoom(body: {students:string[],classRoom:string}):Observable<Student[]> {
-    return this.baseAPI.post(ApiConstant.ADD_STUDENT_TO_CLASS, body).pipe(
-      map((res) => this.mapper.fromJson(Student, res.data.students))
-    )
-  }
-
   editSkill(body: {skillName:string,skillId:string}):Observable<Skill> {
     return this.baseAPI.patch(ApiConstant.EDIT_SKILL, body).pipe(
       map((res) => this.mapper.fromJson(Skill, res.data.skill))
+    )
+  }
+
+
+  addStudentToClassRoom(body: {students:string[],classRoom:string}):Observable<Student[]> {
+    return this.baseAPI.post(ApiConstant.ADD_STUDENT_TO_CLASS, body).pipe(
+      map((res) => this.mapper.fromJson(Student, res.data.students))
     )
   }
 
@@ -78,6 +80,24 @@ constructor(
   removeClassRoom(id:string):Observable<any> {
     return this.baseAPI.delete(ApiConstant.DELETE_CLASS_ROOM_BY_ID.replace('{id}',id)).pipe(
       map((res) => res.data)
+    )
+  }
+
+  addActivity(body: {classRoomId:string,skillId:string ,materialName:string ,activityName:string}):Observable<Activity> {
+    return this.baseAPI.post(ApiConstant.ADD_ACTIVITY, body).pipe(
+      map((res) => this.mapper.fromJson(Activity, res.data.activity))
+    )
+  }
+
+  getActivities(params:{}):Observable<ActivityList> {
+    return this.baseAPI.get(ApiConstant.GET_ACTIVITIES,{params}).pipe(
+      map((res) => this.mapper.fromJson(ActivityList, res.data))
+    )
+  }
+
+  editActivity(body: {classRoomId:string,skillId:string ,materialName:string ,activityName:string, activityId:string}):Observable<Activity> {
+    return this.baseAPI.patch(ApiConstant.EDIT_ACTIVITY, body).pipe(
+      map((res) => this.mapper.fromJson(Activity, res.data.activity))
     )
   }
 }

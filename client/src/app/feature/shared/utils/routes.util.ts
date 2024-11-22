@@ -44,6 +44,7 @@ export class RoutesUtil {
   static ClassRoomList = new RouteConfig('list', RoutesUtil.ClassRoom);
   static AddClassRoom = new RouteConfig('add', RoutesUtil.ClassRoom);
   static SkillsList = new RouteConfig('skill', RoutesUtil.ClassRoom);
+  static ActivityList = new RouteConfig('activity', RoutesUtil.ClassRoom);
 
   //class Student
   static Student = new RouteConfig('student');

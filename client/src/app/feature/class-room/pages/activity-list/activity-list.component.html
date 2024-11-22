@@ -1,0 +1,54 @@
+<div class="activities-list-container">
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between px-3 pt-3">
+        <h2 class="header">Activities List</h2>
+
+        <button *grantAccess="RolesConstants.ADD_Edit_Activity" pButton icon="pi pi-plus"
+          label="Add Activity" [outlined]="true" severity="secondary"
+          (click)="openAddActivityDialog()" type="button"></button>
+      </div>
+    </ng-template>
+
+    <div class="activities-grid row g-4">
+      <div *ngFor="let activity of activities" class="activity-card col-12 col-md-4">
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="activity-header position-relative">
+              <h3>{{ activity.activityName }}</h3>
+
+              <div class="menu" *grantAccess="RolesConstants.ADD_Edit_Activity">
+                <p-menu #menu [model]="activityAction" appendTo="body" [popup]="true">
+                  <ng-template pTemplate="item" let-item>
+                    <div class="p-menuitem-link" (click)="handleClick(item.label, activity)">
+                      <span [class]="item.icon"></span>
+                      <span class="mx-2">{{ item.label }}</span>
+                    </div>
+                  </ng-template>
+                </p-menu>
+                <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="content">
+            <div class="d-flex flex-column">
+              <small><strong>Domain Name:</strong>{{ activity?.domainName }}</small>
+              <small><strong>Skill Name:</strong>{{ activity?.skillName }}</small>
+              <small><strong>Material Name:</strong>{{ activity?.materialName }}</small>
+              <small><strong>Created At :</strong> {{ activity.createdAt | date: 'medium' }}</small>
+              <small><strong>Updated At :</strong> {{ activity.updatedAt | date: 'medium' }}</small>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <!-- Paginator -->
+      <p-paginator [rows]="pageSize" [totalRecords]="totalRowsCount" (onPageChange)="paginate($event)"
+        [rowsPerPageOptions]="rowsPerPageOptions">
+      </p-paginator>
+    </div>
+  </p-card>
+</div>

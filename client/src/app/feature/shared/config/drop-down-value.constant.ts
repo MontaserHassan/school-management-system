@@ -26,19 +26,18 @@ export const Currency = [
 
 export const Group = [
   {
-    value: "SchoolSystem-2-1",
+    value: "gazyNJnWGgSMRkqaRnL0VjNv",
+    label: "2-3"
+  },
+  {
+    value: "ZIOSKyjKMCnjjasfw4Yc0m1Z",
     label: "3-6"
   },
   {
-    value: "SchoolSystem-2-2",
-    label: "6-9"
-  },
-  {
-    value: "SchoolSystem-2-3",
-    label: "9-12"
+    value: "DeQw_ll3eLdebEgQKylWXn0P",
+    label: "6-12"
   }
 ]
-
 export const SubscriptionStatus = [
   {
     value: "SchoolSystem-7-1",

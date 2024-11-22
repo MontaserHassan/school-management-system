@@ -1,0 +1,46 @@
+/* activities-list.component.scss */
+.activities-list-container {
+
+  ::ng-deep .p-card-content {
+    padding: 0;
+  }
+
+  ::ng-deep .p-button.p-button-icon-only.p-button-rounded{
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .activities-grid {
+    .activity-card {
+
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      p-card {
+        border-radius: 10px;
+
+        .activity-header {
+          background-color: #e8ecf5;
+          padding: 15px;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+
+          h3 {
+            font-size: 1.25rem;
+            color: #2e2f7d;
+            margin: 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .menu{
+    position: absolute;
+    top:50%;
+    right: 20px;
+    transform: translate(0, -50%);
+  }
+}

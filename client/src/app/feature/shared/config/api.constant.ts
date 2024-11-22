@@ -32,9 +32,13 @@ export class ApiConstant {
   static ADD_STUDENT_TO_CLASS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Student + 'add-data';
   static DELETE_STUDENT_FROM_CLASS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.classRoom + 'unAssign-student';
 
-  static ADD_SKILL = ApiConstant.URL_BASE + URLSegment.User + 'skill';
-  static EDIT_SKILL = ApiConstant.URL_BASE + URLSegment.User + 'skill';
-  static GET_SKILLS = ApiConstant.URL_BASE + URLSegment.User + 'skill';
+  static ADD_SKILL = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Skill;
+  static EDIT_SKILL = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Skill;;
+  static GET_SKILLS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Skill;;
+
+  static ADD_ACTIVITY = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Activity;
+  static EDIT_ACTIVITY = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Activity;
+  static GET_ACTIVITIES = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Activity;
 
   static ADD_PARENT = ApiConstant.URL_BASE + URLSegment.User + 'add-parent';
   static GET_PARENTS = ApiConstant.URL_BASE + URLSegment.User + 'parents';

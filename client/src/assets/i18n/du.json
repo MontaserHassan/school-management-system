@@ -126,6 +126,20 @@
     "cancelButton": "Abbrechen",
     "saveButton": "Speichern"
   },
+  "addActivityDialog": {
+    "title": "Aktivität hinzufügen",
+    "roomLabel": "Raum",
+    "roomPlaceholder": "Raumnummer eingeben",
+    "roomRequiredError": "Der Raumname ist erforderlich",
+    "domainLabel": "Fach",
+    "domainPlaceholder": "Fachname eingeben",
+    "domainRequiredError": "Das Fach ist erforderlich",
+    "activityLabel": "Aktivität Name",
+    "activityPlaceholder": "Aktivität Namen eingeben",
+    "activityRequiredError": "Die Aktivität ist erforderlich",
+    "cancelButton": "Abbrechen",
+    "saveButton": "Speichern"
+  },
   "classroom": {
     "room": "Raum",
     "enterRoomNumber": "Raumnummer",
