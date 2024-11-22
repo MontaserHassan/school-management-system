@@ -20,9 +20,9 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
         const currentUserRole = req?.user?.role;
         if (role === 'parent') throw new CustomError(`You are not allowed to create a user with the role: ${role} from here`, 403, "role");
         if (!currentUserRole || RoleHierarchy[currentUserRole] <= RoleHierarchy[role]) throw new CustomError(`You do not have permission to create a user with this role: ${role}.`, 403, "role");
-        const isEmailExisting = await userService.getUserByEmail((email).toLowerCase());
+        const isEmailExisting = await userService.getUserByEmail(email.toLowerCase());
         if (isEmailExisting && isEmailExisting.email === email) throw new CustomError(ErrorUserMessage.EMAIL_EXISTS, 406, "email");
-        const newUser = await userService.createUser(userName, (email).toLowerCase(), role, req.user.schoolId, media);
+        const newUser = await userService.createUser(userName.toLowerCase(), email.toLowerCase(), role, req.user.schoolId, media);
         if (!newUser) throw new CustomError(ErrorUserMessage.DOES_NOT_CREATED, 406, "user");
         if (!['superAdmin', 'admin', 'parent'].includes(role)) await schoolService.addEmployee(req.user.schoolId, String(newUser._id));
         const subject = 'New Account';
@@ -175,12 +175,17 @@ const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId, userName, media, email } = req.body;
+        const { userId, userName, media, email, termsAndCondition } = req.body;
+        const isUserExisting = await userService.getById(userId);
+        if (!isUserExisting) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
         if (email) {
-            const user = await userService.getUserByEmail(email);
+            const user = await userService.getUserByEmail(email.toLowerCase());
+            console.log('user: ', user);
             if (user && user.id !== userId) throw new CustomError(ErrorUserMessage.DUPLICATE_EMAIL, 406, "user");
         };
-        const user = await userService.updateUser(userId, { userName, media, email });
+        const newUserName = userName ? userName.toLowerCase() : isUserExisting.userName;
+        const newEmail = email ? email.toLowerCase() : isUserExisting.email;
+        const user = await userService.updateUser(userId, { userName: newUserName, media, email: newEmail, termsAndCondition });
         if (!user) throw new CustomError(ErrorUserMessage.NOT_UPDATED, 404, "user");
         const response: IResponse = {
             type: "info",

@@ -16,7 +16,7 @@ activityRouter.post('/', checkRole(['teacher',]), validation(activityValidator.c
 activityRouter.get('/', ActivityController.getAllActivities);
 activityRouter.get('/:activityId', validation(activityValidator.getActivity), ActivityController.getActivityData);
 
-activityRouter.patch('/', validation(activityValidator.updateActivity), ActivityController.updateActivityData);
+activityRouter.patch('/', checkRole(['teacher',]), validation(activityValidator.updateActivity), ActivityController.updateActivityData);
 
 
 

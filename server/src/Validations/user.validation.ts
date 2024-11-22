@@ -55,6 +55,7 @@ const userValidator = {
             email: Joi.string().optional().trim().email().messages({ 'string.empty': 'Email cannot be an empty string', 'string.email': 'Please enter a valid email', }),
             userName: Joi.string().optional().trim().max(50).empty('').messages({ 'string.empty': 'userName cannot be an empty string', 'string.min': 'userName must be at least 8 characters long', 'string.max': 'userName cannot be longer than 30 characters', }),
             media: Joi.string().optional().empty('').messages({ 'string.empty': 'media cannot be an empty string', }),
+            termsAndCondition: Joi.boolean().optional().messages({ 'any.required': 'Please accept the terms and condition.', 'boolean.base': 'Please accept the terms and condition.', }),
         }),
     },
 };
