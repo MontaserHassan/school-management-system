@@ -785,7 +785,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"teacher 2 BaniSuef language\",\n    \"email\": \"teacher2.banisuef@gmail.com\",\n    \"role\": \"teacher\"\n}",
+							"raw": "{\n    \"userName\": \"parent 2 BaniSuef language\",\n    \"email\": \"parent2.banisuef@gmail.com\",\n    \"role\": \"parent\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -895,7 +895,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -904,7 +904,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"mohamed Barakat\",\n    \"email\": \"Mohamed.Barakat@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Mohamed Moahmed Barakat\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+							"raw": "{\n    \"userName\": \"parent parent\",\n    \"email\": \"parent.parent@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Mohamed Moahmed Barakat\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -988,6 +988,71 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"User created successfully\",\n    \"data\": {\n        \"user\": {\n            \"userName\": \"mohamed Barakat\",\n            \"email\": \"mohamed.barakat@gmail.com\",\n            \"role\": \"parent\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"code\": \"H605694\",\n            \"updatePassword\": false,\n            \"termsAndCondition\": true,\n            \"_id\": \"OD6X9LRaai44GJo9afdha\",\n            \"createdAt\": \"2024-11-17T22:44:13.133Z\",\n            \"updatedAt\": \"2024-11-17T22:44:13.133Z\",\n            \"__v\": 0\n        },\n        \"students\": [\n            {\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"studentName\": \"Mohamed Moahmed Barakat\",\n                \"studentCode\": \"C405685\",\n                \"parentId\": \"OD6X9LRaai44GJo9afdha\",\n                \"_id\": \"KtjoQW2vnpEdco95YNVqPk_I\",\n                \"domains\": [],\n                \"skills\": [],\n                \"attendance\": [],\n                \"comments\": [],\n                \"createdAt\": \"2024-11-17T22:44:13.200Z\",\n                \"updatedAt\": \"2024-11-17T22:44:13.200Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "add parent",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\": \"parent parent\",\n    \"email\": \"parent.parent@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Mohamed Moahmed Barakat\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/add-parent",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"add-parent"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 20:38:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "736"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e0-TOxq/sGVtChInR2qyX1YmgfjxhM\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"User created successfully\",\n    \"data\": {\n        \"user\": {\n            \"userName\": \"parent parent\",\n            \"email\": \"parent.parent@gmail.com\",\n            \"role\": \"parent\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"code\": \"N43766\",\n            \"updatePassword\": false,\n            \"termsAndCondition\": true,\n            \"_id\": \"R2dr5dMlfbWL44MRLMSCe\",\n            \"createdAt\": \"2024-11-22T20:38:35.178Z\",\n            \"updatedAt\": \"2024-11-22T20:38:35.178Z\",\n            \"__v\": 0\n        },\n        \"students\": [\n            {\n                \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n                \"studentName\": \"Mohamed Moahmed Barakat\",\n                \"studentCode\": \"T6336397\",\n                \"parentId\": \"R2dr5dMlfbWL44MRLMSCe\",\n                \"_id\": \"hsVI6ybgpEZ-7HlQ3At4epzL\",\n                \"domains\": [],\n                \"skills\": [],\n                \"activities\": [],\n                \"attendance\": [],\n                \"comments\": [],\n                \"createdAt\": \"2024-11-22T20:38:35.233Z\",\n                \"updatedAt\": \"2024-11-22T20:38:35.233Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -2331,14 +2396,14 @@
 					"response": []
 				},
 				{
-					"name": "get topics",
+					"name": "get skills",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIwMWRjOGRlYjE1MjAyYWM5OTY1YmIxMjQiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjY0MDMwOTUsImV4cCI6MTcyNjQxNzQ5NX0.Q9xX36UYdRI7OxNXuvMthSiZMdqxn9L859nl3NUT1e0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -2346,20 +2411,74 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/lookups/topics",
-							"protocol": "http",
+							"raw": "{{SchoolManagementSystem}}/lookups/skills",
 							"host": [
-								"localhost"
+								"{{SchoolManagementSystem}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
 								"lookups",
-								"topics"
+								"skills"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get skills",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/lookups/skills",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"lookups",
+										"skills"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 20:36:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "411"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19b-qImvHJbvAbFVqSvdSkHQVdpUG6M\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Lookups get successfully\",\n    \"data\": {\n        \"lookups\": [\n            {\n                \"_id\": \"YW6PXyEpvLz01CkOvivtMKOV\",\n                \"value\": \"arithmetic operations\"\n            },\n            {\n                \"_id\": \"HfpDwzqr19-kpNjx5e1QJEcV\",\n                \"value\": \"osmanien period\"\n            },\n            {\n                \"_id\": \"2OFKCoY2KJOZh3N5oF0b6Pe5\",\n                \"value\": \"osmanien period\"\n            },\n            {\n                \"_id\": \"_dCGkvpvklm89cIEd4jTyqhC\",\n                \"value\": \"osmanien period\"\n            },\n            {\n                \"_id\": \"TgY5FfGBDHLKaq-xV-edLLw3\",\n                \"value\": \"osmanien period\"\n            }\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get progress",
