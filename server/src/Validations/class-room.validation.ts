@@ -30,7 +30,7 @@ const classRoomValidator = {
     updateClassRoom: {
         body: Joi.object().keys({
             roomId: Joi.string().required().trim().messages({ 'string.empty': 'Room Id is required.', }),
-            room: Joi.string().required().trim().messages({ 'string.empty': 'Room is required.', }),
+            room: Joi.string().optional().trim().messages({ 'string.empty': 'Room is required.', }),
             group: Joi.string().optional().trim().messages({ 'string.empty': 'Group is required.', }),
             teachersId: Joi.array().unique().optional().items(Joi.string().required()).messages({ 'array.empty': 'Teachers is required.', 'array.unique': 'Teachers must be unique.' }),
             schedule: Joi.array().optional().items(Joi.object().keys({

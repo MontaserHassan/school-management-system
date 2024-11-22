@@ -239,13 +239,20 @@ const updateClassRoom = async (req: Request, res: Response, next: NextFunction) 
             if (newTeachers.length > 0) updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { teachers: newTeachers });
         };
         if (skills) {
+            const existingSkills = classRoomData.skills || [];
             const newSkills = [];
             for (const skill of skills) {
-                const skillData = await skillService.getById(skill);
-                if (!skillData) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 404, "skill");
-                newSkills.push({ skillId: skillData._id, skillName: skillData.skillName });
+                const isSkillExisting = existingSkills.some(existing => existing.skillId.toString() === skill);
+                if (!isSkillExisting) {
+                    const skillData = await skillService.getById(skill);
+                    if (!skillData) throw new CustomError(errorSkillMessage.SKILL_NOT_FOUND, 404, "skill");
+                    newSkills.push({ skillId: skillData._id, skillName: skillData.skillName, });
+                }
             };
-            if (newSkills.length > 0) updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { skills: newSkills });
+            if (newSkills.length > 0) {
+                const updatedSkills = [...existingSkills, ...newSkills];
+                updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { skills: updatedSkills });
+            };
         };
         if (studentCost) {
             updateClassRoom = await classRoomService.updateRoom(classRoomData._id, { studentCost });
