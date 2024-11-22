@@ -54,8 +54,8 @@
             </p-table>
           </p-tabPanel>
 
-          <!-- Main Skills Tab -->
-          <p-tabPanel [header]="'student.mainSkills' | translate">
+          <!-- Skills Tab -->
+          <p-tabPanel [header]="'student.skills' | translate">
             <div class="d-flex justify-content-end">
               <span class="d-flex gap-2">
                 <small><strong>{{ 'student.degrees' | translate }}:</strong></small>
@@ -65,7 +65,7 @@
                 <p-tag severity="warning">{{ 'student.Yellow' | translate }}</p-tag>
               </span>
             </div>
-            <p-table [value]="studentProfile.mainSkills">
+            <p-table [value]="studentProfile.skills">
               <ng-template pTemplate="header">
                 <tr>
                   <th>{{ 'student.skillName' | translate }}</th>

@@ -22,7 +22,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
 
   studentProfile: Student = new Student();
-  mainSkills: Skill[] = [];
+  skills: Skill[] = [];
   displayDialog: boolean = false;
   selectedComment: any = null;
   protected degree = Degree
@@ -89,7 +89,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     this.load(this.studentService.getStudentById(id,params), { isLoadingTransparent: true }).subscribe(res => {
       if (!params?.isExport) {
         this.studentProfile = res;
-        this.mainSkills = this.studentProfile.mainSkills.map((skill: any) => skill?.skillName);
+        this.skills = this.studentProfile.skills.map((skill: any) => skill?.skillName);
       }
     })
   }

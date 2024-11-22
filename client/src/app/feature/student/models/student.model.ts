@@ -84,7 +84,7 @@ export class Student {
   domains!: Domain[];
 
   @Expose()
-  mainSkills!: Skill[];
+  skills!: Skill[];
 
   @Expose()
   degree!: Degree;

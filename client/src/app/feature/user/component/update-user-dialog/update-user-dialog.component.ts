@@ -23,6 +23,7 @@ export class UpdateUserDialogComponent extends BaseComponent {
     this.userNameForm = this.fb.group({
       userName: [data.user.userName || "", [Validators.required, Validators.minLength(3)]],
       email: [data.user.email || "", [Validators.required, Validators.email]],
+      termsAndCondition: data.user?.termsAndCondition
     });
   }
 
@@ -31,7 +32,8 @@ export class UpdateUserDialogComponent extends BaseComponent {
       const payload = {
         userName: this.userNameForm.value.userName,
         email: this.userNameForm.value.email,
-        userId: this.data.user._id || ""
+        userId: this.data.user._id || "",
+        termsAndCondition: Array.isArray(this.userNameForm.value.termsAndCondition) ? this.userNameForm.value.termsAndCondition[0] : this.userNameForm.value.termsAndCondition || false
       };
 
       this.load(this.parentService.updateUser(payload)).subscribe(res => {

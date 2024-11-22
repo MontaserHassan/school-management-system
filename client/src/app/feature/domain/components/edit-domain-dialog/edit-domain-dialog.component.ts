@@ -23,11 +23,11 @@ export class EditDomainDialogComponent extends BaseComponent {
     private domainService: DomainService
   ) {
     super();
+    console.log(data.domain);
 
     this.editDomainForm = this.fb.group({
       domainName: [data.domain.domainName || "", [Validators.required]],
       courseTime: [data.domain.courseTime || "", [Validators.required]],
-      group: [data.domain.groupId || "", [Validators.required]]
     });
   }
 
@@ -38,7 +38,6 @@ export class EditDomainDialogComponent extends BaseComponent {
           domainName: this.editDomainForm.value.domainName,
           courseTime: this.editDomainForm.value.courseTime,
           domainId: this.data.domain._id || "",
-          groupId: this.editDomainForm.value.group.value
         })
       ).subscribe(res => {
         this.dialogRef.close(res);

@@ -80,6 +80,14 @@ export class SideNavComponent extends BaseComponent implements OnInit {
         ]
       },
       {
+        label: this.translate('Groups'),
+        icon: 'pi pi-users',
+        visible: this.userRoleService.isUserHasRoles(RolesConstants.SHOW_GROUP),
+        command: () => {
+          this.router.navigate([RoutesUtil.GroupList.url()]);
+        }
+      },
+      {
         label: this.translate('ClassRooms'),
         icon: 'pi pi-users',
         visible: this.userRoleService.isUserHasRoles(RolesConstants.VIEW_List_CLASS_ROOM),

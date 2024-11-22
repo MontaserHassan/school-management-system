@@ -115,4 +115,10 @@ export class RolesConstants {
   public static SEND_FROM_ADMIN = [
     UserRole.Admin,
   ]
+
+  //Group
+  public static SHOW_GROUP = [
+    UserRole.Admin,
+    UserRole.Director,
+  ]
 }

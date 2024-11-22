@@ -29,6 +29,15 @@
       </div>
     </div>
 
+    <div class="p-field my-3 d-flex gap-2" *ngIf="data.user.role === 'parent'">
+      <p-checkbox
+        formControlName="termsAndCondition"
+        inputId="termsAndCondition"
+        [value]="true"
+      />
+      <label for="termsAndCondition">Accept Terms And Condition</label>
+    </div>
+
     <div class="mat-dialog-actions">
       <button mat-button mat-dialog-close>{{ 'userDialog.cancelButton' | translate }}</button>
       <button mat-button [disabled]="userNameForm.invalid" type="submit">

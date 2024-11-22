@@ -33,7 +33,7 @@ export class IClassDetailsPayload {
   schedule?: Schedule[];
 
   @Expose()
-  mainSkills?: string[];
+  skills?: string[];
 
   @Expose()
   studentCost?: string;

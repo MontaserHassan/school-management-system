@@ -68,4 +68,7 @@ export class ApiConstant {
   static SEND_MESSAGE = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket;
   static GET_TICKETS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket;
   static GET_TICKET_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket + '{id}';
+
+  static GET_GROUPS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Group ;
+  static GET_CLASSES_FOR_GROUP = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Group + URLSegment.Classes + '{id}';
 }

@@ -6,6 +6,7 @@ import { Invoice } from '../../models/invoice.model';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { InvoiceService } from '../../service/invoice.service';
 import { AddInvoiceSchoolDialogComponent } from '../../components/add-invoice-school-dialog/add-invoice-school-dialog.component';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-school-invoice-list',
@@ -14,6 +15,8 @@ import { AddInvoiceSchoolDialogComponent } from '../../components/add-invoice-sc
 })
 export class SchoolInvoiceListComponent extends BaseComponent implements OnInit {
   invoices!: Invoice[]
+
+  protected RolesConstants = RolesConstants;
 
   constructor(private dialog: MatDialog, private invoiceService: InvoiceService) {
     super();

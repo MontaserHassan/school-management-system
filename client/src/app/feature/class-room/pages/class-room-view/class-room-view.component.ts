@@ -20,7 +20,7 @@ import { EditClassroomDialogComponent } from '../../component/edit-classroom-dia
   styleUrls: ['./class-room-view.component.scss']
 })
 export class ClassRoomViewComponent extends BaseComponent implements OnInit {
-  mainSkills: string[] = [];
+  skills: string[] = [];
   classroom: ClassRoom = new ClassRoom();
   id!: string;
   protected RolesConstants = RolesConstants;
@@ -97,7 +97,7 @@ export class ClassRoomViewComponent extends BaseComponent implements OnInit {
     this.load(this.classRoomService.getClassRoomById(id, params), { isLoadingTransparent: true }).subscribe((response) => {
       if (!params?.isExport) {
         this.classroom = response || {};
-        this.mainSkills = this.classroom.mainSkills?.map(skill => skill?.skillName).filter((name): name is string => !!name) || [];
+        this.skills = this.classroom.skills?.map(skill => skill?.skillName).filter((name): name is string => !!name) || [];
       }
     });
   }

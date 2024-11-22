@@ -20,6 +20,18 @@
           'parent.validEmail' | translate }}</small>
       </div>
 
+
+      <div class="field d-flex gap-2">
+        <p-checkbox
+          formControlName="termsAndCondition"
+          inputId="termsAndCondition"
+          [value]="true"
+        />
+        <label for="termsAndCondition">Accept Terms And Condition</label>
+      </div>
+
+
+
       <div formArrayName="students">
         <h3>{{ 'parent.students' | translate }}</h3>
         <div *ngFor="let student of students.controls; let i = index" [formGroupName]="i" class="student-row">

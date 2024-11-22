@@ -26,6 +26,7 @@ export class ParentService {
         studentName: string,
         media: string
       }[]
+      termsAndCondition: boolean
     }
   ): Observable<ParentResponse> {
     return this.baseAPI.post(ApiConstant.ADD_PARENT, body).pipe(
@@ -39,7 +40,7 @@ export class ParentService {
     )
   }
 
-  updateUser(body: { userName: string , userId:string}): Observable<User> {
+  updateUser(body: { userName: string , userId:string , termsAndCondition:boolean  }): Observable<User> {
     return this.baseAPI.patch(ApiConstant.UPDATE_USER, body).pipe(
       map((res) => this.mapper.fromJson(User, res.data))
     )

@@ -20,7 +20,8 @@ export class AddParentComponent extends BaseComponent implements OnInit {
     this.parentForm = this.fb.group({
       userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      students: this.fb.array([this.createStudent()])
+      students: this.fb.array([this.createStudent()]),
+      termsAndCondition:false
     });
   }
 
@@ -62,7 +63,10 @@ export class AddParentComponent extends BaseComponent implements OnInit {
 
   submitForm() {
     if (this.parentForm.valid) {
-      const parentData = this.parentForm.value;
+      const parentData = {
+        ...this.parentForm.value,
+        termsAndCondition: Array.isArray(this.parentForm.value.termsAndCondition) ? this.parentForm.value.termsAndCondition[0] : this.parentForm.value.termsAndCondition || false
+      };
       this.load(this.parentService.addParent(parentData)).subscribe(res => {
         this.router.navigate([RoutesUtil.UserProfile.url({ params: { id: res.user?._id } })]);
       });

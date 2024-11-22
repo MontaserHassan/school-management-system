@@ -50,7 +50,7 @@ export class ClassRoom {
   teachers?: Teacher[];
 
   @Expose()
-  mainSkills?: Skill[];
+  skills?: Skill[];
 
   @Expose()
   schedule?: Schedule[];

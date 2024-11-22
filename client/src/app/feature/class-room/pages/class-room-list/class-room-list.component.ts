@@ -46,19 +46,16 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
           {
             label: this.translate('view'), // Fetching translation for 'view'
             icon: 'pi pi-eye',
-            command: () => this.handleClick(this.translate('view'), null), // Adjusted to handle click
           },
           {
             label: this.translate('editClassroom'), // Fetching translation for 'edit classroom'
             icon: 'pi pi-pencil',
             visible: this.userRoleService.isUserHasRoles(RolesConstants.EDIT_DELETE_CLASS_ROOM),
-            command: () => this.handleClick(this.translate('editClassroom'), null), // Adjusted to handle click
           },
           {
             label: this.translate('removeClassroom'), // Fetching translation for 'remove classroom'
             icon: 'pi pi-trash',
             visible: this.userRoleService.isUserHasRoles(RolesConstants.EDIT_DELETE_CLASS_ROOM),
-            command: () => this.handleClick(this.translate('removeClassroom'), null), // Adjusted to handle click
           }
         ]
       }
@@ -108,6 +105,8 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
         }
       });
     } else if (label === this.classroomActions?.[0]?.items?.[2]?.label) {
+      console.log(classroom?._id);
+
       const dialog = this.matDialog.open(RemoveClassroomDialogComponent, {
         data: { roomId: classroom?._id }
       });

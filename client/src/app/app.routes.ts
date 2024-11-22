@@ -82,6 +82,13 @@ const routes: Routes = [
             (m) => m.SocialModule
           ),
       },
+      {
+        path: RoutesUtil.Group.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/group/group.module').then(
+            (m) => m.GroupModule
+          ),
+      },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
     ]
   },

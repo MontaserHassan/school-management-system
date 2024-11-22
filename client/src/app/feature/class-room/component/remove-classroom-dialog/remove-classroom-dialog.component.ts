@@ -19,6 +19,8 @@ export class RemoveClassroomDialogComponent extends BaseComponent {
   }
 
   confirm(): void {
+    console.log(this.data.roomId);
+
     this.load(
       this.classRoomService.removeClassRoom(this.data.roomId),
       {isLoadingTransparent:true}

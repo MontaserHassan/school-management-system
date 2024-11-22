@@ -1,0 +1,43 @@
+<p-card [header]="'Groups'">
+  <app-state-section [state]="sectionState">
+    <div>
+      <p-table
+        [value]="groups"
+        [paginator]="true"
+        [rows]="pageSize"
+        [totalRecords]="totalRowsCount"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [lazy]="true"
+        (onPage)="paginate($event)"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="groupName">Group Name</th>
+            <th>Classes</th>
+            <th pSortableColumn="createdAt">Created At</th>
+            <th pSortableColumn="updatedAt">Updated At</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-group>
+          <tr>
+            <td>{{ group.groupName }}</td>
+            <td>
+              <p-accordion>
+                <p-accordionTab header="View Classes" (selectedChange)="getClassesForGroup(group)">
+                  <ul *ngIf="group?.classes">
+                    <li *ngFor="let class of group.classes">
+                      <strong>{{ class.room }}</strong>
+                    </li>
+                  </ul>
+                </p-accordionTab>
+              </p-accordion>
+            </td>
+            <td>{{ group.createdAt | date: 'short' }}</td>
+            <td>{{ group.updatedAt | date: 'short' }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </app-state-section>
+</p-card>

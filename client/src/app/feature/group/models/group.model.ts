@@ -2,22 +2,11 @@ import { Expose, Type } from 'class-transformer';
 import { Model } from '../../shared/models/model';
 import { list } from '../../shared/models/list';
 import { Skill } from '../../class-room/models/skill.model';
+import { ClassRoom } from '../../class-room/models/class-room.model';
 
-export class Domain extends Model{
+export class Group extends Model{
   @Expose()
-  domainName?: string;
-
-  @Expose()
-  domainId?: string;
-
-  @Expose()
-  courseTime?: string;
-
-  @Expose()
-  groupId?: string;
-
-  @Expose()
-  typeOfTime?: string;
+  groupName?: string;
 
   @Expose()
   _id?: string;
@@ -29,14 +18,11 @@ export class Domain extends Model{
   updatedAt?: Date;
 
   @Expose()
-  skills?: Skill[]
-
-  @Expose()
-  __v?: number;
+  classes?: ClassRoom[];
 }
 
 
-export class DomainsList extends list {
+export class GroupList extends list {
   @Expose()
-  domains?: Domain[];
+  groups?: Group[];
 }

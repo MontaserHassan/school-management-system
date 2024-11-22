@@ -21,6 +21,7 @@ export class User {
   lastSeen?: Date;
   @Expose() logged?: boolean;
   @Expose() schoolId?: string;
+  @Expose() termsAndCondition?: boolean;
 }
 
 export class AuthResponse extends Model {

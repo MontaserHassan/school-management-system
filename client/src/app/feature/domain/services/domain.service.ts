@@ -35,7 +35,7 @@ export class DomainService {
     )
   }
 
-  editDomain(body: {domainName:string ,courseTime:string, domainId:string ,groupId:string}):Observable<Domain> {
+  editDomain(body: {domainName:string ,courseTime:string, domainId:string}):Observable<Domain> {
     return this.baseAPI.patch(ApiConstant.EDIT_DOMAIN, body).pipe(
       map((res) => this.mapper.fromJson(Domain, res.data.domain))
     )

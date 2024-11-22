@@ -52,6 +52,10 @@
           <i class="pi pi-calendar-edit"></i>
           <p><strong>{{ 'user.updatedAt' | translate }}:</strong> {{ currentUser?.updatedAt | date: 'short' }}</p>
         </div>
+        <div class="p-col-12 p-md-6 detail-item" *ngIf="currentUser?.role ==='parent'">
+          <i class="pi pi-calendar-edit"></i>
+          <p><strong>Accepted Terms And conditions:</strong> {{currentUser?.termsAndCondition || false}}</p>
+        </div>
       </div>
 
       <div *ngIf="students">
