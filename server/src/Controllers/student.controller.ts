@@ -168,10 +168,10 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
             student.skills?.map(async (skill) => {
                 const skillExists = await skillService.getById(String(skill.skillId));
                 if (skillExists.domainId === domainId && !skill.degree) return skillExists;
-                return null;
+                return;
             }) || [],
         );
-        const filteredSkillsWithoutDegree = skillsWithoutDegree.filter(skill => skill !== null);
+        const filteredSkillsWithoutDegree = skillsWithoutDegree.filter(skill => skill !== null && skill !== undefined);
         const skills = await Promise.all(student.skills.map(async (skill) => {
             const skillsForDomain = await skillService.getByDomainId(domainId);
             const filteredSkills = skillsForDomain.filter((t) => t._id === skill.skillId);
@@ -182,6 +182,8 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
             }));
         }));
         const flattedSkills = skills.flat();
+
+        const activitiesWithoutDegree = student.activities?.filter(activity => { return flattedSkills.some(skill => skill.skillId === activity.skillId && !activity.degree) });
         const activities = await Promise.all(
             student.activities.map(async (activity) => {
                 const matchedSkill = flattedSkills.find(skill => skill.skillId === activity.skillId);
@@ -196,9 +198,9 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
                 return null;
             }),
         );
-        const filteredActivities = activities.filter(activity => activity !== null);
-        const activitiesWithoutDegree = student.activities?.filter(activity => { return flattedSkills.some(skill => skill.skillId === activity.skillId && !activity.degree) });
-        if (progressStatus.lookupName === "Completed" && (filteredSkillsWithoutDegree.length > 0 || activitiesWithoutDegree.length > 0)) await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedSkills, filteredActivities, 'Completed', true)
+        const filteredActivities = activities.filter(activity => activity !== null && activity !== undefined);
+        if (progressStatus.lookupName === "Completed" && (filteredSkillsWithoutDegree.length > 0 || activitiesWithoutDegree.length > 0)) throw new CustomError(errorStudentMessage.PROGRESS_HISTORY_DOES_NOT_CREATED, 400, "student");
+        await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedSkills, filteredActivities, 'Completed', true);
         const updatedStudent = await studentService.addProgressStatus(studentId, domainId, progressStatus.lookupName);
         if (!updatedStudent) throw new CustomError(errorStudentMessage.DOES_NOT_UPDATED, 400, "student");
         const response: IResponse = {

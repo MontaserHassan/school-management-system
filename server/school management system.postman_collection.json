@@ -152,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    // \"email\": \"superadmin@gmail.com\", \n    \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    // \"email\": \"teacher1.banisuef@gmail.com\", // teacher\n    // \"email\": \"mohamed.abotrieka@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    // \"email\": \"superadmin@gmail.com\", \n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    \"email\": \"teacher2.banisuef@gmail.com\", // teacher\n    // \"email\": \"mohamed.abotrieka@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -776,7 +776,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImMzYzA2MzU2MmEzZWEyMzRhMzA0Nzk3MSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIyMDM4NzcsImV4cCI6MTczMjI5MDI3N30.vSWyvPfTpczff_BVNxjUfEl9-ubKpfV0O0DxhuSN0B4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -785,7 +785,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"parent 2 BaniSuef language\",\n    \"email\": \"parent2.banisuef@gmail.com\",\n    \"role\": \"parent\"\n}",
+							"raw": "{\n    \"userName\": \"director 2 BaniSuef language\",\n    \"email\": \"director2.banisuef@gmail.com\",\n    \"role\": \"director\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -904,7 +904,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"parent parent\",\n    \"email\": \"parent.parent@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"Mohamed Moahmed Barakat\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
+							"raw": "{\n    \"userName\": \"montaser mohamed\",\n    \"email\": \"montaser.hassan.bns23@gmail.com\",\n    \"termsAndCondition\": true,\n    \"students\": [\n        {\n            \"studentName\": \"amr Montaser Moahmed\"\n            // \"media\": \"\"\n        }\n    ]\n    //\"schoolId\": \"HQiPO_ovyNWpxm8lSHZPxUU8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1079,7 +1079,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -1088,7 +1088,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"UaW_0owVXzBmjhpM-FWvW\",\n    \"userName\": \"montaser admin BaniSuef language\"\n}",
+							"raw": "{\n    \"userId\": \"1gzRc8p2VnD4PQ_l4j6E5\",\n    // \"termsAndCondition\": true\n    \"userName\": \"mohamed AboTrieka\"\n}\n// \"mohamed AboTrieka\"",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1250,7 +1250,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"mohamed.abotrieka@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"teacher2.banisuef@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1608,7 +1608,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFCamRCVjRBVGdIZWNpdHhTMHdyZCIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiIzNDFhZjQ2YmRmNGU5YmE4ZThjYTgxNjAiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJCODUwODAyMSIsImlhdCI6MTcyNzY1NjQ3MSwiZXhwIjoxNzI3NzQyODcxfQ.h3zSgG0u1rFcxdIvhoOogtTqWIXKdgLF63kE_sf5oxQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkZNVnc3WlZmLW9WajhiQWJkYWNEYyIsImVtYWlsIjoidGVhY2hlcjIuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiI5ZmE5NmU5NjI2YWRmNDE3N2M2OWQwMTUiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJMNjkwNSIsImlhdCI6MTczMjMyMTExMiwiZXhwIjoxNzMyNDA3NTExfQ.V3OGtgRxW0P4Dkb9LGREUVt7h0yjtMCJHYCGiLqpaSw",
 									"type": "string"
 								}
 							]
@@ -1617,7 +1617,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"studentId\": \"WGmQDz55J0qFvC5jN6ut9Vqn\",\n    \"subjectId\": \"FMlb3cHQ2vnDZ3AgzNXiuZnT\",\n    \"status\": \"SchoolSystem-3-3\"\n}",
+							"raw": "{\n    \"studentId\": \"yv2hhRPO3DJ0JQ_uSKl2QiNE\",\n    \"domainId\": \"UZhGloQHVnnVQQjGcbZO9fxV\",\n    \"status\": \"SchoolSystem-3-3\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1625,9 +1625,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagement}}/user/student/progress-status",
+							"raw": "{{SchoolManagementSystem}}/user/student/progress-status",
 							"host": [
-								"{{SchoolManagement}}"
+								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
@@ -1636,7 +1636,74 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add progress history",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": \"yv2hhRPO3DJ0JQ_uSKl2QiNE\",\n    \"domainId\": \"UZhGloQHVnnVQQjGcbZO9fxV\",\n    \"status\": \"SchoolSystem-3-3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/student/progress-status",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"student",
+										"progress-status"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 23 Nov 2024 01:20:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ee-dheNn1OlQzzbTtajeXHWMS01nH8\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"error\",\n    \"url\": \"/api/user/student/progress-status\",\n    \"timestamp\": \"2024-11-23T01:20:42.680Z\",\n    \"path\": \"student\",\n    \"responseCode\": 400,\n    \"responseMessage\": \"Progress history does not created, because some skills or activities have no degree.\"\n}"
+						}
+					]
 				},
 				{
 					"name": "add attendance",
@@ -1685,7 +1752,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlROV0NJNHJlQXIxMVB5bk9NclMxNSIsImVtYWlsIjoidGVhY2hlcjEuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiI2OGQ5NGEwNWQxMmI4ZGJhMjE5MDYxNGQiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJWODMzMjk1NSIsImlhdCI6MTczMjEyNTc4NywiZXhwIjoxNzMyMjEyMTg3fQ.uA82DOR7zRFQHazofLsMLVDsDLsP4-HlYPyQy1mdAhE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkZNVnc3WlZmLW9WajhiQWJkYWNEYyIsImVtYWlsIjoidGVhY2hlcjIuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiI5ZmE5NmU5NjI2YWRmNDE3N2M2OWQwMTUiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJMNjkwNSIsImlhdCI6MTczMjMyMTExMiwiZXhwIjoxNzMyNDA3NTExfQ.V3OGtgRxW0P4Dkb9LGREUVt7h0yjtMCJHYCGiLqpaSw",
 									"type": "string"
 								}
 							]
@@ -1694,7 +1761,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"studentId\": \"Zifinvz6JAP6Zwz8kmpKC3j2\",\n    \"activityId\": \"yDeZLkknTeJrm8-HGIaU1P5b\",\n    \"degree\": \"SchoolSystem-4-1\"\n}",
+							"raw": "{\n    \"studentId\": \"yv2hhRPO3DJ0JQ_uSKl2QiNE\",\n    \"activityId\": \"V75krp1fs3A3DGvF9rUEuL56\",\n    \"degree\": \"SchoolSystem-4-2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1828,7 +1895,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImMzYzA2MzU2MmEzZWEyMzRhMzA0Nzk3MSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIyMDM4NzcsImV4cCI6MTczMjI5MDI3N30.vSWyvPfTpczff_BVNxjUfEl9-ubKpfV0O0DxhuSN0B4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -1837,7 +1904,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"classRoom\": \"100\",\n    \"students\": [\n        {\n            \"studentId\": \"Zifinvz6JAP6Zwz8kmpKC3j2\"\n        }\n    ]\n}",
+							"raw": "{\n    \"classRoom\": \"222\",\n    \"students\": [\n        {\n            \"studentId\": \"yv2hhRPO3DJ0JQ_uSKl2QiNE\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1936,7 +2003,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imt0dHlEUjFHejNBSG90eUE4dHZ0bSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwic2Nob29sSWQiOiJIUWlQT19vdnlOV3B4bThsU0haUHhVVTgiLCJzZWNyZXRLZXkiOiJhZjMxYzM2OTU4ZjhmNjQ3OWQ1NGY1YzgiLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDI3MDY3NTkiLCJpYXQiOjE3MjgyMTk0MDUsImV4cCI6MTcyODMwNTgwNX0.I6f_jpDNVcNq8b19W5N4Zd4YKyNGcPmUpAnDlnhfkSk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlROV0NJNHJlQXIxMVB5bk9NclMxNSIsImVtYWlsIjoidGVhY2hlcjEuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiJhOTllZGMzMzUzMzFhZWFiZTZlNzU1MTgiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJWODMzMjk1NSIsImlhdCI6MTczMjMxMTQxNCwiZXhwIjoxNzMyMzk3ODE0fQ.6CJKDVHGY3LBglpOq4xUyELrczutKL6S4-CoU85AyJM",
 									"type": "string"
 								}
 							]
@@ -1953,14 +2020,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/student/eRtxL3QXBzdaDlxHlhdNPfGj?isExport=true",
+							"raw": "{{SchoolManagementSystem}}/user/student/hsVI6ybgpEZ-7HlQ3At4epzL?isExport=true",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"student",
-								"eRtxL3QXBzdaDlxHlhdNPfGj"
+								"hsVI6ybgpEZ-7HlQ3At4epzL"
 							],
 							"query": [
 								{
@@ -1983,7 +2050,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IloxVVh4ejdvV1l2QnB5MmU3cHFQUSIsImVtYWlsIjoicGFyZW50NEBnbWFpbC5jb20iLCJzY2hvb2xJZCI6IkhRaVBPX292eU5XcHhtOGxTSFpQeFVVOCIsInNlY3JldEtleSI6IjVhZjNjN2VkODU1MDU0MDMwMjZmZjkxMCIsInJvbGUiOiJwYXJlbnQiLCJjb2RlIjoiRDcwNTE3ODgiLCJpYXQiOjE3Mjc0NDc3MDQsImV4cCI6MTcyNzUzNDEwNH0.e8XT7tkI4xD29K9_gKVIQTT8QNigHcYJoA4C3iVfl4A",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkZNVnc3WlZmLW9WajhiQWJkYWNEYyIsImVtYWlsIjoidGVhY2hlcjIuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiI5ZmE5NmU5NjI2YWRmNDE3N2M2OWQwMTUiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJMNjkwNSIsImlhdCI6MTczMjMyMTExMiwiZXhwIjoxNzMyNDA3NTExfQ.V3OGtgRxW0P4Dkb9LGREUVt7h0yjtMCJHYCGiLqpaSw",
 									"type": "string"
 								}
 							]
@@ -2000,7 +2067,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/student/progress-history/eRtxL3QXBzdaDlxHlhdNPfGj\\",
+							"raw": "{{SchoolManagementSystem}}/user/student/progress-history/yv2hhRPO3DJ0JQ_uSKl2QiNE",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
@@ -2008,8 +2075,7 @@
 								"user",
 								"student",
 								"progress-history",
-								"eRtxL3QXBzdaDlxHlhdNPfGj",
-								""
+								"yv2hhRPO3DJ0JQ_uSKl2QiNE"
 							]
 						}
 					},
@@ -2680,7 +2746,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImMzYzA2MzU2MmEzZWEyMzRhMzA0Nzk3MSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIyMDM4NzcsImV4cCI6MTczMjI5MDI3N30.vSWyvPfTpczff_BVNxjUfEl9-ubKpfV0O0DxhuSN0B4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -2689,7 +2755,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"101\",\n    \"teachersId\": [\n        \"FMVw7ZVf-oVj8bAbdacDc\"\n    ],\n    \"schedule\": [\n        {\n            \"day\": \"Tuesday\",\n            \"domains\": [\n                {\n                    \"domainId\": \"RclZks9au-qnnMhkoYi7UVN9\",\n                    \"startTime\": \"09:30\"\n                }\n            ]\n        }\n    ],\n    \"skills\": [\n        \"YW6PXyEpvLz01CkOvivtMKOV\"\n    ],\n    \"studentCost\": \"2100\",\n    \"currencyOfCost\": \"SchoolSystem-6-1\",\n    \"group\": \"ZIOSKyjKMCnjjasfw4Yc0m1Z\"\n}",
+							"raw": "{\n    \"room\": \"123\",\n    \"teachersId\": [\n        \"FMVw7ZVf-oVj8bAbdacDc\"\n    ],\n    \"schedule\": [\n        {\n            \"day\": \"Monday\",\n            \"domains\": [\n                {\n                    \"domainId\": \"UZhGloQHVnnVQQjGcbZO9fxV\",\n                    \"startTime\": \"12:30\"\n                }\n            ]\n        }\n    ],\n    // \"skills\": [],\n    \"studentCost\": \"3000\",\n    \"currencyOfCost\": \"SchoolSystem-6-1\",\n    \"group\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3166,7 +3232,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImMzYzA2MzU2MmEzZWEyMzRhMzA0Nzk3MSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIyMDM4NzcsImV4cCI6MTczMjI5MDI3N30.vSWyvPfTpczff_BVNxjUfEl9-ubKpfV0O0DxhuSN0B4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -3175,7 +3241,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"domainName\": \"football\",\n    \"courseTime\": \"210\",\n    \"groupId\": \"gazyNJnWGgSMRkqaRnL0VjNv\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n    // \"groupId\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
+							"raw": "{\n    \"domainName\": \"games\",\n    \"courseTime\": \"120\",\n    // \"groupId\": \"gazyNJnWGgSMRkqaRnL0VjNv\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n    \"groupId\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3565,7 +3631,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImMzYzA2MzU2MmEzZWEyMzRhMzA0Nzk3MSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIyMDM4NzcsImV4cCI6MTczMjI5MDI3N30.vSWyvPfTpczff_BVNxjUfEl9-ubKpfV0O0DxhuSN0B4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
 									"type": "string"
 								}
 							]
@@ -3574,7 +3640,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"100\",\n    \"skillName\": \"Osmanien period\",\n    \"domainId\": \"2oI41ujfXNRbO7G5x0xZ6DHl\"\n}",
+							"raw": "{\n    \"room\": \"222\",\n    \"skillName\": \"basketball\",\n    \"domainId\": \"UZhGloQHVnnVQQjGcbZO9fxV\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3972,7 +4038,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlROV0NJNHJlQXIxMVB5bk9NclMxNSIsImVtYWlsIjoidGVhY2hlcjEuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiI2OGQ5NGEwNWQxMmI4ZGJhMjE5MDYxNGQiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJWODMzMjk1NSIsImlhdCI6MTczMjEyNTc4NywiZXhwIjoxNzMyMjEyMTg3fQ.uA82DOR7zRFQHazofLsMLVDsDLsP4-HlYPyQy1mdAhE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkZNVnc3WlZmLW9WajhiQWJkYWNEYyIsImVtYWlsIjoidGVhY2hlcjIuYmFuaXN1ZWZAZ21haWwuY29tIiwic2Nob29sSWQiOiJfQmFWbDlNN0htV0FDUGxnMnRUMU1xRHQiLCJzZWNyZXRLZXkiOiI5ZmE5NmU5NjI2YWRmNDE3N2M2OWQwMTUiLCJyb2xlIjoidGVhY2hlciIsImNvZGUiOiJMNjkwNSIsImlhdCI6MTczMjMyMTExMiwiZXhwIjoxNzMyNDA3NTExfQ.V3OGtgRxW0P4Dkb9LGREUVt7h0yjtMCJHYCGiLqpaSw",
 									"type": "string"
 								}
 							]
@@ -3981,7 +4047,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"room\": \"100\",\n    \"skillId\": \"TgY5FfGBDHLKaq-xV-edLLw3\",\n    \"materialName\": \"new material\",\n    \"activityName\": \"new activity\"\n}",
+							"raw": "{\n    \"room\": \"222\",\n    \"skillId\": \"giFMqAP-O-R6B2qFfXbpEKbk\",\n    \"materialName\": \"football\",\n    \"activityName\": \"football\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

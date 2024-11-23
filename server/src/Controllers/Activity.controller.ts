@@ -27,7 +27,7 @@ const createActivity = async (req: Request, res: Response, next: NextFunction) =
         if (!newActivity) throw new CustomError(errorActivityMessage.DOES_NOT_CREATED, 400, "none");
         const addActivityToRoom = await classRoomService.addActivity(room, { activityId: newActivity._id, activityName: newActivity.activityName, materialName: newActivity.materialName });
         if (!addActivityToRoom) throw new CustomError(errorClassRoomMessage.SKILLS_NOT_ADDED, 400, "none");
-        await Promise.all(addActivityToRoom.students.map(async (student) => { return await studentService.addActivity(student.studentId, isSkillExisting._id, newActivity._id, newActivity.skillName, newActivity.materialName,) }));
+        await Promise.all(addActivityToRoom.students.map(async (student) => { return await studentService.addActivity(student.studentId, isSkillExisting._id, newActivity._id, newActivity.activityName, newActivity.materialName,) }));
         await skillService.addNewActivity(skillId, newActivity._id, newActivity.activityName, newActivity.materialName);
         const response: IResponse = {
             type: "info",
