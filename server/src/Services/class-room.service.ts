@@ -5,9 +5,10 @@ import { ClassRoom, ClassRoomModel } from "../Models/class-room.model";
 // ----------------------------- create room -----------------------------
 
 
-const createClassRoom = async (room: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, currencyOfCost: string, domains: { domainId: string, domainName: string }[], skills: { skillId: string, skillName: string }[], schoolId: string) => {
+const createClassRoom = async (room: string, groupId: string, group: string, teachers: { teacherId: string, teacherName: string }[], schedule: any[], studentCost: string, currencyOfCost: string, domains: { domainId: string, domainName: string }[], skills: { skillId: string, skillName: string }[], schoolId: string) => {
     const newClassRoom: ClassRoomModel = new ClassRoom({
         room: room,
+        groupId: groupId,
         group: group,
         teachers: teachers,
         schedule: schedule,

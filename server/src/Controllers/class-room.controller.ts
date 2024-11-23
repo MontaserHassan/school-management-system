@@ -59,7 +59,7 @@ const createClassRoom = async (req: Request, res: Response, next: NextFunction) 
         };
         const groupData = await groupService.findGroupById(group);
         const currency = await lookupService.getById(currencyOfCost);
-        const newClassRoom = await classRoomService.createClassRoom(room, groupData.groupName, teachersData, schedule, studentCost, currency.lookupName, domains, skillsData, schoolId);
+        const newClassRoom = await classRoomService.createClassRoom(room, groupData._id, groupData.groupName, teachersData, schedule, studentCost, currency.lookupName, domains, skillsData, schoolId);
         if (!newClassRoom) throw new CustomError(errorClassRoomMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",

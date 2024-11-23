@@ -2,6 +2,8 @@ import express from 'express';
 
 import getUser from '../../Middlewares/auth.middleware';
 import isSchoolSubscription from '../../Middlewares/school.middleware';
+import isSchoolVerified from '../../Middlewares/verify-school.middleware';
+
 import authRouter from './auth.routes';
 import authUserRouter from './authUser.routes';
 import authDomainRouter from './authDomain.routes';
@@ -24,6 +26,8 @@ const user = express.Router();
 user.use('/auth', authRouter);
 user.use(getUser());
 user.use(isSchoolSubscription());
+// user.use('/verify-school',);
+// user.use(isSchoolVerified());
 user.use('/', authUserRouter);
 user.use('/class-room', authClassRoomRouter);
 user.use('/domain', authDomainRouter);

@@ -181,6 +181,7 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
                 degree: String(skill.degree),
             }));
         }));
+        const flattedSkills = skills.flat();
         const activities = await Promise.all(
             student.activities.map(async (activity) => {
                 const matchedSkill = flattedSkills.find(skill => skill.skillId === activity.skillId);
@@ -195,7 +196,6 @@ const addProgressStatus = async (req: Request, res: Response, next: NextFunction
                 return null;
             }),
         );
-        const flattedSkills = skills.flat();
         const filteredActivities = activities.filter(activity => activity !== null);
         const activitiesWithoutDegree = student.activities?.filter(activity => { return flattedSkills.some(skill => skill.skillId === activity.skillId && !activity.degree) });
         if (progressStatus.lookupName === "Completed" && (filteredSkillsWithoutDegree.length > 0 || activitiesWithoutDegree.length > 0)) await progressHistoryService.createNewProgressHistory(studentId, domainId, domainExists.domainName, flattedSkills, filteredActivities, 'Completed', true)

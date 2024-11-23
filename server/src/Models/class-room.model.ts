@@ -18,6 +18,7 @@ interface Schedule {
 interface ClassRoomModel extends mongoose.Document {
     _id: string;
     room: string;
+    groupId: string;
     group: string;
     schoolId: string;
     teachers: { teacherId: string, teacherName: string }[];
@@ -48,10 +49,14 @@ const classRoomSchema = new mongoose.Schema(
             minlength: 3,
             maxlength: 3,
         },
+        groupId: {
+            type: String,
+            ref: 'Group',
+            required: false,
+        },
         group: {
             type: String,
             required: true,
-            enum: ['2-3', '3-6', '9-12']
         },
         teachers: [
             {
