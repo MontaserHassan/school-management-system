@@ -78,11 +78,44 @@
                   <td>
                     <div class="d-flex gap-2 align-items-center">
                       <p-tag [severity]="setDegreeColor(skill?.degree || 'secondary')">{{ skill.degree || ('student.notCompleted' | translate) }}</p-tag>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-tabPanel>
+
+          <!-- Skills Tab -->
+          <p-tabPanel [header]="'student.activities' | translate">
+            <div class="d-flex justify-content-end">
+              <span class="d-flex gap-2">
+                <small><strong>{{ 'student.degrees' | translate }}:</strong></small>
+                <p-tag severity="secondary">{{ 'student.notCompleted' | translate }}</p-tag>
+                <p-tag> {{ 'student.Blue' | translate }}</p-tag>
+                <p-tag severity="success">{{ 'student.Green' | translate }}</p-tag>
+                <p-tag severity="warning">{{ 'student.Yellow' | translate }}</p-tag>
+              </span>
+            </div>
+            <p-table [value]="studentProfile.activities">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>{{ 'student.activityName' | translate }}</th>
+                  <th>{{ 'student.materialName' | translate }}</th>
+                  <th>{{ 'student.degree' | translate }}</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-activity>
+                <tr>
+                  <td><p-chip class="mx-1" [label]="activity.activityName"></p-chip></td>
+                  <td><p-chip class="mx-1" [label]="activity.materialName"></p-chip></td>
+                  <td>
+                    <div class="d-flex gap-2 align-items-center">
+                      <p-tag [severity]="setDegreeColor(activity?.degree || 'secondary')">{{ activity.degree || ('student.notCompleted' | translate) }}</p-tag>
                       <p-speedDial *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [model]="degreeOption" direction="right" appendTo="body"
                         transitionDelay="80" size="small" showIcon="pi pi-ellipsis-v" hideIcon="pi pi-times" buttonClassName="p-button-outlined"
                         class="custom-speeddial">
                         <ng-template let-item pTemplate="item">
-                          <div class="p-speeddial-action cursor-pointer" (click)="updateDegree(item.label,skill)">
+                          <div class="p-speeddial-action cursor-pointer" (click)="updateDegree(item.label,activity)">
                             <i class="p-element " [class]="item.icon"></i>
                           </div>
                         </ng-template>

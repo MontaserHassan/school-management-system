@@ -13,6 +13,7 @@ import { AddStudentToClassRoomDialogComponent } from '../../../shared/component/
 import { EditStudentDialogComponent } from '../../component/edit-student-dialog/edit-student-dialog.component';
 import { RolesConstants } from '../../../shared/config/roles-constants';
 import { DegreeStatus } from '../../../shared/config/drop-down-value.constant';
+import { Activity } from '../../../class-room/models/activity.model';
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
@@ -22,7 +23,6 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
 
   studentProfile: Student = new Student();
-  skills: Skill[] = [];
   displayDialog: boolean = false;
   selectedComment: any = null;
   protected degree = Degree
@@ -46,7 +46,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
 
 
   onTabChange(event: any) {
-    if (event.index === 2) {
+    if (event.index === 3) {
       this.attendanceCalendar.showCalendar();
     } else {
       this.attendanceCalendar.hideCalendar();
@@ -89,17 +89,16 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     this.load(this.studentService.getStudentById(id,params), { isLoadingTransparent: true }).subscribe(res => {
       if (!params?.isExport) {
         this.studentProfile = res;
-        this.skills = this.studentProfile.skills.map((skill: any) => skill?.skillName);
       }
     })
   }
 
-  updateDegree(id: string, skill:Skill) {
-    const skillId = skill.skillId || '';
+  updateDegree(id: string, activity:Activity) {
+    const activityId = activity.activityId|| '';
     const studentId = this.studentProfile._id;
     const payload = {
       studentId,
-      skillId,
+      activityId,
       degree: id
     }
     this.load(this.studentService.updateStudentDegree(payload), { isLoadingTransparent: true }).subscribe(res => {
