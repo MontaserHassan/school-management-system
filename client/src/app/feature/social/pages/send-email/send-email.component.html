@@ -29,18 +29,18 @@
         </small>
       </div>
 
-      <!-- Domain -->
+      <!-- Subject -->
       <div class="field">
-        <label for="domain">{{ 'email.domain' | translate }}</label> <!-- Use wrapped translation key -->
+        <label for="subject">{{ 'email.subject' | translate }}</label> <!-- Use wrapped translation key -->
         <input
-          id="domain"
+          id="subject"
           pInputText
-          formControlName="domain"
+          formControlName="subject"
           class="p-inputtext p-component"
-          [placeholder]="'email.emailDomain' | translate"
+          [placeholder]="'email.emailSubject' | translate"
         />
-        <small *ngIf="emailForm.get('domain')?.hasError('required') && emailForm.get('domain')?.touched" class="p-error">
-          {{ 'email.domainRequired' | translate }} <!-- Use wrapped translation key -->
+        <small *ngIf="emailForm.get('subject')?.hasError('required') && emailForm.get('subject')?.touched" class="p-error">
+          {{ 'email.subjectRequired' | translate }} <!-- Use wrapped translation key -->
         </small>
       </div>
 

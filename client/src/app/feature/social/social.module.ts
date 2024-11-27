@@ -7,6 +7,7 @@ import { TicketComponent } from './pages/ticket/ticket.component';
 import { TicketsListComponent } from './components/tickets-list/tickets-list.component';
 import { TicketBoxComponent } from './components/ticket-box/ticket-box.component';
 import { EventsComponent } from './pages/events/events.component';
+import { AddEventComponent } from './components/add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { EventsComponent } from './pages/events/events.component';
     TicketComponent,
     TicketsListComponent,
     TicketBoxComponent,
-    EventsComponent
+    EventsComponent,
+    AddEventComponent
   ],
   imports: [
     CommonModule, SharedModule, SocialRoutingModule,

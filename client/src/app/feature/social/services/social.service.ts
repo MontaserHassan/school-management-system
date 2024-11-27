@@ -17,7 +17,7 @@ export class SocialService {
 
   sendEmail(body:{
     receiverIds: string[],
-    domain: string,
+    subject: string,
     content: string,
   }): Observable<any> {
     return this.baseAPI.post(ApiConstant.SEND_EMAIL, body).pipe(

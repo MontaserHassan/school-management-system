@@ -4,9 +4,9 @@
       <div class="d-flex justify-content-between px-3 pt-3">
         <h2 class="header">{{ 'skill.skillsList' | translate }}</h2>
 
-        <button *grantAccess="RolesConstants.ADD_Edit_SKILL" pButton icon="pi pi-plus"
-          label="{{ 'skill.addSkill' | translate }}" [outlined]="true" severity="secondary"
-          (click)="openAddSkillDialog()" type="button"></button>
+        <p-button *grantAccess="RolesConstants.ADD_Edit_SKILL" severity="success" icon="pi pi-plus"
+          label="{{ 'skill.addSkill' | translate }}"
+          (click)="openAddSkillDialog()"></p-button>
       </div>
     </ng-template>
 

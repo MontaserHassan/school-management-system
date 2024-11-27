@@ -1,0 +1,101 @@
+<app-state-section [state]="sectionState">
+  <h1 mat-dialog-title>{{ 'addActivityDialog.title' | translate }}</h1>
+
+  <div mat-dialog-content>
+
+    <form [formGroup]="addEventForm">
+        <!-- Members -->
+        <div class="d-flex flex-wrap gap-3 field mb-2">
+          <div class="d-flex align-items-center gap-2" *ngFor="let role of roles">
+            <p-radioButton
+              name="role"
+              [value]="role"
+              inputId="{{ role }}"
+              formControlName="role"
+            />
+            <label for="{{ role }}">{{role}}</label>
+          </div>
+        </div>
+
+        <div class="field mb-2">
+          <label for="receivers">Members</label> <!-- Use wrapped translation key -->
+          <app-lazy-dropdown
+            for="receivers"
+            [multiply]="true"
+            [lookup]="Lookup.Users"
+            [lookUpExtraParams]="lookUpExtraParams"
+            formControlName="membersId"
+            [placeholder]="'Members'"
+          ></app-lazy-dropdown>
+          <small *ngIf="addEventForm.get('membersId')?.hasError('required') && addEventForm.get('membersId')?.touched" class="p-error">
+            Members Is Required
+          </small>
+        </div>
+
+
+      <!-- Event Name -->
+      <div class="field mb-2">
+        <label for="eventName">Event Name</label>
+        <input
+          id="eventName"
+          type="text"
+          pInputText
+          formControlName="eventName"
+          placeholder="Enter event name"
+          class="w-100"
+        />
+        <small
+          *ngIf="addEventForm.get('eventName')?.invalid && addEventForm.get('eventName')?.touched"
+          class="p-error"
+        >
+          Event name is required.
+        </small>
+      </div>
+
+      <!-- Description -->
+      <div class="field mb-2">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          rows="4"
+          pInputTextarea
+          formControlName="description"
+          placeholder="Enter event description"
+          class="w-100"
+        ></textarea>
+        <small
+          *ngIf="addEventForm.get('description')?.invalid && addEventForm.get('description')?.touched"
+          class="p-error"
+        >
+          Description is required.
+        </small>
+      </div>
+
+      <!-- Date -->
+      <div class="field mb-2">
+        <label for="date">Event Date</label>
+        <p-calendar
+          id="date"
+          formControlName="date"
+          [showTime]="true"
+          dateFormat="yy-mm-dd"
+          [timeOnly]="false"
+          hourFormat="24"
+          placeholder="Select event date"
+          class="w-100"
+        ></p-calendar>
+        <small
+          *ngIf="addEventForm.get('date')?.invalid && addEventForm.get('date')?.touched"
+          class="p-error"
+        >
+          Date is required.
+        </small>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ 'addActivityDialog.cancelButton' | translate }}</button>
+    <button mat-button [disabled]="addEventForm.invalid" (click)="onSave()">{{ 'addActivityDialog.saveButton' | translate }}</button>
+  </div>
+</app-state-section>

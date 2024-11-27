@@ -4,9 +4,9 @@
       <div class="d-flex justify-content-between px-3 pt-3">
         <h2 class="header">Activities List</h2>
 
-        <button *grantAccess="RolesConstants.ADD_Edit_Activity" pButton icon="pi pi-plus"
-          label="Add Activity" [outlined]="true" severity="secondary"
-          (click)="openAddActivityDialog()" type="button"></button>
+        <p-button *grantAccess="RolesConstants.ADD_Edit_Activity" icon="pi pi-plus"
+          label="Add Activity" severity="success"
+          (click)="openAddActivityDialog()" type="button"></p-button>
       </div>
     </ng-template>
 

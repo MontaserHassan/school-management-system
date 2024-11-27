@@ -1,4 +1,9 @@
 <app-state-section [state]="sectionState">
+  <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+    <h2>Events List</h2>
+    <p-button *grantAccess="RolesConstants.ADD_EVENT_AND_SHOW_DETAILS" label="Add New Event" severity="success"(onClick)="AddNewEventDialog()" />
+  </div>
+
   <p-panel *ngFor="let event of events" [toggleable]="true" [collapsed]="true" class="mb-3">
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between align-items-center">
@@ -26,7 +31,7 @@
           ></app-lazy-dropdown>
         </div>
       </div>
-      
+
       <p-accordion (onOpen)="getEventDetails(event)" *grantAccess="RolesConstants.ADD_EVENT_AND_SHOW_DETAILS">
         <p-accordionTab header='More Details'>
           <div class="event-details" *ngIf="event.eventDetails">
@@ -53,4 +58,6 @@
       </p-accordion>
     </ng-template>
   </p-panel>
+
+  <span class="m-auto" *ngIf="!events.length">Not Have Event Yet</span>
 </app-state-section>

@@ -4,6 +4,8 @@ import { EventModel } from '../../models/event.model';
 import { SocialService } from '../../services/social.service';
 import { Lookup } from '../../../shared/enums/lookup.enum';
 import { RolesConstants } from '../../../shared/config/roles-constants';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEventComponent } from '../../components/add-event/add-event.component';
 
 export enum EventResponse {
   "Accept" = 'success',
@@ -24,7 +26,10 @@ export class EventsComponent  extends BaseComponent implements OnInit {
   protected Lookup = Lookup
   protected RolesConstants = RolesConstants
 
-  constructor(private socialService: SocialService) {
+  constructor(
+    private dialog: MatDialog,
+    private socialService: SocialService
+  ) {
     super();
   }
 
@@ -35,7 +40,6 @@ export class EventsComponent  extends BaseComponent implements OnInit {
   setResColor(res: string): "success" | "secondary" | "warning" | undefined {
     return EventResponse[res as keyof typeof EventResponse] || undefined;
   }
-
 
   getEvents() {
     this.load(
@@ -71,6 +75,18 @@ export class EventsComponent  extends BaseComponent implements OnInit {
       }
     ).subscribe(() => {
       event.response = eventResponse.value
+    })
+  }
+
+  AddNewEventDialog(){
+    const dialog = this.dialog.open(AddEventComponent,{
+      width: '800px',
+    })
+
+    dialog.afterClosed().subscribe((res) => {
+      if (res) {
+        this.getEvents();
+      }
     })
   }
 }

@@ -22,7 +22,7 @@ export class SendEmailComponent extends BaseComponent {
     super();
     this.emailForm = this.fb.group({
       receiverIds: ['', Validators.required],
-      domain: ['', Validators.required],
+      subject: ['', Validators.required],
       content: ['', Validators.required],
       role: ['all'],
     });
@@ -43,7 +43,7 @@ export class SendEmailComponent extends BaseComponent {
     if (this.emailForm.valid) {
       const body = {
         receiverIds: this.emailForm.get('receiverIds')?.value.map((item: any) => item.value),
-        domain: this.emailForm.get('domain')?.value,
+        subject: this.emailForm.get('subject')?.value,
         content: this.emailForm.get('content')?.value,
       }
       this.load(

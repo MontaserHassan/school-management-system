@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="text-center mb-4">{{ 'invoice.listTitle' | translate }}</h3>
 
-      <p-button *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT" (onClick)="openInvoiceDialog()" text label="{{ 'invoice.addButton' | translate }}" icon="pi pi-receipt" />
+      <p-button *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT" severity="success" (onClick)="openInvoiceDialog()"  label="{{ 'invoice.addButton' | translate }}" icon="pi pi-receipt" />
     </div>
 
     <p-table [value]="invoices" class="p-datatable-striped" [paginator]="true" [rows]="pageSize"

@@ -343,13 +343,13 @@
   },
   "email": {
     "receivers": "Receivers",
-    "domain": "Domain",
+    "subject": "Subject",
     "content": "Content",
     "sendEmail": "Send Email",
     "receiversRequired": "Receivers are required",
-    "domainRequired": "Domain is required",
+    "subjectRequired": "Subject is required",
     "contentRequired": "Content is required",
-    "emailDomain": "Email Domain",
+    "emailSubject": "Email Subject",
     "emailContent": "Email Content",
     "role": {
       "superAdmin": "super Admin",
