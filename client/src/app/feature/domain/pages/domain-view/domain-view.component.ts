@@ -24,6 +24,7 @@ export class DomainViewComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.id =  this.activatedRoute.snapshot.params?.['id'];
     this.getDomainById()
+    this.generateMenu();
   }
 
   protected override onLanguageChange(): void {

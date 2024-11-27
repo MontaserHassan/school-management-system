@@ -17,6 +17,9 @@ export class Domain extends Model{
   groupId?: string;
 
   @Expose()
+  group?: string;
+
+  @Expose()
   typeOfTime?: string;
 
   @Expose()

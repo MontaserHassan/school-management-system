@@ -7,6 +7,7 @@
           <th pSortableColumn="domainName">{{ 'domain.domainId' | translate }} <p-sortIcon field="domainName"></p-sortIcon></th>
           <th pSortableColumn="domainName">{{ 'domain.domainName' | translate }} <p-sortIcon field="domainName"></p-sortIcon></th>
           <th pSortableColumn="courseTime">{{ 'domain.courseTime' | translate }} <p-sortIcon field="courseTime"></p-sortIcon></th>
+          <th pSortableColumn="courseTime">{{ 'domain.group' | translate }} <p-sortIcon field="courseTime"></p-sortIcon></th>
           <th pSortableColumn="typeOfTime">{{ 'domain.typeOfTime' | translate }} <p-sortIcon field="typeOfTime"></p-sortIcon></th>
           <th pSortableColumn="createdAt">{{ 'domain.createdAt' | translate }} <p-sortIcon field="createdAt"></p-sortIcon></th>
           <th pSortableColumn="updatedAt">{{ 'domain.updatedAt' | translate }} <p-sortIcon field="updatedAt"></p-sortIcon></th>
@@ -19,6 +20,7 @@
           <td (click)="viewDomain(domain._id)">{{ domain.domainId }}</td>
           <td (click)="viewDomain(domain._id)">{{ domain.domainName }}</td>
           <td>{{ domain.courseTime }}</td>
+          <td>{{ domain.group }}</td>
           <td>{{ domain.typeOfTime || ('domain.n/a' | translate) }}</td>
           <td>{{ domain.createdAt | date:'shortDate' }}</td>
           <td>{{ domain.updatedAt | date:'shortDate' }}</td>
