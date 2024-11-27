@@ -5,5 +5,9 @@
 
   ul {
     list-style: none;
+    margin: 0;
+    li {
+      margin: 2px 0;
+    }
   }
 }
