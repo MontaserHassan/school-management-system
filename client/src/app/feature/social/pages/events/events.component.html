@@ -1,0 +1,56 @@
+<app-state-section [state]="sectionState">
+  <p-panel *ngFor="let event of events" [toggleable]="true" [collapsed]="true" class="mb-3">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h4>{{ event.eventName }}</h4>
+          <p>{{ event.date | date: 'medium' }}</p>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+      <div class="d-flex justify-content-between align-items-center">
+        <p>{{ event.description }}</p>
+
+        <div>
+          <span *ngIf="event.response && event.response !== 'Not Response'" class="badge bg-success py-2 px-3">
+            <p-tag [severity]="setResColor(event.response || 'secondary')">{{ event.response }}</p-tag>
+          </span>
+
+          <app-lazy-dropdown
+            *ngIf="!event.response || event.response === 'Not Response'"
+            [lookup]="Lookup.EventResponse"
+            [(ngModel)]="eventResponse"
+            (ngModelChange)="updateResponse($event , event)"
+          ></app-lazy-dropdown>
+        </div>
+      </div>
+      
+      <p-accordion (onOpen)="getEventDetails(event)" *grantAccess="RolesConstants.ADD_EVENT_AND_SHOW_DETAILS">
+        <p-accordionTab header='More Details'>
+          <div class="event-details" *ngIf="event.eventDetails">
+            <p>Total Attending: {{ event.eventDetails.totalAttending }}</p>
+            <p>Total Rejected: {{ event.eventDetails.totalRejected }}</p>
+            <p>Total No Response: {{ event.eventDetails.totalNoResponse }}</p>
+
+            <h5>Attendees</h5>
+            <ul>
+              <li *ngFor="let attendee of event.eventDetails?.attendees">{{ attendee.username }}</li>
+            </ul>
+
+            <h5>Rejected</h5>
+            <ul>
+              <li *ngFor="let rejected of event.eventDetails?.rejected">{{ rejected.username }}</li>
+            </ul>
+
+            <h5>Not Responded</h5>
+            <ul>
+              <li *ngFor="let noResponse of event.eventDetails?.notResponse">{{ noResponse.username }}</li>
+            </ul>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </ng-template>
+  </p-panel>
+</app-state-section>

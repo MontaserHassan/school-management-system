@@ -131,4 +131,10 @@ export class RolesConstants {
     UserRole.Admin,
     UserRole.Director,
   ]
+
+  //Event
+  public static ADD_EVENT_AND_SHOW_DETAILS = [
+    UserRole.Admin,
+    UserRole.Director,
+  ]
 }

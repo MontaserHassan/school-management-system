@@ -16,4 +16,5 @@ export enum URLSegment {
   Skill = 'skill/',
   Activity = 'activity/',
   Classes  = 'classes/',
+  Event = 'event/',
 }

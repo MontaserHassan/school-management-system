@@ -15,4 +15,5 @@ export enum Lookup {
   AttendanceStatus = "attendanceStatus",
   AllUsers = 'allUsers',
   Skill="skills",
+  EventResponse="event-response",
 }

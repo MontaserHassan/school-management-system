@@ -199,6 +199,13 @@ export class SideNavComponent extends BaseComponent implements OnInit {
           this.router.navigate([RoutesUtil.SocialTicket.url()]);
         }
       },
+      {
+        label: this.translate('Events'),
+        icon: 'pi pi-sparkles',
+        command: () => {
+          this.router.navigate([RoutesUtil.SocialEvents.url()]);
+        }
+      },
     ];
   }
 }

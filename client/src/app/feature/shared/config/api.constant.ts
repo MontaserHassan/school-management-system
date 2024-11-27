@@ -73,6 +73,11 @@ export class ApiConstant {
   static GET_TICKETS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket;
   static GET_TICKET_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Ticket + '{id}';
 
+  static ADD_EVENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Event;
+  static GET_EVENTS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Event;
+  static GET_EVENT_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Event + '{id}';
+  static UPDATE_EVENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Event + 'update-response';
+
   static GET_GROUPS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Group ;
   static GET_CLASSES_FOR_GROUP = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Group + URLSegment.Classes + '{id}';
 }
