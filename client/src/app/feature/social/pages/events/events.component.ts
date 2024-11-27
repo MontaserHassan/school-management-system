@@ -53,19 +53,21 @@ export class EventsComponent  extends BaseComponent implements OnInit {
   }
 
   getEventDetails(event: EventModel) {
-    this.load(
-      this.socialService.getEventById(event.eventId),
-      {
-        isLoadingTransparent: true,
-      }
-    ).subscribe((res) => {
-      event.eventDetails = res.eventDetails
-    })
+    if(!event?.eventDetails){
+      this.load(
+        this.socialService.getEventById(event._id),
+        {
+          isLoadingTransparent: true,
+        }
+      ).subscribe((res) => {
+        event.eventDetails = res.eventDetails
+      })
+    }
   }
 
   updateResponse(eventResponse:any, event: EventModel) {
     const payload = {
-      eventId: event.eventId,
+      eventId: event._id,
       newResponse: eventResponse.value,
     }
     this.load(
@@ -74,7 +76,7 @@ export class EventsComponent  extends BaseComponent implements OnInit {
         isLoadingTransparent: true,
       }
     ).subscribe(() => {
-      event.response = eventResponse.value
+      event.response = eventResponse.label
     })
   }
 

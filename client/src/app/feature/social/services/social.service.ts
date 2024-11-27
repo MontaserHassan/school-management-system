@@ -80,9 +80,9 @@ export class SocialService {
   updateEventResponse(body:{
     eventId: string,
     newResponse: string,
-  }): Observable<Event> {
+  }): Observable<EventModel> {
     return this.baseAPI.patch(ApiConstant.UPDATE_EVENT,body).pipe(
-      map((res) => this.mapper.fromJson(Event, res.data.event))
+      map((res) => this.mapper.fromJson(EventModel, res.data.event))
     )
   }
 }

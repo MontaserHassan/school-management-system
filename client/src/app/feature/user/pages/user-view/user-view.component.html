@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <p-menu #menu [model]="userActions" appendTo="body" [popup]="true">
+        <p-menu #menu [model]="userActions" appendTo="body" [popup]="true"  >
           <ng-template pTemplate="item" let-item>
             <div class="p-menuitem-link" (click)="handleClick(item.label)">
               <span [class]="item.icon"></span>
@@ -24,7 +24,7 @@
             </div>
           </ng-template>
         </p-menu>
-        <p-button (onClick)="menu.toggle($event)" text label="{{ 'user.edit' | translate }}" icon="pi pi-spin pi-cog" />
+        <p-button (onClick)="menu.toggle($event)" text label="{{ 'user.edit' | translate }}" icon="pi pi-spin pi-cog"  *grantAccess="RolesConstants.ADD_VIEW_List_USER"/>
       </div>
 
       <div class="profile-details p-grid">
