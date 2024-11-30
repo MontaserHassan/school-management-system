@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment Screen</title>
-  <script src="https://js.stripe.com/v3/"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment</title>
 </head>
 <body>
-  <h1>Complete Your Payment</h1>
-  <form id="payment-form">
-    <div id="card-element"><!-- Stripe Card Element will be inserted here --></div>
-    <button type="submit" id="submit-button">Pay</button>
-    <p id="payment-message" style="display: none;"></p>
-  </form>
+    <h1>Stripe Payment</h1>
 
-  <script>
-    // Initialize Stripe
-    const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY'); // Replace with your Stripe public key
+    <form id="payment-form" action="http://localhost:80/api/user/payment" method="POST">
+        <label for="studentId">Student Id:</label>
+        <input type="text" id="studentId" studentId="name"><br><br>
+    
+        <button type="submit">Pay Now</button>
+    </form>
 
-    const paymentForm = document.getElementById('payment-form');
-    const paymentMessage = document.getElementById('payment-message');
-    const cardElement = stripe.elements().create('card');
-    cardElement.mount('#card-element');
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
 
-    fetch('/payment/pay-with-stripe', {
-      method: 'POST',
-      headers: {        'Content-Type': 'application/json',},
-      body: JSON.stringify({ amount: 50, currency: 'usd' }), 
-    })
-      .then((res) => res.json())
-      .then(({ data }) => {
-        const clientSecret = data.clientSecret;
+            const name = document.getElementById("studentId").value;
 
-        paymentForm.addEventListener('submit', async (event) => {
-          event.preventDefault();
-          const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: { card: cardElement },
-          });
+            try {
+                const response = await fetch("http://localhost:80/api/user/payment", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("token")
+                    },
+                    body: JSON.stringify({ studentId:"yv2hhRPO3DJ0JQ_uSKl2QiNE" }),
+                });
 
-          if (error) {
-            paymentMessage.textContent = `Payment failed: ${error.message}`;
-            paymentMessage.style.display = 'block';
-          } else if (paymentIntent.status === 'succeeded') {
-            window.location.href = 'payment-success.html';
-          }
+                const data  = await response.json();
+                console.log('data: ', data);
+                if (data) {
+                    window.location.href = data.data.redirectURL;
+                } else {
+                    alert("Payment failed. Please try again.");
+                };
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Check console for details.");
+            }
         });
-      })
-      .catch((error) => {
-        paymentMessage.textContent = 'Failed to initiate payment';
-        paymentMessage.style.display = 'block';
-      });
-  </script>
+    </script>
 </body>
 </html>

@@ -45,6 +45,24 @@ const schoolValidator = {
         }),
     },
 
+    verifySchool: {
+        body: Joi.object().keys({
+            schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School is required.', }),
+            verify: Joi.boolean().required().messages({ 'any.required': "Please enter 'true' or 'false' for verification.", 'boolean.base': "Please enter 'true' or 'false' for verification.", }),
+        }),
+    },
+
+    addDomainToCycle: {
+        body: Joi.object().keys({
+            schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School ID is required.', }),
+            cycleId: Joi.string().required().trim().messages({ 'string.empty': 'Cycle ID is required.', }),
+            domains: Joi.array().items({
+                domainId: Joi.string().required().trim().messages({ 'string.empty': 'Domain ID is required.', }),
+                comment: Joi.string().required().trim().messages({ 'string.empty': 'Comment is required.', }),
+            }).min(1).messages({ 'array.min': 'At least one domain is required.', 'array.base': 'Domains must be an array of strings.', }),
+        }),
+    },
+
     deleteSchool: {
         params: Joi.object().keys({
             schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School ID is required.', }),

@@ -15,6 +15,7 @@ import ticketService from './ticket.service';
 import groupService from "./group.service";
 import eventService from "./event.service";
 import paymentService from "./payment.service";
+import cycleService from "./cycle.service";
 
 
 
@@ -36,4 +37,5 @@ export {
     groupService,
     eventService,
     paymentService,
+    cycleService,
 };

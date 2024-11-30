@@ -13,6 +13,7 @@ import studentInvoiceController from "./invoice-student.controller";
 import ticketController from './ticket.controller';
 import groupController from "./group.controller";
 import eventController from "./event.controller";
+import paymentController from "./payment.controller";
 
 
 
@@ -32,4 +33,5 @@ export {
     ticketController,
     groupController,
     eventController,
+    paymentController,
 };

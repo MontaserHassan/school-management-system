@@ -14,6 +14,7 @@ async function createCheckoutSession(name: string, amount: number, currency: str
                     product_data: { name: name.toLowerCase(), },
                     unit_amount: Math.round(Number(amount) * 100),
                 },
+                quantity: 1,
             },
         ];
         const session = await stripe.checkout.sessions.create({
@@ -21,7 +22,7 @@ async function createCheckoutSession(name: string, amount: number, currency: str
             line_items: lineItems,
             mode: 'payment',
             success_url: `${process.env.SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.CANCEL_URL}`,
+            cancel_url: `${process.env.CANCEL_URL}?session_id={CHECKOUT_SESSION_ID}`,
         });
         if (!session) return false;
         return session;

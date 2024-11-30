@@ -180,7 +180,6 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
         if (!isUserExisting) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
         if (email) {
             const user = await userService.getUserByEmail(email.toLowerCase());
-            console.log('user: ', user);
             if (user && user.id !== userId) throw new CustomError(ErrorUserMessage.DUPLICATE_EMAIL, 406, "user");
         };
         const newUserName = userName ? userName.toLowerCase() : isUserExisting.userName;

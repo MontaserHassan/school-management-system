@@ -18,17 +18,22 @@ import authTicketRouter from './authTicket.routes'
 import authNotificationRouter from './authNotification.routes';
 import authGroupRouter from './authGroup.routes';
 import authEventRouter from './authEvent.routes';
+import authPaymentRouter from './authPayment.routes';
+import verifyPaymentRouter from './payment/verify-payment.routes';
+import authVerifySchoolRouter from './authVerifySchool.routes';
 
 
 
 const user = express.Router();
 
 user.use('/auth', authRouter);
+user.use('/verify-payment', verifyPaymentRouter);
 user.use(getUser());
+user.use('/payment', authPaymentRouter);
 user.use(isSchoolSubscription());
-// user.use('/verify-school',);
-// user.use(isSchoolVerified());
+user.use('/verify-school', authVerifySchoolRouter);
 user.use('/', authUserRouter);
+user.use(isSchoolVerified());
 user.use('/class-room', authClassRoomRouter);
 user.use('/domain', authDomainRouter);
 user.use('/skill', authSkillRouter);

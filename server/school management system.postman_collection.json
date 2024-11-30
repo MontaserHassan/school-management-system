@@ -152,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    // \"email\": \"superadmin@gmail.com\", \n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    //\"email\": \"admin@gmail.com\", // admin\n    \"email\": \"teacher2.banisuef@gmail.com\", // teacher\n    // \"email\": \"mohamed.abotrieka@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    // \"email\": \"superadmin@gmail.com\", \n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n            \"email\": \"admin.cairo.internAtion@gmail.com\",\n\n    // \"email\": \"teacher2.banisuef@gmail.com\", // teacher\n    // \"email\": \"montaser.hassan.bns23@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -264,7 +264,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImNhMGI2ZDU2NzA1ZWY2YzNkYWI1YzA2ZCIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4NzYzOTEsImV4cCI6MTczMTk2Mjc5MX0.OokKbMzRZ1WgsF0ZhnRXuRUn7AyHC-81WFiA51zjWZ0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjY5MmM3NDk3ODAzN2M2MDAxYTZlMzI4OSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzI1NzMwNzAsImV4cCI6MTczMjY1OTQ3MH0.EIkz6ZM8suS3N92tqlc53tgM6aaLSTAuEaDDEst3OBs",
 									"type": "string"
 								}
 							]
@@ -1250,7 +1250,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"teacher2.banisuef@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
+							"raw": "{\n    \"email\": \"admin.cairo.internAtion@gmail.com\",\n\t\"password\": \"M0nT@ser\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1352,7 +1352,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiIyZGVhNGI3ZGMyNDNlYTNkOTQ4MDJhZGQiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMxNDQ2NDE0LCJleHAiOjE3MzE1MzI4MTR9.lh4blbH7c5xmfASvJFG4vL8-tZNaM0jA7Hn69VnxIUo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI2MzExNDk4MWI0MDM1MTlkZTZlYTA3YTEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMyOTY5MDUwLCJleHAiOjE3MzMwNTU0NTB9.u6brJczpRzSUCkELnnRVuYZxlegGQ6o0xJpqIYVJctA",
 									"type": "string"
 								}
 							]
@@ -1361,7 +1361,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"BaniSuef language\",\n    \"subscriptionFees\": \"500\",\n    \"subscriptionWay\": \"monthly\",\n    \"currencyOfSubscription\": \"SchoolSystem-6-1\",\n    \"admin\": {\n        \"userName\": \"admin BaniSuef language\",\n        \"email\": \"montaser.hassan.bns@gmail.com\"\n    },\n    \"employees\": []\n}",
+							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"cairo internAtion language\",\n    \"subscriptionFees\": \"500\",\n    \"subscriptionWay\": \"monthly\",\n    \"currencyOfSubscription\": \"SchoolSystem-6-1\",\n    \"admin\": {\n        \"userName\": \"admin cairo internAtion language\",\n        \"email\": \"admin.cairo.internAtion@gmail.com\"\n    },\n    \"employees\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3232,7 +3232,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6Ijk1YjQ0OTU0Mzg5NWM5MWRiMWUxZDk0ZiIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzIzMDc2MTQsImV4cCI6MTczMjM5NDAxM30.caedTa0wyMhUXd28hvVaBbnIXs5DfPTKsiID9NGXJDA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjY5MmM3NDk3ODAzN2M2MDAxYTZlMzI4OSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzI1NzMwNzAsImV4cCI6MTczMjY1OTQ3MH0.EIkz6ZM8suS3N92tqlc53tgM6aaLSTAuEaDDEst3OBs",
 									"type": "string"
 								}
 							]
@@ -3241,7 +3241,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"domainName\": \"games\",\n    \"courseTime\": \"120\",\n    // \"groupId\": \"gazyNJnWGgSMRkqaRnL0VjNv\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n    \"groupId\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
+							"raw": "{\n    \"domainName\": \"playstation\",\n    \"courseTime\": \"120\",\n    // \"groupId\": \"gazyNJnWGgSMRkqaRnL0VjNv\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n    \"groupId\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3615,6 +3615,326 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Domain get profile successfully\",\n    \"data\": {\n        \"domain\": {\n            \"_id\": \"pXAgWnY6U5d6PnjVuQ92rsFa\",\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d1\",\n            \"domainName\": \"history\",\n            \"courseTime\": \"80\",\n            \"typeOfTime\": \"min\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-16T14:43:37.802Z\",\n            \"updatedAt\": \"2024-11-16T14:43:37.802Z\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "verify school",
+			"item": [
+				{
+					"name": "verify school - create domain",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlNENmxpZGV3SnhCaWVMTnNKcmgtVyIsImVtYWlsIjoiYWRtaW4uY2Fpcm8uaW50ZXJuYXRpb25AZ21haWwuY29tIiwic2Nob29sSWQiOiJQTlljZVRLdkg3Wlp4M3ZzZkZpYzc0ZGYiLCJzZWNyZXRLZXkiOiJkYjRmOTMwZDI2YjBkMDkyZTk3MjQyOTciLCJyb2xlIjoiYWRtaW4iLCJjb2RlIjoiSDg1MjY1MyIsImlhdCI6MTczMjk3MDE0MCwiZXhwIjoxNzMzMDU2NTQwfQ.9tRpH3TdWjd-fWoC2vIIrH4S5xM4G2xBfyeyKSVYuLc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"domainName\": \"english\",\n    \"courseTime\": \"120\",\n    \"groupId\": \"gazyNJnWGgSMRkqaRnL0VjNv\"\n    // \"groupId\": \"ZIOSKyjKMCnjjasfw4Yc0m1Z\"\n    // \"groupId\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/verify-school/create-domain",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"verify-school",
+								"create-domain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verify school - create domain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"domainName\": \"geography\",\n    \"courseTime\": \"80\",\n    \"groupId\": \"gazyNJnWGgSMRkqaRnL0VjNv\"\n    // \"groupId\": \"673770fd05920cfeccd341b8\"\n    // \"groupId\": \"DeQw_ll3eLdebEgQKylWXn0P\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/verify-school/create-domain",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"verify-school",
+										"create-domain"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:28:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16b-+poSpGh+ZlqLovwvIV7uyW6DBy4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 201,\n    \"responseMessage\": \"Domain created successfully\",\n    \"data\": {\n        \"domain\": {\n            \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"domainId\": \"d5\",\n            \"domainName\": \"geography\",\n            \"courseTime\": \"80\",\n            \"typeOfTime\": \"min\",\n            \"group\": \"2-3\",\n            \"_id\": \"fNBEEAEtZP2k7qIfoLTjO5Y3\",\n            \"skills\": [],\n            \"createdAt\": \"2024-11-25T22:28:07.717Z\",\n            \"updatedAt\": \"2024-11-25T22:28:07.717Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "verify school - add domain to cycle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI2MzExNDk4MWI0MDM1MTlkZTZlYTA3YTEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMyOTY5MDUwLCJleHAiOjE3MzMwNTU0NTB9.u6brJczpRzSUCkELnnRVuYZxlegGQ6o0xJpqIYVJctA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cycleId\": \"QZJVoxlq9iLW3lDiSQZHqeC1\",\n    \"schoolId\": \"PNYceTKvH7ZZx3vsfFic74df\",\n    \"domains\": [\n        {\n            \"domainId\": \"ob9cki0P4VnVtzLpC48NkrNT\",\n            \"comment\": \"english to cycle one\"\n        },\n        {\n            \"domainId\": \"SqGNZ7q9HvfN6EImiDR_v9em\",\n            \"comment\": \"arabic to cycle one\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagementSystem}}/user/verify-school/domain-cycle",
+							"host": [
+								"{{SchoolManagementSystem}}"
+							],
+							"path": [
+								"user",
+								"verify-school",
+								"domain-cycle"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verify school - add domain to cycle",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cycleId\": \"QZJVoxlq9iLW3lDiSQZHqeC1\",\n    \"schoolId\": \"PNYceTKvH7ZZx3vsfFic74df\",\n    \"domains\": [\n        {\n            \"domainId\": \"ob9cki0P4VnVtzLpC48NkrNT\",\n            \"comment\": \"english to cycle one\"\n        },\n        {\n            \"domainId\": \"SqGNZ7q9HvfN6EImiDR_v9em\",\n            \"comment\": \"arabic to cycle one\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/verify-school/domain-cycle",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"verify-school",
+										"domain-cycle"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 30 Nov 2024 13:03:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1267"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f3-iRtEkKhjqabpNA8ObjaIPB9emrA\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"Cycle updated successfully\",\n    \"data\": {\n        \"school\": {\n            \"_id\": \"PNYceTKvH7ZZx3vsfFic74df\",\n            \"schoolName\": \"cairo internation language\",\n            \"admin\": \"SD6lidewJxBieLNsJrh-W\",\n            \"employees\": [],\n            \"subscriptionFees\": \"500\",\n            \"subscriptionDate\": \"2024-11-30T12:40:48.840Z\",\n            \"subscriptionWay\": \"monthly\",\n            \"currencyOfSubscription\": \"USD\",\n            \"endOfSubscription\": \"2024-12-30T12:40:48.840Z\",\n            \"subscriptionStatus\": \"paid\",\n            \"verify\": false,\n            \"createdAt\": \"2024-11-30T12:34:59.627Z\",\n            \"updatedAt\": \"2024-11-30T12:55:37.985Z\"\n        },\n        \"cycles\": [\n            {\n                \"_id\": \"QZJVoxlq9iLW3lDiSQZHqeC1\",\n                \"schoolId\": \"PNYceTKvH7ZZx3vsfFic74df\",\n                \"cycleName\": \"Cycle One\",\n                \"domains\": [\n                    {\n                        \"domainId\": \"d2\",\n                        \"domainName\": \"english\",\n                        \"comment\": \"english to cycle one\"\n                    },\n                    {\n                        \"domainId\": \"d1\",\n                        \"domainName\": \"arabic\",\n                        \"comment\": \"arabic to cycle one\"\n                    }\n                ],\n                \"createdAt\": \"2024-11-30T12:34:59.635Z\",\n                \"updatedAt\": \"2024-11-30T13:03:00.100Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"JKzlH1aFdT0A9_O0X6fVHhxQ\",\n                \"schoolId\": \"PNYceTKvH7ZZx3vsfFic74df\",\n                \"cycleName\": \"Cycle Two\",\n                \"domains\": [],\n                \"createdAt\": \"2024-11-30T12:34:59.635Z\",\n                \"updatedAt\": \"2024-11-30T12:34:59.635Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"k7WanVgqjlE62aDwnU_3Blps\",\n                \"schoolId\": \"PNYceTKvH7ZZx3vsfFic74df\",\n                \"cycleName\": \"Cycle Three\",\n                \"domains\": [],\n                \"createdAt\": \"2024-11-30T12:34:59.635Z\",\n                \"updatedAt\": \"2024-11-30T12:34:59.635Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "verify school",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI2MzExNDk4MWI0MDM1MTlkZTZlYTA3YTEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMyOTY5MDUwLCJleHAiOjE3MzMwNTU0NTB9.u6brJczpRzSUCkELnnRVuYZxlegGQ6o0xJpqIYVJctA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schoolId\": \"PNYceTKvH7ZZx3vsfFic74df\",\n    \"verify\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SchoolManagement}}/user/verify-school/",
+							"host": [
+								"{{SchoolManagement}}"
+							],
+							"path": [
+								"user",
+								"verify-school",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verify school",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"schoolId\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n    \"verify\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagement}}/user/verify-school/",
+									"host": [
+										"{{SchoolManagement}}"
+									],
+									"path": [
+										"user",
+										"verify-school",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "606"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25e-Tbdbbp48q7k1Ohd7dSEM9Qr2Rz4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:37:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"School updated successfully\",\n    \"data\": {\n        \"school\": {\n            \"_id\": \"_BaVl9M7HmWACPlg2tT1MqDt\",\n            \"schoolName\": \"banisuef language\",\n            \"admin\": \"UaW_0owVXzBmjhpM-FWvW\",\n            \"employees\": [\n                \"Lw267SYx0LgraUv01tkcS\",\n                \"TNWCI4reAr11PynOMrS15\",\n                \"FMVw7ZVf-oVj8bAbdacDc\",\n                \"VaCMyXx1AvJGaAkPeDl6M\"\n            ],\n            \"subscriptionFees\": \"500\",\n            \"subscriptionDate\": \"2024-11-24T20:52:05.798Z\",\n            \"subscriptionWay\": \"yearly\",\n            \"currencyOfSubscription\": \"USD\",\n            \"endOfSubscription\": \"2025-11-24T20:52:05.798Z\",\n            \"subscriptionStatus\": \"paid\",\n            \"createdAt\": \"2024-11-12T21:45:39.031Z\",\n            \"updatedAt\": \"2024-11-25T22:37:47.891Z\",\n            \"verify\": true\n        }\n    }\n}"
 						}
 					]
 				}
@@ -5849,7 +6169,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjMxMWJjNWJjOTEzYmE2OWE4NDBmMDYxOSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzI3Mjg4ODgsImV4cCI6MTczMjgxNTI4OH0.wFp5vGnjTpw_nBDVXiWllsxkTm_n0CoZ1rmfKGaI0K8",
 									"type": "string"
 								}
 							]
@@ -5954,7 +6274,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjMxMWJjNWJjOTEzYmE2OWE4NDBmMDYxOSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzI3Mjg4ODgsImV4cCI6MTczMjgxNTI4OH0.wFp5vGnjTpw_nBDVXiWllsxkTm_n0CoZ1rmfKGaI0K8",
 									"type": "string"
 								}
 							]
@@ -5963,7 +6283,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"eventId\": \"au4cL9w_YsFCMg5fd4sYsQYx\",\n    \"newResponse\": \"SchoolSystem-8-2\"\n}",
+							"raw": "{\n    \"eventId\": \"-Uf-ik_iwiqcPHUD04H9yD_f\",\n    \"newResponse\": \"SchoolSystem-8-1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6062,7 +6382,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjMxMWJjNWJjOTEzYmE2OWE4NDBmMDYxOSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzI3Mjg4ODgsImV4cCI6MTczMjgxNTI4OH0.wFp5vGnjTpw_nBDVXiWllsxkTm_n0CoZ1rmfKGaI0K8",
 									"type": "string"
 								}
 							]
@@ -6170,7 +6490,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6ImExNWRkYTA5MjJkOGEyY2M1MDA4M2Q5NyIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzE4ODM5MTksImV4cCI6MTczMTk3MDMxOX0.l51kMJe2X9HjPo9G-5AgHCGNI3Q5OQPmx-P35uhrLUo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVhV18wb3dWWHpCbWpocE0tRld2VyIsImVtYWlsIjoibW9udGFzZXIuaGFzc2FuLmJuc0BnbWFpbC5jb20iLCJzY2hvb2xJZCI6Il9CYVZsOU03SG1XQUNQbGcydFQxTXFEdCIsInNlY3JldEtleSI6IjMxMWJjNWJjOTEzYmE2OWE4NDBmMDYxOSIsInJvbGUiOiJhZG1pbiIsImNvZGUiOiJIMjg5NjMiLCJpYXQiOjE3MzI3Mjg4ODgsImV4cCI6MTczMjgxNTI4OH0.wFp5vGnjTpw_nBDVXiWllsxkTm_n0CoZ1rmfKGaI0K8",
 									"type": "string"
 								}
 							]
@@ -6187,14 +6507,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{SchoolManagementSystem}}/user/event/au4cL9w_YsFCMg5fd4sYsQYx",
+							"raw": "{{SchoolManagementSystem}}/user/event/-Uf-ik_iwiqcPHUD04H9yD_f",
 							"host": [
 								"{{SchoolManagementSystem}}"
 							],
 							"path": [
 								"user",
 								"event",
-								"au4cL9w_YsFCMg5fd4sYsQYx"
+								"-Uf-ik_iwiqcPHUD04H9yD_f"
 							]
 						}
 					},

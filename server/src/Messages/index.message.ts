@@ -34,6 +34,8 @@ import errorGroupMessage from './group/error.message';
 import successGroupMessage from './group/success.message';
 import errorEventMessage from './event/error.message';
 import successEventMessage from './event/success.message';
+import errorCycleMessage from './cycle/error.message';
+import successCycleMessage from './cycle/success.message';
 
 
 
@@ -55,4 +57,5 @@ export {
     errorTicketMessage, successTicketMessage,
     errorGroupMessage, successGroupMessage,
     errorEventMessage, successEventMessage,
+    errorCycleMessage, successCycleMessage,
 };

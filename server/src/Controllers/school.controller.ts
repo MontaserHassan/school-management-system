@@ -2,12 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import fs from 'fs';
 import path from 'path';
 
-import { lookupService, schoolService, userService, notificationService } from "../Services/index.service";
-import { errorLookupMessage, errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
-import IResponse from '../Interfaces/response.interface';
 import { SubscriptionSchoolModel } from "../Models/school.model";
+import { UserModel } from "../Models/user.model";
+import { lookupService, schoolService, userService, notificationService, cycleService, domainService } from "../Services/index.service";
+import { errorCycleMessage, errorLookupMessage, errorSchoolMessage, successCycleMessage, successSchoolMessage } from "../Messages/index.message";
+import IResponse from '../Interfaces/response.interface';
 import { CSVSchool, CustomError, calculateSubscriptionDate, sendEmail, pagination } from "../Utils/index.util";
-import { UserModel } from "Models/user.model";
 
 
 
@@ -17,13 +17,13 @@ import { UserModel } from "Models/user.model";
 const createSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolName, subscriptionFees, subscriptionWay, subscriptionStatus, admin, employees, currencyOfSubscription } = req.body;
-        const IsSchoolExisting = await schoolService.getSchoolByName(schoolName.toLowerCase());
-        if (IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_ALREADY_EXISTS, 404, "school");
+        const isSchoolExisting = await schoolService.getSchoolByName(schoolName.toLowerCase());
+        if (isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_ALREADY_EXISTS, 404, "school");
         let adminUser: UserModel | null = await userService.getUserByEmail(admin.email);
         const currency = await lookupService.getById(currencyOfSubscription);
         if (!currency) throw new CustomError(errorLookupMessage.NOT_FOUND_LOOKUP, 404, "currency");
         if (!adminUser) {
-            adminUser = await userService.createUser(admin.userName, admin.email, 'admin', null, '');
+            adminUser = await userService.createUser(admin.userName.toLowerCase(), admin.email.toLowerCase(), 'admin', null, '');
             const subject = 'New Account';
             const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/activate-account.html'), 'utf8');
             sendEmail(adminUser.email, subject, content);
@@ -31,6 +31,7 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
         const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, currency.lookupName, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });
+        await Promise.all([cycleService.createCycle(newSchool._id, 'Cycle One'), cycleService.createCycle(newSchool._id, 'Cycle Two'), cycleService.createCycle(newSchool._id, 'Cycle Three'),]);
         const response: IResponse = {
             type: "info",
             responseCode: 201,
@@ -67,6 +68,7 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
                 _id: admin._id
             },
         };
+        const schoolCycles = await cycleService.getCycleBySchoolId(schoolId);
         let base64String: string;
         if (isExport === 'true') {
             const schools = [];
@@ -79,6 +81,7 @@ const getSchoolData = async (req: Request, res: Response, next: NextFunction) =>
             responseMessage: successSchoolMessage.GET_SCHOOL_DATA,
             data: {
                 school: transformedSchool,
+                cycles: schoolCycles,
                 base64String: base64String ? base64String : '',
             },
         };
@@ -144,8 +147,8 @@ const getAllSchools = async (req: Request, res: Response, next: NextFunction) =>
 const verifySchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId, verify } = req.body;
-        const IsSchoolExisting = await schoolService.getSchoolById(schoolId);
-        if (!IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const isSchoolExisting = await schoolService.getSchoolById(schoolId);
+        if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const updatedSchool = await schoolService.updateSchoolData(schoolId, { verify });
         const response: IResponse = {
             type: "info",
@@ -163,29 +166,70 @@ const verifySchool = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 
+// ----------------------------- add domain to cycle -----------------------------
+
+
+const addDomainToCycle = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId, cycleId, domains } = req.body;
+        const isSchoolExisting = await schoolService.getSchoolById(schoolId);
+        if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const IsCycleExisting = await cycleService.getCycleByCycleId(cycleId);
+        if (!IsCycleExisting) throw new CustomError(errorCycleMessage.CYCLE_NOT_FOUND, 404, "cycle");
+        const enrichedDomains = await Promise.all(
+            domains.map(async (domain: { domainId: string; comment: string }) => {
+                const domainDetails = await domainService.getById(domain.domainId);
+                if (!domainDetails) throw new CustomError(`Domain with ID ${domain.domainId} not found.`, 404, "domain");
+                return {
+                    domainId: domainDetails.domainId,
+                    domainName: domainDetails.domainName,
+                    comment: domain.comment,
+                };
+            }),
+        );
+        const updatedCycleSchool = await cycleService.addDomainToCycle(cycleId, enrichedDomains);
+        if (!updatedCycleSchool) throw new CustomError(errorCycleMessage.CYCLE_NOT_UPDATED, 400, "cycle");
+        const cyclesSchool = await cycleService.getCycleBySchoolId(schoolId);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successCycleMessage.UPDATED,
+            data: {
+                school: isSchoolExisting,
+                cycles: cyclesSchool,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
+    };
+};
+
+
 // ----------------------------- update school -----------------------------
 
 
 const updateSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { schoolId, schoolName, subscriptionStatus, subscriptionWay, subscriptionFees, currencyOfSubscription } = req.body;
-        const IsSchoolExisting = await schoolService.getSchoolById(schoolId);
-        if (!IsSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const isSchoolExisting = await schoolService.getSchoolById(schoolId);
+        if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         let updatedSchool: SubscriptionSchoolModel;
         let updatedData: {};
         let newSubscriptionStatus: string;
         let currency: string;
         if (subscriptionStatus) {
             const subscriptionStatusName = await lookupService.getById(subscriptionStatus)
-            newSubscriptionStatus = subscriptionStatus ? subscriptionStatusName.lookupName : IsSchoolExisting.subscriptionStatus;
+            newSubscriptionStatus = subscriptionStatus ? subscriptionStatusName.lookupName : isSchoolExisting.subscriptionStatus;
         };
         if (currencyOfSubscription) {
             const currencyName = await lookupService.getById(currencyOfSubscription)
-            currency = currencyOfSubscription ? currencyName.lookupName : IsSchoolExisting.currencyOfSubscription;
+            currency = currencyOfSubscription ? currencyName.lookupName : isSchoolExisting.currencyOfSubscription;
         };
-        const newSchoolName = schoolName ? schoolName : IsSchoolExisting.schoolName;
-        const newSubscriptionWay = subscriptionWay ? subscriptionWay : IsSchoolExisting.subscriptionWay;
-        const newSubscriptionFees = subscriptionFees ? subscriptionFees : IsSchoolExisting.subscriptionFees;
+        const newSchoolName = schoolName ? schoolName : isSchoolExisting.schoolName;
+        const newSubscriptionWay = subscriptionWay ? subscriptionWay : isSchoolExisting.subscriptionWay;
+        const newSubscriptionFees = subscriptionFees ? subscriptionFees : isSchoolExisting.subscriptionFees;
         if (subscriptionWay || subscriptionStatus) {
             const subscriptionDate = new Date();
             const endOfSubscription = calculateSubscriptionDate(newSubscriptionWay, subscriptionDate);
@@ -242,5 +286,6 @@ export default {
     getAllSchools,
     updateSchool,
     verifySchool,
+    addDomainToCycle,
     deleteSchool,
 };

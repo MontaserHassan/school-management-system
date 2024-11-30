@@ -327,7 +327,7 @@ const deleteStudentFromClassRoom = async (req: Request, res: Response, next: Nex
         if (!student || !studentExists) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         const updateClassRoom = await classRoomService.deleteStudentFromClassRoom(roomId, studentId);
         if (!updateClassRoom) throw new CustomError(errorClassRoomMessage.STUDENT_NOT_DELETED, 400, "student");
-        await studentService.updateStudentData(studentId, { classRoom: '', group: '', studentCost: '', currencyOfCost: '', skills: [], domains: [] });
+        await studentService.updateStudentData(studentId, { classRoom: '', group: '', studentCost: '', currencyOfCost: '', skills: [], domains: [], activities: [], paymentStatus: 'pending', paidDate: null, });
         const response: IResponse = {
             type: "info",
             responseCode: 200,

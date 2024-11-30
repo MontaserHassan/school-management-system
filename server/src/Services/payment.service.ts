@@ -1,4 +1,5 @@
-import { stripe } from "../Utils/index.util";
+import { Payment, PaymentModel } from "../Models/payment.model";
+import { stripe, calculateExpirationDate } from "../Utils/index.util";
 
 
 
@@ -11,11 +12,51 @@ const createPayment = async (name: string, amount: number, currency: string) => 
 };
 
 
+// ----------------------------- save payment -----------------------------
+
+
+const savePaymentTransaction = async (schoolId: string, userId: string, paymentId: string, name: string, amount: number, currency: string, service: number, serviceName: string, studentId?: string) => {
+    const expirationDate = calculateExpirationDate('30t');
+    const newPayment: PaymentModel = new Payment({
+        schoolId: schoolId,
+        userId: userId,
+        paymentId: paymentId,
+        name: name,
+        amount: amount,
+        currency: currency,
+        service: service,
+        serviceName: serviceName,
+        expirationDate: expirationDate,
+        studentId: studentId
+    });
+    await newPayment.save();
+    return newPayment;
+};
+
+
 // ----------------------------- retrieve payment -----------------------------
 
 
-const retrievePayment = async (id) => {
+const retrievePayment = async (id: string) => {
     const payment = await stripe.retrieveCheckoutSession(id);
+    return payment;
+};
+
+
+// ----------------------------- get payment -----------------------------
+
+
+const getPayment = async (id: string) => {
+    const payment = await Payment.findOne({ paymentId: id });
+    return payment;
+};
+
+
+// ----------------------------- update payment -----------------------------
+
+
+const updatePayment = async (id: string, updatedData: any) => {
+    const payment = await Payment.findByIdAndUpdate(id, updatedData, { new: true });
     return payment;
 };
 
@@ -23,5 +64,8 @@ const retrievePayment = async (id) => {
 
 export default {
     createPayment,
+    savePaymentTransaction,
     retrievePayment,
+    getPayment,
+    updatePayment,
 };

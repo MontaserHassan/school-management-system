@@ -435,10 +435,12 @@ const getStudentsByParent = async (req: Request, res: Response, next: NextFuncti
 
 const updateStudentData = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentId, studentName } = req.body;
-        const IsStudentExisting = await studentService.getStudentById(studentId);
-        if (!IsStudentExisting) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
-        const updatedStudent = await studentService.updateStudentData(IsStudentExisting._id, { studentName, });
+        const { studentId, studentName, paymentStatus } = req.body;
+        const isStudentExisting = await studentService.getStudentById(studentId);
+        if (!isStudentExisting) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
+        const newStatus = paymentStatus ? paymentStatus : isStudentExisting.paymentStatus;
+        const newName = studentName ? studentName.toLowerCase() : isStudentExisting.studentName;
+        const updatedStudent = await studentService.updateStudentData(isStudentExisting._id, { studentName: newName, paymentStatus: newStatus });
         if (!updatedStudent) throw new CustomError(errorDomainMessage.NOT_UPDATED, 404, "student");
         const response: IResponse = {
             type: "info",

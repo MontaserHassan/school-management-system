@@ -53,6 +53,8 @@ interface StudentModel extends mongoose.Document {
     comments?: Comment[];
     studentCost?: string;
     currencyOfCost?: string;
+    paymentStatus: string;
+    PaidDate: Date;
     media: string;
     progressHistory?: any
 };
@@ -189,7 +191,7 @@ const studentSchema = new mongoose.Schema(
                     required: true,
                 },
                 media: {
-                    type: String, // base64
+                    type: String,
                     required: false,
                 },
                 dateOfComment: {
@@ -205,6 +207,15 @@ const studentSchema = new mongoose.Schema(
         },
         currencyOfCost: {
             type: String,
+            required: false,
+        },
+        paymentStatus: {
+            type: String,
+            default: "pending",
+            enum: ["pending", "paid",],
+        },
+        PaidDate: {
+            type: Date,
             required: false,
         },
         media: {
