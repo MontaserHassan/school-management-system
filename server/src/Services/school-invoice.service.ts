@@ -29,8 +29,8 @@ const findInvoices = async (limit: number, skip: number) => {
 // ----------------------------- find invoices by user id -----------------------------
 
 
-const findInvoicesBySchoolId = async (SchoolId: string, limit: number, skip: number) => {
-    const invoices: SchoolInvoiceModel[] = await SchoolInvoice.find({ SchoolId }).limit(limit).skip(skip).select('-__v');
+const findInvoicesBySchoolId = async (schoolId: string, limit: number, skip: number) => {
+    const invoices: SchoolInvoiceModel[] = await SchoolInvoice.find({ 'school.schoolId': schoolId }).limit(limit).skip(skip).select('-__v');
     return invoices;
 };
 

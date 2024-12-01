@@ -31,7 +31,7 @@ const findInvoices = async (schoolId: string, limit: number, skip: number) => {
 
 
 const findInvoicesByParentId = async (parentId: string, limit: number, skip: number) => {
-    const invoices: StudentInvoiceModel[] = await StudentInvoice.find({ parentId }).limit(limit).skip(skip).select('-__v');
+    const invoices: StudentInvoiceModel[] = await StudentInvoice.find({ 'parent.parentId': parentId }).limit(limit).skip(skip).select('-__v');
     return invoices;
 };
 
