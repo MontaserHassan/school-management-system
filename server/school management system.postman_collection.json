@@ -152,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    // \"email\": \"superadmin@gmail.com\", \n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    // \"email\": \"admin.cairo.internAtion@gmail.com\",\n    // \"email\": \"teacher2.banisuef@gmail.com\", // teacher\n    \"email\": \"montaser.hassan.bns1@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
+							"raw": "{\n    \"email\": \"superadmin@gmail.com\", \n    // \"email\": \"montaser.hassan.bns@gmail.com\", // admin\n    // \"email\": \"admin.cairo.internAtion@gmail.com\",\n    // \"email\": \"teacher2.banisuef@gmail.com\", // teacher\n    // \"email\": \"montaser.hassan.bns1@gmail.com\", // parent\n\t\"password\": \"M0nT@ser\"\n}\n\n// M0nT*A*ser\n// M0nT@ser",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1198,7 +1198,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlJtbHdsVTFCRUpEVGR0SXIyQzNRTiIsImVtYWlsIjoiZGlyZWN0b3IyQGdtYWlsLmNvbSIsInNjaG9vbElkIjoiSFFpUE9fb3Z5TldweG04bFNIWlB4VVU4Iiwic2VjcmV0S2V5IjoiZGFhNmJiZmI3ZTUyYTFlOGI5OWIyZjcwIiwicm9sZSI6ImRpcmVjdG9yIiwiY29kZSI6IlAxMDEzMzEiLCJpYXQiOjE3MjcyOTM3NzIsImV4cCI6MTcyNzM4MDE3Mn0.CSe-bUkqf76nZz5Kc6hIqkC_1Ibr3XN4dCj7i3MiGLw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiIwOGM5OGE5ODFjYjcwZTU1M2RkNzc4YjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMzMDc1MTk0LCJleHAiOjE3MzMxNjE1OTR9.wel2bPjPj9CX4TSQeGYE6UC4Oopka_XR3pvw-JoYe8Q",
 									"type": "string"
 								}
 							]
@@ -1207,7 +1207,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"11111111\"\n}",
+							"raw": "{\n    \"userId\": \"L2spseoCoLdK7P0TxqHy-\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1226,7 +1226,73 @@
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update password",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"L2spseoCoLdK7P0TxqHy-\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SchoolManagementSystem}}/user/update-password",
+									"host": [
+										"{{SchoolManagementSystem}}"
+									],
+									"path": [
+										"user",
+										"update-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2024 17:52:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "461"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1cd-QBqgISCB1BgnwDu0vDar7mfddJE\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"info\",\n    \"responseCode\": 200,\n    \"responseMessage\": \"User updated password successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"L2spseoCoLdK7P0TxqHy-\",\n            \"userName\": \"admin cairo internation language\",\n            \"email\": \"admin.cairo.internation@gmail.com\",\n            \"role\": \"admin\",\n            \"schoolId\": \"baSWrROispfwEBvwSdnGUOTP\",\n            \"media\": \"\",\n            \"code\": \"Q750425\",\n            \"updatePassword\": false,\n            \"createdAt\": \"2024-11-30T17:28:00.160Z\",\n            \"updatedAt\": \"2024-12-01T17:52:48.582Z\",\n            \"lastSeen\": \"2024-11-30T23:46:56.408Z\",\n            \"logged\": true\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "add password",
@@ -1352,7 +1418,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiI2MzExNDk4MWI0MDM1MTlkZTZlYTA3YTEiLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMyOTY5MDUwLCJleHAiOjE3MzMwNTU0NTB9.u6brJczpRzSUCkELnnRVuYZxlegGQ6o0xJpqIYVJctA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVDeVpiQU8wa3NZOUtkT3dsYm9ESCIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJzY2hvb2xJZCI6InN1cGVyQWRtaW4iLCJzZWNyZXRLZXkiOiIwOGM5OGE5ODFjYjcwZTU1M2RkNzc4YjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImNvZGUiOiJQNjA3IiwiaWF0IjoxNzMzMDc1MTk0LCJleHAiOjE3MzMxNjE1OTR9.wel2bPjPj9CX4TSQeGYE6UC4Oopka_XR3pvw-JoYe8Q",
 									"type": "string"
 								}
 							]
@@ -1361,7 +1427,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"cairo internAtion language\",\n    \"subscriptionFees\": \"500\",\n    \"subscriptionWay\": \"monthly\",\n    \"currencyOfSubscription\": \"SchoolSystem-6-1\",\n    \"admin\": {\n        \"userName\": \"admin cairo internAtion language\",\n        \"email\": \"admin.cairo.internAtion@gmail.com\"\n    },\n    \"employees\": []\n}",
+							"raw": "// {\n//     \"schoolName\": \"Happy Home\",\n//     \"subscriptionFees\": \"100\"\n// }\n\n{\n    \"schoolName\": \"Baba language\",\n    \"subscriptionFees\": \"1500\",\n    \"subscriptionWay\": \"yearly\",\n    \"currencyOfSubscription\": \"SchoolSystem-6-2\",\n    \"admin\": {\n        \"userName\": \"baba language\",\n        \"email\": \"baba@gmail.com\"\n    },\n    \"employees\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"

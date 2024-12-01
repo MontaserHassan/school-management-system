@@ -4,7 +4,7 @@ import path from 'path';
 
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import { UserModel } from "../Models/user.model";
-import { lookupService, schoolService, userService, notificationService, cycleService, domainService } from "../Services/index.service";
+import { lookupService, schoolService, userService, schoolsInvoiceService, cycleService, domainService } from "../Services/index.service";
 import { errorCycleMessage, errorLookupMessage, errorSchoolMessage, successCycleMessage, successSchoolMessage } from "../Messages/index.message";
 import IResponse from '../Interfaces/response.interface';
 import { CSVSchool, CustomError, calculateSubscriptionDate, sendEmail, pagination } from "../Utils/index.util";
@@ -32,6 +32,7 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });
         await Promise.all([cycleService.createCycle(newSchool._id, 'Cycle One'), cycleService.createCycle(newSchool._id, 'Cycle Two'), cycleService.createCycle(newSchool._id, 'Cycle Three'),]);
+        await schoolsInvoiceService.createInvoice(Number(newSchool.subscriptionFees), { schoolId: newSchool._id, schoolName: newSchool.schoolName }, { adminId: String(adminUser._id), adminName: adminUser.userName });
         const response: IResponse = {
             type: "info",
             responseCode: 201,

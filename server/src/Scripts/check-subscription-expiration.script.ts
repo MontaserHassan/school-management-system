@@ -2,7 +2,7 @@ import cron from 'node-cron';
 import dayjs from 'dayjs';
 
 import { SubscriptionSchool, SubscriptionSchoolModel } from '../Models/school.model';
-import { notificationService } from '../Services/index.service';
+import { notificationService, schoolService, userService, schoolsInvoiceService } from '../Services/index.service';
 
 
 
@@ -31,6 +31,11 @@ export const sendNotification = () => {
                     if (!notifiedSchoolIds.has(school._id.toString())) {
                         await notificationService.createNotification(school.admin, school._id, 'Subscription Expiration', `${check.message}${dayjs(school.endOfSubscription).format('YYYY-MM-DD')}.`,);
                         notifiedSchoolIds.add(school._id.toString());
+                        if (check.daysBefore === 3) {
+                            const schoolInfo = await schoolService.getSchoolById(school._id);
+                            const adminInfo = await userService.getById(schoolInfo.admin);
+                            await schoolsInvoiceService.createInvoice(Number(schoolInfo.subscriptionFees), { schoolId: schoolInfo._id, schoolName: schoolInfo.schoolName }, { adminId: String(adminInfo._id), adminName: adminInfo.userName },);
+                        };
                         break;
                     };
                 };

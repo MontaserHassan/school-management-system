@@ -31,6 +31,7 @@ user.use('/verify-payment', verifyPaymentRouter);
 user.use(getUser());
 user.use('/payment', authPaymentRouter);
 user.use('/invoice', authInvoiceRouter);
+user.use('/school', authSchoolRouter);
 user.use(isSchoolSubscription());
 user.use('/verify-school', authVerifySchoolRouter);
 user.use('/', authUserRouter);
@@ -45,7 +46,6 @@ user.use('/group', authGroupRouter);
 user.use('/event', authEventRouter);
 user.use('/student', authStudentRouter);
 user.use('/parent', authParentRouter);
-user.use('/school', authSchoolRouter);
 
 
 

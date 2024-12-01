@@ -5,7 +5,7 @@ import { SchoolInvoice, SchoolInvoiceModel } from '../Models/invoices-school.mod
 // ----------------------------- create invoice -----------------------------
 
 
-const createInvoice = async (amount: number, school: { schoolId: string, schoolName: string }, admin: { adminId: string, adminName: string }, media: string,) => {
+const createInvoice = async (amount: number, school: { schoolId: string, schoolName: string }, admin: { adminId: string, adminName: string }, media?: string,) => {
     const invoice: SchoolInvoiceModel = new SchoolInvoice({
         school: school,
         amount: amount,
