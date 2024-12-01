@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BaseComponent } from '../../../shared/component/base-component/base.component';
-import { ParentService } from '../../service/parent.service';
-import { User } from '../../../shared/models/user.model';
+import { BaseComponent } from '../base-component/base.component';
+import { ParentService } from '../../../user/service/parent.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-reset-password-confirmation-dialog',

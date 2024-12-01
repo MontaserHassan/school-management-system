@@ -64,6 +64,8 @@ export class ApiConstant {
   static GET_STUDENT_INVOICE_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.Student + '{id}';
   static GET_ALL_STUDENT_INVOICES = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Invoice + URLSegment.Student;
 
+  static CREATE_PAYMENT = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Payment;
+
   static GET_ALL_NOTIFICATIONS = ApiConstant.URL_BASE + URLSegment.User + 'notification';
   static GET_NOTIFICATION_BY_ID = ApiConstant.URL_BASE + URLSegment.User + 'notification/' + '{id}';
   static MARK_ALL_AS_READ = ApiConstant.URL_BASE + URLSegment.User + 'notification';

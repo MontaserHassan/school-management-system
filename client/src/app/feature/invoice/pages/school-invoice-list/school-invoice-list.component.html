@@ -14,7 +14,9 @@
         <tr>
           <th>{{ 'invoice.schoolName' | translate }}</th>
           <th>{{ 'invoice.adminName' | translate }}</th>
+          <th>{{ 'invoice.amount' | translate }}</th>
           <th>{{ 'invoice.media' | translate }}</th>
+          <th>{{ 'invoice.status' | translate }}</th>
           <th>{{ 'invoice.createdAt' | translate }}</th>
           <th>{{ 'invoice.updatedAt' | translate }}</th>
           <th>{{ 'invoice.actions' | translate }}</th>
@@ -25,6 +27,7 @@
         <tr>
           <td>{{ invoice.school.schoolName }}</td>
           <td>{{ invoice.admin.adminName }}</td>
+          <td>{{ invoice.amount }}</td>
 
           <!-- Media Attachment -->
           <td>
@@ -35,6 +38,14 @@
             <ng-template #noMedia>
               <span>{{ 'invoice.noMedia' | translate }}</span>
             </ng-template>
+          </td>
+
+          <!-- Status -->
+          <td>
+            <span class="status-tag" [ngClass]="{
+              'status-active': invoice.invoiceStatus === 'paid',
+              'status-pending': invoice.invoiceStatus === 'pending',
+            }">{{ invoice.invoiceStatus }}</span>
           </td>
 
           <!-- Created At -->

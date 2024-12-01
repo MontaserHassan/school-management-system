@@ -7,8 +7,6 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { AddParentComponent } from './pages/add-parent/add-parent.component';
 import { UpdateUserDialogComponent } from './component/update-user-dialog/update-user-dialog.component';
-import { ResetPasswordConfirmationDialogComponent } from './component/reset-password-confirmation-dialog/reset-password-confirmation-dialog.component';
-
 @NgModule({
   declarations: [
     UserViewComponent,
@@ -16,7 +14,6 @@ import { ResetPasswordConfirmationDialogComponent } from './component/reset-pass
     AddUserComponent,
     AddParentComponent,
     UpdateUserDialogComponent,
-    ResetPasswordConfirmationDialogComponent
   ],
   imports: [
     CommonModule, SharedModule, UserRoutingModule,

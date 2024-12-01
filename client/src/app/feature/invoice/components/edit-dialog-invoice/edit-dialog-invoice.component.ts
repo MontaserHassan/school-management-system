@@ -2,7 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FileUpload } from 'primeng/fileupload';
-import { MediaPreviewDialogComponent } from '../media-preview-dialog/media-preview-dialog.component';
+import { MediaPreviewDialogComponent } from '../../../shared/component/media-preview-dialog/media-preview-dialog.component';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { InvoiceService } from '../../service/invoice.service';
 import { Invoice } from '../../models/invoice.model';

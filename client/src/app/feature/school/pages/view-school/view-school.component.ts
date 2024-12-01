@@ -9,6 +9,7 @@ import { MenuItem } from 'primeng/api';
 import { SubscriptionStatus } from '../../../shared/config/drop-down-value.constant';
 import { EditSchoolDialogComponent } from '../../components/edit-school-dialog/edit-school-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ResetPasswordConfirmationDialogComponent } from '../../../shared/component/reset-password-confirmation-dialog/reset-password-confirmation-dialog.component';
 
 @Component({
   selector: 'app-view-school',
@@ -88,6 +89,12 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
       if(res){
         this.getSchoolDetails(this.id);
       }
+    })
+  }
+
+  handleRestPassword(){
+    const dialog = this.matDialog.open(ResetPasswordConfirmationDialogComponent, {
+      data: { user: this.school.admin }
     })
   }
 

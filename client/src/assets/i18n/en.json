@@ -236,6 +236,9 @@
     "yesRemove": "Yes, Remove"
   },
   "invoice": {
+    "amount":"Amount",
+    "status": "Status",
+    "pay": "Pay",
     "addInvoice": "Add Invoice",
     "schoolId": "School ID",
     "schoolRequired": "School is required",
@@ -278,7 +281,9 @@
     }
   },
   "school": {
+    "amount": "Amount",
     "schoolName": "School Name",
+    "resetPassword": "Reset Password",
     "subscriptionFees": "Subscription Fees",
     "currency": "Currency",
     "subscriptionWay": "Subscription Way",

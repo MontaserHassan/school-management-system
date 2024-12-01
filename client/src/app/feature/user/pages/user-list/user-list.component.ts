@@ -7,7 +7,7 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { MenuItem } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateUserDialogComponent } from '../../component/update-user-dialog/update-user-dialog.component';
-import { ResetPasswordConfirmationDialogComponent } from '../../component/reset-password-confirmation-dialog/reset-password-confirmation-dialog.component';
+import { ResetPasswordConfirmationDialogComponent } from '../../../shared/component/reset-password-confirmation-dialog/reset-password-confirmation-dialog.component';
 
 @Component({
   selector: 'app-user-list',

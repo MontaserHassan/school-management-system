@@ -4,6 +4,8 @@ import { paymentService, schoolService, schoolsInvoiceService, studentInvoiceSer
 import { calculateSubscriptionDate, CustomError } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { errorInvoiceMessage } from "../Messages/index.message";
+import { SubscriptionSchoolModel } from "Models/school.model";
+import { StudentModel } from "Models/student.model";
 
 
 
@@ -34,7 +36,7 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
             paymentData.serviceName = "Subscription Of School";
         } else if (role === "parent") {
             isInvoiceExisting = await studentInvoiceService.findInvoiceById(invoiceId);
-            if (!isInvoiceExisting) throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, 'invoice');
+            if (!isInvoiceExisting || isInvoiceExisting.invoiceStatus === "paid") throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, 'invoice');
             studentId = isInvoiceExisting.student.studentId;
             const studentData = await studentService.getStudentById(studentId);
             paymentData.name = `Student Costs: ${studentData.studentName}`;
@@ -97,15 +99,17 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
         const { session_id } = req.query;
         const payment = await paymentService.getPayment(String(session_id));
         let invoice;
+        let schoolData: SubscriptionSchoolModel
+        let student:StudentModel
         if (payment.service === 1) {
-            const schoolData = await schoolService.getSchoolById(payment.schoolId);
+            schoolData = await schoolService.getSchoolById(payment.schoolId);
             const newSubscriptionDate = new Date();
             const endOfSubscription = calculateSubscriptionDate(schoolData.subscriptionWay, newSubscriptionDate);
             await schoolService.updateSchoolData(schoolData._id, { endOfSubscription: endOfSubscription, subscriptionStatus: "paid", subscriptionDate: newSubscriptionDate });
             invoice = await schoolsInvoiceService.updateInvoice(payment.invoiceId, { invoiceStatus: "paid", PaidDate: new Date() });
         };
         if (payment.service === 2) {
-            const student = await studentService.getStudentById(payment.studentId);
+            student = await studentService.getStudentById(payment.studentId);
             const paymentStatus = student.remainingAmount === 0 ? "paid" : "pending";
             await studentService.updateStudentData(payment.studentId, { paymentStatus: paymentStatus, paidAmount: Number(student.paidAmount) + Number(payment.amount), pendingAmount: 0 });
             invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { invoiceStatus: "paid", PaidDate: new Date() });
@@ -122,7 +126,12 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
             },
         };
         res.data = response;
-        return res.redirect(`http://127.0.0.1:5500/server/payment/payment-success.html?token=${token}&isSuccess=true`);
+        if(payment.service === 1){
+            return res.redirect(`http://localhost:4200/user/profile/${payment.userId}?isSuccess=true`);   
+        }
+        if(payment.service === 2){
+            return res.redirect(`http://localhost:4200/invoice/student-list?isSuccess=true`);   
+        }
     } catch (err) {
         next(err);
     };
@@ -146,7 +155,12 @@ const cancelPayment = async (req: Request, res: Response, next: NextFunction) =>
             data: {},
         };
         res.data = response;
-        res.redirect(`http://127.0.0.1:5500/server/payment/payment-cancel.html?token=${token}&isSuccess=false`);
+        if(payment.service === 1){
+            return res.redirect(`http://localhost:4200/user/profile/${payment.userId}?isSuccess=true`);   
+        }
+        if(payment.service === 2){
+            return res.redirect(`http://localhost:4200/invoice/student-list?isSuccess=true`);   
+        }    
     } catch (err) {
         next(err);
     };

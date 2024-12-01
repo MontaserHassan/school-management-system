@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { ApiConstant } from '../../shared/config/api.constant';
 import { Invoice, InvoiceList } from '../models/invoice.model';
 import { StudentInvoice, StudentInvoiceList } from '../models/student-invoice.model';
+import { Payment } from '../models/payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class InvoiceService {
   addSchoolInvoice(body:{
     schoolId:string,
     media:string
+    amount:string
   }): Observable<Invoice> {
     return this.baseAPI.post(ApiConstant.ADD_SCHOOL_INVOICE, body).pipe(
       map((res) => this.mapper.fromJson(Invoice, res.data.invoice))
@@ -33,6 +35,7 @@ export class InvoiceService {
 
   editSchoolInvoice(body:{
     invoiceId:string,
+    amount?:string
     media:string
   }): Observable<Invoice> {
     return this.baseAPI.patch(ApiConstant.Edit_SCHOOL_INVOICE, body).pipe(
@@ -49,6 +52,7 @@ export class InvoiceService {
   addStudentInvoice(body:{
     studentId:string,
     parentId:string,
+    amount:string
     media:string
   }): Observable<StudentInvoice> {
     return this.baseAPI.post(ApiConstant.ADD_STUDENT_INVOICE, body).pipe(
@@ -58,10 +62,19 @@ export class InvoiceService {
 
   editStudentInvoice(body:{
     invoiceId:string,
+    amount?:string
     media:string
   }): Observable<StudentInvoice> {
     return this.baseAPI.patch(ApiConstant.Edit_STUDENT_INVOICE, body).pipe(
       map((res) => this.mapper.fromJson(StudentInvoice, res.data.invoice))
+    )
+  }
+
+  createPayment(body:{
+    invoiceId:string,
+  }): Observable<Payment> {
+    return this.baseAPI.post(ApiConstant.CREATE_PAYMENT, body).pipe(
+      map((res) => this.mapper.fromJson(Payment, res.data))
     )
   }
 }

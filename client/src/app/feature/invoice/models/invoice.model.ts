@@ -19,6 +19,10 @@ export class Invoice {
   @Expose()
   school!: School;
   @Expose()
+  amount!: string;
+  @Expose()
+  invoiceStatus!: 'paid' | 'pending';
+  @Expose()
   media!: string;
   @Expose()
   createdAt!: Date;

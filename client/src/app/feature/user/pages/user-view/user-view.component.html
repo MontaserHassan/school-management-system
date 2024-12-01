@@ -77,6 +77,66 @@
           </ng-template>
         </p-table>
       </div>
+
+      <div *ngIf="invoices">
+        <div class="my-5">
+          <p-divider>
+            <p-header>{{ 'invoice.listTitle' | translate }}</p-header>
+          </p-divider>
+        </div>
+
+        <p-table [value]="invoices" class="p-datatable-striped" [paginator]="true" [rows]="pageSize"
+        [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [lazy]="true"
+        responsiveLayout="scroll">
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ 'invoice.media' | translate }}</th>
+            <th>{{ 'invoice.status' | translate }}</th>
+            <th>{{ 'invoice.createdAt' | translate }}</th>
+            <th>{{ 'invoice.actions' | translate }}</th>
+          </tr>
+        </ng-template>
+
+        <ng-template let-invoice pTemplate="body">
+          <tr>
+            <!-- Media Attachment -->
+            <td>
+              <ng-container *ngIf="invoice.media; else noMedia">
+                <img (click)="openMediaDialog(invoice.media)" [src]="invoice.media" alt="{{ 'invoice.mediaAltText' | translate }}"
+                  class="img-fluid cursor-pointer" width="100" height="100" />
+              </ng-container>
+              <ng-template #noMedia>
+                <span>{{ 'invoice.noMedia' | translate }}</span>
+              </ng-template>
+            </td>
+
+            <!-- Status -->
+            <td>
+              <span class="status-tag" [ngClass]="{
+                'status-active': invoice.invoiceStatus === 'paid',
+                'status-pending': invoice.invoiceStatus === 'pending',
+              }">{{ invoice.invoiceStatus }}</span>
+            </td>
+
+            <!-- Created At -->
+            <td>{{ invoice.createdAt | date }}</td>
+
+            <!-- Actions -->
+            <td>
+              <button [disabled]="invoice.invoiceStatus === 'paid'" pButton type="button" label="{{ 'invoice.pay' | translate }}" icon="pi pi-credit-card"
+                class="p-button-sm" (click)="createPayment(invoice._id)"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">{{ 'invoice.noInvoicesFound' | translate }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      </div>
     </div>
   </app-state-section>
 </p-card>

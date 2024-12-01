@@ -20,7 +20,11 @@ export class StudentInvoice{
   @Expose()
   parent!: Parent;
   @Expose()
+  amount!: string;
+  @Expose()
   student!: Student;
+  @Expose()
+  invoiceStatus!: 'paid' | 'pending';
   @Expose()
   schoolId!: string;
   @Expose()

@@ -66,6 +66,9 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FileUploadModule } from 'primeng/fileupload';
 import { AddStudentToClassRoomDialogComponent } from './component/add-student-to-class-room-dialog/add-student-to-class-room-dialog.component';
 import { GrantAccessDirective } from './directive/grant-access.directive';
+import { ResetPasswordConfirmationDialogComponent } from './component/reset-password-confirmation-dialog/reset-password-confirmation-dialog.component';
+import { MediaPreviewDialogComponent } from './component/media-preview-dialog/media-preview-dialog.component';
+import { PaymentResultDialogComponent } from './component/payment-result-dialog/payment-result-dialog.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -80,7 +83,9 @@ const COMPONENT =[
   StateSectionComponent,
   LoaderComponent,
   LazyDropdownComponent,
-  AddStudentToClassRoomDialogComponent
+  AddStudentToClassRoomDialogComponent,
+  ResetPasswordConfirmationDialogComponent,
+  MediaPreviewDialogComponent
 ]
 
 const OTHER_MODULES = [
@@ -142,13 +147,14 @@ const PRIME_NG_MODULES = [
   CheckboxModule,
   RadioButtonModule,
   VirtualScrollerModule,
-  ScrollPanelModule
+  ScrollPanelModule,
 ]
 
 @NgModule({
   declarations: [
     ...COMPONENT,
-    ...DIRECTIVES
+    ...DIRECTIVES,
+    PaymentResultDialogComponent
   ],
   imports: [
     CommonModule,

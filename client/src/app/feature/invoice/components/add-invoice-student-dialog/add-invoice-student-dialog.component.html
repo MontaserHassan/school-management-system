@@ -34,6 +34,17 @@
         </small>
       </div>
 
+       <!-- Amount -->
+       <div class="p-field col-12 col-md-8">
+        <label for="amount" class="d-block mb-2">{{ 'school.amount' | translate }}</label>
+        <input id="amount" pInputText formControlName="amount"
+          class="d-block p-inputtext-lg w-100" placeholder="{{ 'school.amount' | translate }}" />
+        <small *ngIf="invoiceForm.get('amount')?.invalid && invoiceForm.get('amount')?.touched"
+          class="p-error">
+          {{ 'school.amount' | translate }} are required
+        </small>
+      </div>
+
       <!-- File Upload -->
       <div class="field d-flex flex-column gap-2">
         <label for="media" class="form-label">{{ 'invoice.attachMedia' | translate }}</label>

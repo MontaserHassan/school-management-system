@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDialogInvoiceComponent } from '../../components/edit-dialog-invoice/edit-dialog-invoice.component';
-import { MediaPreviewDialogComponent } from '../../components/media-preview-dialog/media-preview-dialog.component';
+import { MediaPreviewDialogComponent } from '../../../shared/component/media-preview-dialog/media-preview-dialog.component';
 import { Invoice } from '../../models/invoice.model';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { InvoiceService } from '../../service/invoice.service';

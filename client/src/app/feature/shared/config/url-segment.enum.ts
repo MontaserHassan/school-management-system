@@ -17,4 +17,5 @@ export enum URLSegment {
   Activity = 'activity/',
   Classes  = 'classes/',
   Event = 'event/',
+  Payment = 'payment/',
 }

@@ -3,21 +3,24 @@
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="text-center mb-4">{{ 'invoice.listTitle' | translate }}</h3>
 
-      <p-button *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT" severity="success" (onClick)="openInvoiceDialog()"  label="{{ 'invoice.addButton' | translate }}" icon="pi pi-receipt" />
+      <p-button *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT" severity="success"
+        (onClick)="openInvoiceDialog()" label="{{ 'invoice.addButton' | translate }}" icon="pi pi-receipt" />
     </div>
 
     <p-table [value]="invoices" class="p-datatable-striped" [paginator]="true" [rows]="pageSize"
-      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions" [lazy]="true"
-      responsiveLayout="scroll">
+      [totalRecords]="totalRowsCount" (onPage)="paginate($event)" [rowsPerPageOptions]="rowsPerPageOptions"
+      [lazy]="true" responsiveLayout="scroll">
 
       <ng-template pTemplate="header">
         <tr>
           <th>{{ 'invoice.studentName' | translate }}</th>
           <th>{{ 'invoice.parentName' | translate }}</th>
+          <th>{{ 'invoice.amount' | translate }}</th>
           <th>{{ 'invoice.media' | translate }}</th>
+          <th>{{ 'invoice.status' | translate }}</th>
           <th>{{ 'invoice.createdAt' | translate }}</th>
           <th>{{ 'invoice.updatedAt' | translate }}</th>
-          <th *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT">{{ 'invoice.actions' | translate }}</th>
+          <th *grantAccess="RolesConstants.SHOW_ACTIONS_INVOICE">{{ 'invoice.actions' | translate }}</th>
         </tr>
       </ng-template>
 
@@ -25,16 +28,26 @@
         <tr>
           <td>{{ invoice.student.studentName }}</td>
           <td>{{ invoice.parent.parentName }}</td>
+          <td>{{ invoice.amount }}</td>
 
           <!-- Media Attachment -->
           <td>
             <ng-container *ngIf="invoice.media; else noMedia">
-              <img (click)="openMediaDialog(invoice.media)" [src]="invoice.media" alt="{{ 'invoice.mediaAltText' | translate }}"
-                class="img-fluid cursor-pointer" width="100" height="100" />
+              <img (click)="openMediaDialog(invoice.media)" [src]="invoice.media"
+                alt="{{ 'invoice.mediaAltText' | translate }}" class="img-fluid cursor-pointer" width="100"
+                height="100" />
             </ng-container>
             <ng-template #noMedia>
               <span>{{ 'invoice.noMedia' | translate }}</span>
             </ng-template>
+          </td>
+
+          <!-- Status -->
+          <td>
+            <span class="status-tag" [ngClass]="{
+              'status-active': invoice.invoiceStatus === 'paid',
+              'status-pending': invoice.invoiceStatus === 'pending',
+            }">{{ invoice.invoiceStatus }}</span>
           </td>
 
           <!-- Created At -->
@@ -44,9 +57,14 @@
           <td>{{ invoice.updatedAt | date }}</td>
 
           <!-- Actions -->
-          <td *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT">
-            <button pButton type="button" label="{{ 'invoice.edit' | translate }}" icon="pi pi-pencil"
-              class="p-button-sm p-button-warning" (click)="editInvoice(invoice)"></button>
+          <td *grantAccess="RolesConstants.SHOW_ACTIONS_INVOICE">
+            <button *grantAccess="RolesConstants.ADD_EDIT_INVOICE_STUDENT" pButton type="button"
+              label="{{ 'invoice.edit' | translate }}" icon="pi pi-pencil" class="p-button-sm p-button-warning"
+              (click)="editInvoice(invoice)"></button>
+
+            <button  *grantAccess="RolesConstants.CREATE_PAYMENT" [disabled]="invoice.invoiceStatus === 'paid'" pButton type="button"
+              label="{{ 'invoice.pay' | translate }}" icon="pi pi-credit-card" class="p-button-sm"
+              (click)="createPayment(invoice._id)"></button>
           </td>
         </tr>
       </ng-template>

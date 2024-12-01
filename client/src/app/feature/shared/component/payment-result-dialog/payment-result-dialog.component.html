@@ -1,0 +1,22 @@
+<mat-dialog-content class="w-auto d-flex justify-content-center w-100">
+    <div *ngIf="data.isSuccess" class="row justify-content-center w-100">
+      <div class="col">
+        <div class="message-box _success">
+          <i class="pi pi-check-circle" style="color: green"></i>
+          <h2> Your payment was successful </h2>
+          <p> Thank you for your payment. we will <br>
+            be in contact with more details shortly </p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!data.isSuccess" class="row justify-content-center">
+      <div class="col">
+        <div class="message-box _success _failed">
+          <i class="pi pi-times-circle" style="color: red"></i>
+          <h2> Your payment failed </h2>
+          <p> Try again later </p>
+        </div>
+      </div>
+    </div>
+</mat-dialog-content>

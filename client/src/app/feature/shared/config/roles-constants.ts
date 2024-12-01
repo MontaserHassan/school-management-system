@@ -112,9 +112,19 @@ export class RolesConstants {
     UserRole.Parent
   ]
 
+  public static SHOW_ACTIONS_INVOICE = [
+    UserRole.Admin,
+    UserRole.Director,
+    UserRole.Parent
+  ]
+
   public static ADD_EDIT_INVOICE_STUDENT = [
     UserRole.Admin,
     UserRole.Director,
+  ]
+
+  public static CREATE_PAYMENT = [
+    UserRole.Parent
   ]
 
   public static SEND_EMAILS = [

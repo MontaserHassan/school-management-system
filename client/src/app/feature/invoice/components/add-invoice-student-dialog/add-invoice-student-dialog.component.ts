@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
 import { Lookup } from '../../../shared/enums/lookup.enum';
-import { MediaPreviewDialogComponent } from '../media-preview-dialog/media-preview-dialog.component';
+import { MediaPreviewDialogComponent } from '../../../shared/component/media-preview-dialog/media-preview-dialog.component';
 import { InvoiceService } from '../../service/invoice.service';
 
 @Component({
@@ -29,7 +29,8 @@ export class AddInvoiceStudentDialogComponent extends BaseComponent{
     this.invoiceForm = this.fb.group({
       parentId: ['', Validators.required],
       studentId: ['', Validators.required],
-      media: ['', Validators.required]
+      amount: ['', Validators.required],
+      media: ['']
     });
   }
 
@@ -64,6 +65,7 @@ export class AddInvoiceStudentDialogComponent extends BaseComponent{
       const body = {
         parentId: this.invoiceForm.get('parentId')?.value.value,
         studentId: this.invoiceForm.get('studentId')?.value.value,
+        amount: this.invoiceForm.get('amount')?.value,
         media: this.invoiceForm.get('media')?.value
       }
 
