@@ -14,7 +14,7 @@ import pagination from "../Utils/pagination.util";
 
 const createInvoice = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { parentId, studentId, media } = req.body;
+        const { parentId, studentId, amount, media } = req.body;
         const { schoolId } = req.user;
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
@@ -22,7 +22,9 @@ const createInvoice = async (req: Request, res: Response, next: NextFunction) =>
         if (!parentInfo) throw new CustomError(ErrorUserMessage.PARENT_NOT_FOUND, 404, "parent");
         const studentInfo = await studentService.getStudentById(studentId);
         if (!studentInfo || schoolId !== studentInfo.schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
-        const invoice = await studentInvoiceService.createInvoice(schoolId, { parentId: String(parentInfo._id), parentName: parentInfo.userName }, { studentId: studentInfo._id, studentName: studentInfo.studentName, }, media);
+        if (amount > studentInfo.remainingAmount) throw new CustomError(errorInvoiceMessage.INSUFFICIENT_AMOUNT, 400, "amount");
+        const invoice = await studentInvoiceService.createInvoice(schoolId, amount, { parentId: String(parentInfo._id), parentName: parentInfo.userName }, { studentId: studentInfo._id, studentName: studentInfo.studentName, }, media);
+        await studentService.updateStudentData(studentInfo._id, { remainingAmount: Number(studentInfo.remainingAmount) - Number(amount), pendingAmount: Number(amount), });
         const response: IResponse = {
             type: "info",
             responseCode: 200,

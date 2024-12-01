@@ -6,7 +6,7 @@ const schoolInvoiceValidator = {
     createSchoolInvoice: {
         body: Joi.object().keys({
             schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School Id is required.', }),
-            media: Joi.string().required().trim().messages({ 'string.empty': 'Media is required.', }),
+            media: Joi.string().optional().empty('').trim().messages({ 'string.empty': 'Media is required.', }),
         }),
     },
 

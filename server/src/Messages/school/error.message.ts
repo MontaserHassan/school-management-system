@@ -9,7 +9,7 @@ enum errorSchoolMessage {
     DOES_NOT_ADDED = `Employee or admin doesn't added.`,
     SCHOOLID_INVALID = "Please check the School ID and try again.",
     FEES_NOT_PAID = "This School subscription is not paid. Please contact with admin.",
-    SCHOOL_NOT_VERIFIED = "This School subscription is not verified. Please contact with admin.",
+    SCHOOL_NOT_VERIFIED = "This School is not verified. Please contact with admin.",
 };
 
 

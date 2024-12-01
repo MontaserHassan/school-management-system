@@ -9,7 +9,7 @@ import lookupService from "./lookup.service";
 import schoolService from "./school.service";
 import progressHistoryService from "./progress-history.service";
 import notificationService from "./notification.service";
-import SchoolsInvoiceService from "./school-invoice.service";
+import schoolsInvoiceService from "./school-invoice.service";
 import studentInvoiceService from "./student-invoice.service";
 import ticketService from './ticket.service';
 import groupService from "./group.service";
@@ -31,7 +31,7 @@ export {
     schoolService,
     progressHistoryService,
     notificationService,
-    SchoolsInvoiceService,
+    schoolsInvoiceService,
     studentInvoiceService,
     ticketService,
     groupService,

@@ -5,7 +5,7 @@ import Joi from 'joi';
 const paymentValidator = {
     createPayment: {
         body: Joi.object().keys({
-            studentId: Joi.string().optional().trim().messages({ 'string.empty': 'Student Id is required.', }),
+            invoiceId: Joi.string().required().trim().messages({ 'string.empty': "Invoice Id is required." }),
         }),
     },
 

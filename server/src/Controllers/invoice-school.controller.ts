@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import fs from 'fs';
 import path from 'path';
 
-import { SchoolsInvoiceService, schoolService, userService, } from "../Services/index.service";
+import { schoolsInvoiceService, schoolService, userService, } from "../Services/index.service";
 import IResponse from '../Interfaces/response.interface';
 import { errorInvoiceMessage, errorSchoolMessage, successInvoiceMessage } from "../Messages/index.message";
 import { SchoolInvoiceModel } from "Models/invoices-school.model";
@@ -19,7 +19,7 @@ const createInvoice = async (req: Request, res: Response, next: NextFunction) =>
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const userInfo = await userService.getById(isSchoolExisting.admin);
-        const invoice = await SchoolsInvoiceService.createInvoice({ schoolId: isSchoolExisting._id, schoolName: isSchoolExisting.schoolName }, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
+        const invoice = await schoolsInvoiceService.createInvoice(Number(isSchoolExisting.subscriptionFees), { schoolId: isSchoolExisting._id, schoolName: isSchoolExisting.schoolName }, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
         const subject = 'New Invoice';
         const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/invoice.html'), 'utf8');
         sendEmail(userInfo.email, subject, content);
@@ -49,13 +49,13 @@ const getInvoices = async (req: Request, res: Response, next: NextFunction) => {
         let invoices: SchoolInvoiceModel[];
         let paginateData;
         if (role === 'superAdmin') {
-            const invoicesCounts = await SchoolsInvoiceService.totalDocument();
+            const invoicesCounts = await schoolsInvoiceService.totalDocument();
             paginateData = pagination(invoicesCounts, Number(page), Number(limit));
-            invoices = await SchoolsInvoiceService.findInvoices(paginateData.limit, paginateData.skip);
+            invoices = await schoolsInvoiceService.findInvoices(paginateData.limit, paginateData.skip);
         } else {
-            const invoicesCounts = await SchoolsInvoiceService.totalDocument(schoolId);
+            const invoicesCounts = await schoolsInvoiceService.totalDocument(schoolId);
             paginateData = pagination(invoicesCounts, Number(page), Number(limit));
-            invoices = await SchoolsInvoiceService.findInvoicesBySchoolId(schoolId, paginateData.limit, paginateData.skip);
+            invoices = await schoolsInvoiceService.findInvoicesBySchoolId(schoolId, paginateData.limit, paginateData.skip);
         };
         if (!invoices) throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, "invoice");
         const response: IResponse = {
@@ -85,7 +85,7 @@ const getInvoices = async (req: Request, res: Response, next: NextFunction) => {
 const getInvoice = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { invoiceId } = req.params;
-        const invoice = await SchoolsInvoiceService.findInvoiceById(invoiceId);
+        const invoice = await schoolsInvoiceService.findInvoiceById(invoiceId);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -109,7 +109,7 @@ const getInvoice = async (req: Request, res: Response, next: NextFunction) => {
 const updateInvoice = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { invoiceId, media } = req.body;
-        const invoice = await SchoolsInvoiceService.updateInvoice(invoiceId, { media });
+        const invoice = await schoolsInvoiceService.updateInvoice(invoiceId, { media });
         if (!invoice) throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, "invoice");
         const response: IResponse = {
             type: "info",

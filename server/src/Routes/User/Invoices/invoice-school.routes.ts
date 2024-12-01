@@ -14,9 +14,9 @@ const invoiceSchoolRouter = express.Router();
 invoiceSchoolRouter.get('/', checkRole(['superAdmin', 'admin']), schoolInvoiceController.getInvoices);
 invoiceSchoolRouter.get('/:invoiceId', checkRole(['superAdmin', 'admin']), validation(schoolInvoiceValidator.getSchoolInvoice), schoolInvoiceController.getInvoice);
 
-invoiceSchoolRouter.post('/', validation(schoolInvoiceValidator.createSchoolInvoice), schoolInvoiceController.createInvoice);
+invoiceSchoolRouter.post('/', checkRole(['superAdmin']), validation(schoolInvoiceValidator.createSchoolInvoice), schoolInvoiceController.createInvoice);
 
-invoiceSchoolRouter.patch('/', validation(schoolInvoiceValidator.updateSchoolInvoice), schoolInvoiceController.updateInvoice);
+invoiceSchoolRouter.patch('/', checkRole(['superAdmin']), validation(schoolInvoiceValidator.updateSchoolInvoice), schoolInvoiceController.updateInvoice);
 
 
 

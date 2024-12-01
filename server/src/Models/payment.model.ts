@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 interface PaymentModel extends mongoose.Document {
     _id: string;
     schoolId: string;
+    invoiceId: string;
     userId: string;
     studentId?: string;
     paymentId: string;
@@ -32,6 +33,11 @@ const paymentSchema = new mongoose.Schema(
             type: String,
             ref: 'School',
             required: false,
+        },
+        invoiceId: {
+            type: String,
+            ref: 'Invoice',
+            required: true,
         },
         userId: {
             type: String,

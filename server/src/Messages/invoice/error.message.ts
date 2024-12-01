@@ -4,6 +4,7 @@ enum errorInvoiceMessage {
     DOES_NOT_DELETED = "Invoice doesn't deleted",
     NOT_FOUND_INVOICE = 'This Invoice does not exist',
     DOES_NOT_ADDED = `New Invoice doesn't added.`,
+    INSUFFICIENT_AMOUNT = "Insufficient amount, Remaining amount is less than invoice amount",
 };
 
 

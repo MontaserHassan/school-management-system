@@ -11,10 +11,13 @@ interface InvoiceInterface {
 
 interface StudentInvoiceModel extends mongoose.Document {
     _id: string;
+    amount: number;
     parent: { parentId: string, parentName: string };
     student: { studentId: string, studentName: string };
     schoolId: string;
-    invoices: InvoiceInterface[];
+    paidDate: Date;
+    invoiceStatus: string;
+    media: string;
 };
 
 
@@ -29,6 +32,10 @@ const studentInvoiceSchema = new mongoose.Schema(
             ref: 'School',
             required: false,
         },
+        amount: {
+            type: Number,
+            required: true,
+        },
         parent: {
             parentId: {
                 type: String,
@@ -38,6 +45,12 @@ const studentInvoiceSchema = new mongoose.Schema(
                 type: String,
                 required: true,
             },
+        },
+        invoiceStatus: {
+            type: String,
+            enum: ['paid', 'pending'],
+            required: true,
+            default: 'pending',
         },
         student: {
             studentId: {
@@ -49,6 +62,10 @@ const studentInvoiceSchema = new mongoose.Schema(
                 type: String,
                 required: true,
             }
+        },
+        PaidDate: {
+            type: Date,
+            required: false,
         },
         media: {
             type: String, // base64

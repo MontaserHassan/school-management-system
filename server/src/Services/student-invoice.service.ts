@@ -5,9 +5,10 @@ import { StudentInvoice, StudentInvoiceModel } from "../Models/invoices-student.
 // ----------------------------- create invoice for student -----------------------------
 
 
-const createInvoice = async (schoolId: string, parent: { parentId: string, parentName: string, }, student: { studentId: string, studentName: string, }, media: string,) => {
+const createInvoice = async (schoolId: string, amount: number, parent: { parentId: string, parentName: string, }, student: { studentId: string, studentName: string, }, media: string,) => {
     const invoice: StudentInvoiceModel = new StudentInvoice({
         schoolId: schoolId,
+        amount: amount,
         parent: parent,
         student: student,
         media: media,

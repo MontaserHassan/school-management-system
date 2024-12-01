@@ -25,7 +25,7 @@ const createStudent = async (studentName: string, parentId: string, schoolId: st
 
 
 const addMoreDataToStudent = async (studentId: string, classRoom: string, group: string, domains: any[], skills: any[], activities: any[], studentCost: string, currencyOfCost: string,) => {
-    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, skills: skills, activities: activities, studentCost: studentCost, currencyOfCost: currencyOfCost } }, { new: true });
+    const student: StudentModel = await Student.findByIdAndUpdate(studentId, { $set: { classRoom: classRoom, group: group, domains: domains, skills: skills, activities: activities, studentCost: studentCost, paidAmount: 0, remainingAmount: Number(studentCost), currencyOfCost: currencyOfCost } }, { new: true });
     return student;
 };
 

@@ -5,7 +5,7 @@ import Joi from 'joi';
 const userValidator = {
     registerUser: {
         body: Joi.object().keys({
-            userName: Joi.string().required().empty('').trim().max(30),
+            userName: Joi.string().required().empty('').trim().max(50),
             email: Joi.string().required().empty('').trim().email().message('Please enter a valid email.'),
             role: Joi.string().required().empty('').trim().valid('superAdmin', 'admin', 'director', 'teacher', 'parent').messages({ 'any.only': 'Please enter a valid role.' }),
             media: Joi.string().optional().empty('').messages({ 'string.empty': 'media cannot be an empty string', }),
