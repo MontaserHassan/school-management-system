@@ -15,6 +15,7 @@ interface SubscriptionSchoolModel extends mongoose.Document {
     endOfSubscription: Date;
     subscriptionStatus: string;
     verify: boolean;
+    notifySuperAdmin: boolean;
 };
 
 
@@ -65,6 +66,10 @@ const subscriptionSchoolSchema = new mongoose.Schema(
             enum: ['pending', 'paid', 'expired'],
         },
         verify: {
+            type: Boolean,
+            default: false,
+        },
+        notifySuperAdmin: {
             type: Boolean,
             default: false,
         },

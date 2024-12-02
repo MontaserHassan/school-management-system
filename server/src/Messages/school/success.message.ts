@@ -8,6 +8,7 @@ enum successSchoolMessage {
     GET_ALL_SCHOOLS = 'Schools fetched successfully',
     GET_ALL = 'Schools fetched successfully',
     ADDED_SUCCESS = "Employee added to this School successfully",
+    NOTIFY_SUCCESS = "Notification sent successfully",
 };
 
 

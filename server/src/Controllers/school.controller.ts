@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import fs from 'fs';
 import path from 'path';
 
+import { lookupService, schoolService, userService, schoolsInvoiceService, notificationService, cycleService, domainService } from "../Services/index.service";
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import { UserModel } from "../Models/user.model";
-import { lookupService, schoolService, userService, schoolsInvoiceService, cycleService, domainService } from "../Services/index.service";
 import { errorCycleMessage, errorLookupMessage, errorSchoolMessage, successCycleMessage, successSchoolMessage } from "../Messages/index.message";
 import IResponse from '../Interfaces/response.interface';
 import { CSVSchool, CustomError, calculateSubscriptionDate, sendEmail, pagination } from "../Utils/index.util";
@@ -167,6 +167,29 @@ const verifySchool = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 
+// ----------------------------- notify super admin -----------------------------
+
+
+const notifySuperAdmin = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId } = req.user;
+        const user = await userService.getSuperAdminData();
+        const school = await schoolService.updateSchoolData(schoolId, { notifySuperAdmin: false });
+        await notificationService.createNotification(user._id.toString(), schoolId, 'New Verification', `Hi Super Admin, You have to need to verify a new domain for ${school.schoolName} to be able to use it.`);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successSchoolMessage.NOTIFY_SUCCESS,
+            data: {},
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
+    };
+};
+
+
 // ----------------------------- add domain to cycle -----------------------------
 
 
@@ -181,6 +204,7 @@ const addDomainToCycle = async (req: Request, res: Response, next: NextFunction)
             domains.map(async (domain: { domainId: string; comment: string }) => {
                 const domainDetails = await domainService.getById(domain.domainId);
                 if (!domainDetails) throw new CustomError(`Domain with ID ${domain.domainId} not found.`, 404, "domain");
+                // if([domain.)
                 return {
                     domainId: domainDetails.domainId,
                     domainName: domainDetails.domainName,
@@ -283,6 +307,7 @@ const deleteSchool = async (req: Request, res: Response, next: NextFunction) => 
 
 export default {
     createSchool,
+    notifySuperAdmin,
     getSchoolData,
     getAllSchools,
     updateSchool,

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { domainService, groupService, userService, notificationService, schoolService } from "../Services/index.service";
+import { domainService, groupService, schoolService } from "../Services/index.service";
 import { errorDomainMessage, successDomainMessage, errorGroupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -23,9 +23,7 @@ const createDomain = async (req: Request, res: Response, next: NextFunction) => 
         const newDomainId = domainsLength + 1;
         const newDomain = await domainService.createDomain(`d${newDomainId}`, (domainName).toLowerCase(), courseTime, isGroupExisting.groupName, schoolId);
         if (!newDomain) throw new CustomError(errorDomainMessage.DOES_NOT_CREATED, 400, "none");
-        const user = await userService.getSuperAdminData();
-        // const school = await schoolService.updateSchoolData(schoolId, { verify: false });
-        // await notificationService.createNotification(user._id.toString(), schoolId, 'New Verification', `Hi Super Admin, You have to need to verify a new domain for ${school.schoolName} to be able to use it.`);
+        await schoolService.updateSchoolData(schoolId, { verify: false, notifySuperAdmin: true });
         const response: IResponse = {
             type: "info",
             responseCode: 201,

@@ -12,9 +12,13 @@ const schoolRouter = express.Router();
 
 
 schoolRouter.post('/', checkRole(['superAdmin',]), validation(schoolValidator.createSchool), schoolController.createSchool);
+schoolRouter.post('/notify-super-admin', checkRole(['admin',]), schoolController.notifySuperAdmin);
+
 schoolRouter.get('/:schoolId', validation(schoolValidator.getSchool), schoolController.getSchoolData);
 schoolRouter.get('/', checkRole(['superAdmin',]), schoolController.getAllSchools);
+
 schoolRouter.patch('/', checkRole(['superAdmin',]), validation(schoolValidator.updateSchool), schoolController.updateSchool);
+
 schoolRouter.delete('/:schoolId', checkRole(['superAdmin',]), validation(schoolValidator.deleteSchool), schoolController.deleteSchool);
 
 
