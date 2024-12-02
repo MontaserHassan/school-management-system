@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 
 import { paymentService, schoolService, schoolsInvoiceService, studentInvoiceService, studentService, userTokenService } from "../Services/index.service";
+import { SubscriptionSchoolModel } from "../Models/school.model";
+import { StudentModel } from "../Models/student.model";
 import { calculateSubscriptionDate, CustomError } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { errorInvoiceMessage } from "../Messages/index.message";
-import { SubscriptionSchoolModel } from "Models/school.model";
-import { StudentModel } from "Models/student.model";
 
 
 
@@ -100,8 +100,8 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
         const { session_id } = req.query;
         const payment = await paymentService.getPayment(String(session_id));
         let invoice;
-        let schoolData: SubscriptionSchoolModel
-        let student:StudentModel
+        let schoolData: SubscriptionSchoolModel;
+        let student: StudentModel;
         if (payment.service === 1) {
             schoolData = await schoolService.getSchoolById(payment.schoolId);
             const newSubscriptionDate = new Date();
@@ -116,8 +116,6 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
             invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { invoiceStatus: "paid", PaidDate: new Date() });
         };
         await paymentService.updatePayment(payment._id, { status: "Completed", PaidDate: new Date() });
-        const user = await userTokenService.getToken(payment.userId);
-        const token = user.token;
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -127,11 +125,11 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
             },
         };
         res.data = response;
-        if(payment.service === 1){
-            return res.redirect(`http://localhost:4200/user/profile/${payment.userId}?isSuccess=true`);   
+        if (payment.service === 1) {
+            return res.redirect(`${process.env.CLIENT_URL}/user/profile/${payment.userId}?isSuccess=true`);
         }
-        if(payment.service === 2){
-            return res.redirect(`http://localhost:4200/invoice/student-list?isSuccess=true`);   
+        if (payment.service === 2) {
+            return res.redirect(`${process.env.CLIENT_URL}/invoice/student-list?isSuccess=true`);
         }
     } catch (err) {
         next(err);
@@ -147,8 +145,6 @@ const cancelPayment = async (req: Request, res: Response, next: NextFunction) =>
         const { session_id } = req.query;
         const payment = await paymentService.getPayment(String(session_id));
         await paymentService.updatePayment(payment._id, { status: "Canceled", cancelDate: new Date() });
-        const user = await userTokenService.getToken(payment.userId);
-        const token = user.token;
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -156,12 +152,12 @@ const cancelPayment = async (req: Request, res: Response, next: NextFunction) =>
             data: {},
         };
         res.data = response;
-        if(payment.service === 1){
-            return res.redirect(`http://localhost:4200/user/profile/${payment.userId}?isSuccess=true`);   
+        if (payment.service === 1) {
+            return res.redirect(`${process.env.CLIENT_URL}/user/profile/${payment.userId}?isSuccess=false`);
         }
-        if(payment.service === 2){
-            return res.redirect(`http://localhost:4200/invoice/student-list?isSuccess=true`);   
-        }    
+        if (payment.service === 2) {
+            return res.redirect(`${process.env.CLIENT_URL}/invoice/student-list?isSuccess=false`);
+        }
     } catch (err) {
         next(err);
     };
