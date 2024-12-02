@@ -91,6 +91,7 @@
 
         <ng-template pTemplate="header">
           <tr>
+            <th>{{ 'invoice.amount' | translate }}</th>
             <th>{{ 'invoice.media' | translate }}</th>
             <th>{{ 'invoice.status' | translate }}</th>
             <th>{{ 'invoice.createdAt' | translate }}</th>
@@ -99,7 +100,8 @@
         </ng-template>
 
         <ng-template let-invoice pTemplate="body">
-          <tr>
+            <tr>
+            <td>{{ invoice.amount }}</td>
             <!-- Media Attachment -->
             <td>
               <ng-container *ngIf="invoice.media; else noMedia">
