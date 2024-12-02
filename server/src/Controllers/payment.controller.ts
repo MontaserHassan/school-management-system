@@ -45,6 +45,7 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
             paymentData.service = 2;
             paymentData.serviceName = "Costs Of Student";
         };
+        paymentData.currency = 'usd'
         const createPayment = await paymentService.createPayment(paymentData.name, paymentData.amount, paymentData.currency);
         if (!createPayment) throw new CustomError('Payment not created', 400, 'payment');
         const newPayment = await paymentService.savePaymentTransaction(req.user.schoolId, invoiceId, userId, createPayment.id, paymentData.name, paymentData.amount, paymentData.currency, paymentData.service, paymentData.serviceName, studentId);
