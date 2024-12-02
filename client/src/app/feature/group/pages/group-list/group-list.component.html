@@ -1,4 +1,4 @@
-<p-card [header]="'Groups'">
+<p-card [header]="'student.groups' | translate">
   <app-state-section [state]="sectionState">
     <div>
       <p-table
@@ -12,10 +12,10 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="groupName">Group Name</th>
-            <th>Classes</th>
-            <th pSortableColumn="createdAt">Created At</th>
-            <th pSortableColumn="updatedAt">Updated At</th>
+            <th pSortableColumn="groupName">{{ 'student.groupName' | translate }}</th>
+            <th>{{ 'student.classes' | translate }}</th>
+            <th pSortableColumn="createdAt">{{ 'student.createdAt' | translate }}</th>
+            <th pSortableColumn="updatedAt">{{ 'student.updatedAt' | translate }}</th>
           </tr>
         </ng-template>
 
@@ -24,7 +24,7 @@
             <td>{{ group.groupName }}</td>
             <td>
               <p-accordion>
-                <p-accordionTab header="View Classes" (selectedChange)="getClassesForGroup(group)">
+                <p-accordionTab [header]="'student.viewClasses' | translate" (selectedChange)="getClassesForGroup(group)">
                   <ul *ngIf="group?.classes">
                     <li *ngFor="let class of group.classes">
                       <strong>{{ class.room }}</strong>

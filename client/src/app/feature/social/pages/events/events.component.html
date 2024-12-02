@@ -1,7 +1,10 @@
 <app-state-section [state]="sectionState">
   <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-    <h2>Events List</h2>
-    <p-button *grantAccess="RolesConstants.ADD_EVENT_AND_SHOW_DETAILS" label="Add New Event" severity="success" (onClick)="AddNewEventDialog()" />
+    <h2>{{ 'eventsList.title' | translate }}</h2>
+    <p-button *grantAccess="RolesConstants.ADD_EVENT_AND_SHOW_DETAILS"
+              label="{{ 'eventsList.addNewEvent' | translate }}"
+              severity="success"
+              (onClick)="AddNewEventDialog()" />
   </div>
 
   <p-panel *ngFor="let event of events" [toggler]="'header'" [toggleable]="true" [collapsed]="true" class="mb-3">
@@ -28,17 +31,18 @@
             [lookup]="Lookup.EventResponse"
             [(ngModel)]="eventResponse"
             (ngModelChange)="updateResponse($event , event)"
+            [placeholder]="'eventsList.selectResponse' | translate"
           ></app-lazy-dropdown>
         </div>
       </div>
 
       <p-accordion (onOpen)="getEventDetails(event)" *grantAccess="RolesConstants.ADD_EVENT_AND_SHOW_DETAILS">
-        <p-accordionTab header="More Details">
+        <p-accordionTab header="{{ 'eventsList.moreDetails' | translate }}">
           <div class="event-details" *ngIf="event.eventDetails">
             <p-accordion>
               <p-accordionTab>
                 <ng-template pTemplate="header">
-                  <span>Total No Response:
+                  <span>{{ 'eventsList.totalNoResponse' | translate }}:
                     <p-tag [severity]="setResColor('not response')"><h5>{{ event.eventDetails.totalNoResponse }}</h5></p-tag>
                   </span>
                 </ng-template>
@@ -55,7 +59,7 @@
             <p-accordion>
               <p-accordionTab>
                 <ng-template pTemplate="header">
-                  <span>Total Attending:
+                  <span>{{ 'eventsList.totalAttending' | translate }}:
                     <p-tag [severity]="setResColor('Accept')"><h5>{{ event.eventDetails.totalAttending }}</h5></p-tag>
                   </span>
                 </ng-template>
@@ -72,7 +76,7 @@
             <p-accordion>
               <p-accordionTab>
                 <ng-template pTemplate="header">
-                  <span>Total Rejected:
+                  <span>{{ 'eventsList.totalRejected' | translate }}:
                     <p-tag [severity]="setResColor('Reject')"><h5>{{ event.eventDetails.totalRejected }}</h5></p-tag>
                   </span>
                 </ng-template>
@@ -83,34 +87,11 @@
                 </div>
               </p-accordionTab>
             </p-accordion>
-
-            <!-- <div class="d-flex justify-content-between gap-2">
-              <div>
-                <p-tag [severity]="setResColor('not response')"><h5>Not Responded</h5></p-tag>
-                <ul>
-                  <li *ngFor="let noResponse of event.eventDetails?.notResponse">{{ noResponse.username }}</li>
-                </ul>
-              </div>
-
-              <div>
-                <p-tag [severity]="setResColor('Accept')"><h5>Attendees</h5></p-tag>
-                <ul>
-                  <li *ngFor="let attendee of event.eventDetails?.attendees">{{ attendee.username }}</li>
-                </ul>
-              </div>
-
-              <div>
-                <p-tag [severity]="setResColor('Reject')"><h5>Rejected</h5></p-tag>
-                <ul>
-                  <li *ngFor="let rejected of event.eventDetails?.rejected">{{ rejected.username }}</li>
-                </ul>
-              </div>
-            </div> -->
           </div>
         </p-accordionTab>
       </p-accordion>
     </ng-template>
   </p-panel>
 
-  <span class="m-auto" *ngIf="!events.length">Not Have Event Yet</span>
+  <span class="m-auto" *ngIf="!events.length">{{ 'eventsList.noEvents' | translate }}</span>
 </app-state-section>

@@ -103,7 +103,8 @@
     "emailRequiredError": "L'email est requis.",
     "emailInvalidError": "Veuillez entrer un email valide.",
     "cancelButton": "Annuler",
-    "updateButton": "Mettre à jour"
+    "updateButton": "Mettre à jour",
+    "acceptTerms": "J'accepte les termes et conditions"
   },
   "resetPasswordDialog": {
     "title": "Confirmation de réinitialisation du mot de passe",
@@ -268,7 +269,8 @@
     "edit": "Modifier",
     "studentName": "Nom de l'étudiant",
     "parentName": "Nom du parent",
-    "noInvoicesFound": "Aucune facture trouvée."
+    "noInvoicesFound": "Aucune facture trouvée.",
+    "amountRequired": "Le montant est requis"
   },
   "notifications": {
     "title": "Notifications",
@@ -333,7 +335,15 @@
     "student": "Étudiant",
     "enterStudentName": "Entrez le nom de l'étudiant",
     "studentRequired": "L'étudiant est requis",
-    "save": "Enregistrer"
+    "save": "Enregistrer",
+    "schoolNameRequired": "Le nom de l'école est requis",
+    "subscriptionFeesRequired": "Les frais d'abonnement sont requis",
+    "currencyRequired": "La devise est requise",
+    "subscriptionWayRequired": "Le mode d'abonnement est requis",
+    "adminUserNameRequired": "Le nom d'utilisateur de l'administrateur est requis",
+    "adminEmailRequired": "L'email de l'administrateur est requis",
+    "adminEmailValid": "L'email de l'administrateur doit être valide",
+    "amountRequired": "Le montant est requis"
   },
   "ticket": {
     "typeMessage": "Tapez un message",
@@ -429,7 +439,13 @@
     "degree": "Diplôme",
     "Blue": "Bleu",
     "Green": "Vert",
-    "Yellow": "Jaune"
+    "Yellow": "Jaune",
+    "activitiesList": "Liste des Activités",
+    "addActivity": "Ajouter une Activité",
+    "groups": "Groupes",
+    "groupName": "Nom du Groupe",
+    "classes": "Classes",
+    "viewClasses": "Voir les Classes"
   },
   "domain": {
     "editDomain": "Modifier le domaine",
@@ -497,5 +513,47 @@
     "group": "Groupe",
     "classroom": "Salle de classe",
     "edit": "Modifier"
+  },
+  "payment": {
+    "success": "Votre paiement a été effectué avec succès",
+    "successMessage": "Merci pour votre paiement. Nous vous contacterons avec plus de détails sous peu.",
+    "failure": "Votre paiement a échoué",
+    "failureMessage": "Réessayez plus tard"
+  },
+  "addEventDialog": {
+    "title": "Ajouter un événement",
+    "members": "Membres",
+    "selectMembers": "Sélectionner des membres",
+    "membersRequired": "Les membres sont requis",
+    "eventName": "Nom de l'événement",
+    "enterEventName": "Entrez le nom de l'événement",
+    "eventNameRequired": "Le nom de l'événement est requis",
+    "description": "Description",
+    "enterEventDescription": "Entrez la description de l'événement",
+    "descriptionRequired": "La description est requise",
+    "eventDate": "Date de l'événement",
+    "selectEventDate": "Sélectionner la date de l'événement",
+    "dateRequired": "La date de l'événement est requise",
+    "cancelButton": "Annuler",
+    "saveButton": "Sauvegarder"
+  },
+  "eventsList": {
+    "title": "Liste des événements",
+    "addNewEvent": "Ajouter un nouvel événement",
+    "selectResponse": "Sélectionner une réponse",
+    "moreDetails": "Plus de détails",
+    "totalNoResponse": "Total sans réponse",
+    "totalAttending": "Total des participants",
+    "totalRejected": "Total rejeté",
+    "noEvents": "Aucun événement pour le moment"
+  },
+  "studentsList": {
+    "title": "Liste des étudiants",
+    "export": "Exporter",
+    "name": "Nom",
+    "studentCode": "Code étudiant",
+    "classroom": "Salle de classe",
+    "group": "Groupe",
+    "actions": "Actions"
   }
 }

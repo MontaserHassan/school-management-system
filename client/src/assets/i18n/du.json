@@ -103,7 +103,8 @@
     "emailRequiredError": "E-mail is vereist.",
     "emailInvalidError": "Voer een geldig e-mailadres in.",
     "cancelButton": "Annuleren",
-    "updateButton": "Bijwerken"
+    "updateButton": "Bijwerken",
+    "acceptTerms": "Ik accepteer de algemene voorwaarden"
   },
   "resetPasswordDialog": {
     "title": "Bevestiging van wachtwoordreset",
@@ -268,7 +269,8 @@
     "edit": "Bewerken",
     "studentName": "Studentnaam",
     "parentName": "Oudernaam",
-    "noInvoicesFound": "Geen facturen gevonden."
+    "noInvoicesFound": "Geen facturen gevonden.",
+    "amountRequired": "Bedrag is vereist"
   },
   "notifications": {
     "title": "Meldingen",
@@ -333,7 +335,15 @@
     "student": "Student",
     "enterStudentName": "Voer de naam van de student in",
     "studentRequired": "Student is vereist",
-    "save": "Opslaan"
+    "save": "Opslaan",
+    "schoolNameRequired": "Schoolnaam is vereist",
+    "subscriptionFeesRequired": "Abonnementskosten zijn vereist",
+    "currencyRequired": "Valuta is vereist",
+    "subscriptionWayRequired": "Abonnementswijze is vereist",
+    "adminUserNameRequired": "Beheerdersgebruikersnaam is vereist",
+    "adminEmailRequired": "Beheerders e-mail is vereist",
+    "adminEmailValid": "Beheerders e-mail moet geldig zijn",
+    "amountRequired": "Bedrag is vereist"
   },
   "ticket": {
     "typeMessage": "Typ een bericht",
@@ -429,7 +439,13 @@
     "degree": "Graad",
     "Blue": "Blauw",
     "Green": "Groen",
-    "Yellow": "Geel"
+    "Yellow": "Geel",
+    "activitiesList": "Activiteitenlijst",
+    "addActivity": "Activiteit Toevoegen",
+    "groups": "Groepen",
+    "groupName": "Groepsnaam",
+    "classes": "Klassen",
+    "viewClasses": "Bekijk Klassen"
   },
   "domain": {
     "editDomain": "Bewerk Domein",
@@ -497,5 +513,47 @@
     "group": "Groep",
     "classroom": "Klaslokaal",
     "edit": "Bewerken"
+  },
+  "payment": {
+    "success": "Uw betaling was succesvol",
+    "successMessage": "Bedankt voor uw betaling. Wij nemen binnenkort contact met u op voor meer details.",
+    "failure": "Uw betaling is mislukt",
+    "failureMessage": "Probeer het later opnieuw"
+  },
+  "addEventDialog": {
+    "title": "Evenement Toevoegen",
+    "members": "Leden",
+    "selectMembers": "Selecteer leden",
+    "membersRequired": "Leden zijn vereist",
+    "eventName": "Evenement Naam",
+    "enterEventName": "Voer de naam van het evenement in",
+    "eventNameRequired": "De naam van het evenement is vereist",
+    "description": "Beschrijving",
+    "enterEventDescription": "Voer de beschrijving van het evenement in",
+    "descriptionRequired": "Beschrijving is vereist",
+    "eventDate": "Evenement Datum",
+    "selectEventDate": "Selecteer de evenementdatum",
+    "dateRequired": "Evenementdatum is vereist",
+    "cancelButton": "Annuleren",
+    "saveButton": "Opslaan"
+  },
+  "eventsList": {
+    "title": "Evenementenlijst",
+    "addNewEvent": "Nieuw evenement toevoegen",
+    "selectResponse": "Selecteer reactie",
+    "moreDetails": "Meer details",
+    "totalNoResponse": "Totaal zonder reactie",
+    "totalAttending": "Totaal aanwezig",
+    "totalRejected": "Totaal afgewezen",
+    "noEvents": "Geen evenementen tot nu toe"
+  },
+  "studentsList": {
+    "title": "Studentenlijst",
+    "export": "Exporteer",
+    "name": "Naam",
+    "studentCode": "Studentcode",
+    "classroom": "Klaslokaal",
+    "group": "Groep",
+    "actions": "Acties"
   }
 }

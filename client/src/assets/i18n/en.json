@@ -103,7 +103,8 @@
     "emailRequiredError": "Email is required.",
     "emailInvalidError": "Please enter a valid email.",
     "cancelButton": "Cancel",
-    "updateButton": "Update"
+    "updateButton": "Update",
+    "acceptTerms": "Accept Terms and Conditions"
   },
   "resetPasswordDialog": {
     "title": "Reset Password Confirmation",
@@ -268,7 +269,8 @@
     "edit": "Edit",
     "studentName": "Student Name",
     "parentName": "Parent Name",
-    "noInvoicesFound": "No invoices found."
+    "noInvoicesFound": "No invoices found.",
+    "amountRequired": "Amount is required"
   },
   "notifications": {
     "title": "Notifications",
@@ -333,7 +335,15 @@
     "student": "Student",
     "enterStudentName": "Enter Student name",
     "studentRequired": "Student is required",
-    "save": "Save"
+    "save": "Save",
+    "schoolNameRequired": "School Name is required",
+    "subscriptionFeesRequired": "Subscription Fees are required",
+    "currencyRequired": "Currency is required",
+    "subscriptionWayRequired": "Subscription Way is required",
+    "adminUserNameRequired": "Admin Username is required",
+    "adminEmailRequired": "Admin Email is required",
+    "adminEmailValid": "Admin Email must be valid",
+    "amountRequired": "Amount is required"
   },
   "ticket": {
     "typeMessage": "Type a message",
@@ -429,7 +439,13 @@
     "degree": "Degree",
     "Blue": "Blue",
     "Green": "Green",
-    "Yellow": "Yellow"
+    "Yellow": "Yellow",
+    "activitiesList": "Activities List",
+    "addActivity": "Add Activity",
+    "groups": "Groups",
+    "groupName": "Group Name",
+    "classes": "Classes",
+    "viewClasses": "View Classes"
   },
   "domain": {
     "editDomain": "Edit Domain",
@@ -497,5 +513,47 @@
     "group": "Group",
     "classroom": "Classroom",
     "edit": "Edit"
+  },
+  "payment": {
+    "success": "Your payment was successful",
+    "successMessage": "Thank you for your payment. We will be in contact with more details shortly.",
+    "failure": "Your payment failed",
+    "failureMessage": "Try again later"
+  },
+  "addEventDialog": {
+    "title": "Add Event",
+    "members": "Members",
+    "selectMembers": "Select members",
+    "membersRequired": "Members are required",
+    "eventName": "Event Name",
+    "enterEventName": "Enter event name",
+    "eventNameRequired": "Event name is required",
+    "description": "Description",
+    "enterEventDescription": "Enter event description",
+    "descriptionRequired": "Description is required",
+    "eventDate": "Event Date",
+    "selectEventDate": "Select event date",
+    "dateRequired": "Event date is required",
+    "cancelButton": "Cancel",
+    "saveButton": "Save"
+  },
+  "eventsList": {
+    "title": "Events List",
+    "addNewEvent": "Add New Event",
+    "selectResponse": "Select Response",
+    "moreDetails": "More Details",
+    "totalNoResponse": "Total No Response",
+    "totalAttending": "Total Attending",
+    "totalRejected": "Total Rejected",
+    "noEvents": "No Events Yet"
+  },
+  "studentsList": {
+    "title": "Students List",
+    "export": "Export",
+    "name": "Name",
+    "studentCode": "Student Code",
+    "classroom": "Classroom",
+    "group": "Group",
+    "actions": "Actions"
   }
 }

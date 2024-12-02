@@ -1,4 +1,5 @@
 <h2 mat-dialog-title>{{ 'userDialog.title' | translate }}</h2>
+
 <mat-dialog-content>
   <form [formGroup]="userNameForm" (ngSubmit)="onSubmit()">
     <!-- User Name Field -->
@@ -29,13 +30,14 @@
       </div>
     </div>
 
+    <!-- Terms and Conditions Checkbox (Visible for parent role) -->
     <div class="p-field my-3 d-flex gap-2" *ngIf="data.user.role === 'parent'">
       <p-checkbox
         formControlName="termsAndCondition"
         inputId="termsAndCondition"
         [value]="true"
       />
-      <label for="termsAndCondition">Accept Terms And Condition</label>
+      <label for="termsAndCondition">{{ 'userDialog.acceptTerms' | translate }}</label>
     </div>
 
     <div class="mat-dialog-actions">

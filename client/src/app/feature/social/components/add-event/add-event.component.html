@@ -1,79 +1,79 @@
 <app-state-section [state]="sectionState">
-  <h1 mat-dialog-title>{{ 'addActivityDialog.title' | translate }}</h1>
+  <h1 mat-dialog-title>{{ 'addEventDialog.title' | translate }}</h1>
 
   <div mat-dialog-content>
 
     <form [formGroup]="addEventForm">
-        <!-- Members -->
-        <div class="d-flex flex-wrap gap-3 field mb-2">
-          <div class="d-flex align-items-center gap-2" *ngFor="let role of roles">
-            <p-radioButton
-              name="role"
-              [value]="role"
-              inputId="{{ role }}"
-              formControlName="role"
-            />
-            <label for="{{ role }}">{{role}}</label>
-          </div>
+      <!-- Members -->
+      <div class="d-flex flex-wrap gap-3 field mb-2">
+        <div class="d-flex align-items-center gap-2" *ngFor="let role of roles">
+          <p-radioButton
+            name="role"
+            [value]="role"
+            inputId="{{ role }}"
+            formControlName="role"
+          />
+          <label for="{{ role }}">{{ role | translate }}</label> <!-- Translated role label -->
         </div>
+      </div>
 
-        <div class="field mb-2">
-          <label for="receivers">Members</label> <!-- Use wrapped translation key -->
-          <app-lazy-dropdown
-            for="receivers"
-            [multiply]="true"
-            [lookup]="Lookup.Users"
-            [lookUpExtraParams]="lookUpExtraParams"
-            formControlName="membersId"
-            [placeholder]="'Members'"
-          ></app-lazy-dropdown>
-          <small *ngIf="addEventForm.get('membersId')?.hasError('required') && addEventForm.get('membersId')?.touched" class="p-error">
-            Members Is Required
-          </small>
-        </div>
-
+      <!-- Members Dropdown -->
+      <div class="field mb-2">
+        <label for="receivers">{{ 'addEventDialog.members' | translate }}</label>
+        <app-lazy-dropdown
+          for="receivers"
+          [multiply]="true"
+          [lookup]="Lookup.Users"
+          [lookUpExtraParams]="lookUpExtraParams"
+          formControlName="membersId"
+          [placeholder]="'addEventDialog.selectMembers' | translate"
+        ></app-lazy-dropdown>
+        <small *ngIf="addEventForm.get('membersId')?.hasError('required') && addEventForm.get('membersId')?.touched" class="p-error">
+          {{ 'addEventDialog.membersRequired' | translate }}
+        </small>
+      </div>
 
       <!-- Event Name -->
       <div class="field mb-2">
-        <label for="eventName">Event Name</label>
+        <label for="eventName">{{ 'addEventDialog.eventName' | translate }}</label>
         <input
           id="eventName"
           type="text"
           pInputText
           formControlName="eventName"
-          placeholder="Enter event name"
+          [placeholder]="'addEventDialog.enterEventName' | translate"
           class="w-100"
         />
         <small
           *ngIf="addEventForm.get('eventName')?.invalid && addEventForm.get('eventName')?.touched"
           class="p-error"
         >
-          Event name is required.
+          {{ 'addEventDialog.eventNameRequired' | translate }}
         </small>
       </div>
 
       <!-- Description -->
       <div class="field mb-2">
-        <label for="description">Description</label>
+        <label for="description">{{ 'addEventDialog.description' | translate }}</label>
         <textarea
           id="description"
           rows="4"
           pInputTextarea
           formControlName="description"
-          placeholder="Enter event description"
+          [placeholder]="'addEventDialog.enterEventDescription' | translate"
           class="w-100"
         ></textarea>
         <small
           *ngIf="addEventForm.get('description')?.invalid && addEventForm.get('description')?.touched"
           class="p-error"
         >
-          Description is required.
+          {{ 'addEventDialog.descriptionRequired' | translate }}
         </small>
       </div>
 
       <!-- Date -->
       <div class="field mb-2">
-        <label for="date">Event Date</label>
+        <label for="date">{{ 'addEventDialog.eventDate' | translate }}</label>
         <p-calendar
           id="date"
           formControlName="date"
@@ -81,21 +81,21 @@
           dateFormat="yy-mm-dd"
           [timeOnly]="false"
           hourFormat="24"
-          placeholder="Select event date"
+          [placeholder]="'addEventDialog.selectEventDate' | translate"
           class="w-100"
         ></p-calendar>
         <small
           *ngIf="addEventForm.get('date')?.invalid && addEventForm.get('date')?.touched"
           class="p-error"
         >
-          Date is required.
+          {{ 'addEventDialog.dateRequired' | translate }}
         </small>
       </div>
     </form>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>{{ 'addActivityDialog.cancelButton' | translate }}</button>
-    <button mat-button [disabled]="addEventForm.invalid" (click)="onSave()">{{ 'addActivityDialog.saveButton' | translate }}</button>
+    <button mat-button mat-dialog-close>{{ 'addEventDialog.cancelButton' | translate }}</button>
+    <button mat-button [disabled]="addEventForm.invalid" (click)="onSave()">{{ 'addEventDialog.saveButton' | translate }}</button>
   </div>
 </app-state-section>

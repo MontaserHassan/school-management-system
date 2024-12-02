@@ -2,9 +2,9 @@
   <p-card class="students-list-card">
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-        <h2 class="header">Students List</h2>
+        <h2 class="header">{{ 'studentsList.title' | translate }}</h2>
 
-        <p-button text label="Export" icon="pi pi-file-export" (onClick)="handleExport()" />
+        <p-button text label="{{ 'studentsList.export' | translate }}" icon="pi pi-file-export" (onClick)="handleExport()" />
       </div>
     </ng-template>
 
@@ -13,11 +13,11 @@
       [sortField]="'studentName'" [sortOrder]="1">
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
-          <th pSortableColumn="studentCode">Student Code <p-sortIcon field="studentCode"></p-sortIcon></th>
-          <th pSortableColumn="classRoom">Classroom <p-sortIcon field="classRoom"></p-sortIcon></th>
-          <th pSortableColumn="group">Group <p-sortIcon field="group"></p-sortIcon></th>
-          <th>Actions</th>
+          <th pSortableColumn="studentName">{{ 'studentsList.name' | translate }} <p-sortIcon field="studentName"></p-sortIcon></th>
+          <th pSortableColumn="studentCode">{{ 'studentsList.studentCode' | translate }} <p-sortIcon field="studentCode"></p-sortIcon></th>
+          <th pSortableColumn="classRoom">{{ 'studentsList.classroom' | translate }} <p-sortIcon field="classRoom"></p-sortIcon></th>
+          <th pSortableColumn="group">{{ 'studentsList.group' | translate }} <p-sortIcon field="group"></p-sortIcon></th>
+          <th>{{ 'studentsList.actions' | translate }}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-student>

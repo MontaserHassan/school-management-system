@@ -2,10 +2,10 @@
   <p-card>
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between px-3 pt-3">
-        <h2 class="header">Activities List</h2>
+        <h2 class="header">{{ 'student.activitiesList' | translate }}</h2>
 
         <p-button *grantAccess="RolesConstants.ADD_Edit_Activity" icon="pi pi-plus"
-          label="Add Activity" severity="success"
+          [label]="'student.addActivity' | translate" severity="success"
           (click)="openAddActivityDialog()" type="button"></p-button>
       </div>
     </ng-template>
@@ -33,11 +33,11 @@
 
           <ng-template pTemplate="content">
             <div class="d-flex flex-column">
-              <small><strong>Domain Name:</strong>{{ activity?.domainName }}</small>
-              <small><strong>Skill Name:</strong>{{ activity?.skillName }}</small>
-              <small><strong>Material Name:</strong>{{ activity?.materialName }}</small>
-              <small><strong>Created At :</strong> {{ activity.createdAt | date: 'medium' }}</small>
-              <small><strong>Updated At :</strong> {{ activity.updatedAt | date: 'medium' }}</small>
+              <small><strong>{{ 'student.domainName' | translate }}:</strong> {{ activity?.domainName }}</small>
+              <small><strong>{{ 'student.skillName' | translate }}:</strong> {{ activity?.skillName }}</small>
+              <small><strong>{{ 'student.materialName' | translate }}:</strong> {{ activity?.materialName }}</small>
+              <small><strong>{{ 'student.createdAt' | translate }}:</strong> {{ activity.createdAt | date: 'medium' }}</small>
+              <small><strong>{{ 'student.updatedAt' | translate }}:</strong> {{ activity.updatedAt | date: 'medium' }}</small>
             </div>
           </ng-template>
         </p-card>
