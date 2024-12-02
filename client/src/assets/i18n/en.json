@@ -29,7 +29,8 @@
   "Service1": "A Montessori-Specific Educational Tracking",
   "Service1Text": "<p>  Our application allows personalized tracking of each child's development, in alignment with Montessori's core principles.   Educators can document student progress in real-time, note skills acquired, being learned, or to be developed,   and associate each activity with the material used.</p><p>  This approach simplifies lesson planning, enriches the educational experience, and strengthens communication with parents,   while respecting the uniqueness of each child.</p>",
   "Service2": "Comparison with the National Curriculum",
-  "Service2Text": " <p>  Reassure parents by offering real-time visibility on their child's level compared to the National Education Program.   Our application establishes a clear correspondence between the skills acquired according to the Montessori method and those of the national curriculum.   This way, parents can measure their child's educational journey and ensure they are developing the expected knowledge and skills.</p><p>  This transparency builds trust with parents and enhances your institution as a school that combines the Montessori approach with national educational expectations,   while preserving its pedagogical independence.</p>",  "FindUs": "Find Us",
+  "Service2Text": " <p>  Reassure parents by offering real-time visibility on their child's level compared to the National Education Program.   Our application establishes a clear correspondence between the skills acquired according to the Montessori method and those of the national curriculum.   This way, parents can measure their child's educational journey and ensure they are developing the expected knowledge and skills.</p><p>  This transparency builds trust with parents and enhances your institution as a school that combines the Montessori approach with national educational expectations,   while preserving its pedagogical independence.</p>",
+  "FindUs": "Find Us",
   "CallUs": "Call Us",
   "resetPassword": "Reset Password",
   "EmailUs": "Email Us",
@@ -125,7 +126,6 @@
     "cancelButton": "Cancel",
     "saveButton": "Save"
   },
-
   "addActivityDialog": {
     "title": "Add New Activity",
     "roomLabel": "Room",
@@ -235,7 +235,7 @@
     "yesRemove": "Yes, Remove"
   },
   "invoice": {
-    "amount":"Amount",
+    "amount": "Amount",
     "status": "Status",
     "pay": "Pay",
     "addInvoice": "Add Invoice",
@@ -424,7 +424,7 @@
     "createdAt": "Created At",
     "updatedAt": "Updated At",
     "skillName": "Skill Name",
-    "materialName":"Material Name",
+    "materialName": "Material Name",
     "activityName": "Activity Name",
     "degree": "Degree",
     "Blue": "Blue",
@@ -450,8 +450,8 @@
     "n/a": "N/A",
     "information": "Domain Information",
     "edit": "Edit",
-    "group":"Group",
-    "groupRequired":"Group is required"
+    "group": "Group",
+    "groupRequired": "Group is required"
   },
   "parent": {
     "add": "Add Parent",
