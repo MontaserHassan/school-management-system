@@ -89,6 +89,13 @@ const routes: Routes = [
             (m) => m.GroupModule
           ),
       },
+      {
+        path: RoutesUtil.Cycle.path,
+        loadChildren: () =>
+          import(/* webpackChunkName: "Auth" */ './feature/cycle/cycle.module').then(
+            (m) => m.CycleModule
+          ),
+      },
       { path: '', redirectTo: RoutesUtil.Home.url(), pathMatch: 'full' },
     ]
   },

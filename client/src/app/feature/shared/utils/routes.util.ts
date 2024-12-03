@@ -72,4 +72,8 @@ export class RoutesUtil {
   //Group
   static Group = new RouteConfig('group');
   static GroupList = new RouteConfig('list', RoutesUtil.Group);
+
+  //cycle
+  static Cycle = new RouteConfig('cycle');
+  static CycleDomains = new RouteConfig('domains', RoutesUtil.Cycle);
 }

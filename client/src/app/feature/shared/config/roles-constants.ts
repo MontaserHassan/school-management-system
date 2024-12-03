@@ -151,4 +151,9 @@ export class RolesConstants {
     UserRole.Admin,
     UserRole.Director,
   ]
+
+  //cycle
+  public static ADD_VIEW_List_CYCLE = [
+    UserRole.SuperAdmin
+  ]
 }
