@@ -36,6 +36,10 @@ export class AuthService extends BaseComponent {
     }
   }
 
+  saveUser(){
+    this.jwtDecoderService.saveToken(JSON.stringify(this.currentUser$.value));
+  }
+
   isLoggedIn(): boolean {
     return this.jwtDecoderService.isThereValidToken() !== JWTTokenValidation.NotFound;
   }
@@ -76,7 +80,7 @@ export class AuthService extends BaseComponent {
   }
 
   private saveTokenAndUpdateUser(user: AuthResponse): void {
-    this.jwtDecoderService.saveToken(user.toJson!());
+    this.jwtDecoderService.saveToken(user?.toJson!());
     this.currentUser$.next(this.jwtDecoderService.getCurrentUserFromJWTToken());
   }
 

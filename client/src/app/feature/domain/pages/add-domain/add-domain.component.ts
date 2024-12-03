@@ -5,6 +5,8 @@ import { DomainService } from '../../services/domain.service';
 import { Router } from '@angular/router';
 import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { Lookup } from '../../../shared/enums/lookup.enum';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-add-domain',
@@ -14,9 +16,11 @@ import { Lookup } from '../../../shared/enums/lookup.enum';
 export class AddDomainComponent extends BaseComponent implements OnInit {
   domainForm!: FormGroup;
   protected Lookup = Lookup
+  currentUser!:User
 
-  constructor(private fb: FormBuilder, private domainService: DomainService, private router: Router) {
+  constructor(private authService:AuthService, private fb: FormBuilder, private domainService: DomainService, private router: Router) {
     super()
+
   }
 
   ngOnInit(): void {
@@ -38,6 +42,11 @@ export class AddDomainComponent extends BaseComponent implements OnInit {
 
       this.load(this.domainService.addDomain(newDomain), { isLoadingTransparent: true }).subscribe(domain => {
         this.router.navigate([RoutesUtil.DomainView.url({ params: { id: domain._id } })])
+        this.authService.currentUser$.next(
+          { ...this.authService.currentUser$.value,
+            user: { ...this.authService.currentUser$.value.user, notifySuperAdmin: true }
+          })
+          this.authService.saveUser()
       })
     }
   }

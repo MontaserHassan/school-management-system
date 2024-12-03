@@ -512,7 +512,8 @@
     "studentName": "Studentnaam",
     "group": "Groep",
     "classroom": "Klaslokaal",
-    "edit": "Bewerken"
+    "edit": "Bewerken",
+    "notifySuperAdmin": "Meld Superbeheerder"
   },
   "payment": {
     "success": "Uw betaling was succesvol",

@@ -9,10 +9,11 @@ export class ApiConstant {
   static UPDATE_USER = ApiConstant.URL_BASE + URLSegment.User ;
   static RESET_PASSWORD = ApiConstant.URL_BASE + URLSegment.User + 'update-password';
 
-  static GET_SCHOOLS = ApiConstant.URL_BASE + URLSegment.User + 'school';
-  static ADD_SCHOOL = ApiConstant.URL_BASE + URLSegment.User + 'school';
-  static EDIT_SCHOOL = ApiConstant.URL_BASE + URLSegment.User + 'school';
-  static GET_SCHOOL_BY_ID = ApiConstant.URL_BASE + URLSegment.User + 'school/' + '{id}';
+  static GET_SCHOOLS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.School;
+  static ADD_SCHOOL = ApiConstant.URL_BASE + URLSegment.User + URLSegment.School;
+  static EDIT_SCHOOL = ApiConstant.URL_BASE + URLSegment.User + URLSegment.School;
+  static GET_SCHOOL_BY_ID = ApiConstant.URL_BASE + URLSegment.User + URLSegment.School + '{id}';
+  static NOTIFY_SUPER_ADMIN = ApiConstant.URL_BASE + URLSegment.User + URLSegment.School + 'notify-super-admin';
 
   static GET_USERS_LIST = ApiConstant.URL_BASE + URLSegment.User + 'user-list';
   static GET_USER_PROFILE = ApiConstant.URL_BASE + URLSegment.User + 'profile';

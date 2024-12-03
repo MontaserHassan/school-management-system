@@ -512,7 +512,8 @@
     "studentName": "Nom de l'étudiant",
     "group": "Groupe",
     "classroom": "Salle de classe",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "notifySuperAdmin": "Notifier le super administrateur"
   },
   "payment": {
     "success": "Votre paiement a été effectué avec succès",

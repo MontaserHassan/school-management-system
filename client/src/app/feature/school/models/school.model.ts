@@ -35,6 +35,9 @@ export class School {
   subscriptionStatus?: string;
 
   @Expose()
+  notifySuperAdmin?: boolean;
+
+  @Expose()
   createdAt?: Date;
 
   @Expose()

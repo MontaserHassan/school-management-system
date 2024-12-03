@@ -7,6 +7,10 @@ import { RoutesUtil } from '../../../shared/utils/routes.util';
 import { MenuItem } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDomainDialogComponent } from '../../components/edit-domain-dialog/edit-domain-dialog.component';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { User } from '../../../shared/models/user.model';
+import { SchoolService } from '../../../school/services/school.service';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-domain-list',
@@ -16,12 +20,18 @@ import { EditDomainDialogComponent } from '../../components/edit-domain-dialog/e
 export class DomainListComponent extends BaseComponent implements OnInit {
   domains!: Domain[]
   domainAction!:MenuItem[]
+  currentUser!:User
 
-  constructor(private domainService: DomainService, private router: Router ,private dialog: MatDialog) {
+  protected RolesConstants = RolesConstants
+
+  constructor(private schoolService:SchoolService, private domainService: DomainService, private router: Router ,private dialog: MatDialog, private authService:AuthService) {
     super()
   }
 
   ngOnInit() {
+    this.authService.currentUser$.subscribe(user=>{
+      this.currentUser = user.user || new User()
+    })
     this.getDomains()
     this.generateMenu()
   }
@@ -84,5 +94,17 @@ export class DomainListComponent extends BaseComponent implements OnInit {
         }
       })
     }
+  }
+
+  notifySuperAdmin() {
+    this.load(
+      this.schoolService.notifySuperAdmin(),
+      { isLoadingTransparent: true }).subscribe((res) => {
+        this.authService.currentUser$.next(
+          { ...this.authService.currentUser$.value,
+            user: { ...this.authService.currentUser$.value.user, notifySuperAdmin: false }
+          })
+          this.authService.saveUser()
+      })
   }
 }

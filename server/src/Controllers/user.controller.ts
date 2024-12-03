@@ -92,7 +92,7 @@ const addParent = async (req: Request, res: Response, next: NextFunction) => {
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { email, password } = req.body;
-        let user = await userService.getUserByEmail((email).toLowerCase());
+        let user:any = await userService.getUserByEmail((email).toLowerCase());
         if (!user) throw new CustomError(ErrorUserMessage.WRONG_CREDENTIALS, 401, "email or password");
         if (!user.updatePassword) throw new CustomError(ErrorUserMessage.UPDATE_PASSWORD, 401, "password");
         const isVerifyPassword = await userService.verifyPassword(user.id, password);
@@ -103,6 +103,12 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
             token = await userTokenService.saveToken(createdToken.secretKey, createdToken.token, user.id, createdToken.expireDate);
         };
         user = await userService.updateLogged(user.id, true);
+        
+        if(user.role === 'admin') {
+            const school = await schoolService.getSchoolById(user.schoolId);
+            user = { ...user.toJSON(), notifySuperAdmin: school.notifySuperAdmin };
+        }
+
         const response: IResponse = {
             type: "info",
             responseCode: 200,

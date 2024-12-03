@@ -17,6 +17,10 @@ export class RolesConstants {
     UserRole.Director,
   ];
 
+  public static NOTIFY_SUPER_ADMIN = [
+    UserRole.Admin,
+  ];
+
   //domain
   public static ADD_VIEW_List_DOMAIN = [
     UserRole.Admin,

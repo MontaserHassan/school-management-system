@@ -57,4 +57,10 @@ export class SchoolService {
       map((res) => this.mapper.fromJson(SchoolList, res.data))
     )
   }
+
+  notifySuperAdmin(): Observable<string > {
+    return this.baseAPI.post(ApiConstant.NOTIFY_SUPER_ADMIN,{}).pipe(
+      map((res) => res.data)
+    )
+  }
 }
