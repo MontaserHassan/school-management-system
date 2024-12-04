@@ -80,6 +80,11 @@ const userSchema = new mongoose.Schema<UserModel>(
                 delete ret.password;
             },
         },
+        toObject: {
+            transform(doc, ret) {
+                delete ret.password;
+            },
+        },
     },
 );
 

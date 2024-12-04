@@ -11,7 +11,6 @@ import checkRole from '../../../Middlewares/check-role.middleware';
 const verifySchoolRouter = express.Router();
 
 
-verifySchoolRouter.post('/domain-cycle', checkRole(['superAdmin']), validation(schoolValidator.addDomainToCycle), schoolController.addDomainToCycle);
 
 verifySchoolRouter.patch('/', checkRole(['superAdmin']), validation(schoolValidator.verifySchool), schoolController.verifySchool);
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { classRoomService, lookupService, schoolService, studentService, domainService, skillService, userService, groupService } from "../Services/index.service";
+import { classRoomService, lookupService, schoolService, studentService, domainService, skillService, userService, groupService, cycleService } from "../Services/index.service";
 import { errorLookupMessage, successLookupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -68,7 +68,9 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
             };
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.studentName } });
         } else if (targetData === 'domains') {
-            const lookups = await domainService.getAllDomainsLookups(schoolId);
+            const schoolIdentifier = req.query.schoolId ? req.query.schoolId : schoolId;
+            const filterDomain = req.query.filterDomain === 'true' ? '' : 'all';
+            const lookups = await domainService.getAllDomainsLookups(String(schoolIdentifier), filterDomain);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.domainName } });
         } else if (targetData === 'skills') {
             const lookups = await skillService.getAllSkillsLookups(schoolId);
@@ -79,6 +81,9 @@ const getLookups = async (req: Request, res: Response, next: NextFunction) => {
         } else if (targetData === 'classRooms') {
             const lookups = await classRoomService.getAllClassRoomLookups(schoolId);
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.room } });
+        } else if (targetData === 'cycle') {
+            const lookups = await cycleService.getCycleForLookups(String(req.query.schoolId));
+            lookupsData = lookups.map(item => { return { _id: item._id, value: item.cycleName } });
         } else if (targetData === 'groups') {
             const lookups = await groupService.findAllGroups();
             lookupsData = lookups.map(item => { return { _id: item._id, value: item.groupName } });

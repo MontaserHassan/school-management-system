@@ -3,25 +3,17 @@ import { nanoid } from "nanoid";
 
 
 
-interface domain {
-    _id: string;
-    domainId: string;
-    domainName: string;
-    comment: string;
+interface EducationDomain {
+    educationDomainId: string;
+    educationDomainName: string;
+    educationDomainDescription: string;
 };
-
-interface cycle {
-    cycleId: string;
-    cycleName: string;
-    domains: domain[];
-}
 
 interface CycleModel extends mongoose.Document {
     _id: string;
     schoolId: string;
-    cycleOne: cycle;
-    cycleTwo: cycle;
-    cycleThree: cycle;
+    cycleName: string;
+    educationDomains: EducationDomain[];
 };
 
 
@@ -40,17 +32,21 @@ const cycleSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        domains: [
+        ageGroup: {
+            type: String,
+            required: true,
+        },
+        educationDomains: [
             {
                 _id: false,
-                domainId: {
+                educationDomainId: {
                     type: String,
                     ref: 'Domain',
                 },
-                domainName: {
+                educationDomainName: {
                     type: String,
                 },
-                comment: {
+                educationDomainDescription: {
                     type: String,
                 },
             },

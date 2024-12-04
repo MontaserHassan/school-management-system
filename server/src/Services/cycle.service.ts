@@ -5,9 +5,10 @@ import { Cycle, CycleModel } from '../Models/cycle.model';
 // ----------------------------- create cycle -----------------------------
 
 
-const createCycle = async (schoolId: string, cycleName: string) => {
+const createCycle = async (schoolId: string, ageGroup: string, cycleName: string) => {
     const newCycles: CycleModel = new Cycle({
         schoolId: schoolId,
+        ageGroup: ageGroup,
         cycleName: cycleName
     });
     await newCycles.save();
@@ -18,8 +19,17 @@ const createCycle = async (schoolId: string, cycleName: string) => {
 // ----------------------------- get Cycle by school id -----------------------------
 
 
+const getCycleForLookups = async (schoolId: string) => {
+    const cycle: CycleModel[] = await Cycle.find({ schoolId }).sort({ ageGroup: 1 }).select('_id cycleName');
+    return cycle;
+};
+
+
+// ----------------------------- get Cycle by school id -----------------------------
+
+
 const getCycleByCycleId = async (cycleId: string) => {
-    const cycle: CycleModel = await Cycle.findById(cycleId);
+    const cycle: CycleModel = await Cycle.findById(cycleId).select('-__v');
     return cycle;
 };
 
@@ -28,7 +38,7 @@ const getCycleByCycleId = async (cycleId: string) => {
 
 
 const getCycleBySchoolId = async (schoolId: string) => {
-    const cycle: CycleModel[] = await Cycle.find({ schoolId: schoolId });
+    const cycle: CycleModel[] = await Cycle.find({ schoolId: schoolId }).sort({ ageGroup: 1 }).select('-__v');
     return cycle;
 };
 
@@ -36,8 +46,8 @@ const getCycleBySchoolId = async (schoolId: string) => {
 // ----------------------------- add new domain by school id -----------------------------
 
 
-const addDomainToCycle = async (cycleId: string, domains: { domainId: string, domainName: string, comment: string }[]) => {
-    const updateCycle: CycleModel = await Cycle.findByIdAndUpdate(cycleId, { $push: { domains: domains } }, { new: true });
+const addEducationDomainToCycle = async (cycleId: string, educationDomains: { educationDomainId: string, educationDomainsName: string, educationDomainDescription: string }) => {
+    const updateCycle: CycleModel = await Cycle.findByIdAndUpdate(cycleId, { $push: { educationDomains: educationDomains } }, { new: true }).select('-__v');
     return updateCycle;
 };
 
@@ -47,6 +57,7 @@ const addDomainToCycle = async (cycleId: string, domains: { domainId: string, do
 export default {
     createCycle,
     getCycleByCycleId,
+    getCycleForLookups,
     getCycleBySchoolId,
-    addDomainToCycle,
+    addEducationDomainToCycle,
 };

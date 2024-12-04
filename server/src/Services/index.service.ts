@@ -16,6 +16,7 @@ import groupService from "./group.service";
 import eventService from "./event.service";
 import paymentService from "./payment.service";
 import cycleService from "./cycle.service";
+import educationDomainService from "./education-domain.service";
 
 
 
@@ -38,4 +39,5 @@ export {
     eventService,
     paymentService,
     cycleService,
+    educationDomainService,
 };

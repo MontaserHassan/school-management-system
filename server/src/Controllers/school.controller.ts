@@ -31,7 +31,7 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
         const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, currency.lookupName, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });
-        await Promise.all([cycleService.createCycle(newSchool._id, 'Cycle One'), cycleService.createCycle(newSchool._id, 'Cycle Two'), cycleService.createCycle(newSchool._id, 'Cycle Three'),]);
+        await Promise.all([cycleService.createCycle(newSchool._id, '2-3', 'Cycle One'), cycleService.createCycle(newSchool._id, '3-6', 'Cycle Two'), cycleService.createCycle(newSchool._id, '6-12', 'Cycle Three'),]);
         await schoolsInvoiceService.createInvoice(Number(newSchool.subscriptionFees), { schoolId: newSchool._id, schoolName: newSchool.schoolName }, { adminId: String(adminUser._id), adminName: adminUser.userName });
         const response: IResponse = {
             type: "info",
@@ -151,6 +151,7 @@ const verifySchool = async (req: Request, res: Response, next: NextFunction) => 
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const updatedSchool = await schoolService.updateSchoolData(schoolId, { verify });
+        // each domains and education domain will be false with isChanged
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -181,48 +182,6 @@ const notifySuperAdmin = async (req: Request, res: Response, next: NextFunction)
             responseCode: 200,
             responseMessage: successSchoolMessage.NOTIFY_SUCCESS,
             data: {},
-        };
-        res.data = response;
-        return res.status(response.responseCode).send(response);
-    } catch (err) {
-        next(err);
-    };
-};
-
-
-// ----------------------------- add domain to cycle -----------------------------
-
-
-const addDomainToCycle = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const { schoolId, cycleId, domains } = req.body;
-        const isSchoolExisting = await schoolService.getSchoolById(schoolId);
-        if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
-        const IsCycleExisting = await cycleService.getCycleByCycleId(cycleId);
-        if (!IsCycleExisting) throw new CustomError(errorCycleMessage.CYCLE_NOT_FOUND, 404, "cycle");
-        const enrichedDomains = await Promise.all(
-            domains.map(async (domain: { domainId: string; comment: string }) => {
-                const domainDetails = await domainService.getById(domain.domainId);
-                if (!domainDetails) throw new CustomError(`Domain with ID ${domain.domainId} not found.`, 404, "domain");
-                // if([domain.)
-                return {
-                    domainId: domainDetails.domainId,
-                    domainName: domainDetails.domainName,
-                    comment: domain.comment,
-                };
-            }),
-        );
-        const updatedCycleSchool = await cycleService.addDomainToCycle(cycleId, enrichedDomains);
-        if (!updatedCycleSchool) throw new CustomError(errorCycleMessage.CYCLE_NOT_UPDATED, 400, "cycle");
-        const cyclesSchool = await cycleService.getCycleBySchoolId(schoolId);
-        const response: IResponse = {
-            type: "info",
-            responseCode: 200,
-            responseMessage: successCycleMessage.UPDATED,
-            data: {
-                school: isSchoolExisting,
-                cycles: cyclesSchool,
-            },
         };
         res.data = response;
         return res.status(response.responseCode).send(response);
@@ -312,6 +271,5 @@ export default {
     getAllSchools,
     updateSchool,
     verifySchool,
-    addDomainToCycle,
     deleteSchool,
 };

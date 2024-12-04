@@ -36,6 +36,8 @@ import errorEventMessage from './event/error.message';
 import successEventMessage from './event/success.message';
 import errorCycleMessage from './cycle/error.message';
 import successCycleMessage from './cycle/success.message';
+import errorEducationDomainMessage from './education-domain/error.message';
+import successEducationDomainMessage from './education-domain/success.message';
 
 
 
@@ -58,4 +60,5 @@ export {
     errorGroupMessage, successGroupMessage,
     errorEventMessage, successEventMessage,
     errorCycleMessage, successCycleMessage,
+    errorEducationDomainMessage, successEducationDomainMessage,
 };

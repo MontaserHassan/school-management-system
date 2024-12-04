@@ -13,6 +13,7 @@ interface DomainModel extends mongoose.Document {
     schoolId: string;
     domainId: string;
     domainName: string;
+    educationDomainId: string;
     skills?: skills[];
     courseTime: string;
     typeOfTime: string;
@@ -37,6 +38,10 @@ const domainSchema = new mongoose.Schema(
         domainName: {
             type: String,
             required: true,
+        },
+        educationDomainId: {
+            type: String,
+            required: false,
         },
         courseTime: {
             type: String,

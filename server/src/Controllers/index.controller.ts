@@ -14,6 +14,7 @@ import ticketController from './ticket.controller';
 import groupController from "./group.controller";
 import eventController from "./event.controller";
 import paymentController from "./payment.controller";
+import educationDomainController from "./education-domain.controller";
 
 
 
@@ -34,4 +35,5 @@ export {
     groupController,
     eventController,
     paymentController,
+    educationDomainController,
 };

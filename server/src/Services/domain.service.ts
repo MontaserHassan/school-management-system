@@ -63,11 +63,13 @@ const findWithPagination = async (schoolId: string, limit: number, skip: number)
 };
 
 
-// ----------------------------- get all domain -----------------------------
+// ----------------------------- get all domain for lookups -----------------------------
 
 
-const getAllDomainsLookups = async (schoolId: string) => {
-    const domains: DomainModel[] = await Domain.find({ schoolId }).select('_id domainName');
+const getAllDomainsLookups = async (schoolId: string, educationDomainId?: string) => {
+    const query: any = { schoolId: schoolId };
+    if (educationDomainId === '') query.$or = [{ educationDomainId: { $exists: false } }, { educationDomainId: '' },];
+    const domains: DomainModel[] = await Domain.find(query).select('_id domainName');
     return domains;
 };
 
@@ -86,6 +88,15 @@ const addNewSkill = async (domainId: string, skillId: string, skillName: string)
 
 const updateById = async (domainId: string, updatedData: any) => {
     const updatedDomain: DomainModel = await Domain.findByIdAndUpdate(domainId, updatedData, { new: true }).select('-__v');
+    return updatedDomain;
+};
+
+
+// ----------------------------- update by id -----------------------------
+
+
+const updateByEducationDomainId = async (educationDomainId: string) => {
+    const updatedDomain: DomainModel = await Domain.updateMany({ educationDomainId }, { educationDomainId: '' }, { new: true }).select('-__v');
     return updatedDomain;
 };
 
@@ -111,4 +122,5 @@ export default {
     findWithPagination,
     updateById,
     deleteDomain,
+    updateByEducationDomainId,
 };

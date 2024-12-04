@@ -21,6 +21,7 @@ import authEventRouter from './authEvent.routes';
 import authPaymentRouter from './authPayment.routes';
 import verifyPaymentRouter from './payment/verify-payment.routes';
 import authVerifySchoolRouter from './authVerifySchool.routes';
+import authEducationDomainRouter from './authEducationDomain.routes';
 
 
 
@@ -36,6 +37,7 @@ user.use('/', authUserRouter);
 user.use(isSchoolSubscription());
 user.use('/verify-school', authVerifySchoolRouter);
 user.use('/domain', authDomainRouter);
+user.use('/education-domain', authEducationDomainRouter);
 user.use(isSchoolVerified());
 user.use('/class-room', authClassRoomRouter);
 user.use('/skill', authSkillRouter);

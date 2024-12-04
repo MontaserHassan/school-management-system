@@ -8,6 +8,7 @@ import { sendEmail, CustomError, createToken, CSVUsers, pagination } from "../Ut
 import IResponse from '../Interfaces/response.interface';
 import RoleHierarchy from "../Interfaces/user-hierarchy.interface";
 import { UserModel } from "../Models/user.model";
+import { SubscriptionSchoolModel } from "Models/school.model";
 
 
 
@@ -92,7 +93,9 @@ const addParent = async (req: Request, res: Response, next: NextFunction) => {
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { email, password } = req.body;
-        let user:any = await userService.getUserByEmail((email).toLowerCase());
+        let user: UserModel;
+        let schoolData: SubscriptionSchoolModel;
+        user = await userService.getUserByEmail((email).toLowerCase());
         if (!user) throw new CustomError(ErrorUserMessage.WRONG_CREDENTIALS, 401, "email or password");
         if (!user.updatePassword) throw new CustomError(ErrorUserMessage.UPDATE_PASSWORD, 401, "password");
         const isVerifyPassword = await userService.verifyPassword(user.id, password);
@@ -103,12 +106,13 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
             token = await userTokenService.saveToken(createdToken.secretKey, createdToken.token, user.id, createdToken.expireDate);
         };
         user = await userService.updateLogged(user.id, true);
-        
-        if(user.role === 'admin') {
-            const school = await schoolService.getSchoolById(user.schoolId);
-            user = { ...user.toJSON(), notifySuperAdmin: school.notifySuperAdmin };
-        }
-
+        if (user.role === 'admin') {
+            schoolData = await schoolService.getSchoolById(user.schoolId);
+            user = {
+                ...user.toObject(),
+                notifySuperAdmin: schoolData.notifySuperAdmin,
+            };
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -243,15 +247,21 @@ const updateUserPassword = async (req: Request, res: Response, next: NextFunctio
 
 const getProfile = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId } = req.user;
+        const { userId, role } = req.user;
         const { id } = req.query;
         let user: UserModel;
+        let schoolData: SubscriptionSchoolModel;
         if (id) {
             user = await userService.getById(String(id));
         } else {
             user = await userService.updateLogged(userId, true);
         };
         if (!user) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
+        if (role === 'admin') schoolData = await schoolService.getSchoolById(user.schoolId);
+        user = {
+            ...user.toObject(),
+            notifySuperAdmin: schoolData.notifySuperAdmin,
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { domainService, groupService, schoolService } from "../Services/index.service";
+import { domainService, educationDomainService, groupService, schoolService } from "../Services/index.service";
 import { errorDomainMessage, successDomainMessage, errorGroupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -35,7 +35,7 @@ const createDomain = async (req: Request, res: Response, next: NextFunction) => 
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err);
+        next(err);;
     };
 };
 
@@ -59,7 +59,7 @@ const getDomainData = async (req: Request, res: Response, next: NextFunction) =>
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -92,7 +92,7 @@ const getAllDomain = async (req: Request, res: Response, next: NextFunction) => 
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -102,13 +102,19 @@ const getAllDomain = async (req: Request, res: Response, next: NextFunction) => 
 
 const updateDomainData = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { schoolId } = req.user;
         const { domainId, domainName, courseTime } = req.body;
         const isDomainExisting = await domainService.getById(domainId);
         if (!isDomainExisting) throw new CustomError(errorDomainMessage.NOT_FOUND_DOMAIN, 404, "domain");
         const newDomainName = !domainName ? isDomainExisting.domainName : (domainName).toLowerCase();
         const newCourseTime = !courseTime ? isDomainExisting.courseTime : courseTime
-        const domain = await domainService.updateById(domainId, { domainName: newDomainName, courseTime: newCourseTime });
+        const domain = await domainService.updateById(domainId, { domainName: newDomainName, courseTime: newCourseTime, });
         if (!domain) throw new CustomError(errorDomainMessage.NOT_UPDATED, 404, "domain");
+        await schoolService.updateSchoolData(schoolId, { verify: false, notifySuperAdmin: true, });
+        // await educationDomainService.updateById();
+        // education domain will be changed true
+        // domain will be changed true
+        // notify admin 
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -120,7 +126,7 @@ const updateDomainData = async (req: Request, res: Response, next: NextFunction)
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
@@ -141,7 +147,7 @@ const deleteDomain = async (req: Request, res: Response, next: NextFunction) => 
         res.data = response;
         return res.status(response.responseCode).send(response);
     } catch (err) {
-        next(err)
+        next(err);
     };
 };
 
