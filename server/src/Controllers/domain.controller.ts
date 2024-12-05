@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { domainService, educationDomainService, groupService, schoolService } from "../Services/index.service";
+import { domainService, educationDomainService, groupService, notificationService, schoolService, userService } from "../Services/index.service";
 import { errorDomainMessage, successDomainMessage, errorGroupMessage } from "../Messages/index.message";
 import CustomError from "../Utils/customError.util";
 import IResponse from '../Interfaces/response.interface';
@@ -110,15 +110,17 @@ const updateDomainData = async (req: Request, res: Response, next: NextFunction)
         const newCourseTime = !courseTime ? isDomainExisting.courseTime : courseTime
         const domain = await domainService.updateById(domainId, { domainName: newDomainName, courseTime: newCourseTime, });
         if (!domain) throw new CustomError(errorDomainMessage.NOT_UPDATED, 404, "domain");
-        await schoolService.updateSchoolData(schoolId, { verify: false, notifySuperAdmin: true, });
-        // await educationDomainService.updateById();
-        // education domain will be changed true
-        // domain will be changed true
-        // notify admin 
+        const schoolData = await schoolService.updateSchoolData(schoolId, { verify: false, notifySuperAdmin: true, });
+        if (isDomainExisting.educationDomainId) {
+            const updatedEducationDomain = await educationDomainService.updateDomainsById(isDomainExisting.educationDomainId, domainId, { domainName: domain.domainName, isChanged: true });
+            await educationDomainService.updateById(updatedEducationDomain._id, { isChanged: true });
+            const superAdminData = await userService.getSuperAdminData();
+            await notificationService.createNotification(superAdminData._id.toString(), schoolId, "Domain updated", `Hi Super Admin, School: ${schoolData.schoolName} has a domain that has been updated in the system, so please check school cycles to verify this school.`);
+        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,
-            responseMessage: successDomainMessage.CREATED,
+            responseMessage: successDomainMessage.UPDATED,
             data: {
                 domain: domain,
             },

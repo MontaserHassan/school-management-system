@@ -26,7 +26,7 @@ const createEducationDomain = async (req: Request, res: Response, next: NextFunc
         );
         const newEducationDomain = await educationDomainService.createDomain(schoolId, cycleId, isCycleExisting.cycleName, educationDomainName, educationDomainDescription, processedDomains);
         await Promise.all(domains.map(domain => domainService.updateById(domain, { educationDomainId: newEducationDomain })));
-        await cycleService.addEducationDomainToCycle(isCycleExisting._id, { educationDomainId: newEducationDomain._id, educationDomainsName: newEducationDomain.educationDomainName, educationDomainDescription: newEducationDomain.educationDomainDescription });
+        await cycleService.addEducationDomainToCycle(isCycleExisting._id, { educationDomainId: newEducationDomain._id, educationDomainName: newEducationDomain.educationDomainName, educationDomainDescription: newEducationDomain.educationDomainDescription });
         if (!newEducationDomain) throw new CustomError(errorEducationDomainMessage.DOES_NOT_CREATED, 400, "none");
         const response: IResponse = {
             type: "info",
