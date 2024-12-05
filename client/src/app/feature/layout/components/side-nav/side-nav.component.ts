@@ -171,7 +171,6 @@ export class SideNavComponent extends BaseComponent implements OnInit {
       {
         label: this.translate('NationalEducationProgram'),
         icon: 'pi pi-book',
-        visible: this.userRoleService.isUserHasRoles(RolesConstants.ADD_VIEW_List_CYCLE),
         command: () => {
           this.router.navigate([RoutesUtil.CycleDomains.url()]);
         }

@@ -6,6 +6,7 @@ import { MenuItem } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditEducationsDomainsDialogComponent } from '../add-edit-educations-domains-dialog/add-edit-educations-domains-dialog.component';
 import { School } from '../../../school/models/school.model';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-national-educations-list',
@@ -17,6 +18,8 @@ export class NationalEducationsListComponent extends BaseComponent  implements O
   @Input() ageGroup!:string
   @Output() onEducationDomainChange = new EventEmitter()
   educationDomainAction!:MenuItem[]
+
+  protected RolesConstants = RolesConstants
 
   constructor(private dialog: MatDialog) {
     super();

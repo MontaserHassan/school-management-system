@@ -1,19 +1,19 @@
 <p-card>
   <ng-template pTemplate="header">
     <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-      <h2 class="header">Cycle List</h2>
+      <h2 class="header">{{ 'cycleList.header' | translate }}</h2>
 
-      <div>
-        <p-button [disabled]="verify" (onClick)="verifySchool()" text label="Verify School" />
-        <p-button [disabled]="!selectSchool.value" (onClick)="addEduDomain()" text label="Add Education Subject" />
+      <div *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">
+        <p-button [disabled]="verify" severity="success" (onClick)="verifySchool()" text label="{{ 'cycleList.verifySchool' | translate }}" />
+        <p-button [disabled]="!selectSchool.value" severity="success" (onClick)="addEduDomain()" text label="{{ 'cycleList.addEduDomain' | translate }}" />
       </div>
     </div>
   </ng-template>
 
-  <div class="field d-flex align-items-center gap-2">
-    <label for="school" class="form-label">Please Select A School</label>
+  <div class="field d-flex align-items-center gap-2" *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">
+    <label for="school" class="form-label">{{ 'cycleList.selectSchool' | translate }}</label>
     <app-lazy-dropdown [lookup]="Lookup.Schools" [(ngModel)]="selectSchool" (ngModelChange)="onSelectSchool($event)"
-      [placeholder]="'School'"></app-lazy-dropdown>
+      [placeholder]="'cycleList.school' | translate"></app-lazy-dropdown>
   </div>
 
   <app-state-section [state]="sectionState">

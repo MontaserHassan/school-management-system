@@ -6,6 +6,7 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { DomainService } from '../../services/domain.service';
 import { Lookup } from '../../../shared/enums/lookup.enum';
 import { group } from 'console';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-edit-domain-dialog',
@@ -20,7 +21,8 @@ export class EditDomainDialogComponent extends BaseComponent {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditDomainDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { domain:Domain},
-    private domainService: DomainService
+    private domainService: DomainService,
+    private authService:AuthService
   ) {
     super();
     console.log(data.domain);
@@ -40,6 +42,11 @@ export class EditDomainDialogComponent extends BaseComponent {
           domainId: this.data.domain._id || "",
         })
       ).subscribe(res => {
+        this.authService.currentUser$.next(
+          { ...this.authService.currentUser$.value,
+            user: { ...this.authService.currentUser$.value.user, notifySuperAdmin: true }
+          })
+          this.authService.saveUser()
         this.dialogRef.close(res);
       })
     }

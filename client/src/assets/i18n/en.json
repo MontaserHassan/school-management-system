@@ -75,6 +75,7 @@
   "logout": "Logout",
   "Users": "Users",
   "UsersList": "Users List",
+  "parent":"Parent",
   "AddUser": "Add User",
   "AddParent": "Add Parent",
   "Domains": "Domains",
@@ -237,6 +238,8 @@
     "yesRemove": "Yes, Remove"
   },
   "invoice": {
+    "downloadMediaText": "Download Media",
+    "transactionId": "Transaction ID",
     "amount": "Amount",
     "status": "Status",
     "pay": "Pay",
@@ -470,7 +473,7 @@
     "group": "Group",
     "groupRequired": "Group is required"
   },
-  "parent": {
+  "parentComponent": {
     "add": "Add Parent",
     "parentName": "Parent Name",
     "email": "Email",
@@ -557,5 +560,42 @@
     "classroom": "Classroom",
     "group": "Group",
     "actions": "Actions"
+  },
+  "educationDomain": {
+    "formTitle": "Education Domain Form",
+    "nameLabel": "Education Domain Name",
+    "namePlaceholder": "Enter the name of the domain",
+    "nameRequired": "Name is required.",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description",
+    "cycleLabel": "Cycle",
+    "cycleRequired": "Cycle is required.",
+    "domainsLabel": "Domains",
+    "domainsRequired": "Domains are required.",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "header": {
+      "name": "National Education Development Name",
+      "ageGroup": "Age Group",
+      "domains": "Montessori Development Domain",
+      "description": "Description",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "actions": "Actions"
+    },
+    "domains": {
+      "label": "Domains"
+    },
+    "ageGroup": {
+      "unit": "Year"
+    },
+    "emptyMessage": "No National Education Program Found"
+  },
+  "cycleList": {
+    "header": "Cycle List",
+    "verifySchool": "Verify School",
+    "addEduDomain": "Add Education Subject",
+    "selectSchool": "Please Select A School",
+    "school": "School"
   }
 }

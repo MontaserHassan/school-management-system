@@ -26,6 +26,7 @@
   "Directors": "les directeurs d'établissement",
   "DirectorsText": "<section>  <h1>Optimisez la gestion de votre établissement Montessori avec Sori</h1>  <p>    Vous avez besoin d'une vue d'ensemble complète et précise sur les opérations de votre école.    Grâce à Sori, vous pouvez enfin simplifier la gestion quotidienne tout en assurant un suivi pédagogique optimal.  </p></section><section>  <h2>Suivi centralisé et organisation fluide</h2>  <p>    Avec Sori, vous accédez à une interface qui vous permet de gérer vos classes, vos enseignants et vos élèves en toute simplicité.    Visualisez les progrès globaux de chaque élève et les tendances pédagogiques de vos équipes, tout en disposant d’outils de gestion performants pour administrer les comptes des utilisateurs.  </p></section><section>  <h2>Gestion financière simplifiée</h2>  <p>    Oubliez les complications liées aux factures et aux rappels.    Grâce à notre système de facturation intégré, vous pouvez suivre les paiements, envoyer des rappels et garder une vue d’ensemble de la situation financière de votre établissement en quelques clics.  </p></section><section>  <h2>Analyse et comparaison entre établissements</h2>  <p>    Découvrez comment votre école se positionne par rapport à d'autres établissements Montessori utilisant Sori.    Comparez vos performances avec des moyennes globales et anonymes pour identifier les axes d'amélioration et rester à la pointe de l’éducation Montessori.  </p>  <p>    Nous pourrions vous en dire encore bien plus sur tout ce que Sori peut vous offrir, mais rien ne vaut l'expérience par vous-même.    Testez-le et découvrez toutes ses possibilités en action !  </p></section>",
   "Parent": "les parents",
+  "parent":"les parents",
   "ParentText": " <header>  <h1>Suivez de Près le Développement Scolaire de Votre Enfant</h1>  <p>    Avec Sori, accédez à une vision claire et détaillée du parcours éducatif de votre enfant en temps réel.  </p></header><main>  <section>    <h2>Fonctionnalités Principales</h2>    <ul>      <li>        <strong>Visualisation des Progrès :</strong>        Suivez chaque compétence acquise, chaque activité réalisée, et accédez aux commentaires de l’éducateur directement depuis notre plateforme.         Avec un système simple d'indicateurs colorés, vous pouvez rapidement voir où se situe votre enfant par rapport à son programme Montessori et         à celui de l'Éducation Nationale.      </li>      <li>        <strong>Comparaison avec le Programme National :</strong>        Grâce à une interface dédiée, comparez les progrès de votre enfant avec les objectifs du programme national,         renforçant la complémentarité entre les deux approches pédagogiques.      </li>      <li>        <strong>Téléchargement de Rapports :</strong>        Besoin d'un résumé détaillé des progrès de votre enfant ? Téléchargez à tout moment des rapports complets avec des graphiques         et analyses comparatives.      </li>      <li>        <strong>Communication Simplifiée avec les Éducateurs :</strong>        Un système de messagerie intégré vous permet de poser des questions ou discuter des progrès de votre enfant directement avec l'éducateur.         Recevez également des notifications automatiques pour ne jamais manquer une mise à jour importante ou un événement scolaire.      </li>      <li>        <strong>Gestion Administrative Simplifiée :</strong>        Visualisez et téléchargez facilement toutes les factures liées à la scolarité de votre enfant. Suivez les paiements en retard et recevez         des rappels automatiques pour ne jamais oublier une échéance.      </li>      <li>        <strong>Essayez Sori Dès Aujourd'hui :</strong>        Avec Sori, soyez pleinement impliqué dans l’éducation de votre enfant grâce à toutes les informations nécessaires à portée de main.         Et si le meilleur moyen de comprendre tout ce que Sori peut vous apporter, c'était d'essayer par vous-même ?      </li>    </ul>  </section></main><footer><p>&copy; 2024 Sori. Simplifiez l’éducation Montessori pour chaque génération.</p></footer>",
   "Service1": "Un Suivi Pédagogique Spécifique à Montessori",
   "Service1Text": "<p>  Notre application permet un suivi personnalisé du développement de chaque enfant, en alignement avec les principes fondamentaux de Montessori.   Les éducateurs peuvent documenter les progrès des élèves en temps réel, noter les compétences acquises, en cours d'apprentissage ou à développer,   et associer chaque activité au matériel utilisé.</p><p>  Cette approche facilite la planification des leçons, enrichit l'expérience éducative et renforce la communication avec les parents,   tout en respectant l'unicité de chaque enfant.</p>",
@@ -237,6 +238,8 @@
     "yesRemove": "Oui, supprimer"
   },
   "invoice": {
+    "downloadMediaText": "Télécharger le média",
+    "transactionId": "ID de transaction",
     "amount": "Montant",
     "status": "Statut",
     "pay": "Payer",
@@ -470,7 +473,7 @@
     "group": "Groupe",
     "groupRequired": "Le groupe est requis"
   },
-  "parent": {
+  "parentComponent": {
     "add": "Ajouter un parent",
     "parentName": "Nom du parent",
     "email": "Email",
@@ -557,5 +560,42 @@
     "classroom": "Salle de classe",
     "group": "Groupe",
     "actions": "Actions"
+  },
+  "educationDomain": {
+    "formTitle": "Formulaire du domaine de l'éducation",
+    "nameLabel": "Nom du domaine de l'éducation",
+    "namePlaceholder": "Entrez le nom du domaine",
+    "nameRequired": "Le nom est requis.",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Entrez une description",
+    "cycleLabel": "Cycle",
+    "cycleRequired": "Le cycle est requis.",
+    "domainsLabel": "Domaines",
+    "domainsRequired": "Les domaines sont requis.",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "header": {
+      "name": "Nom du développement de l'éducation nationale",
+      "ageGroup": "Groupe d'âge",
+      "domains": "Domaine de développement Montessori",
+      "description": "Description",
+      "createdAt": "Créé le",
+      "updatedAt": "Mis à jour le",
+      "actions": "Actions"
+    },
+    "domains": {
+      "label": "Domaines"
+    },
+    "ageGroup": {
+      "unit": "An"
+    },
+    "emptyMessage": "Aucun programme d'éducation nationale trouvé"
+  },
+  "cycleList": {
+    "header": "Liste des cycles",
+    "verifySchool": "Vérifier l'école",
+    "addEduDomain": "Ajouter un sujet éducatif",
+    "selectSchool": "Veuillez sélectionner une école",
+    "school": "École"
   }
 }

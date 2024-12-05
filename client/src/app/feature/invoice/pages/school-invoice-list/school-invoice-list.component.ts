@@ -20,19 +20,19 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
 
   constructor(private dialog: MatDialog, private invoiceService: InvoiceService) {
     super();
-   }
+  }
 
   ngOnInit(): void {
     this.getInvoicesList();
   }
 
-  getInvoicesList(){
-    const params = { page: this.offset, limit: this.pageSize};
+  getInvoicesList() {
+    const params = { page: this.offset, limit: this.pageSize };
 
     this.load(
-      this.invoiceService.getSchoolInvoices(params),{
-        isLoadingTransparent: true,
-      }
+      this.invoiceService.getSchoolInvoices(params), {
+      isLoadingTransparent: true,
+    }
     ).subscribe((res) => {
       this.invoices = res.invoices;
       this.totalRowsCount = res.totalDocuments || 1;
@@ -41,7 +41,7 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
   }
 
   paginate(event: any): void {
-    this.offset =  event.first / event.rows + 1;
+    this.offset = event.first / event.rows + 1;
     this.pageSize = event.rows;
     this.getInvoicesList();
   }
@@ -50,7 +50,7 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
   editInvoice(invoice: any) {
     const dialogRef = this.dialog.open(EditDialogInvoiceComponent, {
       width: '500px',
-      data: {invoice}
+      data: { invoice }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -60,7 +60,7 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
     });
   }
 
-    // Open the media dialog
+  // Open the media dialog
   openMediaDialog(file: any) {
     this.dialog.open(MediaPreviewDialogComponent, {
       data: file,
@@ -78,5 +78,30 @@ export class SchoolInvoiceListComponent extends BaseComponent implements OnInit 
         this.getInvoicesList();
       }
     });
+  }
+
+  downloadFileBase(base64Data: any): void {
+    const link = document.createElement('a');
+    const mimeType = this.getMimeType(base64Data);
+
+    const blob = this.base64ToBlob(base64Data, mimeType);
+    const url = URL.createObjectURL(blob);
+
+    link.href = url;
+    link.download = 'invoice';
+    link.click();
+
+    URL.revokeObjectURL(url);
+  }
+
+  getMimeType(base64Data: string): string {
+    const match = base64Data.match(/^data:(.*?);base64,/);
+    return match ? match[1] : 'application/octet-stream';
+  }
+
+  base64ToBlob(base64Data: string, mimeType: string): Blob {
+    const byteString = atob(base64Data.split(',')[1]);
+    const byteNumbers = new Array(byteString.length).map((_, i) => byteString.charCodeAt(i));
+    return new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
   }
 }

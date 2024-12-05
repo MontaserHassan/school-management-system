@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center px-3 pt-3">
       <h2 class="header">{{ 'domain.domainsList' | translate }}</h2>
 
-      <p-button [disabled]="!currentUser.notifySuperAdmin" (onClick)="notifySuperAdmin()" text label="{{ 'user.notifySuperAdmin' | translate }}" icon="pi pi-megaphone"  *grantAccess="RolesConstants.NOTIFY_SUPER_ADMIN"/>
+      <p-button [disabled]="!currentUser.notifySuperAdmin" severity="success" (onClick)="notifySuperAdmin()" text label="{{ 'user.notifySuperAdmin' | translate }}" icon="pi pi-megaphone"  *grantAccess="RolesConstants.NOTIFY_SUPER_ADMIN"/>
     </div>
   </ng-template>
 

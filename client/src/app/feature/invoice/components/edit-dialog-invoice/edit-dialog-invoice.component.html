@@ -6,7 +6,7 @@
       <!-- Media Upload Section -->
       <div class="field">
         <label for="media">{{ 'invoice.attachMedia' | translate }}</label>
-        <p-fileUpload name="media" accept="image/*" maxFileSize="1000000" (onSelect)="onFileSelect($event)"
+        <p-fileUpload name="media" accept="image/*,.pdf,.doc,.docx" maxFileSize="1000000" (onSelect)="onFileSelect($event)"
           [customUpload]="true" (onClear)="clearFile()" [showUploadButton]="false" (onRemove)="clearFile()">
 
           <ng-template pTemplate="content">
