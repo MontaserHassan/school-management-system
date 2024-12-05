@@ -4,7 +4,7 @@ import express from 'express';
 import validation from '../../../Validations/validationHandler.validation';
 import { domainController } from '../../../Controllers/index.controller';
 import { domainValidator } from '../../../Validations/domain.validation';
-import checkRole from '../../Middlewares/check-role.middleware';
+import checkRole from '../../../Middlewares/check-role.middleware';
 
 
 
