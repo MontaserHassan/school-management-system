@@ -3,7 +3,7 @@ import { Mapper } from '../../shared/mapper/base-mapper.mapper';
 import { ApiBaseService } from '../../shared/services/general/api-base.service';
 import { ApiConstant } from '../../shared/config/api.constant';
 import { map, Observable, tap } from 'rxjs';
-import { School, SchoolList } from '../models/school.model';
+import { School, SchoolList, SchoolResponse } from '../models/school.model';
 import { downloadFile } from '../../shared/utils/download-file.utils';
 
 @Injectable({
@@ -44,10 +44,10 @@ export class SchoolService {
     )
   }
 
-  getSchoolDetails(id:string ,params?:any): Observable<School> {
+  getSchoolDetails(id:string ,params?:any): Observable<SchoolResponse> {
     return this.baseAPI.get(ApiConstant.GET_SCHOOL_BY_ID.replace('{id}', id),{params}).pipe(
       tap((res) => {if(params?.['isExport']) downloadFile(res.data.base64String)}),
-      map((res) => this.mapper.fromJson(School, res.data.school))
+      map((res) => this.mapper.fromJson(SchoolResponse, res.data))
     )
   }
 

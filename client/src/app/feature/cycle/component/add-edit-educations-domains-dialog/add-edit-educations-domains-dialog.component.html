@@ -1,0 +1,57 @@
+<app-state-section [state]="sectionState">
+  <h2 mat-dialog-title>Education Domain Form</h2>
+  <form (ngSubmit)="submitForm()" [formGroup]="educationDomainForm" class="p-fluid">
+    <mat-dialog-content class="dialog-content">
+      <div class="field mb-2">
+        <label for="educationDomainName">Education Domain Name</label>
+        <input pInputText id="educationDomainName" formControlName="educationDomainName" required />
+        <small *ngIf="
+          educationDomainForm.get('educationDomainName')?.invalid &&
+          educationDomainForm.get('educationDomainName')?.touched
+        " class="p-error">
+          Name is required.
+        </small>
+      </div>
+
+      <div class="field mb-2">
+        <label for="educationDomainDescription">Description</label>
+        <textarea
+          id="educationDomainDescription"
+          rows="4"
+          pInputTextarea
+          formControlName="educationDomainDescription"
+          [placeholder]="'Description'"
+          class="w-100"
+        ></textarea>
+      </div>
+
+      <div class="field mb-2">
+        <label for="cycleId">Cycle</label>
+        <app-lazy-dropdown for="currency" [lookup]="Lookup.Cycle" formControlName="cycleId" [lookUpExtraParams]="{schoolId:data.schoolId}"></app-lazy-dropdown>
+        <small *ngIf="
+          educationDomainForm.get('cycleId')?.invalid &&
+          educationDomainForm.get('cycleId')?.touched
+        " class="p-error">
+          Cycle is required.
+        </small>
+      </div>
+
+      <div class="field mb-2">
+        <label for="domains">Domains</label>
+        <app-lazy-dropdown for="domains" [multiply]="true" [lookup]="Lookup.Domains" formControlName="domains" [lookUpExtraParams]="{schoolId:data.schoolId,filterDomain:true}"></app-lazy-dropdown>
+        <small *ngIf="
+          educationDomainForm.get('domains')?.invalid &&
+          educationDomainForm.get('domains')?.touched
+        " class="p-error">
+          domains is required.
+        </small>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button type="button" mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!educationDomainForm.valid">
+        Submit
+      </button>
+    </mat-dialog-actions>
+  </form>
+</app-state-section>

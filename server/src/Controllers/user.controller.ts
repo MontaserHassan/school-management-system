@@ -110,7 +110,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
             schoolData = await schoolService.getSchoolById(user.schoolId);
             user = {
                 ...user.toObject(),
-                notifySuperAdmin: schoolData.notifySuperAdmin,
+                notifySuperAdmin: schoolData?.notifySuperAdmin,
             };
         };
         const response: IResponse = {
@@ -257,11 +257,6 @@ const getProfile = async (req: Request, res: Response, next: NextFunction) => {
             user = await userService.updateLogged(userId, true);
         };
         if (!user) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
-        if (role === 'admin') schoolData = await schoolService.getSchoolById(user.schoolId);
-        user = {
-            ...user.toObject(),
-            notifySuperAdmin: schoolData.notifySuperAdmin,
-        };
         const response: IResponse = {
             type: "info",
             responseCode: 200,

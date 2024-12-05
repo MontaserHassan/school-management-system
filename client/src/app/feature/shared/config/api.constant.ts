@@ -83,4 +83,8 @@ export class ApiConstant {
 
   static GET_GROUPS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Group ;
   static GET_CLASSES_FOR_GROUP = ApiConstant.URL_BASE + URLSegment.User + URLSegment.Group + URLSegment.Classes + '{id}';
+
+  static GET_ALL_EDUCATION_DOMAINS = ApiConstant.URL_BASE + URLSegment.User + URLSegment.EducationDomain + URLSegment.School + '{id}';
+  static ADD_EDUCATION_DOMAIN = ApiConstant.URL_BASE + URLSegment.User + URLSegment.EducationDomain;
+  static EDIT_EDUCATION_DOMAIN = ApiConstant.URL_BASE + URLSegment.User + URLSegment.EducationDomain;
 }

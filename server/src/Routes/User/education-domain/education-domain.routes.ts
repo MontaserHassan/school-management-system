@@ -14,6 +14,7 @@ educationDomainRouter.post('/', validation(educationDomainValidator.createEducat
 
 educationDomainRouter.get('/', educationDomainController.getAllEducationDomain);
 educationDomainRouter.get('/:educationDomainId', validation(educationDomainValidator.getEducationDomain), educationDomainController.getEducationDomainData);
+educationDomainRouter.get('/school/:schoolId', validation(educationDomainValidator.getEducationDomainBySchoolId), educationDomainController.getAllEducationDomainBySchoolId);
 
 educationDomainRouter.patch('/', validation(educationDomainValidator.updateEducationDomain), educationDomainController.updateEducationDomainData);
 
