@@ -16,11 +16,11 @@ import { EducationDomainService } from '../../services/education-domain.service'
 })
 export class CycleListComponent extends BaseComponent implements OnInit {
   cycles!: Cycle[]
-  protected Lookup = Lookup
-
   eduDomains!: { [key: string]: EducationDomain[] }
-
   selectSchool: FormControl = new FormControl();
+  verify=true;
+
+  protected Lookup = Lookup
   constructor(private schoolService: SchoolService, private educationDomainService: EducationDomainService, private dialog: MatDialog) {
     super();
   }
@@ -36,6 +36,7 @@ export class CycleListComponent extends BaseComponent implements OnInit {
           map((eduDomains) => {
             this.groupEducationDomainByCycle(eduDomains)
             return {
+              school: school.school,
               cycles: school.cycles?.map((cycle) => {
                 return {
                   ...cycle,
@@ -47,9 +48,8 @@ export class CycleListComponent extends BaseComponent implements OnInit {
         )
       })
     ).subscribe((res) => {
+      this.verify = res.school?.verify || false
       this.cycles = res.cycles || []
-      console.log(this.cycles);
-
     })
   }
 
@@ -82,5 +82,15 @@ export class CycleListComponent extends BaseComponent implements OnInit {
 
   onEducationDomainChange(event: any) {
     this.getCycleSchool(this.selectSchool.value)
+  }
+
+  verifySchool() {
+    this.load(this.schoolService.verifySchool({ schoolId: this.selectSchool.value, verify:true }), {
+      isLoadingTransparent: true,
+    }).subscribe((res) => {
+      if (res) {
+        this.getCycleSchool(this.selectSchool.value)
+      }
+    })
   }
 }

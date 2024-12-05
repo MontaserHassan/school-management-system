@@ -3,7 +3,10 @@
     <div class="d-flex justify-content-between align-items-center px-3 pt-3">
       <h2 class="header">Cycle List</h2>
 
-      <p-button [disabled]="!selectSchool.value" (onClick)="addEduDomain()" text label="Add Education Subject" icon="pi pi-megaphone"/>
+      <div>
+        <p-button [disabled]="verify" (onClick)="verifySchool()" text label="Verify School" />
+        <p-button [disabled]="!selectSchool.value" (onClick)="addEduDomain()" text label="Add Education Subject" />
+      </div>
     </div>
   </ng-template>
 
@@ -17,9 +20,10 @@
     <div class="cycle-wrapper mt-3">
       <p-tabView>
         <p-tabPanel *ngFor="let cycle of cycles" [header]="cycle.cycleName">
-          <app-national-educations-list [educationDomain]="cycle.educationDomains" [ageGroup]="cycle.ageGroup" (onEducationDomainChange)="onEducationDomainChange($event)"></app-national-educations-list>
+          <app-national-educations-list [educationDomain]="cycle.educationDomains" [ageGroup]="cycle.ageGroup"
+            (onEducationDomainChange)="onEducationDomainChange($event)"></app-national-educations-list>
         </p-tabPanel>
-    </p-tabView>
+      </p-tabView>
     </div>
   </app-state-section>
 </p-card>

@@ -63,4 +63,10 @@ export class SchoolService {
       map((res) => res.data)
     )
   }
+
+  verifySchool(body: {schoolId: string,verify:boolean}): Observable<string> {
+    return this.baseAPI.patch(ApiConstant.VERIFY_SCHOOL, body).pipe(
+      map((res) => res.data)
+    )
+  }
 }
