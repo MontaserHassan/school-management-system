@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 
 
-export default function sendEmail(to: string, subject: string, message: string) {
+export default function sendEmail(to: string, subject: string, message: string, paymentInfo?: any) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -13,6 +13,14 @@ export default function sendEmail(to: string, subject: string, message: string) 
             pass: process.env.SENDER_PASSWORD
         },
     });
+    if (paymentInfo) {
+        message = message
+            .replace('[currency]', paymentInfo.currency || '')
+            .replace('[amount]', paymentInfo.amount || '')
+            .replace('[userName]', paymentInfo.name || '')
+            .replace('[paidDate]', paymentInfo.paidDate || '')
+            .replace('[transactionId]', paymentInfo.transactionId || '');
+    }
     const mailOption = {
         from: process.env.SENDER_EMAIL,
         to: to,

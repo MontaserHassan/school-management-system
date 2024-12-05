@@ -28,6 +28,7 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
         let isInvoiceExisting;
         let studentId;
         let senderEmail;
+        let userName;
         if (role === "admin") {
             isInvoiceExisting = await schoolsInvoiceService.findInvoiceById(invoiceId);
             if (!isInvoiceExisting || isInvoiceExisting.invoiceStatus === "paid") throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, 'invoice');
@@ -37,7 +38,8 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
             paymentData.currency = schoolData.currencyOfSubscription;
             paymentData.service = 1;
             paymentData.serviceName = "Subscription Of School";
-            senderEmail = isInvoiceExisting.admin.adminEmail;
+            senderEmail = isInvoiceExisting.senderEmail;
+            userName = isInvoiceExisting.admin.adminName;
         } else if (role === "parent") {
             isInvoiceExisting = await studentInvoiceService.findInvoiceById(invoiceId);
             if (!isInvoiceExisting || isInvoiceExisting.invoiceStatus === "paid") throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, 'invoice');
@@ -48,15 +50,13 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
             paymentData.currency = studentData.currencyOfCost;
             paymentData.service = 2;
             paymentData.serviceName = "Costs Of Student";
-            senderEmail = isInvoiceExisting.parent.parentEmail;
+            senderEmail = isInvoiceExisting.senderEmail;
+            userName = isInvoiceExisting.parent.parentName;
         };
-        // paymentData.currency = 'usd'
-        console.log('paymentData: ', paymentData);
         const createPayment = await paymentService.createPayment(paymentData.name, paymentData.amount, paymentData.currency);
         if (!createPayment) throw new CustomError('Payment not created', 400, 'payment');
-        const newPayment = await paymentService.savePaymentTransaction(req.user.schoolId, invoiceId, userId, senderEmail, createPayment.id, paymentData.name, paymentData.amount, paymentData.currency, paymentData.service, paymentData.serviceName, studentId);
+        const newPayment = await paymentService.savePaymentTransaction(req.user.schoolId, invoiceId, userId, userName, senderEmail, createPayment.id, paymentData.name, paymentData.amount, paymentData.currency, paymentData.service, paymentData.serviceName, studentId);
         if (!newPayment) throw new CustomError('Payment not saved', 400, 'payment');
-
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -114,18 +114,25 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
             const newSubscriptionDate = new Date();
             const endOfSubscription = calculateSubscriptionDate(schoolData.subscriptionWay, newSubscriptionDate);
             await schoolService.updateSchoolData(schoolData._id, { endOfSubscription: endOfSubscription, subscriptionStatus: "paid", subscriptionDate: newSubscriptionDate });
-            invoice = await schoolsInvoiceService.updateInvoice(payment.invoiceId, { transactionId: payment.transactionId, invoiceStatus: "paid", PaidDate: new Date() });
+            invoice = await schoolsInvoiceService.updateInvoice(payment.invoiceId, { transactionId: payment.transactionId, invoiceStatus: "paid", paidDate: new Date() });
         };
         if (payment.service === 2) {
             student = await studentService.getStudentById(payment.studentId);
             const paymentStatus = student.remainingAmount === 0 ? "paid" : "pending";
             await studentService.updateStudentData(payment.studentId, { paymentStatus: paymentStatus, paidAmount: Number(student.paidAmount) + Number(payment.amount), pendingAmount: 0 });
-            invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { transactionId: payment.transactionId, invoiceStatus: "paid", PaidDate: new Date() });
+            invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { transactionId: payment.transactionId, invoiceStatus: "paid", paidDate: new Date() });
         };
-        await paymentService.updatePayment(payment._id, { status: "Completed", PaidDate: new Date() });
+        const updatePayment = await paymentService.updatePayment(payment._id, { status: "Completed", paidDate: new Date() });
         const subject = 'complete Invoice';
+        const paymentInfo = {
+            amount: updatePayment.amount,
+            currency: updatePayment.currency,
+            name: updatePayment.userName,
+            paidDate: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Europe/Paris', timeZoneName: 'short', }).format(new Date(updatePayment.paidDate)),
+            transactionId: updatePayment.transactionId,
+        };
         const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/complete-invoice.html'), 'utf8');
-        sendEmail(payment.senderEmail, subject, content);
+        sendEmail(payment.senderEmail, subject, content, paymentInfo);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

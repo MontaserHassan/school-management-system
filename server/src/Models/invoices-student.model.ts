@@ -65,7 +65,7 @@ const studentInvoiceSchema = new mongoose.Schema(
                 required: true,
             }
         },
-        PaidDate: {
+        paidDate: {
             type: Date,
             required: false,
         },

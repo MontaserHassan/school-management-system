@@ -12,6 +12,7 @@ interface PaymentModel extends mongoose.Document {
     transactionId: number;
     senderEmail: string;
     userId: string;
+    userName: string
     studentId?: string;
     paymentId: string;
     name: string;
@@ -52,6 +53,10 @@ const paymentSchema = new mongoose.Schema(
         userId: {
             type: String,
             ref: 'User',
+            required: true,
+        },
+        userName: {
+            type: String,
             required: true,
         },
         studentId: {
@@ -98,7 +103,7 @@ const paymentSchema = new mongoose.Schema(
             required: true,
             default: new Date(),
         },
-        PaidDate: {
+        paidDate: {
             type: Date,
             required: false,
         },

@@ -10,6 +10,7 @@ interface SchoolInvoiceModel extends mongoose.Document {
     senderEmail: string;
     transactionId: number;
     invoiceStatus: string;
+    paidDate: Date;
     media: string;
 };
 
@@ -61,7 +62,7 @@ const schoolInvoiceSchema = new mongoose.Schema(
                 required: false,
             }
         },
-        PaidDate: {
+        paidDate: {
             type: Date,
             required: false,
         },

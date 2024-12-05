@@ -17,7 +17,6 @@ async function createCheckoutSession(name: string, amount: number, currency: str
                 quantity: 1,
             },
         ];
-        console.log('lineItems: ', lineItems);
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: lineItems,
@@ -25,7 +24,6 @@ async function createCheckoutSession(name: string, amount: number, currency: str
             success_url: `${process.env.SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.CANCEL_URL}?session_id={CHECKOUT_SESSION_ID}`,
         });
-        console.log('session: ', session);
         if (!session) return false;
         return session;
     } catch (err) {
