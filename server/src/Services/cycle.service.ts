@@ -46,7 +46,7 @@ const getCycleBySchoolId = async (schoolId: string) => {
 // ----------------------------- add new domain by school id -----------------------------
 
 
-const addEducationDomainToCycle = async (cycleId: string, educationDomains: { educationDomainId: string, educationDomainsName: string, educationDomainDescription: string }) => {
+const addEducationDomainToCycle = async (cycleId: string, educationDomains: { educationDomainId: string, educationDomainName: string, educationDomainDescription: string }) => {
     const updateCycle: CycleModel = await Cycle.findByIdAndUpdate(cycleId, { $push: { educationDomains: educationDomains } }, { new: true }).select('-__v');
     return updateCycle;
 };

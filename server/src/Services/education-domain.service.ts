@@ -28,6 +28,15 @@ const getById = async (educationDomainId: string) => {
 };
 
 
+// ----------------------------- get by domain id -----------------------------
+
+
+const getByDomainId = async (domainId: string) => {
+    const result = await EducationDomain.findOne({ domains: { $elemMatch: { domainId } }, });
+    return result;
+};
+
+
 // ----------------------------- get by id -----------------------------
 
 
@@ -49,8 +58,9 @@ const updateById = async (educationDomainId: string, updatedData: any) => {
 // ----------------------------- update domain by id -----------------------------
 
 
-const updateDomainsById = async (domainId: string, updatedData: any) => {
-    const updatedDomain: EducationDomainModel = await EducationDomain.findOneAndUpdate({ "domains.domainId": domainId }, { ...updatedData }, { new: true }).select('-__v');
+const updateDomainsById = async (educationId: string, domainId: string, updatedData: any) => {
+    const updatedDomain: EducationDomainModel = await EducationDomain.findOneAndUpdate({ _id: educationId, "domains.domainId": domainId },
+        { $set: { "domains.$.domainName": updatedData?.domainName, "domains.$.isChanged": updatedData?.isChanged, }, }, { new: true }).select('-__v');
     return updatedDomain;
 };
 
@@ -68,6 +78,7 @@ const deleteDomain = async (educationDomainId: string) => {
 export default {
     createDomain,
     getById,
+    getByDomainId,
     getAll,
     updateById,
     updateDomainsById,
