@@ -9,7 +9,7 @@ import domainRouter from './domain/domain.routes';
 const authDomainRouter = express.Router();
 
 
-authDomainRouter.use(checkRole(['director', 'admin']),);
+authDomainRouter.use(checkRole(['director', 'admin', 'director', 'teacher', 'parent']),);
 authDomainRouter.use('/', domainRouter);
 
 

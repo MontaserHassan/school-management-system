@@ -9,7 +9,7 @@ import schoolRouter from './school/school.routes';
 const authSchoolRouter = express.Router();
 
 
-authSchoolRouter.use(checkRole(['superAdmin', 'admin']));
+authSchoolRouter.use(checkRole(['superAdmin', 'admin', 'director', 'teacher', 'parent']),);
 authSchoolRouter.use('/', schoolRouter);
 
 
