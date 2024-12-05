@@ -39,6 +39,9 @@ export class School {
   notifySuperAdmin?: boolean;
 
   @Expose()
+  verify?: boolean;
+
+  @Expose()
   createdAt?: Date;
 
   @Expose()
