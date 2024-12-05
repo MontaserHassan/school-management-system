@@ -560,5 +560,42 @@
     "classroom": "Klaslokaal",
     "group": "Groep",
     "actions": "Acties"
+  },
+  "educationDomain": {
+    "formTitle": "Onderwijsdomein Formulier",
+    "nameLabel": "Naam van het onderwijsdomein",
+    "namePlaceholder": "Voer de naam van het domein in",
+    "nameRequired": "Naam is verplicht.",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in",
+    "cycleLabel": "Cycli",
+    "cycleRequired": "Cycle is verplicht.",
+    "domainsLabel": "Domeinen",
+    "domainsRequired": "Domeinen zijn verplicht.",
+    "cancel": "Annuleren",
+    "submit": "Verzenden",
+    "header": {
+      "name": "Naam van de nationale onderwijsontwikkeling",
+      "ageGroup": "Leeftijdsgroep",
+      "domains": "Montessori-ontwikkelingsdomein",
+      "description": "Beschrijving",
+      "createdAt": "Aangemaakt op",
+      "updatedAt": "Bijgewerkt op",
+      "actions": "Acties"
+    },
+    "domains": {
+      "label": "Domeinen"
+    },
+    "ageGroup": {
+      "unit": "Jaar"
+    },
+    "emptyMessage": "Geen nationaal onderwijsprogramma gevonden"
+  },
+  "cycleList": {
+    "header": "Cycle lijst",
+    "verifySchool": "Controleer school",
+    "addEduDomain": "Voeg onderwijsonderwerp toe",
+    "selectSchool": "Selecteer een school",
+    "school": "School"
   }
 }

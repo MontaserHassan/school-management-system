@@ -560,5 +560,42 @@
     "classroom": "Salle de classe",
     "group": "Groupe",
     "actions": "Actions"
+  },
+  "educationDomain": {
+    "formTitle": "Formulaire du domaine de l'éducation",
+    "nameLabel": "Nom du domaine de l'éducation",
+    "namePlaceholder": "Entrez le nom du domaine",
+    "nameRequired": "Le nom est requis.",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Entrez une description",
+    "cycleLabel": "Cycle",
+    "cycleRequired": "Le cycle est requis.",
+    "domainsLabel": "Domaines",
+    "domainsRequired": "Les domaines sont requis.",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "header": {
+      "name": "Nom du développement de l'éducation nationale",
+      "ageGroup": "Groupe d'âge",
+      "domains": "Domaine de développement Montessori",
+      "description": "Description",
+      "createdAt": "Créé le",
+      "updatedAt": "Mis à jour le",
+      "actions": "Actions"
+    },
+    "domains": {
+      "label": "Domaines"
+    },
+    "ageGroup": {
+      "unit": "An"
+    },
+    "emptyMessage": "Aucun programme d'éducation nationale trouvé"
+  },
+  "cycleList": {
+    "header": "Liste des cycles",
+    "verifySchool": "Vérifier l'école",
+    "addEduDomain": "Ajouter un sujet éducatif",
+    "selectSchool": "Veuillez sélectionner une école",
+    "school": "École"
   }
 }

@@ -1,32 +1,43 @@
 <p-table [value]="educationDomain" dataKey="_id" responsiveLayout="scroll" class="p-datatable-striped">
   <ng-template pTemplate="header">
     <tr>
-      <th>National Education development Name</th>
-      <th>Age group</th>
-      <th>Montessori Development Domain</th>
-      <th>Description</th>
-      <th>Created At</th>
-      <th>Updated At</th>
-      <th *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">Actions</th>
+      <th>{{ 'educationDomain.header.name' | translate }}</th>
+      <th>{{ 'educationDomain.header.ageGroup' | translate }}</th>
+      <th>{{ 'educationDomain.header.domains' | translate }}</th>
+      <th>{{ 'educationDomain.header.description' | translate }}</th>
+      <th>{{ 'educationDomain.header.createdAt' | translate }}</th>
+      <th>{{ 'educationDomain.header.updatedAt' | translate }}</th>
+      <th *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">
+        {{ 'educationDomain.header.actions' | translate }}
+      </th>
     </tr>
   </ng-template>
 
   <ng-template pTemplate="body" let-nationalEducation>
     <tr>
-      <td>{{nationalEducation.educationDomainName}}</td>
-      <td>{{ageGroup}} Year</td>
+      <td>{{ nationalEducation.educationDomainName }}</td>
+      <td>{{ ageGroup }} {{ 'educationDomain.ageGroup.unit' | translate }}</td>
       <td>
         <p-accordion>
           <p-accordionTab>
             <ng-template pTemplate="header">
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="header" [ngStyle]="nationalEducation.isChanged ? {'color': 'red'} : {'color': 'black'}">Domains</h4>
+                <h4
+                  class="header"
+                  [ngStyle]="nationalEducation.isChanged ? { 'color': 'red' } : {}"
+                >
+                  {{ 'educationDomain.domains.label' | translate }}
+                </h4>
               </div>
             </ng-template>
             <app-state-section>
               <ul *ngIf="nationalEducation.domains">
                 <li *ngFor="let domain of nationalEducation.domains">
-                  <strong [ngStyle]="domain.isChanged ? {'color': 'red'} : {'color': 'black'}">{{ domain.domainName }}</strong>
+                  <strong
+                    [ngStyle]="domain.isChanged ? { 'color': 'red' } : {}"
+                  >
+                    {{ domain.domainName }}
+                  </strong>
                 </li>
               </ul>
             </app-state-section>
@@ -36,7 +47,7 @@
       <td>{{ nationalEducation.educationDomainDescription }}</td>
       <td>{{ nationalEducation.createdAt | date: 'short' }}</td>
       <td>{{ nationalEducation.updatedAt | date: 'short' }}</td>
-      <td *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE" >
+      <td *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">
         <p-menu #menu [model]="educationDomainAction" appendTo="body" [popup]="true">
           <ng-template pTemplate="item" let-item>
             <div class="p-menuitem-link" (click)="handleClick(item.label, nationalEducation)">
@@ -51,7 +62,9 @@
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td colspan="6"><small>No National Education Program Found</small></td>
+      <td colspan="6">
+        <small>{{ 'educationDomain.emptyMessage' | translate }}</small>
+      </td>
     </tr>
   </ng-template>
 </p-table>

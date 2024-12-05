@@ -1,56 +1,89 @@
 <app-state-section [state]="sectionState">
-  <h2 mat-dialog-title>Education Domain Form</h2>
+  <h2 mat-dialog-title>{{ 'educationDomain.formTitle' | translate }}</h2>
   <form (ngSubmit)="submitForm()" [formGroup]="educationDomainForm" class="p-fluid">
     <mat-dialog-content class="dialog-content">
       <div class="field mb-2">
-        <label for="educationDomainName">Education Domain Name</label>
-        <input pInputText id="educationDomainName" formControlName="educationDomainName" required />
-        <small *ngIf="
-          educationDomainForm.get('educationDomainName')?.invalid &&
-          educationDomainForm.get('educationDomainName')?.touched
-        " class="p-error">
-          Name is required.
+        <label for="educationDomainName">{{ 'educationDomain.nameLabel' | translate }}</label>
+        <input
+          pInputText
+          id="educationDomainName"
+          formControlName="educationDomainName"
+          required
+          [placeholder]="'educationDomain.namePlaceholder' | translate"
+        />
+        <small
+          *ngIf="
+            educationDomainForm.get('educationDomainName')?.invalid &&
+            educationDomainForm.get('educationDomainName')?.touched
+          "
+          class="p-error"
+        >
+          {{ 'educationDomain.nameRequired' | translate }}
         </small>
       </div>
 
       <div class="field mb-2">
-        <label for="educationDomainDescription">Description</label>
+        <label for="educationDomainDescription">{{ 'educationDomain.descriptionLabel' | translate }}</label>
         <textarea
           id="educationDomainDescription"
           rows="4"
           pInputTextarea
           formControlName="educationDomainDescription"
-          [placeholder]="'Description'"
+          [placeholder]="'educationDomain.descriptionPlaceholder' | translate"
           class="w-100"
         ></textarea>
       </div>
 
       <div class="field mb-2">
-        <label for="cycleId">Cycle</label>
-        <app-lazy-dropdown for="currency" [lookup]="Lookup.Cycle" formControlName="cycleId" [lookUpExtraParams]="{schoolId:data.schoolId}"></app-lazy-dropdown>
-        <small *ngIf="
-          educationDomainForm.get('cycleId')?.invalid &&
-          educationDomainForm.get('cycleId')?.touched
-        " class="p-error">
-          Cycle is required.
+        <label for="cycleId">{{ 'educationDomain.cycleLabel' | translate }}</label>
+        <app-lazy-dropdown
+          for="currency"
+          [lookup]="Lookup.Cycle"
+          formControlName="cycleId"
+          [lookUpExtraParams]="{ schoolId: data.schoolId }"
+        ></app-lazy-dropdown>
+        <small
+          *ngIf="
+            educationDomainForm.get('cycleId')?.invalid &&
+            educationDomainForm.get('cycleId')?.touched
+          "
+          class="p-error"
+        >
+          {{ 'educationDomain.cycleRequired' | translate }}
         </small>
       </div>
 
       <div class="field mb-2">
-        <label for="domains">Domains</label>
-        <app-lazy-dropdown for="domains" [multiply]="true" [lookup]="Lookup.Domains" formControlName="domains" [lookUpExtraParams]="{schoolId:data.schoolId,filterDomain:true}"></app-lazy-dropdown>
-        <small *ngIf="
-          educationDomainForm.get('domains')?.invalid &&
-          educationDomainForm.get('domains')?.touched
-        " class="p-error">
-          domains is required.
+        <label for="domains">{{ 'educationDomain.domainsLabel' | translate }}</label>
+        <app-lazy-dropdown
+          for="domains"
+          [multiply]="true"
+          [lookup]="Lookup.Domains"
+          formControlName="domains"
+          [lookUpExtraParams]="{ schoolId: data.schoolId, filterDomain: true }"
+        ></app-lazy-dropdown>
+        <small
+          *ngIf="
+            educationDomainForm.get('domains')?.invalid &&
+            educationDomainForm.get('domains')?.touched
+          "
+          class="p-error"
+        >
+          {{ 'educationDomain.domainsRequired' | translate }}
         </small>
       </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-      <button mat-button type="button" mat-dialog-close>Cancel</button>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!educationDomainForm.valid">
-        Submit
+      <button mat-button type="button" mat-dialog-close>
+        {{ 'educationDomain.cancel' | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!educationDomainForm.valid"
+      >
+        {{ 'educationDomain.submit' | translate }}
       </button>
     </mat-dialog-actions>
   </form>
