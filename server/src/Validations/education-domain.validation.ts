@@ -29,6 +29,12 @@ const educationDomainValidator = {
             educationDomainId: Joi.string().required().trim().messages({ 'string.empty': 'Education Domain is required.', }),
         }),
     },
+    
+    getEducationDomainBySchoolId: {
+        params: Joi.object().keys({
+            schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School Id is required.', }),
+        }),
+    },
 
     updateEducationDomain: {
         body: Joi.object().keys({

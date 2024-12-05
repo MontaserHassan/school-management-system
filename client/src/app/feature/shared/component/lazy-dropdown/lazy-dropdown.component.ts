@@ -16,7 +16,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 
-export class LazyDropdownComponent implements OnInit, OnChanges  {
+export class LazyDropdownComponent implements OnInit, OnChanges {
   @Input() lookup!: any;
   @Input() lookUpExtraParams!: any;
   @Input() placeholder: string = "Select an option";
@@ -29,7 +29,7 @@ export class LazyDropdownComponent implements OnInit, OnChanges  {
   private lookupCache: { [key: string]: any[] } = {};
   skipCash: boolean = false;
 
-  constructor(private lazyDropdownService: LazyDropdownService) {}
+  constructor(private lazyDropdownService: LazyDropdownService) { }
 
 
   ngOnInit(): void {
@@ -46,6 +46,7 @@ export class LazyDropdownComponent implements OnInit, OnChanges  {
   writeValue(value: any): void {
     if (value && value.status) {
       this.selectedOption = value.status[0];
+      console.log(this.selectedOption);
     } else {
       this.selectedOption = value;
     }
@@ -60,8 +61,8 @@ export class LazyDropdownComponent implements OnInit, OnChanges  {
     this.onTouched = fn;
   }
 
-  private onChange: any = () => {};
-  private onTouched: any = () => {};
+  private onChange: any = () => { };
+  private onTouched: any = () => { };
 
   onDropdownOpen() {
     if (!this.isDataLoaded) {
@@ -69,7 +70,7 @@ export class LazyDropdownComponent implements OnInit, OnChanges  {
     }
   }
 
-  onDropdownClose(){
+  onDropdownClose() {
     this.isDataLoaded = false;
     this.skipCash = false;
     this.onTouched();
@@ -94,6 +95,19 @@ export class LazyDropdownComponent implements OnInit, OnChanges  {
             label: item.value,
             value: item._id,
           }));
+
+
+          console.log(this.selectedOption);
+
+          if (this.selectedOption && Array.isArray(this.selectedOption)) {
+            this.selectedOption.forEach(option => {
+              if (!this.dropdownOptions.some((item) => item.value === option.value)) {
+                this.dropdownOptions.push(option)
+              }
+            })
+          }else if(this.selectedOption.value && !this.dropdownOptions.some((item) => item.value === this.selectedOption)){
+            this.dropdownOptions.push(this.selectedOption)
+          }
 
           this.lookupCache[this.lookup] = this.dropdownOptions;
           this.isDataLoaded = true;

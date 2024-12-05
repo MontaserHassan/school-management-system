@@ -16,4 +16,5 @@ export enum Lookup {
   AllUsers = 'allUsers',
   Skill="skills",
   EventResponse="event-response",
+  Cycle="cycle",
 }

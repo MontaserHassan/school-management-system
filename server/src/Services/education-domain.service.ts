@@ -27,6 +27,14 @@ const getById = async (educationDomainId: string) => {
     return educationDomain;
 };
 
+// ----------------------------- get by School id -----------------------------
+
+
+const getBySchoolId = async (schoolId: string) => {
+    const educationDomain: EducationDomainModel[] = await EducationDomain.find({ schoolId }).select('-__v'); 
+    return educationDomain;
+};
+
 
 // ----------------------------- get by domain id -----------------------------
 
@@ -80,6 +88,7 @@ export default {
     getById,
     getByDomainId,
     getAll,
+    getBySchoolId,
     updateById,
     updateDomainsById,
     deleteDomain,

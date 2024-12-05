@@ -58,7 +58,7 @@ export class ViewSchoolComponent extends BaseComponent implements OnInit {
       isLoadingTransparent: true,
     }).subscribe((res) => {
       if(!params?.isExport){
-        this.school = res;
+        this.school = res.school || new School();
       }
     })
   }

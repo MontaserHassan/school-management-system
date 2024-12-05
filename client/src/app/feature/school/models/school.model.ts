@@ -2,6 +2,7 @@ import { Expose, Type } from 'class-transformer';
 import { User } from '../../shared/models/user.model';
 import e from 'express';
 import { list } from '../../shared/models/list';
+import { Cycle } from '../../cycle/models/cycle.model';
 
 export class School {
   @Expose()
@@ -42,6 +43,14 @@ export class School {
 
   @Expose()
   updatedAt?: Date;
+}
+
+export class SchoolResponse{
+  @Expose()
+  school?: School;
+
+  @Expose()
+  cycles?: Cycle[];
 }
 
 export class SchoolList extends list {

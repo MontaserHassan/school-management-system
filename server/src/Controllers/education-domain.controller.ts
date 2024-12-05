@@ -71,6 +71,25 @@ const getEducationDomainData = async (req: Request, res: Response, next: NextFun
 // ----------------------------- get all domains -----------------------------
 
 
+const getAllEducationDomainBySchoolId = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { schoolId } = req.params;
+        const educationDomains = await educationDomainService.getBySchoolId(schoolId);
+        const response: IResponse = {
+            type: "info",
+            responseCode: 200,
+            responseMessage: successEducationDomainMessage.GET_EDUCATION_DOMAINS_DATA,
+            data: {
+                educationDomains: educationDomains,
+            },
+        };
+        res.data = response;
+        return res.status(response.responseCode).send(response);
+    } catch (err) {
+        next(err);
+    };
+};
+
 const getAllEducationDomain = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const educationDomains = await educationDomainService.getAll();
@@ -156,6 +175,7 @@ export default {
     createEducationDomain,
     getEducationDomainData,
     getAllEducationDomain,
+    getAllEducationDomainBySchoolId,
     updateEducationDomainData,
     deleteEducationDomain,
 };

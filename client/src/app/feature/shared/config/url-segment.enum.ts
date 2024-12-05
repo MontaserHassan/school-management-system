@@ -18,4 +18,5 @@ export enum URLSegment {
   Classes  = 'classes/',
   Event = 'event/',
   Payment = 'payment/',
+  EducationDomain = 'education-domain/',
 }
