@@ -9,7 +9,7 @@ import educationDomainRouter from './education-domain/education-domain.routes';
 const authEducationDomainRouter = express.Router();
 
 
-authEducationDomainRouter.use(checkRole(['superAdmin']),);
+authEducationDomainRouter.use(checkRole(['superAdmin', 'admin']),);
 authEducationDomainRouter.use('/', educationDomainRouter);
 
 

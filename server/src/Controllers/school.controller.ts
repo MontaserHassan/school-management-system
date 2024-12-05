@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import fs from 'fs';
 import path from 'path';
 
-import { lookupService, schoolService, userService, schoolsInvoiceService, notificationService, cycleService, domainService } from "../Services/index.service";
+import { lookupService, schoolService, userService, schoolsInvoiceService, notificationService, cycleService, domainService, educationDomainService } from "../Services/index.service";
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import { UserModel } from "../Models/user.model";
 import { errorCycleMessage, errorLookupMessage, errorSchoolMessage, successCycleMessage, successSchoolMessage } from "../Messages/index.message";
@@ -152,6 +152,7 @@ const verifySchool = async (req: Request, res: Response, next: NextFunction) => 
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const updatedSchool = await schoolService.updateSchoolData(schoolId, { verify });
         // each domains and education domain will be false with isChanged
+        // await educationDomainService.updateById();
         const response: IResponse = {
             type: "info",
             responseCode: 200,
