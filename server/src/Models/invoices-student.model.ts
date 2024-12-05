@@ -44,6 +44,10 @@ const studentInvoiceSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        transactionId: {
+            type: Number,
+            required: false,
+        },
         invoiceStatus: {
             type: String,
             enum: ['paid', 'pending'],

@@ -37,6 +37,9 @@ const schoolValidator = {
     updateSchool: {
         body: Joi.object().keys({
             schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School ID is required.', }),
+            adminId: Joi.string().optional().trim().messages({ 'string.empty': 'Admin ID is required.', }),
+            adminUserName: Joi.string().optional().trim().messages({ 'string.empty': 'Admin user name is required.', }),
+            adminEmail: Joi.string().optional().trim().messages({ 'string.empty': 'Admin email is required.', }),
             schoolName: Joi.string().optional().trim().messages({ 'string.empty': 'School name is required.', }),
             subscriptionFees: Joi.string().optional().trim().messages({ 'string.empty': 'Subscription fees are required.', }),
             currencyOfSubscription: Joi.string().optional().trim().messages({ 'string.empty': 'Currency of subscription is required.', }),

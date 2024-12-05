@@ -8,6 +8,7 @@ interface SchoolInvoiceModel extends mongoose.Document {
     schoolId: { schoolId: string, schoolName: string };
     admin: { adminId: string, adminName: string, };
     senderEmail: string;
+    transactionId: number;
     invoiceStatus: string;
     media: string;
 };
@@ -37,6 +38,10 @@ const schoolInvoiceSchema = new mongoose.Schema(
         amount: {
             type: Number,
             required: true,
+        },
+        transactionId: {
+            type: Number,
+            required: false,
         },
         invoiceStatus: {
             type: String,

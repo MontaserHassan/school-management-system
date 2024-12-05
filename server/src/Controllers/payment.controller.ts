@@ -114,13 +114,13 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
             const newSubscriptionDate = new Date();
             const endOfSubscription = calculateSubscriptionDate(schoolData.subscriptionWay, newSubscriptionDate);
             await schoolService.updateSchoolData(schoolData._id, { endOfSubscription: endOfSubscription, subscriptionStatus: "paid", subscriptionDate: newSubscriptionDate });
-            invoice = await schoolsInvoiceService.updateInvoice(payment.invoiceId, { invoiceStatus: "paid", PaidDate: new Date() });
+            invoice = await schoolsInvoiceService.updateInvoice(payment.invoiceId, { transactionId: payment.transactionId, invoiceStatus: "paid", PaidDate: new Date() });
         };
         if (payment.service === 2) {
             student = await studentService.getStudentById(payment.studentId);
             const paymentStatus = student.remainingAmount === 0 ? "paid" : "pending";
             await studentService.updateStudentData(payment.studentId, { paymentStatus: paymentStatus, paidAmount: Number(student.paidAmount) + Number(payment.amount), pendingAmount: 0 });
-            invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { invoiceStatus: "paid", PaidDate: new Date() });
+            invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { transactionId: payment.transactionId, invoiceStatus: "paid", PaidDate: new Date() });
         };
         await paymentService.updatePayment(payment._id, { status: "Completed", PaidDate: new Date() });
         const subject = 'complete Invoice';

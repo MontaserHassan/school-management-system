@@ -5,7 +5,7 @@ import path from 'path';
 import { lookupService, schoolService, userService, schoolsInvoiceService, notificationService, cycleService, domainService, educationDomainService } from "../Services/index.service";
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import { UserModel } from "../Models/user.model";
-import { errorLookupMessage, errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
+import { errorLookupMessage, errorSchoolMessage, ErrorUserMessage, successSchoolMessage } from "../Messages/index.message";
 import IResponse from '../Interfaces/response.interface';
 import { CSVSchool, CustomError, calculateSubscriptionDate, sendEmail, pagination } from "../Utils/index.util";
 
@@ -197,7 +197,7 @@ const notifySuperAdmin = async (req: Request, res: Response, next: NextFunction)
 
 const updateSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { schoolId, schoolName, subscriptionStatus, subscriptionWay, subscriptionFees, currencyOfSubscription } = req.body;
+        const { schoolId, schoolName, adminId, adminUserName, adminEmail, subscriptionStatus, subscriptionWay, subscriptionFees, currencyOfSubscription } = req.body;
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         let updatedSchool: SubscriptionSchoolModel;
@@ -212,6 +212,13 @@ const updateSchool = async (req: Request, res: Response, next: NextFunction) => 
             const currencyName = await lookupService.getById(currencyOfSubscription)
             currency = currencyOfSubscription ? currencyName.lookupName : isSchoolExisting.currencyOfSubscription;
         };
+        if (adminId) {
+            const isUserExisting = await userService.getById(adminId);
+            if (!isUserExisting) throw new CustomError(ErrorUserMessage.NOT_FOUND_USER, 404, "user");
+            const newUserName = adminUserName ? adminUserName : isUserExisting.userName;
+            const newEmail = adminEmail ? adminEmail : isUserExisting.email;
+            await userService.updateUser(String(isUserExisting._id), { userName: newUserName, email: newEmail });
+        }
         const newSchoolName = schoolName ? schoolName : isSchoolExisting.schoolName;
         const newSubscriptionWay = subscriptionWay ? subscriptionWay : isSchoolExisting.subscriptionWay;
         const newSubscriptionFees = subscriptionFees ? subscriptionFees : isSchoolExisting.subscriptionFees;

@@ -9,6 +9,7 @@ interface PaymentModel extends mongoose.Document {
     _id: string;
     schoolId: string;
     invoiceId: string;
+    transactionId: number;
     senderEmail: string;
     userId: string;
     studentId?: string;
