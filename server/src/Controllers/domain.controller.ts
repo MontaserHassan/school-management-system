@@ -115,7 +115,7 @@ const updateDomainData = async (req: Request, res: Response, next: NextFunction)
             const updatedEducationDomain = await educationDomainService.updateDomainsById(isDomainExisting.educationDomainId, domainId, { domainName: domain.domainName, isChanged: true });
             await educationDomainService.updateById(updatedEducationDomain._id, { isChanged: true });
             const superAdminData = await userService.getSuperAdminData();
-            await notificationService.createNotification(superAdminData._id.toString(), schoolId, "Domain updated", `Hi Super Admin, School: ${schoolData.schoolName} has a domain that has been updated in the system, so please check school cycles to verify this school.`);
+            await notificationService.createNotification(superAdminData._id.toString(), 'superAdmin', "Domain updated", `Hi Super Admin, School: ${schoolData.schoolName} has a domain that has been updated in the system, so please check school cycles to verify this school.`);
         };
         const response: IResponse = {
             type: "info",

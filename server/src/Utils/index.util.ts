@@ -4,6 +4,7 @@ import pagination from "./pagination.util";
 import generateId from "./generate-id.util";
 import generateCode from './generateCode.util';
 import generateSecretKey from './createSecretKey.util';
+import generateTransactionId from "../Utils/generate-transaction-id.util";
 import sendEmail from './send-mail.util';
 
 import stripe from './stripe.util';
@@ -31,6 +32,7 @@ export {
     generateId,
     generateCode,
     generateSecretKey,
+    generateTransactionId,
     sendEmail,
 
     stripe,

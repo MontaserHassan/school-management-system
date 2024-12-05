@@ -11,8 +11,8 @@ import { successNotificationMessage } from "../Messages/index.message";
 
 const getNotifications = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId, schoolId } = req.user;
-        const notifications = await notificationService.findNotificationsByUserId(userId, schoolId);
+        const { userId } = req.user;
+        const notifications = await notificationService.findNotificationsByUserId(userId);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

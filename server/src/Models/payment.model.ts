@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { nanoid } from "nanoid";
 
+import { generateTransactionId } from "../Utils/index.util";
+
 
 
 interface PaymentModel extends mongoose.Document {
@@ -34,6 +36,12 @@ const paymentSchema = new mongoose.Schema(
             type: String,
             ref: 'School',
             required: false,
+        },
+        transactionId: {
+            type: Number,
+            default: () => generateTransactionId(),
+            required: true,
+            unique: true,
         },
         invoiceId: {
             type: String,

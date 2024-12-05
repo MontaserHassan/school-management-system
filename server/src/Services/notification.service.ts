@@ -30,8 +30,8 @@ const findNotificationById = async (notificationId: string) => {
 // ----------------------------- find notifications by user id -----------------------------
 
 
-const findNotificationsByUserId = async (userId: string, schoolId: string) => {
-    const notifications: NotificationModel[] = await Notification.find({ schoolId, userId }).select('-__v').sort({ createdAt: -1 });
+const findNotificationsByUserId = async (userId: string) => {
+    const notifications: NotificationModel[] = await Notification.find({ userId }).select('-__v').sort({ createdAt: -1 });
     return notifications;
 };
 
