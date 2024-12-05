@@ -31,7 +31,7 @@ const getById = async (educationDomainId: string) => {
 
 
 const getBySchoolId = async (schoolId: string) => {
-    const educationDomain: EducationDomainModel[] = await EducationDomain.find({ schoolId }).select('-__v'); 
+    const educationDomain: EducationDomainModel[] = await EducationDomain.find({ schoolId }).select('-__v');
     return educationDomain;
 };
 
@@ -63,6 +63,15 @@ const updateById = async (educationDomainId: string, updatedData: any) => {
 };
 
 
+// ----------------------------- update by id -----------------------------
+
+
+const updateEducationDomainsBySchoolId = async (schoolId: string) => {
+    const updatedDomain: EducationDomainModel = await EducationDomain.updateMany({ schoolId }, { isChanged: false, $set: { 'domains.$[].isChanged': false }, }, { new: true, multi: true }).select('-__v');
+    return updatedDomain;
+};
+
+
 // ----------------------------- update domain by id -----------------------------
 
 
@@ -90,6 +99,7 @@ export default {
     getAll,
     getBySchoolId,
     updateById,
+    updateEducationDomainsBySchoolId,
     updateDomainsById,
     deleteDomain,
 };

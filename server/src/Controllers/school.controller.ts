@@ -151,8 +151,7 @@ const verifySchool = async (req: Request, res: Response, next: NextFunction) => 
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
         const updatedSchool = await schoolService.updateSchoolData(schoolId, { verify });
-        // each domains and education domain will be false with isChanged
-        // await educationDomainService.updateById();
+        await educationDomainService.updateEducationDomainsBySchoolId(updatedSchool._id,);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

@@ -68,7 +68,7 @@ const getEducationDomainData = async (req: Request, res: Response, next: NextFun
 };
 
 
-// ----------------------------- get all domains -----------------------------
+// ----------------------------- get all domains by schoolId -----------------------------
 
 
 const getAllEducationDomainBySchoolId = async (req: Request, res: Response, next: NextFunction) => {
@@ -89,6 +89,10 @@ const getAllEducationDomainBySchoolId = async (req: Request, res: Response, next
         next(err);
     };
 };
+
+
+// ----------------------------- get all domains -----------------------------
+
 
 const getAllEducationDomain = async (req: Request, res: Response, next: NextFunction) => {
     try {
