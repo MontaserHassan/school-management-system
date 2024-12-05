@@ -7,6 +7,7 @@ interface PaymentModel extends mongoose.Document {
     _id: string;
     schoolId: string;
     invoiceId: string;
+    senderEmail: string;
     userId: string;
     studentId?: string;
     paymentId: string;
@@ -95,6 +96,10 @@ const paymentSchema = new mongoose.Schema(
         canceledDate: {
             type: Date,
             required: false,
+        },
+        senderEmail: {
+            type: String,
+            required: true,
         },
     },
     {

@@ -139,7 +139,7 @@ const updateEducationDomainData = async (req: Request, res: Response, next: Next
         const newDomains = domains ? processedDomains : isEducationDomainExisting.domains;
         const newEducationDomainName = educationDomainName ? educationDomainName : isEducationDomainExisting.educationDomainName;
         const newEducationDomainDescription = educationDomainDescription ? educationDomainDescription : isEducationDomainExisting.educationDomainDescription;
-        const updateEducationDomain = await educationDomainService.updateById(educationDomainId, { domains: newDomains, educationDomainName: newEducationDomainName, cycleId: cycle._Id, cycleName: cycle.cycleName, educationDomainDescription: newEducationDomainDescription });
+        const updateEducationDomain = await educationDomainService.updateById(educationDomainId, { domains: newDomains, educationDomainName: newEducationDomainName, cycleId: cycle._id, cycleName: cycle.cycleName, educationDomainDescription: newEducationDomainDescription });
         if (!updateEducationDomain) throw new CustomError(errorEducationDomainMessage.NOT_UPDATED, 404, "educationDomain");
         const response: IResponse = {
             type: "info",

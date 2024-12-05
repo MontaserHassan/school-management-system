@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from "express";
+import fs from 'fs';
+import path from 'path';
 
 import { studentInvoiceService, schoolService, userService, studentService, } from "../Services/index.service";
 import IResponse from '../Interfaces/response.interface';
-import CustomError from "../Utils/customError.util";
+import { CustomError, sendEmail, pagination } from "../Utils/index.util";
 import { errorInvoiceMessage, errorSchoolMessage, errorStudentMessage, ErrorUserMessage, successInvoiceMessage } from "../Messages/index.message";
 import { StudentInvoiceModel } from "../Models/invoices-student.model";
-import pagination from "../Utils/pagination.util";
 
 
 
@@ -18,13 +19,17 @@ const createInvoice = async (req: Request, res: Response, next: NextFunction) =>
         const { schoolId } = req.user;
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const adminInfo = await userService.getById(isSchoolExisting.admin)
         const parentInfo = await userService.getById(parentId);
         if (!parentInfo) throw new CustomError(ErrorUserMessage.PARENT_NOT_FOUND, 404, "parent");
         const studentInfo = await studentService.getStudentById(studentId);
         if (!studentInfo || schoolId !== studentInfo.schoolId) throw new CustomError(errorStudentMessage.NOT_FOUND_STUDENT, 404, "student");
         if (!studentInfo.remainingAmount || Number(amount) > Number(studentInfo.remainingAmount)) throw new CustomError(errorInvoiceMessage.INSUFFICIENT_AMOUNT, 400, "amount");
-        const invoice = await studentInvoiceService.createInvoice(schoolId, amount, { parentId: String(parentInfo._id), parentName: parentInfo.userName }, { studentId: studentInfo._id, studentName: studentInfo.studentName, }, media);
+        const invoice = await studentInvoiceService.createInvoice(schoolId, adminInfo.email, amount, { parentId: String(parentInfo._id), parentName: parentInfo.userName }, { studentId: studentInfo._id, studentName: studentInfo.studentName, }, media);
         await studentService.updateStudentData(studentInfo._id, { remainingAmount: Number(studentInfo.remainingAmount) - Number(amount), pendingAmount: Number(amount), });
+        const subject = 'New Invoice';
+        const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/invoice.html'), 'utf8');
+        sendEmail(parentInfo.email, subject, content);
         const response: IResponse = {
             type: "info",
             responseCode: 200,

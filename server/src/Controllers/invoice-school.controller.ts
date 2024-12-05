@@ -18,8 +18,9 @@ const createInvoice = async (req: Request, res: Response, next: NextFunction) =>
         const { schoolId, media } = req.body;
         const isSchoolExisting = await schoolService.getSchoolById(schoolId);
         if (!isSchoolExisting) throw new CustomError(errorSchoolMessage.SCHOOL_NOT_FOUND, 404, "school");
+        const superAdminInfo = await userService.getSuperAdminData();
         const userInfo = await userService.getById(isSchoolExisting.admin);
-        const invoice = await schoolsInvoiceService.createInvoice(Number(isSchoolExisting.subscriptionFees), { schoolId: isSchoolExisting._id, schoolName: isSchoolExisting.schoolName }, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
+        const invoice = await schoolsInvoiceService.createInvoice(Number(isSchoolExisting.subscriptionFees), superAdminInfo.email, { schoolId: isSchoolExisting._id, schoolName: isSchoolExisting.schoolName }, { adminId: String(userInfo._id), adminName: userInfo.userName }, media);
         const subject = 'New Invoice';
         const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/invoice.html'), 'utf8');
         sendEmail(userInfo.email, subject, content);

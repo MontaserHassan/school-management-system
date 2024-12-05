@@ -5,7 +5,7 @@ import path from 'path';
 import { lookupService, schoolService, userService, schoolsInvoiceService, notificationService, cycleService, domainService, educationDomainService } from "../Services/index.service";
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import { UserModel } from "../Models/user.model";
-import { errorCycleMessage, errorLookupMessage, errorSchoolMessage, successCycleMessage, successSchoolMessage } from "../Messages/index.message";
+import { errorLookupMessage, errorSchoolMessage, successSchoolMessage } from "../Messages/index.message";
 import IResponse from '../Interfaces/response.interface';
 import { CSVSchool, CustomError, calculateSubscriptionDate, sendEmail, pagination } from "../Utils/index.util";
 
@@ -30,9 +30,10 @@ const createSchool = async (req: Request, res: Response, next: NextFunction) => 
         };
         const newSchool = await schoolService.createSchool(schoolName.toLowerCase(), subscriptionFees, currency.lookupName, subscriptionWay, subscriptionStatus, String(adminUser._id), employees,);
         if (!newSchool) throw new CustomError(errorSchoolMessage.DOES_NOT_CREATED, 409, "school");
+        const superAdminInfo = await userService.getSuperAdminData();
         await userService.updateUser(String(adminUser._id), { schoolId: String(newSchool._id) });
         await Promise.all([cycleService.createCycle(newSchool._id, '2-3', 'Cycle One'), cycleService.createCycle(newSchool._id, '3-6', 'Cycle Two'), cycleService.createCycle(newSchool._id, '6-12', 'Cycle Three'),]);
-        await schoolsInvoiceService.createInvoice(Number(newSchool.subscriptionFees), { schoolId: newSchool._id, schoolName: newSchool.schoolName }, { adminId: String(adminUser._id), adminName: adminUser.userName });
+        await schoolsInvoiceService.createInvoice(Number(newSchool.subscriptionFees), superAdminInfo.email, { schoolId: newSchool._id, schoolName: newSchool.schoolName }, { adminId: String(adminUser._id), adminName: adminUser.userName });
         const response: IResponse = {
             type: "info",
             responseCode: 201,

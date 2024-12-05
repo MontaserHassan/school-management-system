@@ -15,11 +15,12 @@ const createPayment = async (name: string, amount: number, currency: string) => 
 // ----------------------------- save payment -----------------------------
 
 
-const savePaymentTransaction = async (schoolId: string, invoiceId: string, userId: string, paymentId: string, name: string, amount: number, currency: string, service: number, serviceName: string, studentId?: string) => {
+const savePaymentTransaction = async (schoolId: string, invoiceId: string, userId: string, senderEmail: string, paymentId: string, name: string, amount: number, currency: string, service: number, serviceName: string, studentId?: string) => {
     const expirationDate = calculateExpirationDate('30t');
     const newPayment: PaymentModel = new Payment({
         schoolId: schoolId,
         invoiceId: invoiceId,
+        senderEmail: senderEmail,
         userId: userId,
         paymentId: paymentId,
         name: name,

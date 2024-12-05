@@ -6,7 +6,8 @@ import { nanoid } from "nanoid";
 interface SchoolInvoiceModel extends mongoose.Document {
     _id: string;
     schoolId: { schoolId: string, schoolName: string };
-    admin: { adminId: string, adminName: string };
+    admin: { adminId: string, adminName: string, };
+    senderEmail: string;
     invoiceStatus: string;
     media: string;
 };
@@ -28,6 +29,10 @@ const schoolInvoiceSchema = new mongoose.Schema(
                 type: String,
                 required: true,
             },
+        },
+        senderEmail: {
+            type: String,
+            required: true,
         },
         amount: {
             type: Number,

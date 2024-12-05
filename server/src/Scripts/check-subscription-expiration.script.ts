@@ -34,7 +34,8 @@ export const sendNotification = () => {
                         if (check.daysBefore === 3) {
                             const schoolInfo = await schoolService.getSchoolById(school._id);
                             const adminInfo = await userService.getById(schoolInfo.admin);
-                            await schoolsInvoiceService.createInvoice(Number(schoolInfo.subscriptionFees), { schoolId: schoolInfo._id, schoolName: schoolInfo.schoolName }, { adminId: String(adminInfo._id), adminName: adminInfo.userName },);
+                            const superAdminInfo = await userService.getSuperAdminData();
+                            await schoolsInvoiceService.createInvoice(Number(schoolInfo.subscriptionFees), superAdminInfo.email, { schoolId: schoolInfo._id, schoolName: schoolInfo.schoolName }, { adminId: String(adminInfo._id), adminName: adminInfo.userName },);
                         };
                         break;
                     };

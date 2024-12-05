@@ -14,6 +14,7 @@ interface EducationDomainModel extends mongoose.Document {
     _id: string;
     schoolId: string;
     cycleId: string;
+    cycleName: string;
     domainId: string;
     educationDomainName: string;
     educationDomainDescription: string;

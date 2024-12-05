@@ -5,7 +5,7 @@ import { ErrorMediaMessage } from '../Messages/index.message';
 
 
 const MAX_SIZE = 4 * 1024 * 1024;
-const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
+const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf',];
 
 
 export function mediaMediaHandler(req: Request, res: Response, next: NextFunction) {

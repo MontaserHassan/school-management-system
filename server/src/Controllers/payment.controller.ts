@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from "express";
+import fs from 'fs';
+import path from 'path';
 
 import { paymentService, schoolService, schoolsInvoiceService, studentInvoiceService, studentService, userTokenService } from "../Services/index.service";
 import { SubscriptionSchoolModel } from "../Models/school.model";
 import { StudentModel } from "../Models/student.model";
-import { calculateSubscriptionDate, CustomError } from "../Utils/index.util";
+import { calculateSubscriptionDate, CustomError, sendEmail } from "../Utils/index.util";
 import IResponse from '../Interfaces/response.interface';
 import { errorInvoiceMessage } from "../Messages/index.message";
 
@@ -25,6 +27,7 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
         };
         let isInvoiceExisting;
         let studentId;
+        let senderEmail;
         if (role === "admin") {
             isInvoiceExisting = await schoolsInvoiceService.findInvoiceById(invoiceId);
             if (!isInvoiceExisting || isInvoiceExisting.invoiceStatus === "paid") throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, 'invoice');
@@ -34,6 +37,7 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
             paymentData.currency = schoolData.currencyOfSubscription;
             paymentData.service = 1;
             paymentData.serviceName = "Subscription Of School";
+            senderEmail = isInvoiceExisting.admin.adminEmail;
         } else if (role === "parent") {
             isInvoiceExisting = await studentInvoiceService.findInvoiceById(invoiceId);
             if (!isInvoiceExisting || isInvoiceExisting.invoiceStatus === "paid") throw new CustomError(errorInvoiceMessage.NOT_FOUND_INVOICE, 404, 'invoice');
@@ -44,12 +48,15 @@ const createPayment = async (req: Request, res: Response, next: NextFunction) =>
             paymentData.currency = studentData.currencyOfCost;
             paymentData.service = 2;
             paymentData.serviceName = "Costs Of Student";
+            senderEmail = isInvoiceExisting.parent.parentEmail;
         };
-        paymentData.currency = 'usd'
+        // paymentData.currency = 'usd'
+        console.log('paymentData: ', paymentData);
         const createPayment = await paymentService.createPayment(paymentData.name, paymentData.amount, paymentData.currency);
         if (!createPayment) throw new CustomError('Payment not created', 400, 'payment');
-        const newPayment = await paymentService.savePaymentTransaction(req.user.schoolId, invoiceId, userId, createPayment.id, paymentData.name, paymentData.amount, paymentData.currency, paymentData.service, paymentData.serviceName, studentId);
+        const newPayment = await paymentService.savePaymentTransaction(req.user.schoolId, invoiceId, userId, senderEmail, createPayment.id, paymentData.name, paymentData.amount, paymentData.currency, paymentData.service, paymentData.serviceName, studentId);
         if (!newPayment) throw new CustomError('Payment not saved', 400, 'payment');
+
         const response: IResponse = {
             type: "info",
             responseCode: 200,
@@ -116,6 +123,9 @@ const completePayment = async (req: Request, res: Response, next: NextFunction) 
             invoice = await studentInvoiceService.updateInvoice(payment.invoiceId, { invoiceStatus: "paid", PaidDate: new Date() });
         };
         await paymentService.updatePayment(payment._id, { status: "Completed", PaidDate: new Date() });
+        const subject = 'complete Invoice';
+        const content = fs.readFileSync(path.resolve(__dirname, '../../src/Templates/complete-invoice.html'), 'utf8');
+        sendEmail(payment.senderEmail, subject, content);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
