@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEditEducationsDomainsDialogComponent } from '../../component/add-edit-educations-domains-dialog/add-edit-educations-domains-dialog.component';
 import { map, of, switchMap } from 'rxjs';
 import { EducationDomainService } from '../../services/education-domain.service';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { RolesConstants } from '../../../shared/config/roles-constants';
 
 @Component({
   selector: 'app-cycle-list',
@@ -21,11 +23,19 @@ export class CycleListComponent extends BaseComponent implements OnInit {
   verify=true;
 
   protected Lookup = Lookup
-  constructor(private schoolService: SchoolService, private educationDomainService: EducationDomainService, private dialog: MatDialog) {
+  protected RolesConstants = RolesConstants
+  constructor(private schoolService: SchoolService, private educationDomainService: EducationDomainService, private dialog: MatDialog,private authService: AuthService) {
     super();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.authService.currentUser$.subscribe(user => {
+      if (user.user?.role !== 'superAdmin') {
+        this.selectSchool?.setValue(user.user?.schoolId)
+        this.getCycleSchool(this.selectSchool.value)
+      }
+    })
+  }
 
   getCycleSchool(id: string) {
     this.load(this.schoolService.getSchoolDetails(id), {

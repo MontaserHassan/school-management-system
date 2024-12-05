@@ -3,14 +3,14 @@
     <div class="d-flex justify-content-between align-items-center px-3 pt-3">
       <h2 class="header">Cycle List</h2>
 
-      <div>
-        <p-button [disabled]="verify" (onClick)="verifySchool()" text label="Verify School" />
-        <p-button [disabled]="!selectSchool.value" (onClick)="addEduDomain()" text label="Add Education Subject" />
+      <div *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">
+        <p-button [disabled]="verify"  severity="success" (onClick)="verifySchool()" text label="Verify School" />
+        <p-button [disabled]="!selectSchool.value"  severity="success" (onClick)="addEduDomain()" text label="Add Education Subject" />
       </div>
     </div>
   </ng-template>
 
-  <div class="field d-flex align-items-center gap-2">
+  <div class="field d-flex align-items-center gap-2"  *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">
     <label for="school" class="form-label">Please Select A School</label>
     <app-lazy-dropdown [lookup]="Lookup.Schools" [(ngModel)]="selectSchool" (ngModelChange)="onSelectSchool($event)"
       [placeholder]="'School'"></app-lazy-dropdown>

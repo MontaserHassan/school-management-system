@@ -13,6 +13,7 @@
 
       <ng-template pTemplate="header">
         <tr>
+          <th>{{ 'invoice.transactionId' | translate }}</th>
           <th>{{ 'invoice.studentName' | translate }}</th>
           <th>{{ 'invoice.parentName' | translate }}</th>
           <th>{{ 'invoice.amount' | translate }}</th>
@@ -26,6 +27,7 @@
 
       <ng-template let-invoice pTemplate="body">
         <tr>
+          <td>{{ invoice.transactionId }}</td>
           <td>{{ invoice.student.studentName }}</td>
           <td>{{ invoice.parent.parentName }}</td>
           <td>{{ invoice.amount }}</td>
@@ -33,15 +35,25 @@
           <!-- Media Attachment -->
           <td>
             <ng-container *ngIf="invoice.media; else noMedia">
-              <img (click)="openMediaDialog(invoice.media)" [src]="invoice.media"
-                alt="{{ 'invoice.mediaAltText' | translate }}" class="img-fluid cursor-pointer" width="100"
-                height="100" />
-            </ng-container>
-            <ng-template #noMedia>
-              <span>{{ 'invoice.noMedia' | translate }}</span>
-            </ng-template>
-          </td>
+              <ng-container *ngIf="invoice.media | isImage; else downloadFile">
+                <img
+                  (click)="openMediaDialog(invoice.media)"
+                  [src]="invoice.media"
+                  [alt]="'invoice.mediaAltText' | translate"
+                  class="img-fluid cursor-pointer"
+                  width="100"
+                  height="100" />
+              </ng-container>
 
+              <ng-template #downloadFile>
+                <p-button text (click)="downloadFileBase(invoice.media)" label="{{ 'invoice.downloadMediaText' | translate }}">
+                </p-button>
+              </ng-template>
+            </ng-container>
+
+            <ng-template #noMedia>
+              <p>{{ 'invoice.noMediaText' | translate }}</p>
+            </ng-template>
           <!-- Status -->
           <td>
             <span class="status-tag" [ngClass]="{

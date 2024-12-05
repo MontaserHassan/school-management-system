@@ -63,7 +63,7 @@ export class AddEditEducationsDomainsDialogComponent extends BaseComponent {
         educationDomainDescription,
         domains: domains.map((domain: any) => domain.value),
         cycleId: cycleId.value,
-        schoolId: this.data.schoolId,
+        schoolId: this.data.edit ? undefined : this.data.schoolId,
       }
 
 
@@ -73,9 +73,7 @@ export class AddEditEducationsDomainsDialogComponent extends BaseComponent {
           isLoadingTransparent: true,
         }
       ).subscribe((res) => {
-        if (res) {
-          this.dialogRef.close(res);
-        }
+        this.dialogRef.close(true);
       }
       )
     }

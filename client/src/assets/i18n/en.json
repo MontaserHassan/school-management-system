@@ -75,6 +75,7 @@
   "logout": "Logout",
   "Users": "Users",
   "UsersList": "Users List",
+  "parent":"Parent",
   "AddUser": "Add User",
   "AddParent": "Add Parent",
   "Domains": "Domains",
@@ -237,6 +238,8 @@
     "yesRemove": "Yes, Remove"
   },
   "invoice": {
+    "downloadMediaText": "Download Media",
+    "transactionId": "Transaction ID",
     "amount": "Amount",
     "status": "Status",
     "pay": "Pay",
@@ -470,7 +473,7 @@
     "group": "Group",
     "groupRequired": "Group is required"
   },
-  "parent": {
+  "parentComponent": {
     "add": "Add Parent",
     "parentName": "Parent Name",
     "email": "Email",

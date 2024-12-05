@@ -46,7 +46,6 @@ export class LazyDropdownComponent implements OnInit, OnChanges {
   writeValue(value: any): void {
     if (value && value.status) {
       this.selectedOption = value.status[0];
-      console.log(this.selectedOption);
     } else {
       this.selectedOption = value;
     }
@@ -96,16 +95,13 @@ export class LazyDropdownComponent implements OnInit, OnChanges {
             value: item._id,
           }));
 
-
-          console.log(this.selectedOption);
-
           if (this.selectedOption && Array.isArray(this.selectedOption)) {
             this.selectedOption.forEach(option => {
               if (!this.dropdownOptions.some((item) => item.value === option.value)) {
                 this.dropdownOptions.push(option)
               }
             })
-          }else if(this.selectedOption.value && !this.dropdownOptions.some((item) => item.value === this.selectedOption)){
+          }else if(this.selectedOption.value && !this.dropdownOptions.some((item) => item.value === this.selectedOption.value)){
             this.dropdownOptions.push(this.selectedOption)
           }
 

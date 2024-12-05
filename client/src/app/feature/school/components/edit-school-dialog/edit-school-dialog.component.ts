@@ -31,18 +31,23 @@ export class EditSchoolDialogComponent extends BaseComponent implements OnInit {
       subscriptionFees: [this.data.school.subscriptionFees, Validators.required],
       currencyOfSubscription: [ this.currency.find(el=> el.label === this.data.school.currencyOfSubscription), Validators.required],
       subscriptionWay: [ this.subscriptionWay.find(el=> el.value === this.data.school.subscriptionWay) , Validators.required],
+      adminUserName: [this.data.school.admin?.userName, Validators.required],
+      adminEmail: [this.data.school.admin?.email, [Validators.required, Validators.email]]
     });
   }
 
   onSubmit(): void {
     if (this.schoolForm.valid) {
-      const { schoolName, subscriptionFees, currencyOfSubscription, subscriptionWay} = this.schoolForm.value;
+      const { schoolName, subscriptionFees, currencyOfSubscription, subscriptionWay, adminUserName, adminEmail} = this.schoolForm.value;
       const body = {
         schoolId: this.data.school._id || "",
+        adminId: this.data.school.admin?._id || "",
         schoolName,
         subscriptionFees,
         subscriptionWay: subscriptionWay.value,
         currencyOfSubscription: currencyOfSubscription.value,
+        adminUserName,
+        adminEmail
       }
 
       this.load(this.schoolService.editSchool(body), {

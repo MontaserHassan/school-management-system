@@ -26,6 +26,7 @@
   "Directors": "schooldirecteuren",
   "DirectorsText": "<section><h1>Optimaliseer het beheer van je Montessori-school met Sori</h1><p>Je hebt een compleet en nauwkeurig overzicht nodig van de werking van je school. Met Sori kun je het dagelijkse beheer vereenvoudigen en tegelijkertijd een optimale pedagogische opvolging garanderen.</p></section><section><h2>Centralisatie van opvolging en vloeiende organisatie</h2><p>Met Sori krijg je toegang tot een interface waarmee je eenvoudig je klassen, leraren en leerlingen kunt beheren. Bekijk de algemene voortgang van elke leerling en de pedagogische trends van je teams, met krachtige beheertools om gebruikersaccounts te beheren.</p></section><section><h2>Vereenvoudigd financieel beheer</h2><p>Vergeet de complicaties met facturen en herinneringen. Dankzij ons geïntegreerde factureringssysteem kun je betalingen volgen, herinneringen sturen en eenvoudig het financiële overzicht van je school beheren.</p></section><section><h2>Analyse en vergelijking tussen scholen</h2><p>Ontdek hoe je school zich verhoudt tot andere Montessori-scholen die Sori gebruiken. Vergelijk je prestaties met anonieme wereldwijde gemiddelden om verbeterpunten te identificeren en voorop te blijven lopen in Montessori-onderwijs.</p><p>We kunnen je nog veel meer vertellen over wat Sori je biedt, maar niets is beter dan het zelf ervaren. Probeer het uit en ontdek alle mogelijkheden in actie!</p></section>",
   "Parent": "ouders",
+  "parent":"ouder",
   "ParentText": "<header><h1>Volg de Onderwijsontwikkeling van je Kind van Dichtbij</h1><p>Met Sori krijg je een duidelijk en gedetailleerd overzicht van de onderwijsreis van je kind in real-time.</p></header><main><section><h2>Belangrijkste Functionaliteiten</h2><ul><li><strong>Voortgangsvisualisatie:</strong> Volg elke verworven vaardigheid, elke activiteit en bekijk de opmerkingen van de opvoeder direct op ons platform. Met een eenvoudig systeem van kleurcodes kun je snel zien waar je kind staat in vergelijking met het Montessori-programma en het Nationale Onderwijsprogramma.</li><li><strong>Vergelijking met het Nationale Programma:</strong> Dankzij een speciale interface kun je de voortgang van je kind vergelijken met de doelstellingen van het nationale programma, waardoor de complementaire aard van de twee pedagogische benaderingen wordt versterkt.</li><li><strong>Rapportdownloads:</strong> Heb je een gedetailleerd overzicht van de voortgang van je kind nodig? Download te allen tijde volledige rapporten met grafieken en vergelijkende analyses.</li><li><strong>Eenvoudige communicatie met opvoeders:</strong> Een geïntegreerd berichtenplatform maakt het mogelijk om vragen te stellen of de voortgang van je kind te bespreken met de opvoeder. Ontvang ook automatische meldingen zodat je nooit een belangrijke update of een schoolevenement mist.</li><li><strong>Eenvoudig administratief beheer:</strong> Bekijk en download gemakkelijk alle facturen met betrekking tot het onderwijs van je kind. Volg achterstallige betalingen en ontvang automatische herinneringen zodat je nooit een betaling mist.</li><li><strong>Probeer Sori vandaag:</strong> Met Sori ben je volledig betrokken bij het onderwijs van je kind dankzij alle benodigde informatie binnen handbereik. En als de beste manier om te begrijpen wat Sori voor je kan betekenen, het uitproberen zelf is?</li></ul></section></main><footer><p>&copy; 2024 Sori. Vereenvoudig Montessori-onderwijs voor elke generatie.</p></footer>",
   "Service1": "Specifieke Pedagogische Volging voor Montessori",
   "Service1Text": "<p>Onze applicatie biedt een gepersonaliseerde opvolging van de ontwikkeling van elk kind, in lijn met de fundamentele principes van Montessori. Opvoeders kunnen de voortgang van leerlingen in real-time documenteren, verworven vaardigheden, vaardigheden in ontwikkeling of te ontwikkelen vaardigheden noteren en elke activiteit koppelen aan het gebruikte materiaal.</p><p>Deze benadering vergemakkelijkt de lesplanning, verrijkt de educatieve ervaring en versterkt de communicatie met ouders, terwijl de uniciteit van elk kind wordt gerespecteerd.</p>",
@@ -237,6 +238,8 @@
     "yesRemove": "Ja, verwijderen"
   },
   "invoice": {
+    "downloadMediaText": "Download de factuurmedia",
+    "transactionId": "Transactie ID",
     "amount": "Bedrag",
     "status": "Status",
     "pay": "Betalen",
@@ -470,7 +473,7 @@
     "group": "Groep",
     "groupRequired": "Groep is verplicht"
   },
-  "parent": {
+  "parentComponent": {
     "add": "Voeg Ouder Toe",
     "parentName": "Ouder Naam",
     "email": "E-mail",

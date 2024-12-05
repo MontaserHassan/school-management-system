@@ -30,6 +30,8 @@ export class StudentInvoice{
   @Expose()
   media!: string;
   @Expose()
+  transactionId!: number;
+  @Expose()
   createdAt!: Date;
   @Expose()
   updatedAt!: Date;

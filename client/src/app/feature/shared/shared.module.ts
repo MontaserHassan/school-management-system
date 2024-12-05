@@ -69,6 +69,7 @@ import { GrantAccessDirective } from './directive/grant-access.directive';
 import { ResetPasswordConfirmationDialogComponent } from './component/reset-password-confirmation-dialog/reset-password-confirmation-dialog.component';
 import { MediaPreviewDialogComponent } from './component/media-preview-dialog/media-preview-dialog.component';
 import { PaymentResultDialogComponent } from './component/payment-result-dialog/payment-result-dialog.component';
+import { IsImagePipe } from './pipes/isImage.pipe';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -85,7 +86,8 @@ const COMPONENT =[
   LazyDropdownComponent,
   AddStudentToClassRoomDialogComponent,
   ResetPasswordConfirmationDialogComponent,
-  MediaPreviewDialogComponent
+  MediaPreviewDialogComponent,
+  IsImagePipe
 ]
 
 const OTHER_MODULES = [

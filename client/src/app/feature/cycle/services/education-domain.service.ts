@@ -26,7 +26,7 @@ export class EducationDomainService {
     educationDomainDescription: string,
     domains: string[],
     cycleId: string,
-    schoolId: string
+    schoolId?: string
   }): Observable<EducationDomain> {
     return this.baseAPI.post(ApiConstant.ADD_EDUCATION_DOMAIN, body).pipe(
       map((res) => this.mapper.fromJson(EducationDomain, res.data.educationDomain))
@@ -38,7 +38,7 @@ export class EducationDomainService {
     educationDomainDescription: string,
     domains: string[],
     cycleId: string,
-    schoolId: string
+    schoolId?: string
   }): Observable<EducationDomain> {
     return this.baseAPI.patch(ApiConstant.EDIT_EDUCATION_DOMAIN, body).pipe(
       map((res) => this.mapper.fromJson(EducationDomain, res.data.educationDomain))

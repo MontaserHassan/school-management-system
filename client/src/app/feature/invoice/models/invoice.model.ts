@@ -25,6 +25,8 @@ export class Invoice {
   @Expose()
   media!: string;
   @Expose()
+  transactionId!: number;
+  @Expose()
   createdAt!: Date;
   @Expose()
   updatedAt!: Date;

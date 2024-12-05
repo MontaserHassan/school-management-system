@@ -7,7 +7,7 @@
       <th>Description</th>
       <th>Created At</th>
       <th>Updated At</th>
-      <th>Actions</th>
+      <th *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE">Actions</th>
     </tr>
   </ng-template>
 
@@ -17,11 +17,16 @@
       <td>{{ageGroup}} Year</td>
       <td>
         <p-accordion>
-          <p-accordionTab header="domains">
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+              <div class="d-flex justify-content-between align-items-center">
+                <h4 class="header" [ngStyle]="nationalEducation.isChanged ? {'color': 'red'} : {'color': 'black'}">Domains</h4>
+              </div>
+            </ng-template>
             <app-state-section>
               <ul *ngIf="nationalEducation.domains">
                 <li *ngFor="let domain of nationalEducation.domains">
-                  <strong>{{ domain.domainName }}</strong>
+                  <strong [ngStyle]="domain.isChanged ? {'color': 'red'} : {'color': 'black'}">{{ domain.domainName }}</strong>
                 </li>
               </ul>
             </app-state-section>
@@ -31,7 +36,7 @@
       <td>{{ nationalEducation.educationDomainDescription }}</td>
       <td>{{ nationalEducation.createdAt | date: 'short' }}</td>
       <td>{{ nationalEducation.updatedAt | date: 'short' }}</td>
-      <td>
+      <td *grantAccess="RolesConstants.ADD_VIEW_List_CYCLE" >
         <p-menu #menu [model]="educationDomainAction" appendTo="body" [popup]="true">
           <ng-template pTemplate="item" let-item>
             <div class="p-menuitem-link" (click)="handleClick(item.label, nationalEducation)">
@@ -42,6 +47,11 @@
         </p-menu>
         <p-button (onClick)="menu.toggle($event)" text icon="pi pi-ellipsis-v" />
       </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6"><small>No National Education Program Found</small></td>
     </tr>
   </ng-template>
 </p-table>

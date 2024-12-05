@@ -53,7 +53,7 @@ export class InvoiceService {
     studentId:string,
     parentId:string,
     amount:string
-    media:string
+    media:any
   }): Observable<StudentInvoice> {
     return this.baseAPI.post(ApiConstant.ADD_STUDENT_INVOICE, body).pipe(
       map((res) => this.mapper.fromJson(StudentInvoice, res.data.invoice))
@@ -63,7 +63,7 @@ export class InvoiceService {
   editStudentInvoice(body:{
     invoiceId:string,
     amount?:string
-    media:string
+    media:any
   }): Observable<StudentInvoice> {
     return this.baseAPI.patch(ApiConstant.Edit_STUDENT_INVOICE, body).pipe(
       map((res) => this.mapper.fromJson(StudentInvoice, res.data.invoice))
