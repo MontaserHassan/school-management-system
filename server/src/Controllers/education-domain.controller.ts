@@ -118,7 +118,7 @@ const getAllEducationDomain = async (req: Request, res: Response, next: NextFunc
 
 const updateEducationDomainData = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { educationDomainId, educationDomainName, educationDomainDescription, domains } = req.body;
+        const { educationDomainId, educationDomainName, educationDomainDescription, cycleId, domains } = req.body;
         const isEducationDomainExisting = await educationDomainService.getById(educationDomainId);
         if (!isEducationDomainExisting) throw new CustomError(errorEducationDomainMessage.NOT_FOUND_DOMAIN, 404, "educationDomain");
         let processedDomains;
@@ -131,10 +131,15 @@ const updateEducationDomainData = async (req: Request, res: Response, next: Next
                 }),
             );
         };
+        let cycle;
+        if (cycleId) {
+            cycle = await cycleService.getCycleByCycleId(cycleId);
+            if (!cycle) throw new CustomError(errorCycleMessage.CYCLE_NOT_FOUND, 404, "cycle");
+        };
         const newDomains = domains ? processedDomains : isEducationDomainExisting.domains;
         const newEducationDomainName = educationDomainName ? educationDomainName : isEducationDomainExisting.educationDomainName;
         const newEducationDomainDescription = educationDomainDescription ? educationDomainDescription : isEducationDomainExisting.educationDomainDescription;
-        const updateEducationDomain = await educationDomainService.updateById(educationDomainId, { domains: newDomains, educationDomainName: newEducationDomainName, educationDomainDescription: newEducationDomainDescription });
+        const updateEducationDomain = await educationDomainService.updateById(educationDomainId, { domains: newDomains, educationDomainName: newEducationDomainName, cycleId: cycle._Id, cycleName: cycle.cycleName, educationDomainDescription: newEducationDomainDescription });
         if (!updateEducationDomain) throw new CustomError(errorEducationDomainMessage.NOT_UPDATED, 404, "educationDomain");
         const response: IResponse = {
             type: "info",

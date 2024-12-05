@@ -29,7 +29,7 @@ const educationDomainValidator = {
             educationDomainId: Joi.string().required().trim().messages({ 'string.empty': 'Education Domain is required.', }),
         }),
     },
-    
+
     getEducationDomainBySchoolId: {
         params: Joi.object().keys({
             schoolId: Joi.string().required().trim().messages({ 'string.empty': 'School Id is required.', }),
@@ -53,6 +53,8 @@ const educationDomainValidator = {
                 'string.empty': 'Domains is required.',
                 'string.min': 'Domains should have at least 1 domain.',
             }),
+            cycleId: Joi.string().optional().trim().empty('').messages({ 'string.empty': 'Cycle Id is required.', }),
+
         }),
     },
 
