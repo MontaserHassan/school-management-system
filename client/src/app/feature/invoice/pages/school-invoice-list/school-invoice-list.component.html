@@ -26,7 +26,7 @@
 
       <ng-template let-invoice pTemplate="body">
         <tr>
-          <td>{{ invoice.transactionId }}</td>
+          <td>{{ invoice.transactionId || ('domain.n/a' | translate) }}</td>
           <td>{{ invoice.school.schoolName }}</td>
           <td>{{ invoice.admin.adminName }}</td>
           <td>{{ invoice.amount }}</td>
@@ -51,7 +51,7 @@
             </ng-container>
 
             <ng-template #noMedia>
-              <p>{{ 'invoice.noMediaText' | translate }}</p>
+              <p>{{ 'invoice.noMedia' | translate }}</p>
             </ng-template>
           </td>
 
