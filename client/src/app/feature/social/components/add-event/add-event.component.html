@@ -76,6 +76,7 @@
         <label for="date">{{ 'addEventDialog.eventDate' | translate }}</label>
         <p-calendar
           id="date"
+          [appendTo]="'body'"
           formControlName="date"
           [showTime]="true"
           dateFormat="yy-mm-dd"

@@ -21,6 +21,10 @@
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
 
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
           h3 {
             font-size: 1.25rem;
             color: #2e2f7d;
@@ -32,10 +36,10 @@
     }
   }
 
-  .menu{
-    position: absolute;
-    top:50%;
-    right: 20px;
-    transform: translate(0, -50%);
-  }
+  // .menu{
+  //   position: absolute;
+  //   top:50%;
+  //   right: 20px;
+  //   transform: translate(0, -50%);
+  // }
 }

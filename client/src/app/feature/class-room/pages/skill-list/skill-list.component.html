@@ -14,7 +14,7 @@
       <div *ngFor="let skill of skills" class="skill-card col-12 col-md-4">
         <p-card>
           <ng-template pTemplate="header">
-            <div class="skill-header position-relative">
+            <div class="skill-header">
               <h3>{{ skill.skillId }} : {{ skill.skillName }}</h3>
 
               <div class="menu" *grantAccess="RolesConstants.ADD_Edit_SKILL">
