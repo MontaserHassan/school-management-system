@@ -166,7 +166,8 @@
                 <div>
                   <p><strong>{{ 'student.comment' | translate }}:</strong> {{ selectedComment.comment }}</p>
                   <p *ngIf="selectedComment.media"><strong>{{ 'student.media' | translate }}:</strong></p>
-                  <img *ngIf="selectedComment.media" [src]="selectedComment.media" alt="Comment Media" class="img-fluid mb-2" width="100%" height="400px" />
+                  <img *ngIf="isImage(selectedComment.media)" [src]="selectedComment.media" alt="Comment Media" class="img-fluid mb-2" width="100%" height="400px" />
+                  <iframe *ngIf="isPDF(selectedComment.media)" [src]="sanitizedMedia(selectedComment.media)" class="w-100 mb-2" style="height: 400px;" ></iframe>
                   <p><strong>{{ 'student.date' | translate }}:</strong> {{ selectedComment.dateOfComment | date: 'medium' }}</p>
                 </div>
               </div>

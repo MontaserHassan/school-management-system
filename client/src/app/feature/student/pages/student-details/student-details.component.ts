@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { StudentService } from '../../services/student.service';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../shared/component/base-component/base.component';
@@ -20,7 +21,7 @@ import { Activity } from '../../../class-room/models/activity.model';
   styleUrls: ['./student-details.component.scss']
 })
 export class StudentDetailsComponent extends BaseComponent implements OnInit {
-    @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
+  @ViewChild('attendanceCalendar') attendanceCalendar!: AttendanceCalenderComponent;
 
   studentProfile: Student = new Student();
   displayDialog: boolean = false;
@@ -31,7 +32,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
 
   protected degreeStatus = DegreeStatus
 
-  degreeOption: MenuItem[] = this.degreeStatus.map((status) => ({ icon: "pi pi-star-fill", label: status._id}));
+  degreeOption: MenuItem[] = this.degreeStatus.map((status) => ({ icon: "pi pi-star-fill", label: status._id }));
   id!: string;
 
   studentAction!: MenuItem[];
@@ -40,6 +41,7 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     private studentService: StudentService,
     private activeRoute: ActivatedRoute,
     private dialog: MatDialog,
+    private sanitizer: DomSanitizer
   ) {
     super()
   }
@@ -85,16 +87,16 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  getStudentDetails(id: string,params?:{isExport?:boolean}) {
-    this.load(this.studentService.getStudentById(id,params), { isLoadingTransparent: true }).subscribe(res => {
+  getStudentDetails(id: string, params?: { isExport?: boolean }) {
+    this.load(this.studentService.getStudentById(id, params), { isLoadingTransparent: true }).subscribe(res => {
       if (!params?.isExport) {
         this.studentProfile = res;
       }
     })
   }
 
-  updateDegree(id: string, activity:Activity) {
-    const activityId = activity.activityId|| '';
+  updateDegree(id: string, activity: Activity) {
+    const activityId = activity.activityId || '';
     const studentId = this.studentProfile._id;
     const payload = {
       studentId,
@@ -119,6 +121,21 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     this.selectedComment = null;
   }
 
+  // Check if media is an image
+  isImage(base64: string): boolean {
+    return base64.startsWith('data:image/');
+  }
+
+  // Check if media is a PDF
+  isPDF(base64: string): boolean {
+    return base64.startsWith('data:application/pdf');
+  }
+
+  // Sanitize media to be used in an iframe
+  sanitizedMedia(base64: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(base64);
+  }
+
   openAddCommentDialog() {
     const dialog = this.dialog.open(AddCommentDialogComponent, {
       width: '500px',
@@ -138,8 +155,8 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
     this.getStudentDetails(this.id);
   }
 
-  handleAddStudentToClassRoom(){
-    const dialog = this.dialog.open(AddStudentToClassRoomDialogComponent,{
+  handleAddStudentToClassRoom() {
+    const dialog = this.dialog.open(AddStudentToClassRoomDialogComponent, {
       width: '500px',
       data: {
         studentId: this.studentProfile._id
@@ -164,12 +181,12 @@ export class StudentDetailsComponent extends BaseComponent implements OnInit {
 
       dialog.afterClosed().subscribe(res => {
         if (res) {
-        this.getStudentDetails(this.id);
+          this.getStudentDetails(this.id);
         }
       })
     }
     else if (label === this.studentAction?.[0]?.items?.[1]?.label) {
-      this.getStudentDetails(this.id, {isExport: true})
+      this.getStudentDetails(this.id, { isExport: true })
     }
   }
 }
