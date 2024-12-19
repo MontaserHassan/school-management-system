@@ -33,7 +33,7 @@ export class SchoolsListComponent extends BaseComponent implements OnInit {
       if (!isExport) {
         this.schools = res.schools || [];
         this.totalRowsCount = res.totalDocuments|| 1;
-        this.pageSize = res?.limit || 0
+        this.pageSize = res?.limit || this.pageSize
       }
     })
   }

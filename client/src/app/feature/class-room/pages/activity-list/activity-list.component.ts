@@ -51,7 +51,7 @@ export class ActivityListComponent extends BaseComponent implements OnInit {
     this.load(this.classRoomService.getActivities(params), { isLoadingTransparent: true }).subscribe((response) => {
       this.activities = response.activities || [];
       this.totalRowsCount = response.totalDocuments || 1;
-      this.pageSize = response?.limit || 0
+      this.pageSize = response?.limit || this.pageSize
     })
   }
 

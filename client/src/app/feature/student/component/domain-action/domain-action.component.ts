@@ -5,6 +5,7 @@ import { BaseComponent } from '../../../shared/component/base-component/base.com
 import { StudentService } from '../../services/student.service';
 import { RolesConstants } from '../../../shared/config/roles-constants';
 import { ProgressStatus } from '../../../shared/config/drop-down-value.constant';
+import { DegreeLabel } from '../../enums/degree.enum';
 
 @Component({
   selector: 'app-domain-action',
@@ -41,4 +42,8 @@ export class DomainActionComponent extends BaseComponent implements OnInit {
     })
   }
 
+
+  setDegreeColor(degree: string): "success" | "secondary" | "warning" | undefined {
+      return DegreeLabel[degree as keyof typeof DegreeLabel] || undefined;
+    }
 }

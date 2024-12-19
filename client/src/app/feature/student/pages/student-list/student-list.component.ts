@@ -39,7 +39,7 @@ export class StudentListComponent extends BaseComponent implements OnInit {
         ]
       }
     ];
-    
+
     this.getStudentsList()
   }
 
@@ -50,7 +50,7 @@ export class StudentListComponent extends BaseComponent implements OnInit {
       if (!isExport) {
         this.students = res?.students || []
         this.totalRowsCount = res.totalDocuments || 1;
-        this.pageSize = res?.limit || 0
+        this.pageSize = res?.limit || this.pageSize
       }
     })
   }

@@ -14,15 +14,31 @@
       </div>
 
       <div class="p-field my-2">
-        <label for="materialName">{{ 'activity.materialName' | translate }}</label>
-        <input pInputText id="materialName" formControlName="materialName" class="p-inputtext" />
-        <div *ngIf="activityForm.get('materialName')?.invalid && activityForm.get('materialName')?.touched" class="p-error">
-          <small *ngIf="activityForm.get('materialName')?.errors?.['required']">{{ 'activity.materialNameRequired' | translate
-            }}</small>
-          <small *ngIf="activityForm.get('materialName')?.errors?.['minlength']">{{ 'activity.materialNameMinLength' | translate
-            }}</small>
+        <label>{{ 'activity.materialName' | translate }}</label>
+
+        <div formArrayName="materials">
+          <div *ngFor="let material of materials.controls; let i = index" [formGroupName]="i" class="d-flex gap-2 align-items-center">
+            <input
+              pInputText
+              formControlName="materialName"
+              class="p-inputtext"
+              [placeholder]="'addActivityDialog.materialPlaceholder' | translate"
+            />
+            <button
+              *ngIf="materials.length > 1"
+              type="button"
+              pButton
+              icon="pi pi-trash"
+              class="p-button-danger p-button-sm"
+              (click)="removeMaterial(i)"
+            >
+            </button>
+          </div>
         </div>
+
+        <button type="button" pButton label="{{ 'addActivityDialog.addMaterial' | translate }}" class="p-button-sm w-100 mt-2" (click)="addMaterial()"></button>
       </div>
+
       <div class="mat-dialog-actions">
         <button mat-button mat-dialog-close>{{ 'activity.cancel' | translate }}</button>
         <button mat-button [disabled]="activityForm.invalid" type="submit">{{ 'activity.update' | translate }}</button>

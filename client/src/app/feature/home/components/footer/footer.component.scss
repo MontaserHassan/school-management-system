@@ -1,6 +1,6 @@
 
 .footer-section {
-  background: wheat;
+  background: #9bc1bc;
   position: relative;
 
   a{
@@ -57,7 +57,7 @@
 .footer-text p {
   margin-bottom: 14px;
   font-size: 14px;
-      color: #7e7e7e;
+  color: rgb(85, 85, 85);
   line-height: 28px;
 }
 .footer-social-icon span {
@@ -90,7 +90,7 @@
   background: #DD4B39;
 }
 .footer-widget-heading h3 {
-  color: rgb(85, 85, 85);
+  color: black;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 40px;
@@ -115,7 +115,7 @@
   color: #ff5e14;
 }
 .footer-widget ul li a {
-  color: #878787;
+  color: rgb(85, 85, 85);
   text-transform: capitalize;
 }
 
@@ -126,7 +126,7 @@
 .copyright-text p {
   margin: 0;
   font-size: 14px;
-  color: #878787;
+  color: rgb(85, 85, 85);
 }
 .copyright-text p a{
   color: #ff5e14;
@@ -140,5 +140,5 @@
 }
 .footer-menu li a {
   font-size: 14px;
-  color: #878787;
+  color: rgb(85, 85, 85);
 }

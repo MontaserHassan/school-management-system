@@ -25,7 +25,7 @@ export class GroupListComponent extends BaseComponent implements OnInit {
     this.load(this.groupService.getGroups({offset: this.offset, limit: this.pageSize})).subscribe(groups => {
       this.groups = groups.groups || [];
       this.totalRowsCount = groups.totalDocuments || 1;
-      this.pageSize = groups?.limit || 10
+      this.pageSize = groups?.limit || this.pageSize
     })
   }
 

@@ -35,7 +35,13 @@
             <div class="d-flex flex-column">
               <small><strong>{{ 'student.domainName' | translate }}:</strong> {{ activity?.domainName }}</small>
               <small><strong>{{ 'student.skillName' | translate }}:</strong> {{ activity?.skillName }}</small>
-              <small><strong>{{ 'student.materialName' | translate }}:</strong> {{ activity?.materialName }}</small>
+              <small><strong>{{ 'student.materialName' | translate }}:</strong>
+                <ul>
+                  <li *ngFor="let material of activity.materials">
+                    <span>{{ material }}</span>
+                  </li>
+                </ul>
+              </small>
               <small><strong>{{ 'student.createdAt' | translate }}:</strong> {{ activity.createdAt | date: 'medium' }}</small>
               <small><strong>{{ 'student.updatedAt' | translate }}:</strong> {{ activity.updatedAt | date: 'medium' }}</small>
             </div>

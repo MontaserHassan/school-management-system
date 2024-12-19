@@ -51,7 +51,7 @@ export class StudentInvoiceListComponent extends BaseComponent implements OnInit
     ).subscribe((res) => {
       this.invoices = res.invoices;
       this.totalRowsCount = res.totalDocuments || 1;
-      this.pageSize = res?.limit || 0
+      this.pageSize = res?.limit || this.pageSize
     })
   }
 

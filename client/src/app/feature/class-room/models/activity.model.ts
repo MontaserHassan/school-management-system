@@ -13,7 +13,7 @@ export class Activity {
   activityName!: string;
 
   @Expose()
-  materialName!: string;
+  materials!: string[];
 
   @Expose()
   skillId!: string;

@@ -51,7 +51,7 @@ export class SkillListComponent extends BaseComponent implements OnInit {
     this.load(this.classRoomService.getSkills(params), { isLoadingTransparent: true }).subscribe((response) => {
       this.skills = response.skills || [];
       this.totalRowsCount = response.totalDocuments || 1;
-      this.pageSize = response?.limit || 0
+      this.pageSize = response?.limit || this.pageSize
     })
   }
 

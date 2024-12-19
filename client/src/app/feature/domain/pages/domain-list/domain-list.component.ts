@@ -62,7 +62,7 @@ export class DomainListComponent extends BaseComponent implements OnInit {
     this.load(this.domainService.getDomains(params), { isLoadingTransparent: true }).subscribe(domains => {
       this.domains = domains.domains || [];
       this.totalRowsCount = domains.totalDocuments || 1;
-      this.pageSize = domains?.limit || 0
+      this.pageSize = domains?.limit || this.pageSize
     })
   }
 

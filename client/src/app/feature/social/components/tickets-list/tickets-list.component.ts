@@ -82,7 +82,7 @@ export class TicketsListComponent extends BaseComponent implements OnInit, OnCha
       this.socialService.getTickets(params)
     ).subscribe((res) => {
       this.tickets = this.tickets.concat(res.tickets);
-      this.pageSize = res?.limit || 0
+      this.pageSize = res?.limit || this.pageSize
     })
   }
 

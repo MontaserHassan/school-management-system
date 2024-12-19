@@ -11,18 +11,21 @@ import * as AOS from 'aos';
 export class HomeComponent extends BaseComponent implements OnInit {
   introductionSections = [
     {
-      title: this.translate('Educators'),
-      description: this.translate('EducatorsText'),
-      image: 'assets/img/Educator-Effectiveness.png',
-    },
-    {
-      title: this.translate('Directors'),
+      title: this.translate('Schools'),
+      supTitle: this.translate('supTitleDirectors'),
       description: this.translate('DirectorsText'),
       image: 'assets/img/directors.png',
+    },
+    {
+      title: this.translate('Educators'),
+      supTitle: this.translate('supTitleEducators'),
+      description: this.translate('EducatorsText'),
+      image: 'assets/img/Educator-Effectiveness.png',
       position: 'left',
     },
     {
       title: this.translate('Parent'),
+      supTitle: this.translate('supTitleParent'),
       description: this.translate('ParentText'),
       image: 'assets/img/parents.png',
     }

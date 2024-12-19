@@ -83,7 +83,7 @@ constructor(
     )
   }
 
-  addActivity(body: {classRoomId:string,skillId:string ,materialName:string ,activityName:string}):Observable<Activity> {
+  addActivity(body: {classRoomId:string,skillId:string ,materials:string[] ,activityName:string}):Observable<Activity> {
     return this.baseAPI.post(ApiConstant.ADD_ACTIVITY, body).pipe(
       map((res) => this.mapper.fromJson(Activity, res.data.activity))
     )
@@ -95,7 +95,7 @@ constructor(
     )
   }
 
-  editActivity(body: {classRoomId:string,skillId:string ,materialName:string ,activityName:string, activityId:string}):Observable<Activity> {
+  editActivity(body: {classRoomId:string,skillId:string ,materials:string[] ,activityName:string, activityId:string}):Observable<Activity> {
     return this.baseAPI.patch(ApiConstant.EDIT_ACTIVITY, body).pipe(
       map((res) => this.mapper.fromJson(Activity, res.data.activity))
     )

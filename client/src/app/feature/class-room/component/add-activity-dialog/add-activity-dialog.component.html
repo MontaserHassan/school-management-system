@@ -35,13 +35,23 @@
       </div>
 
       <div class="field d-flex flex-column gap-2">
-        <label for="material" class="form-label">{{ 'addActivityDialog.materialLabel' | translate }}</label>
-        <input id="material" type="text" pInputText
-          [placeholder]=" 'addActivityDialog.materialPlaceholder' | translate"
-          formControlName="materialName" class="p-inputtext-sm" />
-        <small *ngIf="addActivityForm.get('materialName')?.hasError('required') && addActivityForm.get('materialName')?.touched" class="p-error">
-          {{ 'addActivityDialog.materialRequiredError' | translate }}
-        </small>
+        <label class="form-label">{{ 'addActivityDialog.materialLabel' | translate }}</label>
+
+        <div formArrayName="materials">
+          <div *ngFor="let material of materials.controls; let i = index" [formGroupName]="i" class="d-flex gap-2 align-items-center">
+            <input
+              id="material-{{ i }}"
+              type="text"
+              pInputText
+              [placeholder]="'addActivityDialog.materialPlaceholder' | translate"
+              formControlName="materialName"
+              class="p-inputtext-sm mb-1"
+            />
+            <button *ngIf="materials.length > 1" type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="removeMaterial(i)">
+            </button>
+          </div>
+        </div>
+        <button type="button" pButton label="{{ 'addActivityDialog.addMaterial' | translate }}" class="p-button-sm mt-2" (click)="addMaterial()"></button>
       </div>
     </form>
   </div>

@@ -49,7 +49,7 @@ export class progressHistory {
   @Expose()
   domainId!: string
   @Expose()
-  domainName!: "math"
+  domainName!: string
   @Expose()
   skills!: Skill[]
 

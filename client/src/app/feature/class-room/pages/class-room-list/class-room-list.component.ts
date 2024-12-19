@@ -69,7 +69,7 @@ export class ClassRoomListComponent extends BaseComponent implements OnInit {
       if (!isExport) {
         this.classrooms = response?.rooms || [];
         this.totalRowsCount = response.totalDocuments || 1;
-        this.pageSize = response?.limit || 0;
+        this.pageSize = response?.limit || this.pageSize
       }
     }, (error) => {
       if (!isExport) {

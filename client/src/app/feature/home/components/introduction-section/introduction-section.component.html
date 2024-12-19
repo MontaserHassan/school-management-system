@@ -1,7 +1,10 @@
 <div class="introduction-section d-flex container" [ngClass]="data?.position ==='left' ? 'introduction-section--left' : 'introduction-section--right'"
   [attr.data-aos]="data?.position === 'left' ? 'fade-left' : 'fade-right'" data-aos-duration="3000">
   <div class="introduction-section__text " [ngClass]="{'introduction-section__text--left': data?.position ==='left'}">
-    <h1 class="mb-5 text-capitalize">{{(data?.title || "" )| translate}}</h1>
+    <div class="mb-5">
+      <h1 class="text-capitalize">{{(data?.title || "" )| translate}}</h1>
+      <span>{{(data?.supTitle || "" )| translate}}</span>
+    </div>
     <div style="font-size: 12px;"  [innerHTML]="(data?.description || '') | translate"></div>
   </div>
   <div class="introduction-section__shape" [ngClass]="{'introduction-section__shape--left': data?.position ==='left'}">

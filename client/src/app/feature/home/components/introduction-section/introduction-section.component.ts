@@ -9,6 +9,7 @@ import * as AOS from 'aos';
 export class IntroductionSectionComponent implements OnInit {
   @Input() data?:{
     title:string,
+    supTitle?:string,
     description:string,
     image:string,
     position?:string

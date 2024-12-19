@@ -1,4 +1,4 @@
-<p-splitButton *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [label]="'student.progressStatus.' + domain.progressStatus | translate" appendTo="body" [model]="progressStatusOptions" size="small" text
+<p-splitButton *grantAccess="RolesConstants.ADD_PROGRESS_AND_DEGREE" [severity]="setDegreeColor( domain.progressStatus || 'secondary')" [label]="'student.progressStatus.' + domain.progressStatus | translate" appendTo="body" [model]="progressStatusOptions" size="small"
   rounded severity="secondary" />
 
-<span *grantAccess="RolesConstants.VIEW_PROGRESS_AND_DEGREE">{{ "student.progressStatus." + domain.progressStatus | translate}}</span>
+<p-tag *grantAccess="RolesConstants.VIEW_PROGRESS_AND_DEGREE" [severity]="setDegreeColor( domain.progressStatus || 'secondary')">{{ "student.progressStatus." + domain.progressStatus | translate}}</p-tag>
