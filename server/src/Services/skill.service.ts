@@ -118,6 +118,15 @@ const updateById = async (skillId: string, updatedData: any) => {
 };
 
 
+// ----------------------------- update by activity by id -----------------------------
+
+
+const updateActivityById = async (activityId: string, activityName: string, materials: string[]) => {
+    const updatedSkill = await Skill.updateMany({ 'activities.activityId': activityId }, { $set: { 'activities.$.activityName': activityName, 'activities.$.materials': materials } }, { new: true })
+    return updatedSkill;
+};
+
+
 // ----------------------------- update by id -----------------------------
 
 
@@ -141,5 +150,6 @@ export default {
     getAllSkillsLookups,
     findWithPagination,
     updateById,
+    updateActivityById,
     deleteSkill,
 };

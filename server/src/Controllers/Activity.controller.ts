@@ -117,6 +117,7 @@ const updateActivityData = async (req: Request, res: Response, next: NextFunctio
         if (!activity) throw new CustomError(errorActivityMessage.NOT_UPDATED, 404, "activity");
         await studentService.updateActivityDataInStudents(isActivityExisting._id, newActivityName, newMaterials);
         await classRoomService.updateActivityDataInClassrooms(isActivityExisting._id, newActivityName, newMaterials);
+        await skillService.updateActivityById(isActivityExisting._id, newActivityName, newMaterials);
         const response: IResponse = {
             type: "info",
             responseCode: 200,
