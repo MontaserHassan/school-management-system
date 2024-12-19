@@ -7,6 +7,7 @@ enum errorActivityMessage {
     ACTIVITY_ALREADY_EXISTS = 'This Activity already exists for this student',
     EXISTING_ACTIVITY = 'This Activity already exists, you can update on it',
     ACTIVITY_NOT_FOUND = "Activity not found. Please check the Activity ID and try again.",
+    MATERIALS_INVALID = "Please check the materials and try again.",
 };
 
 

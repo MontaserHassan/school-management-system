@@ -53,7 +53,7 @@ const addSkill = async (room: string, newSkill: { skillId: string, skillName: st
 // ----------------------------- add activity -----------------------------
 
 
-const addActivity = async (room: string, newActivity: { activityId: string, activityName: string, materialName: string }) => {
+const addActivity = async (room: string, newActivity: { activityId: string, activityName: string, materials: string[] }) => {
     const updateClassRoomData: ClassRoomModel = await ClassRoom.findOneAndUpdate({ room }, { $push: { activities: newActivity }, }, { new: true });
     return updateClassRoomData;
 };
@@ -188,8 +188,8 @@ const updateSkillDataInClassrooms = async (skillId: string, updatedSkillName: st
 
 // ----------------------------- update activity inside room -----------------------------
 
-const updateActivityDataInClassrooms = async (activityId: string, updatedActivityName: string, updatedMaterialName: string) => {
-    const updatedClassrooms = await ClassRoom.updateMany({ "activities.activityId": activityId }, { $set: { "activities.$.activityName": updatedActivityName, "activities.$.materialName": updatedMaterialName } }, { multi: true });
+const updateActivityDataInClassrooms = async (activityId: string, updatedActivityName: string, updatedMaterials: string[]) => {
+    const updatedClassrooms = await ClassRoom.updateMany({ "activities.activityId": activityId }, { $set: { "activities.$.activityName": updatedActivityName, "activities.$.materials": updatedMaterials } }, { multi: true });
     return updatedClassrooms;
 };
 

@@ -7,7 +7,7 @@ interface ActivityModel extends mongoose.Document {
     _id: string;
     activityId: string;
     activityName: string;
-    materialName: string;
+    materials: string[];
     domainId: string;
     domainName: string;
     skillId: string;
@@ -31,8 +31,8 @@ const activitySchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        materialName: {
-            type: String,
+        materials: {
+            type: [String],
             required: true,
         },
         skillId: {

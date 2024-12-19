@@ -25,7 +25,7 @@ interface ClassRoomModel extends mongoose.Document {
     students?: { studentId: string, studentName: string }[];
     domains?: { domainId: string, domainName: string }[];
     skills?: { skillId: string, skillName: string }[];
-    activities?: { activityId: string, activityName: string, materialName: string }[];
+    activities?: { activityId: string, activityName: string, materials: string[] }[];
     schedule?: Schedule[];
     studentCost: string;
     currencyOfCost: string;
@@ -126,8 +126,8 @@ const classRoomSchema = new mongoose.Schema(
                     type: String,
                     required: true,
                 },
-                materialName: {
-                    type: String,
+                materials: {
+                    type: [String],
                     required: true,
                 },
             },

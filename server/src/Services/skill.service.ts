@@ -22,8 +22,8 @@ const createSkill = async (skillId: string, skillName: string, room: string, dom
 // ----------------------------- add new activity -----------------------------
 
 
-const addNewActivity = async (skillId: string, activityId: string, activityName: string, materialName: string) => {
-    const activity: SkillModel = await Skill.findByIdAndUpdate(skillId, { $push: { activities: { activityId: activityId, activityName: activityName, materialName: materialName } } }, { new: true }).select('-__v');
+const addNewActivity = async (skillId: string, activityId: string, activityName: string, materials: string[]) => {
+    const activity: SkillModel = await Skill.findByIdAndUpdate(skillId, { $push: { activities: { activityId: activityId, activityName: activityName, materials: materials } } }, { new: true }).select('-__v');
     return activity;
 };
 

@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 interface activities {
     activityId: string;
     activityName: string;
-    materialName: string
+    materials: string[]
 };
 
 interface SkillModel extends mongoose.Document {
@@ -60,8 +60,8 @@ const skillSchema = new mongoose.Schema(
                     type: String,
                     required: true,
                 },
-                materialName: {
-                    type: String,
+                materials: {
+                    type: [String],
                     required: true,
                 },
             },

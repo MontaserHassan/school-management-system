@@ -151,8 +151,8 @@ const studentSchema = new mongoose.Schema(
                     type: String,
                     required: true,
                 },
-                materialName: {
-                    type: String,
+                materials: {
+                    type: [String],
                     required: true,
                 },
                 degree: {

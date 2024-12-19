@@ -79,8 +79,8 @@ const addSkill = async (studentId: string, skillId: string, skillName: string) =
 // ----------------------------- add new activity -----------------------------
 
 
-const addActivity = async (studentId: string, skillId: string, activityId: string, activityName: string, materialName: string) => {
-    const activity: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { activities: { skillId: skillId, activityId: activityId, activityName: activityName, materialName: materialName } } }, { new: true });
+const addActivity = async (studentId: string, skillId: string, activityId: string, activityName: string, materials: string[]) => {
+    const activity: StudentModel = await Student.findByIdAndUpdate(studentId, { $push: { activities: { skillId: skillId, activityId: activityId, activityName: activityName, materials: materials } } }, { new: true });
     return activity;
 };
 
@@ -97,8 +97,8 @@ const updateSkillDataInStudents = async (skillId: string, newSkillName: string) 
 // ----------------------------- update activity -----------------------------
 
 
-const updateActivityDataInStudents = async (activityId: string, newActivityName: string, newMaterialName: string) => {
-    const updatedStudents = await Student.updateMany({ "activities.activityId": activityId }, { $set: { "activities.$.ActivityName": newActivityName, "activities.$.materialName": newMaterialName } }, { multi: true });
+const updateActivityDataInStudents = async (activityId: string, newActivityName: string, newMaterials: string[]) => {
+    const updatedStudents = await Student.updateMany({ "activities.activityId": activityId }, { $set: { "activities.$.ActivityName": newActivityName, "activities.$.materials": newMaterials } }, { multi: true });
     return updatedStudents;
 };
 

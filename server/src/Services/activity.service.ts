@@ -5,11 +5,11 @@ import { Activity, ActivityModel } from '../Models/activity.model';
 // ----------------------------- create activity -----------------------------
 
 
-const createActivity = async (activityId: string, activityName: string, materialName: string, skillId: string, skillName: string, room: string, domainId: string, domainName: string, schoolId: string) => {
+const createActivity = async (activityId: string, activityName: string, materials: string[], skillId: string, skillName: string, room: string, domainId: string, domainName: string, schoolId: string) => {
     const newActivity: ActivityModel = new Activity({
         activityId: activityId,
         activityName: (activityName).toLowerCase(),
-        materialName: (materialName).toLowerCase(),
+        materials: materials,
         skillId: skillId,
         skillName: skillName,
         domainId: domainId,
