@@ -1,5 +1,5 @@
 export const environment = {
-  base_url: 'http://localhost:80',
+  base_url: 'https://soriconnect.com',
   api_prefix: '/api/',
   api_version: 'v0.0.0',
 };
