@@ -1,13 +1,21 @@
-<div class="introduction-section d-flex container" [ngClass]="data?.position ==='left' ? 'introduction-section--left' : 'introduction-section--right'"
-  [attr.data-aos]="data?.position === 'left' ? 'fade-left' : 'fade-right'" data-aos-duration="3000">
-  <div class="introduction-section__text " [ngClass]="{'introduction-section__text--left': data?.position ==='left'}">
-    <div class="mb-5">
-      <h1 class="text-capitalize">{{(data?.title || "" )| translate}}</h1>
-      <span>{{(data?.supTitle || "" )| translate}}</span>
+<div class="d-flex flex-column align-items-center">
+  <div class="introduction-section d-flex container"
+    [ngClass]="data?.position ==='left' ? 'introduction-section--left' : 'introduction-section--right'"
+    [attr.data-aos]="data?.position === 'left' ? 'fade-left' : 'fade-right'" data-aos-duration="3000">
+    <div class="introduction-section__text " [ngClass]="{'introduction-section__text--left': data?.position ==='left'}">
+      <div class="mb-5">
+        <h1 class="text-capitalize">{{(data?.title || "" )| translate}}</h1>
+        <span>{{(data?.supTitle || "" )| translate}}</span>
+      </div>
+      <div style="font-size: 12px;" [innerHTML]="(data?.description || '') | translate"></div>
     </div>
-    <div style="font-size: 12px;"  [innerHTML]="(data?.description || '') | translate"></div>
+    <div class="introduction-section__shape"
+      [ngClass]="{'introduction-section__shape--left': data?.position ==='left'}">
+      <img [src]="data?.image">
+    </div>
   </div>
-  <div class="introduction-section__shape" [ngClass]="{'introduction-section__shape--left': data?.position ==='left'}">
-    <img [src]="data?.image">
-  </div>
+
+  <a href="https://calendly.com/soriconnect/30min" target="_blank" class="my-4">
+    <button pButton label="{{'button' | translate}}" class="p-button-success"></button>
+  </a>
 </div>
